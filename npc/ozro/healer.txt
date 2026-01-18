@@ -1,0 +1,147 @@
+//===== Hercules Script ======================================
+//= Blessing Priestess Angela
+//===== By: ==================================================
+//= Original: Euphy
+//= Improved: Ozcodex
+//===== Current Version: =====================================
+//= 1.3
+//===== Description: =========================================
+//= A kind priestess who travels around the world sharing
+//= her blessings with those in need.
+//===== Additional Comments: =================================
+//= 1.0 Initial script.
+//= 1.1 Aligned coordinates with @go.
+//= 1.2 Fix variables and character stuck at healing
+//= 1.3 Added personality and friendly dialog
+//============================================================
+
+-	script	Angela	FAKE_NPC,{
+
+	.@price_heal = 5000;		// Zeny required for heal only
+	.@price_full = 10000;		// Zeny required for heal + buffs
+	.@Delay = 0;				// Heal delay, in seconds
+	.@level_threshold = 40;		// Base level for free healing
+
+	if (@HD > gettimetick(2)) {
+		mes .npc_name$;
+		mes "Please wait a moment while I gather more divine energy...";
+		close;
+	}
+	
+	mes .npc_name$;
+	mes "^FF69B4Greetings dear friend! I'm Angela, a traveling priestess.^000000";
+	mes "My mission is to share the divine blessings with everyone in need.";
+	next;
+	
+	// Check if player is below level threshold for free healing
+	if (BaseLevel < .@level_threshold) {
+		mes .npc_name$;
+		mes "I can see you're still starting your journey, young adventurer.";
+		mes "I dedicate myself to helping those in need, so this healing is free!";
+		next;
+		specialeffect(EF_HEAL2, AREA, playerattached());
+		percentheal 100,100;
+		mes .npc_name$;
+		mes "^00FF00Divine light, embrace this soul!^000000";
+		mes "Go forth and face your challenges with strength!";
+		if (.@Delay) @HD = gettimetick(2)+.@Delay;
+		close;
+	}
+	
+	// For experienced adventurers, offer options
+	mes "I can offer you two types of blessings:";
+	next;
+	.@choice = select(
+		"^00FF00Healing only (" + .@price_heal + " Zeny)^000000",
+		"^FF69B4Full Blessing (" + .@price_full + " Zeny) - Heal + Buffs^000000",
+		"^777777Maybe later^000000"
+	);
+	
+	if (.@choice == 3) {
+		mes .npc_name$;
+		mes "May the light guide your path! Come back whenever you need my help!";
+		close;
+	}
+	
+	// Determine which service was chosen
+	.@cost = (.@choice == 1) ? .@price_heal : .@price_full;
+	
+	if (Zeny < .@cost) {
+		mes .npc_name$;
+		mes "^FF0000I see you don't have enough Zeny right now...^000000";
+		mes "Don't worry! Come back when you can afford it, I'll be here!";
+		close;
+	}
+	
+	Zeny -= .@cost;
+	
+	// Apply healing
+	specialeffect(EF_HEAL2, AREA, playerattached());
+	percentheal 100,100;
+	
+	mes .npc_name$;
+	mes "^00FF00Divine light, embrace this soul!^000000";
+	mes "How do you feel? Better, right?";
+	
+	// Apply buffs if full blessing was chosen
+	if (.@choice == 2) {
+		next;
+		mes .npc_name$;
+		mes "Let me share some additional blessings with you...";
+		specialeffect(EF_INCAGILITY, AREA, playerattached());
+		sc_start SC_INC_AGI,240000,10;
+		specialeffect(EF_BLESSING, AREA, playerattached());
+		sc_start SC_BLESSING,240000,10;
+		mes "^00FF00May these enchantments protect you on your journey!^000000";
+	}
+	
+	if (.@Delay) @HD = gettimetick(2)+.@Delay;
+	
+	close;
+
+OnInit:
+	.npc_name$ = "[ ^FF69B4Angela^000000 ]";
+	end;
+}
+
+// Duplicates
+//============================================================
+alberta,25,240,6	duplicate(Angela)	Angela#alb	4_M_BRZ_JACI
+aldebaran,135,118,6	duplicate(Angela)	Angela#alde	4_M_BRZ_JACI
+amatsu,200,79,4	duplicate(Angela)	Angela#ama	4_M_BRZ_JACI
+ayothaya,207,169,6	duplicate(Angela)	Angela#ayo	4_M_BRZ_JACI
+comodo,184,158,6	duplicate(Angela)	Angela#com	4_M_BRZ_JACI
+einbech,57,36,6	duplicate(Angela)	Angela#einbe	4_M_BRZ_JACI
+einbroch,57,202,6	duplicate(Angela)	Angela#einbr	4_M_BRZ_JACI
+geffen,115,72,6	duplicate(Angela)	Angela#gef	4_M_BRZ_JACI
+gonryun,156,122,6	duplicate(Angela)	Angela#gon	4_M_BRZ_JACI
+hugel,89,150,6	duplicate(Angela)	Angela#hug	4_M_BRZ_JACI
+izlude,125,118,5	duplicate(Angela)	Angela#izl	4_M_BRZ_JACI
+jawaii,250,139,4	duplicate(Angela)	Angela#jaw	4_M_BRZ_JACI
+lighthalzen,152,100,6	duplicate(Angela)	Angela#lhz	4_M_BRZ_JACI
+louyang,226,103,4	duplicate(Angela)	Angela#lou	4_M_BRZ_JACI
+manuk,272,144,6	duplicate(Angela)	Angela#man	4_M_BRZ_JACI
+mid_camp,203,289,6	duplicate(Angela)	Angela#mid	4_M_BRZ_JACI
+moc_ruins,72,164,4	duplicate(Angela)	Angela#moc	4_M_BRZ_JACI
+morocc,153,97,6	duplicate(Angela)	Angela#mor	4_M_BRZ_JACI
+moscovia,220,191,4	duplicate(Angela)	Angela#mos	4_M_BRZ_JACI
+niflheim,212,182,5	duplicate(Angela)	Angela#nif	4_M_BRZ_JACI
+payon,179,106,4	duplicate(Angela)	Angela#pay	4_M_BRZ_JACI
+prontera,162,193,4	duplicate(Angela)	Angela#prt	4_M_BRZ_JACI
+rachel,125,116,6	duplicate(Angela)	Angela#rac	4_M_BRZ_JACI
+splendide,201,153,4	duplicate(Angela)	Angela#spl	4_M_BRZ_JACI
+thor_camp,249,74,4	duplicate(Angela)	Angela#thor	4_M_BRZ_JACI
+umbala,105,148,3	duplicate(Angela)	Angela#umb	4_M_BRZ_JACI
+veins,217,121,4	duplicate(Angela)	Angela#ve	4_M_BRZ_JACI
+xmas,143,136,4	duplicate(Angela)	Angela#xmas	4_M_BRZ_JACI
+yuno,164,45,4	duplicate(Angela)	Angela#yuno	4_M_BRZ_JACI
+
+// Duplicates (Renewal)
+//============================================================
+brasilis,194,221,6	duplicate(Angela)	Angela#bra	4_M_BRZ_JACI
+dewata,195,187,4	duplicate(Angela)	Angela#dew	4_M_BRZ_JACI
+dicastes01,201,194,4	duplicate(Angela)	Angela#dic	4_M_BRZ_JACI
+ecl_in01,45,60,4	duplicate(Angela)	Angela#ecl	4_M_BRZ_JACI
+malangdo,132,114,6	duplicate(Angela)	Angela#mal	4_M_BRZ_JACI
+malaya,205,205,6	duplicate(Angela)	Angela#ma	4_M_BRZ_JACI
+mora,55,152,4	duplicate(Angela)	Angela#mora	4_M_BRZ_JACI
