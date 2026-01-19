@@ -95,8 +95,11 @@ prt_fild03,203,41,3	script	Macaco	YOYO,{
 		set .@amount_offered, .@item_count;
 	}
 	
+	// Variable para plural
+	set .@plural$, (.@amount_offered == 1) ? "" : "s";
+	
 	mes .npc_name$;
-	mes "* arranca ferozmente " + .@amount_offered + " " + .@item_name$ + "(s) de tu mano *";
+	mes "* arranca ferozmente " + .@amount_offered + " " + .@item_name$ + .@plural$ + " de tu mano *";
 	
 	delitem .@item_name$, .@amount_offered;
 	next;
@@ -135,8 +138,11 @@ prt_fild03,203,41,3	script	Macaco	YOYO,{
 	set .@reward_idx, rand(0, 2);
 	set .@reward_item$, .@reward_items$[.@reward_idx];
 	
+	// Variable para plural de recompensa
+	set .@reward_plural$, (.@reward_amount == 1) ? "" : "s";
+	
 	mes .npc_name$;
-	mes "* mastica felizmente y te ofrece " + .@reward_amount + " " + .@reward_item$ + "s *";
+	mes "* mastica felizmente y te ofrece " + .@reward_amount + " " + .@reward_item$ + .@reward_plural$ + " *";
 	mes "ooh ooh... uh uh";
 	
 	getitem .@reward_item$, .@reward_amount;
