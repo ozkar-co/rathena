@@ -16,7 +16,7 @@
 //= 1.3 All statuses removed upon skill reset. [Euphy]
 //= 1.4 Added one-time use, lore and death chance [Ozcodex]
 //= 1.5 Translated to Spanish and add more than one use to third class [Ozkar]
-//= 2.0 Reset for all with Birthstone requirement. Debug vars shown. [Ozkar]
+//= 2.0 Reset for all with Birthstone requirement. [Ozkar]
 //============================================================
 
 prontera,150,186,5	script	Canalizadora Mistica	4_GEFFEN_09,{
@@ -40,7 +40,7 @@ function GetBirthstoneID;
 	
 	mes "[Canalizadora Mistica]";
 	mes "El proceso requiere un enfoque especial:";
-	mes "Una Birthstone sincronizada con tu ciclo de reencarnacion actual.";
+	mes "Una gema sincronizada con tu ciclo de reencarnacion actual.";
 	mes "Para ti, en este momento: ^FF9900" + .@stone_name$ + "^000000";
 	mes "El coste del ritual es " + .@price + " zeny.";
 	next;
@@ -62,7 +62,7 @@ function GetBirthstoneID;
 	if (countitem(.@stone_id) < 1) {
 		mes "[Canalizadora Mistica]";
 		mes "^990000*Sus ojos se oscurecen*^000000";
-		mes "Sin la Birthstone correcta no puedo hacer nada.";
+		mes "Sin la gema correcta no puedo hacer nada.";
 		mes "Tu ciclo necesita: " + .@stone_name$ + "";
 		mes "Regresa cuando la tengas.";
 		close;
@@ -72,7 +72,7 @@ function GetBirthstoneID;
 	if (Zeny < .@price) {
 		mes "[Canalizadora Mistica]";
 		mes "^990000*Ella niega con la cabeza*^000000";
-		mes "Ni siquiera con la Birthstone podria comenzar.";
+		mes "Ni siquiera con la gema podria comenzar.";
 		mes "Necesito " + .@price + " zeny para los sellos.";
 		close;
 		return;
@@ -98,7 +98,7 @@ function GetBirthstoneID;
 	Zeny -= .@price;
 
 	mes "[Canalizadora Mistica]";
-	mes "^990000*La Birthstone comienza a brillar, el aire cruje*^000000";
+	mes "^990000*La gema comienza a brillar, el aire cruje*^000000";
 	mes "^990000*Tu cuerpo se retuerce mientras tu esencia es reescrita*^000000";
 	next;
 
@@ -111,9 +111,9 @@ function GetBirthstoneID;
 	RESET_COUNT = RESET_COUNT + 1;
 	
 	mes "[Canalizadora Mistica]";
-	mes "^990000*La Birthstone se oscurece y se desmorona en polvo*^000000";
+	mes "^990000*La gema se oscurece y se desmorona en polvo*^000000";
 	mes "El ritual... esta completo. Tu esencia ha sido";
-	mes "recanalizadora. Has renacido.";
+	mes "recanalizada. Has renacido.";
 	mes "^888888[Tu contador: RESET_COUNT=" + RESET_COUNT + "]^000000";
 	close;
 
