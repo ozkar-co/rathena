@@ -90,7 +90,7 @@
 		mes .npc_name$;
 		mes "Permiti compartir bendiciones adicionales contigo...";
 		specialeffect2 EF_INCAGILITY;
-		sc_start SC_INC_AGI,240000,10;
+		sc_start SC_INCREASEAGI,240000,10;
 		specialeffect2 EF_BLESSING;
 		sc_start SC_BLESSING,240000,10;
 		mes "^00CC00Que estos encantamientos te protejan en tu viaje!^000000";
