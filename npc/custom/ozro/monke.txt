@@ -73,7 +73,7 @@ prt_fild03,203,41,3	script	Macaco	YOYO,{
 	mes .npc_name$;
 	mes "El macaco quiere tu " + .@item_name$ + ".";
 	mes "Que haces?";
-	set .@player_choice, select("Ofrecerle la " + .@item_name$, "Cambiar de idea");
+	set .@player_choice, select("Ofrecerle tu " + .@item_name$, "Cambiar de idea");
 	
 	if (.@player_choice == 2) {
 		mes "* se aleja molesto *";
