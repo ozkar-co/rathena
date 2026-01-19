@@ -68,7 +68,7 @@ Body:
   - Id: 62559
     Title: "Bounty Board Grand Peco"
     Targets:
-      - Mob: Grand Peco #1369
+      - Mob: GRAND_PECO #1369
         Count: 150
   - Id: 62560
     Title: "Bounty Board Skeleton"
@@ -83,7 +83,7 @@ Body:
   - Id: 62562
     Title: "Bounty Board Archer Skeleton"
     Targets:
-      - Mob: Archer Skeleton #1016
+      - Mob: ARCHER_SKELETON #1016
         Count: 150
   - Id: 62563
     Title: "Bounty Board Munak"
@@ -93,7 +93,7 @@ Body:
   - Id: 62564
     Title: "Bounty Board Bongun"
     Targets:
-      - Mob: Bongun #1188
+      - Mob: BON_GUN #1188
         Count: 150
   - Id: 62565
     Title: "Bounty Board Spore"
@@ -113,12 +113,12 @@ Body:
   - Id: 62568
     Title: "Bounty Board Elder Willow"
     Targets:
-      - Mob: Elder Willow #1033
+      - Mob: ELDER_WILOW #1033
         Count: 150
   - Id: 62569
     Title: "Bounty Board Greatest General"
     Targets:
-      - Mob: Greatest General #1277
+      - Mob: GREATEST_GENERAL #1277
         Count: 150
   - Id: 62599
     Title: "Bounty Board Cornus"
@@ -138,7 +138,7 @@ Body:
   - Id: 62602
     Title: "Bounty Board Luciola Vespa"
     Targets:
-      - Mob: Luciola Vespa #1994
+      - Mob: LUCIOLA_VESPA #1994
         Count: 150
   - Id: 62603
     Title: "Bounty Board Curupira"
@@ -148,7 +148,7 @@ Body:
   - Id: 62604
     Title: "Bounty Board Headless Mule"
     Targets:
-      - Mob: Headless Mule #2071
+      - Mob: HEADLESS_MULE #2071
         Count: 150
   - Id: 62605
     Title: "Bounty Board Jaguar"
@@ -173,7 +173,7 @@ Body:
   - Id: 62609
     Title: "Bounty Board Wild Rose"
     Targets:
-      - Mob: Wild Rose #1261
+      - Mob: WILD_ROSE #1261
         Count: 150
   - Id: 62610
     Title: "Bounty Board Dryad"
@@ -183,7 +183,7 @@ Body:
   - Id: 62611
     Title: "Bounty Board Wootan Fighter"
     Targets:
-      - Mob: Wootan Fighter #1499
+      - Mob: WOOTAN_FIGHTER #1499
         Count: 150
   - Id: 62612
     Title: "Bounty Board Parasite"
@@ -198,7 +198,7 @@ Body:
   - Id: 62614
     Title: "Bounty Board Centipede Larva"
     Targets:
-      - Mob: Centipede Larva #1999
+      - Mob: CENTIPEDE_LARVA #1999
         Count: 150
   - Id: 62615
     Title: "Bounty Board Tatacho"
@@ -213,7 +213,7 @@ Body:
   - Id: 62617
     Title: "Bounty Board Thara Frog"
     Targets:
-      - Mob: Thara Frog #1034
+      - Mob: THARA_FROG #1034
         Count: 150
   - Id: 62618
     Title: "Bounty Board Sea Otter"
@@ -223,7 +223,7 @@ Body:
   - Id: 62619
     Title: "Bounty Board Seal"
     Targets:
-      - Mob: Seal #1317
+      - Mob: FUR_SEAL #1317
         Count: 150
   - Id: 62620
     Title: "Bounty Board Raggler"
@@ -233,7 +233,7 @@ Body:
   - Id: 62621
     Title: "Bounty Board Grove"
     Targets:
-      - Mob: Grove #1687
+      - Mob: GREEN_IGUANA #1687
         Count: 150
   - Id: 62622
     Title: "Bounty Board Alligator"
@@ -248,7 +248,7 @@ Body:
   - Id: 62624
     Title: "Bounty Board Stalactic Golem"
     Targets:
-      - Mob: Stalactic Golem #1278
+      - Mob: STALACTIC_GOLEM #1278
         Count: 150
   - Id: 62625
     Title: "Bounty Board Medusa"
@@ -258,7 +258,7 @@ Body:
   - Id: 62644
     Title: "Bounty Board Willow"
     Targets:
-      - Mob: Willow #1010
+      - Mob: WILOW #1010
         Count: 150
   - Id: 62645
     Title: "Bounty Board Wolf"
@@ -273,7 +273,7 @@ Body:
   - Id: 62647
     Title: "Bounty Board Bongun"
     Targets:
-      - Mob: Bongun #1188
+      - Mob: BON_GUN #1188
         Count: 150
   - Id: 62648
     Title: "Bounty Board Sohee"
@@ -288,7 +288,7 @@ Body:
   - Id: 62650
     Title: "Bounty Board Nine Tail"
     Targets:
-      - Mob: Nine Tail #1180
+      - Mob: NINE_TAIL #1180
         Count: 150
   - Id: 62660
     Title: "Bounty Board Chonchon"
@@ -298,7 +298,7 @@ Body:
   - Id: 62661
     Title: "Bounty Board Roda Frog"
     Targets:
-      - Mob: Roda Frog #1012
+      - Mob: RODA_FROG #1012
         Count: 150
   - Id: 62662
     Title: "Bounty Board Mandragora"
@@ -328,27 +328,27 @@ Body:
   - Id: 62667
     Title: "Bounty Board Poison Spore"
     Targets:
-      - Mob: Poison Spore #1077
+      - Mob: POISON_SPORE #1077
         Count: 150
   - Id: 62668
     Title: "Bounty Board Orc Warrior"
     Targets:
-      - Mob: Orc Warrior #1023
+      - Mob: ORK_WARRIOR #1023
         Count: 150
   - Id: 62669
     Title: "Bounty Board Orc Lady"
     Targets:
-      - Mob: Orc Lady #1273
+      - Mob: ORC_LADY #1273
         Count: 150
   - Id: 62670
     Title: "Bounty Board Knife Goblin"
     Targets:
-      - Mob: Goblin #1122
+      - Mob: GOBLIN_1 #1122
         Count: 150
   - Id: 62671
     Title: "Bounty Board Goblin Archer"
     Targets:
-      - Mob: Goblin Archer #1258
+      - Mob: GOBLIN_ARCHER #1258
         Count: 150
   - Id: 62672
     Title: "Bounty Board Ghoul"
@@ -383,7 +383,7 @@ Body:
   - Id: 62678
     Title: "Bounty Board Dark Priest"
     Targets:
-      - Mob: Dark Priest #1198
+      - Mob: DARK_PRIEST #1198
         Count: 150
   - Id: 62679
     Title: "Bounty Board Gargoyle"
@@ -393,22 +393,22 @@ Body:
   - Id: 62680
     Title: "Bounty Board Flying Petite"
     Targets:
-      - Mob: Petite #1156
+      - Mob: PETIT_ #1156
         Count: 150
   - Id: 62681
     Title: "Bounty Board Ground Petite"
     Targets:
-      - Mob: Petite #1155
+      - Mob: PETIT #1155
         Count: 150
   - Id: 62682
     Title: "Bounty Board Evil Druid"
     Targets:
-      - Mob: Evil Druid #1117
+      - Mob: EVIL_DRUID #1117
         Count: 150
   - Id: 62683
     Title: "Bounty Board Wind Ghost"
     Targets:
-      - Mob: Wind Ghost #1263
+      - Mob: WIND_GHOST #1263
         Count: 150
   - Id: 62684
     Title: "Bounty Board Carat"
