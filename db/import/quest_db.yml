@@ -78,7 +78,7 @@ Body:
   - Id: 62561
     Title: "Bounty Board Soldier Skeleton"
     Targets:
-      - Mob: Soldier Skeleton #1028
+      - Mob: SOLDIER_SKELETON #1028
         Count: 150
   - Id: 62562
     Title: "Bounty Board Archer Skeleton"
@@ -218,7 +218,7 @@ Body:
   - Id: 62618
     Title: "Bounty Board Sea Otter"
     Targets:
-      - Mob: Sea Otter #1323
+      - Mob: SEE_OTTER #1323
         Count: 150
   - Id: 62619
     Title: "Bounty Board Seal"
@@ -418,7 +418,7 @@ Body:
   - Id: 62685
     Title: "Bounty Board Wanderer"
     Targets:
-      - Mob: Wanderer #1208
+      - Mob: WANDER_MAN #1208
         Count: 150
   - Id: 62686
     Title: "Bounty Board Sting"
@@ -448,7 +448,7 @@ Body:
   - Id: 62691
     Title: "Bounty Board False Angel"
     Targets:
-      - Mob: False Angel #1371
+      - Mob: FAKE_ANGEL #1371
         Count: 150
   - Id: 62692
     Title: "Bounty Board Violy"
@@ -458,7 +458,7 @@ Body:
   - Id: 62693
     Title: "Bounty Board Mini Demon"
     Targets:
-      - Mob: Mini Demon #1292
+      - Mob: MINI_DEMON #1292
         Count: 150
   - Id: 62710
     Title: "Bounty Board Ground Deleter"
@@ -498,7 +498,7 @@ Body:
   - Id: 62717
     Title: "Bounty Board Apocalypse"
     Targets:
-      - Mob: Apocalypse #1365
+      - Mob: APOCALIPS #1365
         Count: 150
   - Id: 62722
     Title: "Bounty Board Hornet"
