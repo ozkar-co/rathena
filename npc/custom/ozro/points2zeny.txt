@@ -1,20 +1,20 @@
 /*=========================================================
-Points to Zeny Exchanger
-by Mumbles
+Cambista de Puntos y Zeny
+por Mumbles
+Adaptado al espanol por Ozkar
 ===========================================================
-Request: http://goo.gl/f0WfTF
+Descripcion:
+Permite a los jugadores intercambiar puntos por zeny
+y viceversa. La variable de puntos, tasa de cambio
+y minimo requerido pueden configurarse facilmente.
 ===========================================================
-Description:
-Allows players to exchange points for zeny and vice-versa.
-Point variable, exchange rate, and minimum exchange can be
-configured easily below the 'OnInit' label.
-===========================================================
-Compatibility:
-Optimised for Hercules emulators.
+Compatibilidad:
+Optimizado para emuladores Hercules.
 ===========================================================
 Changelog:
-v1.0 - First version.
-	v1.0.1 - Added changelog.
+v1.0 - Version inicial.
+	v1.0.1 - Agregado changelog.
+	v2.0 - Adaptado al espanol con lore.
 =========================================================*/
 
 prontera,147,159,5	script	Sophie	4_F_KHELLY,{
@@ -40,21 +40,22 @@ prontera,147,159,5	script	Sophie	4_F_KHELLY,{
 	Script
 	-----------------------------------------------------*/
 	mes .npc_name$;
-	mes "Hello there, "+ strcharinfo(0) +"! What can I help you with?";
-	message strcharinfo(0), "You currently have "+ getd(.var_name$) +" points.";
+	mes "Hola, "+ strcharinfo(0) +". Puedo ayudarte";
+	mes "a cambiar zeny por puntos de cash y viceversa.";
+	message strcharinfo(0), "Puntos disponibles: "+ getd(.var_name$) +"";
 	next;
 	
-	menu "Exchange points for zeny:Exchange zeny for points:Nothing, never mind", -;
+	menu "Cambiar puntos por zeny:Cambiar zeny por puntos:Nada, gracias", -;
 	
 	mes .npc_name$;
 	switch (@menu) {
 		case 1:
-			mes "How many points would you like to exchange?";
-			message strcharinfo(0), "Exchange rate: "+ .exchange_rate +" zeny per point.";
+			mes "Cuantos puntos deseas convertir a zeny?";
+			message strcharinfo(0), "Tasa: "+ .exchange_rate +" zeny por punto.";
 			next;
 			
 			do {
-				message strcharinfo(0), "Enter a value of "+ .exchange_min +" or greater.";
+				message strcharinfo(0), "Minimo: "+ .exchange_min +" puntos.";
 				input .@points;
 			} while (.@points < .exchange_min);
 			
@@ -62,43 +63,44 @@ prontera,147,159,5	script	Sophie	4_F_KHELLY,{
 			
 			// Insufficient funds
 			if (!isbigger(getd(.var_name$), .@points)) {
-				mes "Sorry, but you don't appear to have "+ .@points +" points at this time.";
+				mes "No tienes "+ .@points +" puntos disponibles.";
 				close;
 			}
 			
 			.@payout = .@points * .exchange_rate;
 			
-			mes "I can give you "+ .@payout +" zeny for "+ .@points +" points. Is that okay?";
+			mes "Te doy "+ .@payout +" zeny por "+ .@points +" puntos.";
+			mes "De acuerdo?";
 			next;
 			
-			menu "Yes, that's fine:No, thanks", -;
+			menu "Si:No", -;
 			
 			mes .npc_name$;
 			switch (@menu) {
 				case 1:
-					mes "Alright, here you go! Let me know if you need my services again!";
+					mes "Hecho. Aqui esta tu zeny.";
 					
 					// Update balance
 					Zeny += .@payout;
 					setd(.var_name$), getd(.var_name$) - .@points;
 					
-					message strcharinfo(0), "Balance updated. You now have "+ Zeny +" zeny and "+ getd(.var_name$) +" points.";
+					message strcharinfo(0), "Zeny: "+ Zeny +" | Puntos: "+ getd(.var_name$) +"";
 					break;
 			
 				default:
-					mes "Okay, come back if you change your mind!";
+					mes "Como prefieras.";
 					break;
 			}
 			
 			break;
 			
 		case 2:
-			mes "How many points would you like?";
-			message strcharinfo(0), "Exchange rate: "+ .exchange_rate +" zeny per point.";
+			mes "Cuantos puntos deseas comprar?";
+			message strcharinfo(0), "Tasa: "+ .exchange_rate +" zeny por punto.";
 			next;
 			
 			do {
-				message strcharinfo(0), "Enter a value of "+ .exchange_min +" or greater.";
+				message strcharinfo(0), "Minimo: "+ .exchange_min +" puntos.";
 				input .@points;
 			} while (.@points < .exchange_min);
 			
@@ -108,36 +110,38 @@ prontera,147,159,5	script	Sophie	4_F_KHELLY,{
 			
 			// Insufficient funds
 			if (!isbigger(Zeny, .@cost)) {
-				mes "Sorry, but you don't have enough zeny for "+ .@points +" point(s).";
+				mes "No tienes suficiente zeny.";
+				mes "Necesitas "+ .@cost +" zeny.";
 				break;
 			}
 			
-			mes "I can give you "+ .@points +" points for "+ .@cost +" zeny. Is that okay?";
+			mes "Te doy "+ .@points +" puntos por "+ .@cost +" zeny.";
+			mes "De acuerdo?";
 			next;
 			
-			menu "Yes, that's fine:No, thanks", -;
+			menu "Si:No", -;
 			
 			mes .npc_name$;
 			switch (@menu) {
 				case 1:
-					mes "Alright, here you go! Let me know if you need my services again!";
+					mes "Hecho. Aqui estan tus puntos.";
 					
 					// Update balance
 					Zeny -= .@cost;
 					setd(.var_name$), getd(.var_name$) + .@points;
 					
-					message strcharinfo(0), "Balance updated. You now have "+ getd(.var_name$) +" points and "+ Zeny +" zeny.";
+					message strcharinfo(0), "Puntos: "+ getd(.var_name$) +" | Zeny: "+ Zeny +"";
 					break;
 			
 				default:
-					mes "Okay, come back if you change your mind!";
+					mes "Como prefieras.";
 					break;
 			}
 			
 			break;
 			
 		default:
-			mes "Okay, let me know if you need my services!";
+			mes "Vuelve cuando necesites cambiar dinero.";
 			break;
 	}
 	
@@ -145,15 +149,15 @@ prontera,147,159,5	script	Sophie	4_F_KHELLY,{
 	
 
 	/*-----------------------------------------------------
-	Configuration
+	Configuracion
 	-----------------------------------------------------*/
 	OnInit:
-		.npc_name$ = "[^0000FFSophie^000000]";
-		.var_name$ = "#CASHPOINTS";	// Point variable name
-		.exchange_rate = 20000;		// Amount of zeny to exchange per point
-		.exchange_min = 10;			// Minimum points required to exchange
+		.npc_name$ = "[^0000FSSophie^000000]";
+		.var_name$ = "#CASHPOINTS";	// Nombre de variable de puntos
+		.exchange_rate = 20000;		// Cantidad de zeny por punto
+		.exchange_min = 10;			// Minimo puntos para intercambiar
 		
-		// Pub title
+		// Titulo del chat
 		// waitingroom strnpcinfo(1), 0;
 		end;
 
