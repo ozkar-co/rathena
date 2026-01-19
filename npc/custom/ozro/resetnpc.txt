@@ -37,9 +37,9 @@ function GetBirthstoneID;
 	next;
 	
 	mes "[Canalizadora Mistica]";
-	mes "El proceso requiere un enfoque especial:";
+	mes "El proceso tiene su costo:";
 	mes "Una gema sincronizada con tu ciclo de reencarnacion actual.";
-	mes "Para ti, en este momento: ^FF9900" + .@stone_name$ + "^000000";
+	mes "Para ti voy a necesitar un ^FF9900" + .@stone_name$ + "^000000";
 	mes "El coste del ritual es " + .@price + " zeny.";
 	next;
 	
