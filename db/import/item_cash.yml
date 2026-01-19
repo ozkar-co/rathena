@@ -1,0 +1,173 @@
+# This file is a part of rAthena.
+#   Copyright(C) 2022 rAthena Development Team
+#   https://rathena.org - https://github.com/rathena
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program. If not, see <http://www.gnu.org/licenses/>.
+#
+###########################################################################
+# Item Cash Database
+###########################################################################
+#
+# Item Cash Settings
+#
+###########################################################################
+# - Tab                     Cash shop tab. Available tabs are New, Hot, Limited, Rental, Permanent, Scrolls, Consumables, Other, Sale.
+#   Items:                  List of possible items.
+#     - Item                Item name.
+#       Price               Item cost in cash points (#CASHPOINTS).
+###########################################################################
+
+Header:
+  Type: ITEM_CASH_DB
+  Version: 1
+
+Body:
+  - Tab: Hot
+    Items:
+      - Item: 6241
+        Price: 10
+      - Item: 7619
+        Price: 20
+      - Item: 6223
+        Price: 30
+      - Item: 6225
+        Price: 50
+      - Item: 6240
+        Price: 10
+      - Item: 7620
+        Price: 20
+      - Item: 6224
+        Price: 30
+      - Item: 6226
+        Price: 50
+
+  - Tab: Limited
+    Items:
+      - Item: 7776
+        Price: 100
+      - Item: 12211
+        Price: 5
+      - Item: 14536
+        Price: 5
+      - Item: 13909
+        Price: 100
+      - Item: 13857
+        Price: 50
+      - Item: 13607
+        Price: 150
+
+  - Tab: Rental
+    Items:
+      - Item: 14242
+        Price: 250
+      - Item: 14249
+        Price: 250
+      - Item: 14245
+        Price: 250
+      - Item: 14244
+        Price: 250
+      - Item: 14248
+        Price: 250
+      - Item: 14247
+        Price: 250
+      - Item: 14243
+        Price: 250
+      - Item: 14246
+        Price: 250
+      - Item: 14250
+        Price: 250
+
+  - Tab: Permanent
+    Items:
+      - Item: 12106
+        Price: 80
+      - Item: 12107
+        Price: 100
+      - Item: 12186
+        Price: 150
+      - Item: 12109
+        Price: 5
+
+  - Tab: Scrolls
+    Items:
+      - Item: 13697
+        Price: 15
+      - Item: 13698
+        Price: 15
+      - Item: 13891
+        Price: 5
+      - Item: 13892
+        Price: 5
+      - Item: 13893
+        Price: 5
+      - Item: 13894
+        Price: 5
+      - Item: 12927
+        Price: 10
+      - Item: 13541
+        Price: 20
+      - Item: 12916
+        Price: 20
+
+  - Tab: Consumables
+    Items:
+      - Item: 12020
+        Price: 1
+      - Item: 13810
+        Price: 15
+      - Item: 13989
+        Price: 30
+      - Item: 13973
+        Price: 60
+      - Item: 7621
+        Price: 20
+      - Item: 610
+        Price: 2
+
+  - Tab: Other
+    Items:
+      - Item: 13871
+        Price: 200
+      - Item: 13872
+        Price: 200
+      - Item: 13873
+        Price: 200
+      - Item: 13874
+        Price: 200
+      - Item: 13875
+        Price: 200
+      - Item: 13876
+        Price: 200
+      - Item: 13881
+        Price: 500
+      - Item: 13878
+        Price: 300
+      - Item: 13880
+        Price: 300
+      - Item: 13926
+        Price: 400
+      - Item: 13927
+        Price: 400
+      - Item: 13928
+        Price: 400
+      - Item: 13929
+        Price: 400
+      - Item: 13930
+        Price: 400
+      - Item: 13931
+        Price: 400
+      - Item: 13879
+        Price: 500
+      - Item: 13877
+        Price: 500
