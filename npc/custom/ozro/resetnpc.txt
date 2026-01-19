@@ -50,8 +50,8 @@ function GetBirthstoneID;
 	if(select("Si, estoy preparado:No, tal vez otro momento") == 2) {
 		mes "[Canalizadora Mistica]";
 		mes "^990000*Asiente lentamente*^000000";
-		mes "La prudencia es a veces mas valiosa que";
-		mes "el poder. Vuelve cuando estes seguro.";
+		mes "La prudencia es a veces mas valiosa que la valentia.";
+		mes "Vuelve cuando estes seguro.";
 		close;
 		return;
 	}
@@ -61,7 +61,7 @@ function GetBirthstoneID;
 		mes "[Canalizadora Mistica]";
 		mes "^990000*Sus ojos se oscurecen*^000000";
 		mes "Sin la gema correcta no puedo hacer nada.";
-		mes "Tu ciclo necesita: " + .@stone_name$ + "";
+		mes "Tu necesitas: " + .@stone_name$ + "";
 		mes "Regresa cuando la tengas.";
 		close;
 		return;
