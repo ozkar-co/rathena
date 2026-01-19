@@ -50,7 +50,7 @@ prontera,170,180,1	script	Stylist#custom_stylist	2_M_DYEINGER,{
 		next;
 		set .@next, ((.@Style != .@Styles[.@s]) ? .@Style+1 : .@MinStyles[.@s]);
 		set .@previous, ((.@Style != .@MinStyles[.@s]) ? .@Style-1 : .@Styles[.@s]);
-		set .@menu$, " ~ Siguiente: ~ Anterior: ~ Volver al original";
+		set .@menu$, " ~ Siguiente: ~ Anterior: ~ Volver al original: ~ Quedarme con este estilo";
 		switch(select(.@menu$)) {
 		case 1:
 			set .@Style, .@next;
@@ -65,6 +65,12 @@ prontera,170,180,1	script	Stylist#custom_stylist	2_M_DYEINGER,{
 			next;
 			set .@Style, .@Revert;
 			setlook .@Look[.@s], .@Revert;
+			break;
+		case 4:
+			mes "[Estilista]";
+			mes "Excelente eleccion, amor. Te ves absolutamente fabuloso.";
+			mes "Vuelve pronto si necesitas otro cambio de imagen.";
+			close;
 			break;
 		}
 	}
