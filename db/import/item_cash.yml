@@ -43,9 +43,9 @@ Body:
         Price: 10
       - Item: Enriched_Elunium     # ID: 7619
         Price: 20
-      - Item: Cardium              # ID: 6223
+      - Item: Carnium              # ID: 6223
         Price: 30
-      - Item: HD_Cardium           # ID: 6225
+      - Item: HD_Carnium           # ID: 6225
         Price: 50
       - Item: HD_Oridecon          # ID: 6240
         Price: 10
@@ -58,15 +58,15 @@ Body:
 
   - Tab: Limited
     Items:
-      - Item: Gym_Pass             # ID: 7776
+      - Item: Max_Weight_Up_Scroll # ID: 7776
         Price: 100
       - Item: Kafra_Card           # ID: 12211
         Price: 5
       - Item: Abrasive             # ID: 14536
         Price: 5
-      - Item: MVP_Hunting_Box      # ID: 13909
+      - Item: MVP_Hunt_Box         # ID: 13909
         Price: 100
-      - Item: Toktok_Candy         # ID: 13857
+      - Item: Spark_Candy_Box5     # ID: 13857
         Price: 50
       - Item: Bubble_Gum_Box       # ID: 13607
         Price: 150
@@ -83,7 +83,7 @@ Body:
         Price: 250
       - Item: Decussate_Ring_Box   # ID: 14248
         Price: 250
-      - Item: Fischer_Ring_Box     # ID: 14247
+      - Item: Fisher_Ring_Box     # ID: 14247
         Price: 250
       - Item: Hallow_Ring_Box      # ID: 14243
         Price: 250
@@ -94,7 +94,7 @@ Body:
 
   - Tab: Permanent
     Items:
-      - Item: Jewelry_Box          # ID: 12106
+      - Item: Accessory_Box        # ID: 12106
         Price: 80
       - Item: Wrapped_Mask         # ID: 12107
         Price: 100
@@ -105,38 +105,38 @@ Body:
 
   - Tab: Scrolls
     Items:
-      - Item: 13697                # Blessing Scroll
+      - Item: J_Blessing10_Box     # Blessing Scroll
         Price: 15
-      - Item: 13698                # Agi Scroll
+      - Item: J_Inc_Agi10_Box      # Agi Scroll
         Price: 15
-      - Item: Fire_Property_Scroll # ID: 13891
+      - Item: Fire_Converter_Box   # ID: 13891
         Price: 5
-      - Item: Water_Property_Scroll # ID: 13892
+      - Item: Water_Converter_Box  # ID: 13892
         Price: 5
-      - Item: Wind_Property_Scroll # ID: 13893
+      - Item: Wind_Converter_Box   # ID: 13893
         Price: 5
-      - Item: Earth_Property_Scroll # ID: 13894
+      - Item: Earth_Converter_Box  # ID: 13894
         Price: 5
-      - Item: Aspersio_Scroll      # ID: 12927
+      - Item: J_Aspersio_5_Scroll_Box      # ID: 12927
         Price: 10
-      - Item: Lex_Aeterna_Scroll   # ID: 13541
+      - Item: Lex_Aeterna_Scroll_Box   # ID: 13541
         Price: 20
-      - Item: Assumptio_Scroll     # ID: 12916
+      - Item: Assumptio_5_Scroll_Box     # ID: 12916
         Price: 20
 
   - Tab: Consumables
     Items:
-      - Item: Cursed_Water         # ID: 12020
+      - Item: Water_Of_Darkness         # ID: 12020
         Price: 1
       - Item: Blue_Potion_Box      # ID: 13810
         Price: 15
-      - Item: Acid_Bomb_Box        # ID: 13989
+      - Item: Acidbomb_10_Box        # ID: 13989
         Price: 30
-      - Item: Poison_Bottle_Box    # ID: 13973
+      - Item: Poison_Bottle_30_Box    # ID: 13973
         Price: 60
       - Item: Token_Of_Siegfried   # ID: 7621
         Price: 20
-      - Item: Yggdrasil_Leaf       # ID: 610
+      - Item: Leaf_Of_Yggdrasil       # ID: 610
         Price: 2
 
   - Tab: Other
@@ -149,5 +149,5 @@ Body:
         Price: 300
       - Item: Owl_Card_Box         # ID: 13879
         Price: 500
-      - Item: Clock_Tower_Card_Set # ID: 13877
+      - Item: Clock_Tower_Card_Box # ID: 13877
         Price: 500
