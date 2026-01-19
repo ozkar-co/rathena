@@ -50,7 +50,7 @@ Footer:
   Imports:
   - Path: npc/re/merchants/barters/cashmall.yml
 #  - Path: npc/re/merchants/barters/enchan_illusion_dungeons.yml
-  - Path: npc/re/merchants/barters/enchantgrade.yml
+#  - Path: npc/re/merchants/barters/enchantgrade.yml
   - Path: npc/re/merchants/barters/Extended_Ammunition.yml
 #  - Path: npc/re/merchants/barters/garden_of_time.yml
   - Path: npc/re/merchants/barters/Gemstone_Bagger.yml
