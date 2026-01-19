@@ -111,6 +111,7 @@ prt_fild03,203,41,3	script	Macaco	YOYO,{
 		mes "AAAH AAAH EEEK!";
 		next;
 		getitem 7055, 1; // Excremento
+		mes .npc_name$;
 		mes "* te arroja excremento a la cara *";
 		mes "* el macaco se burla de ti *";
 		close;
