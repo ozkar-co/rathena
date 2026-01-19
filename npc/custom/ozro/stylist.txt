@@ -41,7 +41,7 @@ prontera,170,180,1	script	Stylist#custom_stylist	2_M_DYEINGER,{
 		setlook .@Look[.@s], .@Style;
 		mes "[Estilista]";
 		if (.@s == 1 && .@Style == .@Styles[.@s]) {
-			mes "Amor, no hay mucho que pueda hacer por ti diva, esto es todo lo que tienes.";
+			mes "Amor, no hay mucho que pueda hacer por ti, esto es todo lo que tienes.";
 		} else if (.@s == 1 && .@Style != 0) {
 			mes "Yass queen! Este color te queda perfecto, te ves increible.";
 		} else {
