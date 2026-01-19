@@ -3,15 +3,21 @@
 //===== By: ==================================================
 //= Euphy
 //===== Current Version: =====================================
-//= 1.2
+//= 1.3
 //===== Description: =========================================
 //= Changes your hair style, hair color, and cloth color.
 //===== Additional Comments: =================================
 //= 1.1 Switched to 'getbattleflag', credits to Saithis. [Euphy]
 //= 1.2 Fix hardcoded limits for rAthena compatibility with min/max ranges
+//= 1.3 Improved dialogue and style cycling logic. [Ozcodex]
 //============================================================
 
 prontera,170,180,1	script	Stylist#custom_stylist	2_M_DYEINGER,{
+	mes "[Estilista]";
+	mes "Hola mi amor... sabia que vendrias. Yo soy la vision, el estilo, la excelencia absoluta.";
+	mes "Aqui podemos transformarte, hacerte irresistible, un verdadero monumento a la belleza.";
+	mes "Dime, que deseas cambiar hoy?";
+	next;
 	setarray .@Styles[1],
 		3,
 		29,
@@ -24,15 +30,27 @@ prontera,170,180,1	script	Stylist#custom_stylist	2_M_DYEINGER,{
 		LOOK_CLOTHES_COLOR,
 		LOOK_HAIR,
 		LOOK_HAIR_COLOR;
-	set .@s, select(" ~ Cloth color: ~ Hairstyle: ~ Hair color");
+	setarray .@CategoryName$[1], "color de ropa", "peinado", "color de cabello";
+	set .@s, select(" ~ Color de ropa: ~ Peinado: ~ Color de cabello");
 	set .@Revert, getlook(.@Look[.@s]);
 	set .@Style,.@MinStyles[.@s];
+	mes "[Estilista]";
+	mes "Muy bien, muy bien... vamos a explorar tu lado "+.@CategoryName$[.@s]+".";
+	next;
 	while(1) {
 		setlook .@Look[.@s], .@Style;
-		message strcharinfo(0),"This is style #"+.@Style+".";
+		mes "[Estilista]";
+		if (.@s == 1 && .@Style == .@Styles[.@s]) {
+			mes "Amor, no hay mucho que pueda hacer por ti diva, esto es todo lo que tienes.";
+		} else if (.@s == 1 && .@Style != 0) {
+			mes "Yass queen! Este color te queda perfecto, te ves increible.";
+		} else {
+			mes "Observa como cambias... simplemente divino.";
+		}
+		next;
 		set .@next, ((.@Style != .@Styles[.@s]) ? .@Style+1 : .@MinStyles[.@s]);
 		set .@previous, ((.@Style != .@MinStyles[.@s]) ? .@Style-1 : .@Styles[.@s]);
-		set .@menu$, " ~ Next (^0055FF"+.@next+"^000000): ~ Previous (^0055FF"+.@previous+"^000000): ~ Jump to...: ~ Revert to original (^0055FF"+.@Revert+"^000000)";
+		set .@menu$, " ~ Siguiente: ~ Anterior: ~ Volver al original";
 		switch(select(.@menu$)) {
 		case 1:
 			set .@Style, .@next;
@@ -41,12 +59,10 @@ prontera,170,180,1	script	Stylist#custom_stylist	2_M_DYEINGER,{
 			set .@Style, .@previous;
 			break;
 		case 3:
-			message strcharinfo(0),"Choose a style between "+.@MinStyles[.@s]+" - "+.@Styles[.@s]+".";
-			input .@Style,.@MinStyles[.@s],.@Styles[.@s];
-			if (!.@Style)
-				set .@Style, rand(.@MinStyles[.@s],.@Styles[.@s]);
-			break;
-		case 4:
+			mes "[Estilista]";
+			mes "Volviendo a tu estilo original...";
+			mes "aunque entre tu y yo, es lo que mejor te queda.";
+			next;
 			set .@Style, .@Revert;
 			setlook .@Look[.@s], .@Revert;
 			break;
