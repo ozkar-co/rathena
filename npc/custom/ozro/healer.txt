@@ -4,7 +4,7 @@
 //= Original: Euphy
 //= Improved: Ozcodex
 //===== Current Version: =====================================
-//= 1.3
+//= 1.4
 //===== Description: =========================================
 //= A kind priestess who travels around the world sharing
 //= her blessings with those in need.
@@ -13,6 +13,7 @@
 //= 1.1 Aligned coordinates with @go.
 //= 1.2 Fix variables and character stuck at healing
 //= 1.3 Added personality and friendly dialog
+//= 1.4 Fixed specialeffect error and Spanish translation
 //============================================================
 
 -	script	Angela	FAKE_NPC,{
@@ -24,42 +25,42 @@
 
 	if (@HD > gettimetick(2)) {
 		mes .npc_name$;
-		mes "Please wait a moment while I gather more divine energy...";
+		mes "Por favor espera un momento mientras reuno mas energia divina...";
 		close;
 	}
 	
 	mes .npc_name$;
-	mes "^FF69B4Greetings dear friend! I'm Angela, a traveling priestess.^000000";
-	mes "My mission is to share the divine blessings with everyone in need.";
+	mes "^FF69B4Saludos, querido amigo! Soy Angela, una sacerdotisa viajera.^000000";
+	mes "Mi mision es compartir bendiciones divinas con quien las necesite.";
 	next;
 	
 	// Check if player is below level threshold for free healing
 	if (BaseLevel < .@level_threshold) {
 		mes .npc_name$;
-		mes "I can see you're still starting your journey, young adventurer.";
-		mes "I dedicate myself to helping those in need, so this healing is free!";
+		mes "Veo que aun estas comenzando tu viaje, joven aventurero.";
+		mes "Me dedico a ayudar a quienes lo necesitan, asi que esta curacion es gratis!";
 		next;
-		specialeffect(EF_HEAL2, AREA, playerattached());
+		specialeffect2 EF_HEAL2;
 		percentheal 100,100;
 		mes .npc_name$;
-		mes "^00FF00Divine light, embrace this soul!^000000";
-		mes "Go forth and face your challenges with strength!";
+		mes "^00CC00Que la luz divina te abrace!^000000";
+		mes "Avanza y enfrenta los desafios con fortaleza!";
 		if (.@Delay) @HD = gettimetick(2)+.@Delay;
 		close;
 	}
 	
 	// For experienced adventurers, offer options
-	mes "I can offer you two types of blessings:";
+	mes "Puedo ofrecerte dos tipos de bendiciones:";
 	next;
 	.@choice = select(
-		"^00FF00Healing only (" + .@price_heal + " Zeny)^000000",
-		"^FF69B4Full Blessing (" + .@price_full + " Zeny) - Heal + Buffs^000000",
-		"^777777Maybe later^000000"
+		"^00CC00Curacion solamente (" + .@price_heal + " Zeny)^000000",
+		"^FF69B4Bendicion Completa (" + .@price_full + " Zeny) - Curacion + Bufos^000000",
+		"^777777Tal vez despues^000000"
 	);
 	
 	if (.@choice == 3) {
 		mes .npc_name$;
-		mes "May the light guide your path! Come back whenever you need my help!";
+		mes "Que la luz guie tu camino! Vuelve cuando necesites mi ayuda!";
 		close;
 	}
 	
@@ -68,31 +69,31 @@
 	
 	if (Zeny < .@cost) {
 		mes .npc_name$;
-		mes "^FF0000I see you don't have enough Zeny right now...^000000";
-		mes "Don't worry! Come back when you can afford it, I'll be here!";
+		mes "^FF0000Veo que no tienes suficiente Zeny en este momento...^000000";
+		mes "No te preocupes! Vuelve cuando puedas pagarlo, estare aqui!";
 		close;
 	}
 	
 	Zeny -= .@cost;
 	
 	// Apply healing
-	specialeffect(EF_HEAL2, AREA, playerattached());
+	specialeffect2 EF_HEAL2;
 	percentheal 100,100;
 	
 	mes .npc_name$;
-	mes "^00FF00Divine light, embrace this soul!^000000";
-	mes "How do you feel? Better, right?";
+	mes "^00CC00Que la luz divina te abrace!^000000";
+	mes "Como te sientes? Mejor, verdad?";
 	
 	// Apply buffs if full blessing was chosen
 	if (.@choice == 2) {
 		next;
 		mes .npc_name$;
-		mes "Let me share some additional blessings with you...";
-		specialeffect(EF_INCAGILITY, AREA, playerattached());
+		mes "Permiti compartir bendiciones adicionales contigo...";
+		specialeffect2 EF_INCAGILITY;
 		sc_start SC_INC_AGI,240000,10;
-		specialeffect(EF_BLESSING, AREA, playerattached());
+		specialeffect2 EF_BLESSING;
 		sc_start SC_BLESSING,240000,10;
-		mes "^00FF00May these enchantments protect you on your journey!^000000";
+		mes "^00CC00Que estos encantamientos te protejan en tu viaje!^000000";
 	}
 	
 	if (.@Delay) @HD = gettimetick(2)+.@Delay;
