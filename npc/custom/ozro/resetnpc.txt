@@ -29,7 +29,6 @@ function GetBirthstoneID;
 	mes "[Canalizadora Mistica]";
 	mes "^990000*Una mujer misteriosa con tunicas oscuras te estudia con cuidado*^000000";
 	mes "Ah... otra alma en busca de redireccion.";
-	mes "^888888[DEBUG: RESET_USED=" + RESET_USED + ", RESET_COUNT=" + RESET_COUNT + "]^000000";
 	next;
 	
 	mes "[Canalizadora Mistica]";
@@ -114,7 +113,6 @@ function GetBirthstoneID;
 	mes "^990000*La gema se oscurece y se desmorona en polvo*^000000";
 	mes "El ritual... esta completo. Tu esencia ha sido";
 	mes "recanalizada. Has renacido.";
-	mes "^888888[Tu contador: RESET_COUNT=" + RESET_COUNT + "]^000000";
 	close;
 
 OnInit:
