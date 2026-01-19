@@ -61,7 +61,7 @@ broadcast_hide_name: 0
 
 
 mvp_hp_rate: 200
-monster_hp_rate: 100
+monster_hp_rate: 200
 zeny_from_mobs: yes
 monster_hp_bars_info: no
 
