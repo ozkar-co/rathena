@@ -51,7 +51,11 @@ prt_fild03,203,41,3	script	Macaco	YOYO,{
 	}
 	
 	// El macaco elige aleatoriamente una de las frutas disponibles
-	set .@selected_idx, .@available_idx[rand(1, .@available_items)];
+	if (.@available_items == 1) {
+		set .@selected_idx, .@available_idx[1];
+	} else {
+		set .@selected_idx, .@available_idx[rand(1, .@available_items)];
+	}
 	set .@item_name$, .@items$[.@selected_idx];
 	set .@item_count, .@has_item[.@selected_idx];
 	
@@ -59,7 +63,8 @@ prt_fild03,203,41,3	script	Macaco	YOYO,{
 	
 	// El macaco mira la fruta fijamente
 	setarray .@verbs$[0], "fijamente", "sabrosamente", "gustosamente", "atentamente", "codiciadamente", "apetitosamente", "intensamente", "hipnoticamente";
-	set .@verb, .@verbs$[rand(0, 7)];
+	set .@verb_count, 8;
+	set .@verb, .@verbs$[rand(0, .@verb_count - 1)];
 	
 	mes .npc_name$;
 	mes "* mira " + .@verb + " tu " + .@item_name$ + " *";
@@ -125,7 +130,8 @@ prt_fild03,203,41,3	script	Macaco	YOYO,{
 	
 	// Elegir fruta aleatoria de recompensa
 	setarray .@reward_items$[0], "Strawberry", "Grape", "Lemon";
-	set .@reward_item, .@reward_items$[rand(0, 2)];
+	set .@reward_count, 3;
+	set .@reward_item, .@reward_items$[rand(0, .@reward_count - 1)];
 	
 	mes .npc_name$;
 	mes "* mastica felizmente y te ofrece " + .@reward_amount + " " + .@reward_item + "(s) *";
