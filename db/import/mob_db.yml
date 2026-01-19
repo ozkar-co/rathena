@@ -119,16 +119,26 @@ Body:
     Drops:
       - Item: Tooth_Of_Bat
         Rate: 1500
+        Index: 0
       - Item: Red_Jewel
         Rate: 10
+        Index: 1
       - Item: Red_Herb
         Rate: 550
+        Index: 2
       - Item: Wing_Of_Red_Bat
         Rate: 2750
+        Index: 3
       - Item: Wing_Of_Fly
         Rate: 500
+        Index: 4
       - Item: Oridecon_Stone
         Rate: 20
+        Index: 5
       - Item: Drainliar_Card
         Rate: 1
+        Index: 6
         StealProtected: true
+      - Item: Jellopy
+        Rate: 0
+        Index: 7
