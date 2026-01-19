@@ -62,10 +62,10 @@ prt_fild03,203,41,3	script	Macaco	YOYO,{
 	// El macaco mira la fruta fijamente
 	setarray .@verbs$[0], "fijamente", "sabrosamente", "gustosamente", "atentamente", "codiciadamente", "apetitosamente", "intensamente", "hipnoticamente";
 	set .@verb_idx, rand(0, 7);
-	set .@verb, .@verbs$[.@verb_idx];
+	set .@verb$, .@verbs$[.@verb_idx];
 	
 	mes .npc_name$;
-	mes "* mira " + .@verb + " tu " + .@item_name$ + " *";
+	mes "* mira " + .@verb$ + " tu " + .@item_name$ + " *";
 	mes "uuh uuh... ooh ooh!";
 	next;
 	
