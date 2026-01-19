@@ -1,0 +1,131 @@
+//===== Hercules Script ======================================
+//= Reset Mystic
+//===== By: ==================================================
+//= Original: Hercules Dev Team
+//= Improved: Ozcodex
+//= Modified: Accessible to all, reworked by Ozkar
+//===== Current Version: =====================================
+//= 2.0
+//===== Description: =========================================
+//= A mysterious mystic who can rechannel your knowledge and abilities.
+//= Using ancient artifacts (Birthstones), the ritual is possible for all seekers.
+//===== Additional Comments: =================================
+//= 1.0 First Version
+//= 1.1 Optimized for the greater good. [Kisuka]
+//= 1.2 Cleaning [Euphy]
+//= 1.3 All statuses removed upon skill reset. [Euphy]
+//= 1.4 Added one-time use, lore and death chance [Ozcodex]
+//= 1.5 Translated to Spanish and add more than one use to third class [Ozkar]
+//= 2.0 Reset for all with Birthstone requirement. Debug vars shown. [Ozkar]
+//============================================================
+
+prontera,150,186,5	script	Canalizadora Mistica	4_GEFFEN_09,{
+function GetBirthstoneID;
+
+	.@price = 100000; 	// Zeny required for reset
+	.@stone_id = GetBirthstoneID();
+	.@stone_name$ = getitemname(.@stone_id);
+
+	mes "[Canalizadora Mistica]";
+	mes "^990000*Una mujer misteriosa con tunicas oscuras te estudia con cuidado*^000000";
+	mes "Ah... otra alma en busca de redireccion.";
+	mes "^888888[DEBUG: RESET_USED=" + RESET_USED + ", RESET_COUNT=" + RESET_COUNT + "]^000000";
+	next;
+	
+	mes "[Canalizadora Mistica]";
+	mes "Poseo el arte prohibido de recanalizar";
+	mes "tus habilidades y esencia. Algunos dicen que";
+	mes "es magia antigua, otros... un pacto oscuro.";
+	next;
+	
+	mes "[Canalizadora Mistica]";
+	mes "El proceso requiere un enfoque especial:";
+	mes "Una Birthstone sincronizada con tu ciclo de reencarnacion actual.";
+	mes "Para ti, en este momento: ^FF9900" + .@stone_name$ + "^000000";
+	mes "El coste del ritual es " + .@price + " zeny.";
+	next;
+	
+	mes "[Canalizadora Mistica]";
+	mes "Deseas proceder con la recanalizacion?";
+	next;
+	
+	if(select("Si, estoy preparado:No, tal vez otro momento") == 2) {
+		mes "[Canalizadora Mistica]";
+		mes "^990000*Asiente lentamente*^000000";
+		mes "La prudencia es a veces mas valiosa que";
+		mes "el poder. Vuelve cuando estes seguro.";
+		close;
+		return;
+	}
+	
+	// Check for required items and zeny
+	if (countitem(.@stone_id) < 1) {
+		mes "[Canalizadora Mistica]";
+		mes "^990000*Sus ojos se oscurecen*^000000";
+		mes "Sin la Birthstone correcta no puedo hacer nada.";
+		mes "Tu ciclo necesita: " + .@stone_name$ + "";
+		mes "Regresa cuando la tengas.";
+		close;
+		return;
+	}
+	
+	if (Zeny < .@price) {
+		mes "[Canalizadora Mistica]";
+		mes "^990000*Ella niega con la cabeza*^000000";
+		mes "Ni siquiera con la Birthstone podria comenzar.";
+		mes "Necesito " + .@price + " zeny para los sellos.";
+		close;
+		return;
+	}
+	
+	mes "[Canalizadora Mistica]";
+	mes "^990000*Sus ojos brillan con luz inquietante*^000000";
+	mes "Muy bien. Coloca la Birthstone en el circulo.";
+	mes "^FF0000Una vez comience, no hay retorno.^000000";
+	mes "Estas completamente seguro?";
+	next;
+	
+	if(select("Proceder:Detenerme ahora") == 2) {
+		mes "[Canalizadora Mistica]";
+		mes "^990000*El brillo desaparece de sus ojos*^000000";
+		mes "Sabiduria. Vuelve cuando tu voluntad sea firme.";
+		close;
+		return;
+	}
+	
+	// Consume items and zeny
+	delitem .@stone_id, 1;
+	Zeny -= .@price;
+
+	mes "[Canalizadora Mistica]";
+	mes "^990000*La Birthstone comienza a brillar, el aire cruje*^000000";
+	mes "^990000*Tu cuerpo se retuerce mientras tu esencia es reescrita*^000000";
+	next;
+
+	// Perform reset
+	sc_end_class;
+	ResetSkill;
+	ResetStatus;
+	resetfeel;
+	resethate;
+	RESET_COUNT = RESET_COUNT + 1;
+	
+	mes "[Canalizadora Mistica]";
+	mes "^990000*La Birthstone se oscurece y se desmorona en polvo*^000000";
+	mes "El ritual... esta completo. Tu esencia ha sido";
+	mes "recanalizadora. Has renacido.";
+	mes "^888888[Tu contador: RESET_COUNT=" + RESET_COUNT + "]^000000";
+	close;
+
+OnInit:
+	setarray .birthstones[0],718,719,720,721,722,723,724,725,726,727,728,729;
+	end;
+
+function GetBirthstoneID {
+	.@count = RESET_COUNT;
+	.@size = getarraysize(.birthstones);
+	if (.@size <= 0) return 718;
+	.@idx = .@count % .@size;
+	return .birthstones[.@idx];
+}
+}
