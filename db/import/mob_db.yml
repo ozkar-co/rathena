@@ -84,6 +84,7 @@ Header:
 
 Body:
   - Id: 1111
+    Inherit: false
     AegisName: DRAINLIAR
     Name: Drainliar
     Level: 47
