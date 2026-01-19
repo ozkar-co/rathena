@@ -152,7 +152,7 @@ prontera,147,159,5	script	Sophie	4_F_KHELLY,{
 	Configuracion
 	-----------------------------------------------------*/
 	OnInit:
-		.npc_name$ = "[^0000FSSophie^000000]";
+		.npc_name$ = "[^0000FFSophie^000000]";
 		.var_name$ = "#CASHPOINTS";	// Nombre de variable de puntos
 		.exchange_rate = 20000;		// Cantidad de zeny por punto
 		.exchange_min = 10;			// Minimo puntos para intercambiar
