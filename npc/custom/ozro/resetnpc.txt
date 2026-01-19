@@ -32,7 +32,7 @@ function GetBirthstoneID;
 	next;
 	
 	mes "[Canalizadora Mistica]";
-	mes "Poseo el arte prohibido de recanalizar tus habilidades y esencia."
+	mes "Poseo el arte prohibido de recanalizar tus habilidades y esencia.";
 	mes "Algunos dicen que es magia antigua, otros... que es un pacto oscuro.";
 	next;
 	
