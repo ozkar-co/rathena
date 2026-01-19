@@ -42,7 +42,7 @@ prontera,147,159,5	script	Sophie	4_F_KHELLY,{
 	mes .npc_name$;
 	mes "Hola, "+ strcharinfo(0) +". Puedo ayudarte";
 	mes "a cambiar zeny por puntos de cash y viceversa.";
-	message strcharinfo(0), "Puntos disponibles: "+ getd(.var_name$) +"";
+	mes "Puntos disponibles: "+ getd(.var_name$) +"";
 	next;
 	
 	menu "Cambiar puntos por zeny:Cambiar zeny por puntos:Nada, gracias", -;
@@ -51,11 +51,11 @@ prontera,147,159,5	script	Sophie	4_F_KHELLY,{
 	switch (@menu) {
 		case 1:
 			mes "Cuantos puntos deseas convertir a zeny?";
-			message strcharinfo(0), "Tasa: "+ .exchange_rate +" zeny por punto.";
+			mes "Tasa: "+ .exchange_rate +" zeny por punto.";
 			next;
 			
 			do {
-				message strcharinfo(0), "Minimo: "+ .exchange_min +" puntos.";
+				mes "Minimo: "+ .exchange_min +" puntos.";
 				input .@points;
 			} while (.@points < .exchange_min);
 			
@@ -84,7 +84,7 @@ prontera,147,159,5	script	Sophie	4_F_KHELLY,{
 					Zeny += .@payout;
 					setd(.var_name$), getd(.var_name$) - .@points;
 					
-					message strcharinfo(0), "Zeny: "+ Zeny +" | Puntos: "+ getd(.var_name$) +"";
+					mes "Zeny: "+ Zeny +" | Puntos: "+ getd(.var_name$) +"";
 					break;
 			
 				default:
@@ -96,11 +96,11 @@ prontera,147,159,5	script	Sophie	4_F_KHELLY,{
 			
 		case 2:
 			mes "Cuantos puntos deseas comprar?";
-			message strcharinfo(0), "Tasa: "+ .exchange_rate +" zeny por punto.";
+			mes "Tasa: "+ .exchange_rate +" zeny por punto.";
 			next;
 			
 			do {
-				message strcharinfo(0), "Minimo: "+ .exchange_min +" puntos.";
+				mes "Minimo: "+ .exchange_min +" puntos.";
 				input .@points;
 			} while (.@points < .exchange_min);
 			
@@ -130,7 +130,7 @@ prontera,147,159,5	script	Sophie	4_F_KHELLY,{
 					Zeny -= .@cost;
 					setd(.var_name$), getd(.var_name$) + .@points;
 					
-					message strcharinfo(0), "Puntos: "+ getd(.var_name$) +" | Zeny: "+ Zeny +"";
+					mes "Puntos: "+ getd(.var_name$) +" | Zeny: "+ Zeny +"";
 					break;
 			
 				default:
