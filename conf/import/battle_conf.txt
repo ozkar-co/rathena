@@ -47,7 +47,7 @@ feature.achievement: off
 feature.equipswitch: off
 feature.attendance: off
 feature.privateairship: off
-feature.barter: off
+feature.barter: on
 feature.barter_extended: off
 feature.instance_allow_reconnect: yes
 feature.roulette: off
