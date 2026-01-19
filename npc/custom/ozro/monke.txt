@@ -25,7 +25,7 @@ prt_fild03,203,41,3	script	Macaco	YOYO,{
 	mes .npc_name$;
 	mes "hoo hoo uuh uuh";
 	mes "uuh ooh huu oo uuh";
-	mes "* mas sonidos aleatorios de macaco *";
+	mes "* sonidos aleatorios de macaco *";
 	next;
 	
 	// Verificar si el jugador tiene items
@@ -59,12 +59,10 @@ prt_fild03,203,41,3	script	Macaco	YOYO,{
 	set .@item_name$, .@items$[.@selected_idx];
 	set .@item_count, .@has_item[.@selected_idx];
 	
-	next;
-	
 	// El macaco mira la fruta fijamente
 	setarray .@verbs$[0], "fijamente", "sabrosamente", "gustosamente", "atentamente", "codiciadamente", "apetitosamente", "intensamente", "hipnoticamente";
-	set .@verb_count, 8;
-	set .@verb, .@verbs$[rand(0, .@verb_count - 1)];
+	set .@verb_idx, rand(0, 7);
+	set .@verb, .@verbs$[.@verb_idx];
 	
 	mes .npc_name$;
 	mes "* mira " + .@verb + " tu " + .@item_name$ + " *";
@@ -72,11 +70,12 @@ prt_fild03,203,41,3	script	Macaco	YOYO,{
 	next;
 	
 	// Usuario decide si ofrecerla
-	mes "El macaco quiere tu " + .@item_name$ + ". Que haces?";
+	mes .npc_name$;
+	mes "El macaco quiere tu " + .@item_name$ + ".";
+	mes "Que haces?";
 	set .@player_choice, select("Ofrecerle la " + .@item_name$, "Cambiar de idea");
 	
 	if (.@player_choice == 2) {
-		mes .npc_name$;
 		mes "* se aleja molesto *";
 		mes "eeek eeek!";
 		close;
@@ -84,7 +83,8 @@ prt_fild03,203,41,3	script	Macaco	YOYO,{
 	
 	// El usuario ofrece la fruta
 	next;
-	mes "Le muestras " + .@item_name$ + " al macaco";
+	mes .npc_name$;
+	mes "Le muestras tu" + .@item_name$ + " al macaco";
 	next;
 	
 	// Seleccionar cantidad aleatoria (1-20)
@@ -117,6 +117,7 @@ prt_fild03,203,41,3	script	Macaco	YOYO,{
 	}
 	
 	// Intercambio exitoso
+	mes .npc_name$;
 	mes "* el macaco salta de alegria *";
 	mes "OOH OOH UUH UUH!";
 	next;
@@ -130,14 +131,14 @@ prt_fild03,203,41,3	script	Macaco	YOYO,{
 	
 	// Elegir fruta aleatoria de recompensa
 	setarray .@reward_items$[0], "Strawberry", "Grape", "Lemon";
-	set .@reward_count, 3;
-	set .@reward_item, .@reward_items$[rand(0, .@reward_count - 1)];
+	set .@reward_idx, rand(0, 2);
+	set .@reward_item$, .@reward_items$[.@reward_idx];
 	
 	mes .npc_name$;
-	mes "* mastica felizmente y te ofrece " + .@reward_amount + " " + .@reward_item + "(s) *";
+	mes "* mastica felizmente y te ofrece " + .@reward_amount + " " + .@reward_item$ + "(s) *";
 	mes "ooh ooh... uh uh";
 	
-	getitem .@reward_item, .@reward_amount;
+	getitem .@reward_item$, .@reward_amount;
 	close;
 	
 	
