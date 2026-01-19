@@ -84,19 +84,19 @@ prt_fild03,203,41,3	script	Macaco	YOYO,{
 	// El usuario ofrece la fruta
 	next;
 	mes .npc_name$;
-	mes "Le muestras tu" + .@item_name$ + " al macaco";
+	mes "Le muestras tu " + .@item_name$ + " al macaco";
 	next;
 	
 	// Seleccionar cantidad aleatoria (1-20)
 	set .@amount_offered, rand(1, 20);
 	
+	// Asegurar que no se quita mas de lo que el jugador tiene
+	if (.@amount_offered > .@item_count) {
+		set .@amount_offered, .@item_count;
+	}
+	
 	mes .npc_name$;
 	mes "* arranca ferozmente " + .@amount_offered + " " + .@item_name$ + "(s) de tu mano *";
-	
-	// Verificar si el jugador tiene esa cantidad
-	if (countitem(.@item_name$) < .@amount_offered) {
-		set .@amount_offered, countitem(.@item_name$);
-	}
 	
 	delitem .@item_name$, .@amount_offered;
 	next;
@@ -126,7 +126,7 @@ prt_fild03,203,41,3	script	Macaco	YOYO,{
 	set .@variance, rand(-5, 5); // Varianza entre -5 y +5
 	set .@reward_amount, .@amount_offered + .@variance;
 	
-	if (.@reward_amount < 1) set .@reward_amount, 1;
+	if (.@reward_amount < 2) set .@reward_amount, 2;
 	if (.@reward_amount > 30) set .@reward_amount, 30;
 	
 	// Elegir fruta aleatoria de recompensa
@@ -135,7 +135,7 @@ prt_fild03,203,41,3	script	Macaco	YOYO,{
 	set .@reward_item$, .@reward_items$[.@reward_idx];
 	
 	mes .npc_name$;
-	mes "* mastica felizmente y te ofrece " + .@reward_amount + " " + .@reward_item$ + "(s) *";
+	mes "* mastica felizmente y te ofrece " + .@reward_amount + " " + .@reward_item$ + "s *";
 	mes "ooh ooh... uh uh";
 	
 	getitem .@reward_item$, .@reward_amount;
