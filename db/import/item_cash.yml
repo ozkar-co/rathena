@@ -32,142 +32,122 @@ Header:
   Type: ITEM_CASH_DB
   Version: 1
 
+Header:
+  Type: ITEM_CASH_DB
+  Version: 1
+
 Body:
   - Tab: Hot
     Items:
-      - Item: 6241
+      - Item: HD_Elunium           # ID: 6241
         Price: 10
-      - Item: 7619
+      - Item: Enriched_Elunium     # ID: 7619
         Price: 20
-      - Item: 6223
+      - Item: Cardium              # ID: 6223
         Price: 30
-      - Item: 6225
+      - Item: HD_Cardium           # ID: 6225
         Price: 50
-      - Item: 6240
+      - Item: HD_Oridecon          # ID: 6240
         Price: 10
-      - Item: 7620
+      - Item: Enriched_Oridecon    # ID: 7620
         Price: 20
-      - Item: 6224
+      - Item: Bradium              # ID: 6224
         Price: 30
-      - Item: 6226
+      - Item: HD_Bradium           # ID: 6226
         Price: 50
 
   - Tab: Limited
     Items:
-      - Item: 7776
+      - Item: Gym_Pass             # ID: 7776
         Price: 100
-      - Item: 12211
+      - Item: Kafra_Card           # ID: 12211
         Price: 5
-      - Item: 14536
+      - Item: Abrasive             # ID: 14536
         Price: 5
-      - Item: 13909
+      - Item: MVP_Hunting_Box      # ID: 13909
         Price: 100
-      - Item: 13857
+      - Item: Toktok_Candy         # ID: 13857
         Price: 50
-      - Item: 13607
+      - Item: Bubble_Gum_Box       # ID: 13607
         Price: 150
 
   - Tab: Rental
     Items:
-      - Item: 14242
+      - Item: Beholder_Ring_Box    # ID: 14242
         Price: 250
-      - Item: 14249
+      - Item: Bloody_Ring_Box      # ID: 14249
         Price: 250
-      - Item: 14245
+      - Item: Chemical_Ring_Box    # ID: 14245
         Price: 250
-      - Item: 14244
+      - Item: Clamorous_Ring_Box   # ID: 14244
         Price: 250
-      - Item: 14248
+      - Item: Decussate_Ring_Box   # ID: 14248
         Price: 250
-      - Item: 14247
+      - Item: Fischer_Ring_Box     # ID: 14247
         Price: 250
-      - Item: 14243
+      - Item: Hallow_Ring_Box      # ID: 14243
         Price: 250
-      - Item: 14246
+      - Item: Insecticide_Ring_Box # ID: 14246
         Price: 250
-      - Item: 14250
+      - Item: Satanic_Ring_Box     # ID: 14250
         Price: 250
 
   - Tab: Permanent
     Items:
-      - Item: 12106
+      - Item: Jewelry_Box          # ID: 12106
         Price: 80
-      - Item: 12107
+      - Item: Wrapped_Mask         # ID: 12107
         Price: 100
-      - Item: 12186
+      - Item: Red_Box              # ID: 12186
         Price: 150
-      - Item: 12109
+      - Item: Poring_Box           # ID: 12109
         Price: 5
 
   - Tab: Scrolls
     Items:
-      - Item: 13697
+      - Item: 13697                # Blessing Scroll
         Price: 15
-      - Item: 13698
+      - Item: 13698                # Agi Scroll
         Price: 15
-      - Item: 13891
+      - Item: Fire_Property_Scroll # ID: 13891
         Price: 5
-      - Item: 13892
+      - Item: Water_Property_Scroll # ID: 13892
         Price: 5
-      - Item: 13893
+      - Item: Wind_Property_Scroll # ID: 13893
         Price: 5
-      - Item: 13894
+      - Item: Earth_Property_Scroll # ID: 13894
         Price: 5
-      - Item: 12927
+      - Item: Aspersio_Scroll      # ID: 12927
         Price: 10
-      - Item: 13541
+      - Item: Lex_Aeterna_Scroll   # ID: 13541
         Price: 20
-      - Item: 12916
+      - Item: Assumptio_Scroll     # ID: 12916
         Price: 20
 
   - Tab: Consumables
     Items:
-      - Item: 12020
+      - Item: Cursed_Water         # ID: 12020
         Price: 1
-      - Item: 13810
+      - Item: Blue_Potion_Box      # ID: 13810
         Price: 15
-      - Item: 13989
+      - Item: Acid_Bomb_Box        # ID: 13989
         Price: 30
-      - Item: 13973
+      - Item: Poison_Bottle_Box    # ID: 13973
         Price: 60
-      - Item: 7621
+      - Item: Token_Of_Siegfried   # ID: 7621
         Price: 20
-      - Item: 610
+      - Item: Yggdrasil_Leaf       # ID: 610
         Price: 2
 
   - Tab: Other
     Items:
-      - Item: 13871
-        Price: 200
-      - Item: 13872
-        Price: 200
-      - Item: 13873
-        Price: 200
-      - Item: 13874
-        Price: 200
-      - Item: 13875
-        Price: 200
-      - Item: 13876
-        Price: 200
-      - Item: 13881
+      - Item: Nightmare_Card_Box   # ID: 13881
         Price: 500
-      - Item: 13878
+      - Item: Geffenia_Card_Box    # ID: 13878
         Price: 300
-      - Item: 13880
+      - Item: Ghost_Card_Box       # ID: 13880
         Price: 300
-      - Item: 13926
-        Price: 400
-      - Item: 13927
-        Price: 400
-      - Item: 13928
-        Price: 400
-      - Item: 13929
-        Price: 400
-      - Item: 13930
-        Price: 400
-      - Item: 13931
-        Price: 400
-      - Item: 13879
+      - Item: Owl_Card_Box         # ID: 13879
         Price: 500
-      - Item: 13877
+      - Item: Clock_Tower_Card_Set # ID: 13877
         Price: 500
