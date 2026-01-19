@@ -121,7 +121,7 @@ Body:
       - Item: Red_Jewel
         Rate: 10
       - Item: Red_Herb
-        Rate: 500
+        Rate: 550
       - Item: Wing_Of_Red_Bat
         Rate: 2750
       - Item: Wing_Of_Fly
