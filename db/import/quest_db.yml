@@ -50,953 +50,943 @@ Header:
   Version: 1
 
 Body:
-  - Id: // Quest ID
-    Name: "Quest Title"
-    Targets:
-      - Mob: Target1
-        Count: Val1
-  - Id: //  iRO Bounty Board Quests.
-    Name: ""
-    Targets:
-      - Mob: 
-        Count: 
   - Id: 62556
-    Name: "Bounty Board Goat"
+    Title: "Bounty Board Goat"
     Targets:
       - Mob: 1372
         Count: 150
   - Id: 62557
-    Name: "Bounty Board Harpy"
+    Title: "Bounty Board Harpy"
     Targets:
       - Mob: 1376
         Count: 150
   - Id: 62558
-    Name: "Bounty Board Sleeper"
+    Title: "Bounty Board Sleeper"
     Targets:
       - Mob: 1386
         Count: 150
   - Id: 62559
-    Name: "Bounty Board Grand Peco"
+    Title: "Bounty Board Grand Peco"
     Targets:
       - Mob: 1369
         Count: 150
   - Id: 62560
-    Name: "Bounty Board Skeleton"
+    Title: "Bounty Board Skeleton"
     Targets:
       - Mob: 1076
         Count: 150
   - Id: 62561
-    Name: "Bounty Board Soldier Skeleton"
+    Title: "Bounty Board Soldier Skeleton"
     Targets:
       - Mob: 1028
         Count: 150
   - Id: 62562
-    Name: "Bounty Board Archer Skeleton"
+    Title: "Bounty Board Archer Skeleton"
     Targets:
       - Mob: 1016
         Count: 150
   - Id: 62563
-    Name: "Bounty Board Munak"
+    Title: "Bounty Board Munak"
     Targets:
       - Mob: 1026
         Count: 150
   - Id: 62564
-    Name: "Bounty Board Bongun"
+    Title: "Bounty Board Bongun"
     Targets:
       - Mob: 1188
         Count: 150
   - Id: 62565
-    Name: "Bounty Board Spore"
+    Title: "Bounty Board Spore"
     Targets:
       - Mob: 1014
         Count: 150
   - Id: 62566
-    Name: "Bounty Board Snake"
+    Title: "Bounty Board Snake"
     Targets:
       - Mob: 1025
         Count: 150
   - Id: 62567
-    Name: "Bounty Board Bigfoot"
+    Title: "Bounty Board Bigfoot"
     Targets:
       - Mob: 1060
         Count: 150
   - Id: 62568
-    Name: "Bounty Board Elder Willow"
+    Title: "Bounty Board Elder Willow"
     Targets:
       - Mob: 1033
         Count: 150
   - Id: 62569
-    Name: "Bounty Board Greatest General"
+    Title: "Bounty Board Greatest General"
     Targets:
       - Mob: 1277
         Count: 150
   - Id: 62599
-    Name: "Bounty Board Cornus"
+    Title: "Bounty Board Cornus"
     Targets:
       - Mob: 1992
         Count: 150
   - Id: 62600
-    Name: "Bounty Board Naga"
+    Title: "Bounty Board Naga"
     Targets:
       - Mob: 1993
         Count: 150
   - Id: 62601
-    Name: "Bounty Board Pinguicula"
+    Title: "Bounty Board Pinguicula"
     Targets:
       - Mob: 1995
         Count: 150
   - Id: 62602
-    Name: "Bounty Board Luciola Vespa"
+    Title: "Bounty Board Luciola Vespa"
     Targets:
       - Mob: 1994
         Count: 150
   - Id: 62603
-    Name: "Bounty Board Curupira"
+    Title: "Bounty Board Curupira"
     Targets:
       - Mob: 2074
         Count: 150
   - Id: 62604
-    Name: "Bounty Board Headless Mule"
+    Title: "Bounty Board Headless Mule"
     Targets:
       - Mob: 2071
         Count: 150
   - Id: 62605
-    Name: "Bounty Board Jaguar"
+    Title: "Bounty Board Jaguar"
     Targets:
       - Mob: 2072
         Count: 150
   - Id: 62606
-    Name: "Bounty Board Toucan"
+    Title: "Bounty Board Toucan"
     Targets:
       - Mob: 2073
         Count: 150
   - Id: 62607
-    Name: "Bounty Board Piranha"
+    Title: "Bounty Board Piranha"
     Targets:
       - Mob: 2070
         Count: 150
   - Id: 62608
-    Name: "Bounty Board Iara"
+    Title: "Bounty Board Iara"
     Targets:
       - Mob: 2069
         Count: 150
   - Id: 62609
-    Name: "Bounty Board Wild Rose"
+    Title: "Bounty Board Wild Rose"
     Targets:
       - Mob: 1261
         Count: 150
   - Id: 62610
-    Name: "Bounty Board Dryad"
+    Title: "Bounty Board Dryad"
     Targets:
       - Mob: 1493
         Count: 150
   - Id: 62611
-    Name: "Bounty Board Wootan Fighter"
+    Title: "Bounty Board Wootan Fighter"
     Targets:
       - Mob: 1499
         Count: 150
   - Id: 62612
-    Name: "Bounty Board Parasite"
+    Title: "Bounty Board Parasite"
     Targets:
       - Mob: 1500
         Count: 150
   - Id: 62613
-    Name: "Bounty Board Centipede"
+    Title: "Bounty Board Centipede"
     Targets:
       - Mob: 1987
         Count: 150
   - Id: 62614
-    Name: "Bounty Board Centipede Larva"
+    Title: "Bounty Board Centipede Larva"
     Targets:
       - Mob: 1999
         Count: 150
   - Id: 62615
-    Name: "Bounty Board Tatacho"
+    Title: "Bounty Board Tatacho"
     Targets:
       - Mob: 1986
         Count: 150
   - Id: 62616
-    Name: "Bounty Board Dolomedes"
+    Title: "Bounty Board Dolomedes"
     Targets:
       - Mob: 2092
         Count: 150
   - Id: 62617
-    Name: "Bounty Board Thara Frog"
+    Title: "Bounty Board Thara Frog"
     Targets:
       - Mob: 1034
         Count: 150
   - Id: 62618
-    Name: "Bounty Board Sea Otter"
+    Title: "Bounty Board Sea Otter"
     Targets:
       - Mob: 1323
         Count: 150
   - Id: 62619
-    Name: "Bounty Board Seal"
+    Title: "Bounty Board Seal"
     Targets:
       - Mob: 1317
         Count: 150
   - Id: 62620
-    Name: "Bounty Board Raggler"
+    Title: "Bounty Board Raggler"
     Targets:
       - Mob: 1254
         Count: 150
   - Id: 62621
-    Name: "Bounty Board Grove"
+    Title: "Bounty Board Grove"
     Targets:
       - Mob: 1687
         Count: 150
   - Id: 62622
-    Name: "Bounty Board Alligator"
+    Title: "Bounty Board Alligator"
     Targets:
       - Mob: 1271
         Count: 150
   - Id: 62623
-    Name: "Bounty Board Golem"
+    Title: "Bounty Board Golem"
     Targets:
       - Mob: 1040
         Count: 150
   - Id: 62624
-    Name: "Bounty Board Stalactic Golem"
+    Title: "Bounty Board Stalactic Golem"
     Targets:
       - Mob: 1278
         Count: 150
   - Id: 62625
-    Name: "Bounty Board Medusa"
+    Title: "Bounty Board Medusa"
     Targets:
       - Mob: 1148
         Count: 150
   - Id: 62644
-    Name: "Bounty Board Willow"
+    Title: "Bounty Board Willow"
     Targets:
       - Mob: 1010
         Count: 150
   - Id: 62645
-    Name: "Bounty Board Wolf"
+    Title: "Bounty Board Wolf"
     Targets:
       - Mob: 1013
         Count: 150
   - Id: 62646
-    Name: "Bounty Board Munak"
+    Title: "Bounty Board Munak"
     Targets:
       - Mob: 1026
         Count: 150
   - Id: 62647
-    Name: "Bounty Board Bongun"
+    Title: "Bounty Board Bongun"
     Targets:
       - Mob: 1188
         Count: 150
   - Id: 62648
-    Name: "Bounty Board Sohee"
+    Title: "Bounty Board Sohee"
     Targets:
       - Mob: 1170
         Count: 150
   - Id: 62649
-    Name: "Bounty Board Dokebi"
+    Title: "Bounty Board Dokebi"
     Targets:
       - Mob: 1110
         Count: 150
   - Id: 62650
-    Name: "Bounty Board Nine Tail"
+    Title: "Bounty Board Nine Tail"
     Targets:
       - Mob: 1180
         Count: 150
   - Id: 62660
-    Name: "Bounty Board Chonchon"
+    Title: "Bounty Board Chonchon"
     Targets:
       - Mob: 1011
         Count: 150
   - Id: 62661
-    Name: "Bounty Board Roda Frog"
+    Title: "Bounty Board Roda Frog"
     Targets:
       - Mob: 1012
         Count: 150
   - Id: 62662
-    Name: "Bounty Board Mandragora"
+    Title: "Bounty Board Mandragora"
     Targets:
       - Mob: 1020
         Count: 150
   - Id: 62663
-    Name: "Bounty Board Ambernite"
+    Title: "Bounty Board Ambernite"
     Targets:
       - Mob: 1094
         Count: 150
   - Id: 62664
-    Name: "Bounty Board Creamy"
+    Title: "Bounty Board Creamy"
     Targets:
       - Mob: 1018
         Count: 150
   - Id: 62665
-    Name: "Bounty Board Caramel"
+    Title: "Bounty Board Caramel"
     Targets:
       - Mob: 1103
         Count: 150
   - Id: 62666
-    Name: "Bounty Board Horn"
+    Title: "Bounty Board Horn"
     Targets:
       - Mob: 1128
         Count: 150
   - Id: 62667
-    Name: "Bounty Board Poison Spore"
+    Title: "Bounty Board Poison Spore"
     Targets:
       - Mob: 1077
         Count: 150
   - Id: 62668
-    Name: "Bounty Board Orc Warrior"
+    Title: "Bounty Board Orc Warrior"
     Targets:
       - Mob: 1023
         Count: 150
   - Id: 62669
-    Name: "Bounty Board Orc Lady"
+    Title: "Bounty Board Orc Lady"
     Targets:
       - Mob: 1273
         Count: 150
   - Id: 62670
-    Name: "Bounty Board Knife Goblin"
+    Title: "Bounty Board Knife Goblin"
     Targets:
       - Mob: 1122
         Count: 150
   - Id: 62671
-    Name: "Bounty Board Goblin Archer"
+    Title: "Bounty Board Goblin Archer"
     Targets:
       - Mob: 1258
         Count: 150
   - Id: 62672
-    Name: "Bounty Board Ghoul"
+    Title: "Bounty Board Ghoul"
     Targets:
       - Mob: 1036
         Count: 150
   - Id: 62673
-    Name: "Bounty Board Jakk"
+    Title: "Bounty Board Jakk"
     Targets:
       - Mob: 1130
         Count: 150
   - Id: 62674
-    Name: "Bounty Board Nightmare"
+    Title: "Bounty Board Nightmare"
     Targets:
       - Mob: 1061
         Count: 150
   - Id: 62675
-    Name: "Bounty Board Deviruchi"
+    Title: "Bounty Board Deviruchi"
     Targets:
       - Mob: 1109
         Count: 150
   - Id: 62676
-    Name: "Bounty Board Marionette"
+    Title: "Bounty Board Marionette"
     Targets:
       - Mob: 1143
         Count: 150
   - Id: 62677
-    Name: "Bounty Board Wraith"
+    Title: "Bounty Board Wraith"
     Targets:
       - Mob: 1192
         Count: 150
   - Id: 62678
-    Name: "Bounty Board Dark Priest"
+    Title: "Bounty Board Dark Priest"
     Targets:
       - Mob: 1198
         Count: 150
   - Id: 62679
-    Name: "Bounty Board Gargoyle"
+    Title: "Bounty Board Gargoyle"
     Targets:
       - Mob: 1253
         Count: 150
   - Id: 62680
-    Name: "Bounty Board Flying Petite"
+    Title: "Bounty Board Flying Petite"
     Targets:
       - Mob: 1156
         Count: 150
   - Id: 62681
-    Name: "Bounty Board Ground Petite"
+    Title: "Bounty Board Ground Petite"
     Targets:
       - Mob: 1155
         Count: 150
   - Id: 62682
-    Name: "Bounty Board Evil Druid"
+    Title: "Bounty Board Evil Druid"
     Targets:
       - Mob: 1117
         Count: 150
   - Id: 62683
-    Name: "Bounty Board Wind Ghost"
+    Title: "Bounty Board Wind Ghost"
     Targets:
       - Mob: 1263
         Count: 150
   - Id: 62684
-    Name: "Bounty Board Carat"
+    Title: "Bounty Board Carat"
     Targets:
       - Mob: 1267
         Count: 150
   - Id: 62685
-    Name: "Bounty Board Wanderer"
+    Title: "Bounty Board Wanderer"
     Targets:
       - Mob: 1208
         Count: 150
   - Id: 62686
-    Name: "Bounty Board Sting"
+    Title: "Bounty Board Sting"
     Targets:
       - Mob: 1207
         Count: 150
   - Id: 62687
-    Name: "Bounty Board Arclouse"
+    Title: "Bounty Board Arclouse"
     Targets:
       - Mob: 1194
         Count: 150
   - Id: 62688
-    Name: "Bounty Board Raydric"
+    Title: "Bounty Board Raydric"
     Targets:
       - Mob: 1163
         Count: 150
   - Id: 62689
-    Name: "Bounty Board Khalitzburg"
+    Title: "Bounty Board Khalitzburg"
     Targets:
       - Mob: 1132
         Count: 150
   - Id: 62690
-    Name: "Bounty Board Anolian"
+    Title: "Bounty Board Anolian"
     Targets:
       - Mob: 1206
         Count: 150
   - Id: 62691
-    Name: "Bounty Board False Angel"
+    Title: "Bounty Board False Angel"
     Targets:
       - Mob: 1371
         Count: 150
   - Id: 62692
-    Name: "Bounty Board Violy"
+    Title: "Bounty Board Violy"
     Targets:
       - Mob: 1390
         Count: 150
   - Id: 62693
-    Name: "Bounty Board Mini Demon"
+    Title: "Bounty Board Mini Demon"
     Targets:
       - Mob: 1292
         Count: 150
   - Id: 62710
-    Name: "Bounty Board Ground Deleter"
+    Title: "Bounty Board Ground Deleter"
     Targets:
       - Mob: 1385
         Count: 150
   - Id: 62711
-    Name: "Bounty Board Flying Deleter"
+    Title: "Bounty Board Flying Deleter"
     Targets:
       - Mob: 1384
         Count: 150
   - Id: 62712
-    Name: "Bounty Board Nightmare Terror"
+    Title: "Bounty Board Nightmare Terror"
     Targets:
       - Mob: 1379
         Count: 150
   - Id: 62713
-    Name: "Bounty Board Purple Venatu"
+    Title: "Bounty Board Purple Venatu"
     Targets:
       - Mob: 1676
         Count: 150
   - Id: 62714
-    Name: "Bounty Board Green Venatu"
+    Title: "Bounty Board Green Venatu"
     Targets:
       - Mob: 1677
         Count: 150
   - Id: 62715
-    Name: "Bounty Board Orange Venatu"
+    Title: "Bounty Board Orange Venatu"
     Targets:
       - Mob: 1678
         Count: 150
   - Id: 62716
-    Name: "Bounty Board Blue Venatu"
+    Title: "Bounty Board Blue Venatu"
     Targets:
       - Mob: 1679
         Count: 150
   - Id: 62717
-    Name: "Bounty Board Apocalypse"
+    Title: "Bounty Board Apocalypse"
     Targets:
       - Mob: 1365
         Count: 150
   - Id: 62722
-    Name: "Bounty Board Hornet"
+    Title: "Bounty Board Hornet"
     Targets:
       - Mob: 1004
         Count: 150
   - Id: 62723
-    Name: "Bounty Board Roda Frog"
+    Title: "Bounty Board Roda Frog"
     Targets:
       - Mob: 1012
         Count: 150
   - Id: 62724
-    Name: "Bounty Board Rocker"
+    Title: "Bounty Board Rocker"
     Targets:
       - Mob: 1052
         Count: 150
   - Id: 62725
-    Name: "Bounty Board Savage Babe"
+    Title: "Bounty Board Savage Babe"
     Targets:
       - Mob: 1167
         Count: 150
   - Id: 62726
-    Name: "Bounty Board Thief Bug Egg"
+    Title: "Bounty Board Thief Bug Egg"
     Targets:
       - Mob: 1048
         Count: 150
   - Id: 62727
-    Name: "Bounty Board Thief Bug"
+    Title: "Bounty Board Thief Bug"
     Targets:
       - Mob: 1051
         Count: 150
   - Id: 62728
-    Name: "Bounty Board Tarou"
+    Title: "Bounty Board Tarou"
     Targets:
       - Mob: 1175
         Count: 150
   - Id: 62729
-    Name: "Bounty Board Stainer"
+    Title: "Bounty Board Stainer"
     Targets:
       - Mob: 1174
         Count: 150
   - Id: 62730
-    Name: "Bounty Board Peco Peco"
+    Title: "Bounty Board Peco Peco"
     Targets:
       - Mob: 1019
         Count: 150
   - Id: 62731
-    Name: "Bounty Board Coco"
+    Title: "Bounty Board Coco"
     Targets:
       - Mob: 1104
         Count: 150
   - Id: 62732
-    Name: "Bounty Board Yoyo"
+    Title: "Bounty Board Yoyo"
     Targets:
       - Mob: 1057
         Count: 150
   - Id: 62733
-    Name: "Bounty Board Female Thief Bug"
+    Title: "Bounty Board Female Thief Bug"
     Targets:
       - Mob: 1053
         Count: 150
   - Id: 62734
-    Name: "Bounty Board Male Thief Bug"
+    Title: "Bounty Board Male Thief Bug"
     Targets:
       - Mob: 1054
         Count: 150
   - Id: 62735
-    Name: "Bounty Board Poporing"
+    Title: "Bounty Board Poporing"
     Targets:
       - Mob: 1031
         Count: 150
   - Id: 62736
-    Name: "Bounty Board Elder Willow"
+    Title: "Bounty Board Elder Willow"
     Targets:
       - Mob: 1033
         Count: 150
   - Id: 62737
-    Name: "Bounty Board Argos"
+    Title: "Bounty Board Argos"
     Targets:
       - Mob: 1100
         Count: 150
   - Id: 62738
-    Name: "Bounty Board Beetle King"
+    Title: "Bounty Board Beetle King"
     Targets:
       - Mob: 1494
         Count: 150
   - Id: 62739
-    Name: "Bounty Board Savage"
+    Title: "Bounty Board Savage"
     Targets:
       - Mob: 1166
         Count: 150
   - Id: 62740
-    Name: "Bounty Board Driller"
+    Title: "Bounty Board Driller"
     Targets:
       - Mob: 1380
         Count: 150
   - Id: 62741
-    Name: "Bounty Board Hunter Fly"
+    Title: "Bounty Board Hunter Fly"
     Targets:
       - Mob: 1035
         Count: 150
   - Id: 62742
-    Name: "Bounty Board Mantis"
+    Title: "Bounty Board Mantis"
     Targets:
       - Mob: 1139
         Count: 150
   - Id: 62743
-    Name: "Bounty Board Sidewinder"
+    Title: "Bounty Board Sidewinder"
     Targets:
       - Mob: 1037
         Count: 150
   - Id: 62744
-    Name: "Bounty Board Argiope"
+    Title: "Bounty Board Argiope"
     Targets:
       - Mob: 1099
         Count: 150
   - Id: 62745
-    Name: "Bounty Board Metaling"
+    Title: "Bounty Board Metaling"
     Targets:
       - Mob: 1613
         Count: 150
   - Id: 62746
-    Name: "Bounty Board Rafflesia"
+    Title: "Bounty Board Rafflesia"
     Targets:
       - Mob: 1162
         Count: 150
   - Id: 62747
-    Name: "Bounty Board Stem Worm"
+    Title: "Bounty Board Stem Worm"
     Targets:
       - Mob: 1215
         Count: 150
   - Id: 62748
-    Name: "Bounty Board Breeze"
+    Title: "Bounty Board Breeze"
     Targets:
       - Mob: 1692
         Count: 150
   - Id: 62749
-    Name: "Bounty Board Anopheles"
+    Title: "Bounty Board Anopheles"
     Targets:
       - Mob: 1627
         Count: 150
   - Id: 62750
-    Name: "Bounty Board Axe Kobold"
+    Title: "Bounty Board Axe Kobold"
     Targets:
       - Mob: 1133
         Count: 150
   - Id: 62751
-    Name: "Bounty Board Hammer Kobold"
+    Title: "Bounty Board Hammer Kobold"
     Targets:
       - Mob: 1134
         Count: 150
   - Id: 62752
-    Name: "Bounty Board Mace Kobold"
+    Title: "Bounty Board Mace Kobold"
     Targets:
       - Mob: 1135
         Count: 150
   - Id: 62753
-    Name: "Bounty Board Kobold Archer"
+    Title: "Bounty Board Kobold Archer"
     Targets:
       - Mob: 1282
         Count: 150
   - Id: 62754
-    Name: "Bounty Board Remover"
+    Title: "Bounty Board Remover"
     Targets:
       - Mob: 1682
         Count: 150
   - Id: 62755
-    Name: "Bounty Board Laurell Weinder"
+    Title: "Bounty Board Laurell Weinder"
     Targets:
       - Mob: 1657
         Count: 150
   - Id: 62756
-    Name: "Bounty Board Errende Ebecee"
+    Title: "Bounty Board Errende Ebecee"
     Targets:
       - Mob: 1655
         Count: 150
   - Id: 62757
-    Name: "Bounty Board Armeyer Dinze"
+    Title: "Bounty Board Armeyer Dinze"
     Targets:
       - Mob: 1654
         Count: 150
   - Id: 62758
-    Name: "Bounty Board Wickbine Tres"
+    Title: "Bounty Board Wickbine Tres"
     Targets:
       - Mob: 1653
         Count: 150
   - Id: 62759
-    Name: "Bounty Board Kavach Icarus"
+    Title: "Bounty Board Kavach Icarus"
     Targets:
       - Mob: 1656
         Count: 150
   - Id: 62760
-    Name: "Bounty Board Egnigem Cenia"
+    Title: "Bounty Board Egnigem Cenia"
     Targets:
       - Mob: 1652
         Count: 150
   - Id: 62761
-    Name: "Bounty Board Kathryne Keyron"
+    Title: "Bounty Board Kathryne Keyron"
     Targets:
       - Mob: 1639
         Count: 150
   - Id: 62762
-    Name: "Bounty Board Margaretha Sorin"
+    Title: "Bounty Board Margaretha Sorin"
     Targets:
       - Mob: 1637
         Count: 150
   - Id: 62763
-    Name: "Bounty Board Cecil Damon"
+    Title: "Bounty Board Cecil Damon"
     Targets:
       - Mob: 1638
         Count: 150
   - Id: 62764
-    Name: "Bounty Board Eremes Guile"
+    Title: "Bounty Board Eremes Guile"
     Targets:
       - Mob: 1635
         Count: 150
   - Id: 62765
-    Name: "Bounty Board Seyren Windsor"
+    Title: "Bounty Board Seyren Windsor"
     Targets:
       - Mob: 1634
         Count: 150
   - Id: 62766
-    Name: "Bounty Board Howard Alt-Eisen"
+    Title: "Bounty Board Howard Alt-Eisen"
     Targets:
       - Mob: 1636
         Count: 150
   - Id: 62767
-    Name: "Bounty Board Trentini"
+    Title: "Bounty Board Trentini"
     Targets:
       - Mob: 2227
         Count: 150
   - Id: 62768
-    Name: "Bounty Board Celia Alde"
+    Title: "Bounty Board Celia Alde"
     Targets:
       - Mob: 2223
         Count: 150
   - Id: 62769
-    Name: "Bounty Board Alphoccio"
+    Title: "Bounty Board Alphoccio"
     Targets:
       - Mob: 2226
         Count: 150
   - Id: 62770
-    Name: "Bounty Board Gertie"
+    Title: "Bounty Board Gertie"
     Targets:
       - Mob: 2225
         Count: 150
   - Id: 62771
-    Name: "Bounty Board Chen Lio"
+    Title: "Bounty Board Chen Lio"
     Targets:
       - Mob: 2224
         Count: 150
   - Id: 62772
-    Name: "Bounty Board Flamel Emure"
+    Title: "Bounty Board Flamel Emure"
     Targets:
       - Mob: 2222
         Count: 150
   - Id: 62773
-    Name: "Bounty Board Randel Lawrence"
+    Title: "Bounty Board Randel Lawrence"
     Targets:
       - Mob: 2221
         Count: 150
   - Id: 62789
-    Name: "Bounty Board Red Novus"
+    Title: "Bounty Board Red Novus"
     Targets:
       - Mob: 1715
         Count: 150
   - Id: 62790
-    Name: "Bounty Board Yellow Novus"
+    Title: "Bounty Board Yellow Novus"
     Targets:
       - Mob: 1718
         Count: 150
   - Id: 62791
-    Name: "Bounty Board Ancient Mimic"
+    Title: "Bounty Board Ancient Mimic"
     Targets:
       - Mob: 1699
         Count: 150
   - Id: 62792
-    Name: "Bounty Board Death Word"
+    Title: "Bounty Board Death Word"
     Targets:
       - Mob: 1698
         Count: 150
   - Id: 62793
-    Name: "Bounty Board Ferus (Red)"
+    Title: "Bounty Board Ferus (Red)"
     Targets:
       - Mob: 1714
         Count: 150
   - Id: 62794
-    Name: "Bounty Board Ferus (Green)"
+    Title: "Bounty Board Ferus (Green)"
     Targets:
       - Mob: 1717
         Count: 150
   - Id: 62795
-    Name: "Bounty Board Skogul"
+    Title: "Bounty Board Skogul"
     Targets:
       - Mob: 1752
         Count: 150
   - Id: 62796
-    Name: "Bounty Board Frus"
+    Title: "Bounty Board Frus"
     Targets:
       - Mob: 1753
         Count: 150
   - Id: 62797
-    Name: "Bounty Board Horn"
+    Title: "Bounty Board Horn"
     Targets:
       - Mob: 1128
         Count: 150
   - Id: 62798
-    Name: "Bounty Board Blue Acidus"
+    Title: "Bounty Board Blue Acidus"
     Targets:
       - Mob: 1716
         Count: 150
   - Id: 62799
-    Name: "Bounty Board Gold Acidus"
+    Title: "Bounty Board Gold Acidus"
     Targets:
       - Mob: 1713
         Count: 150
   - Id: 62802
-    Name: "Bounty Board Antler Scaraba"
+    Title: "Bounty Board Antler Scaraba"
     Targets:
       - Mob: 2085
         Count: 150
   - Id: 62803
-    Name: "Bounty Board Horn Scaraba"
+    Title: "Bounty Board Horn Scaraba"
     Targets:
       - Mob: 2084
         Count: 150
   - Id: 62804
-    Name: "Bounty Board Rake Horn Scaraba"
+    Title: "Bounty Board Rake Horn Scaraba"
     Targets:
       - Mob: 2086
         Count: 150
   - Id: 62805
-    Name: "Bounty Board Uni-Horn Scaraba"
+    Title: "Bounty Board Uni-Horn Scaraba"
     Targets:
       - Mob: 2083
         Count: 150
   - Id: 62806
-    Name: "Bounty Board Pinguicula"
+    Title: "Bounty Board Pinguicula"
     Targets:
       - Mob: 1995
         Count: 150
   - Id: 62807
-    Name: "Bounty Board Dark Pinguicula"
+    Title: "Bounty Board Dark Pinguicula"
     Targets:
       - Mob: 2015
         Count: 150
   - Id: 62808
-    Name: "Bounty Board Nepenthes"
+    Title: "Bounty Board Nepenthes"
     Targets:
       - Mob: 1988
         Count: 150
   - Id: 62809
-    Name: "Bounty Board Flora"
+    Title: "Bounty Board Flora"
     Targets:
       - Mob: 1118
         Count: 150
   - Id: 62810
-    Name: "Bounty Board Coco"
+    Title: "Bounty Board Coco"
     Targets:
       - Mob: 1104
         Count: 150
   - Id: 62811
-    Name: "Bounty Board Smokie"
+    Title: "Bounty Board Smokie"
     Targets:
       - Mob: 1056
         Count: 150
   - Id: 62812
-    Name: "Bounty Board Martin"
+    Title: "Bounty Board Martin"
     Targets:
       - Mob: 1145
         Count: 150
   - Id: 62813
-    Name: "Bounty Board Elder Willow"
+    Title: "Bounty Board Elder Willow"
     Targets:
       - Mob: 1033
         Count: 150
   - Id: 62814
-    Name: "Bounty Board Soldier Skeleton"
+    Title: "Bounty Board Soldier Skeleton"
     Targets:
       - Mob: 1028
         Count: 150
   - Id: 62815
-    Name: "Bounty Board Majoruros"
+    Title: "Bounty Board Majoruros"
     Targets:
       - Mob: 1310
         Count: 150
   - Id: 62816
-    Name: "Bounty Board Lunatic"
+    Title: "Bounty Board Lunatic"
     Targets:
       - Mob: 1063
         Count: 150
   - Id: 62817
-    Name: "Bounty Board Ambernite"
+    Title: "Bounty Board Ambernite"
     Targets:
       - Mob: 1094
         Count: 150
   - Id: 62818
-    Name: "Bounty Board Muka"
+    Title: "Bounty Board Muka"
     Targets:
       - Mob: 1055
         Count: 150
   - Id: 62819
-    Name: "Bounty Board Magnolia"
+    Title: "Bounty Board Magnolia"
     Targets:
       - Mob: 1138
         Count: 150
   - Id: 62820
-    Name: "Bounty Board Skel Worker"
+    Title: "Bounty Board Skel Worker"
     Targets:
       - Mob: 1169
         Count: 150
   - Id: 62821
-    Name: "Bounty Board Miming"
+    Title: "Bounty Board Miming"
     Targets:
       - Mob: 2137
         Count: 150
   - Id: 62822
-    Name: "Bounty Board Little Fatum"
+    Title: "Bounty Board Little Fatum"
     Targets:
       - Mob: 2136
         Count: 150
   - Id: 62823
-    Name: "Bounty Board Cenere"
+    Title: "Bounty Board Cenere"
     Targets:
       - Mob: 2365
         Count: 150
   - Id: 62824
-    Name: "Bounty Board Menblatt"
+    Title: "Bounty Board Menblatt"
     Targets:
       - Mob: 2363
         Count: 150
   - Id: 62825
-    Name: "Bounty Board Petal"
+    Title: "Bounty Board Petal"
     Targets:
       - Mob: 2364
         Count: 150
   - Id: 62826
-    Name: "Bounty Board Angra Mantis"
+    Title: "Bounty Board Angra Mantis"
     Targets:
       - Mob: 2133
         Count: 150
   - Id: 62827
-    Name: "Bounty Board Antique Book"
+    Title: "Bounty Board Antique Book"
     Targets:
       - Mob: 2366
         Count: 150
   - Id: 62828
-    Name: "Bounty Board Yellow Lichtern"
+    Title: "Bounty Board Yellow Lichtern"
     Targets:
       - Mob: 2368
         Count: 150
   - Id: 62829
-    Name: "Bounty Board Blue Lichtern"
+    Title: "Bounty Board Blue Lichtern"
     Targets:
       - Mob: 2367
         Count: 150
   - Id: 62830
-    Name: "Bounty Board Red Lichtern"
+    Title: "Bounty Board Red Lichtern"
     Targets:
       - Mob: 2369
         Count: 150
   - Id: 62831
-    Name: "Bounty Board Green Lichtern"
+    Title: "Bounty Board Green Lichtern"
     Targets:
       - Mob: 2370
         Count: 150
   - Id: 62890
-    Name: "Bounty Board Cursed Box"
+    Title: "Bounty Board Cursed Box"
     Targets:
       - Mob: 2479
         Count: 150
   - Id: 62891
-    Name: "Bounty Board Cursed Book"
+    Title: "Bounty Board Cursed Book"
     Targets:
       - Mob: 2478
         Count: 150
   - Id: 62892
-    Name: "Bounty Board Big Bell"
+    Title: "Bounty Board Big Bell"
     Targets:
       - Mob: 2917
         Count: 150
   - Id: 62893
-    Name: "Bounty Board Big Ben"
+    Title: "Bounty Board Big Ben"
     Targets:
       - Mob: 2916
         Count: 150
   - Id: 62894
-    Name: "Bounty Board Neo Punk"
+    Title: "Bounty Board Neo Punk"
     Targets:
       - Mob: 2919
         Count: 150
