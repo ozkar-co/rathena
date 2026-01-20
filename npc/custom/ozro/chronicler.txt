@@ -1,0 +1,62 @@
+/*=========================================================
+Kaz the Chronicler
+by Ozcodex
+===========================================================
+Description:
+A royal chronicler who keeps track of all adventurers
+in the realm of Rune-Midgard.
+===========================================================
+Compatibility:
+Optimised for Hercules emulators.
+===========================================================
+Changelog:
+v1.0 - First version.
+=========================================================*/
+
+geffen,139,72,4	script	Kaz el Cronista	4_M_ZONDAOYAJI,{
+
+	mes "[Kaz el Cronista]";
+	mes "^990000*Un sabio escribe en un gran tomo con una pluma*^000000";
+	
+	if(select("Preguntarle sobre su trabajo:Dejarlo a sus quehaceres") == 2) {
+		mes "[Kaz el Cronista]";
+		mes "^990000*El sabio continua escribiendo, profundamente concentrado en su labor*^000000";
+		close;
+	}
+	
+	mes "Saludos, aventurero. Soy Kaz,";
+	mes "Cronista Real de Rune-Midgard.";
+	next;
+	
+	mes "[Kaz el Cronista]";
+	mes "Por decreto de Su Majestad, mantengo";
+	mes "registros detallados de todos los aventureros";
+	mes "que viajan a traves de nuestro reino.";
+	next;
+	
+	mes "[Kaz el Cronista]";
+	mes "Deseas saber mas sobre";
+	mes "mi trabajo para el reino?";
+	next;
+	
+	if(select("Si, cuéntame mas:Deberia dejarte trabajar") == 2) {
+		mes "[Kaz el Cronista]";
+		mes "^990000*Asiente cortesmente y vuelve a escribir*^000000";
+		mes "Muy bien. Que tu viaje sea seguro.";
+		close;
+	}
+	
+	mes "[Kaz el Cronista]";
+	mes "^990000*Consulta sus registros cuidadosamente*^000000";
+	mes "Segun mis observaciones mas recientes,";
+	mes "he visto ^0075E9"+ getusers(1) +" aventureros^000000";
+	mes "explorando nuestras tierras recientemente.";
+	next;
+	
+	mes "[Kaz el Cronista]";
+	mes "^990000*Moja su pluma en tinta*^000000";
+	mes "Ahora, dejaré constancia de tu presencia...";
+	mes "Listo! Has sido documentado correctamente";
+	mes "en las cronicas de hoy.";
+	close;
+} 
