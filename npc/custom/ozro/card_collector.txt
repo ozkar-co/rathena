@@ -57,15 +57,15 @@ function	script	GetCardCategory	{
 }
 -	script	Card Collector	FAKE_NPC,{
 	mes .npc_name$;
-	mes "Soy parte de la Iniciativa de Archivo Arcano, un pequeno escuadron que recorre los rincones del mundo recolectando el saber que habita en cada carta.";
+	mes "Soy parte de la Iniciativa de Archivo Arcano, un pequeño escuadrón que recorre los rincones del mundo recolectando el saber que habita en cada carta.";
 	next;
 	mes .npc_name$;
 	mes "Las cartas no son simples objetos... guardan los secretos de los monstruos que las portan. Cada una tiene una historia que contar.";
 	next;
 	mes .npc_name$;
-	mes "Se nota que has pasado por muchas mazmorras... Podrias ayudarnos a completar nuestro Archivo?";
+	mes "Se nota que has pasado por muchas mazmorras... ¿Podrías ayudarnos a completar nuestro Archivo?";
 	next;
-	switch(select ("Claro, es un honor ayudar", "Quizas despues")){
+	switch(select ("Claro, es un honor ayudar", "Quizás después")){
 		case 1:
 			mes .npc_name$;
 			mes "Excelente aventurero. Cada carta registrada es una victoria contra el olvido.";
@@ -74,7 +74,7 @@ function	script	GetCardCategory	{
 			break;
 		case 2:
 			mes .npc_name$;
-			mes "Comprendo. Cuando el camino te canse, vuelve. El Archivo siempre estara aqui.";
+			mes "Comprendo. Cuando el camino te canse, vuelve. El Archivo siempre estará aquí.";
 			close;
 
 	}
@@ -126,10 +126,10 @@ S_RegisterCards:
 
 	if (.@total_new == 0) {
 		mes .npc_name$;
-		mes "Tu coleccion ya esta documentada. No hay nuevas cartas que registrar.";
+		mes "Tu colección ya está documentada. No hay nuevas cartas que registrar.";
 	} else {
 		mes .npc_name$;
-		mes "Revision completada exitosamente.";
+		mes "Revisión completada exitosamente.";
 		mes "Cartas nuevas documentadas: " + .@total_new;
 		for (.@k = 0; .@k < .@cat_count; .@k++) {
 			if (.@new_cat[.@k] > 0) {
@@ -162,11 +162,11 @@ S_ViewProgress:
 	mes .npc_name$;
 	mes "Tu progreso en el Archivo Arcano.";
 	mes "";
-	mes "Has registrado un total de " + .@total_obtained + " cartas, y segun nuestros registros, en el mundo hay " + .@total_possible + " de ellas. Has encontrado un " + .@total_pct + "% de todas las cartas existentes.";
+	mes "Has registrado un total de " + .@total_obtained + " cartas, y según nuestros registros, en el mundo hay " + .@total_possible + " de ellas. Has encontrado un " + .@total_pct + "% de todas las cartas existentes.";
 	next;
 	
 	mes .npc_name$;
-	mes "Detalle por categoria:";
+	mes "Detalle por categoría:";
 	mes "";
 	for (.@k = 0; .@k < .@cat_count; .@k++) {
 		.@code$ = .cat_codes$[.@k];
@@ -183,7 +183,7 @@ S_ViewProgress:
 // Subroutine: Explore collection - show obtained cards directly
 S_ExploreCollection:
 	mes .npc_name$;
-	mes "Que categoria deseas explorar?";
+	mes "¿Qué categoría deseas explorar?";
 	mes	"A-Z, BOSS, MVP";
 	mes "";
 	input .@input_cat$;
@@ -202,7 +202,7 @@ S_ExploreCollection:
 	}
 	
 	if (.@found == 0) {
-		mes "Esa categoria no existe en nuestros registros.";
+		mes "Esa categoría no existe en nuestros registros.";
 		return;
 	}
 	
@@ -216,7 +216,7 @@ S_ExploreCollection:
 // Subroutine: View missing cards - select category and show directly
 S_ViewMissingCards:
 	mes .npc_name$;
-	mes "Que categoria deseas revisar?";
+	mes "¿Qué categoría deseas revisar?";
 	mes "A-Z, BOSS, MVP";
 	mes "";
 	input .@input_cat$;
@@ -235,7 +235,7 @@ S_ViewMissingCards:
 	}
 	
 	if (.@found == 0) {
-		mes "Esa categoria no existe en nuestros registros.";
+		mes "Esa categoría no existe en nuestros registros.";
 		return;
 	}
 	
@@ -251,7 +251,7 @@ S_ViewObtained:
 	.@cat$ = getarg(0);
 	.@arr_name$ = getarg(1);
 	.@total = getarg(2);
-	mes "Cartas Obtenidas en la Categoria " + .@cat$;
+	mes "Cartas Obtenidas en la Categoría " + .@cat$;
 	mes "";
 	
 	.@count = 0;
@@ -264,7 +264,7 @@ S_ViewObtained:
 	}
 	
 	if (.@count == 0) {
-		mes "Aun no has documentado ninguna carta de esta categoria.";
+		mes "Aún no has documentado ninguna carta de esta categoría.";
 	}
 	
 	mes "";
@@ -276,7 +276,7 @@ S_ViewMissing:
 	.@cat$ = getarg(0);
 	.@arr_name$ = getarg(1);
 	.@total = getarg(2);
-	mes "Cartas Faltantes - Categoria " + .@cat$;
+	mes "Cartas Faltantes - Categoría " + .@cat$;
 	mes "";
 	
 	.@count = 0;
@@ -289,7 +289,7 @@ S_ViewMissing:
 	}
 	
 	if (.@count == 0) {
-		mes "Has completado esta categoria! Excelente trabajo, aventurero.";
+		mes "¡Has completado esta categoría! Excelente trabajo, aventurero.";
 	}
 	
 	mes "";

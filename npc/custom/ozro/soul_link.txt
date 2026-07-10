@@ -1,8 +1,8 @@
 //===== OzRo Script ==========================================
 //= Kessinger, Vinculador de Almas
 //===== Description: =========================================
-//= Soul Link de pago. Espiritu segun BaseJob del personaje.
-//= IDs de espiritu = skill_db.yml (SL_* no existen como constante en scripts).
+//= Soul Link de pago. Espíritu según BaseJob del personaje.
+//= IDs de espíritu = skill_db.yml (SL_* no existen como constante en scripts).
 //= Futuro: quest alarga .duration en OnInit (ver 04-npcs.md).
 //============================================================
 
@@ -10,15 +10,15 @@ yuno,145,185,4	script	Kessinger	4_M_ROTERT,{
 
 	mes .name$;
 	mes "Hola " + strcharinfo(0) + ",";
-	mes "quieres que te vincule con un espiritu ancestral?";
+	mes "¿quieres que te vincule con un espíritu ancestral?";
 	mes "El ritual cuesta " + .price + " zeny.";
 	mes "Dura unos " + (.duration / 60000) + " minutos.";
 	next;
 
-	.@menu = select("Si, vinculame", "Que espiritu me espera?", "No, gracias");
+	.@menu = select("Sí, vincúlame", "¿Qué espíritu me espera?", "No, gracias");
 	if (.@menu == 3) {
 		mes .name$;
-		mes "Como quieras. Los espiritus esperaran.";
+		mes "Como quieras. Los espíritus esperarán.";
 		close;
 	}
 
@@ -50,7 +50,7 @@ yuno,145,185,4	script	Kessinger	4_M_ROTERT,{
 
 	if (!.@Spirit) {
 		mes .name$;
-		mes "No encuentro un espiritu para tu camino.";
+		mes "No encuentro un espíritu para tu camino.";
 		mes "BaseJob: " + BaseJob + " (" + jobname(BaseJob) + ")";
 		close;
 	}
@@ -74,14 +74,14 @@ yuno,145,185,4	script	Kessinger	4_M_ROTERT,{
 
 S_SpiritHint:
 	mes .name$;
-	mes "Cierra los ojos... dejame escuchar tu alma.";
+	mes "Cierra los ojos... déjame escuchar tu alma.";
 	next;
 	switch (BaseJob) {
 	case Job_Alchemist:
 		mes .name$;
 		mes "Huelo brebajes y vidrio.";
-		mes "Tus Aid Potion se potenciaran; curaras mas";
-		mes "y podras lanzar Berserk Potions.";
+		mes "Tus Aid Potion se potenciarán; curarás más";
+		mes "y podrás lanzar Berserk Potions.";
 		next;
 		mes .name$;
 		mes "Algo me dice que el secreto de crear";
@@ -90,7 +90,7 @@ S_SpiritHint:
 	case Job_Assassin:
 		mes .name$;
 		mes "Las sombras te cobijan.";
-		mes "El poder de tu Sonic Blow se duplicara";
+		mes "El poder de tu Sonic Blow se duplicará";
 		next;
 		mes .name$;
 		mes "Te conviertes en un Asesino cuyo golpe";
@@ -99,7 +99,7 @@ S_SpiritHint:
 	case Job_Bard:
 	case Job_Dancer:
 		mes .name$;
-		mes "Oigo una melodia que vuelve sobre ti.";
+		mes "Oigo una melodía que vuelve sobre ti.";
 		mes "Tus canciones y bailes te afectan a ti mismo.";
 		mes "Si dominas tu arte, nuevos estilos se abren.";
 		next;
@@ -109,9 +109,9 @@ S_SpiritHint:
 		break;
 	case Job_Blacksmith:
 		mes .name$;
-		mes "El martillo late como un segundo corazon.";
-		mes "Despertaras el acero con Adrenaline Rush";
-		mes "en su forma mas avanzada.";
+		mes "El martillo late como un segundo corazón.";
+		mes "Despertarás el acero con Adrenaline Rush";
+		mes "en su forma más avanzada.";
 		break;
 	case Job_Crusader:
 		mes .name$;
@@ -125,51 +125,51 @@ S_SpiritHint:
 		mes "Tu fuerza potencia Beast Bane contra bestias.";
 		next;
 		mes .name$;
-		mes "El espiritu te habla de Beast Charge,";
+		mes "El espíritu te habla de Beast Charge,";
 		mes "una carga que ninguna presa espera.";
 		break;
 	case Job_Knight:
 		mes .name$;
 		mes "Una mano firme y una hoja sin duda.";
-		mes "Podras usar One-Hand Quicken y pelear";
+		mes "Podrás usar One-Hand Quicken y pelear";
 		mes "con la velocidad del temple, no del miedo.";
 		break;
 	case Job_Monk:
 		mes .name$;
-		mes "Punnos que agitan el aire en cruce de tormenta.";
-		mes "Raging Thrust se expande en area.";
+		mes "Puños que agitan el aire en cruce de tormenta.";
+		mes "Raging Thrust se expande en área.";
 		mes "Tus combos cuestan menos SP.";
 		next;
 		mes .name$;
 		mes "En Fury, o tras un Guillotine Fist,";
-		mes "tu espiritu recupera SP por un tiempo.";
+		mes "tu espíritu recupera SP por un tiempo.";
 		break;
 	case Job_Priest:
 		mes .name$;
 		mes "Luz sagrada que arde con fe inquebrantable.";
 		mes "Tu Holy Light golpea y consume";
-		mes "cinco veces mas poder y fe.";
+		mes "cinco veces más poder y fe.";
 		break;
 	case Job_Rogue:
 		mes .name$;
 		mes "Huellas que se borran entre la niebla.";
-		mes "Ningun Dispell te arrancara el vinculo.";
-		mes "Las White Potions te curan mucho mas.";
+		mes "Ningún Dispell te arrancará el vínculo.";
+		mes "Las White Potions te curan mucho más.";
 		next;
 		mes .name$;
 		mes "En Stealth, te mueves como el viento.";
-		mes "Con Preserve, un Flying Kick no rompe tu espiritu.";
+		mes "Con Preserve, un Flying Kick no rompe tu espíritu.";
 		break;
 	case Job_Sage:
 		mes .name$;
-		mes "Paginas que se escriben en el instante preciso.";
-		mes "Hindsight invocara el bolt mas alto";
+		mes "Páginas que se escriben en el instante preciso.";
+		mes "Hindsight invocará el bolt más alto";
 		mes "que hayas aprendido en cada elemento.";
 		break;
 	case Job_Soul_Linker:
 		mes .name$;
 		mes "Hilos invisibles que unen almas distintas.";
-		mes "Podras usar tus habilidades Ka sobre";
+		mes "Podrás usar tus habilidades Ka sobre";
 		mes "otros aventureros.";
 		break;
 	case Job_SuperNovice:
@@ -184,14 +184,14 @@ S_SpiritHint:
 	case Job_Star_Gladiator:
 		mes .name$;
 		mes "Constelaciones que arden en tus nudillos.";
-		mes "Podras invocar una vez Solar, Lunar";
-		mes "y Stellar Union en este vinculo.";
+		mes "Podrás invocar una vez Solar, Lunar";
+		mes "y Stellar Union en este vínculo.";
 		break;
 	case Job_Wizard:
 		mes .name$;
 		mes "Gemas que obedecen sin quebrarse.";
 		mes "Tus hechizos consumen menos piedras,";
-		mes "o ninguna, segun el conjuro.";
+		mes "o ninguna, según el conjuro.";
 		next;
 		mes .name$;
 		mes "Si Kaite devuelve un golpe, un fragmento";
@@ -200,7 +200,7 @@ S_SpiritHint:
 	case Job_Ninja:
 		mes .name$;
 		mes "Hojas que caen antes de que el viento avise.";
-		mes "Tu ataque magico crece un diez por ciento.";
+		mes "Tu ataque mágico crece un diez por ciento.";
 		mes "Tu vitalidad aumenta con tu nivel.";
 		next;
 		mes .name$;
@@ -209,117 +209,117 @@ S_SpiritHint:
 		break;
 	case Job_Gunslinger:
 		mes .name$;
-		mes "Polvora, precision y humo tardio.";
-		mes "Con tu revolver podras usar habilidades";
+		mes "Pólvora, precisión y humo tardío.";
+		mes "Con tu revólver podrás usar habilidades";
 		mes "de cualquier arma que domines.";
 		next;
 		mes .name$;
 		mes "Tracking ya no exige tiempo de conjuro.";
-		mes "Y tu cuerpo se fortalece ocn cada nivel.";
+		mes "Y tu cuerpo se fortalece con cada nivel.";
 		break;
 	default:
 		mes .name$;
-		mes "Veo un hilo de luz que aun no alcanza su cima.";
+		mes "Veo un hilo de luz que aún no alcanza su cima.";
 		mes "Un eco de tu yo renacido te presta";
 		mes "el vigor de quien fuiste antes.";
 		break;
 	}
 	next;
 	mes .name$;
-	mes "Si deseas el vinculo, vuelve cuando estes listo.";
+	mes "Si deseas el vínculo, vuelve cuando estés listo.";
 	return;
 
 S_SpiritSuccess:
 	mes .name$;
 	switch (BaseJob) {
 	case Job_Alchemist:
-		mes "Has obtenido el espiritu de un gran ^00CCFFAlchemist^000000.";
-		mes "Aid Potion mas fuerte, Berserk Potions";
-		mes "y creacion espiritual de pociones.";
+		mes "Has obtenido el espíritu de un gran ^00CCFFAlchemist^000000.";
+		mes "Aid Potion más fuerte, Berserk Potions";
+		mes "y creación espiritual de pociones.";
 		break;
 	case Job_Assassin:
-		mes "Has obtenido el espiritu de un gran ^990099Assassin^000000.";
+		mes "Has obtenido el espíritu de un gran ^990099Assassin^000000.";
 		mes "Tu Sonic Blow duplica su furia.";
 		mes "Que tus golpes lleguen antes que el miedo.";
 		break;
 	case Job_Bard:
 	case Job_Dancer:
-		mes "Has obtenido el espiritu de un gran ^FF66CCBardo o Bailarin^000000.";
+		mes "Has obtenido el espíritu de un gran ^FF66CCBardo o Bailarín^000000.";
 		mes "Tu arte vuelve sobre ti. Canta, baila";
 		mes "y comparte el poder del otro oficio.";
 		break;
 	case Job_Blacksmith:
-		mes "Has obtenido el espiritu de un gran ^AAAAAABlacksmith^000000.";
+		mes "Has obtenido el espíritu de un gran ^AAAAAABlacksmith^000000.";
 		mes "Adrenaline Rush avanzado despierta en ti.";
 		mes "Que el acero obedezca tu ritmo.";
 		break;
 	case Job_Crusader:
-		mes "Has obtenido el espiritu de un gran ^FFFF00Crusader^000000.";
+		mes "Has obtenido el espíritu de un gran ^FFFF00Crusader^000000.";
 		mes "Tu Shield Boomerang vuela dos veces";
 		mes "con la fe de un escudo que no falla.";
 		break;
 	case Job_Hunter:
-		mes "Has obtenido el espiritu de un gran ^77FF77Hunter^000000.";
+		mes "Has obtenido el espíritu de un gran ^77FF77Hunter^000000.";
 		mes "Beast Bane y Beast Charge a tu servicio.";
 		mes "Que ninguna bestia escape a tu mira.";
 		break;
 	case Job_Knight:
-		mes "Has obtenido el espiritu de un gran ^7777FFKnight^000000.";
+		mes "Has obtenido el espíritu de un gran ^7777FFKnight^000000.";
 		mes "One-Hand Quicken fluye en tu hoja.";
-		mes "Que sea extension de tu voluntad.";
+		mes "Que sea extensión de tu voluntad.";
 		break;
 	case Job_Monk:
-		mes "Has obtenido el espiritu de un gran ^FFAA00Monk^000000.";
-		mes "Combos mas baratos, punos en area";
+		mes "Has obtenido el espíritu de un gran ^FFAA00Monk^000000.";
+		mes "Combos más baratos, puños en área";
 		mes "y SP que vuelve tras la tormenta.";
 		break;
 	case Job_Priest:
-		mes "Has obtenido el espiritu de un gran ^FFFFFFPriest^000000.";
+		mes "Has obtenido el espíritu de un gran ^FFFFFFPriest^000000.";
 		mes "Holy Light arde con cinco veces tu fe.";
-		mes "Que la luz te acompane sin pedir permiso.";
+		mes "Que la luz te acompañe sin pedir permiso.";
 		break;
 	case Job_Rogue:
-		mes "Has obtenido el espiritu de un gran ^888888Rogue^000000.";
-		mes "Inmune a Dispell, curacion potente";
+		mes "Has obtenido el espíritu de un gran ^888888Rogue^000000.";
+		mes "Inmune a Dispell, curación potente";
 		mes "y Stealth veloz. La sombra es tuya.";
 		break;
 	case Job_Sage:
-		mes "Has obtenido el espiritu de un gran ^00FF99Sage^000000.";
-		mes "Hindsight responde con tu bolt mas alto.";
+		mes "Has obtenido el espíritu de un gran ^00FF99Sage^000000.";
+		mes "Hindsight responde con tu bolt más alto.";
 		mes "Que el saber llegue cuando lo invoques.";
 		break;
 	case Job_Soul_Linker:
-		mes "Has obtenido el espiritu de un gran ^9999FFSoul Linker^000000.";
+		mes "Has obtenido el espíritu de un gran ^9999FFSoul Linker^000000.";
 		mes "Tus habilidades K pueden tocar a otros.";
-		mes "Que el vinculo fluya hacia quien lo merezca.";
+		mes "Que el vínculo fluya hacia quien lo merezca.";
 		break;
 	case Job_SuperNovice:
-		mes "Has obtenido el espiritu de un gran ^FFCC00Super Novice^000000.";
+		mes "Has obtenido el espíritu de un gran ^FFCC00Super Novice^000000.";
 		mes "Equipamiento prohibido se abre a tu nivel.";
 		mes "Que lo improbable juegue a tu favor.";
 		break;
 	case Job_Star_Gladiator:
-		mes "Has obtenido el espiritu de un gran ^FF8800Star Gladiator^000000.";
+		mes "Has obtenido el espíritu de un gran ^FF8800Star Gladiator^000000.";
 		mes "Solar, Lunar y Stellar Union aguardan.";
-		mes "Que las estrellas guien tus punos.";
+		mes "Que las estrellas guíen tus puños.";
 		break;
 	case Job_Wizard:
-		mes "Has obtenido el espiritu de un gran ^9999FFWizard^000000.";
+		mes "Has obtenido el espíritu de un gran ^9999FFWizard^000000.";
 		mes "Gemas obedientes y Kaite protegido.";
-		mes "Que la magia no exija mas de lo debido.";
+		mes "Que la magia no exija más de lo debido.";
 		break;
 	case Job_Ninja:
-		mes "Has obtenido el espiritu de un gran ^666666Ninja^000000.";
-		mes "+10% de ataque magico y mas HP";
-		mes "segun tu nivel base.";
+		mes "Has obtenido el espíritu de un gran ^666666Ninja^000000.";
+		mes "+10% de ataque mágico y más HP";
+		mes "según tu nivel base.";
 		break;
 	case Job_Gunslinger:
-		mes "Has obtenido el espiritu de un gran ^CC9966Gunslinger^000000.";
-		mes "Revolver universal, Tracking instantaneo";
-		mes "y mas HP segun tu nivel base.";
+		mes "Has obtenido el espíritu de un gran ^CC9966Gunslinger^000000.";
+		mes "Revólver universal, Tracking instantáneo";
+		mes "y más HP según tu nivel base.";
 		break;
 	default:
-		mes "Has obtenido el ^0055FFEspiritu del Renacimiento^000000.";
+		mes "Has obtenido el ^0055FFEspíritu del Renacimiento^000000.";
 		mes "Un eco de tu yo anterior te presta su fuerza.";
 		break;
 	}

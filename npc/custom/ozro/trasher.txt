@@ -2,7 +2,7 @@
 //= Garrett el Recolector
 //===== Description: =========================================
 //= Compra chatarra diaria a buen precio. Karma por PJ.
-//= Moneda bronce cada 10 tratos unicos (1 por item del dia, max 2/dia).
+//= Moneda bronce cada 10 tratos únicos (1 por item del día, max 2/día).
 //============================================================
 
 geffen,143,70,3	script	Garrett	1_M_SIGN1,{
@@ -25,7 +25,7 @@ geffen,143,70,3	script	Garrett	1_M_SIGN1,{
 	if (TRSH_DailySpend >= .daily_spending_limit) {
 		mes .npc_name$;
 		mes "Amigo, ya no me queda una moneda en la bolsa hoy.";
-		mes "Vuelve manana. Siempre hay basura nueva que vale la pena.";
+		mes "Vuelve mañana. Siempre hay basura nueva que vale la pena.";
 		close;
 	}
 
@@ -39,10 +39,10 @@ geffen,143,70,3	script	Garrett	1_M_SIGN1,{
 
 	mes .npc_name$;
 	if (OZRO_KARMA < 0) {
-		mes "Tu otra vez...";
+		mes "Tú otra vez...";
 		mes "No me gusta tu aura, pero el negocio es el negocio.";
 	} else if (OZRO_KARMA > 0) {
-		mes "Ah, " + strcharinfo(0) + "! Me alegra verte.";
+		mes "¡Ah, " + strcharinfo(0) + "! Me alegra verte.";
 		mes "Tienes buen ojo para lo que vale la pena, eso se nota.";
 	} else {
 		mes "Bienvenido, forastero.";
@@ -63,7 +63,7 @@ geffen,143,70,3	script	Garrett	1_M_SIGN1,{
 
 	switch (select("Comerciar", "Sobre tu negocio", "Marcharme")) {
 	case 1:
-		.@menu$ = getitemname(TRSH_Item0$) + ":" + getitemname(TRSH_Item1$) + ":Cambie de opinion";
+		.@menu$ = getitemname(TRSH_Item0$) + ":" + getitemname(TRSH_Item1$) + ":Cambié de opinión";
 		.@selected = select(.@menu$) - 1;
 		if (.@selected == 2) {
 			mes .npc_name$;
@@ -80,7 +80,7 @@ geffen,143,70,3	script	Garrett	1_M_SIGN1,{
 		}
 
 		mes .npc_name$;
-		mes "Cuantos " + getitemname(.@item$) + " me vendes?";
+		mes "¿Cuántos " + getitemname(.@item$) + " me vendes?";
 		mes "Tienes " + countitem(.@item$) + " en el inventario.";
 		next;
 
@@ -94,9 +94,9 @@ geffen,143,70,3	script	Garrett	1_M_SIGN1,{
 			mes .npc_name$;
 			mes "No tienes tantos. Solo llevas " + countitem(.@item$) + ".";
 			next;
-			if (select("Vendo los que tengo", "Mejor despues") == 2) {
+			if (select("Vendo los que tengo", "Mejor después") == 2) {
 				mes .npc_name$;
-				mes "Vuelve cuando tengas mas.";
+				mes "Vuelve cuando tengas más.";
 				close;
 			}
 			.@amount = countitem(.@item$);
@@ -106,13 +106,13 @@ geffen,143,70,3	script	Garrett	1_M_SIGN1,{
 		.@total = .@price * .@amount;
 		if (TRSH_DailySpend + .@total > .daily_spending_limit) {
 			mes .npc_name$;
-			mes "Eso pasa mi presupuesto de hoy.";
-			mes "Solo puedo gastar " + (.daily_spending_limit - TRSH_DailySpend) + " zeny mas.";
+			mes "Eso excede mi presupuesto de hoy.";
+			mes "Solo puedo gastar " + (.daily_spending_limit - TRSH_DailySpend) + " zeny más.";
 			close;
 		}
 
 		mes .npc_name$;
-		mes .@amount + " x " + getitemname(.@item$) + " = " + .@total + " zeny. Trato?";
+		mes .@amount + " x " + getitemname(.@item$) + " = " + .@total + " zeny. ¿Trato?";
 		next;
 		if (select("Trato hecho", "Paso") == 2) {
 			mes .npc_name$;
@@ -146,13 +146,13 @@ geffen,143,70,3	script	Garrett	1_M_SIGN1,{
 		mes "Un placer hacer negocios.";
 		if (TRSH_DailySpend >= .daily_spending_limit) {
 			mes "Con eso agoto el presupuesto de hoy.";
-			mes "Manana habra mas oportunidades.";
+			mes "Mañana habrá más oportunidades.";
 		}
 
 		if (.@first_trade_today && TRSH_UniqueTrades % .trades_for_coin == 0) {
 			getitem "Ozro_Bronze_Coin", 1;
 			mes "Por cierto... eres un sujeto agradable.";
-			mes "Creo que esto te sirve mas a ti que a mi.";
+			mes "Creo que esto te sirve más a ti que a mí.";
 		}
 		break;
 
@@ -164,7 +164,7 @@ geffen,143,70,3	script	Garrett	1_M_SIGN1,{
 
 	case 3:
 		mes .npc_name$;
-		mes "Buen viaje. La basura de hoy puede ser la riqueza de manana.";
+		mes "Buen viaje. La basura de hoy puede ser la riqueza de mañana.";
 		break;
 	}
 	close;

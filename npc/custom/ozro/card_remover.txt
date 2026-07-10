@@ -22,13 +22,13 @@ prt_in,28,73,4	script	Vieja Anciana#eAcustom	78,{
 
 	disable_items;
 	mes "[Vieja Anciana]";
-	mes "Buenos dias, joven. Tengo el poder de remover cartas que has imbuido en tu equipamiento. Te agrada esta idea?";
+	mes "Buenos días, joven. Tengo el poder de remover cartas que has imbuido en tu equipamiento. ¿Te agrada esta idea?";
 
 	next;
-	switch(select("Si, me agrada.:Cuanto cobras?:No, gracias.")) {
+	switch(select("Sí, me agrada.:¿Cuánto cobras?:No, gracias.")) {
 	case 1:
 		mes "[Vieja Anciana]";
-		mes "Muy bien. Cual item debo examinar para ti?";
+		mes "Muy bien. ¿Cuál ítem debo examinar para ti?";
 		next;
 
 		setarray .@indices[1], EQI_HEAD_TOP, EQI_ARMOR, EQI_HAND_L, EQI_HAND_R, EQI_GARMENT, EQI_SHOES, EQI_ACC_L, EQI_ACC_R, EQI_HEAD_MID, EQI_HEAD_LOW;
@@ -45,7 +45,7 @@ prt_in,28,73,4	script	Vieja Anciana#eAcustom	78,{
 		}
 		if(getequipcardcnt(.@part) == 0) {
 			mes "[Vieja Anciana]";
-			mes "Joven... No hay cartas imbuidas en este item. Me temo que no puedo hacer nada con el.";
+			mes "Joven... No hay cartas imbuidas en este ítem. Me temo que no puedo hacer nada con el.";
 			close;
 		}
 		set .@cardcount,getequipcardcnt(.@part);
@@ -69,13 +69,13 @@ prt_in,28,73,4	script	Vieja Anciana#eAcustom	78,{
 		}
 		if((zeny < (.zenycost+(.@cardcount * .percardcost))) || (countitem(1000) < 1) || (countitem(715) < 1)) {
 			mes "[Vieja Anciana]";
-			mes "No tienes todos los items que requiero para hacer mi magia, nino. Vuelve cuando los tengas.";
+			mes "No tienes todos los items que requiero para hacer mi magia, niño. Vuelve cuando los tengas.";
 			close;
 		}
 		mes "[Vieja Anciana]";
-		mes "Antes de comenzar, debo advertirte... este proceso podria fallar. Si fallo, podria destruir las cartas, el item, o ambos. No otorgo reembolsos. Dicho esto, que es mas importante para ti: Las cartas, o el item?";
+		mes "Antes de comenzar, debo advertirte... este proceso podría fallar. Si fallo, podría destruir las cartas, el ítem o ambos. No otorgo reembolsos. Dicho esto, que es mas importante para ti: Las cartas, o el item?";
 		next;
-		switch(select("Cambie de opinion.:El item.:Las cartas.")) {
+		switch(select("Cambié de opinión.:El ítem.:Las cartas.")) {
 		case 1:
 			mes "[Vieja Anciana]";
 			mes "Muy bien. Vuelve cuando busques mis servicios.";
@@ -112,7 +112,7 @@ prt_in,28,73,4	script	Vieja Anciana#eAcustom	78,{
 					next;
 					failedremovecards .@part,1;
 					mes "[Vieja Anciana]";
-					mes "Aunque he logrado remover las cartas del item, fueron destruidas en el proceso. El item, sin embargo, esta bien.";
+					mes "Aunque he logrado remover las cartas del ítem, fueron destruidas en el proceso. El ítem, sin embargo, está bien.";
 					close;
 				}
 
@@ -120,7 +120,7 @@ prt_in,28,73,4	script	Vieja Anciana#eAcustom	78,{
 					next;
 					failedremovecards .@part,2;
 					mes "[Vieja Anciana]";
-					mes "Muy lamentable. Logre remover las cartas, pero el item mismo fue destruido en el proceso.";
+					mes "Muy lamentable. Logré remover las cartas, pero el ítem mismo fue destruido en el proceso.";
 					close;
 				}
 			}
@@ -136,11 +136,11 @@ prt_in,28,73,4	script	Vieja Anciana#eAcustom	78,{
 		next;
 		successremovecards .@part;
 		mes "[Vieja Anciana]";
-		mes "El proceso fue un exito. Aqui estan tus cartas y tu item. Adios.";
+		mes "El proceso fue un éxito. Aquí están tus cartas y tu ítem. Adiós.";
 		close;
 	case 2:
 		mes "[Vieja Anciana]";
-		mes "Cobro una tarifa fija de "+callfunc("F_InsertComma",.zenycost)+" zeny, mas "+callfunc("F_InsertComma",.percardcost)+" zeny por cada carta que remuevo del item. Ademas, necesito un Star Crumb y un Yellow Gemstone para hacer mi magia.";
+		mes "Cobro una tarifa fija de "+callfunc("F_InsertComma",.zenycost)+" zeny, más "+callfunc("F_InsertComma",.percardcost)+" zeny por cada carta que remuevo del ítem. Ademas, necesito un Star Crumb y un Yellow Gemstone para hacer mi magia.";
 		close;
 	case 3:
 		mes "[Vieja Anciana]";

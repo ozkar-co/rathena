@@ -11,8 +11,8 @@ izlude,131,142,4	script	EndowedSage	2_M_SAGE_OLD,{
 
 	mes .npc_name$;
 	mes "Ah, un buscador de poder se acerca.";
-	mes "Deseas canalizar las fuerzas de la naturaleza en tu arma?";
-	mes "Solo te costara " + .zeny_cost + " zeny y la piedra elemental correspondiente.";
+	mes "¿Deseas canalizar las fuerzas de la naturaleza en tu arma?";
+	mes "Solo te costará " + .zeny_cost + " zeny y la piedra elemental correspondiente.";
 	mes "El efecto dura unos " + .duration_min + " minutos.";
 	next;
 
@@ -24,10 +24,10 @@ izlude,131,142,4	script	EndowedSage	2_M_SAGE_OLD,{
 	}
 
 	mes .npc_name$;
-	mes "Dime, que elemento buscas?";
+	mes "Dime, ¿qué elemento buscas?";
 	next;
 
-	switch (select("Fuego ardiente", "Viento cortante", "Hielo gelido", "Tierra firme")) {
+	switch (select("Fuego ardiente", "Viento cortante", "Hielo gélido", "Tierra firme")) {
 	// Futuro (quest): anadir al select: "Luz sagrada:Espectro ghost:Sombra shadow"
 	// y descomentar los casos 5-7 con item + requisito de quest.
 	case 1:
@@ -35,7 +35,7 @@ izlude,131,142,4	script	EndowedSage	2_M_SAGE_OLD,{
 		.@sc_id = SC_FIREWEAPON;
 		.@skill_id = SA_FLAMELAUNCHER;
 		mes .npc_name$;
-		mes "El fuego, esencia del caos y la destruccion. Buena eleccion.";
+		mes "El fuego, esencia del caos y la destrucción. Buena elección.";
 		break;
 	case 2:
 		.@item$ = "Wind_Of_Verdure"; // Wind of Verdure
@@ -49,30 +49,30 @@ izlude,131,142,4	script	EndowedSage	2_M_SAGE_OLD,{
 		.@sc_id = SC_WATERWEAPON;
 		.@skill_id = SA_FROSTWEAPON;
 		mes .npc_name$;
-		mes "El agua, molde silencioso del mundo. Sabia decision.";
+		mes "El agua, molde silencioso del mundo. Sabia decisión.";
 		break;
 	case 4:
 		.@item$ = "Yellow_Live"; // Green Live
 		.@sc_id = SC_EARTHWEAPON;
 		.@skill_id = SA_SEISMICWEAPON;
 		mes .npc_name$;
-		mes "La tierra, cimiento de toda vida. Noble eleccion.";
+		mes "La tierra, cimiento de toda vida. Noble elección.";
 		break;
-	//case 5: // Luz sagrada â€” desbloquear con quest
+	//case 5: // Luz sagrada - desbloquear con quest
 	//	.@item$ = ""; // ej. item custom quest
 	//	.@sc_id = SC_ASPERSIO;
 	//	.@skill_id = AL_ASPERSIO;
 	//	mes .npc_name$;
 	//	mes "La luz purifica el acero. Eleccion rara.";
 	//	break;
-	//case 6: // Espectro â€” desbloquear con quest
+	//case 6: // Espectro - desbloquear con quest
 	//	.@item$ = "";
 	//	.@sc_id = SC_GHOSTWEAPON;
 	//	.@skill_id = 0;
 	//	mes .npc_name$;
 	//	mes "Lo intangible corta mas hondo de lo que parece.";
 	//	break;
-	//case 7: // Sombra â€” desbloquear con quest
+	//case 7: // Sombra - desbloquear con quest
 	//	.@item$ = "";
 	//	.@sc_id = SC_SHADOWWEAPON;
 	//	.@skill_id = 0;
@@ -84,7 +84,7 @@ izlude,131,142,4	script	EndowedSage	2_M_SAGE_OLD,{
 
 	if (countitem(.@item$) < 1) {
 		mes .npc_name$;
-		mes "Pides el poder de la naturaleza sin la ofrenda adecuada?";
+		mes "¿Pides el poder de la naturaleza sin la ofrenda adecuada?";
 		mes "Vete, y vuelve con la piedra que corresponde.";
 		close;
 	}
@@ -95,7 +95,7 @@ izlude,131,142,4	script	EndowedSage	2_M_SAGE_OLD,{
 	skilleffect .@skill_id, 1;
 	mes .npc_name$;
 	mes "Listo. Que tus enemigos tiemblen ante tu arma.";
-	mes "La imbuicion durara unos " + .duration_min + " minutos.";
+	mes "La imbuición durará unos " + .duration_min + " minutos.";
 	close;
 
 OnInit:
