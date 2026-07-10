@@ -36,8 +36,9 @@
 //============================================================
 -	script	::Sailor_izlude	-1,{
 	mes "[Marinero]";
-	mes "¢®Atenci?n, atenci?n! ni?os y ni?as";
-	mes "¢®?ltimo llamado para abordar!";
+	mes "¡Atención, atención! niños y niñas";
+	mes "¡Ultimo llamado para abordar!";
+	mes "¿Están listos chicos?"
 	mes "Â¡Barcos con destino a";
 	mes "Byalan y Alberta!";
 	mes "¢®No se queden atr?s!";
