@@ -14,9 +14,9 @@
 
 prontera,170,180,1	script	Stylist#custom_stylist	2_M_DYEINGER,{
 	mes "[Estilista]";
-	mes "Hola mi amor... sabia que vendrias. Yo soy la vision, el estilo, la excelencia absoluta.";
-	mes "Aqui podemos transformarte, hacerte irresistible, un verdadero monumento a la belleza.";
-	mes "Dime, que deseas cambiar hoy?";
+	mes "Hola mi amor... sabía que vendrías. Yo soy la vision, el estilo, la excelencia absoluta.";
+	mes "Aquí podemos transformarte, hacerte irresistible, un verdadero monumento a la belleza.";
+	mes "Dime, ¿qué deseas cambiar hoy?";
 	next;
 	setarray .@Styles[1],
 		3,
@@ -43,7 +43,7 @@ prontera,170,180,1	script	Stylist#custom_stylist	2_M_DYEINGER,{
 		if (.@s == 1 && .@Style == .@Styles[.@s]) {
 			mes "Amor, no hay mucho que pueda hacer por ti, esto es todo lo que tienes.";
 		} else if (.@s == 1 && .@Style != 0) {
-			mes "Yass queen! Este color te queda perfecto, te ves increible.";
+			mes "Yass queen! Este color te queda perfecto, te ves increíble.";
 		} else {
 			mes "Observa como cambias... simplemente divino.";
 		}
@@ -61,14 +61,14 @@ prontera,170,180,1	script	Stylist#custom_stylist	2_M_DYEINGER,{
 		case 3:
 			mes "[Estilista]";
 			mes "Volviendo a tu estilo original...";
-			mes "aunque entre tu y yo, es lo que mejor te queda.";
+			mes "aunque entre tú y yo, es lo que mejor te queda.";
 			next;
 			set .@Style, .@Revert;
 			setlook .@Look[.@s], .@Revert;
 			break;
 		case 4:
 			mes "[Estilista]";
-			mes "Excelente eleccion, amor. Te ves absolutamente fabuloso.";
+			mes "Excelente elección, amor. Te ves absolutamente fabuloso.";
 			mes "Vuelve pronto si necesitas otro cambio de imagen.";
 			close;
 			break;

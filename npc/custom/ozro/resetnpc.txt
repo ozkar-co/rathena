@@ -19,56 +19,56 @@
 //= 2.0 Reset for all with Birthstone requirement. [Ozkar]
 //============================================================
 
-prontera,150,186,5	script	Canalizadora Mistica	4_GEFFEN_09,{
+prontera,150,186,5	script	Canalizadora Mística	4_GEFFEN_09,{
 function GetBirthstoneID;
 
 	.@price = 100000; 	// Zeny required for reset
 	.@stone_id = GetBirthstoneID();
 	.@stone_name$ = getitemname(.@stone_id);
 
-	mes "[Canalizadora Mistica]";
-	mes "^990000*Una mujer misteriosa con tunicas oscuras te estudia con cuidado*^000000";
-	mes "Ah... otra alma en busca de redireccion.";
+	mes "[Canalizadora Mística]";
+	mes "^990000*Una mujer misteriosa con túnicas oscuras te estudia con cuidado*^000000";
+	mes "Ah... otra alma en busca de redirección.";
 	next;
 	
-	mes "[Canalizadora Mistica]";
+	mes "[Canalizadora Mística]";
 	mes "Poseo el arte prohibido de recanalizar tus habilidades y esencia.";
 	mes "Algunos dicen que es magia antigua, otros... que es un pacto oscuro.";
 	next;
 	
-	mes "[Canalizadora Mistica]";
+	mes "[Canalizadora Mística]";
 	mes "El proceso tiene su costo:";
-	mes "Una gema sincronizada con tu ciclo de reencarnacion actual.";
+	mes "Una gema sincronizada con tu ciclo de reencarnación actual.";
 	mes "Para ti voy a necesitar un ^FF9900" + .@stone_name$ + "^000000";
 	mes "El coste del ritual es " + .@price + " zeny.";
 	next;
 	
-	mes "[Canalizadora Mistica]";
-	mes "Deseas proceder con la recanalizacion?";
+	mes "[Canalizadora Mística]";
+	mes "¿Deseas proceder con la recanalización?";
 	next;
 	
-	if(select("Si, estoy preparado:No, tal vez otro momento") == 2) {
-		mes "[Canalizadora Mistica]";
+	if(select("Sí, estoy preparado:No, tal vez otro momento") == 2) {
+		mes "[Canalizadora Mística]";
 		mes "^990000*Asiente lentamente*^000000";
-		mes "La prudencia es a veces mas valiosa que la valentia.";
-		mes "Vuelve cuando estes seguro.";
+		mes "La prudencia es a veces más valiosa que la valentía.";
+		mes "Vuelve cuando estés seguro.";
 		close;
 		return;
 	}
 	
 	// Check for required items and zeny
 	if (countitem(.@stone_id) < 1) {
-		mes "[Canalizadora Mistica]";
+		mes "[Canalizadora Mística]";
 		mes "^990000*Sus ojos se oscurecen*^000000";
 		mes "Sin la gema correcta no puedo hacer nada.";
-		mes "Tu necesitas: " + .@stone_name$ + "";
+		mes "Tú necesitas: " + .@stone_name$ + "";
 		mes "Regresa cuando la tengas.";
 		close;
 		return;
 	}
 	
 	if (Zeny < .@price) {
-		mes "[Canalizadora Mistica]";
+		mes "[Canalizadora Mística]";
 		mes "^990000*Ella niega con la cabeza*^000000";
 		mes "Ni siquiera con la gema podria comenzar.";
 		mes "Necesito " + .@price + " zeny para los sellos.";
@@ -76,17 +76,17 @@ function GetBirthstoneID;
 		return;
 	}
 	
-	mes "[Canalizadora Mistica]";
+	mes "[Canalizadora Mística]";
 	mes "^990000*Sus ojos brillan con luz inquietante*^000000";
 	mes "Muy bien. Coloca la Birthstone en el circulo.";
 	mes "^FF0000Una vez comience, no hay retorno.^000000";
-	mes "Estas completamente seguro?";
+	mes "¿Estás completamente seguro?";
 	next;
 	
 	if(select("Proceder:Detenerme ahora") == 2) {
-		mes "[Canalizadora Mistica]";
+		mes "[Canalizadora Mística]";
 		mes "^990000*El brillo desaparece de sus ojos*^000000";
-		mes "Sabiduria. Vuelve cuando tu voluntad sea firme.";
+		mes "Sabiduría. Vuelve cuando tu voluntad sea firme.";
 		close;
 		return;
 	}
@@ -95,7 +95,7 @@ function GetBirthstoneID;
 	delitem .@stone_id, 1;
 	Zeny -= .@price;
 
-	mes "[Canalizadora Mistica]";
+	mes "[Canalizadora Mística]";
 	mes "^990000*La gema comienza a brillar, el aire cruje*^000000";
 	mes "^990000*Tu cuerpo se retuerce mientras tu esencia es reescrita*^000000";
 	next;
@@ -108,9 +108,9 @@ function GetBirthstoneID;
 	resethate;
 	RESET_COUNT = RESET_COUNT + 1;
 	
-	mes "[Canalizadora Mistica]";
+	mes "[Canalizadora Mística]";
 	mes "^990000*La gema se oscurece y se desmorona en polvo*^000000";
-	mes "El ritual... esta completo. Tu esencia ha sido";
+	mes "El ritual... está completo. Tu esencia ha sido";
 	mes "recanalizada. Has renacido.";
 	close;
 

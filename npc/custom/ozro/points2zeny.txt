@@ -50,12 +50,12 @@ prontera,147,159,5	script	Sophie	4_F_KHELLY,{
 	mes .npc_name$;
 	switch (@menu) {
 		case 1:
-			mes "Cuantos puntos deseas convertir a zeny?";
+			mes "¿Cuántos puntos deseas convertir a zeny?";
 			mes "Tasa: "+ .exchange_rate +" zeny por punto.";
 			next;
 			
 			do {
-				mes "Minimo: "+ .exchange_min +" puntos.";
+				mes "Mínimo: "+ .exchange_min +" puntos.";
 				input .@points;
 			} while (.@points < .exchange_min);
 			
@@ -73,12 +73,12 @@ prontera,147,159,5	script	Sophie	4_F_KHELLY,{
 			mes "De acuerdo?";
 			next;
 			
-			menu "Si:No", -;
+			menu "Sí:No", -;
 			
 			mes .npc_name$;
 			switch (@menu) {
 				case 1:
-					mes "Hecho. Aqui esta tu zeny.";
+					mes "Hecho. Aquí está tu zeny.";
 					
 					// Update balance
 					Zeny += .@payout;
@@ -95,12 +95,12 @@ prontera,147,159,5	script	Sophie	4_F_KHELLY,{
 			break;
 			
 		case 2:
-			mes "Cuantos puntos deseas comprar?";
+			mes "¿Cuántos puntos deseas comprar?";
 			mes "Tasa: "+ .exchange_rate +" zeny por punto.";
 			next;
 			
 			do {
-				mes "Minimo: "+ .exchange_min +" puntos.";
+				mes "Mínimo: "+ .exchange_min +" puntos.";
 				input .@points;
 			} while (.@points < .exchange_min);
 			
@@ -119,12 +119,12 @@ prontera,147,159,5	script	Sophie	4_F_KHELLY,{
 			mes "De acuerdo?";
 			next;
 			
-			menu "Si:No", -;
+			menu "Sí:No", -;
 			
 			mes .npc_name$;
 			switch (@menu) {
 				case 1:
-					mes "Hecho. Aqui estan tus puntos.";
+					mes "Hecho. Aquí están tus puntos.";
 					
 					// Update balance
 					Zeny -= .@cost;

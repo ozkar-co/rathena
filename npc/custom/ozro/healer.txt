@@ -25,26 +25,26 @@
 
 	if (@HD > gettimetick(2)) {
 		mes .npc_name$;
-		mes "Por favor espera un momento mientras reuno mas energia divina...";
+		mes "Por favor espera un momento mientras reuno más energía divina...";
 		close;
 	}
 	
 	mes .npc_name$;
 	mes "^FF69B4Saludos, querido amigo! Soy Angela, una sacerdotisa viajera.^000000";
-	mes "Mi mision es compartir bendiciones divinas con quien las necesite.";
+	mes "Mi misión es compartir bendiciones divinas con quien las necesite.";
 	next;
 	
 	// Check if player is below level threshold for free healing
 	if (BaseLevel < .@level_threshold) {
 		mes .npc_name$;
-		mes "Veo que aun estas comenzando tu viaje, joven aventurero.";
-		mes "Me dedico a ayudar a quienes lo necesitan, asi que esta curacion es gratis!";
+		mes "Veo que aún estás comenzando tu viaje, joven aventurero.";
+		mes "Me dedico a ayudar a quienes lo necesitan, así que esta curación es ¡gratis!";
 		next;
 		specialeffect2 EF_HEAL2;
 		percentheal 100,100;
 		mes .npc_name$;
-		mes "^00CC00Que la luz divina te abrace!^000000";
-		mes "Avanza y enfrenta los desafios con fortaleza!";
+		mes "^00CC00¡Que la luz divina te abrace!^000000";
+		mes "Avanza y enfrenta los desafíos con fortaleza!";
 		if (.@Delay) @HD = gettimetick(2)+.@Delay;
 		close;
 	}
@@ -53,14 +53,14 @@
 	mes "Puedo ofrecerte dos tipos de bendiciones:";
 	next;
 	.@choice = select(
-		"^00CC00Curacion solamente (" + .@price_heal + " Zeny)^000000",
-		"^FF69B4Bendicion Completa (" + .@price_full + " Zeny) - Curacion + Bufos^000000",
-		"^777777Tal vez despues^000000"
+		"^00CC00Curación solamente (" + .@price_heal + " Zeny)^000000",
+		"^FF69B4Bendición Completa (" + .@price_full + " Zeny) - Curación + Bufos^000000",
+		"^777777Tal vez después^000000"
 	);
 	
 	if (.@choice == 3) {
 		mes .npc_name$;
-		mes "Que la luz guie tu camino! Vuelve cuando necesites mi ayuda!";
+		mes "¡Que la luz guíe tu camino! Vuelve cuando necesites mi ayuda!";
 		close;
 	}
 	
@@ -70,7 +70,7 @@
 	if (Zeny < .@cost) {
 		mes .npc_name$;
 		mes "^FF0000Veo que no tienes suficiente Zeny en este momento...^000000";
-		mes "No te preocupes! Vuelve cuando puedas pagarlo, estare aqui!";
+		mes "No te preocupes! Vuelve cuando puedas pagarlo, estaré aquí!";
 		close;
 	}
 	
@@ -81,14 +81,14 @@
 	percentheal 100,100;
 	
 	mes .npc_name$;
-	mes "^00CC00Que la luz divina te abrace!^000000";
-	mes "Como te sientes? Mejor, verdad?";
+	mes "^00CC00¡Que la luz divina te abrace!^000000";
+	mes "¿Cómo te sientes? Mejor, ¿verdad?";
 	
 	// Apply buffs if full blessing was chosen
 	if (.@choice == 2) {
 		next;
 		mes .npc_name$;
-		mes "Permiti compartir bendiciones adicionales contigo...";
+		mes "Permití compartir bendiciones adicionales contigo...";
 		specialeffect2 EF_INCAGILITY;
 		sc_start SC_INCREASEAGI,240000,10;
 		specialeffect2 EF_BLESSING;

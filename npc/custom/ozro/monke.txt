@@ -31,7 +31,7 @@ prt_fild03,203,41,3	script	Macaco	YOYO,{
 	// Verificar si el jugador tiene items
 	if (.@has_banana == 0 && .@has_apple == 0 && .@has_cacao == 0) {
 		mes .npc_name$;
-		mes "* mira al jugador con desinteres *";
+		mes "* mira al jugador con desinterés *";
 		mes "eek eek... uuh uuh";
 		close;
 	}
@@ -60,7 +60,7 @@ prt_fild03,203,41,3	script	Macaco	YOYO,{
 	set .@item_count, .@has_item[.@selected_idx];
 	
 	// El macaco mira la fruta fijamente
-	setarray .@verbs$[0], "fijamente", "sabrosamente", "gustosamente", "atentamente", "codiciadamente", "apetitosamente", "intensamente", "hipnoticamente";
+	setarray .@verbs$[0], "fijamente", "sabrosamente", "gustosamente", "atentamente", "codiciadamente", "apetitosamente", "intensamente", "hipnóticamente";
 	set .@verb_idx, rand(0, 7);
 	set .@verb$, .@verbs$[.@verb_idx];
 	
@@ -72,7 +72,7 @@ prt_fild03,203,41,3	script	Macaco	YOYO,{
 	// Usuario decide si ofrecerla
 	mes .npc_name$;
 	mes "El macaco quiere tu " + .@item_name$ + ".";
-	mes "Que haces?";
+	mes "¿Qué haces?";
 	set .@player_choice, select("Ofrecerle tu " + .@item_name$, "Cambiar de idea");
 	
 	if (.@player_choice == 2) {
@@ -104,7 +104,7 @@ prt_fild03,203,41,3	script	Macaco	YOYO,{
 	delitem .@item_name$, .@amount_offered;
 	next;
 	
-	// DecisiÃ³n aleatoria: intercambiar o lanzar excremento
+	// Decisión aleatoria: intercambiar o lanzar excremento
 	set .@refuse_chance, rand(1, 100);
 	
 	if (.@refuse_chance <= 10) {
@@ -122,7 +122,7 @@ prt_fild03,203,41,3	script	Macaco	YOYO,{
 	
 	// Intercambio exitoso
 	mes .npc_name$;
-	mes "* el macaco salta de alegria *";
+	mes "* el macaco salta de alegría *";
 	mes "OOH OOH UUH UUH!";
 	next;
 	
