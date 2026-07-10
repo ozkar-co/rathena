@@ -28,3 +28,7 @@ indent_style = tab
 # Scripts should use hard tabs to prevent script header goofs.
 [npc/**.txt]
 indent_style = tab
+
+# OzRo custom NPC dialogue (Spanish, rAthena Western / ISO-8859-1)
+[npc/custom/ozro/**]
+charset = latin1

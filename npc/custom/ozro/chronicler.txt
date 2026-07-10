@@ -22,7 +22,7 @@ geffen,139,72,4	script	Kaz el Cronista	4_M_ZONDAOYAJI,{
 	if (select("Preguntarle sobre su trabajo:Dejarlo a sus quehaceres") == 2) {
 		clear;
 		mes "[Kaz el Cronista]";
-		mes "^990000*El sabio continua escribiendo, profundamente concentrado en su labor*^000000";
+		mes "^990000*El sabio continúa escribiendo, profundamente concentrado en su labor*^000000";
 		close;
 	}
 
@@ -35,18 +35,18 @@ geffen,139,72,4	script	Kaz el Cronista	4_M_ZONDAOYAJI,{
 	mes "[Kaz el Cronista]";
 	mes "Por decreto de Su Majestad, mantengo";
 	mes "registros detallados de todos los aventureros";
-	mes "que viajan a traves de nuestro reino.";
+	mes "que viajan a través de nuestro reino.";
 	next;
 
 	mes "[Kaz el Cronista]";
-	mes "Deseas saber mas sobre";
+	mes "¿Deseas saber más sobre";
 	mes "mi trabajo para el reino?";
 	next;
 
-	if (select("Si, cuentame mas:Deberia dejarte trabajar") == 2) {
+	if (select("Sí, cuéntame más:Debería dejarte trabajar") == 2) {
 		clear;
 		mes "[Kaz el Cronista]";
-		mes "^990000*Asiente cortesmente y vuelve a escribir*^000000";
+		mes "^990000*Asiente cortésmente y vuelve a escribir*^000000";
 		mes "Muy bien. Que tu viaje sea seguro.";
 		close;
 	}
@@ -57,18 +57,18 @@ geffen,139,72,4	script	Kaz el Cronista	4_M_ZONDAOYAJI,{
 	next;
 
 	mes "[Kaz el Cronista]";
-	mes "Segun mis observaciones mas recientes,";
+	mes "Según mis observaciones más recientes,";
 	mes "he visto ^0075E9" + getusers(1) + " aventureros^000000";
 	mes "explorando nuestras tierras hoy.";
 	next;
 
 	mes "[Kaz el Cronista]";
 	mes "^990000*Moja su pluma en tinta*^000000";
-	mes "Ahora, dejare constancia de tu presencia...";
+	mes "Ahora, dejaré constancia de tu presencia...";
 	next;
 
 	mes "[Kaz el Cronista]";
-	mes "Listo! Has sido documentado correctamente";
-	mes "en las cronicas de hoy.";
+	mes "¡Listo! Has sido documentado correctamente";
+	mes "en las crónicas de hoy.";
 	close;
 }
