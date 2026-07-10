@@ -38,7 +38,7 @@
 	mes "[Marinero]";
 	mes "¡Atención, atención! niños y niñas";
 	mes "¡Ultimo llamado para abordar!";
-	mes "¿Están listos chicos?"
+	mes "¿Están listos chicos?";
 	mes "Â¡Barcos con destino a";
 	mes "Byalan y Alberta!";
 	mes "¢®No se queden atr?s!";
