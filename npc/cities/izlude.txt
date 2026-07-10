@@ -36,12 +36,11 @@
 //============================================================
 -	script	::Sailor_izlude	-1,{
 	mes "[Marinero]";
-	mes "°AtenciÛn, atenciÛn! niÒos y niÒas";
-	mes "°Ultimo llamado para abordar!";
-	mes "øEst·n listos chicos?";
-	mes "¬°Barcos con destino a";
+	mes "°AtenciÛn, atenciÛn!";
+	mes "°⁄ltimo llamado para abordar!";
+	mes "°Barcos con destino a";
 	mes "Byalan y Alberta!";
-	mes "¢ÆNo se queden atr?s!";
+	mes "°No se queden atr·s!";
 	next;
 	switch(select("Isla Byalan -> 150 Zeny.:Puerto de Alberta -> 500 Zeny.:Cancelar.")) {
 	case 1:
@@ -73,7 +72,7 @@
 
 -	script	::Bonne_izlude	-1,{
 	mes "[Bonne]";
-	mes "¬°Bienvenido!";
+	mes "°Bienvenido!";
 	mes "Espero que disfrutes tu visita a Izlude.";
 	next;
 	mes "[Bonne]";
@@ -81,14 +80,14 @@
 	next;
 	mes "[Bonne]";
 	mes "Nuestra ciudad es muy importante para el reino.";
-	mes "Aqu√≠ se encuentra la Asociaci√≥n de Espadachines y tambi√©n somos responsables de proteger toda la costa de Rune-Midgard.";
+	mes "AquÌ se encuentra la AsociaciÛn de Espadachines y tambiÈn somos responsables de proteger toda la costa de Rune-Midgard.";
 	next;
 	mes "[Bonne]";
-	mes "Tal vez este puente parezca fr√°gil, pero en realidad fue construido con la tecnolog√≠a m√°s avanzada.";
+	mes "Tal vez este puente parezca fr·gil, pero en realidad fue construido con la tecnologÌa m·s avanzada.";
 	next;
 	mes "[Bonne]";
-	mes "No importa cu√°n fuerte sea la tormenta o cu√°nta gente lo cruce...";
-	mes "¬°Este puente jam√°s se derrumbar√°!";
+	mes "No importa cu·n fuerte sea la tormenta o cu·nta gente lo cruce...";
+	mes "°Este puente jam·s se derrumbar·!";
 	next;
 	mes "[Bonne]";
 	mes "Espero que disfrutes";
@@ -104,28 +103,28 @@
 		mes "Muchos creen que Izlude es solo una ciudad vecina de Prontera y que no tiene demasiada importancia...";
 		next;
 		mes "[Charfri]";
-		mes "Pero Izlude es una hermosa ciudad costera, adem√°s de ser la puerta de entrada hacia la maravillosa Isla Byalan.";
+		mes "Pero Izlude es una hermosa ciudad costera, adem·s de ser la puerta de entrada hacia la maravillosa Isla Byalan.";
 		next;
 		mes "[Charfri]";
-		mes "Si quieres visitarla tendr√°s que tomar un barco en el puerto.";
-	mes "Solo ten cuidado... En esa isla hay peligrosas mazmorras, as√≠ que no vayas explorando sin estar preparado.";
+		mes "Si quieres visitarla tendr·s que tomar un barco en el puerto.";
+	mes "Solo ten cuidado... En esa isla hay peligrosas mazmorras, asÌ que no vayas explorando sin estar preparado.";
 		close;
 	default:
-		mes "Aunque Byalan es un lugar precioso, bajo la isla existe una misteriosa mazmorra que se adentra cada vez m√°s en las profundidades del mar.";
+		mes "Aunque Byalan es un lugar precioso, bajo la isla existe una misteriosa mazmorra que se adentra cada vez m·s en las profundidades del mar.";
 		next;
 		mes "[Charfri]";
-		mes "Quienes han logrado llegar hasta el fondo dicen que, en cierto punto, la mazmorra contin√∫a completamente bajo el agua.";
+		mes "Quienes han logrado llegar hasta el fondo dicen que, en cierto punto, la mazmorra contin˙a completamente bajo el agua.";
 		next;
 		mes "[Charfri]";
-		mes "Lo m√°s incre√≠ble es que all√≠ puedes respirar con total normalidad. Debe de existir alg√∫n tipo de poder sobrenatural.";
+		mes "Lo m·s increÌble es que allÌ puedes respirar con total normalidad. Debe de existir alg˙n tipo de poder sobrenatural.";
 		next;
 		mes "[Charfri]";
 		mes "Ah...";
 	mes "Los que han contemplado ese paisaje submarino aseguran que es tan hermoso que nunca han podido olvidarlo.";
 		next;
 		mes "[Charfri]";
-		mes "L√°stima que los monstruos sean demasiado fuertes para ir solo a admirar el lugar.";
-	mes "Aun as√≠... alg√∫n d√≠a me gustar√≠a verlo con mis propios ojos.";
+		mes "L·stima que los monstruos sean demasiado fuertes para ir solo a admirar el lugar.";
+	mes "Aun asÌ... alg˙n dÌa me gustarÌa verlo con mis propios ojos.";
 		close;
 	}
 }
@@ -134,24 +133,24 @@
 	mes "[Cuskoal]";
 	switch(rand(2)) {
 		case 1:
-			mes "La Arena es el lugar ideal para que los j√≥venes m√°s capaces de todo el Reino de Rune-Midgard pongan a prueba sus habilidades.";
+			mes "La Arena es el lugar ideal para que los jÛvenes m·s capaces de todo el Reino de Rune-Midgard pongan a prueba sus habilidades.";
 			next;
 			mes "[Cuskoal]";
-			mes "All√≠ podr√°s enfrentarte a monstruos de distintos niveles. Cuantas m√°s rondas logres superar, mayor ser√° la prueba de tu destreza en combate.";
+			mes "AllÌ podr·s enfrentarte a monstruos de distintos niveles. Cuantas m·s rondas logres superar, mayor ser· la prueba de tu destreza en combate.";
 			next;
 			mes "[Cuskoal]";
-			mes "¬øQu√© dices?";
-			mes "¬øTe animas a intentarlo?";
+			mes "øQuÈ dices?";
+			mes "øTe animas a intentarlo?";
 			close;
 
 		default:
-			mes "Las tabernas de Prontera siempre est√°n llenas de gente, tanto de la ciudad como de viajeros de todas partes.";
+			mes "Las tabernas de Prontera siempre est·n llenas de gente, tanto de la ciudad como de viajeros de todas partes.";
 			next;
 			mes "[Cuskoal]";
-			mes "Son un lugar excelente para enterarse de rumores y conseguir informaci√≥n √∫til.";
+			mes "Son un lugar excelente para enterarse de rumores y conseguir informaciÛn ˙til.";
 			next;
 			mes "[Cuskoal]";
-			mes "Si prestas atenci√≥n a las conversaciones, quiz√° descubras algo que te resulte muy provechoso en tu aventura.";
+			mes "Si prestas atenciÛn a las conversaciones, quiz· descubras algo que te resulte muy provechoso en tu aventura.";
 			close;
 	}
 }
@@ -160,67 +159,67 @@
 		mes "[Dega]";
 		switch(rand(3)) {
 			case 1:
-				mes "El monte Mjolnir, al norte de Prontera, es un lugar escarpado y muy dif√≠cil de atravesar.";
+				mes "El monte Mjolnir, al norte de Prontera, es un lugar escarpado y muy difÌcil de atravesar.";
 				next;
 				mes "[Dega]";
-				mes "Y no solo tendr√°s que enfrentarte a la monta√±a. Tambi√©n habitan all√≠ insectos extremadamente agresivos que atacan a cualquiera sin pensarlo dos veces.";
+				mes "Y no solo tendr·s que enfrentarte a la montaÒa. TambiÈn habitan allÌ insectos extremadamente agresivos que atacan a cualquiera sin pensarlo dos veces.";
 				next;
 				mes "[Dega]";
-				mes "Si alguna vez necesitas cruzar el monte Mjolnir para llegar m√°s all√°, aseg√∫rate de ir bien preparado... o simplemente rodea la monta√±a.";
+				mes "Si alguna vez necesitas cruzar el monte Mjolnir para llegar m·s all·, aseg˙rate de ir bien preparado... o simplemente rodea la montaÒa.";
 				close;
 			case 2:
-				mes "Algunos monstruos poseen la extraordinaria habilidad de percibir la energ√≠a m√°gica incluso antes de que un hechizo sea lanzado.";
+				mes "Algunos monstruos poseen la extraordinaria habilidad de percibir la energÌa m·gica incluso antes de que un hechizo sea lanzado.";
 				next;
 				mes "[Dega]";
-				mes "Uno de ellos es el Golem del desierto. No dejes que su lentitud te enga√±e...";
+				mes "Uno de ellos es el Golem del desierto. No dejes que su lentitud te engaÒe...";
 				next;
 				mes "[Dega]";
-				mes "Si intentas lanzar magia cerca de √©l, lo notar√° enseguida y avanzar√° hacia ti para aplastarte. M√°s vale no subestimarlo.";
+				mes "Si intentas lanzar magia cerca de Èl, lo notar· enseguida y avanzar· hacia ti para aplastarte. M·s vale no subestimarlo.";
 				close;
 			default:
-				mes "Hay un lugar maravilloso donde puedes encontrar pr√°cticamente todas las variedades de Poring.";
+				mes "Hay un lugar maravilloso donde puedes encontrar pr·cticamente todas las variedades de Poring.";
 				next;
 				mes "[Dega]";
-				mes "Est√° cerca del puente que conecta el bosque con el desierto, camino a Payon, al sureste de aqu√≠.";
+				mes "Est· cerca del puente que conecta el bosque con el desierto, camino a Payon, al sureste de aquÌ.";
 				next;
 				mes "[Dega]";
-				mes "Adem√°s de los cl√°sicos Poring rosados, tambi√©n encontrar√°s Drops y los verdes Poporing.";
+				mes "Adem·s de los cl·sicos Poring rosados, tambiÈn encontrar·s Drops y los verdes Poporing.";
 				next;
 				mes "[Dega]";
-				mes "Pero ten cuidado. Antes de que te des cuenta podr√≠as encontrarte cara a cara con un Ghostring, un peligroso Poring fantasmal que flota por el aire.";
+				mes "Pero ten cuidado. Antes de que te des cuenta podrÌas encontrarte cara a cara con un Ghostring, un peligroso Poring fantasmal que flota por el aire.";
 				next;
 				mes "[Dega]";
-				mes "Todos los Poring son adorables... bueno, todos excepto Ghostring. Ese s√≠ es realmente peligroso.";
+				mes "Todos los Poring son adorables... bueno, todos excepto Ghostring. Ese sÌ es realmente peligroso.";
 				next;
 		mes "[Dega]";
-				mes "Y, con un poco de suerte, quiz√° incluso llegues a encontrarte con un Angeling, el Poring de alas angelicales.";
+				mes "Y, con un poco de suerte, quiz· incluso llegues a encontrarte con un Angeling, el Poring de alas angelicales.";
 				next;
 			while(1) {
 				switch(select("Ghostring?:Angeling?:End Conversation.")) {
 			case 1:
 				mes "[Dega]";
-				mes "Ghostring es un Poring de color gris√°ceo que flota como un fantasma. Al igual que ocurre con otros espectros, los ataques f√≠sicos no pueden da√±arlo.";
+				mes "Ghostring es un Poring de color gris·ceo que flota como un fantasma. Al igual que ocurre con otros espectros, los ataques fÌsicos no pueden daÒarlo.";
 				next;
 				mes "[Dega]";
-				mes "Si tu especialidad son los ataques f√≠sicos, como ocurre con los Espadachines o los Arqueros, lo m√°s prudente ser√° retirarte si te enfrentas a un Ghostring.";
+				mes "Si tu especialidad son los ataques fÌsicos, como ocurre con los Espadachines o los Arqueros, lo m·s prudente ser· retirarte si te enfrentas a un Ghostring.";
 				next;
 				mes "[Dega]";
-				mes "¬°Pero no todo est√° perdido!";
-				mes "Si utilizas un arma con un atributo elemental, tambi√©n podr√°s hacerle da√±o.";
+				mes "°Pero no todo est· perdido!";
+				mes "Si utilizas un arma con un atributo elemental, tambiÈn podr·s hacerle daÒo.";
 				next;
 				break;
 			case 2:
 				mes "[Dega]";
-				mes "Los Angeling son inmunes a los ataques m√°gicos.";
-				mes "Si dependes √∫nicamente de la magia, ser√° mejor que pienses en retirarte.";
+				mes "Los Angeling son inmunes a los ataques m·gicos.";
+				mes "Si dependes ˙nicamente de la magia, ser· mejor que pienses en retirarte.";
 				next;
 				mes "[Dega]";
-				mes "Si llevas una espada o incluso un cuchillo de respaldo, quiz√° tengas alguna oportunidad... aunque enfrentarlo en solitario no ser√° nada f√°cil.";
+				mes "Si llevas una espada o incluso un cuchillo de respaldo, quiz· tengas alguna oportunidad... aunque enfrentarlo en solitario no ser· nada f·cil.";
 				next;
 				break;
 			case 3:
 				mes "[Dega]";
-				mes "¬°Buena suerte en tu aventura!";
+				mes "°Buena suerte en tu aventura!";
 				close;
 			}
 		}
@@ -230,19 +229,19 @@
 -	script	::Kylick_izlude	-1,{
 	if (!checkre(0) && rand(2)) {
 		mes "[Kylick]";
-		mes "¬øNo te parecen incre√≠bles los binoculares?";
-		mes "¬°Con ellos puedes observar lugares que normalmente ser√≠an imposibles de ver!";
+		mes "øNo te parecen increÌbles los binoculares?";
+		mes "°Con ellos puedes observar lugares que normalmente serÌan imposibles de ver!";
 		next;
 		mes "[Kylick]";
 		mes "En Izlude somos responsables de mantener la paz tanto en tierra como en el mar.";
 		mes "Por eso contamos con este enorme telescopio.";
 		next;
 		mes "[Kylick]";
-		mes "Gracias a √©l vigilamos constantemente las aguas y podemos detectar cualquier problema antes de que ocurra.";
+		mes "Gracias a Èl vigilamos constantemente las aguas y podemos detectar cualquier problema antes de que ocurra.";
 		next;
 		mes "[Kylick]";
-		mes "Despu√©s de todo...";
-		mes "m√°s vale prevenir";
+		mes "DespuÈs de todo...";
+		mes "m·s vale prevenir";
 		mes "que lamentar.";
 		close;
 	}
