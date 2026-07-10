@@ -36,11 +36,11 @@
 //============================================================
 -	script	::Sailor_izlude	-1,{
 	mes "[Marinero]";
-	mes "Â¡AtenciÃ³n, atenciÃ³n!";
-	mes "Â¡Ãšltimo llamado para abordar!";
+	mes "¢®Atenci?n, atenci?n! ni?os y ni?as";
+	mes "¢®?ltimo llamado para abordar!";
 	mes "Â¡Barcos con destino a";
 	mes "Byalan y Alberta!";
-	mes "Â¡No se queden atrÃ¡s!";
+	mes "¢®No se queden atr?s!";
 	next;
 	switch(select("Isla Byalan -> 150 Zeny.:Puerto de Alberta -> 500 Zeny.:Cancelar.")) {
 	case 1:
