@@ -7,7 +7,7 @@
 //= Futuro: quest alarga .duration_ms / .duration_min.
 //============================================================
 
-izlude,131,142,4	script	EndowedSage	2_M_SAGE_OLD,{
+izlude,131,142,4	script	Ethelgard	2_M_SAGE_OLD,{
 
 	mes .npc_name$;
 	mes "Ah, un buscador de poder se acerca.";
@@ -106,6 +106,6 @@ OnInit:
 	end;
 }
 
-prontera,159,186,4	duplicate(EndowedSage)	EndowedSage#protera	2_M_SAGE_OLD
-morocc,168,106,4	duplicate(EndowedSage)	EndowedSage#morocc	2_M_SAGE_OLD
-geffen,125,68,4	duplicate(EndowedSage)	EndowedSage#geffen	2_M_SAGE_OLD
+prontera,159,186,4	duplicate(Ethelgard)	Ethelgard#protera	2_M_SAGE_OLD
+morocc,168,106,4	duplicate(Ethelgard)	Ethelgard#morocc	2_M_SAGE_OLD
+geffen,125,68,4	duplicate(Ethelgard)	Ethelgard#geffen	2_M_SAGE_OLD
