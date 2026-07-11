@@ -10,7 +10,7 @@ OnPCDieEvent:
 	end;
 }
 
-prontera,274,352,3	script	Gravekeeper Ludovico	1_M_PASTOR,{
+prontera,274,352,3	script	Ludovico	1_M_PASTOR,{
 
 	.@deaths = PC_DIE_COUNTER;
 	.@global = $OZRO_DEATHS_TOTAL;
