@@ -425,73 +425,73 @@
 			mes "Seguimos teniendo trabajo, claro, pero no se compara con aquellos tiempos. Quien ha pasado por momentos difíciles aprende a valorar hasta la más pequeña tranquilidad.";
 			close;
 		}
+			mes "[Soldier]";
+			mes "¿¡Cómo que no lo sabías!? Bueno, ya sabes que puedes obtener objetos derrotando monstruos. Si luego se los vendes a un Comerciante, podrás ganar algo de dinero.";
+			next;
+			mes "[Soldier]";
+			mes "¡Ja, ja! Pues esa también era parte de nuestro trabajo. Pero cada vez llegaban más cazadores para cobrar sus recompensas y terminó siendo demasiado para nosotros.";
+			next;
+			mes "[Soldier]";
+			mes "Teníamos que hacer horas extra todos los días. ¡Fue una auténtica pesadilla! Por suerte, el gobierno tomó una buena decisión al crear el Sistema de Registro.";
+			next;
+			mes "[Soldier]";
+			mes "La Oficina de Compensación de Recompensas solo paga a quienes cuentan con el registro. Claro, para obtenerlo debes ser Comerciante y atender tu negocio de forma permanente.";
+			next;
+			mes "[Soldier]";
+			mes "La Oficina entrega el registro a cualquier Comerciante que cumpla con esos requisitos. Desde entonces, los cazadores venden sus objetos directamente a los Comerciantes registrados.";
+			next;
+			mes "[Soldier]";
+			mes "Hoy en día ya casi nadie viene con nosotros para eso.";
+			next;
+			mes "[Soldier]";
+			mes "Seguimos teniendo trabajo, claro, pero no se compara con aquellos tiempos. Quien ha pasado por momentos difíciles aprende a valorar hasta la más pequeña tranquilidad.";
+			close;
+		}
 		mes "[Soldier]";
-		mes "¿¡Cómo que no lo sabías!? Bueno, ya sabes que puedes obtener objetos derrotando monstruos. Si luego se los vendes a un Comerciante, podrás ganar algo de dinero.";
-		next;
-		mes "[Soldier]";
-		mes "¡Ja, ja! Pues esa también era parte de nuestro trabajo. Pero cada vez llegaban más cazadores para cobrar sus recompensas y terminó siendo demasiado para nosotros.";
-		next;
-		mes "[Soldier]";
-		mes "Teníamos que hacer horas extra todos los días. ¡Fue una auténtica pesadilla! Por suerte, el gobierno tomó una buena decisión al crear el Sistema de Registro.";
-		next;
-		mes "[Soldier]";
-		mes "La Oficina de Compensación de Recompensas solo paga a quienes cuentan con el registro. Claro, para obtenerlo debes ser Comerciante y atender tu negocio de forma permanente.";
-		next;
-		mes "[Soldier]";
-		mes "La Oficina entrega el registro a cualquier Comerciante que cumpla con esos requisitos. Desde entonces, los cazadores venden sus objetos directamente a los Comerciantes registrados.";
-		next;
-		mes "[Soldier]";
-		mes "Hoy en día ya casi nadie viene con nosotros para eso.";
-		next;
-		mes "[Soldier]";
-		mes "Seguimos teniendo trabajo, claro, pero no se compara con aquellos tiempos. Quien ha pasado por momentos difíciles aprende a valorar hasta la más pequeña tranquilidad.";
+		mes "Muy bien.";
+		mes "¡Hasta luego!";
 		close;
 	}
-	mes "[Soldier]";
-	mes "Muy bien.";
-	mes "¡Hasta luego!";
-	close;
-}
 
-// Inside Izlude
-//============================================================
-izlude_in,125,164,2	script	Aaron#izlude	65,{
-	mes "[Aaron]";
-	mes "¿No crees que una gran VIT y dominar una técnica especial de respiración que acelera la recuperación de HP son las mayores ventajas de un Espadachín?";
-	next;
-	mes "[Aaron]";
-	mes "Si entrenas con dedicación, notarás que tu HP se recupera cada vez más rápido. La cantidad de HP recuperada depende de tu Vitalidad, es decir, de la VIT.";
-	next;
-	mes "[Aaron]";
-	mes "Por eso, mientras más puntos inviertas en VIT, más HP recuperarás cuando descanses.";
-	next;
-	mes "[Aaron]";
-	mes "Pero claro, también es importante tener un buen Ataque, ¿no crees? Puedes conseguir un arma de calidad o aumentar tu STR para potenciar tu poder ofensivo.";
-	next;
-	mes "[Aaron]";
-	mes "Además, necesitarás suficiente Fuerza para poder manejar las armas más pesadas con facilidad.";
-	next;
-	mes "[Aaron]";
-	mes "Otro aspecto importante es la precisión con la que golpeas a tus enemigos. Ahí es donde entra en juego la DEX. Al aumentarla, también se reduce la diferencia entre el daño mínimo y el máximo que puedes causar.";
-	next;
-	mes "[Aaron]";
-	mes "Mmm...";
-	mes "¿Te estoy aburriendo con tanta explicación?";
-	mes "¿O quieres que continúe?";
-	next;
-if (select("Sí, cuéntame más.:Terminar la conversación.") == 1) {
-	mes "[Aaron]";
-	mes "Mmm...";
-	mes "En ese caso, te explicaré brevemente los demás atributos. Si quieres atacar y esquivar con mayor rapidez, debes prestar atención a la AGI.";
-	next;
-	mes "[Aaron]";
-	mes "Si prefieres realizar más golpes críticos, conviene invertir puntos en LUK. La INT también aumenta tu SP máximo, indispensable para utilizar muchas habilidades... Pero, al final, todo depende del estilo de juego que prefieras.";
-	close;
-}
-	mes "[Aaron]";
-	mes "Muy bien entonces.";
-	mes "¡Sigue entrenando!";
-	close;
+	// Inside Izlude
+	//============================================================
+	izlude_in,125,164,2	script	Aaron#izlude	65,{
+		mes "[Aaron]";
+		mes "¿No crees que una gran VIT y dominar una técnica especial de respiración que acelera la recuperación de HP son las mayores ventajas de un Espadachín?";
+		next;
+		mes "[Aaron]";
+		mes "Si entrenas con dedicación, notarás que tu HP se recupera cada vez más rápido. La cantidad de HP recuperada depende de tu Vitalidad, es decir, de la VIT.";
+		next;
+		mes "[Aaron]";
+		mes "Por eso, mientras más puntos inviertas en VIT, más HP recuperarás cuando descanses.";
+		next;
+		mes "[Aaron]";
+		mes "Pero claro, también es importante tener un buen Ataque, ¿no crees? Puedes conseguir un arma de calidad o aumentar tu STR para potenciar tu poder ofensivo.";
+		next;
+		mes "[Aaron]";
+		mes "Además, necesitarás suficiente Fuerza para poder manejar las armas más pesadas con facilidad.";
+		next;
+		mes "[Aaron]";
+		mes "Otro aspecto importante es la precisión con la que golpeas a tus enemigos. Ahí es donde entra en juego la DEX. Al aumentarla, también se reduce la diferencia entre el daño mínimo y el máximo que puedes causar.";
+		next;
+		mes "[Aaron]";
+		mes "Mmm...";
+		mes "¿Te estoy aburriendo con tanta explicación?";
+		mes "¿O quieres que continúe?";
+		next;
+	if (select("Sí, cuéntame más.:Terminar la conversación.") == 1) {
+		mes "[Aaron]";
+		mes "Mmm...";
+		mes "En ese caso, te explicaré brevemente los demás atributos. Si quieres atacar y esquivar con mayor rapidez, debes prestar atención a la AGI.";
+		next;
+		mes "[Aaron]";
+		mes "Si prefieres realizar más golpes críticos, conviene invertir puntos en LUK. La INT también aumenta tu SP máximo, indispensable para utilizar muchas habilidades... Pero, al final, todo depende del estilo de juego que prefieras.";
+		close;
+	}
+		mes "[Aaron]";
+		mes "Muy bien entonces.";
+		mes "¡Sigue entrenando!";
+		close;
 
 // Izlude Dungeon
 //============================================================
