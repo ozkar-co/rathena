@@ -71,30 +71,30 @@
 }
 
 -	script	::Bonne_izlude	-1,{
-	mes "[Bonne]";
-	mes "¡Bienvenido!";
-	mes "Espero que disfrutes tu visita a Izlude.";
-	next;
-	mes "[Bonne]";
-	mes "Izlude es la ciudad vecina de Prontera, la capital del Reino de Rune-Midgard.";
-	next;
-	mes "[Bonne]";
-	mes "Nuestra ciudad es muy importante para el reino.";
-	mes "Aquí se encuentra la Asociación de Espadachines y también somos responsables de proteger toda la costa de Rune-Midgard.";
-	next;
-	mes "[Bonne]";
-	mes "Tal vez este puente parezca frágil, pero en realidad fue construido con la tecnología más avanzada.";
-	next;
-	mes "[Bonne]";
-	mes "No importa cuán fuerte sea la tormenta o cuánta gente lo cruce...";
-	mes "¡Este puente jamás se derrumbará!";
-	next;
-	mes "[Bonne]";
-	mes "Espero que disfrutes";
-	mes "tu estancia";
-	mes "en Izlude.";
-	close;
-}
+		mes "[Bonne]";
+		mes "¡Bienvenido!";
+		mes "Espero que disfrutes tu visita a Izlude.";
+		next;
+		mes "[Bonne]";
+		mes "Izlude es la ciudad vecina de Prontera, la capital del Reino de Rune-Midgard.";
+		next;
+		mes "[Bonne]";
+		mes "Nuestra ciudad es muy importante para el reino.";
+		mes "Aquí se encuentra la Asociación de Espadachines y también somos responsables de proteger toda la costa de Rune-Midgard.";
+		next;
+		mes "[Bonne]";
+		mes "Tal vez este puente parezca frágil, pero en realidad fue construido con la tecnología más avanzada.";
+		next;
+		mes "[Bonne]";
+		mes "No importa cuán fuerte sea la tormenta o cuánta gente lo cruce...";
+		mes "¡Este puente jamás se derrumbará!";
+		next;
+		mes "[Bonne]";
+		mes "Espero que disfrutes";
+		mes "tu estancia";
+		mes "en Izlude.";
+		close;
+	}
 
 -	script	::Charfri_izlude	-1,{
 	mes "[Charfri]";
@@ -107,7 +107,7 @@
 		next;
 		mes "[Charfri]";
 		mes "Si quieres visitarla tendrás que tomar un barco en el puerto.";
-	mes "Solo ten cuidado... En esa isla hay peligrosas mazmorras, así que no vayas explorando sin estar preparado.";
+		mes "Solo ten cuidado... En esa isla hay peligrosas mazmorras, así que no vayas explorando sin estar preparado.";
 		close;
 	default:
 		mes "Aunque Byalan es un lugar precioso, bajo la isla existe una misteriosa mazmorra que se adentra cada vez más en las profundidades del mar.";
@@ -120,11 +120,11 @@
 		next;
 		mes "[Charfri]";
 		mes "Ah...";
-	mes "Los que han contemplado ese paisaje submarino aseguran que es tan hermoso que nunca han podido olvidarlo.";
+		mes "Los que han contemplado ese paisaje submarino aseguran que es tan hermoso que nunca han podido olvidarlo.";
 		next;
 		mes "[Charfri]";
 		mes "Lástima que los monstruos sean demasiado fuertes para ir solo a admirar el lugar.";
-	mes "Aun así... algún día me gustaría verlo con mis propios ojos.";
+		mes "Aun así... algún día me gustaría verlo con mis propios ojos.";
 		close;
 	}
 }
@@ -248,259 +248,259 @@
 }
 
 -	script	::Red_izlude	-1,{
-	mes "[Red]";
-	mes "The only skill that's needed for a Swordman is ^FF2400Bash^000000! Bash, Bash and ONLY ^FF2400Bash^000000! No need to waste time and effort for smaller skills! Everything else is for cowards and wusses!";
-	next;
-	mes "[Cebalis]";
-	mes "What are you talking about!? The ideal Swordman resolutely stands alone, surrounded by countless enemies and smashing them all with one awesome attack.";
-	next;
-	mes "[Cebalis]";
-	mes "^EE0000MAGNUM BREAK!^000000";
-	mes "That's right, Magnum Break";
-	mes "is the skill that does";
-	mes "the job right~!!";
-	next;
-	mes "[Cebalis]";
-	mes "Well... Sometimes the explosive damage might accidentally hit some wandering monsters, and those guys end up coming after you, but that's a risk a Swordman should be willing to take!!";
-	next;
-	mes "[Red]";
-	mes "That's exactly why you're dumb, you idiot! And what's this about the 'the ideal Swordman?' I still remember the last time you used Magnum Break...";
-	next;
-	mes "[Red]";
-	mes "You ended up running away from all those monsters you hit with that stupid skill! Weakling! All those Porings around you got hit and they all tried to kill you. ";
-	next;
-	mes "[Cebalis]";
-	mes "Hmpf. As I recall, you were running away too, apparently too busy to use your precious Bash. In any case, Magnum Break is THE skill for a Swordman~!!";
-	next;
-	mes "[Cebalis]";
-	mes "Something simplistic like Bash";
-	mes "is just one of the little steps towards Magnum Break.";
-	next;
-	mes "[Red]";
-	mes "Oh man~";
-	mes "Hey, I know you just";
-	mes "heard everything.";
-	mes "So what do you think?";
-	next;
-	mes "[Red]";
-	mes "Which one do you think is better? The critical damage skill, ^FF2400Bash^000000, or the Splash damage skill, ^EE0000Magnum Break^000000?";
-	next;
+		mes "[Red]";
+		mes "¡La única habilidad que un Espadachín necesita es ^FF2400Bash^000000! ¡Bash, Bash y SOLO ^FF2400Bash^000000! ¡No tiene sentido perder tiempo ni esfuerzo aprendiendo habilidades menores! ¡Todo lo demás es para cobardes y blandengues!";
+		next;
+		mes "[Cebalis]";
+		mes "¿Pero qué estás diciendo? ¡El Espadachín ideal se mantiene firme, rodeado de enemigos, y los hace pedazos a todos con un solo ataque devastador!";
+		next;
+		mes "[Cebalis]";
+		mes "^EE0000¡MAGNUM BREAK!^000000";
+		mes "¡Así es!";
+		mes "^EE0000Magnum Break^000000";
+		mes "es la habilidad que";
+		mes "hace el trabajo";
+		mes "¡como se debe!";
+		next;
+		mes "[Cebalis]";
+		mes "Bueno... A veces la explosión puede golpear por accidente a monstruos que andaban cerca y terminan persiguiéndote, ¡pero ese es un riesgo que todo buen Espadachín debe estar dispuesto a correr!";
+		next;
+		mes "[Red]";
+		mes "¡Por eso mismo eres un idiota, cabeza dura! ¿Y todavía hablas del «Espadachín ideal»? ¡Todavía recuerdo la última vez que usaste Magnum Break!";
+		next;
+		mes "[Red]";
+		mes "¡Terminaste huyendo de todos los monstruos que enfureciste con esa habilidad! ¡Qué cobarde! ¡Hasta los Poring que estaban alrededor salieron detrás de ti para darte una paliza!";
+		next;
+		mes "[Cebalis]";
+		mes "¡Ja! Si mal no recuerdo, tú también saliste corriendo. Parece que estabas demasiado ocupado como para usar tu preciado Bash. De todas formas, ¡^EE0000Magnum Break^000000 es LA habilidad de todo Espadachín!";
+		next;
+		mes "[Cebalis]";
+		mes "Una habilidad tan simple";
+		mes "como Bash";
+		mes "no es más que un paso";
+		mes "para llegar a Magnum Break.";
+		next;
+		mes "[Red]";
+		mes "En fin...";
+		mes "Ya escuchaste";
+		mes "toda la discusión.";
+		mes "¿Qué opinas?";
+		next;
+		mes "[Red]";
+		mes "¿Cuál te parece mejor? ¿La habilidad de gran daño ^FF2400Bash^000000 o la habilidad de daño en área ^EE0000Magnum Break^000000?";
+		next;
 	if (select("Bash:Magnum Break") == 1)  {
 		if (BaseClass == Job_Swordman) {
 			mes "[Red]";
-			mes "Hahahaha!!! I knew you'd see things my way!! You ARE a great guy!! Undoubtedly, only ^FF2400Bash^000000 suits a Swordman. Please tell that to this BONEHEAD over here~ Hahaha!";
+			mes "¡JAJAJA! ¡Sabía que pensarías igual que yo! ¡Se nota que sabes de lo que hablas! Sin duda, ^FF2400Bash^000000 es la única habilidad digna de un Espadachín. ¡A ver si se lo haces entender a este cabeza hueca! ¡JAJAJA!";
 			next;
 			mes "[Red]";
-			mes "Hmm, let me give you a bit of advice. After you achieve level 5 'Bash', the amount of SP consumed by the skill increases greatly, so watch out for your SP.";
+			mes "Déjame darte un consejo. A partir del nivel 5 de Bash, el consumo de SP aumenta bastante, así que administra bien tus puntos de SP.";
 			close;
 		}
 		mes "[Red]";
-		mes "Hahahaha!! See!? Someone who pursues a different job agrees with me~! You really are a great guy! Hahaha!! Undoubtedly, only ^FF2400Bash^000000 suits a Swordman. Please tell that to this NIMROD over here~ Hahaha!";
+		mes "¡JAJAJA! ¿Ves? ¡Hasta alguien de otra profesión está de acuerdo conmigo! ¡Se nota que sabes de lo que hablas! Sin duda, ^FF2400Bash^000000 es la única habilidad digna de un Espadachín. ¡A ver si este zoquete aprende de una vez! ¡JAJAJA!";
 		close;
 	}
 	if (BaseClass == Job_Swordman) {
 		mes "[Cebalis]";
-		mes "Alright!! ^EE0000Magnum Break^000000 is the BEST!! Now you're talking~!! You know the stuff~ HaHaHa!";
+		mes "¡¡Así se habla!! ¡^EE0000Magnum Break^000000 es la MEJOR habilidad! ¡Sabía que tú sí entiendes! ¡JAJAJA!";
 		next;
 		mes "[Cebalis]";
-		mes "You wanna know some useful information? Okay, okay lemme tell ya! Magnum Break has Fire Property.";
+		mes "¿Quieres un consejo útil? Muy bien. Magnum Break posee el elemento Fuego.";
 		next;
 		mes "[Cebalis]";
-		mes "So it won't be too effective against monsters with the Water property, but this is THE skill to use against Undead and Earth property monsters!";
+		mes "Por eso no es muy eficaz contra monstruos de elemento Agua, pero es una habilidad excelente para enfrentarse a enemigos de elemento Tierra y a los No Muertos.";
 		next;
 		mes "[Cebalis]";
-		mes "And most importantly, look around before you use it. Otherwise you'll be in BIG trouble~ ";
+		mes "Y, sobre todo, mira bien a tu alrededor antes de usarla. De lo contrario... ¡podrías meterte en un buen lío!";
 		close;
 	}
 	mes "[Cebalis]";
-	mes "Right?! ^EE0000Magnum Break^000000 is THE BEST!!! You know what you're talking about, eh? I don't know why this jerkface is being sooooo stubborn.";
-	close;
+    mes "¡¿Ves?! ¡^EE0000Magnum Break^000000 es LA MEJOR! ¡Se nota que sí sabes de lo que hablas! No entiendo cómo este testarudo sigue empeñado en defender Bash.";
+    close;
 }
 
 -	script	::Cebalis_izlude	-1,{
-	mes "[Red]";
-	mes "The only skill that's needed for a Swordman is ^FF2400Bash^000000! Bash, Bash and ONLY ^FF2400Bash^000000! No need to waste time and effort on smaller skills~~ Everything else is for cowards and wusses!";
-	next;
-	mes "[Cebalis]";
-	mes "What are you talking about!? The ideal Swordman resolutely stands alone, surrounded by countless foes, smashing them all with one awesome attack...";
-	next;
-	mes "[Cebalis]";
-	mes "^EE0000MAGNUM BREAK!^000000";
-	mes "That's right, Magnum Break";
-	mes "is the perfect";
-	mes "Swordman skill.";
-	next;
-	mes "[Cebalis]";
-	mes "Well...";
-	mes "Sometimes the explosion accidentally hits some monsters that are just wandering around.";
-	next;
-	mes "[Cebalis]";
-	mes "Then they all end up coming after you, but that's a risk a true Swordman should be willing to take.";
-	next;
-	mes "[Red]";
-	mes "That's exactly why you're dumb, you idiot! And what was that about the 'ideal Swordman?' You remember the last time you used Magnum Break?!";
-	next;
-	mes "[Red]";
-	mes "You had to run away from all those Porings hit by that stupid skill! You weakling! All those Porings that you hit tried to kill you! ";
-	next;
-	mes "[Cebalis]";
-	mes "Oh shut up. And those were Poporings. As I recall, you were running away too, apparently too busy to use your precious Bash.";
-	next;
-	mes "[Cebalis]";
-	mes "In any case, Magnum Break is THE skill for a Swordman~!! Something simplistic like Bash is just one of those little steps towards Magnum Break.";
-	next;
-	mes "[Red]";
-	mes "Oh man~";
-	mes "Hey, I know you";
-	mes "heard everything.";
-	mes "So what do you think?";
-	next;
-	mes "[Red]";
-	mes "Which one do you think is better? The critical damage skill, ^FF2400Bash^000000, or the Splash damage skill, ^EE0000Magnum Break^000000?";
-	next;
-	if (select("Bash:Magnum Break") == 1) {
+		mes "[Red]";
+		mes "¡La única habilidad que un Espadachín necesita es ^FF2400Bash^000000! ¡Bash, Bash y SOLO ^FF2400Bash^000000! ¡No tiene sentido perder tiempo ni esfuerzo aprendiendo habilidades menores! ¡Todo lo demás es para cobardes y blandengues!";
+		next;
+		mes "[Cebalis]";
+		mes "¿Pero qué estás diciendo? ¡El Espadachín ideal se mantiene firme, rodeado de enemigos, y los hace pedazos a todos con un solo ataque devastador!";
+		next;
+		mes "[Cebalis]";
+		mes "^EE0000¡MAGNUM BREAK!^000000";
+		mes "¡Así es!";
+		mes "^EE0000Magnum Break^000000";
+		mes "es la habilidad que";
+		mes "hace el trabajo";
+		mes "¡como se debe!";
+		next;
+		mes "[Cebalis]";
+		mes "Bueno... A veces la explosión puede golpear por accidente a monstruos que andaban cerca y terminan persiguiéndote, ¡pero ese es un riesgo que todo buen Espadachín debe estar dispuesto a correr!";
+		next;
+		mes "[Red]";
+		mes "¡Por eso mismo eres un idiota, cabeza dura! ¿Y todavía hablas del «Espadachín ideal»? ¡Todavía recuerdo la última vez que usaste Magnum Break!";
+		next;
+		mes "[Red]";
+		mes "¡Terminaste huyendo de todos los monstruos que enfureciste con esa habilidad! ¡Qué cobarde! ¡Hasta los Poring que estaban alrededor salieron detrás de ti para darte una paliza!";
+		next;
+		mes "[Cebalis]";
+		mes "¡Ja! Si mal no recuerdo, tú también saliste corriendo. Parece que estabas demasiado ocupado como para usar tu preciado Bash. De todas formas, ¡^EE0000Magnum Break^000000 es LA habilidad de todo Espadachín!";
+		next;
+		mes "[Cebalis]";
+		mes "Una habilidad tan simple";
+		mes "como Bash";
+		mes "no es más que un paso";
+		mes "para llegar a Magnum Break.";
+		next;
+		mes "[Red]";
+		mes "En fin...";
+		mes "Ya escuchaste";
+		mes "toda la discusión.";
+		mes "¿Qué opinas?";
+		next;
+		mes "[Red]";
+		mes "¿Cuál te parece mejor? ¿La habilidad de gran daño ^FF2400Bash^000000 o la habilidad de daño en área ^EE0000Magnum Break^000000?";
+		next;
+	if (select("Bash:Magnum Break") == 1)  {
 		if (BaseClass == Job_Swordman) {
 			mes "[Red]";
-			mes "Hahahaha!!! I knew you'd see things my way!! You ARE a great guy!! Without a doubt, only ^FF2400Bash^000000 suits a Swordman. Please tell that to FUNBOY over here!! Hahaha.";
+			mes "¡JAJAJA! ¡Sabía que pensarías igual que yo! ¡Se nota que sabes de lo que hablas! Sin duda, ^FF2400Bash^000000 es la única habilidad digna de un Espadachín. ¡A ver si se lo haces entender a este cabeza hueca! ¡JAJAJA!";
 			next;
 			mes "[Red]";
-			mes "Hmm, let me give you a bit of advice. After you achieve level 5 Bash, the amount of SP consumed by the skill increases greatly, so watch out for your SP.";
+			mes "Déjame darte un consejo. A partir del nivel 5 de Bash, el consumo de SP aumenta bastante, así que administra bien tus puntos de SP.";
 			close;
 		}
 		mes "[Red]";
-		mes "Hahahaha!!";
-		mes "See!? Someone who pursues a different job agrees with me~! You really are a great guy! Hahaha!!";
-		next;
-		mes "[Red]";
-		mes "Without a doubt, only ^FF2400Bash^000000 suits a Swordman. Please tell that to this MORON over here!! Hahaha~";
+		mes "¡JAJAJA! ¿Ves? ¡Hasta alguien de otra profesión está de acuerdo conmigo! ¡Se nota que sabes de lo que hablas! Sin duda, ^FF2400Bash^000000 es la única habilidad digna de un Espadachín. ¡A ver si este zoquete aprende de una vez! ¡JAJAJA!";
 		close;
 	}
 	if (BaseClass == Job_Swordman) {
 		mes "[Cebalis]";
-		mes " Alright!! ^EE0000Magnum Break^000000 is the BEST!! Now you're talking~!! You know your stuff, kid. HaHaHa~!";
+		mes "¡¡Así se habla!! ¡^EE0000Magnum Break^000000 es la MEJOR habilidad! ¡Sabía que tú sí entiendes! ¡JAJAJA!";
 		next;
 		mes "[Cebalis]";
-		mes "You wanna know some useful information? Okay, okay lemme tell ya! The explosion from 'Magnum Break' has the Fire Property.";
+		mes "¿Quieres un consejo útil? Muy bien. Magnum Break posee el elemento Fuego.";
 		next;
 		mes "[Cebalis]";
-		mes "So it won't be very effective against Water property monsters, but this is THE skill to use against Undead and Earth property monsters.!";
+		mes "Por eso no es muy eficaz contra monstruos de elemento Agua, pero es una habilidad excelente para enfrentarse a enemigos de elemento Tierra y a los No Muertos.";
 		next;
 		mes "[Cebalis]";
-		mes "And most importantly, look around before you use it. Otherwise you'll be in BIG trouble~ ";
+		mes "Y, sobre todo, mira bien a tu alrededor antes de usarla. De lo contrario... ¡podrías meterte en un buen lío!";
 		close;
 	}
 	mes "[Cebalis]";
-	mes "I'm right, aren't I?! ^EE0000Magnum Break^000000 is THE BEST!!! You know what you're talking about, eh? I don't know why this LARDFACE is sooooo stubborn.";
-	close;
+    mes "¡¿Ves?! ¡^EE0000Magnum Break^000000 es LA MEJOR! ¡Se nota que sí sabes de lo que hablas! No entiendo cómo este testarudo sigue empeñado en defender Bash.";
+    close;
 }
 
 -	script	::Soldier_izlude	-1,{
 	mes "[Soldier]";
-	mes "HeHeHeHe..HaHaHaHa ";
-	mes "Huh? Why am I so happy?";
-	mes "You wanna know?";
+	mes "Jejeje... ¡Ja, ja, ja!";
+	mes "¿Eh? ¿Por qué estoy tan feliz?";
+	mes "¿Quieres saberlo?";
 	next;
-	if (select("Sure, why?:Not really, I don't care.") == 1) {
+	if (select("Claro, ¿por qué?:La verdad, no me interesa.") == 1) {
 		mes "[Soldier]";
-		mes "Ah~~ There's not much for us to do these days. You see, Merchants buy items dropped by monsters. But you knew that, right? ";
+		mes "Ah... Últimamente ya no tenemos tanto trabajo. Verás, los Comerciantes compran los objetos que dejan caer los monstruos. Pero eso ya lo sabías, ¿verdad?";
 		next;
-		if (select("Of course:Eh? Really?") == 1) {
+		if (select("Claro que sí.:¿Eh? ¿En serio?") == 1) {
 			mes "[Soldier]";
-			mes "HaHa~ In fact, that was actually part of our job. But there were more and more hunters who came to us in order to get paid and it became too much to handle.";
+			mes "¡Ja, ja! Pues, de hecho, esa era parte de nuestro trabajo. Pero cada vez venían más cazadores a cobrar sus recompensas y llegó un punto en que era imposible atender a todos.";
 			next;
 			mes "[Soldier]";
-			mes "We had to work overtime every day. Ah, it was a nightmare...! Anyway, the government eventually made a wise decision in creating the Registration System.";
+			mes "Teníamos que hacer horas extra todos los días. ¡Fue una auténtica pesadilla! Por suerte, el gobierno tomó una buena decisión al crear el Sistema de Registro.";
 			next;
 			mes "[Soldier]";
-			mes "The Office of Prize Compensation only pays those who have the Registration. Of course, you'd have to be a merchant and stay in the same place all day long.";
+			mes "La Oficina de Compensación de Recompensas solo paga a los Comerciantes que cuentan con ese registro. Claro, deben dedicarse exclusivamente al comercio y permanecer siempre en su establecimiento.";
 			next;
 			mes "[Soldier]";
-			mes "The Office gives away the registration to any merchant who fulfills those requirements. So nowadays, the hunters sell their goods to the registered merchants.";
+			mes "La Oficina entrega el registro a cualquier Comerciante que cumpla con esos requisitos. Desde entonces, los cazadores venden sus objetos directamente a los Comerciantes registrados.";
 			next;
 			mes "[Soldier]";
-			mes "So nowadays, the hunters sell their goods to the registered merchants.  Not too many people come to us for that anymore.";
+			mes "Hoy en día ya casi nadie viene con nosotros para eso.";
 			next;
 			mes "[Soldier]";
-			mes "I mean we are still busy, but that's nothing compared to how it was before. People who have felt suffering know how to appreciate even the slightest comfort.";
+			mes "Seguimos teniendo trabajo, claro, pero no se compara con aquellos tiempos. Quien ha pasado por momentos difíciles aprende a valorar hasta la más pequeña tranquilidad.";
+			close;
+		}
+			mes "[Soldier]";
+			mes "¿¡Cómo que no lo sabías!? Bueno, ya sabes que puedes obtener objetos derrotando monstruos. Si luego se los vendes a un Comerciante, podrás ganar algo de dinero.";
+			next;
+			mes "[Soldier]";
+			mes "¡Ja, ja! Pues esa también era parte de nuestro trabajo. Pero cada vez llegaban más cazadores para cobrar sus recompensas y terminó siendo demasiado para nosotros.";
+			next;
+			mes "[Soldier]";
+			mes "Teníamos que hacer horas extra todos los días. ¡Fue una auténtica pesadilla! Por suerte, el gobierno tomó una buena decisión al crear el Sistema de Registro.";
+			next;
+			mes "[Soldier]";
+			mes "La Oficina de Compensación de Recompensas solo paga a quienes cuentan con el registro. Claro, para obtenerlo debes ser Comerciante y atender tu negocio de forma permanente.";
+			next;
+			mes "[Soldier]";
+			mes "La Oficina entrega el registro a cualquier Comerciante que cumpla con esos requisitos. Desde entonces, los cazadores venden sus objetos directamente a los Comerciantes registrados.";
+			next;
+			mes "[Soldier]";
+			mes "Hoy en día ya casi nadie viene con nosotros para eso.";
+			next;
+			mes "[Soldier]";
+			mes "Seguimos teniendo trabajo, claro, pero no se compara con aquellos tiempos. Quien ha pasado por momentos difíciles aprende a valorar hasta la más pequeña tranquilidad.";
 			close;
 		}
 		mes "[Soldier]";
-		mes "What?! What do you mean you didn't know?! Well, you know you can get items by killing monsters. If you bring and sell those to a merchant, you can make some money. ";
-		next;
-		mes "[Soldier]";
-		mes "HaHa, in fact, that used to be part of our job. But there were more and more hunters who come in order to get paid, so it became too much to handle.";
-		next;
-		mes "[Soldier]";
-		mes "We had to work overtime every day. Ah, it was a nightmare...! Anyway, the government eventually made a wise decision in creating the Registration System.";
-		next;
-		mes "[Soldier]";
-		mes "The Office of Prize Compensation only pays those who have the Registration. Of course, you'd have to be a merchant and stay in the same place all day long.";
-		next;
-		mes "[Soldier]";
-		mes "The Office gives away the registration to any merchant who fulfills those requirements. So nowadays, the hunters sell their goods to the registered merchants.";
-		next;
-		mes "[Soldier]";
-		mes "So nowadays, the hunters sell their goods to the registered merchants.  Not too many people come to us for that anymore.";
-		next;
-		mes "[Soldier]";
-		mes "I mean we are still busy, but that's nothing compared to how it was before. People who have felt suffering know how to appreciate even the slightest comfort.";
+		mes "Muy bien.";
+		mes "¡Hasta luego!";
 		close;
 	}
-	mes "[Soldier]";
-	mes "Okay Good Bye~~";
-	close;
-}
 
-// Inside Izlude
-//============================================================
-izlude_in,125,164,2	script	Aaron#izlude	65,{
-	mes "[Aaron]";
-	mes "Don't you think Strong VIT and training in a unique breathing method which enables quick HP recovery are the greatest advantages for a Swordman?";
-	next;
-	mes "[Aaron]";
-	mes "If you train your skills very hard, you can even see your HP recovering. The amount";
-	mes "recovered depends";
-	mes "vitality, or VIT.";
-	next;
-	mes "[Aaron]";
-	mes "So if you invest more of your stats in VIT, you'll recover more HP overall when resting.";
-	next;
-	mes "[Aaron]";
-	mes "But of course, it'd be good to have high Attack, wouldn't it? You can either acquire a good weapon or bring up your STR to support you Attack.";
-	next;
-	mes "[Aaron]";
-	mes "You know you'll need some strength anyway to swing good weapons easily, anyway.";
-	next;
-	mes "[Aaron]";
-	mes "Another important thing is how accurate you can hit your opponents. DEX is the key here. If you train DEX, then the gap between the MIN and MAX damage will also decrease.";
-	next;
-	mes "[Aaron]";
-	mes "Hm...";
-	mes "Are you bored by all this talk? Or do you want me to go on?";
-	next;
-	if (select("Tell me more please.:End conversation.") == 1) {
+	// Inside Izlude
+	//============================================================
+	izlude_in,125,164,2	script	Aaron#izlude	65,{
 		mes "[Aaron]";
-		mes "Hmm...";
-		mes "In that case, I'll explain about the other attributes to you briefly. In order to attack and evade quickly, you've gotta pay attention to AGI. ";
+		mes "¿No crees que una gran VIT y dominar una técnica especial de respiración que acelera la recuperación de HP son las mayores ventajas de un Espadachín?";
 		next;
 		mes "[Aaron]";
-		mes "In case you want to make more critical hits, it's a good idea to invest in LUK. INT also increases Max SP, which is needed to use various skills... But it's really up to you.";
+		mes "Si entrenas con dedicación, notarás que tu HP se recupera cada vez más rápido. La cantidad de HP recuperada depende de tu Vitalidad, es decir, de la VIT.";
+		next;
+		mes "[Aaron]";
+		mes "Por eso, mientras más puntos inviertas en VIT, más HP recuperarás cuando descanses.";
+		next;
+		mes "[Aaron]";
+		mes "Pero claro, también es importante tener un buen Ataque, ¿no crees? Puedes conseguir un arma de calidad o aumentar tu STR para potenciar tu poder ofensivo.";
+		next;
+		mes "[Aaron]";
+		mes "Además, necesitarás suficiente Fuerza para poder manejar las armas más pesadas con facilidad.";
+		next;
+		mes "[Aaron]";
+		mes "Otro aspecto importante es la precisión con la que golpeas a tus enemigos. Ahí es donde entra en juego la DEX. Al aumentarla, también se reduce la diferencia entre el daño mínimo y el máximo que puedes causar.";
+		next;
+		mes "[Aaron]";
+		mes "Mmm...";
+		mes "¿Te estoy aburriendo con tanta explicación?";
+		mes "¿O quieres que continúe?";
+		next;
+	if (select("Sí, cuéntame más.:Terminar la conversación.") == 1) {
+		mes "[Aaron]";
+		mes "Mmm...";
+		mes "En ese caso, te explicaré brevemente los demás atributos. Si quieres atacar y esquivar con mayor rapidez, debes prestar atención a la AGI.";
+		next;
+		mes "[Aaron]";
+		mes "Si prefieres realizar más golpes críticos, conviene invertir puntos en LUK. La INT también aumenta tu SP máximo, indispensable para utilizar muchas habilidades... Pero, al final, todo depende del estilo de juego que prefieras.";
 		close;
 	}
-	mes "[Aaron]";
-	mes "Okay then,";
-	mes "train hard~~";
-	close;
-}
+		mes "[Aaron]";
+		mes "Muy bien entonces.";
+		mes "¡Sigue entrenando!";
+		close;
 
 // Izlude Dungeon
 //============================================================
 izlu2dun,108,27,0	script	Sailor#2izlude	100,{
 	mes "[Sailor]";
-	mes "Wanna";
-	mes "head back?";
+	mes "¿Quieres";
+	mes "regresar?";
 	next;
-	if (select("Yeah, I'm tired to death.:Nope, I love this place!") == 1) {
+	if (select("Sí, ya estoy agotado.:No, ¡me encanta este lugar!") == 1) {
 		if(checkre(0))
 			warp "izlude",197,210;
 		else
