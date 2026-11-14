@@ -9,6 +9,12 @@
  * For detailed guidance on these check http://rathena.org/wiki/SRC/config/
  **/
 
+// OzRagnarok: PACKETVER oficial. El cliente desplegado es Ragexe 2019-06-05.
+// Si se pasa --enable-packetver al configure, esa definicion tiene prioridad.
+#ifndef PACKETVER
+	#define PACKETVER 20190605
+#endif
+
 // OzRagnarok: desactiva los iconos de questinfo (0x446) sobre los NPCs.
 // Comentar esta linea para volver a mostrarlos.
 #define DISABLE_QUESTINFO_MARKERS
