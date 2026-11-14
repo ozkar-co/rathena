@@ -40,6 +40,8 @@ La sección **Comentarios** al final de cada archivo es un borrador libre: se ap
 | [06-arcos-oficiales.md](./06-arcos-oficiales.md) | Lore oficial curado por temporadas; guías y ajustes |
 | [07-web-api.md](./07-web-api.md) | Integración web, rankings, perfil de cuenta |
 | [08-ideas-backlog.md](./08-ideas-backlog.md) | Lluvia de ideas antigua reformulada y priorizada |
+| [09-estado-tecnico-y-estabilidad.md](./09-estado-tecnico-y-estabilidad.md) | Revisión técnica: rev, cliente, PACKETVER, skills y mapas faltantes antes de congelar |
+| [10-cliente-organizacion-y-pruebas.md](./10-cliente-organizacion-y-pruebas.md) | Cómo ordenar el cliente, separar base/custom y probar 20210703 sin romper lo que funciona |
 
 ## Repos relacionados
 
@@ -55,3 +57,5 @@ La sección **Comentarios** al final de cada archivo es un borrador libre: se ap
 - **2026-07:** Arcos oficiales se curan poco a poco; buscar guías en internet y crear pistas/ayudas según se vayan jugando.
 - **2026-07:** Sin cambios al client por ahora. Todo server-side + web.
 - **2026-07:** Crimson Weapons — en Hercules estaban rotas; en rAthena ya se pueden conseguir. Dirección: reactivar el flujo pero que la quest **imbuya elemento** (Marcus) en vez de crear las armas.
+- **2026-11:** Congelar la base en rAthena de enero 2026 + cliente actual. Antes de balancear/traducir/crear contenido: alinear `PACKETVER` y recortar lo que el cliente no soporte. Ver [09-estado-tecnico-y-estabilidad.md](./09-estado-tecnico-y-estabilidad.md).
+- **2026-11:** No reconstruir el cliente desde cero por ahora. No tocar el cliente ni comprar el 20210406 hasta que algo se rompa; seguir con el actual. El custom vive en `ozro-cli/patch/`. Ver [10-cliente-organizacion-y-pruebas.md](./10-cliente-organizacion-y-pruebas.md).
