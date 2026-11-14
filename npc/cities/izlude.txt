@@ -492,6 +492,7 @@
 		mes "Muy bien entonces.";
 		mes "¡Sigue entrenando!";
 		close;
+}
 
 // Izlude Dungeon
 //============================================================
