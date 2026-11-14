@@ -9,6 +9,8 @@
  * For detailed guidance on these check http://rathena.org/wiki/SRC/config/
  **/
 
-
+// OzRagnarok: desactiva los iconos de questinfo (0x446) sobre los NPCs.
+// Comentar esta linea para volver a mostrarlos.
+#define DISABLE_QUESTINFO_MARKERS
 
 #endif /* CONFIG_CUSTOM_DEFINES_PRE_HPP */

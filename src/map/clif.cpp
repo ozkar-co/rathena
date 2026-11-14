@@ -18175,6 +18175,9 @@ void clif_quest_update_status( const map_session_data* sd, int32 quest_id, bool 
 ///     3 = purple
 void clif_quest_show_event( const map_session_data* sd, const block_list* bl, e_questinfo_types effect, e_questinfo_markcolor color)
 {
+#ifdef DISABLE_QUESTINFO_MARKERS
+	return; // OzRagnarok: no enviar iconos de questinfo
+#endif
 #if PACKETVER >= 20090218
 	nullpo_retv(sd);
 	nullpo_retv(bl);
