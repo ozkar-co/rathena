@@ -10861,6 +10861,13 @@ bool pc_jobchange(map_session_data *sd,int32 job, char upper)
 	if (job == -1)
 		return false;
 
+#ifdef DISABLE_4TH_JOBS
+	// OzRagnarok: 4th jobs no soportados por el cliente 2019.
+	// Centralizado aca para cubrir @jobchange, scripts y job masters futuros.
+	if (b_class & JOBL_FOURTH)
+		return false;
+#endif
+
 	if (b_class == sd->class_)
 		return false; //Nothing to change.
 
