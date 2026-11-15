@@ -1,0 +1,26 @@
+//===== Atlantis Script ======================================
+//= iRO Bounty Boards : Niflheim
+//===== By: ==================================================
+//= Ragno / AtlantisRO
+//===== Actual Version: ======================================
+//= 1.0.2 Removed += operations with strings.
+//= 1.0.1 Changed npc and monsters constants to numerical ids
+//= 1.0 Starting Release
+//===== General Description: =================================
+//= Hunting Quest designed by iRO:
+//=    http://irowiki.org/wiki/Bounty_Board_Quests
+//===== How to Use: ==========================================
+//= Uses function "F_Bounty_Board" to manage the Bounty Boards
+//= npc on cities.
+//= The function arguments are this:
+//= 	callfunc "F_Bounty_Board", MinLevel, MaxLevel, MsgHuntPlace, MsgOutLevel,
+//=			MonsterID, 		QuestID, 	BaseExp, 	JobExp{, 
+//=			MonsterID, 		QuestID, 	BaseExp, 	JobExp};
+//============================================================
+
+niflheim,213,202,3	script	Bounty Board 100-120#nif1	837,{
+	callfunc "F_Bounty_Board", 100, 120, 1, 1,
+		1506,	70319,	401700,		251100,	// DISGUISE
+		1505,	70320,	502200,		313950;	// LOLI_RURI
+	end;
+}

@@ -1,0 +1,30 @@
+//===== Atlantis Script ======================================
+//= iRO Bounty Boards : Lasagna
+//===== By: ==================================================
+//= Ragno / AtlantisRO
+//===== Actual Version: ======================================
+//= 1.0.2 Removed += operations with strings.
+//= 1.0.1 Changed npc and monsters constants to numerical ids
+//= 1.0 Starting Release
+//===== General Description: =================================
+//= Hunting Quest designed by iRO:
+//=    http://irowiki.org/wiki/Bounty_Board_Quests
+//===== How to Use: ==========================================
+//= Uses function "F_Bounty_Board" to manage the Bounty Boards
+//= npc on cities.
+//= The function arguments are this:
+//= 	callfunc "F_Bounty_Board", MinLevel, MaxLevel, MsgHuntPlace, MsgOutLevel,
+//=			MonsterID, 		QuestID, 	BaseExp, 	JobExp{, 
+//=			MonsterID, 		QuestID, 	BaseExp, 	JobExp};
+//============================================================
+
+lasagna,163,137,3	script	Bounty Board 1-20#las1	837,{
+	callfunc "F_Bounty_Board", 1, 20, 1, 1,
+		3495,	70357,	2000,		1500,	// DR_EGGRING
+		3496,	70358,	2000,		1500,	// DR_LUNATIC
+		3497,	70359,	2000,		1500,	// DR_FABRE
+		3498,	70360,	2000,		1500,	// DR_HORNET
+		3499,	70361,	2000,		1500,	// DR_RODA_FROG
+		3500,	70362,	2000,		1500;	// DR_DESERT_WOLF_B
+	end;
+}

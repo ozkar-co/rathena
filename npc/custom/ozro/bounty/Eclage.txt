@@ -1,0 +1,30 @@
+//===== Atlantis Script ======================================
+//= iRO Bounty Boards : Eclage
+//===== By: ==================================================
+//= Ragno / AtlantisRO
+//===== Actual Version: ======================================
+//= 1.0.2 Removed += operations with strings.
+//= 1.0.1 Changed npc and monsters constants to numerical ids
+//= 1.0 Starting Release
+//===== General Description: =================================
+//= Hunting Quest designed by iRO:
+//=    http://irowiki.org/wiki/Bounty_Board_Quests
+//===== How to Use: ==========================================
+//= Uses function "F_Bounty_Board" to manage the Bounty Boards
+//= npc on cities.
+//= The function arguments are this:
+//= 	callfunc "F_Bounty_Board", MinLevel, MaxLevel, MsgHuntPlace, MsgOutLevel,
+//=			MonsterID, 		QuestID, 	BaseExp, 	JobExp{, 
+//=			MonsterID, 		QuestID, 	BaseExp, 	JobExp};
+//============================================================
+
+eclage,67,86,3	script	Bounty Board 145-165#ecl1	837,{
+	callfunc "F_Bounty_Board", 145, 165, 1, 1,
+		2366,	70351,	1083750,		1056600,	// ANTIQUE_BOOK
+		2365,	70352,	1067550,		1028100,	// CENERE
+		2368,	70353,	1060650,		1045800,	// LICHTERN_Y
+		2367,	70354,	1078050,		1026150,	// LICHTERN_B
+		2369,	70355,	1080150,		1082250,	// LICHTERN_R
+		2370,	70356,	1082100,		1027800;	// LICHTERN_G
+	end;
+}

@@ -1,0 +1,27 @@
+//===== Atlantis Script ======================================
+//= iRO Bounty Boards : Alberta
+//===== By: ==================================================
+//= Ragno / AtlantisRO
+//===== Actual Version: ======================================
+//= 1.0.2 Removed += operations with strings.
+//= 1.0.1 Changed npc and monsters constants to numerical ids
+//= 1.0 Starting Release
+//===== General Description: =================================
+//= Hunting Quest designed by iRO:
+//=    http://irowiki.org/wiki/Bounty_Board_Quests
+//===== How to Use: ==========================================
+//= Uses function "F_Bounty_Board" to manage the Bounty Boards
+//= npc on cities.
+//= The function arguments are this:
+//= 	callfunc "F_Bounty_Board", MinLevel, MaxLevel, MsgHuntPlace, MsgOutLevel,
+//=			MonsterID, 		QuestID, 	BaseExp, 	JobExp{, 
+//=			MonsterID, 		QuestID, 	BaseExp, 	JobExp};
+//============================================================
+
+alberta,99,144,3	script	Bounty Board 80-100#alb1	837,{
+	callfunc "F_Bounty_Board", 80, 100, 1, 1,
+		1314,	70305,	195150,		220050,	// PERMETER
+		1316,	70306,	267600,		250650,	// SOLIDER
+		1319,	70307,	279900,		262350;	// FREEZER
+	end;
+}

@@ -1,0 +1,30 @@
+//===== Atlantis Script ======================================
+//= iRO Bounty Boards : Morocc
+//===== By: ==================================================
+//= Ragno / AtlantisRO
+//===== Actual Version: ======================================
+//= 1.0.2 Removed += operations with strings.
+//= 1.0.1 Changed npc and monsters constants to numerical ids
+//= 1.0 Starting Release
+//===== General Description: =================================
+//= Hunting Quest designed by iRO:
+//=    http://irowiki.org/wiki/Bounty_Board_Quests
+//===== How to Use: ==========================================
+//= Uses function "F_Bounty_Board" to manage the Bounty Boards
+//= npc on cities.
+//= The function arguments are this:
+//= 	callfunc "F_Bounty_Board", MinLevel, MaxLevel, MsgHuntPlace, MsgOutLevel,
+//=			MonsterID, 		QuestID, 	BaseExp, 	JobExp{, 
+//=			MonsterID, 		QuestID, 	BaseExp, 	JobExp};
+//============================================================
+
+morocc,51,114,3	script	Bounty Board 60-80#mor1	837,{
+	callfunc "F_Bounty_Board", 60, 80, 1, 1,
+		1040,	70308,	84900,		91200,	// GOLEM
+		1127,	70309,	99600,		106500,	// HODE
+		1140,	70310,	127500,		130800,	// MARDUK
+		1154,	70311,	160200,		179100,	// PASANA
+		1165,	70312,	98400,		105750,	// SAND_MAN
+		1178,	70313,	113400,		144000;	// ZEROM
+	end;
+}

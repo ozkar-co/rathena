@@ -1,0 +1,30 @@
+//===== Atlantis Script ======================================
+//= iRO Bounty Boards : Veins
+//===== By: ==================================================
+//= Ragno / AtlantisRO
+//===== Actual Version: ======================================
+//= 1.0.2 Removed += operations with strings.
+//= 1.0.1 Changed npc and monsters constants to numerical ids
+//= 1.0 Starting Release
+//===== General Description: =================================
+//= Hunting Quest designed by iRO:
+//=    http://irowiki.org/wiki/Bounty_Board_Quests
+//===== How to Use: ==========================================
+//= Uses function "F_Bounty_Board" to manage the Bounty Boards
+//= npc on cities.
+//= The function arguments are this:
+//= 	callfunc "F_Bounty_Board", MinLevel, MaxLevel, MsgHuntPlace, MsgOutLevel,
+//=			MonsterID, 		QuestID, 	BaseExp, 	JobExp{, 
+//=			MonsterID, 		QuestID, 	BaseExp, 	JobExp};
+//============================================================
+
+veins,226,154,3	script	Bounty Board 120-140#vei1	837,{
+	callfunc "F_Bounty_Board", 120, 140, 1, 1,
+		1833,	70335,	1091700,		1156350,	// KASA
+		1838,	70336,	719400,		565200,	// KNOCKER
+		1870,	70337,	897000,		897000,	// NECROMANCER
+		1865,	70338,	572100,		463050,	// RAGGED_ZOMBIE
+		1831,	70339,	1154100,		1070850,	// SALAMANDER
+		1864,	70340,	620700,		405300;	// ZOMBIE_SLAUGHTER
+	end;
+}

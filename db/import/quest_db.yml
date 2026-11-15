@@ -990,3 +990,318 @@ Body:
     Targets:
       - Mob: NEO_PUNK #2919
         Count: 150
+  - Id: 70300
+    Title: "Bounty Board Marina"
+    Targets:
+      - Mob: MARINA #1141
+        Count: 150
+  - Id: 70301
+    Title: "Bounty Board Merman"
+    Targets:
+      - Mob: MERMAN #1264
+        Count: 150
+  - Id: 70302
+    Title: "Bounty Board Plankton"
+    Targets:
+      - Mob: PLANKTON #1161
+        Count: 150
+  - Id: 70303
+    Title: "Bounty Board Strouf"
+    Targets:
+      - Mob: STROUF #1065
+        Count: 150
+  - Id: 70304
+    Title: "Bounty Board Vadon"
+    Targets:
+      - Mob: VADON #1066
+        Count: 150
+  - Id: 70305
+    Title: "Bounty Board Permeter"
+    Targets:
+      - Mob: PERMETER #1314
+        Count: 150
+  - Id: 70306
+    Title: "Bounty Board Solider"
+    Targets:
+      - Mob: SOLIDER #1316
+        Count: 150
+  - Id: 70307
+    Title: "Bounty Board Freezer"
+    Targets:
+      - Mob: FREEZER #1319
+        Count: 150
+  - Id: 70308
+    Title: "Bounty Board Golem"
+    Targets:
+      - Mob: GOLEM #1040
+        Count: 150
+  - Id: 70309
+    Title: "Bounty Board Hode"
+    Targets:
+      - Mob: HODE #1127
+        Count: 150
+  - Id: 70310
+    Title: "Bounty Board Marduk"
+    Targets:
+      - Mob: MARDUK #1140
+        Count: 150
+  - Id: 70311
+    Title: "Bounty Board Pasana"
+    Targets:
+      - Mob: PASANA #1154
+        Count: 150
+  - Id: 70312
+    Title: "Bounty Board Sandman"
+    Targets:
+      - Mob: SAND_MAN #1165
+        Count: 150
+  - Id: 70313
+    Title: "Bounty Board Zerom"
+    Targets:
+      - Mob: ZEROM #1178
+        Count: 150
+  - Id: 70314
+    Title: "Bounty Board Cookie"
+    Targets:
+      - Mob: COOKIE #1265
+        Count: 150
+  - Id: 70315
+    Title: "Bounty Board Christmas Cookie"
+    Targets:
+      - Mob: COOKIE_XMAS #1246
+        Count: 150
+  - Id: 70316
+    Title: "Bounty Board Cruiser"
+    Targets:
+      - Mob: CRUISER #1248
+        Count: 150
+  - Id: 70317
+    Title: "Bounty Board Marin"
+    Targets:
+      - Mob: SASQUATCH #1243
+        Count: 150
+  - Id: 70318
+    Title: "Bounty Board Myst Case"
+    Targets:
+      - Mob: MYSTCASE #1249
+        Count: 150
+  - Id: 70319
+    Title: "Bounty Board Disguise"
+    Targets:
+      - Mob: DISGUISE #1506
+        Count: 150
+  - Id: 70320
+    Title: "Bounty Board Loli Ruri"
+    Targets:
+      - Mob: LOLI_RURI #1505
+        Count: 150
+  - Id: 70321
+    Title: "Bounty Board Red Eruma"
+    Targets:
+      - Mob: RED_ERUMA #2197
+        Count: 150
+  - Id: 70322
+    Title: "Bounty Board Siorava"
+    Targets:
+      - Mob: SIORAVA #2199
+        Count: 150
+  - Id: 70323
+    Title: "Bounty Board Holden"
+    Targets:
+      - Mob: MOLE #1628
+        Count: 150
+  - Id: 70324
+    Title: "Bounty Board Metaling"
+    Targets:
+      - Mob: METALING #1613
+        Count: 150
+  - Id: 70325
+    Title: "Bounty Board Noxious"
+    Targets:
+      - Mob: NOXIOUS #1620
+        Count: 150
+  - Id: 70326
+    Title: "Bounty Board Porcellio"
+    Targets:
+      - Mob: PORCELLIO #1619
+        Count: 150
+  - Id: 70327
+    Title: "Bounty Board Teddy Bear"
+    Targets:
+      - Mob: TEDDY_BEAR #1622
+        Count: 150
+  - Id: 70328
+    Title: "Bounty Board Venomous"
+    Targets:
+      - Mob: VENOMOUS #1621
+        Count: 150
+  - Id: 70329
+    Title: "Bounty Board Agav"
+    Targets:
+      - Mob: AGAV #1769
+        Count: 150
+  - Id: 70330
+    Title: "Bounty Board Echio"
+    Targets:
+      - Mob: G_ECHIO #1787
+        Count: 150
+  - Id: 70331
+    Title: "Bounty Board Hodremlin"
+    Targets:
+      - Mob: HODREMLIN #1773
+        Count: 150
+  - Id: 70332
+    Title: "Bounty Board Isilla"
+    Targets:
+      - Mob: ISILLA #1772
+        Count: 150
+  - Id: 70333
+    Title: "Bounty Board Seeker"
+    Targets:
+      - Mob: SEEKER #1774
+        Count: 150
+  - Id: 70334
+    Title: "Bounty Board Vanberk"
+    Targets:
+      - Mob: VANBERK #1771
+        Count: 150
+  - Id: 70335
+    Title: "Bounty Board Kasa"
+    Targets:
+      - Mob: KASA #1833
+        Count: 150
+  - Id: 70336
+    Title: "Bounty Board Knocker"
+    Targets:
+      - Mob: KNOCKER #1838
+        Count: 150
+  - Id: 70337
+    Title: "Bounty Board Necromancer"
+    Targets:
+      - Mob: NECROMANCER #1870
+        Count: 150
+  - Id: 70338
+    Title: "Bounty Board Ragged Zombie"
+    Targets:
+      - Mob: RAGGED_ZOMBIE #1865
+        Count: 150
+  - Id: 70339
+    Title: "Bounty Board Salamander"
+    Targets:
+      - Mob: SALAMANDER #1831
+        Count: 150
+  - Id: 70340
+    Title: "Bounty Board Zombie Slaughter"
+    Targets:
+      - Mob: ZOMBIE_SLAUGHTER #1864
+        Count: 150
+  - Id: 70341
+    Title: "Bounty Board Uni Horn Scaraba"
+    Targets:
+      - Mob: HORN_SCARABA #2083
+        Count: 150
+  - Id: 70342
+    Title: "Bounty Board Horn Scaraba"
+    Targets:
+      - Mob: HORN_SCARABA2 #2084
+        Count: 150
+  - Id: 70343
+    Title: "Bounty Board Antler Scaraba"
+    Targets:
+      - Mob: ANTLER_SCARABA #2085
+        Count: 150
+  - Id: 70344
+    Title: "Bounty Board Rake Scaraba"
+    Targets:
+      - Mob: RAKE_SCARABA #2086
+        Count: 150
+  - Id: 70345
+    Title: "Bounty Board Pinguicula"
+    Targets:
+      - Mob: PINGUICULA #1995
+        Count: 150
+  - Id: 70346
+    Title: "Bounty Board Dark Pinguicula"
+    Targets:
+      - Mob: PINGUICULA_D #2015
+        Count: 150
+  - Id: 70347
+    Title: "Bounty Board Nepenthes"
+    Targets:
+      - Mob: NEPENTHES #1988
+        Count: 150
+  - Id: 70348
+    Title: "Bounty Board Cornus"
+    Targets:
+      - Mob: CORNUS #1992
+        Count: 150
+  - Id: 70349
+    Title: "Bounty Board Naga"
+    Targets:
+      - Mob: NAGA #1993
+        Count: 150
+  - Id: 70350
+    Title: "Bounty Board Luciola Vespa"
+    Targets:
+      - Mob: LUCIOLA_VESPA #1994
+        Count: 150
+  - Id: 70351
+    Title: "Bounty Board Antique Book"
+    Targets:
+      - Mob: ANTIQUE_BOOK #2366
+        Count: 150
+  - Id: 70352
+    Title: "Bounty Board Cenere"
+    Targets:
+      - Mob: CENERE #2365
+        Count: 150
+  - Id: 70353
+    Title: "Bounty Board Lichtern Yellow"
+    Targets:
+      - Mob: LICHTERN_Y #2368
+        Count: 150
+  - Id: 70354
+    Title: "Bounty Board Lichtern Blue"
+    Targets:
+      - Mob: LICHTERN_B #2367
+        Count: 150
+  - Id: 70355
+    Title: "Bounty Board Lichtern Red"
+    Targets:
+      - Mob: LICHTERN_R #2369
+        Count: 150
+  - Id: 70356
+    Title: "Bounty Board Lichtern Green"
+    Targets:
+      - Mob: LICHTERN_G #2370
+        Count: 150
+  - Id: 70357
+    Title: "Bounty Board Eggring"
+    Targets:
+      - Mob: DR_EGGRING #3495
+        Count: 150
+  - Id: 70358
+    Title: "Bounty Board Leaf Lunatic"
+    Targets:
+      - Mob: DR_LUNATIC #3496
+        Count: 150
+  - Id: 70359
+    Title: "Bounty Board Grass Fabre"
+    Targets:
+      - Mob: DR_FABRE #3497
+        Count: 150
+  - Id: 70360
+    Title: "Bounty Board Wild Hornet"
+    Targets:
+      - Mob: DR_HORNET #3498
+        Count: 150
+  - Id: 70361
+    Title: "Bounty Board Sweet Roda Frog"
+    Targets:
+      - Mob: DR_RODA_FROG #3499
+        Count: 150
+  - Id: 70362
+    Title: "Bounty Board Hunter Desert Wolf"
+    Targets:
+      - Mob: DR_DESERT_WOLF_B #3500
+        Count: 150

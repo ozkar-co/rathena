@@ -1,0 +1,30 @@
+//===== Atlantis Script ======================================
+//= iRO Bounty Boards : Splendide
+//===== By: ==================================================
+//= Ragno / AtlantisRO
+//===== Actual Version: ======================================
+//= 1.0.2 Removed += operations with strings.
+//= 1.0.1 Changed npc and monsters constants to numerical ids
+//= 1.0 Starting Release
+//===== General Description: =================================
+//= Hunting Quest designed by iRO:
+//=    http://irowiki.org/wiki/Bounty_Board_Quests
+//===== How to Use: ==========================================
+//= Uses function "F_Bounty_Board" to manage the Bounty Boards
+//= npc on cities.
+//= The function arguments are this:
+//= 	callfunc "F_Bounty_Board", MinLevel, MaxLevel, MsgHuntPlace, MsgOutLevel,
+//=			MonsterID, 		QuestID, 	BaseExp, 	JobExp{, 
+//=			MonsterID, 		QuestID, 	BaseExp, 	JobExp};
+//============================================================
+
+splendide,204,240,3	script	Bounty Board 100-120#spl1	837,{
+	callfunc "F_Bounty_Board", 100, 120, 1, 1,
+		1995,	70345,	438000,		399300,	// PINGUICULA
+		2015,	70346,	409500,		362850,	// PINGUICULA_D
+		1988,	70347,	506700,		268950,	// NEPENTHES
+		1992,	70348,	1216800,		600600,	// CORNUS
+		1993,	70349,	573900,		331800,	// NAGA
+		1994,	70350,	441900,		270900;	// LUCIOLA_VESPA
+	end;
+}
