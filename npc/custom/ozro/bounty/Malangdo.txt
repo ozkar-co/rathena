@@ -18,9 +18,11 @@
 //=			MonsterID, 		QuestID, 	BaseExp, 	JobExp};
 //============================================================
 
+
 malangdo,113,172,3	script	Bounty Board 75-95#mal1	837,{
 	callfunc "F_Bounty_Board", 75, 95, 1, 1,
-		2197,	70321,	286200,		286200,	// RED_ERUMA
-		2199,	70322,	180000,		180000;	// SIORAVA
+		2197,	70342,	286200,		286200,	// RED_ERUMA
+		2199,	70343,	180000,		180000;	// SIORAVA
 	end;
 }
+

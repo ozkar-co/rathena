@@ -18,13 +18,23 @@
 //=			MonsterID, 		QuestID, 	BaseExp, 	JobExp};
 //============================================================
 
+
 lasagna,163,137,3	script	Bounty Board 1-20#las1	837,{
 	callfunc "F_Bounty_Board", 1, 20, 1, 1,
-		3495,	70357,	2000,		1500,	// DR_EGGRING
-		3496,	70358,	2000,		1500,	// DR_LUNATIC
-		3497,	70359,	2000,		1500,	// DR_FABRE
-		3498,	70360,	2000,		1500,	// DR_HORNET
-		3499,	70361,	2000,		1500,	// DR_RODA_FROG
-		3500,	70362,	2000,		1500;	// DR_DESERT_WOLF_B
+		3495,	70393,	10000,		7500,	// DR_EGGRING
+		3496,	70394,	10000,		7500,	// DR_LUNATIC
+		3497,	70395,	10000,		7500,	// DR_FABRE
+		3498,	70396,	10000,		7500,	// DR_HORNET
+		3499,	70397,	10000,		7500,	// DR_RODA_FROG
+		3500,	70398,	10000,		7500;	// DR_DESERT_WOLF_B
 	end;
 }
+
+lasagna,165,139,3	script	Bounty Board 140-160#las2	837,{
+	callfunc "F_Bounty_Board", 140, 160, 1, 1,
+		3503,	70399,	200000,		150000,	// DR_BASILISK2
+		3504,	70400,	200000,		150000,	// DR_BASILISK3
+		3506,	70401,	200000,		150000;	// DR_MANDRAGORA
+	end;
+}
+

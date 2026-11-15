@@ -18,13 +18,33 @@
 //=			MonsterID, 		QuestID, 	BaseExp, 	JobExp};
 //============================================================
 
-rachel,87,73,3	script	Bounty Board 120-140#rac1	837,{
-	callfunc "F_Bounty_Board", 120, 140, 1, 1,
-		1769,	70329,	766800,		442350,	// AGAV
-		1787,	70330,	719400,		415200,	// G_ECHIO
-		1773,	70331,	732600,		422850,	// HODREMLIN
-		1772,	70332,	673800,		388800,	// ISILLA
-		1774,	70333,	781800,		450900,	// SEEKER
-		1771,	70334,	631800,		364500;	// VANBERK
+
+rachel,87,73,3	script	Bounty Board 80-100#rac1	837,{
+	callfunc "F_Bounty_Board", 80, 100, 1, 1,
+		1030,	70350,	288300,		180300,	// ANACONDAQ
+		1782,	70351,	304200,		285300,	// ROWEEN
+		1776,	70352,	274050,		205350;	// SIROMA
 	end;
 }
+
+rachel,89,75,3	script	Bounty Board 100-120#rac2	837,{
+	callfunc "F_Bounty_Board", 100, 120, 1, 1,
+		1220,	70353,	931800,		631800,	// M_DESERT_WOLF
+		1781,	70354,	243000,		151950,	// DROSERA
+		1680,	70355,	342000,		213750,	// HILL_WIND_1
+		1777,	70356,	490200,		396600,	// ICE_TITAN
+		1775,	70357,	349800,		218700;	// SNOWIER
+	end;
+}
+
+rachel,91,77,3	script	Bounty Board 120-140#rac3	837,{
+	callfunc "F_Bounty_Board", 120, 140, 1, 1,
+		1769,	70358,	766800,		442350,	// AGAV
+		1787,	70359,	719400,		415200,	// G_ECHIO
+		1773,	70360,	732600,		422850,	// HODREMLIN
+		1772,	70361,	673800,		388800,	// ISILLA
+		1774,	70362,	781800,		450900,	// SEEKER
+		1771,	70363,	631800,		364500;	// VANBERK
+	end;
+}
+

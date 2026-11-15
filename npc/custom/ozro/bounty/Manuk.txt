@@ -18,11 +18,21 @@
 //=			MonsterID, 		QuestID, 	BaseExp, 	JobExp};
 //============================================================
 
-manuk,301,137,3	script	Bounty Board 140-160#man1	837,{
-	callfunc "F_Bounty_Board", 140, 160, 1, 1,
-		2083,	70341,	783000,		601650,	// HORN_SCARABA
-		2084,	70342,	867000,		682350,	// HORN_SCARABA2
-		2085,	70343,	949500,		788250,	// ANTLER_SCARABA
-		2086,	70344,	1048500,		899250;	// RAKE_SCARABA
+
+manuk,301,137,3	script	Bounty Board 120-140#man1	837,{
+	callfunc "F_Bounty_Board", 120, 140, 1, 1,
+		2024,	70374,	1277700,		539250,	// BRADIUM_GOLEM
+		1999,	70375,	571200,		300450,	// CENTIPEDE_LARVA
+		1986,	70376,	733500,		463800;	// TATACHO
 	end;
 }
+
+manuk,303,139,3	script	Bounty Board 140-160#man2	837,{
+	callfunc "F_Bounty_Board", 140, 160, 1, 1,
+		2083,	70377,	783000,		601650,	// HORN_SCARABA
+		2084,	70378,	867000,		682350,	// HORN_SCARABA2
+		2085,	70379,	949500,		788250,	// ANTLER_SCARABA
+		2086,	70380,	1048500,		899250;	// RAKE_SCARABA
+	end;
+}
+

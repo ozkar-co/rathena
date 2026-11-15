@@ -18,13 +18,24 @@
 //=			MonsterID, 		QuestID, 	BaseExp, 	JobExp};
 //============================================================
 
-veins,226,154,3	script	Bounty Board 120-140#vei1	837,{
-	callfunc "F_Bounty_Board", 120, 140, 1, 1,
-		1833,	70335,	1091700,		1156350,	// KASA
-		1838,	70336,	719400,		565200,	// KNOCKER
-		1870,	70337,	897000,		897000,	// NECROMANCER
-		1865,	70338,	572100,		463050,	// RAGGED_ZOMBIE
-		1831,	70339,	1154100,		1070850,	// SALAMANDER
-		1864,	70340,	620700,		405300;	// ZOMBIE_SLAUGHTER
+
+veins,226,154,3	script	Bounty Board 100-120#vei1	837,{
+	callfunc "F_Bounty_Board", 100, 120, 1, 1,
+		1781,	70364,	243000,		151950,	// DROSERA
+		1783,	70365,	318300,		199050,	// GALION
+		1836,	70366,	456300,		285450,	// MAGMARING
+		1780,	70367,	349800,		218700;	// MUSCIPULAR
 	end;
 }
+
+veins,228,156,3	script	Bounty Board 120-140#vei2	837,{
+	callfunc "F_Bounty_Board", 120, 140, 1, 1,
+		1833,	70368,	1091700,		1156350,	// KASA
+		1838,	70369,	719400,		565200,	// KNOCKER
+		1870,	70370,	897000,		897000,	// NECROMANCER
+		1865,	70371,	572100,		463050,	// RAGGED_ZOMBIE
+		1831,	70372,	1154100,		1070850,	// SALAMANDER
+		1864,	70373,	620700,		405300;	// ZOMBIE_SLAUGHTER
+	end;
+}
+

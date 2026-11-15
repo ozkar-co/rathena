@@ -18,9 +18,11 @@
 //=			MonsterID, 		QuestID, 	BaseExp, 	JobExp};
 //============================================================
 
+
 niflheim,213,202,3	script	Bounty Board 100-120#nif1	837,{
 	callfunc "F_Bounty_Board", 100, 120, 1, 1,
-		1506,	70319,	401700,		251100,	// DISGUISE
-		1505,	70320,	502200,		313950;	// LOLI_RURI
+		1506,	70340,	401700,		251100,	// DISGUISE
+		1505,	70341,	502200,		313950;	// LOLI_RURI
 	end;
 }
+
