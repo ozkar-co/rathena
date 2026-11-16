@@ -231,7 +231,7 @@ def load_skill_costs(aegis_map: dict[str, int]) -> dict[int, set[str]]:
     for path in SKILL_FILES:
         for row in body(path):
             skill_name = str(row.get("Name") or row.get("AegisName") or "")
-            for cost in row.get("ItemCost") or []:
+            for cost in (row.get("Requires") or {}).get("ItemCost") or []:
                 item_id = aegis_map.get(normalize_aegis(str(cost.get("Item") or "")))
                 if item_id is not None:
                     costs[item_id].add(skill_name)
