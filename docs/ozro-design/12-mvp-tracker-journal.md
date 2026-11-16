@@ -63,13 +63,14 @@ Usar `MvpExp` del mob como medida de dificultad:
 | Dificultad | MvpExp | Almas por kill | Costo de invocación |
 |------------|-------:|---------------:|--------------------:|
 | Normal | < 500.000 | 1 | 1 |
-| Grande | 500.000–1.500.000 | 2 | 2 |
-| Enorme | > 1.500.000 | 3 | 3 |
+| Grande | 500.000–1.500.000 | 5 | 5 |
+| Enorme | > 1.500.000 | 10 | 10 |
 
 - La mayoría de los MVPs queda en 1 Alma: **48 de los 63 MVPs naturales**.
-- Los MVPs grandes dan y cuestan más: 11 en 2 Almas y 4 en 3 Almas.
+- Los MVPs grandes dan y cuestan más: 11 en 5 Almas y 4 en 10 Almas.
+- Los guild dungeons cuentan como naturales para Almas y tiers.
 - Los 58 MVPs restantes de la DB son de instancia, invocación, evento u otros y no entran en este ciclo.
-- Se puede agregar un tier especial de 5 Almas para jefes de raid concretos si hace falta.
+- Se puede agregar un tier especial de más de 10 Almas para jefes de raid concretos si hace falta.
 - Las kills en mapas de invocación/branches **no** entregan Almas ni cuentan para el Tracker.
 
 ## Tiers propuestos
@@ -95,9 +96,9 @@ Los tiers son **acumulativos** y se reclaman una vez por personaje.
 - Mapa fijo del overworld por ahora; instancia/arena privada más adelante.
 - Lista de MVPs invocables con costo en Almas, espejando la dificultad:
   - Normal: 1 Alma.
-  - Grande: 2 Almas.
-  - Enorme: 3 Almas.
-  - Jefes especiales: 5 Almas si se agregan.
+  - Grande: 5 Almas.
+  - Enorme: 10 Almas.
+  - Jefes especiales: más de 10 Almas si se agregan.
 - El jugador elige un MVP fijo; no es RNG puro como Bloody Branch.
 - Los MVPs invocados en el mapa de invocación **no cuentan** para el Tracker ni para los tiers.
 - Decidir si dejan drops normales, drops de MVP reducidos o ningún drop de MVP para evitar loops.
