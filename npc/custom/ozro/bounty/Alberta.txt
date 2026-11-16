@@ -19,25 +19,25 @@
 //============================================================
 
 
-alberta,99,144,3	script	Bounty Board 1-20#alb1	837,{
+alberta,99,144,5	script	Bounty Board 1-20#alb1	837,{
 	callfunc "F_Bounty_Board", 1, 20, 1, 1,
 		1024,	70305,	17550,		13050;	// WORM_TAIL
 	end;
 }
 
-alberta,101,146,3	script	Bounty Board 20-40#alb2	837,{
+alberta,99,146,5	script	Bounty Board 20-40#alb2	837,{
 	callfunc "F_Bounty_Board", 20, 40, 1, 1,
 		1068,	70306,	34950,		39450;	// HYDRA
 	end;
 }
 
-alberta,103,148,3	script	Bounty Board 40-60#alb3	837,{
+alberta,99,148,5	script	Bounty Board 40-60#alb3	837,{
 	callfunc "F_Bounty_Board", 40, 60, 1, 1,
 		1071,	70307,	55350,		62100;	// PIRATE_SKEL
 	end;
 }
 
-alberta,105,150,3	script	Bounty Board 80-100#alb4	837,{
+alberta,99,150,5	script	Bounty Board 80-100#alb4	837,{
 	callfunc "F_Bounty_Board", 80, 100, 1, 1,
 		1314,	70308,	195150,		220050,	// PERMETER
 		1316,	70309,	267600,		250650,	// SOLIDER
