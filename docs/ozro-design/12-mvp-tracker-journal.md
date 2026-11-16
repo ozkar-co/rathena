@@ -83,11 +83,23 @@ Usar `MvpExp` del mob como medida de dificultad:
 
 ### Cálculo de Almas
 
-Para cada MVP natural:
+El cálculo es **por MVP, nunca sobre el total global**:
 
 ```
-puntos = (MVP_KILL_<id> + MVP_SUPP_<id>) × puntosPorDificultad
+total = 0
+para cada MVP natural:
+    total = total + ((MVP_KILL_<id> + MVP_SUPP_<id>) × puntosDeEseMVP)
 ```
+
+Ejemplo:
+
+| MVP | Dificultad | Kills | Asistencias | Puntos |
+|-----|-----------:|------:|------------:|-------:|
+| Golden Thief Bug | 1 | 10 | 0 | 10 × 1 = 10 |
+| Ifrit | 10 | 1 | 0 | 1 × 10 = 10 |
+| **Total** | | | | **20** |
+
+No son 11 eventos × 10 = 110, ni 200. Cada MVP se multiplica solo por su propia dificultad y después se suman los resultados.
 
 - El killer suma por `MVP_KILL`.
 - Cada miembro de party en el mismo mapa suma por `MVP_SUPP`.
