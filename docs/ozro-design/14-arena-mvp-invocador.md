@@ -1,159 +1,134 @@
 # Arena MVP: instancia e invocador
 
-**Estado:** `pendiente`  
-**Objetivo:** crear una instancia de party donde el jugador gaste Almas de MVP para invocar un MVP fijo.
+**Estado:** `probar` — T1 y T2 implementados en modo solo; party, T3 y drops pendientes.
 
-## Decisión principal
+## Mapa e instancia
 
-**Reutilizar un mapa existente como instancia.** No crear un mapa nuevo: eso requeriría editor, GRF, map cache y parche de cliente.
+- Mapa: **`quiz_00`**, la vieja arena de MVPs.
+- Entrada: `51,35`.
+- Spawn del MVP: `81,8`.
+- Regreso: `prontera,171,149`.
 
-Mapa propuesto: **`quiz_00`**, la vieja arena de MVPs.
-
-- Ya está cargado en `conf/maps_athena.conf`.
-- El archivo `npc/custom/etc/mvp_arena.txt` está comentado, así que no tiene NPCs activos.
-- La vieja arena usaba entrada en `quiz_00,50,24`.
-
-## Entrada en la DB de instancias
-
-Archivo: `db/import/instance_db.yml`
-
-Propuesta inicial:
+Configuración actual en `db/import/instance_db.yml`:
 
 ```yml
 Body:
   - Id: 10001
     Name: OzRo MVP Arena
-    TimeLimit: 1800
+    TimeLimit: 3600
     IdleTimeOut: 300
-    NoNpc: false
-    NoMapFlag: true
-    Destroyable: true
     Enter:
       Map: quiz_00
-      X: 50
-      Y: 24
+      X: 51
+      Y: 35
 ```
 
-- `NoNpc: false`: necesario para copiar nuestro NPC spawner.
-- `NoMapFlag: true`: evita copiar el `noskill` de `quiz_00`.
-- Los flags que queramos (`nobranch`, `nomemo`, `nosave`) se ponen en `OnInstanceInit`.
-- `Id: 10001` es una propuesta; confirmar que no choque con instancias oficiales.
+- **No usar `NoMapFlag: true`:** en esta versión de rAthena deja el vector de flags vacío y `setmapflag` puede crashear el map-server.
+- La instancia copia los flags de `quiz_00`; en `OnInstanceInit` se quita `mf_noskill` y se agregan `nobranch`, `nomemo`, `noteleport` y un `nosave` con destino a Prontera.
 
-## NPCs
+## NPC invocador
 
-### NPC invocador en la ciudad
-
-- Ubicación a definir; puede ser Prontera o Geffen.
-- Solo el **líder de party** puede crear la instancia.
+- Ubicación: `prontera,173,152`.
+- Modo actual: **`IM_CHAR`** (solo, sin party). La party queda para una etapa posterior.
 - Flujo:
-  1. Elegir MVP invocable.
-  2. Verificar y descontar Almas.
-  3. `instance_create("OzRo MVP Arena")`.
-  4. Si falla, devolver las Almas.
-  5. Guardar el MVP elegido con `setinstancevar`.
-  6. Disparar el spawn con `donpcevent`.
-  7. Entrar con `instance_enter`.
-- Si la party ya tiene una instancia activa, avisar y ofrecer entrar, no crear otra.
+  1. Si ya hay una instancia activa, ofrece reingresar.
+  2. Pregunta el costo: 3 Almas (T1) o 5 Almas (T2).
+  3. Muestra la lista de MVPs de ese costo.
+  4. Verifica Almas y keys, y muestra lo que falta.
+  5. Crea la instancia.
+  6. Descuenta Almas y keys.
+  7. Guarda el MVP en `'mvp_id` con `setinstancevar`.
+  8. Dispara `OnSummon` con `donpcevent`.
+  9. Entra con `instance_enter`.
+- Si algo falla después de crear, no hay devolución automática: el GM lo resuelve a mano.
 
-### NPC spawner dentro de la instancia
+## Spawner y salida
 
-- NPC sobre `quiz_00` copiado a la instancia.
-- `OnInstanceInit`:
-  - Setear `nobranch`, `nomemo`, `nosave` y cualquier otro flag.
-  - Preparar el estado de la arena.
-- `OnSummon`:
-  - Leer `getinstancevar('mvp_id, instance_id())`.
-  - Invocar el MVP con:
-    `monster instance_mapname("quiz_00"), x, y, ...`
-  - Registrar el evento de muerte si hace falta.
-- Agregar un NPC/portal de salida para volver a la ciudad.
+- NPC invisible sobre `quiz_00`, copiado a la instancia.
+- `OnInstanceInit`: flags del mapa.
+- `OnSummon`: lee `'mvp_id` y ejecuta `monster` en `81,8` con evento `OnMvpDead`.
+- `OnMvpDead`: warpea a todos a `prontera,171,149`, inicia un timer de 1 segundo y destruye la instancia.
+- Si la instancia expira por tiempo, el `nosave` la manda a Prontera.
 
-## Comandos clave
+## Costos de invocación
 
-- `instance_create("OzRo MVP Arena")`
-- `instance_enter("OzRo MVP Arena")`
-- `instance_id(IM_PARTY)`
-- `instance_mapname("quiz_00")`
-- `instance_npcname("#MVP_Spawner")`
-- `setinstancevar('mvp_id, <id>, <instance_id>)`
-- `getinstancevar('mvp_id, <instance_id>)`
-- `donpcevent instance_npcname("#MVP_Spawner", <instance_id>) + "::OnSummon"`
-- `setmapflag instance_mapname("quiz_00"), mf_nobranch`
-- `setmapflag instance_mapname("quiz_00"), mf_nomemo`
-- `setmapflag instance_mapname("quiz_00"), mf_nosave`
+| Tier | Costo | Estado |
+|------|------:|--------|
+| T1 | 3 Almas + keys | Implementado |
+| T2 | 5 Almas + keys | Implementado |
+| T3 | 10 Almas + keys | Pendiente |
+| T4 | — | Fuera de invocación |
+| T5 | — | Fuera de invocación |
 
-## Costos en Almas
+- Las Almas se consumen siempre; las keys también.
+- El costo en Almas es el freno principal; las keys son el segundo candado.
+- T4/T5 quedan fuera por estar fuera de escala.
 
-Propuesta inicial, espejando el tier fijo por ID:
+## Keys T1
 
-| Tier | Criterio | Costo |
-|------|----------|------:|
-| T1 | MVPs muy chicos / introductorios | 1 Alma |
-| T2 | Clásicos de 500k–1.5M HP + Atroce | 3 Almas |
-| T3 | Modernos, especiales y tanques | 5 Almas |
-| T4 | Grandes / tanques de alto nivel | 10 Almas |
-| T5 | Super bosses | 20 Almas |
+| MVP | Almas | Keys |
+|---|---:|---|
+| Golden Thief Bug | 3 | 1 Gold (969) |
+| Phreeoni | 3 | 10 Tongue (1015) + 5 Ant Jaw (1014) |
+| Moonlight Flower | 3 | 20 Nine Tails (1022) |
+| Dracula | 3 | 1 3carat Diamond (732) + 100 Wing of Red Bat (7006) |
+| Lady Tanee | 3 | 1 Banana Hat (5116) |
+| Orc Hero | 3 | 2 Orc Warlord Token (25508) |
+| Mistress | 3 | 30 Royal Jelly (526) |
+| Maya | 3 | 30 Round Shell (1096) |
+| Doppelganger | 3 | 1 Lance (1411) + 2 Broad Sword (1162) |
+| Orc Lord | 3 | 1 Heroic Emblem (968) |
 
-- La lista inicial queda limitada a T1 y T2; T3 está a evaluar.
-- **T4 y T5 quedan fuera de la invocación:** son bosses fuera de escala.
-- Definir si paga solo el líder o se reparte entre la party.
-- Recomendación: paga el líder, porque es quien crea la instancia.
-- La lista de MVPs invocables puede empezar chica y ampliarse después.
+## Keys T2
+
+| MVP | Almas | Keys |
+|---|---:|---|
+| Stormy Knight | 5 | 5 Aquamarine (720) |
+| Baphomet | 5 | 2 Evil Horn (923) |
+| White Lady | 5 | 2 White Snake's Tear (25622) + 2 Black Hair (1020) |
+| Drake | 5 | 1 Pirate Bandana (2287) + 10 Skel-Bone (932) |
+| Pharaoh | 5 | 2 Broken Pharaoh Emblem (7113) + 1 Masque of Tutankhamen (7114) |
+| Samurai Specter | 5 | 2 Knotted Letter (25629) + 5 Steel (999) |
+| Eddga | 5 | 5 Tiger Skin (1029) + 2 Tiger's Footskin (1030) |
+| RSX-0806 | 5 | 2 Flashlight (7327) + 2 Cogwheel (7093) |
+| Amon Ra | 5 | 3 Fragment of Rossata Stone (7211) |
+| Evil Snake Lord | 5 | 3 Ba Gua (7169) |
+| Gopinich | 5 | 1 Treasure Box (7444) + 1 Singing Flower (629) + 10 Blue Herb (510) |
+| Osiris | 5 | 10 Rotten Bandage (930) + 1 Memento (934) + 10 Scale Shell (936) |
+| Dark Lord | 5 | 10 Skull (7005) + 1 Coif (5093) |
+| Tao Gunka | 5 | 1 Gemstone (7300) + 3 Stone Fragment (7067) |
+| Leak | 5 | 1 Rare Rune (12738) + 5 Comodo Leather (6403) |
+| Hatii | 5 | 2 Fang of Hatii (7036) |
+| Boitata | 5 | 1 Treasure Box (7444) + 10 Sharp Scale (963) |
+| Turtle General | 5 | 5 Broken Shell (7070) |
+| Atroce | 5 | 5 Bloody Rune (7563) |
 
 ## Tracker
 
-- Agregar al `MVP Tracker`:
-  ```
-  if (instance_id(IM_PARTY) > 0) end;
-  ```
-- Así ninguna kill dentro de una instancia modifica `MVP_KILL`, `MVP_SUPP` ni genera Almas.
-- Esto también excluye MVPs de instancias oficiales; aceptable por ahora.
-- Si más adelante se quieren registrar, hacerlo con variables separadas.
+- `npc/custom/ozro/mvp_tracker.txt` ignora kills dentro de instancias para `IM_CHAR`, `IM_PARTY`, `IM_GUILD` e `IM_CLAN`.
+- Las kills de MVPs invocados no generan Almas ni asistencias.
+- Las instancias oficiales también quedan fuera del Tracker por ahora.
 
 ## Drops del MVP invocado
 
-Decisión pendiente:
+- En la prueba actual el MVP puede soltar su loot normal y su drop MVP.
+- Queda pendiente decidir si se mantiene, se reduce o se desactiva.
+- Si el MVP invocado suelta sus propias keys, el costo en Almas sigue frenando el loop.
 
-- Sin drops de MVP: más seguro contra loops.
-- Drops normales: más divertido, pero puede ser rentable.
-- Drops reducidos: opción intermedia.
+## Pendientes
 
-Recomendación: empezar sin drops de MVP y revisar después.
-
-## Archivos a tocar
-
-- `db/import/instance_db.yml`
-- `npc/custom/ozro/mvp_arena.txt` o `mvp_summoner.txt`
-- `npc/scripts_custom.conf`
-- `npc/custom/ozro/mvp_tracker.txt` (exclusión de instancias)
-- Documentación/changelog del sitio cuando esté implementado.
+- Pasar de `IM_CHAR` a party (`IM_PARTY`) y definir quién paga.
+- Implementar T3.
+- Definir drops de MVPs invocados.
+- Definir devoluciones, cooldown y límites de invocación.
+- Cargar en el vendedor viajero las keys de lujo: Pirate Bandana, Memento, etc. Ver [15-vendedor-viajero.md](./15-vendedor-viajero.md).
 
 ## Pruebas
 
-1. Líder crea la instancia; los miembros entran a la misma.
-2. Un no-líder no puede crear.
-3. Se descuentan las Almas correctas.
-4. Si falla la creación, se devuelven las Almas.
-5. El MVP aparece una sola vez.
-6. El MVP no se puede volver a invocar sin pagar otra vez.
-7. Salir/destroy de la instancia funciona.
-8. Matar el MVP dentro de la instancia no modifica el registro del Tracker.
-9. Reinicio del server: la instancia se pierde, pero las Almas y el registro quedan.
-10. Probar en producción con la party real; no hay test server.
-
-## Dificultad estimada
-
-- Baja: entrada en `instance_db.yml`.
-- Baja-media: crear/entrar con party.
-- Media: spawner, flags, variables de instancia.
-- Media: costos, refund, cooldown, salida.
-- Total: **1–2 sesiones de trabajo**, sin tocar el cliente ni crear mapas.
-
-## Pendientes antes de implementar
-
-- Confirmar `quiz_00` y coordenadas de entrada/spawn.
-- Definir lista inicial de MVPs invocables.
-- Definir si paga el líder o la party.
-- Definir drops del MVP invocado.
-- Definir tiempo de instancia y cooldown.
-- Confirmar que `Id: 10001` no choca con nada.
+1. Crear una instancia T1 y T2, pagar Almas + keys y verificar que se descuenten.
+2. Verificar que el MVP elegido aparezca una sola vez.
+3. Matar el MVP: warp a Prontera, timer de 1 segundo y destroy.
+4. Dejar que expire el timer de 1 hora: warp y destroy.
+5. Reingresar a una instancia activa sin pagar de nuevo.
+6. Confirmar que la kill no suma Almas ni Tracker.
+7. Reiniciar el server: las Almas y el Tracker quedan; la instancia se pierde.

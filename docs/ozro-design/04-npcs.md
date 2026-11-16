@@ -30,6 +30,7 @@
 | Ludovico el Sepulturero | `gravekeeper.txt` | Muertes del PJ + contador global |
 | Kessinger | `soul_link.txt` | Soul Link de pago |
 | Garrett el Recolector | `trasher.txt` | 5 ofertas diarias + 1 misión de 6h por cuenta |
+| Creador de Arena | `mvp_arena.txt` | Invocador fijo T1/T2 en instancia (3/5 Almas + keys) |
 | Bounty Boards | `bounty/*.txt` | Misiones de caza por ciudad (26 ciudades) |
 | Quests repetibles | `repeteables/*.txt` | EXP repetible por monstruo (18 quests) |
 
