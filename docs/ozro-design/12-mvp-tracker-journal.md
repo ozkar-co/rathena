@@ -1,6 +1,6 @@
 # MVP Tracker, Journal y Almas de MVP
 
-**Estado:** tracker y Journal implementados; Almas por kill e invocador pendientes
+**Estado:** tracker, Journal y puntos de Alma implementados; invocador pendiente
 **Prioridad:** alta  
 **Objetivo:** registrar kills y asistencias por MVP, mostrar progreso, entregar recompensas por tiers y abrir la economía del Alma de MVP.
 
@@ -20,6 +20,8 @@ Variables nuevas, solo para recompensas:
 | Variable | Alcance | Uso |
 |----------|---------|-----|
 | `MVP_TIER_1_CLAIMED` ... `MVP_TIER_5_CLAIMED` | Personaje | Evita reclamar el mismo tier dos veces |
+| `MVP_SOUL_POINTS` | Personaje | Puntos de Alma pendientes de reclamar |
+| `MVP_SOUL_CLAIMED` | Personaje | Total de Almas reclamadas |
 
 ## Componentes
 
@@ -43,15 +45,20 @@ Variables nuevas, solo para recompensas:
   - MVPs únicos cazados/asistidos.
   - MVP más cazado y MVP más asistido.
   - Lista paginada por MVP con kills y asistencias.
+  - Puntos de Alma pendientes y reclamo repetible.
   - Progreso de tiers y botón de reclamo.
 - Los tiers se calculan leyendo las variables viejas, así que el historial previo cuenta desde el primer día.
+- El reclamo de Almas es repetible: no hay cap; cada reclamo convierte todos los puntos pendientes en items.
 
 ### 3. Almas de MVP
 
 - Item actual: `MVP_Soul` (`35005`, “Alma de MVP”).
-- **Planificado:** cada MVP natural derrotado entregará Almas según su dificultad. Por ahora las Almas salen **solo de los tiers del Journal**.
-- Cuando se implemente la entrega por kill, las Almas irán al **killer**; la party recibe progreso de asistencia, pero no Almas extra. Esto evita multiplicar la economía por tamaño de party.
-- Si el inventario está lleno en un reclamo de tier, el Journal no entrega la recompensa hasta que haya espacio.
+- Cada MVP natural derrotado entrega **puntos de Alma** según su dificultad.
+- **Killer y party en el mismo mapa suman los puntos completos.** Con 3 jugadores, un MVP puede generar 3 veces los puntos; es intencional para que el soporte también reciba recompensa.
+- El multicuenta/doble login puede multiplicar puntos. Se acepta por ahora; si se rompe la economía, se ajusta.
+- Los puntos se reclaman en el Journal y se convierten 1:1 en items `Alma de MVP`.
+- El reclamo es repetible y sin cap.
+- Si el inventario está lleno, no se entrega el reclamo hasta que haya espacio.
 - Uso futuro:
   - Invocador de MVPs en un mapa fijo.
   - Ingrediente para fabricar Bloody Branches.
@@ -61,19 +68,19 @@ Variables nuevas, solo para recompensas:
 
 Usar `MvpExp` del mob como medida de dificultad:
 
-| Dificultad | MvpExp | Almas por kill | Costo de invocación |
+| Dificultad | MvpExp | Puntos por kill | Costo de invocación |
 |------------|-------:|---------------:|--------------------:|
 | Normal | < 500.000 | 1 | 1 |
 | Grande | 500.000–1.500.000 | 5 | 5 |
 | Enorme | > 1.500.000 | 10 | 10 |
 
-- La mayoría de los MVPs queda en 1 Alma: **39 de los 63 MVPs naturales**.
-- Los MVPs grandes dan y cuestan más: 12 en 5 Almas y 12 en 10 Almas.
+- La mayoría de los MVPs queda en 1 punto de Alma: **39 de los 63 MVPs naturales**.
+- Los MVPs grandes dan y cuestan más: 12 en 5 puntos y 12 en 10 puntos.
 - Los guild dungeons cuentan como naturales para Almas y tiers.
 - Para MVPs con `MvpExp` 0 se usa el nivel: <120 = 1, 120–179 = 5, >=180 = 10.
 - Los 58 MVPs restantes de la DB son de instancia, invocación, evento u otros y no entran en este ciclo.
 - Se puede agregar un tier especial de más de 10 Almas para jefes de raid concretos si hace falta.
-- Las kills en mapas de invocación/branches **no** entregan Almas ni cuentan para el Tracker.
+- Las kills en mapas de invocación/branches **no** entregan puntos ni cuentan para el Tracker.
 
 ## Tiers implementados
 
@@ -89,7 +96,7 @@ Los tiers son **acumulativos** y se reclaman una vez por personaje. Los valores 
 
 - “Golpes finales **o** asistencias”: el jugador avanza por cualquiera de las dos vías.
 - Los MVPs únicos se cuentan sumando kills y asistencias por ID distinto.
-- Por ahora los tiers son la única fuente de Almas; la entrega por kill queda pendiente.
+- Los tiers son un bonus único; el farmeo principal son los puntos de Alma por kill.
 - Las monedas OzRo quedan fuera de este ciclo.
 - Los valores son una primera propuesta; se ajustan después de ver el historial real.
 

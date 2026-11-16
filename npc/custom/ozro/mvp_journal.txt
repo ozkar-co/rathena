@@ -14,7 +14,7 @@ prontera,150,180,4	script	Cronista de Cacerias	4_M_SAGE_C,{
 	next;
 
 	callsub L_CalcStats;
-	switch (select("Resumen:Mis MVPs:Recompensas:Salir")) {
+	switch (select("Resumen:Mis MVPs:Almas:Recompensas:Salir")) {
 	case 1:
 		callsub L_Summary;
 		break;
@@ -22,9 +22,12 @@ prontera,150,180,4	script	Cronista de Cacerias	4_M_SAGE_C,{
 		callsub L_List;
 		break;
 	case 3:
-		callsub L_Rewards;
+		callsub L_Souls;
 		break;
 	case 4:
+		callsub L_Rewards;
+		break;
+	case 5:
 		mes .npc_name$;
 		mes "Que la caza te sea favorable.";
 		break;
@@ -37,6 +40,7 @@ L_Summary:
 	mes "Golpes finales: ^009900" + $@MVPJ_KILLS + "^000000";
 	mes "Asistencias: ^009900" + $@MVPJ_SUPPS + "^000000";
 	mes "MVPs únicos: ^009900" + $@MVPJ_UNIQUE + " / " + .mvp_count + "^000000";
+	mes "Puntos de Alma pendientes: ^009900" + MVP_SOUL_POINTS + "^000000";
 	if ($@MVPJ_TOP_KILL_ID > 0) {
 		mes "MVP más cazado: ^FF0000" + getmonsterinfo($@MVPJ_TOP_KILL_ID, MOB_NAME) + "^000000";
 		mes "(" + $@MVPJ_TOP_KILL_COUNT + " golpes finales)";
@@ -105,6 +109,37 @@ L_List:
 		}
 	}
 
+L_Souls:
+	mes .npc_name$;
+	mes "^777777Almas de MVP^000000";
+	mes "Puntos pendientes: ^009900" + MVP_SOUL_POINTS + "^000000";
+	mes "Almas reclamadas: ^009900" + MVP_SOUL_CLAIMED + "^000000";
+	mes "Cada punto se convierte en 1 Alma de MVP.";
+	next;
+	if (MVP_SOUL_POINTS <= 0) {
+		mes .npc_name$;
+		mes "No tienes puntos pendientes.";
+		mes "Sigue cazando MVPs naturales.";
+		next;
+		return;
+	}
+	if (select("Reclamar Almas:Volver") == 2) return;
+	.@amount = MVP_SOUL_POINTS;
+	if (!checkweight(35005, .@amount)) {
+		mes .npc_name$;
+		mes "No tienes espacio suficiente para " + .@amount + " Almas.";
+		mes "Haz lugar en el inventario y vuelve a intentarlo.";
+		next;
+		return;
+	}
+	getitem 35005, .@amount;
+	MVP_SOUL_POINTS = 0;
+	MVP_SOUL_CLAIMED = MVP_SOUL_CLAIMED + .@amount;
+	mes .npc_name$;
+	mes "Reclamaste " + .@amount + " Almas de MVP.";
+	next;
+	return;
+
 L_Rewards:
 	mes .npc_name$;
 	mes "^777777Recompensas por cacería^000000";
@@ -164,7 +199,10 @@ L_Rewards:
 	}
 
 	Zeny += .tier_zeny[.@t];
-	if (.tier_souls[.@t] > 0) getitem 35005, .tier_souls[.@t];
+	if (.tier_souls[.@t] > 0) {
+		getitem 35005, .tier_souls[.@t];
+		MVP_SOUL_CLAIMED = MVP_SOUL_CLAIMED + .tier_souls[.@t];
+	}
 	setd "MVP_TIER_" + .@tier + "_CLAIMED", 1;
 	mes .npc_name$;
 	mes "Recompensa entregada. Sigue escribiendo tu historia.";
