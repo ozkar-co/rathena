@@ -109,7 +109,7 @@ No son 11 eventos × 10 = 110, ni 200. Cada MVP se multiplica solo por su propia
 
 ## Invocador futuro
 
-- Mapa fijo del overworld por ahora; instancia/arena privada más adelante.
+- Instancia de party reutilizando `quiz_00`. Plan detallado en [14-arena-mvp-invocador.md](./14-arena-mvp-invocador.md).
 - Lista de MVPs invocables con costo en Almas, espejando la dificultad:
   - Normal: 1 Alma.
   - Grande: 5 Almas.

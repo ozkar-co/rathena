@@ -44,6 +44,7 @@ La sección **Comentarios** al final de cada archivo es un borrador libre: se ap
 | [10-cliente-organizacion-y-pruebas.md](./10-cliente-organizacion-y-pruebas.md) | Cómo ordenar el cliente, separar base/custom y probar el cliente actual sin romper lo que funciona |
 | [12-mvp-tracker-journal.md](./12-mvp-tracker-journal.md) | Tracker, Journal y Almas de MVP: variables, puntos, invocador y branches |
 | [13-mercado-npc-tasador.md](./13-mercado-npc-tasador.md) | Mercado NPC sin bots: tasador, consignación y casa de empeño |
+| [14-arena-mvp-invocador.md](./14-arena-mvp-invocador.md) | Arena de MVP en instancia: mapa, entrada, spawner y costos en Almas |
 
 ## Repos relacionados
 
