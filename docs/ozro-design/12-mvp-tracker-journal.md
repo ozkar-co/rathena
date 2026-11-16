@@ -66,8 +66,9 @@ Usar `MvpExp` del mob como medida de dificultad:
 | Grande | 500.000–1.500.000 | 2 | 2 |
 | Enorme | > 1.500.000 | 3 | 3 |
 
-- La mayoría de los MVPs queda en 1 Alma.
-- Los MVPs grandes dan y cuestan más.
+- La mayoría de los MVPs queda en 1 Alma: **48 de los 63 MVPs naturales**.
+- Los MVPs grandes dan y cuestan más: 11 en 2 Almas y 4 en 3 Almas.
+- Los 58 MVPs restantes de la DB son de instancia, invocación, evento u otros y no entran en este ciclo.
 - Se puede agregar un tier especial de 5 Almas para jefes de raid concretos si hace falta.
 - Las kills en mapas de invocación/branches **no** entregan Almas ni cuentan para el Tracker.
 
@@ -109,10 +110,15 @@ Los tiers son **acumulativos** y se reclaman una vez por personaje.
 
 ## Lista de MVPs
 
-- El script viejo de Hercules tenía 58 MVPs; la lista actual del server es más grande.
+- La DB tiene **121 mobs con `MvpExp`**.
+- Los MVPs naturales (spawn no-instancia) son **75 entradas de spawn**, pero solo **63 IDs únicos**: algunos MVPs aparecen en varios mapas.
+- La página del radar muestra ~74 entradas porque cuenta por mapa; para variables y tiers hay que usar los **63 IDs únicos**.
+- La diferencia entre 74 y 75 es un duplicado/filtro del spawn; no cambia el conteo único.
+- El script viejo de Hercules tenía 58 MVPs; no se usa como denominador actual.
 - Para el Tracker conviene detectar por `MOB_MVPEXP` y guardar `MVP_KILL_<id>` de cualquier MVP.
-- Para los tiers de “MVPs únicos” usar la lista de MVPs naturales que ya usa el radar de la web, no la lista vieja.
+- Para los tiers de “MVPs únicos” usar los 63 naturales, no las 74 entradas de la página.
 - El Journal puede mostrar todos los MVPs con registros, aunque el denominador de únicos use solo los naturales.
+- Si se agrega o elimina un spawn, hay que regenerar la lista de naturales y los tiers.
 
 ## Orden de implementación
 
