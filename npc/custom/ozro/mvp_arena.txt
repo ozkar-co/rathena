@@ -1,31 +1,32 @@
 //===== OzRo Script ==========================================
-//= Arena de prueba
+//= Sueños Tejidos
 //===== Description: =========================================
-//= Invoca un MVP de T1, T2 o T3 pagando Almas y sus items.
-//= Al morir el MVP, todos vuelven a Prontera y la instancia se destruye.
+//= La Tejedora de Ecos invoca ecos de MVPs pagando Almas y sus items.
+//= Al morir el eco, todos despiertan junto a la Tejedora y el sueño se cierra.
 //============================================================
 
-prontera,173,152,4	script	Creador de Arena	4_M_SAGE_C,{
+prontera,173,152,4	script	Tejedora de Ecos	4_F_THAISHAMAN,{
 	.@instance_id = instance_id(IM_CHAR);
 
-	mes "[ ^0065DFCreador de Arena^000000 ]";
+	mes "[ ^0065DFTejedora de Ecos^000000 ]";
 	if (.@instance_id > 0) {
-		mes "Ya tienes una arena activa.";
-		mes "Puedes volver a entrar mientras siga abierta.";
+		mes "El telar ya está tenso. Un sueño sigue abierto.";
+		mes "Puedes entrar mientras el sueño siga abierto.";
 		next;
 		if (select("Entrar:Salir") == 2) close;
 
-		.@result = instance_enter("OzRo MVP Arena", -1, -1, getcharid(0), .@instance_id);
+		.@result = instance_enter("Sueños Tejidos", -1, -1, getcharid(0), .@instance_id);
 		if (.@result != IE_OK) {
-			mes "[ ^0065DFCreador de Arena^000000 ]";
-			mes "No se pudo entrar (error " + .@result + ").";
+			mes "[ ^0065DFTejedora de Ecos^000000 ]";
+			mes "El sueño no te aceptó (error " + .@result + ").";
 			mes "Avisa al GM para que lo revise.";
 		}
 		close;
 	}
 
-	mes "Puedo invocar un MVP.";
-	mes "Elige el costo en Almas:";
+	mes "No puedo invocar a la bestia, pero puedo llamar a su eco.";
+	mes "Las Almas sostienen el sueño; los objetos le dan forma.";
+	mes "Elige la fuerza del telar:";
 	next;
 	.@mode = prompt("3 Almas:5 Almas:10 Almas:Salir");
 	if (.@mode == 255 || .@mode == 4) close;
@@ -53,8 +54,8 @@ prontera,173,152,4	script	Creador de Arena	4_M_SAGE_C,{
 	if (.@opt == 255) close;
 	.@idx = .@start + .@opt - 1;
 
-	mes "[ ^0065DFCreador de Arena^000000 ]";
-	mes "Para invocar a ^0065DF" + .mvp_name$[.@idx] + "^000000 necesitas:";
+	mes "[ ^0065DFTejedora de Ecos^000000 ]";
+	mes "Para llamar al eco de ^0065DF" + .mvp_name$[.@idx] + "^000000 necesitas:";
 	mes .@cost + " Almas de MVP (tienes " + countitem(35005) + ")";
 	mes .key1_qty[.@idx] + " " + getitemname(.key1_id[.@idx]) + " (tienes " + countitem(.key1_id[.@idx]) + ")";
 	if (.key2_id[.@idx] > 0)
@@ -69,7 +70,7 @@ prontera,173,152,4	script	Creador de Arena	4_M_SAGE_C,{
 	if (.key2_id[.@idx] > 0 && countitem(.key2_id[.@idx]) < .key2_qty[.@idx]) .@ready = 0;
 	if (.key3_id[.@idx] > 0 && countitem(.key3_id[.@idx]) < .key3_qty[.@idx]) .@ready = 0;
 	if (.@ready == 0) {
-		mes "[ ^0065DFCreador de Arena^000000 ]";
+		mes "[ ^0065DFTejedora de Ecos^000000 ]";
 		mes "Todavía te falta:";
 		if (countitem(35005) < .@cost) mes "- " + (.@cost - countitem(35005)) + " Almas de MVP";
 		if (countitem(.key1_id[.@idx]) < .key1_qty[.@idx]) mes "- " + (.key1_qty[.@idx] - countitem(.key1_id[.@idx])) + " " + getitemname(.key1_id[.@idx]);
@@ -78,12 +79,12 @@ prontera,173,152,4	script	Creador de Arena	4_M_SAGE_C,{
 		close;
 	}
 
-	if (select("Invocar:Salir") == 2) close;
+	if (select("Tejer el sueño:Salir") == 2) close;
 
-	.@instance_id = instance_create("OzRo MVP Arena", IM_CHAR);
+	.@instance_id = instance_create("Sueños Tejidos", IM_CHAR);
 	if (.@instance_id < 0) {
-		mes "[ ^0065DFCreador de Arena^000000 ]";
-		mes "No se pudo crear la instancia (error " + .@instance_id + ").";
+		mes "[ ^0065DFTejedora de Ecos^000000 ]";
+		mes "El telar no respondió (error " + .@instance_id + ").";
 		mes "Avisa al GM para que lo revise.";
 		close;
 	}
@@ -96,10 +97,10 @@ prontera,173,152,4	script	Creador de Arena	4_M_SAGE_C,{
 	setinstancevar 'mvp_id, .mvp_id[.@idx], .@instance_id;
 	donpcevent instance_npcname("OzroTestSpawner", .@instance_id) + "::OnSummon";
 
-	.@result = instance_enter("OzRo MVP Arena", -1, -1, getcharid(0), .@instance_id);
+	.@result = instance_enter("Sueños Tejidos", -1, -1, getcharid(0), .@instance_id);
 	if (.@result != IE_OK) {
-		mes "[ ^0065DFCreador de Arena^000000 ]";
-		mes "La instancia se creó, pero no se pudo entrar (error " + .@result + ").";
+		mes "[ ^0065DFTejedora de Ecos^000000 ]";
+		mes "El sueño se abrió, pero no pudiste entrar (error " + .@result + ").";
 		mes "Avisa al GM para que lo revise.";
 		close;
 	}

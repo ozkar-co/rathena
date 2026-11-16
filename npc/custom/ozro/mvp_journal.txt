@@ -1,19 +1,21 @@
 //===== OzRo Script ==========================================
-//= Cronista de Cacerías
+//= El Guardián de Almas
 //===== Description: =========================================
-//= Lee MVP_KILL_<id> y MVP_SUPP_<id>.
-//= Muestra resumen, lista por MVP y permite reclamar Almas.
+//= Lee MVP_KILL_<id> y MVP_SUPP_<id> y cristaliza fragmentos en Almas.
+//= Muestra resumen, lista por gran bestia y permite reclamar Almas.
 //= Los puntos de Alma se calculan desde las variables viejas.
 //============================================================
 
-prontera,150,180,4	script	Cronista de Cacerias	4_M_SAGE_C,{
+prontera,150,180,4	script	El Guardián de Almas	4_M_SAGE_C,{
 
 	mes .npc_name$;
-	mes "Saludos, cazador. Puedo leer las historias escritas en tus cicatrices.";
-	mes "¿Qué deseas saber?";
+	mes "No todas las bestias se van cuando mueren.";
+	mes "Sus almas se niegan a abandonar el mundo, y sus fragmentos se adhieren a quienes las mataron.";
+	mes "Puedo ver esos fragmentos en ti. ¿Qué deseas hacer?";
+	mes "Si quieres volver a enfrentar a una bestia, busca a la Tejedora. Ella sabe llamar a su eco.";
 	next;
 
-	switch (select("Resumen:Mis MVPs:Almas:Salir")) {
+	switch (select("Resumen:Mis bestias:Almas:Salir")) {
 	case 1:
 		callsub L_Summary;
 		break;
@@ -25,7 +27,7 @@ prontera,150,180,4	script	Cronista de Cacerias	4_M_SAGE_C,{
 		break;
 	case 4:
 		mes .npc_name$;
-		mes "Que la caza te sea favorable.";
+		mes "Que las almas no te arrastren.";
 		break;
 	}
 	close;
@@ -34,22 +36,22 @@ L_Summary:
 	callsub L_CalcStats;
 	callsub L_CalcSouls;
 	mes .npc_name$;
-	mes "^777777Tus estadísticas de caza^000000";
+	mes "^777777Tus fragmentos de alma^000000";
 	mes "Golpes finales: ^009900" + @MVPJ_KILLS + "^000000";
 	mes "Asistencias: ^009900" + @MVPJ_SUPPS + "^000000";
-	mes "MVPs únicos: ^009900" + @MVPJ_UNIQUE + " / " + .mvp_count + "^000000";
-	mes "Puntos de Alma pendientes: ^009900" + @MVPJ_PENDING + "^000000";
+	mes "Grandes bestias únicas: ^009900" + @MVPJ_UNIQUE + " / " + .mvp_count + "^000000";
+	mes "Fragmentos de alma pendientes: ^009900" + @MVPJ_PENDING + "^000000";
 	if (@MVPJ_TOP_KILL_ID > 0) {
-		mes "MVP más cazado: ^FF0000" + getmonsterinfo(@MVPJ_TOP_KILL_ID, MOB_NAME) + "^000000";
+		mes "Bestia más cazada: ^FF0000" + getmonsterinfo(@MVPJ_TOP_KILL_ID, MOB_NAME) + "^000000";
 		mes "(" + @MVPJ_TOP_KILL_COUNT + " golpes finales)";
 	}
 	if (@MVPJ_TOP_SUPP_ID > 0) {
-		mes "MVP más asistido: ^0000FF" + getmonsterinfo(@MVPJ_TOP_SUPP_ID, MOB_NAME) + "^000000";
+		mes "Bestia más asistida: ^0000FF" + getmonsterinfo(@MVPJ_TOP_SUPP_ID, MOB_NAME) + "^000000";
 		mes "(" + @MVPJ_TOP_SUPP_COUNT + " asistencias)";
 	}
 	if (@MVPJ_KILLS == 0 && @MVPJ_SUPPS == 0) {
-		mes "Aún no has derrotado ningún MVP.";
-		mes "Empieza tu viaje de caza hoy mismo.";
+		mes "Aún no has derrotado ninguna gran bestia.";
+		mes "Vuelve cuando hayas enfrentado a una.";
 	}
 	next;
 	return;
@@ -58,8 +60,8 @@ L_List:
 	callsub L_CalcStats;
 	if (@MVPJ_UNIQUE == 0) {
 		mes .npc_name$;
-		mes "Todavía no tengo registros tuyos.";
-		mes "Vuelve después de cazar algún MVP.";
+		mes "Todavía no veo fragmentos en ti.";
+		mes "Vuelve después de enfrentar a una gran bestia.";
 		next;
 		return;
 	}
@@ -68,7 +70,7 @@ L_List:
 	.@page = 0;
 	while (1) {
 		mes .npc_name$;
-		mes "^777777Tus MVPs - página " + (.@page + 1) + "/" + .@pages + "^000000";
+		mes "^777777Tus grandes bestias - página " + (.@page + 1) + "/" + .@pages + "^000000";
 		.@shown = 0;
 		.@seen = 0;
 		for (.@i = 0; .@i < .mvp_count; .@i++) {
@@ -81,7 +83,7 @@ L_List:
 				continue;
 			}
 			if (.@shown >= 10) break;
-			mes getmonsterinfo(.@id, MOB_NAME) + " - Kills: " + .@k + " / Asistencias: " + .@s;
+			mes getmonsterinfo(.@id, MOB_NAME) + " - Golpes: " + .@k + " / Asistencias: " + .@s;
 			.@shown = .@shown + 1;
 			.@seen = .@seen + 1;
 		}
@@ -111,16 +113,16 @@ L_List:
 L_Souls:
 	callsub L_CalcSouls;
 	mes .npc_name$;
-	mes "^777777Almas de MVP^000000";
-	mes "Puntos ganados: ^009900" + @MVPJ_EARNED + "^000000";
+	mes "^777777Almas de las grandes bestias^000000";
+	mes "Fragmentos ganados: ^009900" + @MVPJ_EARNED + "^000000";
 	mes "Almas reclamadas: ^009900" + MVP_SOUL_CLAIMED + "^000000";
-	mes "Puntos pendientes: ^009900" + @MVPJ_PENDING + "^000000";
-	mes "Cada punto se convierte en 1 Alma de MVP.";
+	mes "Fragmentos pendientes: ^009900" + @MVPJ_PENDING + "^000000";
+	mes "Cada fragmento se convierte en 1 Alma de MVP.";
 	next;
 	if (@MVPJ_PENDING <= 0) {
 		mes .npc_name$;
-		mes "No tienes puntos pendientes.";
-		mes "Sigue cazando MVPs naturales.";
+		mes "No tienes fragmentos pendientes.";
+		mes "Sigue enfrentando grandes bestias.";
 		next;
 		return;
 	}
@@ -201,7 +203,7 @@ L_CalcSouls:
 	return;
 
 OnInit:
-	.npc_name$ = "[ ^0000FFCronista de Cacerías^000000 ]";
+	.npc_name$ = "[ ^0000FFEl Guardián de Almas^000000 ]";
 	setarray .mvp_id[0], 1511, 2362, 2249, 1785, 1039, 3505, 2068, 20648, 21301, 20422, 20421, 2255, 1272, 20943, 1719, 1046, 1389, 1112, 1115, 1658, 1418, 1871, 2253, 2251, 1768, 2165, 1086, 1885, 1252, 1832, 20601, 1734, 2442, 2202, 1688, 2156, 1147, 1059, 1150, 2483, 1087, 1190, 1038, 1157, 1159, 20934, 20381, 20419, 1623, 1492, 2087, 3741, 1251, 1583, 2441, 20928, 3074, 1312, 1751, 3633, 1685, 1630, 1917;
 	.mvp_count = getarraysize(.mvp_id);
 	return;
