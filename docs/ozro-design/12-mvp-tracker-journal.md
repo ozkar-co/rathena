@@ -1,6 +1,6 @@
 # MVP Tracker, Journal y Almas de MVP
 
-**Estado:** tracker implementado; Journal y Almas pendientes
+**Estado:** tracker y Journal implementados; Almas por kill e invocador pendientes
 **Prioridad:** alta  
 **Objetivo:** registrar kills y asistencias por MVP, mostrar progreso, entregar recompensas por tiers y abrir la economía del Alma de MVP.
 
@@ -30,11 +30,11 @@ Variables nuevas, solo para recompensas:
 - Detecta MVP con `getmonsterinfo(killedrid, MOB_MVPEXP)` y/o lista de MVPs.
 - Incrementa `MVP_KILL_<id>` al killer.
 - Si el killer está en party, recorre los miembros en el mismo mapa y suma `MVP_SUPP_<id>`.
-- Anuncia la caza de MVPs naturales.
-- **No cuenta** kills en mapas de invocación, arena o sala de branches. Lista de mapas excluidos configurable.
+- No anuncia nada: solo trackea.
+- **Pendiente:** excluir mapas de invocación, arena o sala de branches cuando existan.
 - No necesita escribir `mvplog`: el server ya lo registra y el radar de la web lo usa.
 
-### 2. Journal (NPC visible)
+### 2. Journal (NPC visible) `implementado`
 
 - Una instancia principal en Prontera; se puede duplicar en otra ciudad si hace falta.
 - Muestra:
@@ -49,9 +49,9 @@ Variables nuevas, solo para recompensas:
 ### 3. Almas de MVP
 
 - Item actual: `MVP_Soul` (`35005`, “Alma de MVP”).
-- **Fuente principal:** cada MVP natural derrotado entrega Almas según su dificultad.
-- Las Almas van al **killer**; la party recibe progreso de asistencia, pero no Almas extra. Esto evita multiplicar la economía por tamaño de party.
-- Si el inventario está lleno, el Alma queda pendiente para reclamar en el Journal.
+- **Planificado:** cada MVP natural derrotado entregará Almas según su dificultad. Por ahora las Almas salen **solo de los tiers del Journal**.
+- Cuando se implemente la entrega por kill, las Almas irán al **killer**; la party recibe progreso de asistencia, pero no Almas extra. Esto evita multiplicar la economía por tamaño de party.
+- Si el inventario está lleno en un reclamo de tier, el Journal no entrega la recompensa hasta que haya espacio.
 - Uso futuro:
   - Invocador de MVPs en un mapa fijo.
   - Ingrediente para fabricar Bloody Branches.
@@ -67,16 +67,17 @@ Usar `MvpExp` del mob como medida de dificultad:
 | Grande | 500.000–1.500.000 | 5 | 5 |
 | Enorme | > 1.500.000 | 10 | 10 |
 
-- La mayoría de los MVPs queda en 1 Alma: **48 de los 63 MVPs naturales**.
-- Los MVPs grandes dan y cuestan más: 11 en 5 Almas y 4 en 10 Almas.
+- La mayoría de los MVPs queda en 1 Alma: **39 de los 63 MVPs naturales**.
+- Los MVPs grandes dan y cuestan más: 12 en 5 Almas y 12 en 10 Almas.
 - Los guild dungeons cuentan como naturales para Almas y tiers.
+- Para MVPs con `MvpExp` 0 se usa el nivel: <120 = 1, 120–179 = 5, >=180 = 10.
 - Los 58 MVPs restantes de la DB son de instancia, invocación, evento u otros y no entran en este ciclo.
 - Se puede agregar un tier especial de más de 10 Almas para jefes de raid concretos si hace falta.
 - Las kills en mapas de invocación/branches **no** entregan Almas ni cuentan para el Tracker.
 
-## Tiers propuestos
+## Tiers implementados
 
-Los tiers son **acumulativos** y se reclaman una vez por personaje.
+Los tiers son **acumulativos** y se reclaman una vez por personaje. Los valores todavía se pueden ajustar.
 
 | Tier | Golpes finales | Asistencias | MVPs únicos | Recompensa |
 |------|---------------:|------------:|------------:|------------|
@@ -88,7 +89,7 @@ Los tiers son **acumulativos** y se reclaman una vez por personaje.
 
 - “Golpes finales **o** asistencias”: el jugador avanza por cualquiera de las dos vías.
 - Los MVPs únicos se cuentan sumando kills y asistencias por ID distinto.
-- Los tiers son recompensas extra; el Alma principal se gana por kill.
+- Por ahora los tiers son la única fuente de Almas; la entrega por kill queda pendiente.
 - Las monedas OzRo quedan fuera de este ciclo.
 - Los valores son una primera propuesta; se ajustan después de ver el historial real.
 
