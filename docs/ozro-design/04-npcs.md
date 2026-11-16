@@ -89,7 +89,7 @@ Objetivo: convertir a Garrett en el punto de entrada de la economía de basura, 
 
 ### Alma de MVP `pendiente`
 
-- Se obtiene al cazar MVPs naturales: 1/5/10 puntos según dificultad. Killer y party en el mismo mapa suman; el Journal los convierte en Almas.
+- Se obtiene al cazar MVPs naturales: 1/3/5/10/20 puntos según el tier fijo por ID. Killer y party en el mismo mapa suman; el Journal los convierte en Almas.
 - Uso futuro: invocador de MVPs y receta de Bloody Branches.
 - No debe generar un loop infinito (matar MVP → alma → invocar el mismo MVP → alma); las kills en el mapa de invocación no deben contar.
 - Ver [12-mvp-tracker-journal.md](./12-mvp-tracker-journal.md).

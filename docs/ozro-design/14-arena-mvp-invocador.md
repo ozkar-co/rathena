@@ -84,14 +84,18 @@ Body:
 
 ## Costos en Almas
 
-Propuesta inicial, espejando dificultad:
+Propuesta inicial, espejando el tier fijo por ID:
 
-| Dificultad | Costo |
-|------------|------:|
-| Normal | 1 Alma |
-| Grande | 5 Almas |
-| Enorme | 10 Almas |
+| Tier | Criterio | Costo |
+|------|----------|------:|
+| T1 | MVPs muy chicos / introductorios | 1 Alma |
+| T2 | Clásicos de 500k–1.5M HP + Atroce | 3 Almas |
+| T3 | Modernos, especiales y tanques | 5 Almas |
+| T4 | Grandes / tanques de alto nivel | 10 Almas |
+| T5 | Super bosses | 20 Almas |
 
+- La lista inicial queda limitada a T1 y T2; T3 está a evaluar.
+- **T4 y T5 quedan fuera de la invocación:** son bosses fuera de escala.
 - Definir si paga solo el líder o se reparte entre la party.
 - Recomendación: paga el líder, porque es quien crea la instancia.
 - La lista de MVPs invocables puede empezar chica y ampliarse después.

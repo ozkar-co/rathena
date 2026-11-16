@@ -64,20 +64,25 @@ No hace falta un contador de puntos: los puntos se calculan desde `MVP_KILL_<id>
   - Ingrediente para fabricar Bloody Branches.
 - Decisión pendiente: si el Alma es tradeable o account-bound. Por ahora se puede dejar tradeable.
 
-### Puntos por kill según dificultad
+### Puntos por kill según tier fijo
 
-Usar `MvpExp` del mob como medida de dificultad:
+El HP es la base del análisis, pero el tier final se asigna **a mano por ID** dentro del NPC. No usar EXP ni nivel.
 
-| Dificultad | MvpExp | Puntos por kill | Costo de invocación |
-|------------|-------:|----------------:|--------------------:|
-| Normal | < 500.000 | 1 | 1 |
-| Grande | 500.000–1.500.000 | 5 | 5 |
-| Enorme | > 1.500.000 | 10 | 10 |
+| Tier | Criterio | Puntos por kill | Costo de invocación | MVPs |
+|------|----------|----------------:|--------------------:|-----:|
+| T1 | MVPs chicos / introductorios | 1 | 1 | 11 |
+| T2 | Clásicos de 500k–1.5M HP + Atroce | 3 | 3 | 19 |
+| T3 | Modernos, especiales y tanques | 5 | 5 (a evaluar) | 16 |
+| T4 | Apex / grandes de alto nivel | 10 | fuera de invocación | 9 |
+| T5 | Super bosses | 20 | fuera de invocación | 8 |
 
-- La mayoría de los MVPs queda en 1 punto: **39 de los 63 MVPs naturales**.
-- Los MVPs grandes dan y cuestan más: 12 en 5 puntos y 12 en 10 puntos.
+- El NPC no calcula HP en runtime: usa un `switch` fijo por ID. Si se agrega un MVP nuevo, se le asigna tier a mano.
+- **The Last One** y **King of the Alley** suben a T3 pese a su HP bajo, por su ataque y defensa.
+- **Atroce** baja a T2: no comparte tier con Valkyrie Randgris, Wounded Morocc ni Ifrit.
+- **R48-85-Bestia** sube a T4 por su DEF 855 y nivel 174, aunque su HP sea menor a 7M.
+- **Valkyrie Randgris, Ifrit, Gold Queen Scaraba, Detardeurus y Falling Bishop** suben a T4: son los cinco más duros del bloque T3 por combinación de HP y daño.
+- **Dracula, Lady Tanee, Mistress, Doppelganger y Orc Lord** bajan a T1: son los cinco T2 de menor HP y amenaza.
 - Los guild dungeons cuentan como naturales.
-- Para MVPs con `MvpExp` 0 se usa el nivel: <120 = 1, 120–179 = 5, >=180 = 10.
 - Los 58 MVPs restantes de la DB son de instancia, invocación, evento u otros y no entran en este ciclo.
 - Las kills en mapas de invocación/branches **no** entregan puntos ni cuentan para el Tracker.
 
@@ -93,13 +98,13 @@ para cada MVP natural:
 
 Ejemplo:
 
-| MVP | Dificultad | Kills | Asistencias | Puntos |
-|-----|-----------:|------:|------------:|-------:|
-| Golden Thief Bug | 1 | 10 | 0 | 10 × 1 = 10 |
-| Ifrit | 10 | 1 | 0 | 1 × 10 = 10 |
-| **Total** | | | | **20** |
+| MVP | Tier | HP base | Kills | Asistencias | Puntos |
+|-----|-----:|--------:|------:|------------:|-------:|
+| Golden Thief Bug | T1 | 222.750 | 10 | 0 | 10 × 1 = 10 |
+| Ifrit | T4 | 6.935.000 | 1 | 0 | 1 × 10 = 10 |
+| **Total** | | | | | **20** |
 
-No son 11 eventos × 10 = 110, ni 200. Cada MVP se multiplica solo por su propia dificultad y después se suman los resultados.
+No son 11 eventos × 10 = 110, ni 200. Cada MVP se multiplica solo por su propio tier y después se suman los resultados.
 
 - El killer suma por `MVP_KILL`.
 - Cada miembro de party en el mismo mapa suma por `MVP_SUPP`.
@@ -110,11 +115,12 @@ No son 11 eventos × 10 = 110, ni 200. Cada MVP se multiplica solo por su propia
 ## Invocador futuro
 
 - Instancia de party reutilizando `quiz_00`. Plan detallado en [14-arena-mvp-invocador.md](./14-arena-mvp-invocador.md).
-- Lista de MVPs invocables con costo en Almas, espejando la dificultad:
-  - Normal: 1 Alma.
-  - Grande: 5 Almas.
-  - Enorme: 10 Almas.
-  - Jefes especiales: más de 10 Almas si se agregan.
+- Lista de MVPs invocables con costo en Almas, espejando el tier fijo:
+  - T1: 1 Alma.
+  - T2: 3 Almas.
+  - T3: 5 Almas (a evaluar para la lista inicial).
+  - T4: 10 Almas, fuera de la invocación.
+  - T5: 20 Almas, fuera de la invocación.
 - El jugador elige un MVP fijo; no es RNG puro como Bloody Branch.
 - Los MVPs invocados en el mapa de invocación **no cuentan** para el Tracker.
 - Decidir si dejan drops normales, drops de MVP reducidos o ningún drop de MVP para evitar loops.
