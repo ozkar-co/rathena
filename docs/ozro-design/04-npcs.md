@@ -46,19 +46,19 @@
 
 Objetivo: convertir a Garrett en el punto de entrada de la economía de basura, con precios ajustados al mercado real.
 
-- La lista de precios sale del repo **ragnabots**, donde se están preparando bots comerciales; se carga cuando esté lista.
-- Antes de fijar precios, sacar del pool todos los items que **no son usados por NPCs activos**.
-- Dos modos de interacción:
-  1. **Junk hunter / dumpster diving:** Garrett pide cantidades altas de basura específica y paga con monedas OzRo, zeny o recursos difíciles de conseguir / piezas de equipo especiales. Similar al funcionamiento actual, pero con misión diaria.
-  2. **Bargain:** el jugador ofrece basura y Garrett calcula una oferta variable según el item/cantidad.
-- La misión del día es **única por cuenta** y rota; no todos ven la misma.
-- El zeny de las recompensas debe **escalar** con el nivel/valor del item; no usar montos planos.
-- En la web pública debe estar la lista de basura que Garrett compra, para que los jugadores sepan qué guardar y cuándo conviene vender.
-- Revisar el ritmo actual del bronce: hoy se entrega 1 moneda cada ~10 tratos únicos, con máximo 2 tratos/día; eso puede ser demasiado lento para una moneda de entrada.
-- **Rareza por oferta**, no por precio de mercado: usar drop rate efectivo × cantidad de spawn × factor de acceso.
+- Todo el NPC es **por cuenta**, no por personaje. El cap diario es de **500.000 zeny por cuenta**.
+- **Ofertas diarias:** 5 items con precio unitario visible. El jugador decide si los busca; se puede vender hasta agotar el cap.
+- **Misión:** una por día, con ventana de 6 horas. Se elige entre contratos `common`, `uncommon` y `rare`.
+- Mientras hay misión activa, Garrett **no permite vender**; solo muestra tiempo restante y progreso.
+- La misión se puede **cancelar**. Al cancelar o fallar, no se puede tomar otra hasta el día siguiente, pero las ofertas diarias se desbloquean.
+- Si al hablar tiene la cantidad pedida en el inventario, Garrett ofrece cerrar la misión y paga. No importa cómo consiguió los items.
+- La misión paga **fuera del cap diario**, con multiplicador sobre el precio unitario; el tope y los valores exactos se definen antes de implementar.
+- **Rareza por oferta**, no por precio de mercado: drop rate efectivo × cantidad de spawn × factor de acceso.
 - Los items **sin spawn conocido** (instancia/evento/mob dinámico) salen del pool diario y quedan para misiones especiales.
-- Tiers calculados: `abundant`, `common`, `uncommon`, `rare`, `very_rare`.
-- La selección diaria debe elegir items aleatorios dentro de cada tier, con cantidad y precio de misión por tier; los valores exactos están en revisión.
+- Tiers: `abundant`, `common`, `uncommon`, `rare`. `very_rare` queda solo para eventos/misiones especiales.
+- Las cantidades de misión se precalculan en una tabla, limitadas por **peso** y por el tope de pago; no se calculan en el NPC en tiempo real.
+- La tabla propuesta está en `ozro-site/assets/items/garrett-missions.json`; se ajusta antes de implementar.
+- Propuesta actual: 39 contratos (14 common, 16 uncommon, 9 rare), pago mínimo 500.000 y máximo 1.500.000, multiplicador 1,5, peso máximo 5.000. Cantidades: common 119–150, uncommon 49–70, rare 18–25.
 
 ### Gambler `reformular` (reemplazo completo)
 
