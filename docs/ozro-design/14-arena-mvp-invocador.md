@@ -97,7 +97,7 @@ Body:
 | Tao Gunka | 5 | 1 Gemstone (7300) + 3 Stone Fragment (7067) |
 | Hatii | 5 | 2 Fang of Hatii (7036) |
 | Boitata | 5 | 1 Treasure Box (7444) + 10 Sharp Scale (963) |
-| Turtle General | 5 | 5 Broken Shell (7070) |
+| Turtle General | 5 | 10 Broken Shell (7070) |
 | Atroce | 5 | 5 Bloody Rune (7563) |
 
 ### T2 excluidos de la invocación

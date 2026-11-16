@@ -28,6 +28,7 @@
 - Excluir items `untradeable`, `quest_only`, `instance_only`, `unobtainable` y objetos con script especial.
 - Si un item ya está en una tienda NPC normal, no venderlo más caro: o se omite, o se vende al mismo precio como conveniencia.
 - El viajero no debe vender items que se puedan comprar más barato en el item mall.
+- Garrett no compra items que sean keys de invocación. Se quitaron Stone Fragment (7067) y Broken Shell (7070) de sus listas.
 
 ## Lista inicial (T1)
 
@@ -35,8 +36,10 @@
 |---|---:|---|---:|---|---:|---|
 | Banana Hat | 5116 | Lady Tanee | 1 | semanal | ~400.000z | Key de lujo; mercado ~399k. |
 | Orc Warlord Token | 25508 | Orc Hero | 2 | diario | manual | Key exclusiva; 48.5% de Orc Hero. Alternativa: 100 Orcish Voucher. |
+| Lance | 1411 | Doppelganger | 1 | semanal | manual | 2.75% exclusivo de Doppelganger; mercado 0. |
+| Broad Sword | 1162 | Doppelganger | 2 | semanal | manual | 1.1%, 2 mobs; mercado 0. |
 | Tongue | 1015 | Phreeoni | 20 | diario | ~10.000z | Compartido con otros mobs; mercado ~10k. |
-| Ant Jaw | 1014 | Phreeoni | 20 | diario | manual | Junk de Garrett; quitar de la lista de Garrett si se usa como key. |
+| Ant Jaw | 1014 | Phreeoni | 20 | diario | manual | No está en las listas activas de Garrett. |
 | Heroic Emblem | 968 | Orc Lord | 1 | semanal | ~690.000z | Recuperable matando Orc Lord/Orc Hero; mercado ~690k. |
 | 3carat Diamond | 732 | Dracula | 2 | diario | ~63.000z | Mercado ~63k; también cae de otros MVPs. |
 | Red Bat Wing | 7006 | Dracula | 100 | diario | manual | Volumen; 27.5% de Drainliar, 100% de ringleaders. |
@@ -56,12 +59,24 @@
 | Flashlight | 7327 | RSX-0806 | 2 | diario | manual | 25% de RSX; mercado 0. |
 | Fragment of Rossata Stone | 7211 | Amon Ra | 3 | diario | manual | 38.8% de Amon Ra; mercado 0. |
 | Ba Gua | 7169 | Evil Snake Lord | 3 | diario | manual | 29.1% de Evil Snake Lord; mercado 0. |
+| Evil Horn | 923 | Baphomet | 2 | semanal | manual | 50% MVP, 5 mobs; mercado 0. |
+| Tiger's Footskin | 1030 | Eddga | 2 | semanal | manual | 10% MVP / 4% normal, 3 mobs; mercado 0. |
+| Skel-Bone | 932 | Drake | 10 | diario | manual | 15–35%, 2 mobs; mercado ~24k. |
 | Fang of Hatii | 7036 | Hatii | 2 | semanal | ~300.000z | 10% MVP + 27.5% normal, solo Hatii. |
 | Coif | 5093 | Dark Lord | 1 | semanal | manual | 5% MVP, 3 mobs; complemento de Skull. |
 | Masque of Tutankhamen | 7114 | Pharaoh | 1 | semanal | manual | 12.5% exclusivo de Pharaoh. |
 
 - Los items de volumen de T2 (Skel-Bone, Sharp Scale, Black Hair) pueden venderse en paquetes de 10–100, pero no son la prioridad del viajero.
-- T3 no agrega items de viajero por ahora: sus tres MVPs accesibles (Scaraba Queen, Kiel D-01 y Kraken) usan drops farmeables.
+
+## Lista T3 (keys farmeables o exclusivas)
+
+| Item | ID | Para | Stock | Reposición | Precio base | Notas |
+|---|---:|---|---:|---|---:|---|
+| Queen Wing Piece | 6326 | Scaraba Queen | 10 | diario | manual | 35%, 2 mobs; mercado 0. |
+| Pocket Watch | 7513 | Kiel D-01 | 5 | semanal | manual | 15%, 2 mobs; mercado 0. |
+| Tentacle | 962 | Kraken | 10 | diario | ~650z | 25%, 14 mobs; mercado ~650z. |
+| Treasure Box | 7444 | Kraken / Boitata | 1 | semanal | manual | 25–50%, 30 mobs; mercado 0. |
+
 - T4/T5 no son invocables.
 
 ## Precios
@@ -69,7 +84,7 @@
 - Si `marketPrice > 0`, usar el precio de mercado con un margen de cordura (por ejemplo, 0.9–1.2×).
 - Si `marketPrice = 0`, usar un precio manual documentado por item.
 - Si el item está en NPC shop, el precio del viajero nunca debe superar el precio de la tienda.
-- Los items de volumen (Tongue, Ant Jaw, Red Bat Wing, Round Shell, Royal Jelly, Skel-Bone, Sharp Scale, Black Hair) pueden venderse en paquetes de 10–100; los de lujo (Banana Hat, Heroic Emblem, Pirate Bandana, Memento, White Snake's Tear, Fang of Hatii) en unidades de 1–2.
+- Los items de volumen (Tongue, Ant Jaw, Red Bat Wing, Round Shell, Royal Jelly, Skel-Bone, Sharp Scale, Black Hair, Tentacle) pueden venderse en paquetes de 10–100; los de lujo (Banana Hat, Heroic Emblem, Lance, Broad Sword, Pirate Bandana, Memento, White Snake's Tear, Evil Horn, Tiger's Footskin, Fang of Hatii, Coif, Masque, Queen Wing Piece, Pocket Watch, Treasure Box) en unidades de 1–2.
 - Revisar precios después de la primera semana; el stock y el precio son parte del balance.
 
 ## Stock y reposición
@@ -86,7 +101,7 @@
 - ¿Vende paquetes completos de invocación o items sueltos?
 - ¿Cómo se avisa de su ubicación? ¿Pistas del Cronista, anuncio global o ambos?
 - ¿Qué pasa si un jugador compra todo el stock? ¿Cap por cuenta o stock global?
-- ¿Qué items de T3 se agregan después?
+- ¿Qué items de eventos o T4/T5 se agregan después?
 - ¿Se conecta con el tasador o son NPCs separados?
 
 ## Comentarios
