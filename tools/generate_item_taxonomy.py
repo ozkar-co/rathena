@@ -22,6 +22,8 @@ ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_OUTPUT = ROOT.parent / "ozro-site" / "assets" / "items" / "taxonomy.json"
 MASTER_LIST = ROOT.parent / "ragnabots" / "staging" / "market" / "pricing" / "master_list.json"
 SPAWNS = ROOT.parent / "ozro-site" / "assets" / "spawns" / "spawns.json"
+ITEMINFO = ROOT.parent / "ozro-site" / "data" / "itemInfo_EN.lua"
+IMAGE_INDEX = ROOT.parent / "ozro-site" / "assets" / "items" / "item-images.json"
 
 ITEM_FILES = [
     ROOT / "db/re/item_db.yml",
@@ -339,6 +341,10 @@ def load_whitelist(
         return set()
     text = path.read_text(encoding="latin-1", errors="replace")
     result: set[int] = set()
+    for match in re.finditer(r"setarray\s+\.(?:abundant|common|uncommon|rare)_id\[0\]\s*,\s*([^;]+);", text):
+        result |= {int(value) for value in re.findall(r"\d+", match.group(1))}
+    if result:
+        return {item_id for item_id in result if item_id in items}
     for match in re.finditer(r'"([A-Za-z0-9_]+)"', text):
         item_id = lookup_item(match.group(1), aegis_map, display_map)
         if item_id is not None and item_id in items:
@@ -406,6 +412,31 @@ def classify_map(map_name: str, map_kind: dict[str, str], instance_maps: set[str
     return "normal"
 
 
+def load_image_index() -> dict[int, dict[str, bool]]:
+    if not IMAGE_INDEX.exists():
+        return {}
+    raw = json.loads(IMAGE_INDEX.read_text(encoding="utf-8"))
+    result: dict[int, dict[str, bool]] = {}
+    for key, value in raw.items():
+        try:
+            result[int(key)] = value
+        except (TypeError, ValueError):
+            continue
+    return result
+
+
+def load_unidentified_items() -> set[int]:
+    if not ITEMINFO.exists():
+        return set()
+    data = ITEMINFO.read_bytes()
+    result: set[int] = set()
+    for match in re.finditer(rb"\[(\d+)\]\s*=\s*\{(.*?)\n\t\}", data, re.S):
+        name = re.search(rb'identifiedDisplayName\s*=\s*"([^"]*)"', match.group(2))
+        if name and name.group(1).decode("latin1").lower().startswith("unidentified"):
+            result.add(int(match.group(1)))
+    return result
+
+
 def build_taxonomy() -> dict[str, Any]:
     items = load_items()
     aegis_map, display_map = load_name_maps(items)
@@ -435,6 +466,8 @@ def build_taxonomy() -> dict[str, Any]:
     produce_outputs, produce_materials = load_produce()
     whitelist = load_whitelist(items, aegis_map, display_map)
     script_refs = script_references(active_script_files(), aegis_map, display_map, set(items))
+    image_index = load_image_index()
+    unidentified_items = load_unidentified_items()
 
     master_npc: set[int] = set()
     master_prices: dict[int, int] = {}
@@ -613,6 +646,16 @@ def build_taxonomy() -> dict[str, Any]:
             categories["package_member"].add(item_id)
         if is_unobtainable:
             categories["unobtainable"].add(item_id)
+        images = image_index.get(item_id)
+        tracked_no_image = (
+            bool(images)
+            and item_id not in unidentified_items
+            and not (images.get("icon") and images.get("collection"))
+        )
+        if tracked_no_image and is_unobtainable:
+            categories["unobtainable_no_image"].add(item_id)
+        if tracked_no_image and not is_unobtainable:
+            categories["obtainable_no_image"].add(item_id)
         if not direct_sources and (item_id in group_members or item_id in package_members):
             categories["group_or_package_only"].add(item_id)
         if only_restricted:
@@ -661,6 +704,7 @@ def build_taxonomy() -> dict[str, Any]:
             "scriptsRoot": "npc/re/scripts_main.conf",
             "spawns": str(SPAWNS.relative_to(ROOT.parent)) if SPAWNS.exists() else None,
             "masterList": str(MASTER_LIST.relative_to(ROOT.parent)) if MASTER_LIST.exists() else None,
+            "itemImages": str(IMAGE_INDEX.relative_to(ROOT.parent)) if IMAGE_INDEX.exists() else None,
         },
         "counts": {key: len(value) for key, value in ordered.items()},
         "categories": ordered,
