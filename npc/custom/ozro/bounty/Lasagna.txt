@@ -19,7 +19,7 @@
 //============================================================
 
 
-lasagna,163,137,3	script	Bounty Board 1-20#las1	837,{
+lasagna,165,137,5	script	Bounty Board 1-20#las1	837,{
 	callfunc "F_Bounty_Board", 1, 20, 1, 1,
 		3495,	70393,	10000,		7500,	// DR_EGGRING
 		3496,	70394,	10000,		7500,	// DR_LUNATIC
@@ -30,7 +30,7 @@ lasagna,163,137,3	script	Bounty Board 1-20#las1	837,{
 	end;
 }
 
-lasagna,165,139,3	script	Bounty Board 140-160#las2	837,{
+lasagna,165,139,5	script	Bounty Board 140-160#las2	837,{
 	callfunc "F_Bounty_Board", 140, 160, 1, 1,
 		3503,	70399,	200000,		150000,	// DR_BASILISK2
 		3504,	70400,	200000,		150000,	// DR_BASILISK3
