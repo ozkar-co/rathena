@@ -124,7 +124,7 @@ Objetivo: convertir a Garrett en el punto de entrada de la economía de basura, 
 | Cash Point Merchant / points | `reformular` — los points existían porque no sabíamos modificar drops; hoy sí se puede |
 | Blessed Ores crafter | `pendiente` — quest con lore |
 | Bloody Branch Manufacturer | `pendiente` — NPC custom |
-| Traveler Tool Dealer | `pendiente` — lore del dealer ambulante |
+| Vendedor Viajero | `pendiente` — items de invocación y stock limitado; ver [15-vendedor-viajero.md](./15-vendedor-viajero.md) |
 
 ## Planificados
 

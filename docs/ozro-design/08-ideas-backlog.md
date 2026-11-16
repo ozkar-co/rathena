@@ -138,7 +138,7 @@ Lluvia de ideas del documento antiguo, **reformuladas** y etiquetadas. No es lis
 |------|--------|-------|
 | NPC minijuegos (RPS, dados, lotería) | `en-repo` | blackjack, lottery, rpsroulette en custom |
 | Story Teller (historias junto al fuego) | `pendiente` | Complemento cronista, no reemplazo arcos |
-| Lore al Traveler Tool Dealer | `pendiente` | |
+| Vendedor Viajero | `pendiente` | Ver [15-vendedor-viajero.md](./15-vendedor-viajero.md) |
 | Rebirth Soul en Soul Linker | `pendiente` | `soul_link.txt` en repo |
 
 ---
