@@ -29,7 +29,7 @@
 | Sabio de los Elementos | `endow_sage.txt` | Endow elemental (zeny + piedra) |
 | Ludovico el Sepulturero | `gravekeeper.txt` | Muertes del PJ + contador global |
 | Kessinger | `soul_link.txt` | Soul Link de pago |
-| Garrett el Recolector | `trasher.txt` | Compra chatarra diaria; reformular |
+| Garrett el Recolector | `trasher.txt` | 5 ofertas diarias + 1 misión de 6h por cuenta |
 | Bounty Boards | `bounty/*.txt` | Misiones de caza por ciudad (26 ciudades) |
 | Quests repetibles | `repeteables/*.txt` | EXP repetible por monstruo (18 quests) |
 
@@ -42,9 +42,9 @@
 
 ## Reformulaciones prioritarias
 
-### Garrett el Recolector `reformular`
+### Garrett el Recolector `implementado`
 
-Objetivo: convertir a Garrett en el punto de entrada de la economía de basura, con precios ajustados al mercado real.
+Objetivo: convertir a Garrett en el punto de entrada de la economía de basura, con precios calculados por rareza de oferta y no por el mercado.
 
 - Todo el NPC es **por cuenta**, no por personaje. El cap diario es de **500.000 zeny por cuenta**.
 - **Ofertas diarias:** 5 items con precio unitario visible. El jugador decide si los busca; se puede vender hasta agotar el cap.
@@ -57,7 +57,7 @@ Objetivo: convertir a Garrett en el punto de entrada de la economía de basura, 
 - Los items **sin spawn conocido** (instancia/evento/mob dinámico) salen del pool diario y quedan para misiones especiales.
 - Tiers: `abundant`, `common`, `uncommon`, `rare`. `very_rare` queda solo para eventos/misiones especiales.
 - Las cantidades de misión se precalculan en una tabla, limitadas por **peso** y por el tope de pago; no se calculan en el NPC en tiempo real.
-- La tabla propuesta está en `ozro-site/assets/items/garrett-missions.json`; se ajusta antes de implementar.
+- La tabla está en `ozro-site/assets/items/garrett-missions.json` y el script se genera con `tools/generate_garrett_npc.py`.
 - Propuesta actual: 39 contratos (14 common, 16 uncommon, 9 rare), pago mínimo 500.000 y máximo 1.500.000, multiplicador 1,5, peso máximo 5.000. Cantidades: common 119–150, uncommon 49–70, rare 18–25.
 
 ### Gambler `reformular` (reemplazo completo)
@@ -203,15 +203,18 @@ Objetivo: convertir a Garrett en el punto de entrada de la economía de basura, 
 
 | Variable | Alcance | Uso |
 |----------|---------|-----|
+| `#GARRETT_DAY` | Cuenta | Día de ofertas y contratos |
+| `#GARRETT_SPENT` | Cuenta | Gasto diario (cap 500.000) |
+| `#GARRETT_OFFER0..4` / `#GARRETT_PRICE0..4` | Cuenta | 5 ofertas diarias |
+| `#GARRETT_SOLD0..4` | Cuenta | Primer trato de cada oferta |
+| `#GARRETT_CONTRACT_ITEM0..2` / `_QTY` / `_PAY` | Cuenta | Contratos del día |
+| `#GARRETT_MISSION_ACTIVE` / `_ITEM` / `_QTY` / `_PAY` / `_END` / `_DAY` | Cuenta | Misión activa |
+| `#GARRETT_TRADES` / `#GARRETT_TOTAL_SPENT` / `#GARRETT_UNIQUE_TRADES` | Cuenta | Historial de tratos |
+| `#GARRETT_MISSIONS_DONE` / `#GARRETT_MISSION_EARNED` | Cuenta | Historial de misiones |
 | `OZRO_KARMA` | Personaje | Reputación/karma firmado |
-| `TRSH_TRADES` | Personaje | Ventas totales con Garrett |
-| `TRSH_UniqueTrades` | Personaje | Primer trato de cada item del día |
-| `TRSH_DoneItem0` / `TRSH_DoneItem1` | Personaje | Flag diario por slot |
-| `TRSH_DailySpend` / `TRSH_TotalSpent` / `TRSH_LastDay` | Personaje | Economía diaria de Garrett |
-| `TRSH_Item0$` / `TRSH_Item1$` | Personaje | Items del día |
 | `$OZRO_DEATHS_TOTAL` | Global servidor | Muertes registradas |
 
-> Al reformular Garrett, conservar o migrar estas variables para no perder progreso ni el historial de tratos.
+> Las viejas variables `TRSH_*` quedan en la base pero el script nuevo no las usa; no se borran para conservar el historial.
 
 ## Comentarios
 

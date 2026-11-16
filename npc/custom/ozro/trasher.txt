@@ -1,263 +1,397 @@
 //===== OzRo Script ==========================================
 //= Garrett el Recolector
 //===== Description: =========================================
-//= Compra chatarra diaria a buen precio. Karma por PJ.
-//= Moneda bronce cada 10 tratos únicos (1 por item del día, max 2/día).
+//= Compra chatarra por cuenta. Cinco ofertas diarias con cap de
+//= 500.000 zeny y una misión diaria de 6 horas.
+//= Los datos se precalculan en:
+//= ozro-site/assets/items/garrett-missions.json
+//= Las variables viejas TRSH_* quedan como historial y no se usan.
 //============================================================
 
 geffen,143,70,3	script	Garrett	1_M_SIGN1,{
 
-	.@weekday = gettime(DT_DAYOFWEEK);
+	.@today = gettime(DT_YYYYMMDD);
+	callsub L_ResetDay, .@today;
 
-	if (.@weekday != TRSH_LastDay || TRSH_Item0$ == "" || TRSH_Item1$ == "") {
-		TRSH_LastDay = .@weekday;
-		TRSH_DailySpend = 0;
-		TRSH_DoneItem0 = 0;
-		TRSH_DoneItem1 = 0;
-		.@size0 = getarraysize(.common_items$);
-		.@size1 = getarraysize(.misc_items$);
-		TRSH_Item0$ = .common_items$[rand(.@size0)];
-		do {
-			TRSH_Item1$ = .misc_items$[rand(.@size1)];
-		} while (TRSH_Item1$ == TRSH_Item0$);
+	if (#GARRETT_MISSION_ACTIVE == 1) {
+		callsub L_MissionStatus, .@today;
+		if (#GARRETT_MISSION_ACTIVE == 1) close;
 	}
-
-	if (TRSH_DailySpend >= .daily_spending_limit) {
-		mes .npc_name$;
-		mes "Amigo, ya no me queda una moneda en la bolsa hoy.";
-		mes "Vuelve mañana. Siempre hay basura nueva que vale la pena.";
-		close;
-	}
-
-	.@price0 = getiteminfo(TRSH_Item0$, ITEMINFO_SELL) * .increment;
-	if (.@price0 < .min_price) .@price0 = .min_price;
-	if (.@price0 > .max_price) .@price0 = .max_price;
-
-	.@price1 = getiteminfo(TRSH_Item1$, ITEMINFO_SELL) * .increment;
-	if (.@price1 < .min_price) .@price1 = .min_price;
-	if (.@price1 > .max_price) .@price1 = .max_price;
 
 	mes .npc_name$;
 	if (OZRO_KARMA < 0) {
 		mes "Tú otra vez...";
 		mes "No me gusta tu aura, pero el negocio es el negocio.";
 	} else if (OZRO_KARMA > 0) {
-		mes "¡Ah, " + strcharinfo(0) + "! Me alegra verte.";
+		mes "Ah, " + strcharinfo(0) + ". Me alegra verte.";
 		mes "Tienes buen ojo para lo que vale la pena, eso se nota.";
 	} else {
 		mes "Bienvenido, forastero.";
 		mes "Dicen que la basura de un hombre es el tesoro de otro.";
 	}
-	mes "Hoy tengo el ojo puesto en cosas interesantes.";
+	mes "Hoy tengo cinco cosas en el ojo.";
+	mes "Presupuesto de compras: " + (.daily_cap - #GARRETT_SPENT) + " zeny.";
 	next;
 
-	mes .npc_name$;
-	mes "Me quedan " + (.daily_spending_limit - TRSH_DailySpend) + " zeny para comprar hoy.";
-	next;
-
-	mes .npc_name$;
-	mes "Busco:";
-	mes "- " + getitemname(TRSH_Item0$) + " - " + .@price0 + " zeny c/u";
-	mes "- " + getitemname(TRSH_Item1$) + " - " + .@price1 + " zeny c/u";
-	next;
-
-	switch (select("Comerciar", "Sobre tu negocio", "Marcharme")) {
+	switch (select("Ver ofertas del día:Misión:Sobre tu negocio:Marcharme")) {
 	case 1:
-		.@menu$ = getitemname(TRSH_Item0$) + ":" + getitemname(TRSH_Item1$) + ":Cambié de opinión";
-		.@selected = select(.@menu$) - 1;
-		if (.@selected == 2) {
-			mes .npc_name$;
-			mes "Sin prisa. Los buenos tratos requieren calma.";
-			close;
-		}
-
-		if (.@selected == 0) {
-			.@item$ = TRSH_Item0$;
-			.@price = .@price0;
-		} else {
-			.@item$ = TRSH_Item1$;
-			.@price = .@price1;
-		}
-
-		mes .npc_name$;
-		mes "¿Cuántos " + getitemname(.@item$) + " me vendes?";
-		mes "Tienes " + countitem(.@item$) + " en el inventario.";
-		next;
-
-		input .@amount;
-		if (.@amount <= 0) {
-			mes .npc_name$;
-			mes "Vamos, hablemos en serio.";
-			close;
-		}
-		if (countitem(.@item$) < .@amount) {
-			mes .npc_name$;
-			mes "No tienes tantos. Solo llevas " + countitem(.@item$) + ".";
-			next;
-			if (select("Vendo los que tengo", "Mejor después") == 2) {
-				mes .npc_name$;
-				mes "Vuelve cuando tengas más.";
-				close;
-			}
-			.@amount = countitem(.@item$);
-			if (.@amount <= 0) close;
-		}
-
-		.@total = .@price * .@amount;
-		if (TRSH_DailySpend + .@total > .daily_spending_limit) {
-			mes .npc_name$;
-			mes "Eso excede mi presupuesto de hoy.";
-			mes "Solo puedo gastar " + (.daily_spending_limit - TRSH_DailySpend) + " zeny más.";
-			close;
-		}
-
-		mes .npc_name$;
-		mes .@amount + " x " + getitemname(.@item$) + " = " + .@total + " zeny. ¿Trato?";
-		next;
-		if (select("Trato hecho", "Paso") == 2) {
-			mes .npc_name$;
-			mes "La puerta sigue abierta.";
-			close;
-		}
-
-		delitem .@item$, .@amount;
-		Zeny += .@total;
-		TRSH_DailySpend += .@total;
-		TRSH_TotalSpent += .@total;
-		TRSH_TRADES++;
-
-		.@is_item0 = (.@item$ == TRSH_Item0$);
-		.@is_item1 = (.@item$ == TRSH_Item1$);
-		.@first_trade_today = 0;
-		if (.@is_item0 && !TRSH_DoneItem0) {
-			TRSH_DoneItem0 = 1;
-			.@first_trade_today = 1;
-		} else if (.@is_item1 && !TRSH_DoneItem1) {
-			TRSH_DoneItem1 = 1;
-			.@first_trade_today = 1;
-		}
-
-		if (.@first_trade_today) {
-			TRSH_UniqueTrades++;
-			OZRO_KARMA += .karma_per_trade;
-		}
-
-		mes .npc_name$;
-		mes "Un placer hacer negocios.";
-		if (TRSH_DailySpend >= .daily_spending_limit) {
-			mes "Con eso agoto el presupuesto de hoy.";
-			mes "Mañana habrá más oportunidades.";
-		}
-
-		if (.@first_trade_today && TRSH_UniqueTrades % .trades_for_coin == 0) {
-			getitem "Ozro_Bronze_Coin", 1;
-			mes "Por cierto... eres un sujeto agradable.";
-			mes "Creo que esto te sirve más a ti que a mí.";
-		}
+		callsub L_Offers;
 		break;
-
 	case 2:
-		mes .npc_name$;
-		mes "Llevo " + TRSH_TotalSpent + " zeny invertidos en chatarra de aventureros.";
-		mes "Y contigo he cerrado " + TRSH_TRADES + " tratos. Cada uno cuenta.";
+		callsub L_MissionMenu, .@today;
 		break;
-
 	case 3:
+		mes .npc_name$;
+		mes "Llevo " + #GARRETT_TOTAL_SPENT + " zeny invertidos en chatarra de aventureros.";
+		mes "Contigo he cerrado " + #GARRETT_TRADES + " tratos. Cada uno cuenta.";
+		mes "Misiones completadas: " + #GARRETT_MISSIONS_DONE + ".";
+		break;
+	case 4:
 		mes .npc_name$;
 		mes "Buen viaje. La basura de hoy puede ser la riqueza de mañana.";
 		break;
 	}
 	close;
 
+L_Offers:
+	if (#GARRETT_SPENT >= .daily_cap) {
+		mes .npc_name$;
+		mes "Amigo, ya no me queda una moneda en la bolsa hoy.";
+		mes "Vuelve mañana. Siempre hay basura nueva que vale la pena.";
+		next;
+		return;
+	}
+
+	mes .npc_name$;
+	mes "Hoy compro:";
+	mes "1) " + getitemname(#GARRETT_OFFER0) + " - " + #GARRETT_PRICE0 + " zeny c/u";
+	mes "2) " + getitemname(#GARRETT_OFFER1) + " - " + #GARRETT_PRICE1 + " zeny c/u";
+	mes "3) " + getitemname(#GARRETT_OFFER2) + " - " + #GARRETT_PRICE2 + " zeny c/u";
+	mes "4) " + getitemname(#GARRETT_OFFER3) + " - " + #GARRETT_PRICE3 + " zeny c/u";
+	mes "5) " + getitemname(#GARRETT_OFFER4) + " - " + #GARRETT_PRICE4 + " zeny c/u";
+	mes "Presupuesto restante: " + (.daily_cap - #GARRETT_SPENT) + " zeny.";
+	next;
+
+	.@sel = select("Oferta 1:Oferta 2:Oferta 3:Oferta 4:Oferta 5:Volver") - 1;
+	if (.@sel == 5) return;
+	if (.@sel == 0) {
+		.@item = #GARRETT_OFFER0;
+		.@price = #GARRETT_PRICE0;
+	} else if (.@sel == 1) {
+		.@item = #GARRETT_OFFER1;
+		.@price = #GARRETT_PRICE1;
+	} else if (.@sel == 2) {
+		.@item = #GARRETT_OFFER2;
+		.@price = #GARRETT_PRICE2;
+	} else if (.@sel == 3) {
+		.@item = #GARRETT_OFFER3;
+		.@price = #GARRETT_PRICE3;
+	} else {
+		.@item = #GARRETT_OFFER4;
+		.@price = #GARRETT_PRICE4;
+	}
+
+	if (.@item == 0 || .@price <= 0) {
+		mes .npc_name$;
+		mes "Esa oferta ya no está disponible.";
+		next;
+		return;
+	}
+
+	mes .npc_name$;
+	mes "¿Cuántos " + getitemname(.@item) + " me vendes?";
+	mes "Tienes " + countitem(.@item) + " en el inventario.";
+	next;
+
+	input .@amount;
+	if (.@amount <= 0) {
+		mes .npc_name$;
+		mes "Vamos, hablemos en serio.";
+		next;
+		return;
+	}
+	if (countitem(.@item) < .@amount) {
+		mes .npc_name$;
+		mes "No tienes tantos. Solo llevas " + countitem(.@item) + ".";
+		next;
+		return;
+	}
+
+	.@remaining = .daily_cap - #GARRETT_SPENT;
+	.@max = .@remaining / .@price;
+	if (.@max <= 0) {
+		mes .npc_name$;
+		mes "Con lo que me queda hoy no puedo comprar ni uno.";
+		next;
+		return;
+	}
+	if (.@amount > .@max) {
+		mes .npc_name$;
+		mes "Solo puedo comprar " + .@max + " con lo que me queda hoy.";
+		next;
+		.@amount = .@max;
+	}
+
+	.@total = .@price * .@amount;
+	mes .npc_name$;
+	mes .@amount + " x " + getitemname(.@item) + " = " + .@total + " zeny. ¿Trato?";
+	next;
+	if (select("Trato hecho", "Paso") == 2) {
+		mes .npc_name$;
+		mes "La puerta sigue abierta.";
+		next;
+		return;
+	}
+
+	delitem .@item, .@amount;
+	Zeny += .@total;
+	#GARRETT_SPENT += .@total;
+	#GARRETT_TOTAL_SPENT += .@total;
+	#GARRETT_TRADES++;
+
+	if (.@sel == 0 && #GARRETT_SOLD0 == 0) {
+		#GARRETT_SOLD0 = 1;
+		callsub L_UniqueTrade;
+	} else if (.@sel == 1 && #GARRETT_SOLD1 == 0) {
+		#GARRETT_SOLD1 = 1;
+		callsub L_UniqueTrade;
+	} else if (.@sel == 2 && #GARRETT_SOLD2 == 0) {
+		#GARRETT_SOLD2 = 1;
+		callsub L_UniqueTrade;
+	} else if (.@sel == 3 && #GARRETT_SOLD3 == 0) {
+		#GARRETT_SOLD3 = 1;
+		callsub L_UniqueTrade;
+	} else if (.@sel == 4 && #GARRETT_SOLD4 == 0) {
+		#GARRETT_SOLD4 = 1;
+		callsub L_UniqueTrade;
+	}
+
+	mes .npc_name$;
+	mes "Un placer hacer negocios.";
+	if (#GARRETT_SPENT >= .daily_cap) {
+		mes "Con eso agoto el presupuesto de hoy.";
+		mes "Mañana habrá más oportunidades.";
+	}
+	next;
+	return;
+
+L_UniqueTrade:
+	#GARRETT_UNIQUE_TRADES++;
+	OZRO_KARMA += 1;
+	if (#GARRETT_UNIQUE_TRADES % .trades_for_coin == 0) {
+		getitem "Ozro_Bronze_Coin", 1;
+		mes "Por cierto... eres un sujeto agradable.";
+		mes "Creo que esto te sirve más a ti que a mi.";
+	}
+	return;
+
+L_MissionStatus:
+	.@today = getarg(0);
+	.@left = #GARRETT_MISSION_END - gettimetick(2);
+	if (.@left <= 0) {
+		#GARRETT_MISSION_ACTIVE = 0;
+		#GARRETT_MISSION_DAY = .@today;
+		mes .npc_name$;
+		mes "Llegaste tarde.";
+		mes "La basura ya no me interesa. Pero las compras del día siguen abiertas.";
+		next;
+		return;
+	}
+
+	.@have = countitem(#GARRETT_MISSION_ITEM);
+	if (.@have >= #GARRETT_MISSION_QTY) {
+		mes .npc_name$;
+		mes "Veo que ya tienes " + #GARRETT_MISSION_QTY + " x " + getitemname(#GARRETT_MISSION_ITEM) + ".";
+		mes "¿Cerramos el contrato?";
+		next;
+		if (select("Cerrar el contrato", "Todavía no") == 1) {
+			delitem #GARRETT_MISSION_ITEM, #GARRETT_MISSION_QTY;
+			Zeny += #GARRETT_MISSION_PAY;
+			#GARRETT_MISSION_ACTIVE = 0;
+			#GARRETT_MISSION_DAY = .@today;
+			#GARRETT_MISSIONS_DONE++;
+			#GARRETT_MISSION_EARNED += #GARRETT_MISSION_PAY;
+			mes .npc_name$;
+			mes "Trato hecho. Aquí tienes " + #GARRETT_MISSION_PAY + " zeny.";
+			mes "No tendré otra misión para ti hasta mañana.";
+			next;
+			return;
+		}
+	}
+
+	.@hours = .@left / 3600;
+	.@mins = (.@left % 3600) / 60;
+	mes .npc_name$;
+	mes "Todavía estás trabajando para mí.";
+	mes "Te quedan " + .@hours + "h " + .@mins + "m.";
+	mes "Trae " + #GARRETT_MISSION_QTY + " x " + getitemname(#GARRETT_MISSION_ITEM) + ".";
+	mes "Llevas " + .@have + ".";
+	next;
+	if (select("Cancelar la misión", "Seguir buscando") == 1) {
+		mes .npc_name$;
+		mes "Si cancelas, no tendré otra misión para ti hasta mañana.";
+		mes "Las compras del día quedarán abiertas.";
+		next;
+		if (select("Sí, cancelar", "No, continuar") == 1) {
+			#GARRETT_MISSION_ACTIVE = 0;
+			#GARRETT_MISSION_DAY = .@today;
+			mes .npc_name$;
+			mes "Está bien. La basura puede esperar.";
+			next;
+			return;
+		}
+	}
+	close;
+
+L_MissionMenu:
+	.@today = getarg(0);
+	if (#GARRETT_MISSION_DAY == .@today) {
+		mes .npc_name$;
+		mes "Hoy ya no tengo misiones para ti. Vuelve mañana.";
+		next;
+		return;
+	}
+	if (#GARRETT_CONTRACT_ITEM0 == 0 || #GARRETT_CONTRACT_ITEM1 == 0 || #GARRETT_CONTRACT_ITEM2 == 0) {
+		mes .npc_name$;
+		mes "Hoy no tengo contratos disponibles.";
+		next;
+		return;
+	}
+
+	mes .npc_name$;
+	mes "Tengo tres contratos. Elige uno:";
+	mes "1) Común: " + getitemname(#GARRETT_CONTRACT_ITEM0) + " x" + #GARRETT_CONTRACT_QTY0 + " - " + #GARRETT_CONTRACT_PAY0 + " zeny";
+	mes "2) Poco común: " + getitemname(#GARRETT_CONTRACT_ITEM1) + " x" + #GARRETT_CONTRACT_QTY1 + " - " + #GARRETT_CONTRACT_PAY1 + " zeny";
+	mes "3) Raro: " + getitemname(#GARRETT_CONTRACT_ITEM2) + " x" + #GARRETT_CONTRACT_QTY2 + " - " + #GARRETT_CONTRACT_PAY2 + " zeny";
+	mes "Tienes 6 horas para conseguirlos. Si fallas o cancelas, no habrá otra misión hasta mañana.";
+	next;
+
+	.@sel = select("Contrato 1:Contrato 2:Contrato 3:Volver") - 1;
+	if (.@sel == 3) return;
+	if (.@sel == 0) {
+		.@item = #GARRETT_CONTRACT_ITEM0;
+		.@qty = #GARRETT_CONTRACT_QTY0;
+		.@pay = #GARRETT_CONTRACT_PAY0;
+		.@tier$ = "Común";
+	} else if (.@sel == 1) {
+		.@item = #GARRETT_CONTRACT_ITEM1;
+		.@qty = #GARRETT_CONTRACT_QTY1;
+		.@pay = #GARRETT_CONTRACT_PAY1;
+		.@tier$ = "Poco común";
+	} else {
+		.@item = #GARRETT_CONTRACT_ITEM2;
+		.@qty = #GARRETT_CONTRACT_QTY2;
+		.@pay = #GARRETT_CONTRACT_PAY2;
+		.@tier$ = "Raro";
+	}
+
+	mes .npc_name$;
+	mes "Contrato " + .@tier$ + ":";
+	mes "- " + getitemname(.@item) + " x" + .@qty;
+	mes "- Pago: " + .@pay + " zeny";
+	mes "- Tiempo: 6 horas";
+	mes "¿Aceptas?";
+	next;
+	if (select("Aceptar", "Rechazar") == 2) {
+		mes .npc_name$;
+		mes "Sin prisa. Los buenos tratos requieren calma.";
+		next;
+		return;
+	}
+
+	#GARRETT_MISSION_ITEM = .@item;
+	#GARRETT_MISSION_QTY = .@qty;
+	#GARRETT_MISSION_PAY = .@pay;
+	#GARRETT_MISSION_ACTIVE = 1;
+	#GARRETT_MISSION_DAY = .@today;
+	#GARRETT_MISSION_END = gettimetick(2) + .mission_seconds;
+	mes .npc_name$;
+	mes "Aceptado. Tienes 6 horas.";
+	mes "Si ya tienes los items, habla conmigo y cerramos el trato.";
+	next;
+	return;
+
+L_ResetDay:
+	.@today = getarg(0);
+	if (#GARRETT_DAY == .@today && #GARRETT_OFFER0 != 0) return;
+
+	#GARRETT_DAY = .@today;
+	#GARRETT_SPENT = 0;
+	#GARRETT_SOLD0 = 0;
+	#GARRETT_SOLD1 = 0;
+	#GARRETT_SOLD2 = 0;
+	#GARRETT_SOLD3 = 0;
+	#GARRETT_SOLD4 = 0;
+
+	.@idx = rand(.abundant_count);
+	#GARRETT_OFFER0 = .abundant_id[.@idx];
+	#GARRETT_PRICE0 = .abundant_price[.@idx];
+	do {
+		.@idx = rand(.abundant_count);
+	} while (.abundant_id[.@idx] == #GARRETT_OFFER0);
+	#GARRETT_OFFER1 = .abundant_id[.@idx];
+	#GARRETT_PRICE1 = .abundant_price[.@idx];
+
+	.@idx = rand(.common_count);
+	#GARRETT_OFFER2 = .common_id[.@idx];
+	#GARRETT_PRICE2 = .common_price[.@idx];
+
+	.@idx = rand(.uncommon_count);
+	#GARRETT_OFFER3 = .uncommon_id[.@idx];
+	#GARRETT_PRICE3 = .uncommon_price[.@idx];
+
+	.@idx = rand(.rare_count);
+	#GARRETT_OFFER4 = .rare_id[.@idx];
+	#GARRETT_PRICE4 = .rare_price[.@idx];
+
+	.@idx = rand(.mcommon_count);
+	#GARRETT_CONTRACT_ITEM0 = .mcommon_id[.@idx];
+	#GARRETT_CONTRACT_QTY0 = .mcommon_qty[.@idx];
+	#GARRETT_CONTRACT_PAY0 = .mcommon_pay[.@idx];
+
+	.@idx = rand(.muncommon_count);
+	#GARRETT_CONTRACT_ITEM1 = .muncommon_id[.@idx];
+	#GARRETT_CONTRACT_QTY1 = .muncommon_qty[.@idx];
+	#GARRETT_CONTRACT_PAY1 = .muncommon_pay[.@idx];
+
+	.@idx = rand(.mrare_count);
+	#GARRETT_CONTRACT_ITEM2 = .mrare_id[.@idx];
+	#GARRETT_CONTRACT_QTY2 = .mrare_qty[.@idx];
+	#GARRETT_CONTRACT_PAY2 = .mrare_pay[.@idx];
+
+	return;
+
 OnInit:
 	.npc_name$ = "[ ^0000FFGarrett el Recolector^000000 ]";
-	.increment = 10;
-	.min_price = 500;
-	.max_price = 2000;
-	.daily_spending_limit = 300000;
+	.daily_cap = 500000;
+	.mission_seconds = 21600;
 	.trades_for_coin = 10;
-	.karma_per_trade = 1;
 
-	setarray .common_items$[0],
-		"Jellopy",          // 909
-		"Garlet",           // 910
-		"Scell",            // 911
-		"Zargon",           // 912
-		"Tooth_Of_Bat",     // 913
-		"Fluff",            // 914
-		"Chrysalis",        // 915
-		"Feather_Of_Birds", // 916
-		"Talon",            // 917
-		"Spawn",            // 918
-		"Peaked_Hat",       // 919
-		"Fin",              // 920
-		"Cactus_Needle",    // 921
-		"Stone_Heart",      // 953
-		"Shining_Scales",   // 954
-		"Worm_Peelings",    // 955
-		"Gill",             // 956
-		"Decayed_Nail",     // 957
-		"Horrendous_Mouth", // 958
-		"Rotten_Scale",     // 959 Stinky Scale
-		"Nipper",           // 960
-		"Conch",            // 961
-		"Coral_Reef",       // 962
-		"Limpid_Celestial_Robe", // 964
-		"Cyfar",            // 7053
-		"Brigan",           // 7054
-		"Animal's_Skin",    // skin
-		"Feather";          // 949
+	setarray .abundant_id[0], 7152, 7214, 7316, 1001075, 7318, 7215, 7186, 1001084, 7095, 7567, 7218, 7222, 1001074, 7067, 7512, 7205, 7163, 7322, 7122, 7568, 6086, 7203, 25730, 25728, 7107, 7202, 7071, 7320, 7124, 7116, 25159;
+	setarray .abundant_price[0], 1500, 1500, 1400, 1400, 1400, 1300, 1300, 1300, 1200, 1200, 1200, 1100, 1100, 1100, 1000, 1000, 1000, 900, 900, 900, 800, 800, 800, 700, 700, 700, 600, 600, 600, 500, 500;
+	setarray .common_id[0], 1001080, 1001082, 1001081, 1001087, 1001088, 1001089, 7117, 7162, 25892, 25893, 25894, 25895, 25896, 1001079, 6394, 7192, 6557, 7264, 1000225, 1001076, 1001077, 1001078, 1001424, 1001426, 1001428, 1001430, 7168, 7219, 7225, 7171;
+	setarray .common_price[0], 4000, 3900, 3800, 3700, 3700, 3600, 3500, 3400, 3300, 3200, 3100, 3100, 3000, 2900, 2800, 2700, 2600, 2500, 2400, 2400, 2300, 2200, 2100, 2000, 1900, 1800, 1800, 1700, 1600, 1500;
+	setarray .uncommon_id[0], 6921, 25257, 6732, 7265, 7070, 1000511, 6924, 1000510, 6073, 7209, 6245, 6265, 6264, 1000512, 7266, 7299, 1001425, 1001427, 1001429, 1001431, 7208, 1001072, 6922, 25615, 1001073, 1001083, 1001085, 1001086, 7159, 7195;
+	setarray .uncommon_price[0], 10000, 9800, 9600, 9400, 9200, 9000, 8800, 8600, 8300, 8100, 7900, 7700, 7500, 7300, 7100, 6900, 6700, 6500, 6300, 6100, 5900, 5700, 5400, 5200, 5000, 4800, 4600, 4400, 4200, 4000;
+	setarray .rare_id[0], 7226, 7442, 1000513, 1000514, 25616, 1000515, 25618, 7323, 1000516, 6263, 7441, 25617, 1000517, 7207, 6247, 7440, 7268, 7072;
+	setarray .rare_price[0], 30000, 28800, 27600, 26500, 25300, 24100, 22900, 21800, 20600, 19400, 18200, 17100, 15900, 14700, 13500, 12400, 11200, 10000;
 
-	setarray .misc_items$[0],
-		"Sticky_Mucus",     // 938
-		"Bee_Sting",        // 939
-		"Grasshopper's_Leg",// 940
-		"Solid_Shell",      // 943
-		"Horseshoe",        // 944
-		"Raccoon_Leaf",     // 945
-		"Snail's_Shell",    // 946
-		"Horn",             // 947
-		"Bear's_Foot",      // 948
-		"Feather",          // 949
-		"Heart_Of_Mermaid", // 950
-		"Fin",              // 920
-		"Cactus_Needle",    // 921
-		"Stone",            // 7049
-		"Wooden_Block",     // 1019 Trunk
-		"Tree_Root",        // 902
-		"Stem",             // 905
-		"Pointed_Scale",    // 906
-		"Resin",            // 907
-		"Spawn",            // 918
-		"Powder_Of_Butterfly", // 924
-		"Bill_Of_Birds",    // 925
-		"Scale_Of_Snakes",  // 926 Snake Scale
-		"Insect_Feeler",    // 928
-		"Immortal_Heart",   // 929
-		"Rotten_Bandage",   // 930
-		"Orcish_Voucher",   // 931
-		"Skel_Bone",        // 932
-		"Mementos",         // 934
-		"Skull",            // 935
-		"Red_Socks_With_Holes", // 736
-		"Phracon",          // 1010
-		"Emveretarcon",     // 1011
-		"Nail_Of_Orc",      // 1043 Orc Claw
-		"Evil_Horn",        // 923
-		"Detrimindexta",    // 971
-		"Karvodailnirol",   // 972
-		"Fish_Tail",        // 1023
-		"Jaws_Of_Ant",      // 1014 Ant Jaw
-		"Anolian_Skin",     // 7003
-		"Piece_Of_Egg_Shell", // 7032
-		"Poison_Spore",     // 7033
-		"Sticky_Webfoot",   // 7041
-		"Starsand_Of_Witch", // 1061 Witched Starsand
-		"Burning_Heart",    // 7097
-		"Live_Coal",        // 7098
-		"Old_Frying_Pan",   // 7031
-		"Yoyo_Tail",        // 942
-		"Cyfar",            // 7053
-		"Brigan";           // 7054
-	end;
+	setarray .mcommon_id[0], 1001079, 25896, 25895, 25894, 25893, 25892, 7162, 7117, 1001089, 1001088, 1001087, 1001081, 1001082, 1001080;
+	setarray .mcommon_qty[0], 119, 121, 123, 126, 128, 131, 133, 136, 138, 140, 143, 145, 148, 150;
+	setarray .mcommon_pay[0], 517600, 544500, 572000, 585900, 614400, 648400, 678300, 714000, 745200, 777000, 793600, 826500, 865800, 900000;
+	setarray .muncommon_id[0], 7299, 7266, 1000512, 6264, 6265, 6245, 7209, 6073, 1000510, 6924, 1000511, 7070, 7265, 6732, 25257, 6921;
+	setarray .muncommon_qty[0], 49, 51, 52, 53, 55, 56, 58, 59, 60, 62, 63, 64, 66, 67, 69, 70;
+	setarray .muncommon_pay[0], 507200, 543200, 569400, 596200, 635200, 663600, 704700, 734600, 774000, 818400, 850500, 883200, 930600, 964800, 1014300, 1050000;
+	setarray .mrare_id[0], 1000516, 7323, 25618, 1000515, 25616, 1000514, 1000513, 7442, 7226;
+	setarray .mrare_qty[0], 18, 19, 20, 21, 21, 22, 23, 24, 25;
+	setarray .mrare_pay[0], 556200, 621300, 687000, 759200, 797000, 874500, 952200, 1036800, 1125000;
+
+	.abundant_count = getarraysize(.abundant_id);
+	.common_count = getarraysize(.common_id);
+	.uncommon_count = getarraysize(.uncommon_id);
+	.rare_count = getarraysize(.rare_id);
+	.mcommon_count = getarraysize(.mcommon_id);
+	.muncommon_count = getarraysize(.muncommon_id);
+	.mrare_count = getarraysize(.mrare_id);
+	return;
 }
