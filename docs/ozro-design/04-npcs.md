@@ -89,7 +89,7 @@ Objetivo: convertir a Garrett en el punto de entrada de la economía de basura, 
 
 ### Alma de MVP `pendiente`
 
-- Se obtiene en los **tiers de recompensas del MVP Tracker/Journal**.
+- Se obtiene al cazar MVPs naturales: 1 Alma normal, 2 grande, 3 enorme; los tiers del Journal dan Almas extra.
 - Uso futuro: invocador de MVPs y receta de Bloody Branches.
 - No debe generar un loop infinito (matar MVP → alma → invocar el mismo MVP → alma); las kills en el mapa de invocación no deben contar.
 - Ver [12-mvp-tracker-journal.md](./12-mvp-tracker-journal.md).

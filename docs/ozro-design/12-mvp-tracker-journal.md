@@ -48,11 +48,28 @@ Variables nuevas, solo para recompensas:
 ### 3. Almas de MVP
 
 - Item actual: `MVP_Soul` (`35005`, “Alma de MVP”).
-- Fuente principal: recompensas de tiers del Journal.
+- **Fuente principal:** cada MVP natural derrotado entrega Almas según su dificultad.
+- Las Almas van al **killer**; la party recibe progreso de asistencia, pero no Almas extra. Esto evita multiplicar la economía por tamaño de party.
+- Si el inventario está lleno, el Alma queda pendiente para reclamar en el Journal.
 - Uso futuro:
   - Invocador de MVPs en un mapa fijo.
   - Ingrediente para fabricar Bloody Branches.
 - Decisión pendiente: si el Alma es tradeable o account-bound. Por ahora se puede dejar tradeable.
+
+### Almas por kill según dificultad
+
+Usar `MvpExp` del mob como medida de dificultad:
+
+| Dificultad | MvpExp | Almas por kill | Costo de invocación |
+|------------|-------:|---------------:|--------------------:|
+| Normal | < 500.000 | 1 | 1 |
+| Grande | 500.000–1.500.000 | 2 | 2 |
+| Enorme | > 1.500.000 | 3 | 3 |
+
+- La mayoría de los MVPs queda en 1 Alma.
+- Los MVPs grandes dan y cuestan más.
+- Se puede agregar un tier especial de 5 Almas para jefes de raid concretos si hace falta.
+- Las kills en mapas de invocación/branches **no** entregan Almas ni cuentan para el Tracker.
 
 ## Tiers propuestos
 
@@ -60,23 +77,26 @@ Los tiers son **acumulativos** y se reclaman una vez por personaje.
 
 | Tier | Golpes finales | Asistencias | MVPs únicos | Recompensa |
 |------|---------------:|------------:|------------:|------------|
-| 1 | 5 | 10 | — | 25.000 zeny + 3 Ozro Bronze |
+| 1 | 5 | 10 | — | 25.000 zeny |
 | 2 | 25 | 50 | 5 | 1 Alma de MVP + 50.000 zeny |
 | 3 | 75 | 150 | 15 | 2 Almas de MVP + 100.000 zeny |
-| 4 | 150 | 300 | 30 | 3 Almas de MVP + 1 Ozro Silver |
-| 5 | 300 | 600 | 45 | 5 Almas de MVP + 1 Ozro Gold |
+| 4 | 150 | 300 | 30 | 3 Almas de MVP + 150.000 zeny |
+| 5 | 300 | 600 | 45 | 5 Almas de MVP + 250.000 zeny |
 
 - “Golpes finales **o** asistencias”: el jugador avanza por cualquiera de las dos vías.
 - Los MVPs únicos se cuentan sumando kills y asistencias por ID distinto.
+- Los tiers son recompensas extra; el Alma principal se gana por kill.
+- Las monedas OzRo quedan fuera de este ciclo.
 - Los valores son una primera propuesta; se ajustan después de ver el historial real.
 
 ## Invocador futuro
 
 - Mapa fijo del overworld por ahora; instancia/arena privada más adelante.
-- Lista de MVPs invocables con costo en Almas:
-  - MVP fácil: 1 Alma.
-  - MVP medio: 2–3 Almas.
-  - MVP difícil: 4–5 Almas.
+- Lista de MVPs invocables con costo en Almas, espejando la dificultad:
+  - Normal: 1 Alma.
+  - Grande: 2 Almas.
+  - Enorme: 3 Almas.
+  - Jefes especiales: 5 Almas si se agregan.
 - El jugador elige un MVP fijo; no es RNG puro como Bloody Branch.
 - Los MVPs invocados en el mapa de invocación **no cuentan** para el Tracker ni para los tiers.
 - Decidir si dejan drops normales, drops de MVP reducidos o ningún drop de MVP para evitar loops.
