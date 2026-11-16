@@ -43,13 +43,14 @@ La sección **Comentarios** al final de cada archivo es un borrador libre: se ap
 | [09-estado-tecnico-y-estabilidad.md](./09-estado-tecnico-y-estabilidad.md) | Revisión técnica: rev, cliente, PACKETVER, skills y mapas faltantes antes de congelar |
 | [10-cliente-organizacion-y-pruebas.md](./10-cliente-organizacion-y-pruebas.md) | Cómo ordenar el cliente, separar base/custom y probar el cliente actual sin romper lo que funciona |
 | [12-mvp-tracker-journal.md](./12-mvp-tracker-journal.md) | Tracker, Journal y Almas de MVP: variables, tiers, invocador y branches |
+| [13-mercado-npc-tasador.md](./13-mercado-npc-tasador.md) | Mercado NPC sin bots: tasador, consignación y casa de empeño |
 
 ## Repos relacionados
 
 - **Servidor:** `rathena/` — scripts en `npc/custom/ozro/`, config en `conf/import/`
 - **API:** `ozro-backup/src/api/server.js`
 - **Web:** `ozro-site/`
-- **Bots comerciales:** `ragnabots/` — referencia de precios para Garrett
+- **Bots comerciales:** `ragnabots/` — **DEPRECADO**; solo datos históricos de referencia
 
 ## Decisiones recientes
 
@@ -64,6 +65,6 @@ La sección **Comentarios** al final de cada archivo es un borrador libre: se ap
 - **2026-11-16:** El contenido de Hercules **no se porta**: queda como referencia de ideas y lore. Todo NPC nuevo debe ser lore-friendly.
 - **2026-11-16:** Primero balancear lo que ya está activo (bounties, repetibles, Garrett, monedas) y después agregar contenido nuevo.
 - **2026-11-16:** Monedas OzRo por tiers (bronce/plata/oro/platino); usos de tiers altos se definen a medida que crece el contenido. El Alma de MVP se obtiene al cazar MVPs naturales (1/5/10 según dificultad) y en los tiers del MVP Tracker/Journal.
-- **2026-11-16:** Garrett tendrá modo junk-hunter (misión diaria única por cuenta) y modo bargain, con precios de referencia desde ragnabots. El Gambler se reemplaza por refine safe con monedas OzRo (“si falla, no se rompe”).
+- **2026-11-16:** Garrett implementado con ofertas diarias y una misión por cuenta. El mercado NPC sin bots se resolverá con vending y un tasador/casa de empeño; `ragnabots` queda deprecado. El Gambler se reemplaza por refine safe con monedas OzRo (“si falla, no se rompe”).
 - **2026-11-16:** No hay server de prueba; se prueba directo en producción con los 3 jugadores.
 - **2026-11-16:** Lo implementado se borra de la documentación y queda en el changelog público (general) y en el git log (detalle técnico).

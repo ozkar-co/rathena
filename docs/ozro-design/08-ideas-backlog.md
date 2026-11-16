@@ -31,8 +31,10 @@ Lluvia de ideas del documento antiguo, **reformuladas** y etiquetadas. No es lis
 | Deshabilitar banco/correo del menú → solo NPC | `pendiente` | Más inmersivo; scripts bank en repo |
 | Cash points compra/venta no 1:1 | `probar` | `points2zeny.txt`; los points eran un parche por no poder tocar drops |
 | Reducir votos Kafra Voting Dungeon a 5 | `pendiente` | Si usan el dungeon |
-| Garrett: junk-hunter + bargain | `reformular` | Misión diaria única por cuenta; precios desde ragnabots; zeny escalado |
+| Garrett: ofertas diarias + misión | `implementado` | 5 ofertas y 1 misión por cuenta; rareza por oferta, sin precios de mercado |
 | Lista de basura de Garrett en la web | `pendiente` | Para que los jugadores sepan qué guardar |
+| Tasador / casa de empeño | `pendiente` | Mercado NPC sin bots para objetos que no son chatarra; ver [13-mercado-npc-tasador.md](./13-mercado-npc-tasador.md) |
+| Mercado NPC sin bots | `pendiente` | Vending para venta directa + tasador/consignación para el resto |
 | Gambler → refine safe con monedas OzRo | `reformular` | Sin Special Gold; “si falla no se rompe”, no nivel fijo |
 | Resurrect con costo de item | `pendiente` | Similar a Call Homunculus (que ya gasta Germination_Breed + Yggdrasilberry_Dew); caro pero no prohibitivo; definir item/cantidad |
 | Monedas OzRo por tiers | `pendiente` | Bronce/plata/oro/platino; definir usos a medida que crece el contenido |
