@@ -1,6 +1,6 @@
 # Arena MVP: instancia e invocador
 
-**Estado:** `probar` — T1 y T2 implementados en modo solo; party, T3 y drops pendientes.
+**Estado:** `probar` — T1, T2 y T3 accesible implementados en modo solo; party y drops pendientes.
 
 ## Mapa e instancia
 
@@ -56,7 +56,7 @@ Body:
 |------|------:|--------|
 | T1 | 3 Almas + keys | Implementado |
 | T2 | 5 Almas + keys | Implementado |
-| T3 | 10 Almas + keys | Pendiente |
+| T3 | 10 Almas + keys | Implementado (solo MVPs accesibles) |
 | T4 | — | Fuera de invocación |
 | T5 | — | Fuera de invocación |
 
@@ -103,6 +103,24 @@ Body:
 | Turtle General | 5 | 5 Broken Shell (7070) |
 | Atroce | 5 | 5 Bloody Rune (7563) |
 
+## Keys T3
+
+Solo los T3 accesibles sin guild dungeon, nightmare ni quest de acceso:
+
+| MVP | Almas | Keys |
+|---|---:|---|
+| Scaraba Queen | 10 | 10 Queen Wing Piece (6326) |
+| Kiel D-01 | 10 | 5 Pocket Watch (7513) |
+| Kraken | 10 | 10 Tentacle (962) + 1 Treasure Box (7444) |
+
+### T3 excluidos de la invocación
+
+- **The Last One** y **King of the Alley**: retirados por diseño.
+- **Guild dungeon:** Angry Student Pyuriel, General Daehyun, Dark Guardian Kades y Gioia.
+- **Nightmare:** Amon Ra (Nightmare) y Nightmare Baphomet.
+- **Quest o instancia de acceso:** Wounded Morocc (quest/evento), Gloom Under Night (Rachel Sanctuary), Vesper (Juperos), Egnigem Cenia (Lab Passport) y Venomous Chimera (Werner Lab).
+- Si en el futuro se desbloquean esos accesos, se pueden reevaluar.
+
 ## Tracker
 
 - `npc/custom/ozro/mvp_tracker.txt` ignora kills dentro de instancias para `IM_CHAR`, `IM_PARTY`, `IM_GUILD` e `IM_CLAN`.
@@ -118,14 +136,14 @@ Body:
 ## Pendientes
 
 - Pasar de `IM_CHAR` a party (`IM_PARTY`) y definir quién paga.
-- Implementar T3.
+- Reevaluar T3 si se desbloquean más accesos; T4/T5 siguen fuera.
 - Definir drops de MVPs invocados.
 - Definir devoluciones, cooldown y límites de invocación.
 - Cargar en el vendedor viajero las keys de lujo: Pirate Bandana, Memento, etc. Ver [15-vendedor-viajero.md](./15-vendedor-viajero.md).
 
 ## Pruebas
 
-1. Crear una instancia T1 y T2, pagar Almas + keys y verificar que se descuenten.
+1. Crear una instancia T1, T2 y T3, pagar Almas + keys y verificar que se descuenten.
 2. Verificar que el MVP elegido aparezca una sola vez.
 3. Matar el MVP: warp a Prontera, timer de 1 segundo y destroy.
 4. Dejar que expire el timer de 1 hora: warp y destroy.

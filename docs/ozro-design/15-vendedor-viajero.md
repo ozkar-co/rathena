@@ -63,7 +63,8 @@
 | Masque of Tutankhamen | 7114 | Pharaoh | 1 | semanal | manual | 12.5% exclusivo de Pharaoh. |
 
 - Los items de volumen de T2 (Skel-Bone, Sharp Scale, Blue Herb, Steel, Black Hair, Comodo Leather) pueden venderse en paquetes de 10–100, pero no son la prioridad del viajero.
-- T3 queda para después; T4/T5 no son invocables.
+- T3 no agrega items de viajero por ahora: sus tres MVPs accesibles (Scaraba Queen, Kiel D-01 y Kraken) usan drops farmeables.
+- T4/T5 no son invocables.
 
 ## Precios
 

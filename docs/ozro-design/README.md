@@ -67,7 +67,7 @@ La sección **Comentarios** al final de cada archivo es un borrador libre: se ap
 - **2026-11-16:** El contenido de Hercules **no se porta**: queda como referencia de ideas y lore. Todo NPC nuevo debe ser lore-friendly.
 - **2026-11-16:** Primero balancear lo que ya está activo (bounties, repetibles, Garrett, monedas) y después agregar contenido nuevo.
 - **2026-11-16:** Monedas OzRo por tiers (bronce/plata/oro/platino); usos de tiers altos se definen a medida que crece el contenido. El Alma de MVP se obtiene al cazar MVPs naturales (1/3/5/10/20 puntos según el tier fijo por ID; killer y party suman) y se reclama en el Journal.
-- **2026-11-16:** Arena MVP implementada en modo solo para T1 y T2, con costo en Almas + keys. T3 queda pendiente; T4/T5 fuera de invocación. Ver [14-arena-mvp-invocador.md](./14-arena-mvp-invocador.md).
+- **2026-11-16:** Arena MVP implementada en modo solo para T1, T2 y T3 accesible, con costo en Almas + keys. T4/T5 fuera de invocación. Ver [14-arena-mvp-invocador.md](./14-arena-mvp-invocador.md).
 - **2026-11-16:** Garrett implementado con ofertas diarias y una misión por cuenta. El mercado NPC sin bots se resolverá con vending y un tasador/casa de empeño; `ragnabots` queda deprecado. El Gambler se reemplaza por refine safe con monedas OzRo (“si falla, no se rompe”).
 - **2026-11-16:** No hay server de prueba; se prueba directo en producción con los 3 jugadores.
 - **2026-11-16:** Lo implementado se borra de la documentación y queda en el changelog público (general) y en el git log (detalle técnico).
