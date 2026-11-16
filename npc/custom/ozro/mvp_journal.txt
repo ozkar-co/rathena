@@ -1,5 +1,5 @@
 //===== OzRo Script ==========================================
-//= Cronista de Cacerias
+//= Cronista de Cacerías
 //===== Description: =========================================
 //= Lee MVP_KILL_<id> y MVP_SUPP_<id>.
 //= Muestra resumen, lista por MVP y permite reclamar Almas.
@@ -35,19 +35,19 @@ L_Summary:
 	callsub L_CalcSouls;
 	mes .npc_name$;
 	mes "^777777Tus estadísticas de caza^000000";
-	mes "Golpes finales: ^009900" + $@MVPJ_KILLS + "^000000";
-	mes "Asistencias: ^009900" + $@MVPJ_SUPPS + "^000000";
-	mes "MVPs únicos: ^009900" + $@MVPJ_UNIQUE + " / " + .mvp_count + "^000000";
-	mes "Puntos de Alma pendientes: ^009900" + $@MVPJ_PENDING + "^000000";
-	if ($@MVPJ_TOP_KILL_ID > 0) {
-		mes "MVP más cazado: ^FF0000" + getmonsterinfo($@MVPJ_TOP_KILL_ID, MOB_NAME) + "^000000";
-		mes "(" + $@MVPJ_TOP_KILL_COUNT + " golpes finales)";
+	mes "Golpes finales: ^009900" + @MVPJ_KILLS + "^000000";
+	mes "Asistencias: ^009900" + @MVPJ_SUPPS + "^000000";
+	mes "MVPs únicos: ^009900" + @MVPJ_UNIQUE + " / " + .mvp_count + "^000000";
+	mes "Puntos de Alma pendientes: ^009900" + @MVPJ_PENDING + "^000000";
+	if (@MVPJ_TOP_KILL_ID > 0) {
+		mes "MVP más cazado: ^FF0000" + getmonsterinfo(@MVPJ_TOP_KILL_ID, MOB_NAME) + "^000000";
+		mes "(" + @MVPJ_TOP_KILL_COUNT + " golpes finales)";
 	}
-	if ($@MVPJ_TOP_SUPP_ID > 0) {
-		mes "MVP más asistido: ^0000FF" + getmonsterinfo($@MVPJ_TOP_SUPP_ID, MOB_NAME) + "^000000";
-		mes "(" + $@MVPJ_TOP_SUPP_COUNT + " asistencias)";
+	if (@MVPJ_TOP_SUPP_ID > 0) {
+		mes "MVP más asistido: ^0000FF" + getmonsterinfo(@MVPJ_TOP_SUPP_ID, MOB_NAME) + "^000000";
+		mes "(" + @MVPJ_TOP_SUPP_COUNT + " asistencias)";
 	}
-	if ($@MVPJ_KILLS == 0 && $@MVPJ_SUPPS == 0) {
+	if (@MVPJ_KILLS == 0 && @MVPJ_SUPPS == 0) {
 		mes "Aún no has derrotado ningún MVP.";
 		mes "Empieza tu viaje de caza hoy mismo.";
 	}
@@ -56,7 +56,7 @@ L_Summary:
 
 L_List:
 	callsub L_CalcStats;
-	if ($@MVPJ_UNIQUE == 0) {
+	if (@MVPJ_UNIQUE == 0) {
 		mes .npc_name$;
 		mes "Todavía no tengo registros tuyos.";
 		mes "Vuelve después de cazar algún MVP.";
@@ -64,7 +64,7 @@ L_List:
 		return;
 	}
 
-	.@pages = ($@MVPJ_UNIQUE + 9) / 10;
+	.@pages = (@MVPJ_UNIQUE + 9) / 10;
 	.@page = 0;
 	while (1) {
 		mes .npc_name$;
@@ -81,7 +81,7 @@ L_List:
 				continue;
 			}
 			if (.@shown >= 10) break;
-			mes getmonsterinfo(.@id, MOB_NAME) + " - Kills: " + .@k + " / Asist: " + .@s;
+			mes getmonsterinfo(.@id, MOB_NAME) + " - Kills: " + .@k + " / Asistencias: " + .@s;
 			.@shown = .@shown + 1;
 			.@seen = .@seen + 1;
 		}
@@ -112,12 +112,12 @@ L_Souls:
 	callsub L_CalcSouls;
 	mes .npc_name$;
 	mes "^777777Almas de MVP^000000";
-	mes "Puntos ganados: ^009900" + $@MVPJ_EARNED + "^000000";
+	mes "Puntos ganados: ^009900" + @MVPJ_EARNED + "^000000";
 	mes "Almas reclamadas: ^009900" + MVP_SOUL_CLAIMED + "^000000";
-	mes "Puntos pendientes: ^009900" + $@MVPJ_PENDING + "^000000";
+	mes "Puntos pendientes: ^009900" + @MVPJ_PENDING + "^000000";
 	mes "Cada punto se convierte en 1 Alma de MVP.";
 	next;
-	if ($@MVPJ_PENDING <= 0) {
+	if (@MVPJ_PENDING <= 0) {
 		mes .npc_name$;
 		mes "No tienes puntos pendientes.";
 		mes "Sigue cazando MVPs naturales.";
@@ -125,49 +125,49 @@ L_Souls:
 		return;
 	}
 	if (select("Reclamar Almas:Volver") == 2) return;
-	if (!checkweight(35005, $@MVPJ_PENDING)) {
+	if (!checkweight(35005, @MVPJ_PENDING)) {
 		mes .npc_name$;
-		mes "No tienes espacio suficiente para " + $@MVPJ_PENDING + " Almas.";
+		mes "No tienes espacio suficiente para " + @MVPJ_PENDING + " Almas.";
 		mes "Haz lugar en el inventario y vuelve a intentarlo.";
 		next;
 		return;
 	}
-	getitem 35005, $@MVPJ_PENDING;
-	MVP_SOUL_CLAIMED = MVP_SOUL_CLAIMED + $@MVPJ_PENDING;
+	getitem 35005, @MVPJ_PENDING;
+	MVP_SOUL_CLAIMED = MVP_SOUL_CLAIMED + @MVPJ_PENDING;
 	mes .npc_name$;
-	mes "Reclamaste " + $@MVPJ_PENDING + " Almas de MVP.";
+	mes "Reclamaste " + @MVPJ_PENDING + " Almas de MVP.";
 	next;
 	return;
 
 L_CalcStats:
-	$@MVPJ_KILLS = 0;
-	$@MVPJ_SUPPS = 0;
-	$@MVPJ_UNIQUE = 0;
-	$@MVPJ_TOP_KILL_ID = 0;
-	$@MVPJ_TOP_KILL_COUNT = 0;
-	$@MVPJ_TOP_SUPP_ID = 0;
-	$@MVPJ_TOP_SUPP_COUNT = 0;
+	@MVPJ_KILLS = 0;
+	@MVPJ_SUPPS = 0;
+	@MVPJ_UNIQUE = 0;
+	@MVPJ_TOP_KILL_ID = 0;
+	@MVPJ_TOP_KILL_COUNT = 0;
+	@MVPJ_TOP_SUPP_ID = 0;
+	@MVPJ_TOP_SUPP_COUNT = 0;
 
 	for (.@i = 0; .@i < .mvp_count; .@i++) {
 		.@id = .mvp_id[.@i];
 		.@k = getd("MVP_KILL_" + .@id);
 		.@s = getd("MVP_SUPP_" + .@id);
-		$@MVPJ_KILLS = $@MVPJ_KILLS + .@k;
-		$@MVPJ_SUPPS = $@MVPJ_SUPPS + .@s;
-		if (.@k > 0 || .@s > 0) $@MVPJ_UNIQUE = $@MVPJ_UNIQUE + 1;
-		if (.@k > $@MVPJ_TOP_KILL_COUNT) {
-			$@MVPJ_TOP_KILL_ID = .@id;
-			$@MVPJ_TOP_KILL_COUNT = .@k;
+		@MVPJ_KILLS = @MVPJ_KILLS + .@k;
+		@MVPJ_SUPPS = @MVPJ_SUPPS + .@s;
+		if (.@k > 0 || .@s > 0) @MVPJ_UNIQUE = @MVPJ_UNIQUE + 1;
+		if (.@k > @MVPJ_TOP_KILL_COUNT) {
+			@MVPJ_TOP_KILL_ID = .@id;
+			@MVPJ_TOP_KILL_COUNT = .@k;
 		}
-		if (.@s > $@MVPJ_TOP_SUPP_COUNT) {
-			$@MVPJ_TOP_SUPP_ID = .@id;
-			$@MVPJ_TOP_SUPP_COUNT = .@s;
+		if (.@s > @MVPJ_TOP_SUPP_COUNT) {
+			@MVPJ_TOP_SUPP_ID = .@id;
+			@MVPJ_TOP_SUPP_COUNT = .@s;
 		}
 	}
 	return;
 
 L_CalcSouls:
-	$@MVPJ_EARNED = 0;
+	@MVPJ_EARNED = 0;
 	for (.@i = 0; .@i < .mvp_count; .@i++) {
 		.@id = .mvp_id[.@i];
 		.@k = getd("MVP_KILL_" + .@id);
@@ -185,10 +185,10 @@ L_CalcSouls:
 			else if (.@level < 180) .@points = 5;
 			else .@points = 10;
 		}
-		$@MVPJ_EARNED = $@MVPJ_EARNED + ((.@k + .@s) * .@points);
+		@MVPJ_EARNED = @MVPJ_EARNED + ((.@k + .@s) * .@points);
 	}
-	$@MVPJ_PENDING = $@MVPJ_EARNED - MVP_SOUL_CLAIMED;
-	if ($@MVPJ_PENDING < 0) $@MVPJ_PENDING = 0;
+	@MVPJ_PENDING = @MVPJ_EARNED - MVP_SOUL_CLAIMED;
+	if (@MVPJ_PENDING < 0) @MVPJ_PENDING = 0;
 	return;
 
 OnInit:
