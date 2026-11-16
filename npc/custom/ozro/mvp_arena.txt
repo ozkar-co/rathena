@@ -54,13 +54,13 @@ OnInstanceInit:
 	removemapflag .@map$, mf_noskill;
 	setmapflag .@map$, mf_nobranch;
 	setmapflag .@map$, mf_nomemo;
-	setmapflagnosave .@map$, "prontera", 173, 155;
+	setmapflagnosave .@map$, "prontera", 171, 149;
 	monster .@map$, 50, 24, "Poring de Prueba", 1002, 1, instance_npcname("OzroTestSpawner") + "::OnPoringDead";
 	end;
 
 OnPoringDead:
 	.@instance_id = instance_id();
-	instance_warpall "prontera", 173, 155, .@instance_id;
+	instance_warpall "prontera", 171, 149, .@instance_id;
 	initnpctimer;
 	end;
 
