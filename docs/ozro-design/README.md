@@ -16,14 +16,14 @@ Cada archivo es independiente y editable. Convenciones:
 | `reformular` | Idea válida pero hay que replantearla |
 | `probar` | Implementado a medias; falta jugar y ajustar |
 | `descartado` | Ya no aplica o se rechazó |
-| `hercules` | Existía en Hercules; revisar al portar |
+| `hercules` | Existía en Hercules; solo referencia, no se porta |
 
 La sección **Comentarios** al final de cada archivo es un borrador libre: se apuntan ideas sueltas al jugar y luego se **organizan** dentro de las secciones estructuradas del propio documento.
 
 ## Flujo de trabajo
 
 - **Ideas nuevas:** apuntarlas en *Comentarios* del archivo que corresponda; después moverlas a la tabla o sección adecuada.
-- **Al implementar algo:** borrar el detalle de planificación y dejar solo una línea marcada como `implementado`. No acumular documentación de cosas ya hechas — la doc se adelgaza a medida que el servidor crece.
+- **Al implementar algo:** borrar el bloque de planificación del doc y registrarlo en el **changelog público** (lo general) y en el **git log** (lo técnico). La doc se vacía a medida que el servidor crece; cuando quede vacía, el contenido custom está terminado.
 - **Al crear contenido nuevo, actualizar la web:**
   - Sección **Info** del sitio → solo el *listado* de NPCs custom y quests custom.
   - Sección **Enciclopedia** → guías y detalles específicos (si aplica).
@@ -35,19 +35,20 @@ La sección **Comentarios** al final de cada archivo es un borrador libre: se ap
 | [01-vision-y-contexto.md](./01-vision-y-contexto.md) | Quiénes somos, cómo jugamos, problemas y principios de diseño |
 | [02-configuracion-servidor.md](./02-configuracion-servidor.md) | Rates, reglas y personalizaciones técnicas |
 | [03-sistemas-core.md](./03-sistemas-core.md) | Sistemas prioritarios: challenges, meta por cuenta, loops diarios |
-| [04-npcs.md](./04-npcs.md) | Inventario de NPCs custom: activos, desactivados, perdidos |
-| [05-quests-custom.md](./05-quests-custom.md) | Quests propias (Crimson Weapons, etc.) |
+| [04-npcs.md](./04-npcs.md) | NPCs custom: activos, reformulaciones, monedas y contenido pendiente |
+| [05-quests-custom.md](./05-quests-custom.md) | Quests custom, crafting con lore y balance de bounties |
 | [06-arcos-oficiales.md](./06-arcos-oficiales.md) | Lore oficial curado por temporadas; guías y ajustes |
 | [07-web-api.md](./07-web-api.md) | Integración web, rankings, perfil de cuenta |
 | [08-ideas-backlog.md](./08-ideas-backlog.md) | Lluvia de ideas antigua reformulada y priorizada |
 | [09-estado-tecnico-y-estabilidad.md](./09-estado-tecnico-y-estabilidad.md) | Revisión técnica: rev, cliente, PACKETVER, skills y mapas faltantes antes de congelar |
-| [10-cliente-organizacion-y-pruebas.md](./10-cliente-organizacion-y-pruebas.md) | Cómo ordenar el cliente, separar base/custom y probar 20210703 sin romper lo que funciona |
+| [10-cliente-organizacion-y-pruebas.md](./10-cliente-organizacion-y-pruebas.md) | Cómo ordenar el cliente, separar base/custom y probar el cliente actual sin romper lo que funciona |
 
 ## Repos relacionados
 
 - **Servidor:** `rathena/` — scripts en `npc/custom/ozro/`, config en `conf/import/`
 - **API:** `ozro-backup/src/api/server.js`
 - **Web:** `ozro-site/`
+- **Bots comerciales:** `ragnabots/` — referencia de precios para Garrett
 
 ## Decisiones recientes
 
@@ -56,6 +57,12 @@ La sección **Comentarios** al final de cada archivo es un borrador libre: se ap
 - **2026-07:** Meta de progreso por **cuenta principal**, no por personaje. Incentivar una cuenta por jugador en lugar de multi-cuenta para suplir party.
 - **2026-07:** Arcos oficiales se curan poco a poco; buscar guías en internet y crear pistas/ayudas según se vayan jugando.
 - **2026-07:** Sin cambios al client por ahora. Todo server-side + web.
-- **2026-07:** Crimson Weapons — en Hercules estaban rotas; en rAthena ya se pueden conseguir. Dirección: reactivar el flujo pero que la quest **imbuya elemento** (Marcus) en vez de crear las armas.
+- **2026-07:** Crimson Weapons — en Hercules estaban rotas; en rAthena ya se pueden conseguir. La idea inicial era reactivar el flujo con Marcus, pero quedó **superada el 2026-11-16**: no se porta la cadena; la lore queda como referencia para futuras fabricaciones.
 - **2026-11:** Congelar la base en rAthena de enero 2026 + cliente actual. Antes de balancear/traducir/crear contenido: alinear `PACKETVER` y recortar lo que el cliente no soporte. Ver [09-estado-tecnico-y-estabilidad.md](./09-estado-tecnico-y-estabilidad.md).
 - **2026-11:** No reconstruir el cliente desde cero por ahora. No tocar el cliente ni comprar el 20210406 hasta que algo se rompa; seguir con el actual. El custom vive en `ozro-cli/patch/`. Ver [10-cliente-organizacion-y-pruebas.md](./10-cliente-organizacion-y-pruebas.md).
+- **2026-11-16:** El contenido de Hercules **no se porta**: queda como referencia de ideas y lore. Todo NPC nuevo debe ser lore-friendly.
+- **2026-11-16:** Primero balancear lo que ya está activo (bounties, repetibles, Garrett, monedas) y después agregar contenido nuevo.
+- **2026-11-16:** Monedas OzRo por tiers (bronce/plata/oro/platino); usos de tiers altos se definen a medida que crece el contenido. El Alma de MVP la fabrica el colector (Card Collector).
+- **2026-11-16:** Garrett tendrá modo junk-hunter (misión diaria única por cuenta) y modo bargain, con precios de referencia desde ragnabots. El Gambler se reemplaza por refine safe con monedas OzRo (“si falla, no se rompe”).
+- **2026-11-16:** No hay server de prueba; se prueba directo en producción con los 3 jugadores.
+- **2026-11-16:** Lo implementado se borra de la documentación y queda en el changelog público (general) y en el git log (detalle técnico).

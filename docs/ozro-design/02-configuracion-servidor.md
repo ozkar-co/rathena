@@ -1,6 +1,6 @@
 # Configuración del servidor
 
-**Última revisión:** 2026-07-07  
+**Última revisión:** 2026-11-16
 **Fuente de verdad:** `conf/import/battle_conf.txt` (sobrescribe los defaults de `conf/battle/*.conf`)
 
 Cadena de carga: `conf/battle_athena.conf` → archivos en `conf/battle/` → **`conf/import/battle_conf.txt`**
@@ -13,7 +13,7 @@ Cadena de carga: `conf/battle_athena.conf` → archivos en `conf/battle/` → **
 
 | Parámetro | Valor | Fuente |
 |-----------|-------|--------|
-| Episodio | 14.3 | Documentación OzRo |
+| Episodio | Base rAthena enero 2026 (no 14.3) | [09-estado-tecnico-y-estabilidad.md](./09-estado-tecnico-y-estabilidad.md) |
 | Modo | Renewal | Servidor |
 | Nivel máximo | 175 / 60 | Tablas EXP renewal (`db/`) |
 | Acceso | VPN privada, solo invitación | — |
@@ -219,18 +219,20 @@ Los rates `_boss` aplican a monstruos clase boss. Los rates `_mvp` **no están e
 | Boss no se curan | Ajustado vía skill Heal/Fullheal (cura 1 HP en mobs), si la vía `monster.conf` no funciona, revisar primero.|
 | Drop -50% con +15 niveles | **No encontrado** en config |
 | ASPD 193 / 195 | **193** solo third; normal **190** |
-| Bounty → Cash Points + Special Gold | `probar` — revisar scripts bounty |
+| Bounty → zeny escalado + monedas OzRo | `pendiente` — revisar scripts bounty; el zeny fijo debe escalar |
 | Cash shop items varios | `pendiente` — fuera de battle_conf |
 | Merchant job EXP al vender | **Activo** (`shop_exp: 100`) |
 | Quests repetibles | **Activo** — `npc/custom/ozro/repeteables/` |
-| Bounty boards | **Activo** — 14 ciudades |
+| Bounty boards | **Activo** — 26 ciudades |
 
 ---
 
 ## Ajustes pendientes (del doc viejo)
 
 ```
-- Duplicar precio Crimson (cuando se reactive la quest)
+- Escalar zeny de bounty por nivel/banda (hoy es fijo)
+- Revisar bounties que dan 2 niveles; las de ~1 nivel se aceptan
+- Revisar repetibles que dan >1 nivel en niveles bajos
 - Bajar precios hunting a la mitad
 - Cambiar ratio compra/venta cash points (no 1:1)
 - Deshabilitar banco/correo del menú → solo vía NPC

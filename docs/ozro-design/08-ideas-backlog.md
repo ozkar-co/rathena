@@ -11,14 +11,16 @@ Lluvia de ideas del documento antiguo, **reformuladas** y etiquetadas. No es lis
 | Idea | Estado | Notas reformuladas |
 |------|--------|-------------------|
 | Challenges por cuenta con build/dificultad | `pendiente` | Ver [03-sistemas-core.md](./03-sistemas-core.md) |
-| Meta colección cartas + web | `implementado` / `pendiente` | Collector hecho; falta % en web |
+| Meta colección cartas + web | `implementado` / `pendiente` | Collector hecho; falta % en web; preservar datos |
+| MVP Tracker + MVP Journal | `pendiente` | Prioridad alta; kills y asistencias por MVP; no portar Hercules |
 | Cronista como guía de lore | `reformular` | Expandir `chronicler.txt` |
 | Daily Hunting Quest con racha | `en-repo` | `hunting_missions.txt` desactivado |
 | Recompensas por cuenta (prestigio) | `pendiente` | Reducir incentivo multi-cuenta |
-| Crimson Weapons + Marcus | `reformular` | rAthena OK; ver [05-quests-custom.md](./05-quests-custom.md) |
+| Crimson Weapons + Marcus | `descartado` | No se portan; hoy las Crimson son oficiales. La lore queda como referencia |
+| Partes especiales / fabricación de objetos de donación | `pendiente` | Objetos custom para crafting con lore |
 | Quests equipo pro con lore | `reformular` | = challenges + cadenas craft, no regalos |
-| Restructurar NPC cartas (tienda + misiones) | `reformular` | Extender card_collector |
-| Mercado partes equip común (barter) | `pendiente` | Barter NPC por tier; precios referencia PlayRO |
+| Restructurar NPC cartas (tienda + misiones) | `reformular` | Extender card_collector sin perder datos |
+| Mercado partes equip común (barter) | `pendiente` | Barter NPC por tier; precios referencia PlayRO/ragnabots |
 
 ---
 
@@ -27,10 +29,13 @@ Lluvia de ideas del documento antiguo, **reformuladas** y etiquetadas. No es lis
 | Idea | Estado | Notas |
 |------|--------|-------|
 | Deshabilitar banco/correo del menú → solo NPC | `pendiente` | Más inmersivo; scripts bank en repo |
-| Cash points compra/venta no 1:1 | `probar` | `points2zeny.txt` |
+| Cash points compra/venta no 1:1 | `probar` | `points2zeny.txt`; los points eran un parche por no poder tocar drops |
 | Reducir votos Kafra Voting Dungeon a 5 | `pendiente` | Si usan el dungeon |
+| Garrett: junk-hunter + bargain | `reformular` | Misión diaria única por cuenta; precios desde ragnabots; zeny escalado |
+| Lista de basura de Garrett en la web | `pendiente` | Para que los jugadores sepan qué guardar |
+| Gambler → refine safe con monedas OzRo | `reformular` | Sin Special Gold; “si falla no se rompe”, no nivel fijo |
+| Monedas OzRo por tiers | `pendiente` | Bronce/plata/oro/platino; definir usos a medida que crece el contenido |
 | Monke: frutas aleatorias (cualquiera) | `probar` | Doc: estaba roto |
-| Thrasher (compra junk caro) | `en-repo` | Sink zeny |
 | Stock Market NPC | `en-repo` | `npc/custom/etc/stock_market.txt` |
 | Blessed Ores en vez de Safe tickets + quest lore | `pendiente` | |
 | Incluir más cajas cashshop + World Tour Ticket crafteable | `pendiente` | |
@@ -71,8 +76,8 @@ Lluvia de ideas del documento antiguo, **reformuladas** y etiquetadas. No es lis
 | Sets custom con skills de otros jobs + Almas | `reformular` | Solo ultra-late o cosmético |
 | Dark Ritual: reset a Novice 1 → SoulStone valiosa | `reformular` | ¿Conflicto con reset fácil? |
 | NPC buffs por temporadas (esferas monk, adrenaline) | `pendiente` | Eventos estacionales |
-| Old Blacksmith: Special Gold → piedras BS | `pendiente` | Depende de bounty rewards |
-| MVP Soul (item custom) → invocar MVP | `pendiente` | Almas de matar MVPs / mvp hunting + items del secuaz permiten invocar un MVP concreto |
+| Old Blacksmith: monedas OzRo → piedras BS | `pendiente` | Depende de bounty rewards; ya no Special Gold |
+| MVP Soul (item custom) → invocar MVP | `pendiente` | La fabrica el colector (Card Collector); uso y receta pendientes; evitar loop infinito |
 | MVP room con cleaner | `pendiente` | Sala de MVPs con NPC de limpieza |
 | Reemplazo de WoE: capturar castillos | `reformular` | Captura da acceso a dungeon + tesoros; difícil, invocar mobs heavy en los vacíos |
 | Karma en misiones custom | `pendiente` | Karma +/- por personaje; misiones que exigen karma o dan recompensa según karma |
@@ -147,6 +152,8 @@ Inspiración en idle games y juegos de gestión de celular: **hago cosas, pero d
 | Libro con todas las quests extraídas | Preferir guía in-game + arcos curados |
 | Competencia principal por MVP/zeny | Injusta para tiempo y roles |
 | Regalar equip de wikis | Rompe progresión |
+| Portar NPCs de Hercules | Sprites/lore incompatibles; el repo viejo es referencia, no código a migrar |
+| Ox Hunter / Ox Merchant | Sprite elegido al azar, historia incompatible, quedaron a medio implementar |
 
 ---
 
@@ -156,8 +163,11 @@ Inspiración en idle games y juegos de gestión de celular: **hago cosas, pero d
 2. ¿Progreso por cuenta?
 3. ¿Sin tocar client?
 4. ¿Se puede probar en una tarde?
+5. ¿Balancea o reemplaza algo que ya está activo?
 
 Si 3+ son sí → subir prioridad.
+
+**Regla de orden:** primero balancear bounties, repetibles, Garrett y monedas existentes; después agregar NPCs/quests nuevas. No hay server de prueba: se valida directo en producción con los 3 jugadores.
 
 ## Comentarios
 

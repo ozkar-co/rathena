@@ -2,7 +2,7 @@
 
 ## Quiénes somos
 
-Servidor familiar OzRo — Renewal, Episode 14.3, acceso por VPN privada (solo invitación). Pocos jugadores (~3), optimizado para LAN/offline, no para población masiva.
+Servidor familiar OzRo — Renewal, base rAthena de enero 2026, acceso por VPN privada (solo invitación). Pocos jugadores (~3), optimizado para LAN/offline, no para población masiva.
 
 ## Cómo jugamos hoy
 
@@ -16,11 +16,12 @@ Servidor familiar OzRo — Renewal, Episode 14.3, acceso por VPN privada (solo i
 - **Competencia MVP:** Cacería de MVPs como competencia, pero penaliza healers y roles no-DPS.
 - **Reset:** Reset infinito para probar builds/roles, pero si es difícil va en contra del incentivo de cambiar de PJ.
 
-## Migración Hercules → rAthena
+## Relación con Hercules
 
 - rAthena solucionó varias cosas rotas en Hercules.
-- Se perdieron algunos NPCs custom al migrar (ver [04-npcs.md](./04-npcs.md)).
-- Algunas mecánicas que antes no funcionaban (ej. Crimson Weapons) ahora sí en rAthena.
+- El repo viejo de Hercules (`/home/oz/Code/ozro`) queda como **referencia de ideas y lore**, no como código a migrar.
+- **No se portan NPCs de Hercules.** Lo que valga la pena se reimplementa desde cero, lore-friendly y con el estándar actual de rAthena.
+- Algunas mecánicas que antes no funcionaban (ej. Crimson Weapons) ahora sí funcionan en rAthena y no necesitan quest de reemplazo.
 
 ## Hacia dónde queremos ir
 

@@ -2,56 +2,47 @@
 
 ## Principio de diseño
 
-Las quests deben ser **lore-friendly**. Se puede "tomar prestada" la inspiración de quests de servidores con más recorrido (**Xatiya**, **Atlantis**, etc.) e ir migrando quests/eventos según las descripciones publicadas en sus foros.
+Las quests deben ser **lore-friendly**. Se puede tomar inspiración de servidores con más recorrido (**Xatiya**, **Atlantis**, etc.) e ir migrando ideas según las descripciones publicadas, pero el contenido de Hercules **no se porta**.
 
-## Crimson Weapons `reformular`
+La fuente de verdad técnica es la documentación oficial de rAthena (`doc/script_commands.txt`, `doc/item_db.txt`) para la versión actual.
 
-### Contexto
+## Crimson Weapons `descartado` como port
 
-Quest custom con lore propio. En **Hercules las Crimson estaban rotas**; en **rAthena ya se pueden conseguir** por vías oficiales. Decidir:
+**Decisión 2026-11-16:** no se porta la cadena de Crimson de Hercules.
 
-- [ ] Reactivar quest custom con lore OzRo
-- [ ] Usar cadena oficial y solo añadir NPC Marcus/encantador
-- [ ] Híbrido: quest intro con lore → integración con contenido oficial
+- En Hercules las Crimson estaban rotas; por eso se armó una quest con lore para poder obtenerlas.
+- En rAthena actual ya se consiguen por vías oficiales, así que la quest dejó de ser necesaria.
+- La lore de Marcus y la cadena queda como **referencia de diseño**: fue un buen ejemplo de cómo una historia puede desbloquear objetos nuevos.
+- A futuro se puede heredar esa idea para fabricar objetos que normalmente se conseguían por donación, usando **partes especiales custom**.
+- Ya sabemos modificar drops de mobs; no hace falta inventar “points” para justificar la obtención de items.
 
-**Dirección elegida:** reactivar el flujo pero que la quest (vía **Marcus**) **imbuya elemento** a las Crimson en vez de crearlas, ya que rAthena permite obtenerlas por vías oficiales.
+### Lore de referencia (no implementar como port)
 
-### Lore (del doc original)
+- La traición del mercader.
+- El pasado del asesino del katar.
+- La conexión secreta del wizard con la esencia.
+- Las decisiones morales del jugador.
+- La redención de Marcus.
+- Punto de inicio original: guardia al noreste de la plaza principal de **Izlude**.
 
-**Elementos narrativos:**
-- La traición del mercader
-- El misterioso pasado del asesino del katar
-- La conexión secreta del wizard con la esencia
-- Las decisiones morales del jugador
-- La redención de Marcus
+### Futuro: fabricación con lore `pendiente`
 
-### Requisitos originales
-
-- 1 Special Gold
-- Al menos 100.000 zeny
-- Dinero para Kafra teleport
-- Butterfly wings, fly wings, tiempo y paciencia
-
-### Punto de inicio
-
-- Guardia en el noreste de la plaza principal de **Izlude**
-
-### Pendientes de balance (doc viejo)
-
-- [ ] Duplicar precio Crimson (si aplica a quest custom)
-- [ ] Marcus: opción de encantar elemento en Crimson Weapons
+- Crear objetos custom como **“partes especiales”** que se obtengan de drops, quests o actividades.
+- Usarlas en cadenas de crafting con lore, no en tiendas planas.
+- Apuntar a objetos que antes eran de donación o de eventos, no a power creep.
+- La dificultad debe estar en conseguir materiales y desbloquear la historia, no en RNG de romper equipo.
 
 ---
 
 ## Otras quests custom planificadas
 
-### Equipo "pro" con lore `pendiente`
+### Equipo “pro” con lore `pendiente`
 
-Del doc viejo: diseñar cada quest y darle lore. Alineado con **challenges por cuenta** — no regalar equip de wiki.
+Diseñar cada quest y darle lore. Alineado con **challenges por cuenta** — no regalar equip de wiki.
 
 ### Hungry Weapons `reformular`
 
-Armas encantadas que "piden" cacerías; al completar suben de nivel y daño. Similar a armas que evolucionan — ver backlog.
+Armas encantadas que “piden” cacerías; al completar suben de nivel y daño. Similar a armas que evolucionan — ver backlog.
 
 ### Quest desbloquea cacería del tesoro `pendiente`
 
@@ -60,6 +51,13 @@ Serie de pistas por el mundo → explorador → llaves + ubicación del tesoro. 
 ### Blessed Ores `pendiente`
 
 Quest con lore para crear Blessed Ores en lugar de Safe tickets.
+
+### Partes especiales / fabricación de objetos de donación `pendiente`
+
+- Objetos custom que se obtienen por drops, quests o crafting.
+- Se usan como componentes para fabricar equipo especial que antes era de donación.
+- Debe tener lore y una cadena de desbloqueo; no una tienda directa.
+- Evaluar qué objetos del juego actual conviene convertir en fabricables.
 
 ### Objetos custom con skills de otros jobs `reformular`
 
@@ -74,16 +72,23 @@ Consumibles fabricados por el job con quest y requisito de nivel, para no usar c
 
 ---
 
-## Quests repetibles y bounties `implementado`
+## Quests repetibles y bounties
 
 Ya activas — base para materiales de craft/challenges:
 
-- 17 repetibles en `npc/custom/ozro/repeteables/`
-- 14 bounty boards en `npc/custom/ozro/bounty/`
+- 18 repetibles en `npc/custom/ozro/repeteables/`
+- 26 bounty boards en `npc/custom/ozro/bounty/`
 
-**Ajustes pendientes (doc viejo):**
-- [ ] Bajar precios hunting missions a la mitad (cuando se reactive Hunting Missions)
-- [ ] Daily hunting con racha de recompensas crecientes
+### Reglas de balance `pendiente`
+
+- Bounties que dan **casi 1 nivel** no son el problema principal; las que dan **2 niveles** sí.
+- El **zeny de bounty debe escalar** por nivel/banda; hoy es un monto fijo.
+- Las repetibles ayudan a “arrastrar” personajes nuevos con los PJ fuertes de la party; se mantienen, pero con recompensas controladas.
+- Revisar bandas donde la misma recompensa vale mucho al nivel bajo y casi nada al final de la banda.
+- Balancear el contenido actual **antes** de agregar contenido nuevo.
+- Ajustes pendientes del doc viejo:
+  - [ ] Bajar precios de Hunting Missions a la mitad (cuando se reactive).
+  - [ ] Daily hunting con racha de recompensas crecientes.
 
 ---
 

@@ -121,11 +121,14 @@ Ideas del doc viejo a integrar:
 
 Sin jugadores vendiendo, el mercado = NPCs:
 
-- Barter shops por tier de nivel (`feature.barter: on`)
-- `points2zeny.txt` — puente cash ↔ zeny (revisar ratio)
-- `card_collector` + trader de cartas — sinks/faucets
-- Materiales de bounties/repetibles → craft de equip challenge
-- **No regalar** items de builds de internet
+- **Monedas OzRo por tiers** (bronce, plata, oro, platino). No hace falta definir todos los usos ahora; se van habilitando a medida que se implementa contenido de nivel más alto.
+- **Garrett** como entrada de la economía de basura: misión diaria única por cuenta, modo junk-hunter y modo bargain, precios ajustados al mercado. La lista de precios de referencia sale del repo **ragnabots**.
+- **Alma de MVP** fabricada por el colector (Card Collector); uso pendiente de diseño.
+- **Barter shops** por tier de nivel (`feature.barter: on`).
+- `points2zeny.txt` — puente cash ↔ zeny (revisar ratio); los points existían porque antes no sabíamos modificar drops.
+- `card_collector` + trader de cartas — sinks/faucets; **preservar los datos existentes**.
+- Materiales de bounties/repetibles → craft de equip challenge.
+- **No regalar** items de builds de internet ni objetos de donación sin una cadena de lore/crafting.
 
 ## 7. Reset de personaje `implementado` → simplificar
 
@@ -145,6 +148,16 @@ Para reducir la doble cuenta: consumibles **fabricables** (como el Alquimista fa
 - [ ] Competir solo por MVP kills / zeny
 - [ ] Rush a max level como única meta
 - [ ] Esperar balance perfecto antes de jugar
+- [ ] Implementar contenido nuevo antes de balancear lo que ya está activo
+
+## 9. Orden de trabajo
+
+- **No hay server de prueba.** Se prueba directo en producción con los 3 jugadores; si algo falla, se corrige o se apaga el server.
+- Antes de agregar NPCs/quests nuevas, balancear bounties, repetibles, Garrett y monedas existentes.
+- Bounties que dan casi 1 nivel se aceptan; las que dan 2 niveles se corrigen.
+- Las repetibles se mantienen para que los PJ nuevos puedan subir con ayuda de los fuertes.
+- El zeny de bounty debe escalar por nivel/banda, no ser un monto fijo.
+- Cada bloque implementado se borra de la documentación y se registra en el changelog público y en el git log.
 
 ## Comentarios
 

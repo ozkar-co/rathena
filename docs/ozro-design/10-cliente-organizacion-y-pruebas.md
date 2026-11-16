@@ -1,10 +1,12 @@
 # Cliente: organización y pruebas sin romper lo que ya funciona
 
-**Última revisión:** 2026-11-14  
+**Última revisión:** 2026-11-16
 **Objetivo:** ordenar el cliente actual, separar base de custom y probar versiones sin tocar el cliente que ya funciona.  
 **Decisión de fondo:** **no reconstruir el cliente desde cero ahora**. Primero alinear el server al cliente actual y congelar; recién después evaluar un cliente nuevo.
 
-> Contexto: el server está compilado para `20211103`; el cliente parece ser `20210703` (string `RO Offline 20210703`, aunque el archivo base se llame `2019-06-05fRagexe_patched`). La diferencia es de ~4 meses y se puede resolver recompilando el server, sin tocar el cliente.
+> Contexto histórico: el server estaba compilado para `20211103` y el cliente parecía ser `20210703` (string `RO Offline 20210703`, aunque el archivo base se llame `2019-06-05fRagexe_patched`). La diferencia era de ~4 meses y se podía resolver recompilando el server, sin tocar el cliente.
+>
+> **Actualización 2026-11-16:** el repo quedó fijado en `PACKETVER=20190605` (commit `6ea66a121`). La hipótesis `20210703` de este documento queda como referencia histórica.
 
 ---
 
@@ -47,10 +49,10 @@ Hipótesis restantes (ninguna confirmada):
 ### Opción A (recomendada): no tocar el cliente, alinear el server
 
 1. Mantener el cliente actual congelado tal como está.
-2. Compilar un **server de prueba** con `--enable-packetver=20210703` en una copia separada del repo.
+2. Compilar el server con el `PACKETVER` actual (`20190605`) y probarlo en producción (no hay entorno separado; ver sección 5).
 3. Probar login, personaje, skills, NPCs y mapas con el cliente actual.
-4. Si funciona: reemplazar el binario de producción por el de 20210703 y congelar.
-5. Si no funciona: probar `20190605` o investigar el paquete exacto. El cliente no se tocó.
+4. Si funciona: congelar el binario de producción con ese `PACKETVER`.
+5. Si no funciona: ajustar el `PACKETVER` y revisar el paquete exacto. El cliente no se tocó.
 
 Ventajas:
 
@@ -140,11 +142,13 @@ sha256sum /mnt/games/OzRo/data.ini
 
 ---
 
-## 5. Plan de prueba del server 20210703
+## 5. Plan de prueba (referencia histórica)
+
+> **Actualización 2026-11-16:** no hay server de prueba separado. Se prueba directo en producción con los 3 jugadores, aceptando apagar o desconectar el server si algo falla. Las copias/worktrees de abajo quedan como referencia por si alguna vez se monta un entorno aparte.
 
 ### 5.1 Preparar una copia de prueba
 
-No compilar encima del server de producción. Opciones:
+Referencia para montar un entorno aparte (no es el flujo actual; hoy se prueba en producción). Opciones:
 
 ```bash
 # Copia de trabajo del repo
@@ -190,9 +194,9 @@ Si todo funciona, el cliente es compatible con 20210703. Si falla el login o las
 
 ### 5.5 Rollback
 
-- El server de producción no se tocó.
-- Si se reemplazó el binario, guardar el anterior como `map-server.20211103.bak`.
-- El cliente actual no se tocó.
+- En el flujo actual se prueba en producción: hacer backup de la DB y del binario antes de cada cambio.
+- Si algo falla, restaurar el backup y avisar a los jugadores; el server puede apagarse sin problema.
+- El cliente actual no se toca.
 
 ---
 
@@ -238,17 +242,17 @@ Si todo funciona, el cliente es compatible con 20210703. Si falla el login o las
 - [ ] Confirmar que `ozro-cli/patch/` es la fuente de verdad del custom.
 - [ ] Eliminar/aislar duplicados en `data/custom/items/`.
 - [ ] Resolver el 35010 (agregar al server o quitar del cliente).
-- [ ] Compilar server de prueba con `20210703`.
+- [ ] Compilar con el `PACKETVER` actual (`20190605`) y validar en producción.
 - [ ] Smoke test con el cliente actual.
-- [ ] Si funciona, reemplazar el binario de producción y congelar.
-- [ ] Si no funciona, probar `20190605` o capturar el paquete de login.
+- [ ] Si funciona, congelar el binario de producción.
+- [ ] Si no funciona, revisar el paquete de login y ajustar `PACKETVER`.
 - [ ] Documentar el resultado en `09-estado-tecnico-y-estabilidad.md`.
 
 ---
 
 ## 9. Preguntas abiertas
 
-1. ¿El `PACKETVER` real del cliente es 20210703? La prueba con el server de prueba lo confirma.
+1. ¿El `PACKETVER` real del cliente es 20210703? Se valida en producción con el cliente actual.
 2. ¿El cliente limpio 20210406 trae los GRF `renewal2021.grf`/`resources2021.grf`? Si no, hay que adaptar `data.ini`.
 3. ¿El `grf.bin` de Atlantis RO se puede leer? Si está cifrado, descartarlo.
 4. ¿El data/rdata 20200603 tiene mapas que el cliente actual no tiene? Comparar antes de usar.
@@ -260,6 +264,7 @@ Si todo funciona, el cliente es compatible con 20210703. Si falla el login o las
 
 - **2026-11-14:** no reconstruir el cliente desde cero ahora.
 - **2026-11-14:** no tocar el cliente ni comprar el 20210406 por ahora. Seguir con el cliente actual hasta que algo se rompa.
-- **2026-11-14:** congelar el cliente actual; compilar un server de prueba con `20210703` y validar.
+- **2026-11-14:** congelar el cliente actual; compilar con `20190605` (config actual) y validar en producción.
 - **2026-11-14:** mantener el custom en `ozro-cli/patch/` y no editar la base del cliente.
 - **2026-11-14:** resolver el 35010 y los duplicados antes de congelar.
+- **2026-11-16:** no hay server de prueba; se valida directamente en producción con los 3 jugadores.

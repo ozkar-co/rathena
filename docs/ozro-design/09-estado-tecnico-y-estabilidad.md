@@ -5,13 +5,15 @@
 **Alcance:** revisión del repo rAthena, del cliente actual y del contenido que el cliente puede o no soportar.  
 **Estado:** investigación terminada; no se modificó el servidor en esta revisión.
 
+> **Actualización 2026-11-16:** el repo quedó fijado en `PACKETVER=20190605` (commit `6ea66a121`) y no hay server de prueba; la validación se hace directo en producción. Las referencias a `20210703`/`20211103` quedan como registro de la investigación.
+
 > **Meta:** congelar el server en rAthena de enero 2026 + el cliente actual, quitar/ajustar lo que el cliente no tenga, y recién después balancear skills, mobs, mapas, traducir y agregar contenido custom.
 
 ---
 
 ## Resumen ejecutivo
 
-1. **El server no es Episode 14.3.** El `02-configuracion-servidor.md` dice 14.3, pero la base real es rAthena master de enero 2026. `conf/maps_athena.conf` incluye mapas hasta Episode 21 y la DB tiene jobs/skills 4th de 2024/2025.
+1. **El server no es Episode 14.3.** La documentación vieja decía 14.3, pero la base real es rAthena master de enero 2026. `conf/maps_athena.conf` incluye mapas hasta Episode 21 y la DB tiene jobs/skills 4th de 2024/2025.
 2. **El repo estaba limpio y sincronizado al momento de la revisión.** `HEAD = 8e436db5e`, base upstream `934896a00` (Atemo, 2026-01-15) + 100 commits custom. `git status` limpio, `master == origin/master`, sin stash ni untracked. Después de esta revisión solo se agregó este documento y su entrada en el índice.
 3. **La versión del cliente es la duda principal.** El ejecutable activo está basado en `2019-06-05fRagexe_patched`, pero el binario contiene el string `RO Offline 20210703`. Lo más probable es que el cliente efectivo sea **20210703**, no 2019-06-05. Hay que confirmarlo antes de compilar el server.
 4. **El `PACKETVER` configurado en el repo es 20211103.** Si el cliente es 20210703, hay ~4 meses de diferencia de protocolo. No es lo mismo que el caso 2019, pero conviene alinear el server exactamente al cliente.
@@ -488,3 +490,4 @@ Son 41; la mayoría son skills de NPC/guild/mobs. Se listan para referencia:
 - **2026-11-14:** congelar la base en rAthena de enero 2026 + cliente actual; no cambiar el cliente por ahora.
 - **2026-11-14:** antes de balancear/traducir/crear contenido, alinear `PACKETVER` y recortar contenido que el cliente no soporte.
 - **2026-11-14:** la investigación se guarda en este documento; no se modificó el server.
+- **2026-11-16:** el repo quedó con `PACKETVER=20190605`; no hay server de prueba y la validación se hace en producción.
