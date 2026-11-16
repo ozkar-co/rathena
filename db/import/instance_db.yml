@@ -46,7 +46,6 @@ Body:
     Name: OzRo MVP Arena
     TimeLimit: 7200
     IdleTimeOut: 300
-    NoMapFlag: true
     Enter:
       Map: quiz_00
       X: 50
