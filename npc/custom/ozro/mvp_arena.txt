@@ -103,7 +103,8 @@ OnSummon:
 	.@instance_id = instance_id();
 	.@mob_id = getinstancevar('mvp_id, .@instance_id);
 	if (.@mob_id <= 0) end;
-	monster instance_mapname("quiz_00"), 81, 8, getmonsterinfo(.@mob_id, MOB_NAME), .@mob_id, 1, instance_npcname("OzroTestSpawner", .@instance_id) + "::OnMvpDead";
+	.@name$ = getmonsterinfo(.@mob_id, MOB_NAME);
+	monster instance_mapname("quiz_00"), 81, 8, .@name$, .@mob_id, 1, instance_npcname("OzroTestSpawner", .@instance_id) + "::OnMvpDead";
 	end;
 
 OnMvpDead:
