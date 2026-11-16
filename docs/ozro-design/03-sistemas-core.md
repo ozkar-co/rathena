@@ -123,7 +123,7 @@ Sin jugadores vendiendo, el mercado = NPCs:
 
 - **Monedas OzRo por tiers** (bronce, plata, oro, platino). No hace falta definir todos los usos ahora; se van habilitando a medida que se implementa contenido de nivel más alto.
 - **Garrett** como entrada de la economía de basura: misión diaria única por cuenta, modo junk-hunter y modo bargain, precios ajustados al mercado. La lista de precios de referencia sale del repo **ragnabots**.
-- **Alma de MVP** fabricada por el colector (Card Collector); uso pendiente de diseño.
+- **Alma de MVP** se obtiene en los tiers del MVP Tracker/Journal; uso futuro en el invocador y en la receta de Bloody Branches.
 - **Barter shops**: `descartado` — se quitan para simplificar; el equip se obtiene por craft/quests específicas.
 - `points2zeny.txt` — puente cash ↔ zeny (revisar ratio); los points existían porque antes no sabíamos modificar drops.
 - `card_collector` + trader de cartas — sinks/faucets; **preservar los datos existentes**.

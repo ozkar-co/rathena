@@ -42,6 +42,7 @@ La sección **Comentarios** al final de cada archivo es un borrador libre: se ap
 | [08-ideas-backlog.md](./08-ideas-backlog.md) | Lluvia de ideas antigua reformulada y priorizada |
 | [09-estado-tecnico-y-estabilidad.md](./09-estado-tecnico-y-estabilidad.md) | Revisión técnica: rev, cliente, PACKETVER, skills y mapas faltantes antes de congelar |
 | [10-cliente-organizacion-y-pruebas.md](./10-cliente-organizacion-y-pruebas.md) | Cómo ordenar el cliente, separar base/custom y probar el cliente actual sin romper lo que funciona |
+| [12-mvp-tracker-journal.md](./12-mvp-tracker-journal.md) | Tracker, Journal y Almas de MVP: variables, tiers, invocador y branches |
 
 ## Repos relacionados
 
@@ -62,7 +63,7 @@ La sección **Comentarios** al final de cada archivo es un borrador libre: se ap
 - **2026-11:** No reconstruir el cliente desde cero por ahora. No tocar el cliente ni comprar el 20210406 hasta que algo se rompa; seguir con el actual. El custom vive en `ozro-cli/patch/`. Ver [10-cliente-organizacion-y-pruebas.md](./10-cliente-organizacion-y-pruebas.md).
 - **2026-11-16:** El contenido de Hercules **no se porta**: queda como referencia de ideas y lore. Todo NPC nuevo debe ser lore-friendly.
 - **2026-11-16:** Primero balancear lo que ya está activo (bounties, repetibles, Garrett, monedas) y después agregar contenido nuevo.
-- **2026-11-16:** Monedas OzRo por tiers (bronce/plata/oro/platino); usos de tiers altos se definen a medida que crece el contenido. El Alma de MVP la fabrica el colector (Card Collector).
+- **2026-11-16:** Monedas OzRo por tiers (bronce/plata/oro/platino); usos de tiers altos se definen a medida que crece el contenido. El Alma de MVP se obtiene en los tiers del MVP Tracker/Journal.
 - **2026-11-16:** Garrett tendrá modo junk-hunter (misión diaria única por cuenta) y modo bargain, con precios de referencia desde ragnabots. El Gambler se reemplaza por refine safe con monedas OzRo (“si falla, no se rompe”).
 - **2026-11-16:** No hay server de prueba; se prueba directo en producción con los 3 jugadores.
 - **2026-11-16:** Lo implementado se borra de la documentación y queda en el changelog público (general) y en el git log (detalle técnico).

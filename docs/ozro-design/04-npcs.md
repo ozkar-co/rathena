@@ -75,6 +75,8 @@ Objetivo: convertir a Garrett en el punto de entrada de la economía de basura, 
 - También debe permitir saber **qué MVPs mata cada jugador**, porque hay gente que se especializa en uno.
 - No se porta el script de Hercules: se reimplementa con el estándar actual de rAthena.
 - El Journal muestra el progreso; el Tracker registra los eventos de muerte/asistencia.
+- Mantener los nombres `MVP_KILL_<id>` y `MVP_SUPP_<id>` para no perder el historial.
+- Plan detallado de tiers, Almas e invocador en [12-mvp-tracker-journal.md](./12-mvp-tracker-journal.md).
 
 ## Monedas OzRo y Alma de MVP
 
@@ -87,9 +89,10 @@ Objetivo: convertir a Garrett en el punto de entrada de la economía de basura, 
 
 ### Alma de MVP `pendiente`
 
-- El **colector** (Card Collector) la fabrica; el uso concreto queda pendiente de diseño.
-- No debe generar un loop infinito (matar MVP → alma → invocar el mismo MVP → alma).
-- Definir más adelante si invoca un MVP concreto, si se consume o si sirve como material de crafting.
+- Se obtiene en los **tiers de recompensas del MVP Tracker/Journal**.
+- Uso futuro: invocador de MVPs y receta de Bloody Branches.
+- No debe generar un loop infinito (matar MVP → alma → invocar el mismo MVP → alma); las kills en el mapa de invocación no deben contar.
+- Ver [12-mvp-tracker-journal.md](./12-mvp-tracker-journal.md).
 
 ## Card Collector: datos existentes
 
