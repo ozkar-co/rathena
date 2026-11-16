@@ -1,7 +1,7 @@
 //===== OzRo Script ==========================================
 //= Arena de prueba
 //===== Description: =========================================
-//= Invoca un MVP de T1 pagando 3 Almas y sus items.
+//= Invoca un MVP de T1 o T2 pagando Almas y sus items.
 //= Al morir el MVP, todos vuelven a Prontera y la instancia se destruye.
 //============================================================
 
@@ -24,32 +24,53 @@ prontera,173,152,4	script	Creador de Arena	4_M_SAGE_C,{
 		close;
 	}
 
-	mes "Puedo invocar un MVP de T1.";
-	mes "Cuesta ^0065DF3 Almas de MVP^000000 más sus items.";
-	mes "Elige a quién quieres invocar.";
+	mes "Puedo invocar un MVP.";
+	mes "Elige el costo en Almas:";
 	next;
-	.@opt = prompt("Golden Thief Bug:Phreeoni:Moonlight Flower:Dracula:Lady Tanee:Orc Hero:Mistress:Maya:Doppelganger:Orc Lord");
+	.@mode = prompt("3 Almas:5 Almas:Salir");
+	if (.@mode == 255 || .@mode == 3) close;
+
+	if (.@mode == 1) {
+		.@start = 0;
+		.@count = 10;
+		.@cost = 3;
+	} else {
+		.@start = 10;
+		.@count = 19;
+		.@cost = 5;
+	}
+
+	.@menu$ = "";
+	for (.@i = .@start; .@i < .@start + .@count; .@i++) {
+		if (.@menu$ != "") .@menu$ = .@menu$ + ":";
+		.@menu$ = .@menu$ + .mvp_name$[.@i];
+	}
+	.@opt = prompt(.@menu$);
 	if (.@opt == 255) close;
-	.@idx = .@opt - 1;
+	.@idx = .@start + .@opt - 1;
 
 	mes "[ ^0065DFCreador de Arena^000000 ]";
 	mes "Para invocar a ^0065DF" + .mvp_name$[.@idx] + "^000000 necesitas:";
-	mes "3 Almas de MVP (tienes " + countitem(35005) + ")";
+	mes .@cost + " Almas de MVP (tienes " + countitem(35005) + ")";
 	mes .key1_qty[.@idx] + " " + getitemname(.key1_id[.@idx]) + " (tienes " + countitem(.key1_id[.@idx]) + ")";
 	if (.key2_id[.@idx] > 0)
 		mes .key2_qty[.@idx] + " " + getitemname(.key2_id[.@idx]) + " (tienes " + countitem(.key2_id[.@idx]) + ")";
+	if (.key3_id[.@idx] > 0)
+		mes .key3_qty[.@idx] + " " + getitemname(.key3_id[.@idx]) + " (tienes " + countitem(.key3_id[.@idx]) + ")";
 	next;
 
 	.@ready = 1;
-	if (countitem(35005) < 3) .@ready = 0;
+	if (countitem(35005) < .@cost) .@ready = 0;
 	if (countitem(.key1_id[.@idx]) < .key1_qty[.@idx]) .@ready = 0;
 	if (.key2_id[.@idx] > 0 && countitem(.key2_id[.@idx]) < .key2_qty[.@idx]) .@ready = 0;
+	if (.key3_id[.@idx] > 0 && countitem(.key3_id[.@idx]) < .key3_qty[.@idx]) .@ready = 0;
 	if (.@ready == 0) {
 		mes "[ ^0065DFCreador de Arena^000000 ]";
 		mes "Todavía te falta:";
-		if (countitem(35005) < 3) mes "- " + (3 - countitem(35005)) + " Almas de MVP";
+		if (countitem(35005) < .@cost) mes "- " + (.@cost - countitem(35005)) + " Almas de MVP";
 		if (countitem(.key1_id[.@idx]) < .key1_qty[.@idx]) mes "- " + (.key1_qty[.@idx] - countitem(.key1_id[.@idx])) + " " + getitemname(.key1_id[.@idx]);
 		if (.key2_id[.@idx] > 0 && countitem(.key2_id[.@idx]) < .key2_qty[.@idx]) mes "- " + (.key2_qty[.@idx] - countitem(.key2_id[.@idx])) + " " + getitemname(.key2_id[.@idx]);
+		if (.key3_id[.@idx] > 0 && countitem(.key3_id[.@idx]) < .key3_qty[.@idx]) mes "- " + (.key3_qty[.@idx] - countitem(.key3_id[.@idx])) + " " + getitemname(.key3_id[.@idx]);
 		close;
 	}
 
@@ -63,9 +84,10 @@ prontera,173,152,4	script	Creador de Arena	4_M_SAGE_C,{
 		close;
 	}
 
-	delitem 35005, 3;
+	delitem 35005, .@cost;
 	delitem .key1_id[.@idx], .key1_qty[.@idx];
 	if (.key2_id[.@idx] > 0) delitem .key2_id[.@idx], .key2_qty[.@idx];
+	if (.key3_id[.@idx] > 0) delitem .key3_id[.@idx], .key3_qty[.@idx];
 
 	setinstancevar 'mvp_id, .mvp_id[.@idx], .@instance_id;
 	donpcevent instance_npcname("OzroTestSpawner", .@instance_id) + "::OnSummon";
@@ -80,12 +102,14 @@ prontera,173,152,4	script	Creador de Arena	4_M_SAGE_C,{
 	close;
 
 OnInit:
-	setarray .mvp_id[0], 1086, 1159, 1150, 1389, 1688, 1087, 1059, 1147, 1046, 1190;
-	setarray .mvp_name$[0], "Golden Thief Bug", "Phreeoni", "Moonlight Flower", "Dracula", "Lady Tanee", "Orc Hero", "Mistress", "Maya", "Doppelganger", "Orc Lord";
-	setarray .key1_id[0], 969, 1015, 1022, 732, 5116, 25508, 526, 1096, 1411, 968;
-	setarray .key1_qty[0], 1, 10, 20, 1, 1, 2, 30, 30, 1, 1;
-	setarray .key2_id[0], 0, 1014, 0, 7006, 0, 0, 0, 0, 1162, 0;
-	setarray .key2_qty[0], 0, 5, 0, 100, 0, 0, 0, 0, 2, 0;
+	setarray .mvp_id[0], 1086, 1159, 1150, 1389, 1688, 1087, 1059, 1147, 1046, 1190, 1251, 1039, 1630, 1112, 1157, 1492, 1115, 1623, 1511, 1418, 1885, 1038, 1272, 1583, 2156, 1252, 2068, 1312, 1785;
+	setarray .mvp_name$[0], "Golden Thief Bug", "Phreeoni", "Moonlight Flower", "Dracula", "Lady Tanee", "Orc Hero", "Mistress", "Maya", "Doppelganger", "Orc Lord", "Stormy Knight", "Baphomet", "White Lady", "Drake", "Pharaoh", "Samurai Specter", "Eddga", "RSX-0806", "Amon Ra", "Evil Snake Lord", "Gopinich", "Osiris", "Dark Lord", "Tao Gunka", "Leak", "Hatii", "Boitata", "Turtle General", "Atroce";
+	setarray .key1_id[0], 969, 1015, 1022, 732, 5116, 25508, 526, 1096, 1411, 968, 720, 923, 25622, 2287, 7113, 25629, 1029, 7327, 7211, 7169, 7444, 930, 7005, 7300, 12738, 7036, 7444, 7070, 7563;
+	setarray .key1_qty[0], 1, 10, 20, 1, 1, 2, 30, 30, 1, 1, 5, 2, 2, 1, 2, 2, 5, 2, 3, 3, 1, 10, 10, 1, 1, 2, 1, 5, 5;
+	setarray .key2_id[0], 0, 1014, 0, 7006, 0, 0, 0, 0, 1162, 0, 0, 0, 1020, 932, 7114, 999, 1030, 7093, 0, 0, 629, 934, 5093, 7067, 6403, 0, 963, 0, 0;
+	setarray .key2_qty[0], 0, 5, 0, 100, 0, 0, 0, 0, 2, 0, 0, 0, 2, 10, 1, 5, 2, 2, 0, 0, 1, 1, 1, 3, 5, 0, 10, 0, 0;
+	setarray .key3_id[0], 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 510, 936, 0, 0, 0, 0, 0, 0, 0;
+	setarray .key3_qty[0], 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 10, 0, 0, 0, 0, 0, 0, 0;
 	end;
 }
 

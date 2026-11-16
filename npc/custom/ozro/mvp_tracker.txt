@@ -17,6 +17,8 @@ OnNPCKillEvent:
 	if (getmonsterinfo(killedrid, MOB_MODE) & MD_MVP) .@is_mvp = 1;
 	if (!.@is_mvp) end;
 
+	if (instance_id(IM_CHAR) > 0 || instance_id(IM_PARTY) > 0 || instance_id(IM_GUILD) > 0 || instance_id(IM_CLAN) > 0) end;
+
 	.@mvp_id = killedrid;
 	.@killer_aid = getcharid(3);
 	.@party_id = getcharid(1);
