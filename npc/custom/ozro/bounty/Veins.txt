@@ -19,7 +19,7 @@
 //============================================================
 
 
-veins,223,156,3	script	Bounty Board 100-120#vei1	837,{
+veins,208,116,3	script	Bounty Board 100-120#vei1	837,{
 	callfunc "F_Bounty_Board", 100, 120, 1, 1,
 		1781,	70364,	243000,		151950,	// DROSERA
 		1783,	70365,	318300,		199050,	// GALION
@@ -28,7 +28,7 @@ veins,223,156,3	script	Bounty Board 100-120#vei1	837,{
 	end;
 }
 
-veins,225,158,3	script	Bounty Board 120-140#vei2	837,{
+veins,208,114,3	script	Bounty Board 120-140#vei2	837,{
 	callfunc "F_Bounty_Board", 120, 140, 1, 1,
 		1833,	70368,	1091700,		1156350,	// KASA
 		1838,	70369,	719400,		565200,	// KNOCKER
