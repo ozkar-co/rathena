@@ -1,7 +1,7 @@
 //===== OzRo Script ==========================================
 //= Arena de prueba
 //===== Description: =========================================
-//= Crea una instancia con un Phreeoni de prueba.
+//= Invoca un MVP de T1 pagando 3 Almas y sus items.
 //= Al morir el MVP, todos vuelven a Prontera y la instancia se destruye.
 //============================================================
 
@@ -24,11 +24,36 @@ prontera,173,152,4	script	Creador de Arena	4_M_SAGE_C,{
 		close;
 	}
 
-	mes "Puedo abrir una arena de prueba.";
-	mes "Dentro habrá un Phreeoni.";
-	mes "Al matarlo volverás a Prontera y la arena se cerrará.";
+	mes "Puedo invocar un MVP de T1.";
+	mes "Cuesta ^0065DF3 Almas de MVP^000000 más sus items.";
+	mes "Elige a quién quieres invocar.";
 	next;
-	if (select("Entrar:Salir") == 2) close;
+	.@opt = prompt("Golden Thief Bug:Phreeoni:Moonlight Flower:Dracula:Lady Tanee:Orc Hero:Mistress:Maya:Doppelganger:Orc Lord");
+	if (.@opt == 255) close;
+	.@idx = .@opt - 1;
+
+	mes "[ ^0065DFCreador de Arena^000000 ]";
+	mes "Para invocar a ^0065DF" + .mvp_name$[.@idx] + "^000000 necesitas:";
+	mes "3 Almas de MVP (tienes " + countitem(35005) + ")";
+	mes .key1_qty[.@idx] + " " + getitemname(.key1_id[.@idx]) + " (tienes " + countitem(.key1_id[.@idx]) + ")";
+	if (.key2_id[.@idx] > 0)
+		mes .key2_qty[.@idx] + " " + getitemname(.key2_id[.@idx]) + " (tienes " + countitem(.key2_id[.@idx]) + ")";
+	next;
+
+	.@ready = 1;
+	if (countitem(35005) < 3) .@ready = 0;
+	if (countitem(.key1_id[.@idx]) < .key1_qty[.@idx]) .@ready = 0;
+	if (.key2_id[.@idx] > 0 && countitem(.key2_id[.@idx]) < .key2_qty[.@idx]) .@ready = 0;
+	if (.@ready == 0) {
+		mes "[ ^0065DFCreador de Arena^000000 ]";
+		mes "Todavía te falta:";
+		if (countitem(35005) < 3) mes "- " + (3 - countitem(35005)) + " Almas de MVP";
+		if (countitem(.key1_id[.@idx]) < .key1_qty[.@idx]) mes "- " + (.key1_qty[.@idx] - countitem(.key1_id[.@idx])) + " " + getitemname(.key1_id[.@idx]);
+		if (.key2_id[.@idx] > 0 && countitem(.key2_id[.@idx]) < .key2_qty[.@idx]) mes "- " + (.key2_qty[.@idx] - countitem(.key2_id[.@idx])) + " " + getitemname(.key2_id[.@idx]);
+		close;
+	}
+
+	if (select("Invocar:Salir") == 2) close;
 
 	.@instance_id = instance_create("OzRo MVP Arena", IM_CHAR);
 	if (.@instance_id < 0) {
@@ -38,6 +63,13 @@ prontera,173,152,4	script	Creador de Arena	4_M_SAGE_C,{
 		close;
 	}
 
+	delitem 35005, 3;
+	delitem .key1_id[.@idx], .key1_qty[.@idx];
+	if (.key2_id[.@idx] > 0) delitem .key2_id[.@idx], .key2_qty[.@idx];
+
+	setinstancevar 'mvp_id, .mvp_id[.@idx], .@instance_id;
+	donpcevent instance_npcname("OzroTestSpawner", .@instance_id) + "::OnSummon";
+
 	.@result = instance_enter("OzRo MVP Arena", -1, -1, getcharid(0), .@instance_id);
 	if (.@result != IE_OK) {
 		mes "[ ^0065DFCreador de Arena^000000 ]";
@@ -46,6 +78,15 @@ prontera,173,152,4	script	Creador de Arena	4_M_SAGE_C,{
 		close;
 	}
 	close;
+
+OnInit:
+	setarray .mvp_id[0], 1086, 1159, 1150, 1389, 1688, 1087, 1059, 1147, 1046, 1190;
+	setarray .mvp_name$[0], "Golden Thief Bug", "Phreeoni", "Moonlight Flower", "Dracula", "Lady Tanee", "Orc Hero", "Mistress", "Maya", "Doppelganger", "Orc Lord";
+	setarray .key1_id[0], 969, 1015, 1022, 732, 5116, 25508, 526, 1096, 1411, 968;
+	setarray .key1_qty[0], 1, 10, 20, 1, 1, 2, 30, 30, 1, 1;
+	setarray .key2_id[0], 0, 1014, 0, 7006, 0, 0, 0, 0, 1162, 0;
+	setarray .key2_qty[0], 0, 5, 0, 100, 0, 0, 0, 0, 2, 0;
+	end;
 }
 
 quiz_00,51,35,0	script	OzroTestSpawner	-1,{
@@ -56,7 +97,13 @@ OnInstanceInit:
 	setmapflag .@map$, mf_nomemo;
 	setmapflag .@map$, mf_noteleport;
 	setmapflagnosave .@map$, "prontera", 171, 149;
-	monster .@map$, 81, 8, "Phreeoni", 1159, 1, instance_npcname("OzroTestSpawner") + "::OnMvpDead";
+	end;
+
+OnSummon:
+	.@instance_id = instance_id();
+	.@mob_id = getinstancevar('mvp_id, .@instance_id);
+	if (.@mob_id <= 0) end;
+	monster instance_mapname("quiz_00"), 81, 8, getmonsterinfo(.@mob_id, MOB_NAME), .@mob_id, 1, instance_npcname("OzroTestSpawner", .@instance_id) + "::OnMvpDead";
 	end;
 
 OnMvpDead:
