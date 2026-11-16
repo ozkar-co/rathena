@@ -1,8 +1,8 @@
 //===== OzRo Script ==========================================
 //= Arena de prueba
 //===== Description: =========================================
-//= Crea una instancia con un Poring.
-//= Al morir el Poring, todos vuelven a Prontera y la instancia se destruye.
+//= Crea una instancia con un Phreeoni de prueba.
+//= Al morir el MVP, todos vuelven a Prontera y la instancia se destruye.
 //============================================================
 
 prontera,173,152,4	script	Creador de Arena	4_M_SAGE_C,{
@@ -25,7 +25,7 @@ prontera,173,152,4	script	Creador de Arena	4_M_SAGE_C,{
 	}
 
 	mes "Puedo abrir una arena de prueba.";
-	mes "Dentro habrá un Poring.";
+	mes "Dentro habrá un Phreeoni.";
 	mes "Al matarlo volverás a Prontera y la arena se cerrará.";
 	next;
 	if (select("Entrar:Salir") == 2) close;
@@ -56,10 +56,10 @@ OnInstanceInit:
 	setmapflag .@map$, mf_nomemo;
 	setmapflag .@map$, mf_noteleport;
 	setmapflagnosave .@map$, "prontera", 171, 149;
-	monster .@map$, 81, 8, "Poring de Prueba", 1002, 1, instance_npcname("OzroTestSpawner") + "::OnPoringDead";
+	monster .@map$, 81, 8, "Phreeoni", 1159, 1, instance_npcname("OzroTestSpawner") + "::OnMvpDead";
 	end;
 
-OnPoringDead:
+OnMvpDead:
 	.@instance_id = instance_id();
 	instance_warpall "prontera", 171, 149, .@instance_id;
 	initnpctimer;
