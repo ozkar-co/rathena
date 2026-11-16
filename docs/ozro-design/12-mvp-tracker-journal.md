@@ -1,12 +1,14 @@
 # MVP Tracker, Journal y Almas de MVP
 
-**Estado:** tracker, Journal y puntos de Alma implementados; invocador pendiente
+**Estado:** tracker, Journal y reclamo de Almas implementados; invocador pendiente
 **Prioridad:** alta  
-**Objetivo:** registrar kills y asistencias por MVP, mostrar progreso, entregar recompensas por tiers y abrir la economía del Alma de MVP.
+**Objetivo:** registrar kills y asistencias por MVP, mostrar el historial y convertir ese progreso en Almas de MVP de forma repetible.
 
 > **Regla principal:** no renombrar las variables existentes. Las kills y asistencias viejas tienen que seguir contando.
 
-## Variables que NO se tocan
+## Variables
+
+### Variables que NO se tocan
 
 | Variable | Alcance | Uso |
 |----------|---------|-----|
@@ -15,13 +17,13 @@
 
 Se leen y escriben con `getd` / `setd`, igual que en el script viejo de Hercules. El alcance sigue siendo por personaje; cambiar a cuenta perdería el historial existente.
 
-Variables nuevas, solo para recompensas:
+### Variable nueva
 
 | Variable | Alcance | Uso |
 |----------|---------|-----|
-| `MVP_TIER_1_CLAIMED` ... `MVP_TIER_5_CLAIMED` | Personaje | Evita reclamar el mismo tier dos veces |
-| `MVP_SOUL_POINTS` | Personaje | Puntos de Alma pendientes de reclamar |
-| `MVP_SOUL_CLAIMED` | Personaje | Total de Almas reclamadas |
+| `MVP_SOUL_CLAIMED` | Personaje | Total de Almas ya reclamadas |
+
+No hace falta un contador de puntos: los puntos se calculan desde `MVP_KILL_<id>` y `MVP_SUPP_<id>` cada vez que el Journal los necesita. Así el historial viejo cuenta desde el primer día.
 
 ## Componentes
 
@@ -29,16 +31,17 @@ Variables nuevas, solo para recompensas:
 
 - Archivo: `npc/custom/ozro/mvp_tracker.txt`.
 - Script global con `OnNPCKillEvent`.
-- Detecta MVP con `getmonsterinfo(killedrid, MOB_MVPEXP)` y/o lista de MVPs.
+- Detecta MVP con `getmonsterinfo(killedrid, MOB_MVPEXP)` y `MD_MVP`.
 - Incrementa `MVP_KILL_<id>` al killer.
 - Si el killer está en party, recorre los miembros en el mismo mapa y suma `MVP_SUPP_<id>`.
-- No anuncia nada: solo trackea.
+- No entrega premios ni anuncia nada: solo trackea.
 - **Pendiente:** excluir mapas de invocación, arena o sala de branches cuando existan.
 - No necesita escribir `mvplog`: el server ya lo registra y el radar de la web lo usa.
 
 ### 2. Journal (NPC visible) `implementado`
 
-- Una instancia principal en Prontera; se puede duplicar en otra ciudad si hace falta.
+- Ubicación: Prontera (150, 180).
+- Archivo: `npc/custom/ozro/mvp_journal.txt`.
 - Muestra:
   - Total de golpes finales.
   - Total de asistencias.
@@ -46,14 +49,11 @@ Variables nuevas, solo para recompensas:
   - MVP más cazado y MVP más asistido.
   - Lista paginada por MVP con kills y asistencias.
   - Puntos de Alma pendientes y reclamo repetible.
-  - Progreso de tiers y botón de reclamo.
-- Los tiers se calculan leyendo las variables viejas, así que el historial previo cuenta desde el primer día.
-- El reclamo de Almas es repetible: no hay cap; cada reclamo convierte todos los puntos pendientes en items.
+- No hay tiers ni recompensas de una sola vez. Todo el valor sale del farmeo de MVPs.
 
 ### 3. Almas de MVP
 
 - Item actual: `MVP_Soul` (`35005`, “Alma de MVP”).
-- Cada MVP natural derrotado entrega **puntos de Alma** según su dificultad.
 - **Killer y party en el mismo mapa suman los puntos completos.** Con 3 jugadores, un MVP puede generar 3 veces los puntos; es intencional para que el soporte también reciba recompensa.
 - El multicuenta/doble login puede multiplicar puntos. Se acepta por ahora; si se rompe la economía, se ajusta.
 - Los puntos se reclaman en el Journal y se convierten 1:1 en items `Alma de MVP`.
@@ -64,41 +64,36 @@ Variables nuevas, solo para recompensas:
   - Ingrediente para fabricar Bloody Branches.
 - Decisión pendiente: si el Alma es tradeable o account-bound. Por ahora se puede dejar tradeable.
 
-### Almas por kill según dificultad
+### Puntos por kill según dificultad
 
 Usar `MvpExp` del mob como medida de dificultad:
 
 | Dificultad | MvpExp | Puntos por kill | Costo de invocación |
-|------------|-------:|---------------:|--------------------:|
+|------------|-------:|----------------:|--------------------:|
 | Normal | < 500.000 | 1 | 1 |
 | Grande | 500.000–1.500.000 | 5 | 5 |
 | Enorme | > 1.500.000 | 10 | 10 |
 
-- La mayoría de los MVPs queda en 1 punto de Alma: **39 de los 63 MVPs naturales**.
+- La mayoría de los MVPs queda en 1 punto: **39 de los 63 MVPs naturales**.
 - Los MVPs grandes dan y cuestan más: 12 en 5 puntos y 12 en 10 puntos.
-- Los guild dungeons cuentan como naturales para Almas y tiers.
+- Los guild dungeons cuentan como naturales.
 - Para MVPs con `MvpExp` 0 se usa el nivel: <120 = 1, 120–179 = 5, >=180 = 10.
 - Los 58 MVPs restantes de la DB son de instancia, invocación, evento u otros y no entran en este ciclo.
-- Se puede agregar un tier especial de más de 10 Almas para jefes de raid concretos si hace falta.
 - Las kills en mapas de invocación/branches **no** entregan puntos ni cuentan para el Tracker.
 
-## Tiers implementados
+### Cálculo de Almas
 
-Los tiers son **acumulativos** y se reclaman una vez por personaje. Los valores todavía se pueden ajustar.
+Para cada MVP natural:
 
-| Tier | Golpes finales | Asistencias | MVPs únicos | Recompensa |
-|------|---------------:|------------:|------------:|------------|
-| 1 | 5 | 10 | — | 25.000 zeny |
-| 2 | 25 | 50 | 5 | 1 Alma de MVP + 50.000 zeny |
-| 3 | 75 | 150 | 15 | 2 Almas de MVP + 100.000 zeny |
-| 4 | 150 | 300 | 30 | 3 Almas de MVP + 150.000 zeny |
-| 5 | 300 | 600 | 45 | 5 Almas de MVP + 250.000 zeny |
+```
+puntos = (MVP_KILL_<id> + MVP_SUPP_<id>) × puntosPorDificultad
+```
 
-- “Golpes finales **o** asistencias”: el jugador avanza por cualquiera de las dos vías.
-- Los MVPs únicos se cuentan sumando kills y asistencias por ID distinto.
-- Los tiers son un bonus único; el farmeo principal son los puntos de Alma por kill.
-- Las monedas OzRo quedan fuera de este ciclo.
-- Los valores son una primera propuesta; se ajustan después de ver el historial real.
+- El killer suma por `MVP_KILL`.
+- Cada miembro de party en el mismo mapa suma por `MVP_SUPP`.
+- `MVP_SUPP` ya incluye las asistencias históricas, así que también generan Almas.
+- El Journal suma todos los MVPs y resta `MVP_SOUL_CLAIMED`.
+- Al reclamar, entrega esa diferencia como Almas y suma el total a `MVP_SOUL_CLAIMED`.
 
 ## Invocador futuro
 
@@ -109,7 +104,7 @@ Los tiers son **acumulativos** y se reclaman una vez por personaje. Los valores 
   - Enorme: 10 Almas.
   - Jefes especiales: más de 10 Almas si se agregan.
 - El jugador elige un MVP fijo; no es RNG puro como Bloody Branch.
-- Los MVPs invocados en el mapa de invocación **no cuentan** para el Tracker ni para los tiers.
+- Los MVPs invocados en el mapa de invocación **no cuentan** para el Tracker.
 - Decidir si dejan drops normales, drops de MVP reducidos o ningún drop de MVP para evitar loops.
 
 ## Bloody Branches
@@ -122,29 +117,19 @@ Los tiers son **acumulativos** y se reclaman una vez por personaje. Los valores 
 
 - La DB tiene **121 mobs con `MvpExp`**.
 - Los MVPs naturales (spawn no-instancia) son **75 entradas de spawn**, pero solo **63 IDs únicos**: algunos MVPs aparecen en varios mapas.
-- La página del radar muestra ~74 entradas porque cuenta por mapa; para variables y tiers hay que usar los **63 IDs únicos**.
+- La página del radar muestra ~74 entradas porque cuenta por mapa; para variables y cálculo de Almas hay que usar los **63 IDs únicos**.
 - La diferencia entre 74 y 75 es un duplicado/filtro del spawn; no cambia el conteo único.
 - El script viejo de Hercules tenía 58 MVPs; no se usa como denominador actual.
-- Para el Tracker conviene detectar por `MOB_MVPEXP` y guardar `MVP_KILL_<id>` de cualquier MVP.
-- Para los tiers de “MVPs únicos” usar los 63 naturales, no las 74 entradas de la página.
-- El Journal puede mostrar todos los MVPs con registros, aunque el denominador de únicos use solo los naturales.
-- Si se agrega o elimina un spawn, hay que regenerar la lista de naturales y los tiers.
-
-## Orden de implementación
-
-1. Generar la lista de MVPs actuales y los datos de tiers.
-2. Implementar el Tracker invisible conservando `MVP_KILL_<id>` y `MVP_SUPP_<id>`.
-3. Implementar el Journal: resumen, lista por MVP y reclamo de tiers.
-4. Entregar Almas de MVP por tiers.
-5. Agregar el Invocador en mapa overworld y excluir ese mapa del Tracker.
-6. Definir la receta de Bloody Branch y la sala/instancia.
-7. Evaluar estadísticas por personaje en la web.
+- Para el Tracker conviene detectar por `MOB_MVPEXP`/`MD_MVP` y guardar `MVP_KILL_<id>` de cualquier MVP.
+- El Journal puede mostrar todos los MVPs con registros, aunque el cálculo de Almas use solo los naturales.
+- Si se agrega o elimina un spawn, hay que regenerar la lista de naturales.
 
 ## Pruebas
 
 - Kill individual de un MVP: sube `MVP_KILL_<id>`.
 - Kill en party: killer recibe kill; miembros en el mismo mapa reciben `MVP_SUPP_<id>`.
 - Miembro en otro mapa no recibe asistencia.
-- Los tiers leen datos viejos y se reclaman una sola vez.
-- Un MVP invocado o de branch en el mapa excluido no modifica variables.
+- El Journal calcula puntos con datos viejos sin migración.
+- Reclamar Almas reinicia el pendiente y suma a `MVP_SOUL_CLAIMED`.
+- Si no hay espacio, no se entrega el reclamo.
 - Reinicio del server: variables y reclamos persisten.

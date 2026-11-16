@@ -2,8 +2,8 @@
 //= Cronista de Cacerias
 //===== Description: =========================================
 //= Lee MVP_KILL_<id> y MVP_SUPP_<id>.
-//= Muestra resumen, lista por MVP y reclama tiers.
-//= No modifica las variables de tracking.
+//= Muestra resumen, lista por MVP y permite reclamar Almas.
+//= Los puntos de Alma se calculan desde las variables viejas.
 //============================================================
 
 prontera,150,180,4	script	Cronista de Cacerias	4_M_SAGE_C,{
@@ -13,8 +13,7 @@ prontera,150,180,4	script	Cronista de Cacerias	4_M_SAGE_C,{
 	mes "¿Qué deseas saber?";
 	next;
 
-	callsub L_CalcStats;
-	switch (select("Resumen:Mis MVPs:Almas:Recompensas:Salir")) {
+	switch (select("Resumen:Mis MVPs:Almas:Salir")) {
 	case 1:
 		callsub L_Summary;
 		break;
@@ -25,9 +24,6 @@ prontera,150,180,4	script	Cronista de Cacerias	4_M_SAGE_C,{
 		callsub L_Souls;
 		break;
 	case 4:
-		callsub L_Rewards;
-		break;
-	case 5:
 		mes .npc_name$;
 		mes "Que la caza te sea favorable.";
 		break;
@@ -35,12 +31,14 @@ prontera,150,180,4	script	Cronista de Cacerias	4_M_SAGE_C,{
 	close;
 
 L_Summary:
+	callsub L_CalcStats;
+	callsub L_CalcSouls;
 	mes .npc_name$;
 	mes "^777777Tus estadísticas de caza^000000";
 	mes "Golpes finales: ^009900" + $@MVPJ_KILLS + "^000000";
 	mes "Asistencias: ^009900" + $@MVPJ_SUPPS + "^000000";
 	mes "MVPs únicos: ^009900" + $@MVPJ_UNIQUE + " / " + .mvp_count + "^000000";
-	mes "Puntos de Alma pendientes: ^009900" + MVP_SOUL_POINTS + "^000000";
+	mes "Puntos de Alma pendientes: ^009900" + $@MVPJ_PENDING + "^000000";
 	if ($@MVPJ_TOP_KILL_ID > 0) {
 		mes "MVP más cazado: ^FF0000" + getmonsterinfo($@MVPJ_TOP_KILL_ID, MOB_NAME) + "^000000";
 		mes "(" + $@MVPJ_TOP_KILL_COUNT + " golpes finales)";
@@ -57,6 +55,7 @@ L_Summary:
 	return;
 
 L_List:
+	callsub L_CalcStats;
 	if ($@MVPJ_UNIQUE == 0) {
 		mes .npc_name$;
 		mes "Todavía no tengo registros tuyos.";
@@ -110,13 +109,15 @@ L_List:
 	}
 
 L_Souls:
+	callsub L_CalcSouls;
 	mes .npc_name$;
 	mes "^777777Almas de MVP^000000";
-	mes "Puntos pendientes: ^009900" + MVP_SOUL_POINTS + "^000000";
+	mes "Puntos ganados: ^009900" + $@MVPJ_EARNED + "^000000";
 	mes "Almas reclamadas: ^009900" + MVP_SOUL_CLAIMED + "^000000";
+	mes "Puntos pendientes: ^009900" + $@MVPJ_PENDING + "^000000";
 	mes "Cada punto se convierte en 1 Alma de MVP.";
 	next;
-	if (MVP_SOUL_POINTS <= 0) {
+	if ($@MVPJ_PENDING <= 0) {
 		mes .npc_name$;
 		mes "No tienes puntos pendientes.";
 		mes "Sigue cazando MVPs naturales.";
@@ -124,88 +125,17 @@ L_Souls:
 		return;
 	}
 	if (select("Reclamar Almas:Volver") == 2) return;
-	.@amount = MVP_SOUL_POINTS;
-	if (!checkweight(35005, .@amount)) {
+	if (!checkweight(35005, $@MVPJ_PENDING)) {
 		mes .npc_name$;
-		mes "No tienes espacio suficiente para " + .@amount + " Almas.";
+		mes "No tienes espacio suficiente para " + $@MVPJ_PENDING + " Almas.";
 		mes "Haz lugar en el inventario y vuelve a intentarlo.";
 		next;
 		return;
 	}
-	getitem 35005, .@amount;
-	MVP_SOUL_POINTS = 0;
-	MVP_SOUL_CLAIMED = MVP_SOUL_CLAIMED + .@amount;
+	getitem 35005, $@MVPJ_PENDING;
+	MVP_SOUL_CLAIMED = MVP_SOUL_CLAIMED + $@MVPJ_PENDING;
 	mes .npc_name$;
-	mes "Reclamaste " + .@amount + " Almas de MVP.";
-	next;
-	return;
-
-L_Rewards:
-	mes .npc_name$;
-	mes "^777777Recompensas por cacería^000000";
-	for (.@i = 0; .@i < 5; .@i++) {
-		.@tier = .@i + 1;
-		.@met = (($@MVPJ_KILLS >= .tier_kills[.@i]) || ($@MVPJ_SUPPS >= .tier_supps[.@i])) && ($@MVPJ_UNIQUE >= .tier_unique[.@i]);
-		.@claimed = getd("MVP_TIER_" + .@tier + "_CLAIMED");
-		if (.@claimed) {
-			.@status$ = "Reclamado";
-		} else if (.@met) {
-			.@status$ = "Disponible";
-		} else {
-			.@status$ = "En progreso";
-		}
-		mes .@tier + ") " + .@status$;
-		mes "   " + .tier_kills[.@i] + " kills o " + .tier_supps[.@i] + " asistencias";
-		if (.tier_unique[.@i] > 0) mes "   Requiere " + .tier_unique[.@i] + " MVPs únicos.";
-		mes "   Premio: " + .tier_zeny[.@i] + " zeny";
-		if (.tier_souls[.@i] > 0) mes "   + " + .tier_souls[.@i] + " Almas de MVP";
-	}
-	mes "Tienes: " + $@MVPJ_KILLS + " kills, " + $@MVPJ_SUPPS + " asistencias, " + $@MVPJ_UNIQUE + " MVPs únicos.";
-	next;
-
-	.@sel = select("Tier 1:Tier 2:Tier 3:Tier 4:Tier 5:Volver");
-	if (.@sel == 6) return;
-	.@t = .@sel - 1;
-	.@tier = .@sel;
-	.@met = (($@MVPJ_KILLS >= .tier_kills[.@t]) || ($@MVPJ_SUPPS >= .tier_supps[.@t])) && ($@MVPJ_UNIQUE >= .tier_unique[.@t]);
-	.@claimed = getd("MVP_TIER_" + .@tier + "_CLAIMED");
-	if (.@claimed) {
-		mes .npc_name$;
-		mes "Ese tier ya fue reclamado.";
-		next;
-		return;
-	}
-	if (!.@met) {
-		mes .npc_name$;
-		mes "Todavía no cumples los requisitos de ese tier.";
-		next;
-		return;
-	}
-
-	mes .npc_name$;
-	mes "Vas a reclamar el tier " + .@tier + ".";
-	mes "Premio: " + .tier_zeny[.@t] + " zeny";
-	if (.tier_souls[.@t] > 0) mes "+ " + .tier_souls[.@t] + " Almas de MVP.";
-	mes "¿Confirmas?";
-	next;
-	if (select("Reclamar:Volver") == 2) return;
-
-	if (.tier_souls[.@t] > 0 && !checkweight(35005, .tier_souls[.@t])) {
-		mes .npc_name$;
-		mes "No tienes espacio suficiente para las Almas.";
-		mes "Haz lugar en el inventario y vuelve a intentarlo.";
-		next;
-		return;
-	}
-
-	Zeny += .tier_zeny[.@t];
-	if (.tier_souls[.@t] > 0) {
-		getitem 35005, .tier_souls[.@t];
-		MVP_SOUL_CLAIMED = MVP_SOUL_CLAIMED + .tier_souls[.@t];
-	}
-	setd "MVP_TIER_" + .@tier + "_CLAIMED", 1;
-	mes .npc_name$;
-	mes "Recompensa entregada. Sigue escribiendo tu historia.";
+	mes "Reclamaste " + $@MVPJ_PENDING + " Almas de MVP.";
 	next;
 	return;
 
@@ -236,15 +166,34 @@ L_CalcStats:
 	}
 	return;
 
+L_CalcSouls:
+	$@MVPJ_EARNED = 0;
+	for (.@i = 0; .@i < .mvp_count; .@i++) {
+		.@id = .mvp_id[.@i];
+		.@k = getd("MVP_KILL_" + .@id);
+		.@s = getd("MVP_SUPP_" + .@id);
+		if (.@k + .@s <= 0) continue;
+
+		.@mexp = getmonsterinfo(.@id, MOB_MVPEXP);
+		.@level = getmonsterinfo(.@id, MOB_LV);
+		if (.@mexp > 0) {
+			if (.@mexp < 500000) .@points = 1;
+			else if (.@mexp < 1500000) .@points = 5;
+			else .@points = 10;
+		} else {
+			if (.@level < 120) .@points = 1;
+			else if (.@level < 180) .@points = 5;
+			else .@points = 10;
+		}
+		$@MVPJ_EARNED = $@MVPJ_EARNED + ((.@k + .@s) * .@points);
+	}
+	$@MVPJ_PENDING = $@MVPJ_EARNED - MVP_SOUL_CLAIMED;
+	if ($@MVPJ_PENDING < 0) $@MVPJ_PENDING = 0;
+	return;
+
 OnInit:
 	.npc_name$ = "[ ^0000FFCronista de Cacerías^000000 ]";
 	setarray .mvp_id[0], 1511, 2362, 2249, 1785, 1039, 3505, 2068, 20648, 21301, 20422, 20421, 2255, 1272, 20943, 1719, 1046, 1389, 1112, 1115, 1658, 1418, 1871, 2253, 2251, 1768, 2165, 1086, 1885, 1252, 1832, 20601, 1734, 2442, 2202, 1688, 2156, 1147, 1059, 1150, 2483, 1087, 1190, 1038, 1157, 1159, 20934, 20381, 20419, 1623, 1492, 2087, 3741, 1251, 1583, 2441, 20928, 3074, 1312, 1751, 3633, 1685, 1630, 1917;
 	.mvp_count = getarraysize(.mvp_id);
-
-	setarray .tier_kills[0], 5, 25, 75, 150, 300;
-	setarray .tier_supps[0], 10, 50, 150, 300, 600;
-	setarray .tier_unique[0], 0, 5, 15, 30, 45;
-	setarray .tier_zeny[0], 25000, 50000, 100000, 150000, 250000;
-	setarray .tier_souls[0], 0, 1, 2, 3, 5;
 	return;
 }

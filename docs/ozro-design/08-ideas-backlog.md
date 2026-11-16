@@ -90,7 +90,7 @@ Lluvia de ideas del documento antiguo, **reformuladas** y etiquetadas. No es lis
 | Dark Ritual: reset a Novice 1 → SoulStone valiosa | `reformular` | ¿Conflicto con reset fácil? |
 | NPC buffs por temporadas (esferas monk, adrenaline) | `pendiente` | Eventos estacionales |
 | Old Blacksmith: monedas OzRo → piedras BS | `pendiente` | Depende de bounty rewards; ya no Special Gold |
-| MVP Soul (item custom) → invocar MVP | `pendiente` | 1/5/10 Almas por kill de MVP natural según dificultad, más tiers del Journal; sin monedas en este ciclo; evitar loop infinito |
+| MVP Soul (item custom) → invocar MVP | `pendiente` | 1/5/10 puntos por kill/asistencia de MVP natural según dificultad; killer y party suman; se reclaman en el Journal; sin monedas en este ciclo; evitar loop infinito |
 | MVP room con cleaner | `pendiente` | Sala de MVPs con NPC de limpieza |
 | Reemplazo de WoE: GvE / invasiones + castillos | `reformular` | En vez de GvG: invasiones de bichos o eventos PvE para acceder a castillos con pocos jugadores; obliga a defender, se puede perder y hay que renovar. Si algún día hay 6+, GvG chico o battleground. La guild debe servir para algo más que WoE, salvo que la WoE sea PvE. |
 | Karma en misiones custom | `pendiente` | Karma +/- por personaje; misiones que exigen karma o dan recompensa según karma |
