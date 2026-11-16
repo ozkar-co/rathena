@@ -34,10 +34,69 @@ Dar salida a objetos que no encajan en el vending ni en Garrett, sin depender de
 
 ## Valuación
 
-- No usar `ragnabots` como fuente principal: queda como dato histórico.
-- Usar la rareza interna del servidor: drop rate, spawn, acceso, utilidad y demanda.
+La idea es cruzar **dificultad de obtención** con **datos de mercado limpios**.
+
+- La rareza interna del servidor sigue siendo la base: drop rate, spawn, acceso, quest/craft, instancia y utilidad.
 - La taxonomía de items (`ozro-site/assets/items/taxonomy.json`) puede servir de base.
+- Los precios de mercado se pueden usar como **señal secundaria**, no como ancla.
 - El tasador puede dar un rango y dejar que el jugador negocie dentro de ese rango.
+
+### Limpieza de datos de mercado
+
+Antes de usar la lista de precios hay que descartar o corregir:
+
+- Publicaciones de un solo objeto a precio absurdo para “reservar plaza”.
+- Precios sin ventas reales o con datos viejos.
+- Outliers extremos; usar mediana o media recortada en vez de promedio.
+- Items con muy pocas observaciones.
+- Diferencia entre precio publicado y precio real de venta.
+- Duplicados, nombres ambiguos y variantes del mismo item.
+
+### Objetos compuestos
+
+El tasador no solo verá items base. También debe estimar:
+
+- Cartas.
+- Equipo refinado (+1 a +10 o más).
+- Equipo con una o varias cartas.
+- Equipo con encantamientos u opciones aleatorias.
+- Combinaciones de refine + cartas + encantamiento.
+
+La valuación de un objeto compuesto podría ser:
+
+```
+valor = valorBase
+      + premioPorRefine
+      + valorDeCartas
+      + premioPorSlots
+      + valorDeEncantamientos
+      + ajusteDeMercado
+```
+
+- Cada carta se valúa con su propia rareza y datos de mercado.
+- El refine necesita una curva por tipo de equipo y nivel.
+- Los encantamientos y opciones aleatorias son lo más difícil; puede requerir tablas manuales.
+- Evitar que el tasador pague más que el precio de venta esperado.
+
+### Simulación y validación
+
+- Probar con objetos raros que los jugadores ya tengan, de forma anonimizada.
+- Generar objetos raros pero plausibles: equipo +7, equipo con cartas, combinaciones poco frecuentes.
+- Comparar la tasación contra el mercado limpio y contra la dificultad real de farmeo.
+- Revisar los extremos de la lista: top 1%, bottom 1%, items únicos y sin historial.
+- Si la tasación queda lejos del mercado, ajustar antes de abrir el NPC.
+
+## Viabilidad
+
+Es un NPC complejo y queda para mucho más adelante. Antes de implementarlo hacen falta:
+
+- Datos de mercado limpios y con criterio de outliers.
+- Modelo de rareza y valuación de objetos compuestos.
+- Persistencia segura de item + cartas + refine + opciones + dueño.
+- Simulación con objetos reales y plausibles.
+- Decidir si la venta es simulada, real o mixta.
+
+Si la valuación de objetos compuestos resulta demasiado costosa, se puede empezar solo por items base y dejar cartas/refine/encantamientos para una segunda etapa.
 
 ## Preguntas abiertas
 
