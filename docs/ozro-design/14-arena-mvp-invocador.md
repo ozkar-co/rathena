@@ -14,7 +14,7 @@ Configuración actual en `db/import/instance_db.yml`:
 ```yml
 Body:
   - Id: 10001
-    Name: OzRo MVP Arena
+    Name: Sueños Tejidos
     TimeLimit: 3600
     IdleTimeOut: 300
     Enter:
@@ -26,9 +26,10 @@ Body:
 - **No usar `NoMapFlag: true`:** en esta versión de rAthena deja el vector de flags vacío y `setmapflag` puede crashear el map-server.
 - La instancia copia los flags de `quiz_00`; en `OnInstanceInit` se quita `mf_noskill` y se agregan `nobranch`, `nomemo`, `noteleport`, `monster_noteleport` y un `nosave` con destino a Prontera.
 
-## NPC invocador
+## NPC invocadora
 
 - Ubicación: `prontera,173,152`.
+- Nombre: **Tejedora de Ecos**.
 - Modo actual: **`IM_CHAR`** (solo, sin party). La party queda para una etapa posterior.
 - Flujo:
   1. Si ya hay una instancia activa, ofrece reingresar.

@@ -26,11 +26,12 @@
 | Card Collector | `card_collector.txt` | Archivo de cartas por cuenta, % progreso |
 | Card Remover | `card_remover.txt` | Quitar cartas de equip |
 | Kaz el Cronista | `chronicler.txt` | Lore básico; conteo jugadores |
+| El Guardián de Almas | `mvp_journal.txt` | Cristaliza fragmentos de alma en Almas de MVP |
 | Sabio de los Elementos | `endow_sage.txt` | Endow elemental (zeny + piedra) |
 | Ludovico el Sepulturero | `gravekeeper.txt` | Muertes del PJ + contador global |
 | Kessinger | `soul_link.txt` | Soul Link de pago |
 | Garrett el Recolector | `trasher.txt` | 5 ofertas diarias + 1 misión de 6h por cuenta |
-| Creador de Arena | `mvp_arena.txt` | Invocador fijo T1/T2/T3 en instancia (3/5/10 Almas + keys) |
+| Tejedora de Ecos | `mvp_arena.txt` | Invocadora de ecos T1/T2/T3 en Sueños Tejidos (3/5/10 Almas + keys) |
 | Bounty Boards | `bounty/*.txt` | Misiones de caza por ciudad (26 ciudades) |
 | Quests repetibles | `repeteables/*.txt` | EXP repetible por monstruo (18 quests) |
 
@@ -69,13 +70,13 @@ Objetivo: convertir a Garrett en el punto de entrada de la economía de basura, 
 - El comportamiento anterior (llevar directo a un nivel) desbalanceó el juego; no se repite.
 - Costos y tiers quedan pendientes de definir junto con el resto de la economía.
 
-### MVP Tracker + MVP Journal `pendiente` — prioridad alta
+### MVP Tracker + El Guardián de Almas `implementado`
 
 - Es el NPC más importante para la dinámica actual: los jugadores compiten por quién mata más MVPs.
 - Debe contar **kills y asistencias por MVP**, no solo un total global.
 - También debe permitir saber **qué MVPs mata cada jugador**, porque hay gente que se especializa en uno.
 - No se porta el script de Hercules: se reimplementa con el estándar actual de rAthena.
-- El Journal muestra el progreso; el Tracker registra los eventos de muerte/asistencia.
+- El Guardián de Almas muestra el progreso; el Tracker registra los eventos de muerte/asistencia.
 - Mantener los nombres `MVP_KILL_<id>` y `MVP_SUPP_<id>` para no perder el historial.
 - Plan detallado de puntos de Alma, reclamo e invocador en [12-mvp-tracker-journal.md](./12-mvp-tracker-journal.md).
 
@@ -90,7 +91,7 @@ Objetivo: convertir a Garrett en el punto de entrada de la economía de basura, 
 
 ### Alma de MVP `pendiente`
 
-- Se obtiene al cazar MVPs naturales: 1/3/5/10/20 puntos según el tier fijo por ID. Killer y party en el mismo mapa suman; el Journal los convierte en Almas.
+- Se obtiene al cazar MVPs naturales: 1/3/5/10/20 puntos según el tier fijo por ID. Killer y party en el mismo mapa suman; el Guardián los convierte en Almas.
 - Uso futuro: invocador de MVPs y receta de Bloody Branches.
 - No debe generar un loop infinito (matar MVP → alma → invocar el mismo MVP → alma); las kills en el mapa de invocación no deben contar.
 - Ver [12-mvp-tracker-journal.md](./12-mvp-tracker-journal.md).
@@ -116,7 +117,7 @@ Objetivo: convertir a Garrett en el punto de entrada de la economía de basura, 
 |---------------|----------|
 | Ox Hunter (Ushi) | `descartado` — sprite elegido al azar; historia incompatible y quedó a medio implementar |
 | Ox Merchant (Kuma) | `descartado` — misma razón; no usar Ox Coins |
-| MVP Tracker / Journal | `pendiente` — reimplementar, no portar |
+| MVP Tracker / El Guardián de Almas | `implementado` |
 | Crimson Weapons (cadena) | `descartado` como port — hoy las Crimson se consiguen por vías oficiales |
 | Marcus | `descartado` como port — queda como ejemplo de lore para desbloquear objetos |
 | Gambler | `reformular` — reemplazo por refine safe con monedas OzRo |

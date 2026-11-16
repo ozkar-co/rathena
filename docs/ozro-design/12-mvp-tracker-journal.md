@@ -1,6 +1,6 @@
-# MVP Tracker, Journal y Almas de MVP
+# MVP Tracker, El Guardián de Almas y Almas de MVP
 
-**Estado:** tracker, Journal y reclamo de Almas implementados; invocador pendiente
+**Estado:** tracker, El Guardián de Almas y reclamo de Almas implementados; invocador pendiente
 **Prioridad:** alta  
 **Objetivo:** registrar kills y asistencias por MVP, mostrar el historial y convertir ese progreso en Almas de MVP de forma repetible.
 
@@ -23,7 +23,7 @@ Se leen y escriben con `getd` / `setd`, igual que en el script viejo de Hercules
 |----------|---------|-----|
 | `MVP_SOUL_CLAIMED` | Personaje | Total de Almas ya reclamadas |
 
-No hace falta un contador de puntos: los puntos se calculan desde `MVP_KILL_<id>` y `MVP_SUPP_<id>` cada vez que el Journal los necesita. Así el historial viejo cuenta desde el primer día.
+No hace falta un contador de puntos: los puntos se calculan desde `MVP_KILL_<id>` y `MVP_SUPP_<id>` cada vez que el Guardián de Almas los necesita. Así el historial viejo cuenta desde el primer día.
 
 ## Componentes
 
@@ -38,7 +38,7 @@ No hace falta un contador de puntos: los puntos se calculan desde `MVP_KILL_<id>
 - **Pendiente:** excluir mapas de invocación, arena o sala de branches cuando existan.
 - No necesita escribir `mvplog`: el server ya lo registra y el radar de la web lo usa.
 
-### 2. Journal (NPC visible) `implementado`
+### 2. El Guardián de Almas (NPC visible) `implementado`
 
 - Ubicación: Prontera (150, 180).
 - Archivo: `npc/custom/ozro/mvp_journal.txt`.
@@ -56,7 +56,7 @@ No hace falta un contador de puntos: los puntos se calculan desde `MVP_KILL_<id>
 - Item actual: `MVP_Soul` (`35005`, “Alma de MVP”).
 - **Killer y party en el mismo mapa suman los puntos completos.** Con 3 jugadores, un MVP puede generar 3 veces los puntos; es intencional para que el soporte también reciba recompensa.
 - El multicuenta/doble login puede multiplicar puntos. Se acepta por ahora; si se rompe la economía, se ajusta.
-- Los puntos se reclaman en el Journal y se convierten 1:1 en items `Alma de MVP`.
+- Los puntos se reclaman en El Guardián de Almas y se convierten 1:1 en items `Alma de MVP`.
 - El reclamo es repetible y sin cap.
 - Si el inventario está lleno, no se entrega el reclamo hasta que haya espacio.
 - Uso futuro:
@@ -109,7 +109,7 @@ No son 11 eventos × 10 = 110, ni 200. Cada MVP se multiplica solo por su propio
 - El killer suma por `MVP_KILL`.
 - Cada miembro de party en el mismo mapa suma por `MVP_SUPP`.
 - `MVP_SUPP` ya incluye las asistencias históricas, así que también generan Almas.
-- El Journal suma todos los MVPs y resta `MVP_SOUL_CLAIMED`.
+- El Guardián de Almas suma todos los MVPs y resta `MVP_SOUL_CLAIMED`.
 - Al reclamar, entrega esa diferencia como Almas y suma el total a `MVP_SOUL_CLAIMED`.
 
 ## Invocador futuro
@@ -139,7 +139,7 @@ No son 11 eventos × 10 = 110, ni 200. Cada MVP se multiplica solo por su propio
 - La diferencia entre 74 y 75 es un duplicado/filtro del spawn; no cambia el conteo único.
 - El script viejo de Hercules tenía 58 MVPs; no se usa como denominador actual.
 - Para el Tracker conviene detectar por `MOB_MVPEXP`/`MD_MVP` y guardar `MVP_KILL_<id>` de cualquier MVP.
-- El Journal puede mostrar todos los MVPs con registros, aunque el cálculo de Almas use solo los naturales.
+- El Guardián de Almas puede mostrar todos los MVPs con registros, aunque el cálculo de Almas use solo los naturales.
 - Si se agrega o elimina un spawn, hay que regenerar la lista de naturales.
 
 ## Pruebas
@@ -147,7 +147,7 @@ No son 11 eventos × 10 = 110, ni 200. Cada MVP se multiplica solo por su propio
 - Kill individual de un MVP: sube `MVP_KILL_<id>`.
 - Kill en party: killer recibe kill; miembros en el mismo mapa reciben `MVP_SUPP_<id>`.
 - Miembro en otro mapa no recibe asistencia.
-- El Journal calcula puntos con datos viejos sin migración.
+- El Guardián de Almas calcula puntos con datos viejos sin migración.
 - Reclamar Almas reinicia el pendiente y suma a `MVP_SOUL_CLAIMED`.
 - Si no hay espacio, no se entrega el reclamo.
 - Reinicio del server: variables y reclamos persisten.
