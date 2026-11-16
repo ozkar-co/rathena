@@ -12,7 +12,6 @@ Lluvia de ideas del documento antiguo, **reformuladas** y etiquetadas. No es lis
 |------|--------|-------------------|
 | Challenges por cuenta con build/dificultad | `pendiente` | Ver [03-sistemas-core.md](./03-sistemas-core.md) |
 | Meta colección cartas + web | `implementado` / `pendiente` | Collector hecho; falta % en web; preservar datos |
-| MVP Tracker + El Guardián de Almas | `implementado` | Kills y asistencias por MVP; no portar Hercules |
 | Cronista como guía de lore | `reformular` | Expandir `chronicler.txt` |
 | Daily Hunting Quest con racha | `en-repo` | `hunting_missions.txt` desactivado |
 | Recompensas por cuenta (prestigio) | `pendiente` | Reducir incentivo multi-cuenta |
@@ -31,8 +30,6 @@ Lluvia de ideas del documento antiguo, **reformuladas** y etiquetadas. No es lis
 | Deshabilitar banco/correo del menú → solo NPC | `pendiente` | Más inmersivo; scripts bank en repo |
 | Cash points compra/venta no 1:1 | `probar` | `points2zeny.txt`; los points eran un parche por no poder tocar drops |
 | Reducir votos Kafra Voting Dungeon a 5 | `pendiente` | Si usan el dungeon |
-| Garrett: ofertas diarias + misión | `implementado` | 5 ofertas y 1 misión por cuenta; rareza por oferta, sin precios de mercado |
-| Lista de basura de Garrett en la web | `pendiente` | Para que los jugadores sepan qué guardar |
 | Tasador / casa de empeño | `pendiente` | Mercado NPC sin bots para cartas, equipo refinado/cardeado y encantamientos; complejo, para mucho después; ver [13-mercado-npc-tasador.md](./13-mercado-npc-tasador.md) |
 | Mercado NPC sin bots | `pendiente` | Vending para venta directa + tasador/consignación para el resto |
 | Gambler → refine safe con monedas OzRo | `reformular` | Sin Special Gold; “si falla no se rompe”, no nivel fijo |
@@ -90,7 +87,6 @@ Lluvia de ideas del documento antiguo, **reformuladas** y etiquetadas. No es lis
 | Dark Ritual: reset a Novice 1 → SoulStone valiosa | `reformular` | ¿Conflicto con reset fácil? |
 | NPC buffs por temporadas (esferas monk, adrenaline) | `pendiente` | Eventos estacionales |
 | Old Blacksmith: monedas OzRo → piedras BS | `pendiente` | Depende de bounty rewards; ya no Special Gold |
-| MVP Soul (item custom) → invocar MVP | `pendiente` | 1/3/5/10/20 puntos por kill/asistencia de MVP natural según el tier fijo por ID; killer y party suman; se reclaman en El Guardián de Almas; sin monedas en este ciclo; evitar loop infinito |
 | MVP room con cleaner | `pendiente` | Sala de MVPs con NPC de limpieza |
 | Reemplazo de WoE: GvE / invasiones + castillos | `reformular` | En vez de GvG: invasiones de bichos o eventos PvE para acceder a castillos con pocos jugadores; obliga a defender, se puede perder y hay que renovar. Si algún día hay 6+, GvG chico o battleground. La guild debe servir para algo más que WoE, salvo que la WoE sea PvE. |
 | Karma en misiones custom | `pendiente` | Karma +/- por personaje; misiones que exigen karma o dan recompensa según karma |
@@ -215,7 +211,7 @@ Inspiración en idle games y juegos de gestión de celular: **hago cosas, pero d
 
 Si 3+ son sí → subir prioridad.
 
-**Regla de orden:** primero balancear bounties, repetibles, Garrett y monedas existentes; después agregar NPCs/quests nuevas. No hay server de prueba: se valida directo en producción con los 3 jugadores.
+**Regla de orden:** primero balancear bounties, repetibles y monedas existentes; después agregar NPCs/quests nuevas. No hay server de prueba: se valida directo en producción con los 3 jugadores.
 
 ## Comentarios
 

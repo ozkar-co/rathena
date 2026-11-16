@@ -122,9 +122,7 @@ Ideas del doc viejo a integrar:
 Sin jugadores vendiendo, el mercado = NPCs:
 
 - **Monedas OzRo por tiers** (bronce, plata, oro, platino). No hace falta definir todos los usos ahora; se van habilitando a medida que se implementa contenido de nivel más alto.
-- **Garrett** como entrada de la economía de basura: 5 ofertas diarias y 1 misión por cuenta, con rareza por oferta. `ragnabots` quedó deprecado; no se usa como fuente principal de precios.
 - **Tasador / casa de empeño** para objetos que no son chatarra: tasación, negociación y consignación. Ver [13-mercado-npc-tasador.md](./13-mercado-npc-tasador.md).
-- **Alma de MVP** se obtiene al cazar MVPs naturales (1/3/5/10/20 puntos según el tier fijo por ID; killer y party suman), reclamables en El Guardián de Almas; uso futuro en el invocador y en la receta de Bloody Branches.
 - **Barter shops**: `descartado` — se quitan para simplificar; el equip se obtiene por craft/quests específicas.
 - `points2zeny.txt` — puente cash ↔ zeny (revisar ratio); los points existían porque antes no sabíamos modificar drops.
 - `card_collector` + trader de cartas — sinks/faucets; **preservar los datos existentes**.
@@ -156,7 +154,7 @@ Para reducir la doble cuenta: consumibles **fabricables** (como el Alquimista fa
 ## 9. Orden de trabajo
 
 - **No hay server de prueba.** Se prueba directo en producción con los 3 jugadores; si algo falla, se corrige o se apaga el server.
-- Antes de agregar NPCs/quests nuevas, balancear bounties, repetibles, Garrett y monedas existentes.
+- Antes de agregar NPCs/quests nuevas, balancear bounties, repetibles y monedas existentes.
 - Bounties que dan casi 1 nivel se aceptan; las que dan 2 niveles se corrigen.
 - Las repetibles se mantienen para que los PJ nuevos puedan subir con ayuda de los fuertes.
 - El zeny de bounty debe escalar por nivel/banda, no ser un monto fijo.

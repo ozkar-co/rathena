@@ -42,9 +42,7 @@ La sección **Comentarios** al final de cada archivo es un borrador libre: se ap
 | [08-ideas-backlog.md](./08-ideas-backlog.md) | Lluvia de ideas antigua reformulada y priorizada |
 | [09-estado-tecnico-y-estabilidad.md](./09-estado-tecnico-y-estabilidad.md) | Revisión técnica: rev, cliente, PACKETVER, skills y mapas faltantes antes de congelar |
 | [10-cliente-organizacion-y-pruebas.md](./10-cliente-organizacion-y-pruebas.md) | Cómo ordenar el cliente, separar base/custom y probar el cliente actual sin romper lo que funciona |
-| [12-mvp-tracker-journal.md](./12-mvp-tracker-journal.md) | Tracker, El Guardián de Almas y Almas de MVP: variables, puntos, invocador y branches |
 | [13-mercado-npc-tasador.md](./13-mercado-npc-tasador.md) | Mercado NPC sin bots: tasador, consignación y casa de empeño |
-| [14-arena-mvp-invocador.md](./14-arena-mvp-invocador.md) | Arena de MVP en instancia: mapa, entrada, spawner y costos en Almas |
 | [15-vendedor-viajero.md](./15-vendedor-viajero.md) | Vendedor viajero: items de invocación, stock limitado, precios y reposición |
 
 ## Repos relacionados
@@ -65,9 +63,8 @@ La sección **Comentarios** al final de cada archivo es un borrador libre: se ap
 - **2026-11:** Congelar la base en rAthena de enero 2026 + cliente actual. Antes de balancear/traducir/crear contenido: alinear `PACKETVER` y recortar lo que el cliente no soporte. Ver [09-estado-tecnico-y-estabilidad.md](./09-estado-tecnico-y-estabilidad.md).
 - **2026-11:** No reconstruir el cliente desde cero por ahora. No tocar el cliente ni comprar el 20210406 hasta que algo se rompa; seguir con el actual. El custom vive en `ozro-cli/patch/`. Ver [10-cliente-organizacion-y-pruebas.md](./10-cliente-organizacion-y-pruebas.md).
 - **2026-11-16:** El contenido de Hercules **no se porta**: queda como referencia de ideas y lore. Todo NPC nuevo debe ser lore-friendly.
-- **2026-11-16:** Primero balancear lo que ya está activo (bounties, repetibles, Garrett, monedas) y después agregar contenido nuevo.
-- **2026-11-16:** Monedas OzRo por tiers (bronce/plata/oro/platino); usos de tiers altos se definen a medida que crece el contenido. El Alma de MVP se obtiene al cazar MVPs naturales (1/3/5/10/20 puntos según el tier fijo por ID; killer y party suman) y se reclama en El Guardián de Almas.
-- **2026-11-16:** Arena MVP implementada en modo solo para T1, T2 y T3 accesible, con la Tejedora de Ecos en Sueños Tejidos y costo en Almas + keys. T4/T5 fuera de invocación. Ver [14-arena-mvp-invocador.md](./14-arena-mvp-invocador.md).
-- **2026-11-16:** Garrett implementado con ofertas diarias y una misión por cuenta. El mercado NPC sin bots se resolverá con vending y un tasador/casa de empeño; `ragnabots` queda deprecado. El Gambler se reemplaza por refine safe con monedas OzRo (“si falla, no se rompe”).
+- **2026-11-16:** Primero balancear lo que ya está activo (bounties, repetibles, monedas) y después agregar contenido nuevo.
+- **2026-11-16:** Monedas OzRo por tiers (bronce/plata/oro/platino); usos de tiers altos se definen a medida que crece el contenido.
+- **2026-11-16:** El mercado NPC sin bots se resolverá con vending y un tasador/casa de empeño; `ragnabots` queda deprecado. El Gambler se reemplaza por refine safe con monedas OzRo (“si falla, no se rompe”).
 - **2026-11-16:** No hay server de prueba; se prueba directo en producción con los 3 jugadores.
 - **2026-11-16:** Lo implementado se borra de la documentación y queda en el changelog público (general) y en el git log (detalle técnico).

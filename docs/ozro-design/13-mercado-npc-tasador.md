@@ -5,10 +5,9 @@
 
 ## Objetivo
 
-Dar salida a objetos que no encajan en el vending ni en Garrett, sin depender de una población grande de jugadores.
+Dar salida a objetos que no encajan en el vending ni en la compra de chatarra, sin depender de una población grande de jugadores.
 
 - **Vending:** ya existe una solución definida aparte.
-- **Garrett:** compra chatarra barata al instante.
 - **Tasador / casa de empeño:** para objetos de más valor o de venta lenta.
 
 ## Flujo propuesto
@@ -109,6 +108,6 @@ Si la valuación de objetos compuestos resulta demasiado costosa, se puede empez
 
 ## Relación con otras ideas
 
-- No reemplaza a Garrett: Garrett compra basura común; el tasador maneja objetos de mayor valor.
+- No reemplaza la compra de chatarra existente; el tasador maneja objetos de mayor valor.
 - No reemplaza el vending: el vending sigue siendo para venta directa entre jugadores.
 - Puede conectarse con el mercado de la web para mostrar objetos en consignación.

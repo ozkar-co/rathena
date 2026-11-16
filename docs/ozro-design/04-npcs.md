@@ -26,12 +26,9 @@
 | Card Collector | `card_collector.txt` | Archivo de cartas por cuenta, % progreso |
 | Card Remover | `card_remover.txt` | Quitar cartas de equip |
 | Kaz el Cronista | `chronicler.txt` | Lore básico; conteo jugadores |
-| El Guardián de Almas | `mvp_journal.txt` | Cristaliza fragmentos de alma en Almas de MVP |
 | Sabio de los Elementos | `endow_sage.txt` | Endow elemental (zeny + piedra) |
 | Ludovico el Sepulturero | `gravekeeper.txt` | Muertes del PJ + contador global |
 | Kessinger | `soul_link.txt` | Soul Link de pago |
-| Garrett el Recolector | `trasher.txt` | 5 ofertas diarias + 1 misión de 6h por cuenta |
-| Tejedora de Ecos | `mvp_arena.txt` | Invocadora de ecos T1/T2/T3 en Sueños Tejidos (3/5/10 Almas + keys) |
 | Bounty Boards | `bounty/*.txt` | Misiones de caza por ciudad (26 ciudades) |
 | Quests repetibles | `repeteables/*.txt` | EXP repetible por monstruo (18 quests) |
 
@@ -44,24 +41,6 @@
 
 ## Reformulaciones prioritarias
 
-### Garrett el Recolector `implementado`
-
-Objetivo: convertir a Garrett en el punto de entrada de la economía de basura, con precios calculados por rareza de oferta y no por el mercado.
-
-- Todo el NPC es **por cuenta**, no por personaje. El cap diario es de **500.000 zeny por cuenta**.
-- **Ofertas diarias:** 5 items con precio unitario visible. El jugador decide si los busca; se puede vender hasta agotar el cap.
-- **Misión:** una por día, con ventana de 6 horas. Se elige entre contratos `common`, `uncommon` y `rare`.
-- Mientras hay misión activa, Garrett **no permite vender**; solo muestra tiempo restante y progreso.
-- La misión se puede **cancelar**. Al cancelar o fallar, no se puede tomar otra hasta el día siguiente, pero las ofertas diarias se desbloquean.
-- Si al hablar tiene la cantidad pedida en el inventario, Garrett ofrece cerrar la misión y paga. No importa cómo consiguió los items.
-- La misión paga **fuera del cap diario**, con multiplicador sobre el precio unitario; el tope y los valores exactos se definen antes de implementar.
-- **Rareza por oferta**, no por precio de mercado: drop rate efectivo × cantidad de spawn × factor de acceso.
-- Los items **sin spawn conocido** (instancia/evento/mob dinámico) salen del pool diario y quedan para misiones especiales.
-- Tiers: `abundant`, `common`, `uncommon`, `rare`. `very_rare` queda solo para eventos/misiones especiales.
-- Las cantidades de misión se precalculan en una tabla, limitadas por **peso** y por el tope de pago; no se calculan en el NPC en tiempo real.
-- La tabla está en `ozro-site/assets/items/garrett-missions.json` y el script se genera con `tools/generate_garrett_npc.py`.
-- Propuesta actual: 39 contratos (14 common, 16 uncommon, 9 rare), pago mínimo 500.000 y máximo 1.500.000, multiplicador 1,5, peso máximo 5.000. Cantidades: common 119–150, uncommon 49–70, rare 18–25.
-
 ### Gambler `reformular` (reemplazo completo)
 
 - No se usa más **Special Gold** como moneda.
@@ -70,31 +49,14 @@ Objetivo: convertir a Garrett en el punto de entrada de la economía de basura, 
 - El comportamiento anterior (llevar directo a un nivel) desbalanceó el juego; no se repite.
 - Costos y tiers quedan pendientes de definir junto con el resto de la economía.
 
-### MVP Tracker + El Guardián de Almas `implementado`
-
-- Es el NPC más importante para la dinámica actual: los jugadores compiten por quién mata más MVPs.
-- Debe contar **kills y asistencias por MVP**, no solo un total global.
-- También debe permitir saber **qué MVPs mata cada jugador**, porque hay gente que se especializa en uno.
-- No se porta el script de Hercules: se reimplementa con el estándar actual de rAthena.
-- El Guardián de Almas muestra el progreso; el Tracker registra los eventos de muerte/asistencia.
-- Mantener los nombres `MVP_KILL_<id>` y `MVP_SUPP_<id>` para no perder el historial.
-- Plan detallado de puntos de Alma, reclamo e invocador en [12-mvp-tracker-journal.md](./12-mvp-tracker-journal.md).
-
-## Monedas OzRo y Alma de MVP
+## Monedas OzRo
 
 ### Monedas OzRo `tiers`
 
 - Existen 4 tiers: **bronce, plata, oro y platino** (`Ozro_Bronze_Coin`, `Ozro_Silver_Coin`, `Ozro_Gold_Coin`, `Ozro_Platinum_Coin`).
 - No hace falta definir todos los usos ahora: se irán usando a medida que se implementen NPCs y contenido de nivel más alto.
-- El bronce ya se obtiene con Garrett; los tiers altos quedan reservados para contenido más pro.
+- El bronce ya se obtiene en la economía actual; los tiers altos quedan reservados para contenido más pro.
 - Cada tier debe tener una fuente, un sink y un límite; no agregar monedas decorativas.
-
-### Alma de MVP `pendiente`
-
-- Se obtiene al cazar MVPs naturales: 1/3/5/10/20 puntos según el tier fijo por ID. Killer y party en el mismo mapa suman; el Guardián los convierte en Almas.
-- Uso futuro: invocador de MVPs y receta de Bloody Branches.
-- No debe generar un loop infinito (matar MVP → alma → invocar el mismo MVP → alma); las kills en el mapa de invocación no deben contar.
-- Ver [12-mvp-tracker-journal.md](./12-mvp-tracker-journal.md).
 
 ## Card Collector: datos existentes
 
@@ -117,7 +79,6 @@ Objetivo: convertir a Garrett en el punto de entrada de la economía de basura, 
 |---------------|----------|
 | Ox Hunter (Ushi) | `descartado` — sprite elegido al azar; historia incompatible y quedó a medio implementar |
 | Ox Merchant (Kuma) | `descartado` — misma razón; no usar Ox Coins |
-| MVP Tracker / El Guardián de Almas | `implementado` |
 | Crimson Weapons (cadena) | `descartado` como port — hoy las Crimson se consiguen por vías oficiales |
 | Marcus | `descartado` como port — queda como ejemplo de lore para desbloquear objetos |
 | Gambler | `reformular` — reemplazo por refine safe con monedas OzRo |

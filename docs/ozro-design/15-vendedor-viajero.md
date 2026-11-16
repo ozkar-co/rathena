@@ -3,14 +3,14 @@
 **Estado:** `pendiente`  
 **Contexto:** reemplazo del mercado de bots y de la idea de autotrade. El servidor es cooperativo y con pocos jugadores, así que el mercado se resuelve con NPCs viajeros, stock limitado y precios anclados a la taxonomía.
 
-**Relacionado:** [04-npcs.md](./04-npcs.md), [13-mercado-npc-tasador.md](./13-mercado-npc-tasador.md), [14-arena-mvp-invocador.md](./14-arena-mvp-invocador.md)
+**Relacionado:** [04-npcs.md](./04-npcs.md), [13-mercado-npc-tasador.md](./13-mercado-npc-tasador.md)
 
 ## Objetivo
 
 - Dar salida a items de invocación fija que no se consiguen fácilmente en el mercado entre jugadores.
 - Crear un sink de zeny y de items sin depender de una población grande.
 - Aparecer de forma aleatoria en ciudades, con pistas del Cronista y stock diario/semanal.
-- Vender, no comprar. La compra de basura sigue siendo de Garrett y el tasador.
+- Vender, no comprar. La compra de basura queda fuera del viajero; el tasador cubre el resto.
 
 ## Relación con el invocador
 
@@ -28,7 +28,7 @@
 - Excluir items `untradeable`, `quest_only`, `instance_only`, `unobtainable` y objetos con script especial.
 - Si un item ya está en una tienda NPC normal, no venderlo más caro: o se omite, o se vende al mismo precio como conveniencia.
 - El viajero no debe vender items que se puedan comprar más barato en el item mall.
-- Garrett no compra items que sean keys de invocación. Se quitaron Stone Fragment (7067) y Broken Shell (7070) de sus listas.
+- Las keys de invocación no entran en la compra de chatarra. Se quitaron Stone Fragment (7067) y Broken Shell (7070) de esas listas.
 
 ## Lista inicial (T1)
 
@@ -39,7 +39,7 @@
 | Lance | 1411 | Doppelganger | 1 | semanal | manual | 2.75% exclusivo de Doppelganger; mercado 0. |
 | Broad Sword | 1162 | Doppelganger | 2 | semanal | manual | 1.1%, 2 mobs; mercado 0. |
 | Tongue | 1015 | Phreeoni | 20 | diario | ~10.000z | Compartido con otros mobs; mercado ~10k. |
-| Ant Jaw | 1014 | Phreeoni | 20 | diario | manual | No está en las listas activas de Garrett. |
+| Ant Jaw | 1014 | Phreeoni | 20 | diario | manual | No entra en la compra de chatarra. |
 | Heroic Emblem | 968 | Orc Lord | 1 | semanal | ~690.000z | Recuperable matando Orc Lord/Orc Hero; mercado ~690k. |
 | 3carat Diamond | 732 | Dracula | 2 | diario | ~63.000z | Mercado ~63k; también cae de otros MVPs. |
 | Red Bat Wing | 7006 | Dracula | 100 | diario | manual | Volumen; 27.5% de Drainliar, 100% de ringleaders. |
