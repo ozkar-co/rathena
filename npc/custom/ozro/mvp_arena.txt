@@ -124,6 +124,7 @@ OnInstanceInit:
 	setmapflag .@map$, mf_nobranch;
 	setmapflag .@map$, mf_nomemo;
 	setmapflag .@map$, mf_noteleport;
+	setmapflag .@map$, mf_monster_noteleport;
 	setmapflagnosave .@map$, "prontera", 171, 149;
 	end;
 

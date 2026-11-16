@@ -24,7 +24,7 @@ Body:
 ```
 
 - **No usar `NoMapFlag: true`:** en esta versión de rAthena deja el vector de flags vacío y `setmapflag` puede crashear el map-server.
-- La instancia copia los flags de `quiz_00`; en `OnInstanceInit` se quita `mf_noskill` y se agregan `nobranch`, `nomemo`, `noteleport` y un `nosave` con destino a Prontera.
+- La instancia copia los flags de `quiz_00`; en `OnInstanceInit` se quita `mf_noskill` y se agregan `nobranch`, `nomemo`, `noteleport`, `monster_noteleport` y un `nosave` con destino a Prontera.
 
 ## NPC invocador
 
