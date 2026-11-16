@@ -25847,6 +25847,10 @@ void do_init_clif(void) {
 		color_table[i] = ( colors[i] & 0x0000FF ) << 16 | ( colors[i] & 0x00FF00 ) | ( colors[i] & 0xFF0000 ) >> 16; //RGB to BGR
 	}
 
+#ifdef DISABLE_QUESTINFO_MARKERS
+	ShowInfo("Questinfo markers disabled: DISABLE_QUESTINFO_MARKERS is active (packet 0x446 blocked).\n");
+#endif
+
 	packetdb_readdb();
 
 	set_defaultparse(clif_parse);

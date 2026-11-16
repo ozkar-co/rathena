@@ -20948,6 +20948,9 @@ Questlog script commands
 /// questinfo <Icon>{,<Map Mark Color>{,<condition>}};
 BUILDIN_FUNC(questinfo)
 {
+#ifdef DISABLE_QUESTINFO_MARKERS
+	return SCRIPT_CMD_SUCCESS; // OzRagnarok: no registrar questinfo (iconos 0x446 ni marcas en minimapa)
+#endif
 	TBL_NPC* nd = map_id2nd(st->oid);
 
 	if (!nd || nd->m == -1) {
