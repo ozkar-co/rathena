@@ -48,5 +48,5 @@ Body:
     IdleTimeOut: 300
     Enter:
       Map: quiz_00
-      X: 50
-      Y: 24
+      X: 51
+      Y: 35

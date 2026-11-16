@@ -48,14 +48,15 @@ prontera,173,152,4	script	Creador de Arena	4_M_SAGE_C,{
 	close;
 }
 
-quiz_00,49,31,0	script	OzroTestSpawner	-1,{
+quiz_00,51,35,0	script	OzroTestSpawner	-1,{
 OnInstanceInit:
 	.@map$ = instance_mapname("quiz_00");
 	removemapflag .@map$, mf_noskill;
 	setmapflag .@map$, mf_nobranch;
 	setmapflag .@map$, mf_nomemo;
+	setmapflag .@map$, mf_noteleport;
 	setmapflagnosave .@map$, "prontera", 171, 149;
-	monster .@map$, 50, 24, "Poring de Prueba", 1002, 1, instance_npcname("OzroTestSpawner") + "::OnPoringDead";
+	monster .@map$, 81, 8, "Poring de Prueba", 1002, 1, instance_npcname("OzroTestSpawner") + "::OnPoringDead";
 	end;
 
 OnPoringDead:
@@ -64,7 +65,7 @@ OnPoringDead:
 	initnpctimer;
 	end;
 
-OnTimer3000:
+OnTimer1000:
 	stopnpctimer;
 	instance_destroy instance_id();
 	end;
