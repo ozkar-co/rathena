@@ -6,7 +6,7 @@
 //= Los puntos de Alma se calculan desde las variables viejas.
 //============================================================
 
-prontera,150,180,4	script	El Guardián de Almas	4_M_SAGE_C,{
+prontera,150,180,4	script	El Guardián de Almas	4_M_SURA,{
 
 	mes .npc_name$;
 	mes "No todas las bestias se van cuando mueren.";
