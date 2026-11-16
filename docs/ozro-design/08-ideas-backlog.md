@@ -20,7 +20,7 @@ Lluvia de ideas del documento antiguo, **reformuladas** y etiquetadas. No es lis
 | Partes especiales / fabricación de objetos de donación | `pendiente` | Objetos custom para crafting con lore |
 | Quests equipo pro con lore | `reformular` | = challenges + cadenas craft, no regalos |
 | Restructurar NPC cartas (tienda + misiones) | `reformular` | Extender card_collector sin perder datos |
-| Mercado partes equip común (barter) | `pendiente` | Barter NPC por tier; precios referencia PlayRO/ragnabots |
+| Mercado partes equip común (barter) | `descartado` | Se quita el barter para simplificar; el equip se consigue por craft/quests específicas |
 
 ---
 
@@ -59,6 +59,16 @@ Lluvia de ideas del documento antiguo, **reformuladas** y etiquetadas. No es lis
 | Evento diario EXP/drop por dungeon + warp | `pendiente` | Un dungeon completo al día con rates aumentados y warp temporal |
 | Endless Tower abierta cada día | `pendiente` | Reset diario del acceso |
 | Retos fuera del juego con impacto in-game | `pendiente` | Se resuelven en la web y otorgan recompensa in-game |
+| Minijuego diario web obligatorio | `pendiente` | Login diario en la página + tarea/minijuego para obtener recompensas in-game; racha y calendario. Evitar que sea solo un click. |
+
+---
+
+### Minijuego diario web (idea abierta)
+
+- Login diario en la página + una tarea/minijuego para desbloquear la recompensa in-game.
+- Puede tener racha y calendario; la recompensa debe ser útil pero no romper la economía.
+- Evitar que sea solo un click: que requiera una decisión o tarea corta.
+- Pendiente: tipo de minijuego, anti-multicuenta, recompensas y si la racha se pierde al faltar un día.
 
 ---
 
@@ -80,8 +90,19 @@ Lluvia de ideas del documento antiguo, **reformuladas** y etiquetadas. No es lis
 | Old Blacksmith: monedas OzRo → piedras BS | `pendiente` | Depende de bounty rewards; ya no Special Gold |
 | MVP Soul (item custom) → invocar MVP | `pendiente` | La fabrica el colector (Card Collector); uso y receta pendientes; evitar loop infinito |
 | MVP room con cleaner | `pendiente` | Sala de MVPs con NPC de limpieza |
-| Reemplazo de WoE: capturar castillos | `reformular` | Captura da acceso a dungeon + tesoros; difícil, invocar mobs heavy en los vacíos |
+| Reemplazo de WoE: GvE / invasiones + castillos | `reformular` | En vez de GvG: invasiones de bichos o eventos PvE para acceder a castillos con pocos jugadores; obliga a defender, se puede perder y hay que renovar. Si algún día hay 6+, GvG chico o battleground. La guild debe servir para algo más que WoE, salvo que la WoE sea PvE. |
 | Karma en misiones custom | `pendiente` | Karma +/- por personaje; misiones que exigen karma o dan recompensa según karma |
+
+---
+
+### WoE → GvE / castillos (idea abierta)
+
+- Objetivo: que los castillos y la guild tengan sentido con pocos jugadores (3–6).
+- En vez de GvG puro: invasiones de bichos o eventos PvE para abrir acceso al castillo.
+- El castillo se debe defender; si se pierde, hay que recuperarlo/renovarlo.
+- Si algún día hay 6+ jugadores, evaluar un GvG chico o battleground como alternativa.
+- La guild debe servir para algo más que WoE (buffs, storage, misiones, economía del castillo), salvo que la WoE sea PvE.
+- Pendiente: cómo se dispara la invasión, schedule, decay del castillo, recompensas y anti-solo.
 
 ---
 
@@ -142,6 +163,30 @@ Inspiración en idle games y juegos de gestión de celular: **hago cosas, pero d
 |------|--------|-------|
 | Gachas + sistemas basados en tiempo | `pendiente` | Recompensas que se acumulan y se reclaman al entrar |
 | NPC granjero (produce con el tiempo) | `pendiente` | Ejemplo de sistema idle: dejar producir y recolectar luego |
+
+---
+
+## Simplicidad e interfaz
+
+| Idea | Estado | Notas |
+|------|--------|-------|
+| Quitar barter | `pendiente` | Eliminar `feature.barter` y NPCs/scripts asociados; revisar quests que dependan de trueque |
+| Quitar navi | `pendiente` | Evaluar quitar navegación del cliente/servidor (`navigateto`, generación navi); puede requerir parche de cliente |
+| Simplificar juego e interfaz | `pendiente` | Menos sistemas, botones y NPCs; ocultar lo que no aporte sin tocar el cliente si es posible |
+| RODEX: quitar o limitar a buzones de ciudad | `pendiente` | Opción A: `norodex` en mapas + NPC `openmail` en ciudades. Opción B: deshabilitar RODEX. Revisar complejidad antes |
+
+### RODEX (idea abierta)
+
+- Hoy RODEX se puede usar desde cualquier mapa; la idea es que el correo solo exista en buzones de ciudad.
+- rAthena tiene el mapflag `norodex` y el comando `openmail`, así que la opción de “solo buzones” parece viable sin tocar el cliente.
+- Hay que revisar: botón/atajo del cliente, paquetes RODEX, `mail.cpp`, `norodex`, DB de correo y scripts que envíen items por mail.
+- Alternativa más simple: deshabilitar RODEX por completo y dejar solo el correo clásico/NPC.
+
+### Navi (idea abierta)
+
+- La navegación tiene generación en el server (`navi_create_lists`), comandos `navigateto`/`navihide`/`naviregisterwarp` y UI del cliente.
+- Quitarla del todo puede requerir parche de cliente; alternativa: ocultar NPCs/warps de navi y no generar rutas.
+- Pendiente: medir cuánto depende el gameplay actual de la navegación antes de decidir.
 
 ---
 

@@ -84,6 +84,7 @@ Ya tenemos el registro de cartas de cada PJ (`#CARD_*`). Mostrarlo en la web com
 |------|--------|-------|
 | Daily Roulette en web → premio in-game | `pendiente` | Requiere endpoint seguro + NPC entrega |
 | Daily Guess the Monster | `pendiente` | Pistas + recompensa escalada |
+| Minijuego diario web (login + tarea) | `pendiente` | Recompensa in-game, racha y anti-abuse; ver [08-ideas-backlog.md](./08-ideas-backlog.md) |
 | Calendario de eventos | `pendiente` | Con eventos automáticos in-game |
 
 ## Sincronización juego ↔ web

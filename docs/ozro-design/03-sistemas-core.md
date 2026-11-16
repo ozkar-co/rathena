@@ -124,7 +124,7 @@ Sin jugadores vendiendo, el mercado = NPCs:
 - **Monedas OzRo por tiers** (bronce, plata, oro, platino). No hace falta definir todos los usos ahora; se van habilitando a medida que se implementa contenido de nivel más alto.
 - **Garrett** como entrada de la economía de basura: misión diaria única por cuenta, modo junk-hunter y modo bargain, precios ajustados al mercado. La lista de precios de referencia sale del repo **ragnabots**.
 - **Alma de MVP** fabricada por el colector (Card Collector); uso pendiente de diseño.
-- **Barter shops** por tier de nivel (`feature.barter: on`).
+- **Barter shops**: `descartado` — se quitan para simplificar; el equip se obtiene por craft/quests específicas.
 - `points2zeny.txt` — puente cash ↔ zeny (revisar ratio); los points existían porque antes no sabíamos modificar drops.
 - `card_collector` + trader de cartas — sinks/faucets; **preservar los datos existentes**.
 - **Resurrection con costo de item**: igual que Call Homunculus, que ya gasta `Germination_Breed` + `Yggdrasilberry_Dew`; debe ser caro pero no prohibitivo. Definir item/cantidad y si aplica solo a `ALL_RESURRECTION` o también a `AM_RESURRECTHOMUN`.
@@ -150,6 +150,7 @@ Para reducir la doble cuenta: consumibles **fabricables** (como el Alquimista fa
 - [ ] Rush a max level como única meta
 - [ ] Esperar balance perfecto antes de jugar
 - [ ] Implementar contenido nuevo antes de balancear lo que ya está activo
+- [ ] Agregar sistemas/ventanas que no aporten a la jugabilidad
 
 ## 9. Orden de trabajo
 

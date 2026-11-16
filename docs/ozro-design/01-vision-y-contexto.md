@@ -54,7 +54,7 @@ Servidor familiar OzRo — Renewal, base rAthena de enero 2026, acceso por VPN p
 | 10 PJs, no juntamos niveles | Contenido por bracket + challenges con restricciones |
 | Farm desigual por tiempo | Meta larga por cuenta (cartas, challenges, prestigio) |
 | No sabemos empezar lore | Arcos curados + cronista como guía (ver [06-arcos-oficiales.md](./06-arcos-oficiales.md)) |
-| Items de wiki rompen todo | Cadenas de craft/barter por nivel |
+| Items de wiki rompen todo | Cadenas de craft por nivel |
 | MVP race injusta | Puntos por rol; rankings diversos (ver [07-web-api.md](./07-web-api.md)) |
 | Rankings sin peso | Perfil de cuenta + recompensas cosméticas |
 | Multi-cuenta para party | Diseñar para solo/duo; mercenarios, autoloot, rates actuales |

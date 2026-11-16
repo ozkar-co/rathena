@@ -183,8 +183,8 @@ Los rates `_boss` aplican a monstruos clase boss que **no** son MVP. Los rates `
 | Parámetro | Valor | Notas |
 |-----------|-------|-------|
 | Vending tax | `0%` | import (default sería 5% >100M) |
-| Barter | `on` | import |
-| Barter extended | `off` | import |
+| Barter | `on` | `pendiente`: quitar para simplificar |
+| Barter extended | `off` | No usar |
 | Banking | `on` | `feature.conf` default |
 | Buying store | `on` | default |
 | Search stores | `on` | default |
@@ -243,6 +243,7 @@ Los rates `_boss` aplican a monstruos clase boss que **no** son MVP. Los rates `
 - Bajar precios hunting a la mitad
 - Cambiar ratio compra/venta cash points (no 1:1)
 - Deshabilitar banco/correo del menú → solo vía NPC
+- Revisar quitar RODEX o limitarlo a buzones de ciudad (`norodex` + `openmail`)
 - Evaluar party_even_share_bonus para 3 jugadores en party real
 - Evaluar rates _mvp (hoy a 1x) si MVP farming es muy lento
 - Ajustar % de drop y qué mobs sueltan ciertos items (ej. Crimson Weapons)
