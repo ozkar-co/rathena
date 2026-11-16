@@ -1,0 +1,48 @@
+//===== OzRo Script ==========================================
+//= Arena de prueba
+//===== Description: =========================================
+//= Crea una instancia con un Poring.
+//= Al morir el Poring, todos vuelven a Prontera y la instancia se destruye.
+//============================================================
+
+prontera,173,152,4	script	Creador de Arena	4_M_SAGE_C,{
+	mes "[ ^0065DFCreador de Arena^000000 ]";
+	mes "Puedo abrir una arena de prueba.";
+	mes "Dentro habrá un Poring.";
+	mes "Al matarlo volverás a Prontera y la arena se cerrará.";
+	next;
+	if (select("Entrar:Salir") == 2) close;
+
+	.@instance_id = instance_create("OzRo MVP Arena", IM_CHAR);
+	if (.@instance_id < 0) {
+		mes "[ ^0065DFCreador de Arena^000000 ]";
+		mes "No se pudo crear la instancia (error " + .@instance_id + ").";
+		mes "Avisa al GM para que lo revise.";
+		close;
+	}
+
+	.@result = instance_enter("OzRo MVP Arena", -1, -1, getcharid(0), .@instance_id);
+	if (.@result != IE_OK) {
+		mes "[ ^0065DFCreador de Arena^000000 ]";
+		mes "La instancia se creó, pero no se pudo entrar (error " + .@result + ").";
+		mes "Avisa al GM para que lo revise.";
+		close;
+	}
+	close;
+}
+
+quiz_00,49,31,0	script	OzroTestSpawner	-1,{
+OnInstanceInit:
+	.@map$ = instance_mapname("quiz_00");
+	setmapflag .@map$, mf_nobranch;
+	setmapflag .@map$, mf_nomemo;
+	setmapflag .@map$, mf_nosave;
+	monster .@map$, 50, 30, "Poring de Prueba", 1002, 1, instance_npcname("OzroTestSpawner") + "::OnPoringDead";
+	end;
+
+OnPoringDead:
+	.@instance_id = instance_id();
+	instance_warpall "prontera", 173, 155, .@instance_id;
+	instance_destroy .@instance_id;
+	end;
+}

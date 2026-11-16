@@ -40,3 +40,14 @@
 Header:
   Type: INSTANCE_DB
   Version: 2
+
+Body:
+  - Id: 10001
+    Name: OzRo MVP Arena
+    TimeLimit: 7200
+    IdleTimeOut: 300
+    NoMapFlag: true
+    Enter:
+      Map: quiz_00
+      X: 50
+      Y: 24
