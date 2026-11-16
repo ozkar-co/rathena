@@ -22,7 +22,7 @@ item_rate_use: 1000 //10x
 item_rate_use_boss: 1000 //10x
 item_rate_equip: 1500 //15x
 item_rate_equip_boss: 1500 //15x
-item_rate_card: 10000 //100x
+item_rate_card: 1000 //10x
 item_rate_card_boss: 10000 //100x
 item_rate_mvp: 500 //5x
 item_rate_treasure: 500 //5x
