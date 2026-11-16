@@ -34,6 +34,7 @@ Lluvia de ideas del documento antiguo, **reformuladas** y etiquetadas. No es lis
 | Garrett: junk-hunter + bargain | `reformular` | Misión diaria única por cuenta; precios desde ragnabots; zeny escalado |
 | Lista de basura de Garrett en la web | `pendiente` | Para que los jugadores sepan qué guardar |
 | Gambler → refine safe con monedas OzRo | `reformular` | Sin Special Gold; “si falla no se rompe”, no nivel fijo |
+| Resurrect con costo de item | `pendiente` | Similar a Call Homunculus (que ya gasta Germination_Breed + Yggdrasilberry_Dew); caro pero no prohibitivo; definir item/cantidad |
 | Monedas OzRo por tiers | `pendiente` | Bronce/plata/oro/platino; definir usos a medida que crece el contenido |
 | Monke: frutas aleatorias (cualquiera) | `probar` | Doc: estaba roto |
 | Stock Market NPC | `en-repo` | `npc/custom/etc/stock_market.txt` |

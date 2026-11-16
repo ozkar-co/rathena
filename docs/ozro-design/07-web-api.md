@@ -44,6 +44,17 @@ Pestañas en `ozro-site/src/components/Rankings.tsx`:
 
 Rankings miden **farm y tiempo** (zeny, MVP, EXP) → refuerzan desigualdad y no dan incentivo significativo. La colección de cartas es la excepción.
 
+## Base de datos de mobs/items `implementado`
+
+Las fichas de monstruo y de objeto muestran el porcentaje de drop aplicando los
+multiplicadores reales del servidor (common/heal/use/equip/card, normales y boss;
+MVP reward 5x). Los valores viven en `server/api/config/dropRates.json` (versionado
+en git), espejo de `conf/import/battle_conf.txt`, y el cálculo en
+`server/api/services/dropRates.js`.
+
+`pendiente`: selector de penalización de drop por diferencia de nivel
+(`db/re/level_penalty.yml`) para que el jugador pueda previsualizar la tasa efectiva.
+
 ## Dirección: perfil por cuenta `pendiente`
 
 ### Nuevos datos a exponer

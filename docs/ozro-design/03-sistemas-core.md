@@ -127,6 +127,7 @@ Sin jugadores vendiendo, el mercado = NPCs:
 - **Barter shops** por tier de nivel (`feature.barter: on`).
 - `points2zeny.txt` — puente cash ↔ zeny (revisar ratio); los points existían porque antes no sabíamos modificar drops.
 - `card_collector` + trader de cartas — sinks/faucets; **preservar los datos existentes**.
+- **Resurrection con costo de item**: igual que Call Homunculus, que ya gasta `Germination_Breed` + `Yggdrasilberry_Dew`; debe ser caro pero no prohibitivo. Definir item/cantidad y si aplica solo a `ALL_RESURRECTION` o también a `AM_RESURRECTHOMUN`.
 - Materiales de bounties/repetibles → craft de equip challenge.
 - **No regalar** items de builds de internet ni objetos de donación sin una cadena de lore/crafting.
 

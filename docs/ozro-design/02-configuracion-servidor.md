@@ -70,6 +70,13 @@ Cadena de carga: `conf/battle_athena.conf` → archivos en `conf/battle/` → **
 
 Los rates `_boss` aplican a monstruos clase boss. Los rates `_mvp` **no están en import** → quedan en default `100` (1x).
 
+> La web (`ozro-site`) replica estos multiplicadores en
+> `server/api/config/dropRates.json` (versionado en git) y los aplica desde
+> `server/api/services/dropRates.js` para mostrar las tasas reales en las fichas de
+> monstruos y objetos. Cualquier cambio aquí debe reflejarse también allí. La
+> penalización por diferencia de nivel todavía no se aplica en la web (queda como
+> selector futuro).
+
 #### Mobs normales
 
 | Tipo de drop | Config | Multiplicador |
@@ -78,7 +85,7 @@ Los rates `_boss` aplican a monstruos clase boss. Los rates `_mvp` **no están e
 | Healing | `item_rate_heal: 1000` | **10x** |
 | Usable | `item_rate_use: 1000` | **10x** |
 | Equipment | `item_rate_equip: 1500` | **15x** |
-| Card | `item_rate_card: 10000` | **100x** |
+| Card | `item_rate_card: 1000` | **10x** |
 
 #### Boss (no MVP)
 
