@@ -6,7 +6,24 @@
 //============================================================
 
 prontera,173,152,4	script	Creador de Arena	4_M_SAGE_C,{
+	.@instance_id = instance_id(IM_CHAR);
+
 	mes "[ ^0065DFCreador de Arena^000000 ]";
+	if (.@instance_id > 0) {
+		mes "Ya tienes una arena activa.";
+		mes "Puedes volver a entrar mientras siga abierta.";
+		next;
+		if (select("Entrar:Salir") == 2) close;
+
+		.@result = instance_enter("OzRo MVP Arena", -1, -1, getcharid(0), .@instance_id);
+		if (.@result != IE_OK) {
+			mes "[ ^0065DFCreador de Arena^000000 ]";
+			mes "No se pudo entrar (error " + .@result + ").";
+			mes "Avisa al GM para que lo revise.";
+		}
+		close;
+	}
+
 	mes "Puedo abrir una arena de prueba.";
 	mes "Dentro habrá un Poring.";
 	mes "Al matarlo volverás a Prontera y la arena se cerrará.";
@@ -38,7 +55,7 @@ OnInstanceInit:
 	setmapflag .@map$, mf_nobranch;
 	setmapflag .@map$, mf_nomemo;
 	setmapflag .@map$, mf_nosave;
-	monster .@map$, 0, 0, "Poring de Prueba", 1002, 1, instance_npcname("OzroTestSpawner") + "::OnPoringDead";
+	monster .@map$, 50, 24, "Poring de Prueba", 1002, 1, instance_npcname("OzroTestSpawner") + "::OnPoringDead";
 	end;
 
 OnPoringDead:
