@@ -55,6 +55,10 @@ Objetivo: convertir a Garrett en el punto de entrada de la economía de basura, 
 - El zeny de las recompensas debe **escalar** con el nivel/valor del item; no usar montos planos.
 - En la web pública debe estar la lista de basura que Garrett compra, para que los jugadores sepan qué guardar y cuándo conviene vender.
 - Revisar el ritmo actual del bronce: hoy se entrega 1 moneda cada ~10 tratos únicos, con máximo 2 tratos/día; eso puede ser demasiado lento para una moneda de entrada.
+- **Rareza por oferta**, no por precio de mercado: usar drop rate efectivo × cantidad de spawn × factor de acceso.
+- Los items **sin spawn conocido** (instancia/evento/mob dinámico) salen del pool diario y quedan para misiones especiales.
+- Tiers calculados: `abundant`, `common`, `uncommon`, `rare`, `very_rare`.
+- La selección diaria debe elegir items aleatorios dentro de cada tier, con cantidad y precio de misión por tier; los valores exactos están en revisión.
 
 ### Gambler `reformular` (reemplazo completo)
 
