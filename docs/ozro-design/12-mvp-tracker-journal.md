@@ -1,6 +1,6 @@
 # MVP Tracker, Journal y Almas de MVP
 
-**Estado:** `pendiente`  
+**Estado:** tracker implementado; Journal y Almas pendientes
 **Prioridad:** alta  
 **Objetivo:** registrar kills y asistencias por MVP, mostrar progreso, entregar recompensas por tiers y abrir la economía del Alma de MVP.
 
@@ -23,8 +23,9 @@ Variables nuevas, solo para recompensas:
 
 ## Componentes
 
-### 1. MVP Tracker (NPC invisible)
+### 1. MVP Tracker (NPC invisible) `implementado`
 
+- Archivo: `npc/custom/ozro/mvp_tracker.txt`.
 - Script global con `OnNPCKillEvent`.
 - Detecta MVP con `getmonsterinfo(killedrid, MOB_MVPEXP)` y/o lista de MVPs.
 - Incrementa `MVP_KILL_<id>` al killer.

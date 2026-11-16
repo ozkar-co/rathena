@@ -1,0 +1,44 @@
+//===== OzRo Script ==========================================
+//= MVP Tracker
+//===== Description: =========================================
+//= Registra golpes finales y asistencias de party por MVP.
+//= No entrega recompensas: solo actualiza variables.
+//= Variables existentes que NO se deben renombrar:
+//=   MVP_KILL_<id>  -> golpes finales
+//=   MVP_SUPP_<id>  -> asistencias de party
+//============================================================
+
+-	script	MVP_Tracker	-1,{
+OnNPCKillEvent:
+	if (killedrid <= 0) end;
+
+	.@is_mvp = 0;
+	if (getmonsterinfo(killedrid, MOB_MVPEXP) > 0) .@is_mvp = 1;
+	if (getmonsterinfo(killedrid, MOB_MODE) & MD_MVP) .@is_mvp = 1;
+	if (!.@is_mvp) end;
+
+	.@mvp_id = killedrid;
+	.@killer_aid = getcharid(3);
+	.@party_id = getcharid(1);
+	.@map$ = strcharinfo(3);
+
+	// Golpe final para el jugador que mato al MVP.
+	.@kill_var$ = "MVP_KILL_" + .@mvp_id;
+	setd .@kill_var$, getd(.@kill_var$) + 1;
+
+	// Asistencias para los miembros de la party en el mismo mapa.
+	if (.@party_id > 0) {
+		getpartymember .@party_id, 2;
+		for (.@i = 0; .@i < $@partymembercount; .@i++) {
+			if ($@partymemberaid[.@i] == .@killer_aid) continue;
+			if (attachrid($@partymemberaid[.@i])) {
+				if (strcharinfo(3) == .@map$) {
+					.@supp_var$ = "MVP_SUPP_" + .@mvp_id;
+					setd .@supp_var$, getd(.@supp_var$) + 1;
+				}
+				detachrid;
+			}
+		}
+	}
+	end;
+}
