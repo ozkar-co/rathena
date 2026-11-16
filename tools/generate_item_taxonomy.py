@@ -132,6 +132,7 @@ def load_items() -> dict[int, dict[str, Any]]:
             raw_sell = row.get("Sell")
             buy = as_int(raw_buy) if raw_buy is not None else as_int(raw_sell) * 2
             sell = as_int(raw_sell) if raw_sell is not None else buy // 2
+            trade = row.get("Trade") or {}
             items[item_id] = {
                 "id": item_id,
                 "aegis": str(row.get("AegisName") or ""),
@@ -141,6 +142,7 @@ def load_items() -> dict[int, dict[str, Any]]:
                 "sell": sell,
                 "script": bool(row.get("Script")),
                 "custom": path == ROOT / "db/import/item_db.yml",
+                "untradeable": bool(trade.get("NoSell") or trade.get("NoTrade") or trade.get("NoDrop")),
             }
     return items
 
@@ -348,6 +350,7 @@ def script_references(
     files: list[Path],
     aegis_map: dict[str, int],
     display_map: dict[str, int],
+    item_ids: set[int],
 ) -> dict[str, set[int]]:
     refs: dict[str, set[int]] = defaultdict(set)
     for path in files:
@@ -385,6 +388,13 @@ def script_references(
             if SHOP_RE.search(line):
                 for shop_match in SHOP_ITEM_RE.finditer(line):
                     refs["shop_refs"].add(int(shop_match.group(1)))
+
+        for match in re.finditer(r"\bcallsub\s+S_Make\b(.*?);", text, re.IGNORECASE | re.DOTALL):
+            for token in re.findall(r"\b(\d+)\b", match.group(1)):
+                item_id = int(token)
+                if item_id in item_ids:
+                    refs["npc_refs"].add(item_id)
+                    refs["craft_material_refs"].add(item_id)
     return refs
 
 
@@ -424,7 +434,7 @@ def build_taxonomy() -> dict[str, Any]:
     laphine_materials, laphine_rewards = load_laphine(aegis_map, groups)
     produce_outputs, produce_materials = load_produce()
     whitelist = load_whitelist(items, aegis_map, display_map)
-    script_refs = script_references(active_script_files(), aegis_map, display_map)
+    script_refs = script_references(active_script_files(), aegis_map, display_map, set(items))
 
     master_npc: set[int] = set()
     master_prices: dict[int, int] = {}
@@ -450,6 +460,7 @@ def build_taxonomy() -> dict[str, Any]:
     quest_rewards = script_refs.get("quest_rewards", set())
     instance_rewards = script_refs.get("instance_rewards", set())
     npc_rewards = script_refs.get("npc_rewards", set())
+    script_craft_materials = script_refs.get("craft_material_refs", set())
     shop_refs = script_refs.get("shop_refs", set()) | master_npc
 
     for item_id, item in items.items():
@@ -500,7 +511,11 @@ def build_taxonomy() -> dict[str, Any]:
         scripted = item["script"]
         skill_cost = item_id in skills
         in_combo = item_id in combos
-        craft_material = item_id in produce_materials or item_id in laphine_materials
+        craft_material = (
+            item_id in produce_materials
+            or item_id in laphine_materials
+            or item_id in script_craft_materials
+        )
         npc_shop = item_id in shop_refs
 
         used_by_content = (
@@ -545,10 +560,18 @@ def build_taxonomy() -> dict[str, Any]:
             and not is_unobtainable
             and bool(drop_sources)
         )
-        is_junk = junk_base and item_id not in group_members and item_id not in package_members
+        if item["untradeable"]:
+            categories["untradeable"].add(item_id)
+        is_junk = (
+            junk_base
+            and not item["untradeable"]
+            and item_id not in group_members
+            and item_id not in package_members
+        )
         if junk_base:
             categories["junk_npc_unused"].add(item_id)
-            categories["garrett_candidates"].add(item_id)
+            if not item["untradeable"]:
+                categories["garrett_candidates"].add(item_id)
 
         flags: list[str] = []
         if references["quest"]:
