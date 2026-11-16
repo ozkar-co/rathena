@@ -53,16 +53,14 @@
 | Pirate Bandana | 2287 | Drake | 1 | semanal | ~15.000z | 0.08% Pirate Skeleton / 0.2% Swift Sailor Skeleton; candidato ideal para el viajero. |
 | Memento | 934 | Osiris | 1 | semanal | manual (~5M) | 2.75% Mummy; key de lujo, mercado ~5M. |
 | White Snake's Tear | 25622 | White Lady | 2 | semanal | manual | 15% exclusivo de White Lady; mercado 0. |
-| Knotted Letter | 25629 | Samurai Specter | 2 | semanal | manual | 15% exclusivo de Samurai Specter; mercado 0. |
 | Flashlight | 7327 | RSX-0806 | 2 | diario | manual | 25% de RSX; mercado 0. |
 | Fragment of Rossata Stone | 7211 | Amon Ra | 3 | diario | manual | 38.8% de Amon Ra; mercado 0. |
 | Ba Gua | 7169 | Evil Snake Lord | 3 | diario | manual | 29.1% de Evil Snake Lord; mercado 0. |
-| Singing Flower | 629 | Gopinich | 1 | semanal | ~45.000z | 1.5% Mavka; no pedir 10, es inviable. |
 | Fang of Hatii | 7036 | Hatii | 2 | semanal | ~300.000z | 10% MVP + 27.5% normal, solo Hatii. |
 | Coif | 5093 | Dark Lord | 1 | semanal | manual | 5% MVP, 3 mobs; complemento de Skull. |
 | Masque of Tutankhamen | 7114 | Pharaoh | 1 | semanal | manual | 12.5% exclusivo de Pharaoh. |
 
-- Los items de volumen de T2 (Skel-Bone, Sharp Scale, Blue Herb, Steel, Black Hair, Comodo Leather) pueden venderse en paquetes de 10–100, pero no son la prioridad del viajero.
+- Los items de volumen de T2 (Skel-Bone, Sharp Scale, Black Hair) pueden venderse en paquetes de 10–100, pero no son la prioridad del viajero.
 - T3 no agrega items de viajero por ahora: sus tres MVPs accesibles (Scaraba Queen, Kiel D-01 y Kraken) usan drops farmeables.
 - T4/T5 no son invocables.
 
@@ -71,7 +69,7 @@
 - Si `marketPrice > 0`, usar el precio de mercado con un margen de cordura (por ejemplo, 0.9–1.2×).
 - Si `marketPrice = 0`, usar un precio manual documentado por item.
 - Si el item está en NPC shop, el precio del viajero nunca debe superar el precio de la tienda.
-- Los items de volumen (Tongue, Ant Jaw, Red Bat Wing, Round Shell, Royal Jelly, Skel-Bone, Sharp Scale, Blue Herb, Steel, Black Hair, Comodo Leather) pueden venderse en paquetes de 10–100; los de lujo (Banana Hat, Heroic Emblem, Pirate Bandana, Memento, White Snake's Tear, Knotted Letter, Singing Flower, Fang of Hatii) en unidades de 1–2.
+- Los items de volumen (Tongue, Ant Jaw, Red Bat Wing, Round Shell, Royal Jelly, Skel-Bone, Sharp Scale, Black Hair) pueden venderse en paquetes de 10–100; los de lujo (Banana Hat, Heroic Emblem, Pirate Bandana, Memento, White Snake's Tear, Fang of Hatii) en unidades de 1–2.
 - Revisar precios después de la primera semana; el stock y el precio son parte del balance.
 
 ## Stock y reposición

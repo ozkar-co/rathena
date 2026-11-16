@@ -83,25 +83,28 @@ Body:
 
 | MVP | Almas | Keys |
 |---|---:|---|
-| Stormy Knight | 5 | 5 Aquamarine (720) |
+| Stormy Knight | 5 | 5 Old Blue Box (603) |
 | Baphomet | 5 | 2 Evil Horn (923) |
 | White Lady | 5 | 2 White Snake's Tear (25622) + 2 Black Hair (1020) |
 | Drake | 5 | 1 Pirate Bandana (2287) + 10 Skel-Bone (932) |
 | Pharaoh | 5 | 2 Broken Pharaoh Emblem (7113) + 1 Masque of Tutankhamen (7114) |
-| Samurai Specter | 5 | 2 Knotted Letter (25629) + 5 Steel (999) |
 | Eddga | 5 | 5 Tiger Skin (1029) + 2 Tiger's Footskin (1030) |
 | RSX-0806 | 5 | 2 Flashlight (7327) + 2 Cogwheel (7093) |
 | Amon Ra | 5 | 3 Fragment of Rossata Stone (7211) |
 | Evil Snake Lord | 5 | 3 Ba Gua (7169) |
-| Gopinich | 5 | 1 Treasure Box (7444) + 1 Singing Flower (629) + 10 Blue Herb (510) |
 | Osiris | 5 | 10 Rotten Bandage (930) + 1 Memento (934) + 10 Scale Shell (936) |
 | Dark Lord | 5 | 10 Skull (7005) + 1 Coif (5093) |
 | Tao Gunka | 5 | 1 Gemstone (7300) + 3 Stone Fragment (7067) |
-| Leak | 5 | 1 Rare Rune (12738) + 5 Comodo Leather (6403) |
 | Hatii | 5 | 2 Fang of Hatii (7036) |
 | Boitata | 5 | 1 Treasure Box (7444) + 10 Sharp Scale (963) |
 | Turtle General | 5 | 5 Broken Shell (7070) |
 | Atroce | 5 | 5 Bloody Rune (7563) |
+
+### T2 excluidos de la invocación
+
+- **Samurai Specter:** Amatsu Dungeon requiere quest y Transit Permit.
+- **Leak:** Krakatau/Dewata requiere `dew_legend >= 8`.
+- **Gopinich:** el acceso a los campos de Moscovia requiere quest.
 
 ## Keys T3
 
