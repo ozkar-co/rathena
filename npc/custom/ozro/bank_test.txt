@@ -1,0 +1,8 @@
+// Test temporal: abre la UI oficial del banco desde un NPC.
+prontera,150,190,5	script	Banker Test	109,{
+	mes "[Banker Test]";
+	mes "Voy a abrir la UI del banco.";
+	close2;
+	openbank;
+	end;
+}
