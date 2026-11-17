@@ -254,7 +254,7 @@ e_tower,81,105,0	script	Tower Protection Stone	406,{
 		}
 	case 0:
 	case 1:
-		if (.@etower_timer2 < 2 && getcharid(1) == etower_partyid) {
+		if (.@etower_timer2 < 2 && getcharid(1) == etower_partyid && instance_id(IM_PARTY) > 0) {
 			mes "If you have the dungeon generated already, you can enter it. ";
 			next;
 			switch(select("Enter the "+.@md_name$+":Return to Alberta:Cancel")) {
