@@ -5,6 +5,19 @@
 //= Al morir el eco, todos despiertan junto a la Tejedora y el sueño se cierra.
 //============================================================
 
+function	script	F_EchoItemName	{
+	set .@id, getarg(0);
+	switch (.@id) {
+	case 968: return "Orc Hero's Token";
+	case 6326: return "Piece of Queen's Wing";
+	case 7114: return "Mask of Tutankhamen";
+	case 7169: return "Taeguk Plate";
+	case 7211: return "Rosetta Stone Piece";
+	case 25508: return "Orc Lord's Token";
+	}
+	return getitemname(.@id);
+}
+
 prontera,173,152,4	script	Tejedora de Ecos	4_F_THAISHAMAN,{
 	.@instance_id = instance_id(IM_CHAR);
 
@@ -57,25 +70,33 @@ prontera,173,152,4	script	Tejedora de Ecos	4_F_THAISHAMAN,{
 	mes "[ ^0065DFTejedora de Ecos^000000 ]";
 	mes "Para llamar al eco de ^0065DF" + .mvp_name$[.@idx] + "^000000 necesitas:";
 	mes .@cost + " Almas de MVP (tienes " + countitem(35005) + ")";
-	mes .key1_qty[.@idx] + " " + getitemname(.key1_id[.@idx]) + " (tienes " + countitem(.key1_id[.@idx]) + ")";
+	mes .key1_qty[.@idx] + " " + F_EchoItemName(.key1_id[.@idx]) + " (tienes " + countitem(.key1_id[.@idx]) + ")";
 	if (.key2_id[.@idx] > 0)
-		mes .key2_qty[.@idx] + " " + getitemname(.key2_id[.@idx]) + " (tienes " + countitem(.key2_id[.@idx]) + ")";
+		mes .key2_qty[.@idx] + " " + F_EchoItemName(.key2_id[.@idx]) + " (tienes " + countitem(.key2_id[.@idx]) + ")";
 	if (.key3_id[.@idx] > 0)
-		mes .key3_qty[.@idx] + " " + getitemname(.key3_id[.@idx]) + " (tienes " + countitem(.key3_id[.@idx]) + ")";
+		mes .key3_qty[.@idx] + " " + F_EchoItemName(.key3_id[.@idx]) + " (tienes " + countitem(.key3_id[.@idx]) + ")";
 	next;
 
 	.@ready = 1;
 	if (countitem(35005) < .@cost) .@ready = 0;
 	if (countitem(.key1_id[.@idx]) < .key1_qty[.@idx]) .@ready = 0;
-	if (.key2_id[.@idx] > 0 && countitem(.key2_id[.@idx]) < .key2_qty[.@idx]) .@ready = 0;
-	if (.key3_id[.@idx] > 0 && countitem(.key3_id[.@idx]) < .key3_qty[.@idx]) .@ready = 0;
+	if (.key2_id[.@idx] > 0) {
+		if (countitem(.key2_id[.@idx]) < .key2_qty[.@idx]) .@ready = 0;
+	}
+	if (.key3_id[.@idx] > 0) {
+		if (countitem(.key3_id[.@idx]) < .key3_qty[.@idx]) .@ready = 0;
+	}
 	if (.@ready == 0) {
 		mes "[ ^0065DFTejedora de Ecos^000000 ]";
 		mes "Todavía te falta:";
 		if (countitem(35005) < .@cost) mes "- " + (.@cost - countitem(35005)) + " Almas de MVP";
-		if (countitem(.key1_id[.@idx]) < .key1_qty[.@idx]) mes "- " + (.key1_qty[.@idx] - countitem(.key1_id[.@idx])) + " " + getitemname(.key1_id[.@idx]);
-		if (.key2_id[.@idx] > 0 && countitem(.key2_id[.@idx]) < .key2_qty[.@idx]) mes "- " + (.key2_qty[.@idx] - countitem(.key2_id[.@idx])) + " " + getitemname(.key2_id[.@idx]);
-		if (.key3_id[.@idx] > 0 && countitem(.key3_id[.@idx]) < .key3_qty[.@idx]) mes "- " + (.key3_qty[.@idx] - countitem(.key3_id[.@idx])) + " " + getitemname(.key3_id[.@idx]);
+		if (countitem(.key1_id[.@idx]) < .key1_qty[.@idx]) mes "- " + (.key1_qty[.@idx] - countitem(.key1_id[.@idx])) + " " + F_EchoItemName(.key1_id[.@idx]);
+		if (.key2_id[.@idx] > 0) {
+			if (countitem(.key2_id[.@idx]) < .key2_qty[.@idx]) mes "- " + (.key2_qty[.@idx] - countitem(.key2_id[.@idx])) + " " + F_EchoItemName(.key2_id[.@idx]);
+		}
+		if (.key3_id[.@idx] > 0) {
+			if (countitem(.key3_id[.@idx]) < .key3_qty[.@idx]) mes "- " + (.key3_qty[.@idx] - countitem(.key3_id[.@idx])) + " " + F_EchoItemName(.key3_id[.@idx]);
+		}
 		close;
 	}
 
@@ -109,10 +130,10 @@ prontera,173,152,4	script	Tejedora de Ecos	4_F_THAISHAMAN,{
 OnInit:
 	setarray .mvp_id[0], 1086, 1159, 1150, 1389, 1688, 1087, 1059, 1147, 1046, 1190, 1251, 1039, 1630, 1112, 1157, 1115, 1623, 1511, 1418, 1038, 1272, 1583, 1252, 2068, 1312, 1785, 2087, 1734, 2202;
 	setarray .mvp_name$[0], "Golden Thief Bug", "Phreeoni", "Moonlight Flower", "Dracula", "Lady Tanee", "Orc Hero", "Mistress", "Maya", "Doppelganger", "Orc Lord", "Stormy Knight", "Baphomet", "White Lady", "Drake", "Pharaoh", "Eddga", "RSX-0806", "Amon Ra", "Evil Snake Lord", "Osiris", "Dark Lord", "Tao Gunka", "Hatii", "Boitata", "Turtle General", "Atroce", "Scaraba Queen", "Kiel D-01", "Kraken";
-	setarray .key1_id[0], 969, 1015, 1022, 732, 5116, 25508, 526, 1096, 1411, 968, 603, 923, 25622, 2287, 7113, 1029, 7327, 7211, 7169, 930, 7005, 7300, 7036, 7444, 7070, 7563, 6326, 7513, 962;
-	setarray .key1_qty[0], 1, 10, 20, 1, 1, 2, 30, 30, 1, 1, 5, 2, 2, 1, 2, 5, 2, 3, 3, 10, 10, 1, 2, 1, 10, 5, 10, 5, 10;
-	setarray .key2_id[0], 0, 1014, 0, 7006, 0, 0, 0, 0, 1162, 0, 0, 0, 1020, 932, 7114, 1030, 7093, 0, 0, 934, 5093, 7067, 0, 963, 0, 0, 0, 0, 7444;
-	setarray .key2_qty[0], 0, 5, 0, 100, 0, 0, 0, 0, 2, 0, 0, 0, 2, 10, 1, 2, 2, 0, 0, 1, 1, 3, 0, 10, 0, 0, 0, 0, 1;
+	setarray .key1_id[0], 969, 1015, 1022, 732, 5116, 25508, 526, 1096, 724, 968, 603, 923, 25622, 2287, 7113, 1029, 7327, 7211, 7169, 930, 7005, 7300, 7036, 7444, 7070, 7563, 6326, 7319, 962;
+	setarray .key1_qty[0], 1, 10, 20, 1, 1, 2, 30, 30, 5, 1, 5, 2, 1, 1, 2, 5, 2, 3, 2, 10, 10, 1, 2, 1, 10, 5, 10, 100, 10;
+	setarray .key2_id[0], 0, 1014, 0, 7006, 0, 0, 0, 0, 0, 0, 0, 0, 1020, 932, 7114, 1030, 7093, 0, 0, 934, 5093, 7067, 0, 963, 0, 0, 0, 0, 7444;
+	setarray .key2_qty[0], 0, 5, 0, 100, 0, 0, 0, 0, 0, 0, 0, 0, 2, 10, 1, 2, 2, 0, 0, 1, 1, 3, 0, 10, 0, 0, 0, 0, 1;
 	setarray .key3_id[0], 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 936, 0, 0, 0, 0, 0, 0, 0, 0, 0;
 	setarray .key3_qty[0], 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0;
 	end;
