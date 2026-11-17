@@ -1,77 +1,328 @@
 //===== rAthena Script =======================================
-//= Stylist
+//= Vesper, el Sastre de los Espejos
 //===== By: ==================================================
-//= Euphy
+//= Euphy / Ozro
 //===== Current Version: =====================================
-//= 1.3
+//= 2.0
 //===== Description: =========================================
-//= Changes your hair style, hair color, and cloth color.
+//= Cambia peinado, color de pelo y color de ropa.
+//= Los rangos salen de las paletas reales del cliente.
 //===== Additional Comments: =================================
-//= 1.1 Switched to 'getbattleflag', credits to Saithis. [Euphy]
-//= 1.2 Fix hardcoded limits for rAthena compatibility with min/max ranges
-//= 1.3 Improved dialogue and style cycling logic. [Ozcodex]
+//= 1.0 Euphy.
+//= 1.3 Ajustes de dialogo y ciclo de estilos.
+//= 2.0 Lore de Vesper, rangos por job y dialogos aleatorios.
 //============================================================
 
-prontera,170,180,1	script	Stylist#custom_stylist	2_M_DYEINGER,{
-	mes "[Estilista]";
-	mes "Hola mi amor... sabía que vendrías. Yo soy la vision, el estilo, la excelencia absoluta.";
-	mes "Aquí podemos transformarte, hacerte irresistible, un verdadero monumento a la belleza.";
-	mes "Dime, ¿qué deseas cambiar hoy?";
+function	script	F_StylistClothMax	{
+	set .@job, getarg(0);
+
+	switch (.@job) {
+	case Job_Star_Gladiator:
+	case Job_Star_Gladiator2:
+	case Job_Baby_Star_Gladiator:
+	case Job_Baby_Star_Gladiator2:
+		return 1;
+	}
+
+	switch (.@job) {
+	case Job_Dragon_Knight:
+	case Job_Dragon_Knight2:
+	case Job_Meister:
+	case Job_Meister2:
+	case Job_Shadow_Cross:
+	case Job_Arch_Mage:
+	case Job_Cardinal:
+	case Job_Windhawk:
+	case Job_Windhawk2:
+	case Job_Imperial_Guard:
+	case Job_Imperial_Guard2:
+	case Job_Biolo:
+	case Job_Abyss_Chaser:
+	case Job_Elemental_Master:
+	case Job_Inquisitor:
+	case Job_Troubadour:
+	case Job_Trouvere:
+	case Job_Sky_Emperor:
+	case Job_Sky_Emperor2:
+	case Job_Soul_Ascetic:
+	case Job_Shinkiro:
+	case Job_Shiranui:
+	case Job_Night_Watch:
+	case Job_Hyper_Novice:
+	case Job_Spirit_Handler:
+		return 7;
+	}
+
+	switch (.@job) {
+	case Job_Novice:
+	case Job_Novice_High:
+	case Job_Baby:
+	case Job_Swordman:
+	case Job_Swordman_High:
+	case Job_Baby_Swordman:
+	case Job_Mage:
+	case Job_Mage_High:
+	case Job_Baby_Mage:
+	case Job_Archer:
+	case Job_Archer_High:
+	case Job_Baby_Archer:
+	case Job_Acolyte:
+	case Job_Acolyte_High:
+	case Job_Baby_Acolyte:
+	case Job_Merchant:
+	case Job_Merchant_High:
+	case Job_Baby_Merchant:
+	case Job_Thief:
+	case Job_Thief_High:
+	case Job_Baby_Thief:
+	case Job_Knight:
+	case Job_Knight2:
+	case Job_Baby_Knight:
+	case Job_Baby_Knight2:
+	case Job_Wizard:
+	case Job_Baby_Wizard:
+	case Job_Priest:
+	case Job_Baby_Priest:
+	case Job_Hunter:
+	case Job_Baby_Hunter:
+	case Job_Bard:
+	case Job_Baby_Bard:
+	case Job_Dancer:
+	case Job_Baby_Dancer:
+	case Job_Blacksmith:
+	case Job_Baby_Blacksmith:
+	case Job_Alchemist:
+	case Job_Baby_Alchemist:
+	case Job_Assassin:
+	case Job_Baby_Assassin:
+	case Job_Super_Novice:
+	case Job_Super_Novice_E:
+	case Job_Super_Baby:
+	case Job_Super_Baby_E:
+		return 4;
+	}
+
+	return 3;
+}
+
+prontera,170,180,1	script	Vesper#custom_stylist	2_M_DYEINGER,{
+	mes "[Vesper]";
+	switch (rand(1,5)) {
+	case 1:
+		mes "Ay, mi amor... llegaste justo a tiempo. Estaba entre telas y espejos, imaginando cómo te verías sin miedo.";
+		break;
+	case 2:
+		mes "¡Por fin llegas! Ya me estaban doliendo los ojos de verte con esa armadura tan básica. Ven, siéntate.";
+		break;
+	case 3:
+		mes "Mi espejo me habló de ti. Dice que traes algo que quiere salir. ¿Le hacemos caso?";
+		break;
+	case 4:
+		mes "Cierra la puerta, tesoro. Aquí no entran los que tienen miedo al color.";
+		break;
+	default:
+		mes "Ven más cerca. No muerdo... a menos que el look lo pida.";
+		break;
+	}
+	mes "Dime, tesoro: ¿qué parte de ti vamos a volver peligrosa hoy?";
 	next;
-	setarray .@Styles[1],
-		3,
-		29,
-		8;
-	setarray .@MinStyles[1],
-		0,
-		1,
-		0;
-	setarray .@Look[1],
-		LOOK_CLOTHES_COLOR,
-		LOOK_HAIR,
-		LOOK_HAIR_COLOR;
-	setarray .@CategoryName$[1], "color de ropa", "peinado", "color de cabello";
-	set .@s, select(" ~ Color de ropa: ~ Peinado: ~ Color de cabello");
+
+	set .@job, Class;
+	setarray .@Look[1], LOOK_HAIR, LOOK_HAIR_COLOR, LOOK_CLOTHES_COLOR;
+	setarray .@Min[1], 1, 0, 0;
+	setarray .@Max[1], 42, 8, 0;
+	if (.@job == Job_Summoner || .@job == Job_Baby_Summoner || .@job == Job_Spirit_Handler)
+		set .@Max[1], 10;
+	set .@Max[3], F_StylistClothMax(.@job);
+
+	set .@menu$ = " ~ " + .cat_hair$[rand(0, getarraysize(.cat_hair$)-1)] + ": ~ " + .cat_color$[rand(0, getarraysize(.cat_color$)-1)] + ": ~ " + .cat_cloth$[rand(0, getarraysize(.cat_cloth$)-1)];
+	set .@s, select(.@menu$);
+
 	set .@Revert, getlook(.@Look[.@s]);
-	set .@Style,.@MinStyles[.@s];
-	mes "[Estilista]";
-	mes "Muy bien, muy bien... vamos a explorar tu lado "+.@CategoryName$[.@s]+".";
+	if (.@Revert < .@Min[.@s]) set .@Revert, .@Min[.@s];
+	if (.@Revert > .@Max[.@s]) set .@Revert, .@Max[.@s];
+	set .@Style, .@Revert;
+	setlook .@Look[.@s], .@Style;
+
+	mes "[Vesper]";
+	mes "Mmm... ven, mírate.";
+	if (rand(1,10) <= 3) {
+		mes .react_common$[rand(0, getarraysize(.react_common$)-1)];
+	} else if (.@Look[.@s] == LOOK_HAIR) {
+		mes .react_hair$[rand(0, getarraysize(.react_hair$)-1)];
+	} else if (.@Look[.@s] == LOOK_HAIR_COLOR) {
+		mes .react_color$[rand(0, getarraysize(.react_color$)-1)];
+	} else {
+		mes .react_cloth$[rand(0, getarraysize(.react_cloth$)-1)];
+	}
 	next;
-	while(1) {
-		setlook .@Look[.@s], .@Style;
-		mes "[Estilista]";
-		if (.@s == 1 && .@Style == .@Styles[.@s]) {
-			mes "Amor, no hay mucho que pueda hacer por ti, esto es todo lo que tienes.";
-		} else if (.@s == 1 && .@Style != 0) {
-			mes "Yass queen! Este color te queda perfecto, te ves increíble.";
-		} else {
-			mes "Observa como cambias... simplemente divino.";
-		}
-		next;
-		set .@next, ((.@Style != .@Styles[.@s]) ? .@Style+1 : .@MinStyles[.@s]);
-		set .@previous, ((.@Style != .@MinStyles[.@s]) ? .@Style-1 : .@Styles[.@s]);
-		set .@menu$, " ~ Siguiente: ~ Anterior: ~ Volver al original: ~ Quedarme con este estilo";
-		switch(select(.@menu$)) {
+
+	while (1) {
+		set .@next$   = .next$[rand(0, getarraysize(.next$)-1)];
+		set .@prev$   = .prev$[rand(0, getarraysize(.prev$)-1)];
+		set .@rand$   = .rand$[rand(0, getarraysize(.rand$)-1)];
+		set .@revert$ = .revert$[rand(0, getarraysize(.revert$)-1)];
+		set .@keep$   = .keep$[rand(0, getarraysize(.keep$)-1)];
+		set .@menu$ = " ~ " + .@next$ + ": ~ " + .@prev$ + ": ~ " + .@rand$ + ": ~ " + .@revert$ + ": ~ " + .@keep$;
+
+		set .@reverted, 0;
+		switch (select(.@menu$)) {
 		case 1:
-			set .@Style, .@next;
+			set .@Style, ((.@Style >= .@Max[.@s]) ? .@Min[.@s] : .@Style + 1);
 			break;
 		case 2:
-			set .@Style, .@previous;
+			set .@Style, ((.@Style <= .@Min[.@s]) ? .@Max[.@s] : .@Style - 1);
 			break;
 		case 3:
-			mes "[Estilista]";
-			mes "Volviendo a tu estilo original...";
-			mes "aunque entre tú y yo, es lo que mejor te queda.";
-			next;
-			set .@Style, .@Revert;
-			setlook .@Look[.@s], .@Revert;
+			set .@old, .@Style;
+			set .@Style, rand(.@Min[.@s], .@Max[.@s]);
+			if (.@Style == .@old && .@Max[.@s] > .@Min[.@s])
+				set .@Style, ((.@old >= .@Max[.@s]) ? .@Min[.@s] : .@old + 1);
 			break;
 		case 4:
-			mes "[Estilista]";
-			mes "Excelente elección, amor. Te ves absolutamente fabuloso.";
-			mes "Vuelve pronto si necesitas otro cambio de imagen.";
-			close;
+			set .@Style, .@Revert;
+			set .@reverted, 1;
 			break;
+		case 5:
+			mes "[Vesper]";
+			mes .keep$[rand(0, getarraysize(.keep$)-1)];
+			close;
 		}
+
+		setlook .@Look[.@s], .@Style;
+		mes "[Vesper]";
+		if (.@reverted) {
+			mes .revert_react$[rand(0, getarraysize(.revert_react$)-1)];
+		} else if (rand(1,10) <= 3) {
+			mes .react_common$[rand(0, getarraysize(.react_common$)-1)];
+		} else if (.@Look[.@s] == LOOK_HAIR) {
+			mes .react_hair$[rand(0, getarraysize(.react_hair$)-1)];
+		} else if (.@Look[.@s] == LOOK_HAIR_COLOR) {
+			mes .react_color$[rand(0, getarraysize(.react_color$)-1)];
+		} else {
+			mes .react_cloth$[rand(0, getarraysize(.react_cloth$)-1)];
+		}
+		next;
 	}
+
+OnInit:
+	setarray .cat_hair$[0],
+		"Quiero cambiar mi peinado",
+		"Ver opciones de peinado",
+		"Cambiar mi peinado",
+		"Quiero otro peinado",
+		"Hablemos de mi pelo";
+	setarray .cat_color$[0],
+		"Quiero cambiar el color de mi pelo",
+		"Ver opciones de color de pelo",
+		"Cambiar el color de mi pelo",
+		"Quiero otro color de pelo",
+		"Hablemos del color de mi pelo";
+	setarray .cat_cloth$[0],
+		"Quiero cambiar el color de mi ropa",
+		"Ver opciones de color de ropa",
+		"Cambiar el color de mi ropa",
+		"Quiero otro color de ropa",
+		"Hablemos de mi ropa";
+
+	setarray .next$[0],
+		"Siguiente",
+		"Muéstrame el siguiente",
+		"Ver el siguiente",
+		"Siguiente opción",
+		"Quiero ver el siguiente";
+	setarray .prev$[0],
+		"Anterior",
+		"Volver al anterior",
+		"Ver el anterior",
+		"Opción anterior",
+		"Quiero ver el anterior";
+	setarray .rand$[0],
+		"Elige uno al azar",
+		"Sorpréndeme",
+		"Prueba uno al azar",
+		"Opción aleatoria",
+		"Selecciona uno al azar";
+	setarray .revert$[0],
+		"Volver a mi estilo original",
+		"Me gustaba más antes",
+		"Restaurar mi estilo original",
+		"Volver a como estaba",
+		"Quiero mi estilo original";
+	setarray .keep$[0],
+		"Me quedo con este",
+		"Aceptar",
+		"Dejar este estilo",
+		"Confirmar",
+		"Este está bien";
+
+	setarray .revert_react$[0],
+		"Volvemos a lo de antes. No es mi favorito, pero es tuyo.",
+		"Me gustaba más el otro, pero tú mandas, mi reina.",
+		"La nostalgia también es un look. Que te dure.",
+		"Oh... volvimos. Bueno. Al menos es tú.",
+		"Regresamos al primer amor. Yo no juzgo... bueno, un poco sí.";
+
+	setarray .react_common$[0],
+		"¡Yass, reina, a brillar!",
+		"¡Slay, baby, slay!",
+		"¡Pura fantasía, amor!",
+		"¡O sea, hello?!",
+		"¡Cero drama, cien por ciento glamour!",
+		"¡Guapa, poderosa y peligrosa!",
+		"Ese te queda bien.",
+		"Este queda bien con tus ojos.",
+		"Te luce mucho este estilo.",
+		"¡Tijera, tinte y actitud, amor!",
+		"¿En serio, cariño? ¿Tanto elegir para terminar pareciendo un NPC?",
+		"Atrévete a más, amor.",
+		"No me gusta, pero si a ti sí... respeto tu proceso.",
+		"Ay, corazón, si tú estás feliz, yo finjo estar feliz.",
+		"(Mirando de arriba a abajo con una sonrisa falsa y perfecta) ¡Ay, hermana! Qué... valiente lo que llevas puesto hoy.",
+		"Eso sí que es un statement... aunque no sé de qué.",
+		"La belleza no pide permiso, tesoro. Pero tú acabas de pedir el mío.",
+		"Si la reina me viera, me pediría el nombre de este look. No se lo daría.",
+		"En la corte decían que había que ser discreto. Por eso todos parecían muebles.",
+		"En la corte decían que un hombre no debía brillar tanto. Yo les cosí una cortina y me fui.",
+		"Mi primer cliente fue un caballero que quería un traje para la guerra. Le hice uno para bailar. Nunca volvió, pero el hilo sigue en mi muñeca.",
+		"La reina me llamó escándalo. Yo la llamé clienta. Al final, las dos teníamos razón.",
+		"El espejo del palacio recuerda cada look que ha visto. El tuyo no se le va a olvidar.",
+		"Ese look tiene historia. Y ahora tú también.",
+		"No es lo que yo habría elegido, pero tú mandas, mi reina.",
+		"Mmm... valiente. Muy valiente.";
+
+	setarray .react_hair$[0],
+		"Ese flequillo dice cosas que tú no te atreves.",
+		"Te queda como una corona, y tú sabes reinar.",
+		"Mmm, sí. Ese movimiento te delata.",
+		"Ese pelo era el favorito de alguien que ya no está. Ahora es tuyo.",
+		"La corte se cortaba el pelo para parecer seria. Tú no necesitas disimular.",
+		"¡Uff, sí, bebé! Eso es tener visión.",
+		"Ese corte te hace la cara más peligrosa. Me gusta.",
+		"No sé si es el pelo o la actitud. Probablemente las dos.";
+
+	setarray .react_color$[0],
+		"¡Ooh, ese tono te ilumina el aura!",
+		"Ese color te enciende la mirada.",
+		"Parece que el sol te eligió a ti.",
+		"Ese tinte tiene historia, y ahora tú también.",
+		"En palacio, este tono era un secreto. Hoy es tuyo.",
+		"¡Yass, baby! Ese color es puro veneno y puro glamour.",
+		"Mmm... atrevido. Casi tanto como yo.",
+		"Ese tono te hace parecer una aparición. De las buenas.",
+		"La reina me pediría el nombre de este tinte. No se lo daría.",
+		"No me gusta, pero si a ti sí... adelante, valiente.";
+
+	setarray .react_cloth$[0],
+		"Ese color te abraza justo donde debe.",
+		"La tela te obedece, amor.",
+		"Eso es glamour, no ropa.",
+		"En la corte, este color era para los valientes. O para los tontos. Tú decides.",
+		"Ese color era el favorito de alguien que se fue a la guerra con un traje mío. No pregunto más.",
+		"Ese tono te hace la piel más luminosa. Cuidado, que deslumbra.",
+		"La tela cae como si te conociera de otra vida.",
+		"No es lo que yo habría elegido, pero tú mandas, mi reina.",
+		"Mmm... valiente. Muy valiente.",
+		"¡Uff, sí, bebé! Eso es tener visión.";
+	end;
 }
