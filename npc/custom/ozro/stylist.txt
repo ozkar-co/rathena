@@ -135,7 +135,7 @@ prontera,170,180,1	script	Vesper#custom_stylist	2_M_DYEINGER,{
 		set .@Max[1], 10;
 	set .@Max[3], F_StylistClothMax(.@job);
 
-	set .@menu$ = " ~ " + .cat_hair$[rand(0, getarraysize(.cat_hair$)-1)] + ": ~ " + .cat_color$[rand(0, getarraysize(.cat_color$)-1)] + ": ~ " + .cat_cloth$[rand(0, getarraysize(.cat_cloth$)-1)];
+	set .@menu$ = " ~ " + .cat_hair$[rand(getarraysize(.cat_hair$))] + ": ~ " + .cat_color$[rand(getarraysize(.cat_color$))] + ": ~ " + .cat_cloth$[rand(getarraysize(.cat_cloth$))];
 	set .@s, select(.@menu$);
 
 	set .@Revert, getlook(.@Look[.@s]);
@@ -147,22 +147,22 @@ prontera,170,180,1	script	Vesper#custom_stylist	2_M_DYEINGER,{
 	mes "[Vesper]";
 	mes "Mmm... ven, mírate.";
 	if (rand(1,10) <= 3) {
-		mes .react_common$[rand(0, getarraysize(.react_common$)-1)];
+		mes .react_common$[rand(getarraysize(.react_common$))];
 	} else if (.@Look[.@s] == LOOK_HAIR) {
-		mes .react_hair$[rand(0, getarraysize(.react_hair$)-1)];
+		mes .react_hair$[rand(getarraysize(.react_hair$))];
 	} else if (.@Look[.@s] == LOOK_HAIR_COLOR) {
-		mes .react_color$[rand(0, getarraysize(.react_color$)-1)];
+		mes .react_color$[rand(getarraysize(.react_color$))];
 	} else {
-		mes .react_cloth$[rand(0, getarraysize(.react_cloth$)-1)];
+		mes .react_cloth$[rand(getarraysize(.react_cloth$))];
 	}
 	next;
 
 	while (1) {
-		set .@next$   = .next$[rand(0, getarraysize(.next$)-1)];
-		set .@prev$   = .prev$[rand(0, getarraysize(.prev$)-1)];
-		set .@rand$   = .rand$[rand(0, getarraysize(.rand$)-1)];
-		set .@revert$ = .revert$[rand(0, getarraysize(.revert$)-1)];
-		set .@keep$   = .keep$[rand(0, getarraysize(.keep$)-1)];
+		set .@next$   = .next$[rand(getarraysize(.next$))];
+		set .@prev$   = .prev$[rand(getarraysize(.prev$))];
+		set .@rand$   = .rand$[rand(getarraysize(.rand$))];
+		set .@revert$ = .revert$[rand(getarraysize(.revert$))];
+		set .@keep$   = .keep$[rand(getarraysize(.keep$))];
 		set .@menu$ = " ~ " + .@next$ + ": ~ " + .@prev$ + ": ~ " + .@rand$ + ": ~ " + .@revert$ + ": ~ " + .@keep$;
 
 		set .@reverted, 0;
@@ -185,22 +185,22 @@ prontera,170,180,1	script	Vesper#custom_stylist	2_M_DYEINGER,{
 			break;
 		case 5:
 			mes "[Vesper]";
-			mes .keep$[rand(0, getarraysize(.keep$)-1)];
+			mes .keep$[rand(getarraysize(.keep$))];
 			close;
 		}
 
 		setlook .@Look[.@s], .@Style;
 		mes "[Vesper]";
 		if (.@reverted) {
-			mes .revert_react$[rand(0, getarraysize(.revert_react$)-1)];
+			mes .revert_react$[rand(getarraysize(.revert_react$))];
 		} else if (rand(1,10) <= 3) {
-			mes .react_common$[rand(0, getarraysize(.react_common$)-1)];
+			mes .react_common$[rand(getarraysize(.react_common$))];
 		} else if (.@Look[.@s] == LOOK_HAIR) {
-			mes .react_hair$[rand(0, getarraysize(.react_hair$)-1)];
+			mes .react_hair$[rand(getarraysize(.react_hair$))];
 		} else if (.@Look[.@s] == LOOK_HAIR_COLOR) {
-			mes .react_color$[rand(0, getarraysize(.react_color$)-1)];
+			mes .react_color$[rand(getarraysize(.react_color$))];
 		} else {
-			mes .react_cloth$[rand(0, getarraysize(.react_cloth$)-1)];
+			mes .react_cloth$[rand(getarraysize(.react_cloth$))];
 		}
 		next;
 	}
