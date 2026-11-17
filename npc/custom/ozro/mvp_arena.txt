@@ -28,7 +28,7 @@ prontera,173,152,4	script	Tejedora de Ecos	4_F_THAISHAMAN,{
 		next;
 		if (select("Entrar:Salir") == 2) close;
 
-		.@result = instance_enter("Sueños Tejidos", -1, -1, getcharid(0), .@instance_id);
+		.@result = instance_enter("SueÃ±os Tejidos", -1, -1, getcharid(0), .@instance_id);
 		if (.@result != IE_OK) {
 			mes "[ ^0065DFTejedora de Ecos^000000 ]";
 			mes "El sueño no te aceptó (error " + .@result + ").";
@@ -108,7 +108,7 @@ prontera,173,152,4	script	Tejedora de Ecos	4_F_THAISHAMAN,{
 
 	if (select("Tejer el sueño:Salir") == 2) close;
 
-	.@instance_id = instance_create("Sueños Tejidos", IM_CHAR);
+	.@instance_id = instance_create("SueÃ±os Tejidos", IM_CHAR);
 	if (.@instance_id < 0) {
 		mes "[ ^0065DFTejedora de Ecos^000000 ]";
 		mes "El telar no respondió (error " + .@instance_id + ").";
@@ -124,7 +124,7 @@ prontera,173,152,4	script	Tejedora de Ecos	4_F_THAISHAMAN,{
 	setinstancevar 'mvp_id, .mvp_id[.@idx], .@instance_id;
 	donpcevent instance_npcname("OzroTestSpawner", .@instance_id) + "::OnSummon";
 
-	.@result = instance_enter("Sueños Tejidos", -1, -1, getcharid(0), .@instance_id);
+	.@result = instance_enter("SueÃ±os Tejidos", -1, -1, getcharid(0), .@instance_id);
 	if (.@result != IE_OK) {
 		mes "[ ^0065DFTejedora de Ecos^000000 ]";
 		mes "El sueño se abrió, pero no pudiste entrar (error " + .@result + ").";
