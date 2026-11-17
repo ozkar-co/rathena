@@ -142,3 +142,136 @@ Body:
         Rate: 1
         Index: 7
         StealProtected: true
+
+  - Id: 1038
+    DamageTaken: 100
+  - Id: 1039
+    DamageTaken: 100
+  - Id: 1046
+    DamageTaken: 100
+  - Id: 1059
+    DamageTaken: 100
+  - Id: 1086
+    DamageTaken: 100
+  - Id: 1087
+    DamageTaken: 100
+  - Id: 1112
+    DamageTaken: 100
+  - Id: 1115
+    DamageTaken: 100
+  - Id: 1147
+    DamageTaken: 100
+  - Id: 1150
+    DamageTaken: 100
+  - Id: 1157
+    DamageTaken: 100
+  - Id: 1159
+    DamageTaken: 100
+  - Id: 1190
+    DamageTaken: 100
+  - Id: 1251
+    DamageTaken: 100
+  - Id: 1252
+    DamageTaken: 100
+  - Id: 1272
+    DamageTaken: 100
+  - Id: 1312
+    DamageTaken: 100
+  - Id: 1373
+    DamageTaken: 100
+  - Id: 1389
+    DamageTaken: 100
+  - Id: 1418
+    DamageTaken: 100
+  - Id: 1492
+    DamageTaken: 100
+  - Id: 1511
+    DamageTaken: 100
+  - Id: 1583
+    DamageTaken: 100
+  - Id: 1623
+    DamageTaken: 100
+  - Id: 1630
+    DamageTaken: 100
+  - Id: 1685
+    DamageTaken: 100
+  - Id: 1688
+    DamageTaken: 100
+  - Id: 1708
+    DamageTaken: 100
+  - Id: 1719
+    DamageTaken: 100
+  - Id: 1734
+    DamageTaken: 100
+  - Id: 1751
+    DamageTaken: 100
+  - Id: 1768
+    DamageTaken: 100
+  - Id: 1779
+    DamageTaken: 100
+  - Id: 1785
+    DamageTaken: 100
+  - Id: 1832
+    DamageTaken: 100
+  - Id: 1871
+    DamageTaken: 100
+  - Id: 1874
+    DamageTaken: 100
+  - Id: 1885
+    DamageTaken: 100
+  - Id: 1917
+    DamageTaken: 100
+  - Id: 2068
+    DamageTaken: 100
+  - Id: 2087
+    DamageTaken: 100
+  - Id: 2156
+    DamageTaken: 100
+  - Id: 2165
+    DamageTaken: 100
+  - Id: 2202
+    DamageTaken: 100
+  - Id: 2249
+    DamageTaken: 100
+  - Id: 2251
+    DamageTaken: 100
+  - Id: 2253
+    DamageTaken: 100
+  - Id: 2255
+    DamageTaken: 100
+  - Id: 2362
+    DamageTaken: 100
+  - Id: 3074
+    DamageTaken: 100
+  - Id: 3633
+    DamageTaken: 100
+  - Id: 3741
+    DamageTaken: 100
+  - Id: 20381
+    DamageTaken: 100
+  - Id: 20419
+    DamageTaken: 100
+  - Id: 20421
+    DamageTaken: 100
+  - Id: 20422
+    DamageTaken: 100
+  - Id: 20601
+    DamageTaken: 100
+  - Id: 20648
+    DamageTaken: 100
+  - Id: 20928
+    DamageTaken: 100
+  - Id: 20934
+    DamageTaken: 100
+  - Id: 20943
+    DamageTaken: 100
+  - Id: 21301
+    DamageTaken: 100
+  - Id: 21316
+    DamageTaken: 100
+  - Id: 21317
+    DamageTaken: 100
+  - Id: 21360
+    DamageTaken: 100
+  - Id: 21361
+    DamageTaken: 100
