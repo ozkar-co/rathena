@@ -43,7 +43,7 @@ Header:
 
 Body:
   - Id: 10001
-    Name: Sueños Tejidos
+    Name: Ecos Tejidos
     TimeLimit: 3600
     IdleTimeOut: 300
     Enter:
