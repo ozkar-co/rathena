@@ -116,8 +116,8 @@ Son **58 archivos** y ~**60.000 líneas** de diálogo (más ~9.500 si se incluye
 ### Reglas de traducción
 
 - Traducir solo los textos visibles (`mes`, `select`, `mes` de menús); **no** tocar IDs, variables, nombres de NPC, `callfunc`, `getitem`, `delitem` ni coordenadas.
-- Mantener el español **sin tildes ni `¿¡`**, como el contenido custom actual (`npc/custom/ozro/chronicler.txt`).
-- Mantener la codificación del archivo (ISO-8859/Latin-1 en el custom actual). No introducir UTF-8 sin probar el cliente.
+- Mantener el español en **ISO-8859-1/Latin-1**: el cliente actual muestra tildes, eñes y signos de apertura. No introducir UTF-8.
+- Conservar la codificación del archivo original y no reinterpretar los nombres de recursos coreanos.
 - Conservar los códigos de color (`^000000`, etc.) y los saltos/`next` en el mismo orden.
 - Traducir una quest completa antes de pasar a la siguiente; no dejar archivos a medias.
 

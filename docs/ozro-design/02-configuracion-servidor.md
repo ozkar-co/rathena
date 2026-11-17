@@ -125,7 +125,7 @@ Los rates `_boss` aplican a monstruos clase boss que **no** son MVP. Los rates `
 | Anuncio drops raros | `100` | Anuncia drops ≤ **1%** |
 | Autoloot mercenario | `yes` | import |
 | Autoloot homúnculo | `yes` | import |
-| Item auto-get | `no` | Va al suelo |
+| Item auto-get | `yes` | Va directo al inventario |
 | Floor item lifetime | `60000` ms | 60 s |
 | First attack loot bonus | `30` | +30% prioridad loot |
 | MVP to loot priority | `no` | MVP por daño+tank oficial |
