@@ -11,6 +11,9 @@ prontera,150,180,4	script	El Guardián de Almas	4_M_SURA,{
 	mes .npc_name$;
 	mes "No todas las bestias se van cuando mueren.";
 	mes "Sus almas se niegan a abandonar el mundo, y sus fragmentos se adhieren a quienes las mataron.";
+	next;
+
+	mes .npc_name$;
 	mes "Puedo ver esos fragmentos en ti. ¿Qué deseas hacer?";
 	mes "Si quieres volver a enfrentar a una bestia, busca a la Tejedora. Ella sabe llamar a su eco.";
 	next;
@@ -41,6 +44,9 @@ L_Summary:
 	mes "Asistencias: ^009900" + @MVPJ_SUPPS + "^000000";
 	mes "Grandes bestias únicas: ^009900" + @MVPJ_UNIQUE + " / " + .mvp_count + "^000000";
 	mes "Fragmentos de alma pendientes: ^009900" + @MVPJ_PENDING + "^000000";
+	next;
+
+	mes .npc_name$;
 	if (@MVPJ_TOP_KILL_ID > 0) {
 		mes "Bestia más cazada: ^FF0000" + getmonsterinfo(@MVPJ_TOP_KILL_ID, MOB_NAME) + "^000000";
 		mes "(" + @MVPJ_TOP_KILL_COUNT + " golpes finales)";
@@ -116,6 +122,9 @@ L_Souls:
 	mes "^777777Almas de las grandes bestias^000000";
 	mes "Fragmentos ganados: ^009900" + @MVPJ_EARNED + "^000000";
 	mes "Almas reclamadas: ^009900" + MVP_SOUL_CLAIMED + "^000000";
+	next;
+
+	mes .npc_name$;
 	mes "Fragmentos pendientes: ^009900" + @MVPJ_PENDING + "^000000";
 	mes "Cada fragmento se convierte en 1 Alma de MVP.";
 	next;
