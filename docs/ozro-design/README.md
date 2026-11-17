@@ -27,8 +27,6 @@ La sección **Comentarios** al final de cada archivo es un borrador libre: se ap
   - Sección **Info** del sitio → solo el *listado* de NPCs custom y quests custom.
   - Sección **Enciclopedia** → guías y detalles específicos (si aplica).
 
-> **Dev nuevo:** empezar por [18-consolidado-tecnico.md](./18-consolidado-tecnico.md), la ficha técnica con el estado real, los valores del servidor y los porqués de cada decisión.
-
 ## Índice
 
 | Archivo | Contenido |
@@ -47,7 +45,6 @@ La sección **Comentarios** al final de cada archivo es un borrador libre: se ap
 | [15-vendedor-viajero.md](./15-vendedor-viajero.md) | Vendedor viajero: items de invocación, stock limitado, precios y reposición |
 | [16-eventos-automaticos.md](./16-eventos-automaticos.md) | Eventos automáticos para pocos jugadores, recompensas en OzCoin y cronograma semanal |
 | [17-quests-de-job.md](./17-quests-de-job.md) | Quests de cambio de job: estado actual, uso de las quests 1-1 de pre-re y plan de traducción/balance archivo por archivo |
-| [18-consolidado-tecnico.md](./18-consolidado-tecnico.md) | Ficha técnica: plataforma, cliente, tasas, contenido custom, datos, operación, limitaciones y errores a no repetir |
 
 ## Repos relacionados
 
