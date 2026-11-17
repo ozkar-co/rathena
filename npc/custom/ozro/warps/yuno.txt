@@ -1,0 +1,25 @@
+yuno,162,191,4	script	Kafra Warp Staff#yuno	861,{
+	mes "[Kafra Warp Staff]";
+	mes "La votación del servicio de warp concluyó.";
+	mes "Cool Event Corp fue designada para operar el servicio de warp en esta ciudad.";
+	mes "Kafra Corp opera otros puntos del servicio.";
+	close;
+}
+
+yuno,153,191,6	script	Cool Event Warp Staff#yuno	874,{
+	mes "[Cool Event Warp Staff]";
+	mes "La votación del servicio de warp concluyó.";
+	mes "Cool Event Corp fue designada para operar el servicio de warp en esta ciudad.";
+	mes "Cada viaje cuesta 4.000 zeny y 1 Blue Gemstone.";
+	next;
+	switch(select("Magma:Thanatos Tower:Cancelar")) {
+	case 1:
+		callfunc "F_OzroWarp", "Magma", "mag_dun02", 47, 30;
+		end;
+	case 2:
+		callfunc "F_OzroWarp", "Thanatos Tower", "hu_fild01", 140, 163;
+		end;
+	case 3:
+		close;
+	}
+}

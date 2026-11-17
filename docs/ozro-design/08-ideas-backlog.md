@@ -28,7 +28,6 @@ Lluvia de ideas del documento antiguo, **reformuladas** y etiquetadas. No es lis
 | Idea | Estado | Notas |
 |------|--------|-------|
 | Deshabilitar banco/correo del menú → solo NPC | `pendiente` | Más inmersivo; scripts bank en repo |
-| Reducir votos Kafra Voting Dungeon a 5 | `pendiente` | Si usan el dungeon |
 | Tasador / casa de empeño | `pendiente` | Mercado NPC sin bots para cartas, equipo refinado/cardeado y encantamientos; complejo, para mucho después; ver [13-mercado-npc-tasador.md](./13-mercado-npc-tasador.md) |
 | Mercado NPC sin bots | `pendiente` | Vending para venta directa + tasador/consignación para el resto |
 | Gambler → refine safe con monedas OzRo | `reformular` | Sin Special Gold; “si falla no se rompe”, no nivel fijo |

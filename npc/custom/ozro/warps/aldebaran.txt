@@ -1,0 +1,28 @@
+aldebaran,145,102,4	script	Kafra Warp Staff#alde	116,{
+	mes "[Kafra Warp Staff]";
+	mes "La votación del servicio de warp concluyó.";
+	mes "Cool Event Corp fue designada para operar el servicio de warp en esta ciudad.";
+	mes "Kafra Corp opera otros puntos del servicio.";
+	close;
+}
+
+aldebaran,138,102,6	script	Cool Event Warp Staff#alde	874,{
+	mes "[Cool Event Warp Staff]";
+	mes "La votación del servicio de warp concluyó.";
+	mes "Cool Event Corp fue designada para operar el servicio de warp en esta ciudad.";
+	mes "Cada viaje cuesta 4.000 zeny y 1 Blue Gemstone.";
+	next;
+	switch(select("Clock Tower:Clock Tower Basement:Mjolnir Field:Cancelar")) {
+	case 1:
+		callfunc "F_OzroWarp", "Clock Tower", "c_tower2", 148, 283;
+		end;
+	case 2:
+		callfunc "F_OzroWarp", "Clock Tower Basement", "alde_dun02", 43, 24;
+		end;
+	case 3:
+		callfunc "F_OzroWarp", "Mjolnir Field", "mjolnir_03", 212, 22;
+		end;
+	case 4:
+		close;
+	}
+}

@@ -1,0 +1,28 @@
+payon,158,182,4	script	Kafra Warp Staff#pay	116,{
+	mes "[Kafra Warp Staff]";
+	mes "La votación del servicio de warp concluyó.";
+	mes "Kafra Corp fue designada para operar el servicio de warp en esta ciudad.";
+	mes "Cada viaje cuesta 4.000 zeny y 1 Blue Gemstone.";
+	next;
+	switch(select("Payon Cave:Anthell:Niflheim Field:Cancelar")) {
+	case 1:
+		callfunc "F_OzroWarp", "Payon Cave", "pay_dun02", 19, 63;
+		end;
+	case 2:
+		callfunc "F_OzroWarp", "Anthell", "cmd_fild08", 335, 355;
+		end;
+	case 3:
+		callfunc "F_OzroWarp", "Niflheim Field", "nif_fild01", 302, 82;
+		end;
+	case 4:
+		close;
+	}
+}
+
+payon,153,182,6	script	Cool Event Warp Staff#pay	874,{
+	mes "[Cool Event Warp Staff]";
+	mes "La votación del servicio de warp concluyó.";
+	mes "Kafra Corp fue designada para operar el servicio de warp en esta ciudad.";
+	mes "Cool Event Corp opera otros puntos del servicio.";
+	close;
+}

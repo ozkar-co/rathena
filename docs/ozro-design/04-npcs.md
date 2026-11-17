@@ -90,21 +90,13 @@
 - Compra/venta por zeny con precio dinámico si se conecta con Stock Market.
 - Generaliza el concepto de monedas por actividad, pero con lore propio.
 
-### Priest Viajero / Warper con lore `pendiente`
-
-- Warper para volver rápido a mapas de caza/MVP sin depender de acólitos con warp memorizado.
-- Debe desbloquearse viajando primero al mapa, con quest/lore y costo de items.
-- El vínculo dura un tiempo y hay que renovarlo.
-- Puede aparecer en distintas ciudades y habilitar zonas según su historia.
 
 ## Otras evoluciones pendientes
 
 ### Kaz el Cronista `reformular`
 
 - Detectar nivel del PJ activo.
-- Indicar el siguiente paso del arco lore activo.
-- Marcar progreso en `#LORE_ARC_*`.
-- Sincronizar con la web.
+- conoce la ubicacion del vendedor viajero
 
 ### Card Collector `expandir`
 
@@ -124,41 +116,11 @@
 - Hoy: 20 min de vínculo.
 - Futuro (quest): alargar la duración del soul link para el PJ.
 
-### Kafra Staff / Cool Event Corp (votación de dungeon) `pendiente`
-
-- Que no requiera 20 votos: ganar por mayoría simple.
-- Elecciones de lunes a miércoles; dungeon activo de jueves a domingo.
-
 ## Scripts genéricos rAthena (comentados en `scripts_custom.conf`)
 
 Útiles para OzRo — evaluar activación:
 
 | Script | Ubicación | Relevancia |
 |--------|-----------|------------|
-| Stock Market | `npc/custom/etc/stock_market.txt` | Economía dinámica sin players |
-| Bank | `npc/custom/etc/bank.txt` | Si se deshabilita banco del menú |
-| Quest board | `npc/custom/quests/questboard.txt` | Tablón dinámico |
 | Floating rates | `npc/custom/etc/floating_rates.txt` | Evento automático rates |
-| Marriage | `npc/custom/etc/marriage.txt` | ? |
 | Monster arena | `npc/custom/etc/monster_arena.txt` | Competencia PvE |
-
-## Variables de script (NPCs actuales)
-
-| Variable | Alcance | Uso |
-|----------|---------|-----|
-| `#GARRETT_DAY` | Cuenta | Día de ofertas y contratos |
-| `#GARRETT_SPENT` | Cuenta | Gasto diario (cap 500.000) |
-| `#GARRETT_OFFER0..4` / `#GARRETT_PRICE0..4` | Cuenta | 5 ofertas diarias |
-| `#GARRETT_SOLD0..4` | Cuenta | Primer trato de cada oferta |
-| `#GARRETT_CONTRACT_ITEM0..2` / `_QTY` / `_PAY` | Cuenta | Contratos del día |
-| `#GARRETT_MISSION_ACTIVE` / `_ITEM` / `_QTY` / `_PAY` / `_END` / `_DAY` | Cuenta | Misión activa |
-| `#GARRETT_TRADES` / `#GARRETT_TOTAL_SPENT` / `#GARRETT_UNIQUE_TRADES` | Cuenta | Historial de tratos |
-| `#GARRETT_MISSIONS_DONE` / `#GARRETT_MISSION_EARNED` | Cuenta | Historial de misiones |
-| `OZRO_KARMA` | Personaje | Reputación/karma firmado |
-| `$OZRO_DEATHS_TOTAL` | Global servidor | Muertes registradas |
-
-> Las viejas variables `TRSH_*` quedan en la base pero el script nuevo no las usa; no se borran para conservar el historial.
-
-## Comentarios
-
-<!-- Borrador libre para ideas nuevas; luego organizar arriba -->

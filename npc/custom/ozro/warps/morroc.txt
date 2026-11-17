@@ -1,0 +1,28 @@
+moc_ruins,104,133,4	script	Kafra Warp Staff#moc	116,{
+	mes "[Kafra Warp Staff]";
+	mes "La votación del servicio de warp concluyó.";
+	mes "Kafra Corp fue designada para operar el servicio de warp en esta ciudad.";
+	mes "Cada viaje cuesta 4.000 zeny y 1 Blue Gemstone.";
+	next;
+	switch(select("Pyramid:Pyramid Basement:Sphinx:Cancelar")) {
+	case 1:
+		callfunc "F_OzroWarp", "Pyramid", "moc_pryd02", 10, 192;
+		end;
+	case 2:
+		callfunc "F_OzroWarp", "Pyramid Basement", "moc_pryd05", 94, 96;
+		end;
+	case 3:
+		callfunc "F_OzroWarp", "Sphinx", "in_sphinx2", 149, 81;
+		end;
+	case 4:
+		close;
+	}
+}
+
+moc_ruins,97,133,6	script	Cool Event Warp Staff#moc	874,{
+	mes "[Cool Event Warp Staff]";
+	mes "La votación del servicio de warp concluyó.";
+	mes "Kafra Corp fue designada para operar el servicio de warp en esta ciudad.";
+	mes "Cool Event Corp opera otros puntos del servicio.";
+	close;
+}

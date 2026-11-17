@@ -1,0 +1,31 @@
+alberta,119,70,4	script	Kafra Warp Staff#alb	116,{
+	mes "[Kafra Warp Staff]";
+	mes "La votación del servicio de warp concluyó.";
+	mes "Cool Event Corp fue designada para operar el servicio de warp en esta ciudad.";
+	mes "Kafra Corp opera otros puntos del servicio.";
+	close;
+}
+
+alberta,114,70,6	script	Cool Event Warp Staff#alb	874,{
+	mes "[Cool Event Warp Staff]";
+	mes "La votación del servicio de warp concluyó.";
+	mes "Cool Event Corp fue designada para operar el servicio de warp en esta ciudad.";
+	mes "Cada viaje cuesta 4.000 zeny y 1 Blue Gemstone.";
+	next;
+	switch(select("Byalan Dungeon:Turtle Cave:Shrine of Gonryun:Louyang Royal Tomb:Cancelar")) {
+	case 1:
+		callfunc "F_OzroWarp", "Byalan Dungeon", "iz_dun02", 236, 204;
+		end;
+	case 2:
+		callfunc "F_OzroWarp", "Turtle Cave", "tur_dun02", 148, 264;
+		end;
+	case 3:
+		callfunc "F_OzroWarp", "Shrine of Gonryun", "gon_dun02", 17, 113;
+		end;
+	case 4:
+		callfunc "F_OzroWarp", "Louyang Royal Tomb", "lou_dun02", 285, 18;
+		end;
+	case 5:
+		close;
+	}
+}

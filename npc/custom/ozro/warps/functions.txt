@@ -1,0 +1,39 @@
+function	script	F_OzroWarp	{
+	.@dest$ = getarg(0);
+	.@map$ = getarg(1);
+	.@x = getarg(2);
+	.@y = getarg(3);
+
+	if (Zeny < 4000) {
+		mes "[Servicio de Warp]";
+		mes "El viaje cuesta 4.000 zeny y 1 Blue Gemstone.";
+		mes "No tienes suficientes zeny.";
+		close;
+	}
+
+	if (countitem(Blue_Gemstone) < 1) {
+		mes "[Servicio de Warp]";
+		mes "El viaje cuesta 4.000 zeny y 1 Blue Gemstone.";
+		mes "Necesitas 1 Blue Gemstone.";
+		close;
+	}
+
+	mes "[Servicio de Warp]";
+	mes "Destino: " + .@dest$ + ".";
+	mes "Costo: 4.000 zeny + 1 Blue Gemstone.";
+	next;
+
+	if (select("Viajar:Cancelar") == 2) {
+		mes "[Servicio de Warp]";
+		mes "Está bien. Vuelve cuando quieras.";
+		close;
+	}
+
+	set Zeny, Zeny - 4000;
+	delitem Blue_Gemstone, 1;
+	mes "[Servicio de Warp]";
+	mes "Buen viaje.";
+	close2;
+	warp .@map$, .@x, .@y;
+	end;
+}

@@ -1,0 +1,25 @@
+lighthalzen,163,60,4	script	Kafra Warp Staff#lhz	861,{
+	mes "[Kafra Warp Staff]";
+	mes "La votación del servicio de warp concluyó.";
+	mes "Cool Event Corp fue designada para operar el servicio de warp en esta ciudad.";
+	mes "Kafra Corp opera otros puntos del servicio.";
+	close;
+}
+
+lighthalzen,154,60,6	script	Cool Event Warp Staff#lhz	874,{
+	mes "[Cool Event Warp Staff]";
+	mes "La votación del servicio de warp concluyó.";
+	mes "Cool Event Corp fue designada para operar el servicio de warp en esta ciudad.";
+	mes "Cada viaje cuesta 4.000 zeny y 1 Blue Gemstone.";
+	next;
+	switch(select("Ice Cave:Thor Volcano:Cancelar")) {
+	case 1:
+		callfunc "F_OzroWarp", "Ice Cave", "ice_dun02", 151, 139;
+		end;
+	case 2:
+		callfunc "F_OzroWarp", "Thor Volcano", "ve_fild03", 168, 240;
+		end;
+	case 3:
+		close;
+	}
+}
