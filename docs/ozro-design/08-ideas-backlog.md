@@ -81,6 +81,7 @@ Lluvia de ideas del documento antiguo, **reformuladas** y etiquetadas. No es lis
 | MVP Hunting gacha (items comunes → monedas → gacha) | `reformular` | Riesgo power creep; mejor barter determinista |
 | Sets custom con skills de otros jobs + Almas | `reformular` | Solo ultra-late o cosmético |
 | Dark Ritual: reset a Novice 1 → SoulStone valiosa | `reformular` | ¿Conflicto con reset fácil? |
+| Piedra Eterna: item custom que evita ganar EXP | `pendiente` | Bloquea EXP base y job mientras esté activa/equipada; útil para controlar nivel, farmers y challenges. Definir slot, duración, persistencia, si bloquea EXP de quest/MVP/party y cómo se obtiene. |
 | NPC buffs por temporadas (esferas monk, adrenaline) | `pendiente` | Eventos estacionales |
 | Old Blacksmith: monedas OzRo → piedras BS | `pendiente` | Depende de bounty rewards; ya no Special Gold |
 | MVP room con cleaner | `pendiente` | Sala de MVPs con NPC de limpieza |

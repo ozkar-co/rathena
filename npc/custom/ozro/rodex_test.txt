@@ -1,0 +1,11 @@
+// Test temporal: abre RODEX desde un NPC con @mail.
+prontera,150,185,4	script	Rodex Test	4_F_01,{
+	mes "[Rodex Test]";
+	mes "Voy a intentar abrir RODEX desde este NPC.";
+	next;
+	mes "[Rodex Test]";
+	mes "Si funciona, deberia abrirse la ventana de correo.";
+	close2;
+	atcommand "@mail";
+	end;
+}
