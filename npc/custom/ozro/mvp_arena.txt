@@ -19,14 +19,15 @@ function	script	F_EchoItemName	{
 }
 
 prontera,173,152,4	script	Tejedora de Ecos	4_F_THAISHAMAN,{
-	.@instance_id = instance_id(IM_CHAR);
+	.@instance_id = instance_id(IM_PARTY);
 
 	mes "[ ^0065DFTejedora de Ecos^000000 ]";
 	if (.@instance_id > 0) {
 		mes "El telar ya está tenso. Un sueño sigue abierto.";
 		mes "Puedes entrar mientras el sueño siga abierto.";
 		next;
-		if (select("Entrar:Salir") == 2) close;
+		.@sel = prompt("Entrar:Salir");
+		if (.@sel == 255 || .@sel == 2) close;
 
 		.@result = instance_enter("Ecos Tejidos", -1, -1, getcharid(0), .@instance_id);
 		if (.@result != IE_OK) {
@@ -106,9 +107,10 @@ prontera,173,152,4	script	Tejedora de Ecos	4_F_THAISHAMAN,{
 		close;
 	}
 
-	if (select("Tejer el sueño:Salir") == 2) close;
+	.@sel = prompt("Tejer el sueño:Salir");
+	if (.@sel == 255 || .@sel == 2) close;
 
-	.@instance_id = instance_create("Ecos Tejidos", IM_CHAR);
+	.@instance_id = instance_create("Ecos Tejidos", IM_PARTY);
 	if (.@instance_id < 0) {
 		mes "[ ^0065DFTejedora de Ecos^000000 ]";
 		mes "El telar no respondió (error " + .@instance_id + ").";
