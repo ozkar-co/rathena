@@ -43,6 +43,7 @@ La sección **Comentarios** al final de cada archivo es un borrador libre: se ap
 | [10-cliente-organizacion-y-pruebas.md](./10-cliente-organizacion-y-pruebas.md) | Cómo ordenar el cliente, separar base/custom y probar el cliente actual sin romper lo que funciona |
 | [13-mercado-npc-tasador.md](./13-mercado-npc-tasador.md) | Mercado NPC sin bots: tasador, consignación y casa de empeño |
 | [15-vendedor-viajero.md](./15-vendedor-viajero.md) | Vendedor viajero: items de invocación, stock limitado, precios y reposición |
+| [16-eventos-automaticos.md](./16-eventos-automaticos.md) | Eventos automáticos para pocos jugadores, recompensas en OzCoin y cronograma semanal |
 
 ## Repos relacionados
 
@@ -67,3 +68,4 @@ La sección **Comentarios** al final de cada archivo es un borrador libre: se ap
 - **2026-11-16:** El mercado NPC sin bots se resolverá con vending y un tasador/casa de empeño; `ragnabots` queda deprecado. El Gambler se reemplaza por refine safe con monedas OzRo (“si falla, no se rompe”).
 - **2026-11-16:** No hay server de prueba; se prueba directo en producción con los 3 jugadores.
 - **2026-11-16:** Lo implementado se borra de la documentación y queda en el changelog público (general) y en el git log (detalle técnico).
+- **2026-11-17:** Eventos automáticos con recompensa en OzCoin; cronograma semanal en [16-eventos-automaticos.md](./16-eventos-automaticos.md).

@@ -50,7 +50,7 @@ Lluvia de ideas del documento antiguo, **reformuladas** y etiquetadas. No es lis
 | Chef (cocina con fallo / puntos ingredientes) | `reformular` | Relacionar con cooking quest oficial |
 | Treasure Hunter semanal | `pendiente` | NPC examen monstruo + llave diaria + cofre en mapa random |
 | Quest cadena → desbloquea cacería tesoro | `pendiente` | Pistas mundo → explorador |
-| Eventos automáticos + calendario | `pendiente` | `floating_rates.txt` como base |
+| Eventos automáticos + calendario | `pendiente` | Ver [16-eventos-automaticos.md](./16-eventos-automaticos.md) |
 | NPC errante semanal (misiones/acertijos) | `pendiente` | "¿Dónde está ahora?" |
 | Evento diario EXP/drop por dungeon + warp | `pendiente` | Un dungeon completo al día con rates aumentados y warp temporal |
 | Retos fuera del juego con impacto in-game | `pendiente` | Se resuelven en la web y otorgan recompensa in-game |
