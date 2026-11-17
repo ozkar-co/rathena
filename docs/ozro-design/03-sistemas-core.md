@@ -154,10 +154,7 @@ Para reducir la doble cuenta: consumibles **fabricables** (como el Alquimista fa
 ## 9. Orden de trabajo
 
 - **No hay server de prueba.** Se prueba directo en producción con los 3 jugadores; si algo falla, se corrige o se apaga el server.
-- Antes de agregar NPCs/quests nuevas, balancear bounties, repetibles y monedas existentes.
-- Bounties que dan casi 1 nivel se aceptan; las que dan 2 niveles se corrigen.
-- Las repetibles se mantienen para que los PJ nuevos puedan subir con ayuda de los fuertes.
-- El zeny de bounty debe escalar por nivel/banda, no ser un monto fijo.
+- Antes de agregar NPCs/quests nuevas, balancear las monedas existentes.
 - Cada bloque implementado se borra de la documentación y se registra en el changelog público y en el git log.
 
 ## Comentarios

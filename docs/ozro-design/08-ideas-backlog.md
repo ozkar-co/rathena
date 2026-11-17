@@ -2,7 +2,7 @@
 
 Lluvia de ideas del documento antiguo, **reformuladas** y etiquetadas. No es lista de tareas — es inventario para priorizar cuando toque.
 
-**Leyenda:** `implementado` | `en-repo` | `pendiente` | `reformular` | `descartado` | `probar`
+**Leyenda:** `implementado` | `en-repo` | `pendiente` | `reformular` | `descartado`
 
 ---
 
@@ -28,14 +28,12 @@ Lluvia de ideas del documento antiguo, **reformuladas** y etiquetadas. No es lis
 | Idea | Estado | Notas |
 |------|--------|-------|
 | Deshabilitar banco/correo del menú → solo NPC | `pendiente` | Más inmersivo; scripts bank en repo |
-| Cash points compra/venta no 1:1 | `probar` | `points2zeny.txt`; los points eran un parche por no poder tocar drops |
 | Reducir votos Kafra Voting Dungeon a 5 | `pendiente` | Si usan el dungeon |
 | Tasador / casa de empeño | `pendiente` | Mercado NPC sin bots para cartas, equipo refinado/cardeado y encantamientos; complejo, para mucho después; ver [13-mercado-npc-tasador.md](./13-mercado-npc-tasador.md) |
 | Mercado NPC sin bots | `pendiente` | Vending para venta directa + tasador/consignación para el resto |
 | Gambler → refine safe con monedas OzRo | `reformular` | Sin Special Gold; “si falla no se rompe”, no nivel fijo |
 | Resurrect con costo de item | `pendiente` | Similar a Call Homunculus (que ya gasta Germination_Breed + Yggdrasilberry_Dew); caro pero no prohibitivo; definir item/cantidad |
 | Monedas OzRo por tiers | `pendiente` | Bronce/plata/oro/platino; definir usos a medida que crece el contenido |
-| Monke: frutas aleatorias (cualquiera) | `probar` | Doc: estaba roto |
 | Stock Market NPC | `en-repo` | `npc/custom/etc/stock_market.txt` |
 | Blessed Ores en vez de Safe tickets + quest lore | `pendiente` | |
 | Incluir más cajas cashshop + World Tour Ticket crafteable | `pendiente` | |
@@ -211,7 +209,7 @@ Inspiración en idle games y juegos de gestión de celular: **hago cosas, pero d
 
 Si 3+ son sí → subir prioridad.
 
-**Regla de orden:** primero balancear bounties, repetibles y monedas existentes; después agregar NPCs/quests nuevas. No hay server de prueba: se valida directo en producción con los 3 jugadores.
+**Regla de orden:** primero balancear las monedas existentes; después agregar NPCs/quests nuevas. No hay server de prueba: se valida directo en producción con los 3 jugadores.
 
 ## Comentarios
 

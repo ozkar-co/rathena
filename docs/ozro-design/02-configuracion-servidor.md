@@ -226,7 +226,7 @@ Los rates `_boss` aplican a monstruos clase boss que **no** son MVP. Los rates `
 | Boss no se curan | Ajustado vía skill Heal/Fullheal (cura 1 HP en mobs), si la vía `monster.conf` no funciona, revisar primero.|
 | Drop -50% con +15 niveles | **No encontrado** en config |
 | ASPD 193 / 195 | **193** solo third; normal **190** |
-| Bounty → zeny escalado + monedas OzRo | `pendiente` — revisar scripts bounty; el zeny fijo debe escalar |
+| Bounty → zeny escalado | **Ajustado** — zeny escalado por nivel/banda |
 | Cash shop items varios | `pendiente` — fuera de battle_conf |
 | Merchant job EXP al vender | **Activo** (`shop_exp: 100`) |
 | Quests repetibles | **Activo** — `npc/custom/ozro/repeteables/` |
@@ -237,9 +237,6 @@ Los rates `_boss` aplican a monstruos clase boss que **no** son MVP. Los rates `
 ## Ajustes pendientes (del doc viejo)
 
 ```
-- Escalar zeny de bounty por nivel/banda (hoy es fijo)
-- Revisar bounties que dan 2 niveles; las de ~1 nivel se aceptan
-- Revisar repetibles que dan >1 nivel en niveles bajos
 - Bajar precios hunting a la mitad
 - Cambiar ratio compra/venta cash points (no 1:1)
 - Deshabilitar banco/correo del menú → solo vía NPC

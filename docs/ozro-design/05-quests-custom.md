@@ -79,16 +79,10 @@ Ya activas — base para materiales de craft/challenges:
 - 18 repetibles en `npc/custom/ozro/repeteables/`
 - 26 bounty boards en `npc/custom/ozro/bounty/`
 
-### Reglas de balance `pendiente`
+### Ajustes pendientes del doc viejo
 
-- Bounties que dan **casi 1 nivel** no son el problema principal; las que dan **2 niveles** sí.
-- El **zeny de bounty debe escalar** por nivel/banda; hoy es un monto fijo.
-- Las repetibles ayudan a “arrastrar” personajes nuevos con los PJ fuertes de la party; se mantienen, pero con recompensas controladas.
-- Revisar bandas donde la misma recompensa vale mucho al nivel bajo y casi nada al final de la banda.
-- Balancear el contenido actual **antes** de agregar contenido nuevo.
-- Ajustes pendientes del doc viejo:
-  - [ ] Bajar precios de Hunting Missions a la mitad (cuando se reactive).
-  - [ ] Daily hunting con racha de recompensas crecientes.
+- [ ] Bajar precios de Hunting Missions a la mitad (cuando se reactive).
+- [ ] Daily hunting con racha de recompensas crecientes.
 
 ---
 

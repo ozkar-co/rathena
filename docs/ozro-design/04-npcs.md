@@ -65,14 +65,6 @@
 - No cambiar nombres de variables persistentes (`#CARD_*`) sin migración.
 - Es una pieza fundamental de la meta por cuenta; no romperla ni perder progreso.
 
-## Bounties y repetibles: balance
-
-- Bounties que dan **casi 1 nivel** no son el problema principal; las que dan **2 niveles** sí.
-- El **zeny de bounty debe escalar** por nivel/banda; hoy es un monto fijo.
-- Las repetibles ayudan a “arrastrar” personajes nuevos con los PJ fuertes de la party; se mantienen, pero con recompensas controladas.
-- Revisar bandas donde la misma recompensa vale mucho a nivel bajo y casi nada al final de la banda.
-- Balancear esto **antes** de agregar contenido nuevo.
-
 ## Contenido Hercules: referencia, no port
 
 | NPC / sistema | Decisión |
@@ -124,17 +116,6 @@
 - Más lore de coleccionista.
 - La idea de cambiar cartas por una cifra absurda → carta inobtenible aleatoria queda `reformular`; evaluar como sink extremo.
 - **No perder los datos existentes.**
-
-### Monke `probar`
-
-- Doc viejo: “muy roto”; cambiar a entregar cualquier fruta al azar.
-- Revisar si ya se ajustó.
-
-### Reset `probar`
-
-- Doc viejo: una vez por personaje.
-- Hoy: infinito con birthstone.
-- Alinear con la filosofía de reset fácil.
 
 ### Sabio de los Elementos `expandir`
 

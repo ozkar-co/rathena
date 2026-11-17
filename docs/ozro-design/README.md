@@ -14,7 +14,6 @@ Cada archivo es independiente y editable. Convenciones:
 | `en-repo` | Script existe pero está desactivado o incompleto |
 | `pendiente` | Por hacer |
 | `reformular` | Idea válida pero hay que replantearla |
-| `probar` | Implementado a medias; falta jugar y ajustar |
 | `descartado` | Ya no aplica o se rechazó |
 | `hercules` | Existía en Hercules; solo referencia, no se porta |
 
