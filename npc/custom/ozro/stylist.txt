@@ -135,8 +135,9 @@ prontera,170,180,1	script	Vesper#custom_stylist	2_M_DYEINGER,{
 		set .@Max[1], 10;
 	set .@Max[3], F_StylistClothMax(.@job);
 
-	set .@menu$ = " ~ " + .cat_hair$[rand(getarraysize(.cat_hair$))] + ": ~ " + .cat_color$[rand(getarraysize(.cat_color$))] + ": ~ " + .cat_cloth$[rand(getarraysize(.cat_cloth$))];
-	set .@s, select(.@menu$);
+	set .@menu$, " ~ " + .cat_hair$[rand(getarraysize(.cat_hair$))] + ": ~ " + .cat_color$[rand(getarraysize(.cat_color$))] + ": ~ " + .cat_cloth$[rand(getarraysize(.cat_cloth$))];
+	set .@s, prompt(.@menu$);
+	if (.@s == 255) close;
 
 	set .@Revert, getlook(.@Look[.@s]);
 	if (.@Revert < .@Min[.@s]) set .@Revert, .@Min[.@s];
@@ -158,15 +159,17 @@ prontera,170,180,1	script	Vesper#custom_stylist	2_M_DYEINGER,{
 	next;
 
 	while (1) {
-		set .@next$   = .next$[rand(getarraysize(.next$))];
-		set .@prev$   = .prev$[rand(getarraysize(.prev$))];
-		set .@rand$   = .rand$[rand(getarraysize(.rand$))];
-		set .@revert$ = .revert$[rand(getarraysize(.revert$))];
-		set .@keep$   = .keep$[rand(getarraysize(.keep$))];
-		set .@menu$ = " ~ " + .@next$ + ": ~ " + .@prev$ + ": ~ " + .@rand$ + ": ~ " + .@revert$ + ": ~ " + .@keep$;
+		set .@next$, .next$[rand(getarraysize(.next$))];
+		set .@prev$, .prev$[rand(getarraysize(.prev$))];
+		set .@rand$, .rand$[rand(getarraysize(.rand$))];
+		set .@revert$, .revert$[rand(getarraysize(.revert$))];
+		set .@keep$, .keep$[rand(getarraysize(.keep$))];
+		set .@menu$, " ~ " + .@next$ + ": ~ " + .@prev$ + ": ~ " + .@rand$ + ": ~ " + .@revert$ + ": ~ " + .@keep$;
 
 		set .@reverted, 0;
-		switch (select(.@menu$)) {
+		set .@opt, prompt(.@menu$);
+		if (.@opt == 255) close;
+		switch (.@opt) {
 		case 1:
 			set .@Style, ((.@Style >= .@Max[.@s]) ? .@Min[.@s] : .@Style + 1);
 			break;
