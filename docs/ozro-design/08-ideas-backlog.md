@@ -54,7 +54,6 @@ Lluvia de ideas del documento antiguo, **reformuladas** y etiquetadas. No es lis
 | Eventos automáticos + calendario | `pendiente` | `floating_rates.txt` como base |
 | NPC errante semanal (misiones/acertijos) | `pendiente` | "¿Dónde está ahora?" |
 | Evento diario EXP/drop por dungeon + warp | `pendiente` | Un dungeon completo al día con rates aumentados y warp temporal |
-| Endless Tower abierta cada día | `pendiente` | Reset diario del acceso |
 | Retos fuera del juego con impacto in-game | `pendiente` | Se resuelven en la web y otorgan recompensa in-game |
 | Minijuego diario web obligatorio | `pendiente` | Login diario en la página + tarea/minijuego para obtener recompensas in-game; racha y calendario. Evitar que sea solo un click. |
 

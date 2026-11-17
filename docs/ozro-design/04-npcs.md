@@ -90,10 +90,6 @@
 - Compra/venta por zeny con precio dinámico si se conecta con Stock Market.
 - Generaliza el concepto de monedas por actividad, pero con lore propio.
 
-### Mercader de birthstones
-
-- Vende birthstones (insumo del reset); stock/oferta cambia cada día.
-
 ### Priest Viajero / Warper con lore `pendiente`
 
 - Warper para volver rápido a mapas de caza/MVP sin depender de acólitos con warp memorizado.
