@@ -5174,7 +5174,13 @@ BUILDIN_FUNC(menu)
 	else if( sd->npc_menu == 0xff )
 	{// Cancel was pressed
 		sd->state.menu_or_input = 0;
-		st->state = END;
+		if( st->mes_active ) {
+			st->mes_active = 0;
+			clif_scriptclose( *sd, st->oid );
+			st->state = CLOSE;
+		} else {
+			st->state = END;
+		}
 	}
 	else
 	{// goto target label
@@ -5273,7 +5279,13 @@ BUILDIN_FUNC(select)
 		}
 	} else if( sd->npc_menu == 0xff ) {// Cancel was pressed
 		sd->state.menu_or_input = 0;
-		st->state = END;
+		if( st->mes_active ) {
+			st->mes_active = 0;
+			clif_scriptclose( *sd, st->oid );
+			st->state = CLOSE;
+		} else {
+			st->state = END;
+		}
 	} else {// return selected option
 		int32 menu = 0;
 
