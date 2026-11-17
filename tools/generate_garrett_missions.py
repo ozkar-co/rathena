@@ -40,6 +40,8 @@ MISSION_PAYOUT_CAP = 1_500_000
 MIN_MISSION_PAYOUT = 500_000
 DAILY_CAP = 500_000
 DAILY_OFFER_COUNT = 5
+# Illusion Deep Sea quest maps: not open-world farm, supply is restricted.
+RESTRICTED_MAPS = {"iz_d04_i", "iz_d05_i"}
 
 
 def load_weights() -> dict[int, int]:
@@ -70,6 +72,8 @@ def load_mob_amounts() -> tuple[dict[int, int], dict[int, set[str]], dict[str, s
         maps[mob_id].add(map_name)
         if map_name.startswith("gld"):
             map_kind[map_name] = "guild"
+        elif map_name in RESTRICTED_MAPS:
+            map_kind[map_name] = "restricted"
         elif map_name in instance_maps:
             map_kind[map_name] = "instance"
         else:

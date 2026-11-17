@@ -32,6 +32,9 @@ geffen,143,70,3	script	Garrett	1_M_SIGN1,{
 		mes "Dicen que la basura de un hombre es el tesoro de otro.";
 		mes "Yo llevo años separando lo que sirve de lo que estorba.";
 	}
+	next;
+
+	mes .npc_name$;
 	mes "Recorro las afueras de Geffen buscando lo que otros tiran.";
 	mes "Hoy tengo cinco cosas en el ojo.";
 	mes "Presupuesto de compras: " + (.daily_cap - #GARRETT_SPENT) + " zeny.";
@@ -73,6 +76,9 @@ L_Offers:
 	mes "3) " + getitemname(#GARRETT_OFFER2) + " - " + #GARRETT_PRICE2 + " zeny c/u";
 	mes "4) " + getitemname(#GARRETT_OFFER3) + " - " + #GARRETT_PRICE3 + " zeny c/u";
 	mes "5) " + getitemname(#GARRETT_OFFER4) + " - " + #GARRETT_PRICE4 + " zeny c/u";
+	next;
+
+	mes .npc_name$;
 	mes "Presupuesto restante: " + (.daily_cap - #GARRETT_SPENT) + " zeny.";
 	mes "Dime qué me vendes.";
 	next;
@@ -230,6 +236,9 @@ L_MissionStatus:
 	mes .npc_name$;
 	mes "Todavía estás trabajando para mí.";
 	mes "No me falles; la chatarra buena no espera.";
+	next;
+
+	mes .npc_name$;
 	mes "Te quedan " + .@hours + "h " + .@mins + "m.";
 	mes "Trae " + #GARRETT_MISSION_QTY + " x " + getitemname(#GARRETT_MISSION_ITEM) + ".";
 	mes "Llevas " + .@have + ".";
@@ -268,13 +277,17 @@ L_MissionMenu:
 	mes .npc_name$;
 	mes "Tengo tres encargos que no puedo cubrir yo solo.";
 	mes "Tú traes la mercancía, yo pago sin regatear.";
+	next;
+
+	mes .npc_name$;
 	mes "1) Común: " + getitemname(#GARRETT_CONTRACT_ITEM0) + " x" + #GARRETT_CONTRACT_QTY0 + " - " + #GARRETT_CONTRACT_PAY0 + " zeny";
 	mes "2) Poco común: " + getitemname(#GARRETT_CONTRACT_ITEM1) + " x" + #GARRETT_CONTRACT_QTY1 + " - " + #GARRETT_CONTRACT_PAY1 + " zeny";
 	mes "3) Raro: " + getitemname(#GARRETT_CONTRACT_ITEM2) + " x" + #GARRETT_CONTRACT_QTY2 + " - " + #GARRETT_CONTRACT_PAY2 + " zeny";
 	mes "Tienes 6 horas para conseguirlos. Si fallas o cancelas, no habrá otra misión hasta mañana.";
 	next;
 
-	.@sel = select("Contrato 1:Contrato 2:Contrato 3:Volver") - 1;
+	.@menu$ = getitemname(#GARRETT_CONTRACT_ITEM0) + ":" + getitemname(#GARRETT_CONTRACT_ITEM1) + ":" + getitemname(#GARRETT_CONTRACT_ITEM2) + ":Volver";
+	.@sel = select(.@menu$) - 1;
 	if (.@sel == 3) return;
 	if (.@sel == 0) {
 		.@item = #GARRETT_CONTRACT_ITEM0;
@@ -297,6 +310,9 @@ L_MissionMenu:
 	mes "Contrato " + .@tier$ + ":";
 	mes "- " + getitemname(.@item) + " x" + .@qty;
 	mes "- Pago: " + .@pay + " zeny";
+	next;
+
+	mes .npc_name$;
 	mes "- Tiempo: 6 horas";
 	mes "¿Aceptas?";
 	next;
@@ -315,6 +331,9 @@ L_MissionMenu:
 	#GARRETT_MISSION_END = gettimetick(2) + .mission_seconds;
 	mes .npc_name$;
 	mes "Aceptado. Tienes 6 horas.";
+	next;
+
+	mes .npc_name$;
 	mes "El tiempo corre y la chatarra no se recoge sola.";
 	mes "Si ya tienes los items, habla conmigo y cerramos el trato.";
 	next;
@@ -376,22 +395,22 @@ OnInit:
 	.mission_seconds = 21600;
 	.trades_for_coin = 10;
 
-	setarray .abundant_id[0], 7152, 7214, 7316, 1001075, 7318, 7215, 7186, 1001084, 7095, 7567, 7218, 7222, 1001074, 7512, 7205, 7163, 7322, 7122, 7568, 6086, 7203, 25730, 25728, 7107, 7202, 7071, 7320, 7124, 7116, 25159;
-	setarray .abundant_price[0], 1500, 1500, 1400, 1400, 1400, 1300, 1300, 1300, 1200, 1200, 1200, 1100, 1100, 1000, 1000, 1000, 900, 900, 900, 800, 800, 800, 700, 700, 700, 600, 600, 600, 500, 500;
-	setarray .common_id[0], 1001080, 1001082, 1001081, 1001087, 1001088, 1001089, 7117, 7162, 25892, 25893, 25894, 25895, 25896, 1001079, 6394, 7192, 6557, 7264, 1000225, 1001076, 1001077, 1001078, 1001424, 1001426, 1001428, 1001430, 7168, 7219, 7225, 7171;
+	setarray .abundant_id[0], 7152, 7214, 7316, 1001075, 7318, 7215, 7186, 1001084, 7095, 7567, 7218, 7222, 1001074, 7067, 7512, 7205, 7163, 7322, 7122, 7568, 6086, 7203, 25730, 25728, 7107, 7202, 7071, 7320, 7124, 7116, 25159;
+	setarray .abundant_price[0], 1500, 1500, 1400, 1400, 1400, 1300, 1300, 1300, 1200, 1200, 1200, 1100, 1100, 1100, 1000, 1000, 1000, 900, 900, 900, 800, 800, 800, 700, 700, 700, 600, 600, 600, 500, 500;
+	setarray .common_id[0], 1001083, 1001085, 1001086, 7159, 7195, 1001080, 1001082, 1001081, 1001087, 1001088, 1001089, 7117, 7162, 1001079, 6394, 7192, 6557, 7264, 1000225, 1001076, 1001077, 1001078, 1001424, 1001426, 1001428, 1001430, 7168, 7219, 7225, 7171;
 	setarray .common_price[0], 4000, 3900, 3800, 3700, 3700, 3600, 3500, 3400, 3300, 3200, 3100, 3100, 3000, 2900, 2800, 2700, 2600, 2500, 2400, 2400, 2300, 2200, 2100, 2000, 1900, 1800, 1800, 1700, 1600, 1500;
-	setarray .uncommon_id[0], 6921, 25257, 6732, 7265, 1000511, 6924, 1000510, 6073, 7209, 6245, 6265, 6264, 1000512, 7266, 7299, 1001425, 1001427, 1001429, 1001431, 7208, 1001072, 6922, 25615, 1001073, 1001083, 1001085, 1001086, 7159, 7195;
-	setarray .uncommon_price[0], 10000, 9800, 9600, 9400, 9000, 8800, 8600, 8300, 8100, 7900, 7700, 7500, 7300, 7100, 6900, 6700, 6500, 6300, 6100, 5900, 5700, 5400, 5200, 5000, 4800, 4600, 4400, 4200, 4000;
-	setarray .rare_id[0], 7226, 7442, 1000513, 1000514, 25616, 1000515, 25618, 7323, 1000516, 6263, 7441, 25617, 1000517, 7207, 6247, 7440, 7268, 7072;
+	setarray .uncommon_id[0], 7207, 6247, 7440, 7268, 7072, 6921, 25257, 6732, 7265, 7070, 1000511, 6924, 1000510, 6073, 7209, 6245, 6265, 6264, 1000512, 7266, 7299, 1001425, 1001427, 1001429, 1001431, 7208, 1001072, 6922, 25615, 1001073;
+	setarray .uncommon_price[0], 10000, 9800, 9600, 9400, 9200, 9000, 8800, 8600, 8300, 8100, 7900, 7700, 7500, 7300, 7100, 6900, 6700, 6500, 6300, 6100, 5900, 5700, 5400, 5200, 5000, 4800, 4600, 4400, 4200, 4000;
+	setarray .rare_id[0], 7226, 7442, 1000513, 1000514, 25616, 1000515, 25892, 25893, 25894, 25895, 25896, 25618, 7323, 1000516, 6263, 7441, 25617, 1000517;
 	setarray .rare_price[0], 30000, 28800, 27600, 26500, 25300, 24100, 22900, 21800, 20600, 19400, 18200, 17100, 15900, 14700, 13500, 12400, 11200, 10000;
 
-	setarray .mcommon_id[0], 1001079, 25896, 25895, 25894, 25893, 25892, 7162, 7117, 1001089, 1001088, 1001087, 1001081, 1001082, 1001080;
+	setarray .mcommon_id[0], 1001079, 7162, 7117, 1001089, 1001088, 1001087, 1001081, 1001082, 1001080, 7195, 7159, 1001086, 1001085, 1001083;
 	setarray .mcommon_qty[0], 119, 121, 123, 126, 128, 131, 133, 136, 138, 140, 143, 145, 148, 150;
 	setarray .mcommon_pay[0], 517600, 544500, 572000, 585900, 614400, 648400, 678300, 714000, 745200, 777000, 793600, 826500, 865800, 900000;
-	setarray .muncommon_id[0], 7299, 7266, 1000512, 6264, 6265, 6245, 7209, 6073, 1000510, 6924, 1000511, 7265, 6732, 25257, 6921;
-	setarray .muncommon_qty[0], 49, 51, 52, 53, 55, 56, 58, 59, 60, 62, 63, 66, 67, 69, 70;
-	setarray .muncommon_pay[0], 507200, 543200, 569400, 596200, 635200, 663600, 704700, 734600, 774000, 818400, 850500, 930600, 964800, 1014300, 1050000;
-	setarray .mrare_id[0], 1000516, 7323, 25618, 1000515, 25616, 1000514, 1000513, 7442, 7226;
+	setarray .muncommon_id[0], 6245, 7209, 6073, 1000510, 6924, 1000511, 7070, 7265, 6732, 25257, 6921, 7072, 7268, 7440, 6247, 7207;
+	setarray .muncommon_qty[0], 49, 51, 52, 53, 55, 56, 58, 59, 60, 62, 63, 64, 66, 67, 69, 70;
+	setarray .muncommon_pay[0], 507200, 543200, 569400, 596200, 635200, 663600, 704700, 734600, 774000, 818400, 850500, 883200, 930600, 964800, 1014300, 1050000;
+	setarray .mrare_id[0], 25894, 25893, 25892, 1000515, 25616, 1000514, 1000513, 7442, 7226;
 	setarray .mrare_qty[0], 18, 19, 20, 21, 21, 22, 23, 24, 25;
 	setarray .mrare_pay[0], 556200, 621300, 687000, 759200, 797000, 874500, 952200, 1036800, 1125000;
 
