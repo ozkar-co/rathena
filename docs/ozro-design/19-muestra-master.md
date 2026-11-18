@@ -1,6 +1,6 @@
 # Muestra de la master de mercado
 
-**Estado:** muestra generada (no es el master final)  
+**Estado:** muestra iterada v1 (no es el master final)
 **Fecha:** 2026-11-18  
 **Herramientas:** `tools/market/common.py`, `tools/market/build_sample.py`  
 **Datos:** `data/market/samples/general.jsonl`, `edge.jsonl`, `summary.json`, `REPORT.md`  
@@ -15,10 +15,9 @@
 - `taxonomy.json` como catálogo intermedio (identidad, fuentes, tags, acceso);
 - `conf/import/battle_conf.txt` para rates de drop y HP actuales;
 - spawns canónicos generados con `tools/mob_spawns.py`;
-- `mob_db`/`item_db` del servidor para HP, defensa, slots y refine;
-- `master_list.json` solo como histórico de precio/ventas.
-
-Genera una muestra aleatoria de 150 items **market-eligible** y 103 casos borde. No modifica la taxonomía ni el servidor.
+- `mob_db`/`item_db` del servidor para HP, defensa, slots, refine y stats de equipo;
+- `master_list.json` solo como histórico de precio/ventas;
+- `data/market/canon.yml` para precios manuales y políticas.
 
 Comando:
 
@@ -28,10 +27,10 @@ python3 tools/market/build_sample.py
 
 Salida:
 
-- `general.jsonl`: muestra general de la población con precio potencial.
-- `edge.jsonl`: casos borde con `edgeTags`.
-- `summary.json`: conteos, rates, tipos de spawn y distribución de la muestra.
-- `REPORT.md`: reporte generado con tablas y señales detectadas.
+- `general.jsonl`: 150 items de la población market-eligible.
+- `edge.jsonl`: 119 casos borde con `edgeTags`.
+- `summary.json`: conteos, rates, tipos de spawn y distribución.
+- `REPORT.md`: reporte generado.
 
 ---
 
@@ -39,13 +38,11 @@ Salida:
 
 ### 2.1 Fuentes canónicas
 
-- Los rates se leen de `conf/import/battle_conf.txt`, no del snapshot viejo de ragnabots.
-- El HP efectivo aplica `monster_hp_rate` y `mvp_hp_rate` (hoy 200%, es decir, 2x).
-- Los spawns se regeneran con `tools/mob_spawns.py`, que incluye `delay`, `is_boss` e `is_instance`.
+- Rates desde `conf/import/battle_conf.txt`, no desde el snapshot viejo de ragnabots.
+- HP efectivo con `monster_hp_rate` y `mvp_hp_rate` (hoy 200%, es decir, 2x).
+- Spawns desde `tools/mob_spawns.py`, con `delay`, `is_boss` e `is_instance`.
 
 ### 2.2 Tipos de spawn
-
-Cada línea de spawn se clasifica en:
 
 | Tipo | Líneas |
 |---|---:|
@@ -58,17 +55,30 @@ Cada línea de spawn se clasifica en:
 | `other` | 306 |
 | `event` | 0 |
 
-`supplyOpen` usa solo `field + dungeon`. Boss, instancia, guild, quest, event y other se guardan aparte. Esto evita inflar la abundancia con fuentes que no son farmeo abierto.
+`supplyOpen` usa solo `field + dungeon`. Boss, instancia, guild, quest, event y other se guardan aparte.
 
-### 2.3 Precio y elegibilidad
+### 2.3 Precio canónico para todos los items
 
-- `marketEligible`: item comerciable, con fuente o precio histórico.
-- `priceStatus`:
-  - `market`: hay precio histórico;
-  - `synthetic`: no hay histórico, pero el item es elegible;
-  - `not_applicable`: no comerciable o sin fuente/precio.
-- El sintético usa mediana del tipo + multiplicadores de supply, demanda y dificultad.
-- Se aplica un factor general de calidad de fuente al sintético:
+Ahora **todos los items tienen precio**. No hay `not_applicable`:
+
+- `market`: hay precio histórico.
+- `manual`: precio fijo definido en `canon.yml`.
+- `synthetic`: calculado con la fórmula canónica.
+
+Precios manuales:
+
+| Item | Precio |
+|---|---:|
+| Moneda de Bronce | 100.000z |
+| Moneda de Plata | 1.000.000z |
+| Moneda de Oro | 10.000.000z |
+| Moneda de Platino | 100.000.000z |
+| Alma de MVP | 500.000z |
+
+Fórmula sintética:
+
+1. Base `type_p40`: percentil 40 de los precios históricos del mismo tipo, no la mediana. Es más conservador.
+2. Factor de calidad de fuente:
 
 | Mejor acceso | Factor |
 |---|---:|
@@ -79,36 +89,81 @@ Cada línea de spawn se clasifica en:
 | `unknown` / `none` | 0,50 |
 | `normal` / `npc` / `cash` | 1,00 |
 
-- `buyCeiling` (lo que un NPC puede pagar):
-  - sintético: 45% del mid, cap 50% de la mediana del tipo;
-  - market high: 75% del mid;
-  - market medium: 60% del mid, cap 1 mediana del tipo;
-  - market low: 45% del mid y 75% del low, cap 50% de la mediana;
-  - manipulación: 35% del mid y 70% del low, cap 50% de la mediana.
+3. Factor de equipo para armas/armaduras/shadow: slots, ataque/defensa y nivel mínimo.
+4. Multiplicadores de supply abierto, demanda residual y dificultad.
+5. Cap para items sin fuente: `min(type_p10, 1.000.000) * 0,50`.
+6. `mid` clampeado por anclas NPC (`Buy`/`Sell`).
 
-### 2.4 Tags
+### 2.4 Compra y venta NPC
 
-Los tags salen de las categorías de la taxonomía más las restricciones de `access`. Un item puede tener varios: `group`, `craft`, `instance_only`, `guild_only`, `boss_only`, `high_hp`, `npc_shop`, `unobtainable`, `untradeable`, etc.
+Cada item tiene dos precios:
+
+- `npcBuyPrice`: lo que el NPC paga al jugador.
+- `npcSellPrice`: lo que el NPC cobra al jugador.
+
+`npcBuyPrice` usa la política conservadora:
+
+| Caso | Compra NPC |
+|---|---|
+| Sintético | 45% del mid, cap 50% de la mediana del tipo |
+| Market high | 75% del mid |
+| Market medium | 60% del mid, cap 1 mediana |
+| Market low | 45% del mid y 75% del low, cap 50% de la mediana |
+| Manipulación | 35% del mid y 70% del low, cap 50% de la mediana |
+| Manual | 100% del valor |
+
+`npcSellPrice` se calcula con un margen y se limita para evitar spreads absurdos:
+
+```
+candidate = mid * (1 + margen)
+npcSellPrice = max(npcBuyPrice * 1.10, min(candidate, npcBuyPrice * 1.50))
+```
+
+Margen: market high 10%, medium 20%, low 30%, sintético 35%, manipulación 50%, manual 0%.
+
+### 2.5 Demanda, oferta y stock
+
+Además de precio, cada item guarda:
+
+- `demand.percentile` y `demand.tier`;
+- `supply.percentile` y `supply.abundanceTier`;
+- `demand.marketPressure = demandPercentile - supplyPercentile`;
+- `demand.stockHint` (`low`, `normal`, `high`, `unknown`);
+- `demand.restockWeight` (0,1–0,9).
+
+Eso permite que un NPC futuro decida stock o frecuencia sin recalcular todo.
+
+### 2.6 Tags
+
+Los tags salen de categorías de taxonomía + restricciones de `access`. Un item puede tener varios: `group`, `craft`, `instance_only`, `guild_only`, `boss_only`, `high_hp`, `npc_shop`, `unobtainable`, `untradeable`, etc.
 
 ---
 
-## 3. Lectura de la muestra general
-
-Población: **9.622 items market-eligible**.
+## 3. Cobertura global
 
 | Métrica | Valor |
 |---|---:|
-| Items totales en el catálogo | 29.061 |
+| Items totales | 29.061 |
+| `market` | 5.847 |
+| `synthetic` | 23.209 |
+| `manual` | 5 |
+| `not_applicable` | 0 |
 | `marketEligible` | 9.622 |
-| `market` | 5.652 |
-| `synthetic` | 3.970 |
-| `not_applicable` | 19.244 |
-| Con supply abierto | 1.615 |
-| Sin supply abierto | 8.007 |
-| Clampeados por ancla NPC | 1.004 |
+| `marketEligibleMarket` | 5.652 |
+| `marketEligibleSynthetic` | 3.970 |
+| Con supply abierto | 1.620 |
+| Market-eligible con supply abierto | 1.615 |
+| Market-eligible sin supply abierto | 8.007 |
+| Clampeados por ancla NPC | 1.266 |
 | Manipulación sospechada | 166 |
 
-La muestra general de 150 items quedó:
+La mayor parte del catálogo tiene precio sintético. El modelo de abundancia solo cubre 1.615 items market-eligible; para 8.007 el precio se apoya en el tipo y la calidad de fuente.
+
+---
+
+## 4. Muestra general
+
+150 items market-eligible:
 
 | Estado | n |
 |---|---:|
@@ -126,86 +181,117 @@ La muestra general de 150 items quedó:
 | `instance` | 4 |
 | `quest` | 3 |
 
-**Hallazgo principal:** 123 de 150 items de la muestra no tienen supply abierto. La mayor parte del precio no va a salir de abundancia de spawn, sino de group/craft/npc o del prior del tipo. El modelo de abundancia es útil para el subconjunto farmeable, pero no alcanza para el total.
-
-En la muestra:
-
-- Los `market` tienen mediana de `mid` 859.000z y de `buyCeiling` 160.000z.
-- Los `synthetic` tienen mediana de `mid` 1.050.000z y de `buyCeiling` 473.000z.
+- 123 de 150 no tienen supply abierto.
 - 37 de los 49 sintéticos son `group`.
 - Solo 2 sintéticos tienen supply abierto.
 
-El sintético sigue siendo más caro que el mercado en la mediana, aun después del factor de fuente. Es un sesgo esperable por usar la mediana del tipo; conviene mantener el `buyCeiling` conservador y no usar el `mid` sintético como precio de compra.
+Precios medianos:
+
+| Estado | mid | compra NPC | venta NPC |
+|---|---:|---:|---:|
+| `market` | 859.000z | 160.000z | 240.000z |
+| `synthetic` | 700.000z | 315.000z | 472.000z |
+
+Después de usar `type_p40` y el factor de fuente, el sintético quedó **por debajo** del mercado en la mediana. El spread compra/venta quedó en un rango razonable (1,5x–2,0x), no en 9x como antes.
 
 ---
 
-## 4. Lectura de casos borde
+## 5. Casos borde
 
-La muestra borde tiene 103 items. Categorías principales:
+119 items. Categorías principales:
 
 | Caso | n | Lectura |
 |---|---:|---|
-| `craft_best` | 8 | El precio depende del costo de receta; todavía no está modelado. |
-| `guild_only` | 8 | Sin supply abierto; el precio histórico manda, pero el NPC no debería comprar sin cap. |
-| `instance_only` | 7 | Igual que guild: el acceso no es farmeo abierto. |
-| `boss_only` | 5 | Muchos tienen además NPC shop o quest; el tag no debe ser exclusión automática. |
-| `high_hp` | 7 | HP extremo o fuente sin spawn; el modelo los marca, pero no siempre son unfarmeables. |
-| `group_only` | 7 | Sintéticos con prior de tipo; son los más sensibles a sobrevaloración. |
-| `no_price_with_open_supply` | 8 | Donde el modelo sintético tiene mejor sustento. |
-| `manipulation_suspected` | 4+ | Items como Red Potion/Herb muestran CV alto; el detector general funciona. |
-| `custom` | 5 | Monedas OzRo: `not_applicable`; requieren canon manual. |
-| `max_open_supply` | 5 | Hierbas, Fly Wing, Zargon, Sticky Mucus; precios bajos y abundancia alta. |
-| `min_open_supply` | 8 | Cartas con supply casi cero; el percentil las pone en `rare`, pero el redondeo las muestra como 0. |
-| `price_top_1pct` | 8 | Pet eggs sin fuente y precios altos; entran por histórico, no por acceso. |
-| `price_bottom_1pct` | 8 | Pociones, manzanas, flechas; manipulación o precio NPC. |
+| `craft_best` | 8 | Falta costo de receta; el factor 0,90 es provisorio. |
+| `guild_only` | 8 | Sin supply abierto; precio histórico y caps. |
+| `instance_only` | 7 | Igual que guild. |
+| `boss_only` | 5 | Muchos tienen además NPC shop o quest; el tag no es exclusión. |
+| `high_hp` | 7 | HP extremo o sin spawn; el modelo los marca. |
+| `group_only` | 7 | El mayor riesgo de sobrevaloración. |
+| `no_price_with_open_supply` | 8 | Donde el sintético tiene mejor sustento. |
+| `manipulation_suspected` | 4+ | Red Potion/Herb y similares; detector general. |
+| `custom` / `manual_price` | 5 | Monedas OzRo y Alma de MVP. |
+| `untradeable` | 7 | Deben tener precio, pero no se compran/venden entre jugadores. |
+| `unobtainable` / `no_source` | 7 | Precio sintético con cap de fuente. |
+| `max_open_supply` | 5 | Hierbas, Fly Wing, Zargon, Sticky Mucus. |
+| `min_open_supply` | 8 | Cartas con supply casi cero. |
+| `price_top_1pct` | 8 | Pet eggs y equipo caro. |
+| `price_bottom_1pct` | 8 | Pociones, manzanas, flechas. |
 
 ### Señales concretas
 
-- **El tag `boss_only` no significa inaccesible.** Varios items con `boss_only` también tienen NPC shop, quest o craft. Sirve como advertencia, no como bloqueo.
-- **Los items de instancia/guild no tienen supply abierto.** Tienen precio histórico, pero el modelo de abundancia no aplica. El NPC debe usar caps.
-- **Los group-only son el mayor riesgo de sobrevaloración.** El factor 0,70 ayuda, pero el `mid` sigue siendo una mediana de tipo, no una estimación real.
-- **Los custom no tienen mercado.** `not_applicable` es correcto; hay que definir su canon aparte.
-- **Los pet eggs entran por precio, no por fuente.** Son market-eligible por histórico, pero no tienen acceso; conviene marcarlos para revisión.
-- **Las hierbas/pociones con CV alto son manipulación o precio NPC.** El detector las marca, pero el `mid` puede quedar en valores absurdos; el `buyCeiling` las contiene.
-- **1.004 items fueron clampeados por anclas NPC.** El precio externo y el precio NPC no siempre son compatibles; el ancla debe mandar.
+- **Group-only:** sigue siendo el caso más débil. El factor 0,70 y `type_p40` lo contienen, pero no reemplazan una probabilidad real de grupo.
+- **Instancia/guild:** no tienen supply abierto; el precio histórico manda, pero el NPC necesita caps.
+- **Boss-only:** el tag es una advertencia, no un bloqueo.
+- **No-source:** el cap `min(type_p10, 1M) * 0,5` evita los 50M de pet eggs sin fuente.
+- **Custom:** las monedas quedaron con precio manual; no dependen del modelo.
+- **Manipulación:** Red Potion, hierbas y Apple se marcan; el `npcBuyPrice` los contiene.
+- **NPC anchors:** 1.266 items fueron clampeados; el precio externo y el precio NPC no siempre coinciden.
 
 ---
 
-## 5. Decisiones que tomé para esta muestra
+## 6. Umbral de HP
 
-1. **Población general = market-eligible**, no los 29k. El catálogo completo queda en el master, pero la muestra de precio se enfoca en items con uso potencial.
-2. **`not_applicable` para untradeable/unobtainable sin fuente ni precio.** No se inventa precio para 19.244 items.
-3. **`supplyOpen = field + dungeon`.** Boss, instancia, guild, quest, event y other no cuentan como abundancia abierta.
-4. **Factor de calidad de fuente para sintéticos.** Group 0,70, craft 0,90, quest/instancia 0,80, sin fuente 0,50.
-5. **`buyCeiling` conservador.** Nunca se paga el `high`; sintético 45%, low/manipulación 35–45%, con cap por mediana del tipo.
-6. **Manipulación por reglas generales.** CV > 3 o `atlantis_extreme_max`, sin listas de IDs.
-7. **Tags múltiples.** Un item puede ser `boss_only`, `npc_shop` y `quest_source` a la vez; el consumidor decide.
-8. **Sin reglas especiales por item.** Los casos raros se marcan para revisión, no se parchean con excepciones.
+El umbral de HP no es un precio ni una exclusión. Es un **tag de dificultad de fuente**.
+
+Cómo funciona:
+
+1. Se toma el HP de `mob_db`.
+2. Se aplica el rate del servidor: `monster_hp_rate` o `mvp_hp_rate` (hoy 2x).
+3. Para cada item, se miran los mobs que lo dropean y que tienen spawn conocido.
+4. Se usa el **mínimo HP** de esas fuentes: la más fácil.
+5. Si el mínimo HP efectivo es mayor o igual al umbral, `highHp=true`.
+6. Si el máximo supera el umbral pero el mínimo no, `highHpSource=true`.
+
+Umbral actual: **10.000.000 de HP efectivo** (5.000.000 raw con 2x). Es configurable con `--high-hp-threshold`.
+
+Para qué se usa:
+
+- `commonFarmEligible`: mapa normal, no boss-only y no `high_hp`.
+- Cola de revisión: fuentes extremas o posiblemente no farmeables.
+- Futuro stock/eligibilidad de NPC: un item `high_hp` no debería entrar como farmeo común.
+- No cambia el precio directamente; el precio usa `difficulty` y `supply`.
+
+Por qué mínimo y no máximo: si un item cae de un mob de 500k HP y de un boss de 100M, el jugador puede farmear el mob barato. Lo que importa es la fuente más accesible.
+
+Por qué HP y no nivel: el nivel es engañoso; un mob de nivel alto con poco HP puede ser más fácil que uno de nivel medio con HP y defensa altos.
+
+Estado actual: 156 items `high_hp` y 105 `high_hp_source`.
 
 ---
 
-## 6. Riesgos y pendientes
+## 7. Decisiones tomadas para esta iteración
 
-- **Group/package:** 8.007 market-eligible sin supply abierto. El sintético por tipo es el fallback, pero no distingue bien dentro del grupo. Pendiente: tasa del grupo y fuente que lo dispara.
-- **Craft:** el costo de receta no está incluido. Pendiente: costo de materiales + éxito/fallo.
+1. **Todos los items tienen precio.** `not_applicable` desaparece.
+2. **Precios manuales** para monedas OzRo y Alma de MVP.
+3. **Sintético con `type_p40`**, no mediana.
+4. **Factor de fuente** para group/craft/quest/instancia/sin fuente.
+5. **Factor de equipo** por slots, ataque/defensa y nivel mínimo.
+6. **Cap de items sin fuente** para evitar precios absurdos.
+7. **Compra y venta NPC separadas**, con spread controlado.
+8. **Presión de mercado, stockHint y restockWeight** para stock/frecuencia futura.
+9. **Tags múltiples**, sin reglas especiales por item.
+10. **Muestra general market-eligible**; los casos raros y no elegibles van a la muestra borde.
+
+---
+
+## 8. Riesgos y pendientes
+
+- **Group/package:** 8.007 market-eligible sin supply abierto. El sintético por tipo es el fallback, pero no distingue bien dentro del grupo.
+- **Craft:** falta costo de receta y tasa de éxito.
 - **Item mall:** no hay conversión a zeny; el techo queda en NPC/manual.
-- **Pet eggs y items sin fuente:** entran por precio histórico; conviene una regla de elegibilidad más estricta o revisión.
-- **Custom:** monedas OzRo sin precio; requieren canon manual.
-- **Umbral de HP:** 10M efectivo; confirmar si es el canon.
-- **Synthetic de equipo:** la mediana del tipo puede sobrevalorar equipo raro; el `buyCeiling` lo contiene, pero el `mid` sigue siendo alto.
-- **Demanda:** residual por tipo/abundancia; falta definir pesos LATAM/Atlantis.
+- **Pet eggs y equipo caro:** el `mid` puede ser alto; el `npcBuyPrice` lo contiene, pero conviene revisar.
+- **Custom:** los precios manuales son canon; si cambia la economía, se actualizan en `canon.yml`.
+- **Umbral de HP:** 10M efectivo; confirmar si queda como canon.
+- **Demanda:** residual por tipo/abundancia; faltan pesos LATAM/Atlantis.
 - **Compuestos:** el master debe incluir tablas de refine/cartas/slots/encantamientos y el contrato `compose_value`.
 
 ---
 
-## 7. Próximos pasos
+## 9. Próximos pasos
 
-1. Revisar esta muestra y fijar en `data/market/canon.yml`:
-   - factor de fuente;
-   - política de `buyCeiling`;
-   - umbral de HP;
-   - tratamiento de group/craft/item mall.
-2. Mejorar group/package y craft en el modelo, o aceptar explícitamente el prior de tipo.
-3. Definir la regla para pet eggs/items sin fuente.
-4. Construir el master completo con `build_master.py` usando la misma lógica.
-5. Generar artefactos JSON/SQL/NPC y recién después integrar NPCs.
+1. Revisar la muestra completa y ajustar `canon.yml`.
+2. Decidir si group/package/craft se modelan mejor o se acepta el prior actual.
+3. Definir la regla de pet eggs/equipo sin fuente.
+4. Confirmar el umbral de HP.
+5. Construir `build_master.py` con esta misma lógica y generar los artefactos JSON/SQL/NPC.

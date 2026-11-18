@@ -22,12 +22,14 @@ Outputs:
 - `conf/import/battle_conf.txt` (drop rates + HP rates)
 - canonical spawns from `tools/mob_spawns.py`
 - `ragnabots/staging/market/pricing/master_list.json` (historical reference only)
+- `data/market/canon.yml` (manual prices and policies)
 
 ## Decisions in this pass
 
+- All items receive a canonical price: `market`, `synthetic` or `manual`.
 - `supplyOpen = field + dungeon`; boss/instance/guild/quest/event/other are separate.
 - Effective HP uses `monster_hp_rate`/`mvp_hp_rate` (currently 2x).
-- `marketEligible` and `priceStatus` separate catalog items from priced items.
-- Synthetic prices use type median + supply/demand/difficulty multipliers and a
-  general source-quality factor.
-- `buyCeiling` is conservative; the `high` is never used for NPC purchases.
+- Synthetic base is `type_p40` plus source-factor and gear-factor adjustments.
+- Items without source use `min(type_p10, 1M) * 0.50`.
+- `npcBuyPrice` and `npcSellPrice` are separate, with a controlled spread.
+- `marketPressure`, `stockHint` and `restockWeight` are stored for future NPC stock logic.

@@ -23,6 +23,7 @@ SITE = ROOT.parent / "ozro-site"
 TAXONOMY = SITE / "assets" / "items" / "taxonomy.json"
 MASTER_LIST = ROOT.parent / "ragnabots" / "staging" / "market" / "pricing" / "master_list.json"
 BATTLE_CONF = ROOT / "conf/import/battle_conf.txt"
+CANON = ROOT / "data" / "market" / "canon.yml"
 SPAWN_CONF = "npc/re/scripts_main.conf"
 
 ITEM_FILES = [
@@ -61,6 +62,12 @@ def normalize_aegis(value: str) -> str:
 
 def load_taxonomy() -> dict[str, Any]:
     return json.loads(TAXONOMY.read_text(encoding="utf-8"))
+
+
+def load_canon() -> dict[str, Any]:
+    if not CANON.exists():
+        return {}
+    return yaml.safe_load(CANON.read_text(encoding="utf-8")) or {}
 
 
 def load_master_list() -> dict[int, dict[str, Any]]:

@@ -176,7 +176,7 @@ Cada fila debe llevar, como mínimo:
 - `tradeable`, `obtainable`, `marketEligible`, `priceable`;
 - `tags` (lista de meta-categorías, puede haber varias);
 - `sources` y `access`;
-- `priceStatus` (`market`, `synthetic`, `manual`, `unknown`, `not_applicable`).
+- `priceStatus` (`market`, `synthetic`, `manual`, `unknown`).
 
 El **universo de mercado activo** es una vista filtrada, no el master completo:
 
@@ -186,7 +186,7 @@ El **universo de mercado activo** es una vista filtrada, no el master completo:
 - items custom de OzRo (35001–35005 y futuros);
 - items referenciados por quests, craft o eventos.
 
-Los items `untradeable` o sin fuente no se eliminan: se guardan con `marketEligible=false` y `priceStatus=not_applicable` o `unknown`. Así una quest futura puede usar un item que hoy no tiene precio sin tener que rehacer el catálogo.
+Los items `untradeable` o sin fuente no se eliminan: se guardan con `marketEligible=false` pero con `priceStatus=synthetic` (o `manual`/`unknown`). Todos tienen un precio canónico; la elegibilidad solo indica si hoy tiene sentido comercializarlo.
 
 No incluir como filas:
 
@@ -619,17 +619,17 @@ Un error de 3,4x es aceptable para ordenar o mostrar una referencia, y en un ser
 - Para group/package/quest-only, el sintético usa el prior del tipo y la utilidad; si no hay supply, se aplica un haircut extra y un cap absoluto.
 - Nada de revisión manual item por item. Solo se revisan outliers, custom y casos detectados como raros.
 
-De los 3.964 items sin precio histórico:
+En la implementación v1 todos reciben precio. Para los 3.964 sin histórico, el prior usado es:
 
 | Situación | n aproximado | Política |
 |---|---:|---|
-| Solo `group` | 2.379 | Sintético con prior de tipo/utilidad + haircut; NPC con cap |
-| `craft` + `group` | 398 | Sintético + costo de materiales cuando exista receta |
+| Solo `group` | 2.379 | Sintético `type_p40` + factor de fuente + cap; NPC con spread |
+| `craft` + `group` | 398 | Sintético con factor craft; costo de materiales pendiente |
 | Con `normal_drop` | 406 | Sintético con supply; mejor confianza dentro del bloque |
-| Instancia/quest | 144 | Sintético conservador; no tasador automático |
+| Instancia/quest | 144 | Sintético conservador; NPC solo con cap |
 | Otros (npc, package, etc.) | resto | Ancla NPC o sintético con cap |
 
-**Recomendación:** el master distingue `priceStatus`: `market`, `synthetic`, `manual` y `unknown`. `market` y `synthetic` pueden alimentar NPCs; `unknown` no. La diferencia es la política de compra: `market` usa banda normal; `synthetic` usa piso conservador y caps.
+La implementación v1 está detallada en [19-muestra-master.md](./19-muestra-master.md): `type_p40`, factor de fuente, factor de equipo, cap para items sin fuente, `npcBuyPrice` y `npcSellPrice`. El master distingue `market`, `synthetic` y `manual`; todos pueden alimentar NPCs con la política de caps correspondiente.
 
 No se enumeran en el master. Se valoran con una función y tablas auxiliares.
 

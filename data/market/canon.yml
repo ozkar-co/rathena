@@ -7,6 +7,8 @@ master:
   source_of_truth: data/market/master.jsonl
   taxonomy_role: intermediate_input
   general_sample_population: marketEligible
+  npc_market: all_items
+  npc_history_multiplier: future_only
 
 sources:
   drop_rates: conf/import/battle_conf.txt
@@ -22,7 +24,25 @@ supply:
   high_hp_threshold: 10000000
 
 pricing:
-  statuses: [market, synthetic, manual, unknown, not_applicable]
+  statuses: [market, synthetic, manual, unknown]
+  manual_prices:
+    35001: 100000000
+    35002: 10000000
+    35003: 1000000
+    35004: 100000
+    35005: 500000
+  synthetic_base: type_p40
+  synthetic_gear_factor: "slots, attack+defense, equip level; clamped 0.70-2.00"
+  no_source_base_cap: 1000000
+  no_source_formula: "min(type_p10, 1000000) * 0.50"
+  npc_sell_formula: "max(buy * 1.10, min(mid * (1 + margin), buy * 1.50))"
+  npc_sell_margin:
+    market_high: 0.10
+    market_medium: 0.20
+    market_low: 0.30
+    synthetic: 0.35
+    manipulation: 0.50
+    manual: 0.00
   synthetic_source_factors:
     group: 0.70
     craft: 0.90
@@ -46,3 +66,7 @@ quality:
     - "atlantis cv > 3"
     - "outlier flag atlantis_extreme_max"
   review_queue: outliers, custom, no-source, restricted-access
+  stock:
+    pressure: "demandPercentile - supplyPercentile"
+    stock_hint: "low if pressure > 25, high if pressure < -25, otherwise normal"
+    restock_weight: "clamp(0.5 + pressure / 200, 0.1, 0.9)"

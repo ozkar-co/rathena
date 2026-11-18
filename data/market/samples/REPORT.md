@@ -8,10 +8,11 @@ Semilla: `20261118`. Los datos completos están en `general.jsonl` y `edge.jsonl
 - Items con supply abierto: 1620
 - Items con histórico: 5858
 - Precio `market`: 5847
-- Precio `synthetic`: 3970
-- `not_applicable`: 19244
+- Precio `synthetic`: 23209
+- Precio `manual`: 5
+- `not_applicable`: 0
 - `marketEligible`: 9622
-- Clampeados por ancla: 1004
+- Clampeados por ancla: 1266
 - Manipulación sospechada: 166
 
 ```json
@@ -118,8 +119,10 @@ Total: 3656 spawns, 405 mapas, 1223 mobs.
 | `['group_only']` | 7 |
 | `['high_hp']` | 7 |
 | `['instance_only']` | 7 |
+| `['no_source', 'not_market_eligible', 'unobtainable']` | 7 |
+| `['untradeable']` | 7 |
 | `['boss_only']` | 5 |
-| `['custom']` | 5 |
+| `['custom', 'manual_price']` | 5 |
 | `['max_open_supply']` | 5 |
 | `['price_bottom_1pct']` | 5 |
 | `['priced_low_confidence']` | 3 |
@@ -137,6 +140,8 @@ Total: 3656 spawns, 405 mapas, 1223 mobs.
 | `['manipulation_suspected', 'market_price', 'max_open_supply']` | 1 |
 | `['manipulation_suspected', 'npc_shop', 'price_bottom_1pct', 'priced_low_confidence']` | 1 |
 | `['max_open_supply', 'priced_high_confidence']` | 1 |
+| `['no_source', 'unobtainable']` | 1 |
+| `['not_market_eligible', 'untradeable']` | 1 |
 | `['npc_shop', 'priced_low_confidence']` | 1 |
 
 ## Señales detectadas
@@ -145,14 +150,14 @@ Total: 3656 spawns, 405 mapas, 1223 mobs.
 
 | Item | Tipo | mid | supply abierto | review |
 |---|---|---:|---:|---|
-| Memory Book | Armor | 9,490,000 | 0.0459 | synthetic_price |
-| Eye Stone Ring | Armor | 9,430,000 | 0.0002 | synthetic_price |
-| Sura Gauntlet | Armor | 9,220,000 | 0.0153 | synthetic_price |
-| Ghost Bandana | Armor | 9,210,000 | 0.0153 | synthetic_price |
-| Pocket Watch | Armor | 9,060,000 | 0.0009 | synthetic_price |
-| Cursed Star | Armor | 9,020,000 | 0.1726 | synthetic_price |
-| Kandura | Armor | 8,860,000 | 0.3825 | synthetic_price |
-| High Fashion Sandals | Armor | 8,790,000 | 0.4131 | synthetic_price |
+| Bubble Gum Box | Cash | 5,330,000 | 0.0000 | no_open_supply, not_market_eligible, synthetic_price |
+| Assumptio 5 Scroll Box | Cash | 5,330,000 | 0.0000 | no_open_supply, not_market_eligible, synthetic_price |
+| Aspersio Scroll Box | Cash | 5,330,000 | 0.0000 | no_open_supply, not_market_eligible, synthetic_price |
+| Lex Aeterna Scroll Box | Cash | 5,330,000 | 0.0000 | no_open_supply, not_market_eligible, synthetic_price |
+| Blessing Scroll 10 Box | Cash | 5,330,000 | 0.0000 | no_open_supply, not_market_eligible, synthetic_price |
+| Increase Agility Scroll 10 Box | Cash | 5,330,000 | 0.0000 | no_open_supply, not_market_eligible, synthetic_price |
+| Ramen Hat Box | Cash | 5,330,000 | 0.0000 | no_open_supply, not_market_eligible, synthetic_price |
+| Light Blue Potion Box | Cash | 5,330,000 | 0.0000 | no_open_supply, not_market_eligible, synthetic_price |
 
 ### Precio de mercado por encima del techo NPC
 
@@ -164,20 +169,22 @@ Total: 3656 spawns, 405 mapas, 1223 mobs.
 
 | Item | mid | access | sources |
 |---|---:|---|---|
-| Rapier | 1,100,000 | normal | craft, group, mob_drop, normal_drop |
 | Haedonggum | 1,820,000 | craft | craft, group |
 | Edge | 6,540,000 | unknown | group, mob_drop, quest_reward, unknown_drop |
 | Solar Sword | 48,030,000 | group | group |
 | Byeollungum | 10,060,000 | normal | group, mob_drop, normal_drop, quest_reward |
 | Immaterial Sword | 36,460,000 | unknown | group, mob_drop, quest_reward, unknown_drop |
-| Schweizersabel | 1,150,000 | normal | group, mob_drop, normal_drop, quest_reward |
-| Muscle Cutter | 1,100,000 | normal | group, mob_drop, normal_drop |
+| Bloody Eater | 2,020,000 | normal | group, mob_drop, normal_drop |
+| Violet Fear | 73,210,000 | group | group, instance_reward |
+| Alca Bringer | 1,720,000 | unknown | group, mob_drop, unknown_drop |
 
 ## Decisiones aplicadas en esta muestra
 
 - `supplyOpen` excluye boss, instancia, guild, quest y event; usa field + dungeon.
 - El HP efectivo aplica `monster_hp_rate`/`mvp_hp_rate` (2x).
-- El precio sintético usa mediana del tipo + multiplicadores de supply, demanda, dificultad y un factor de calidad de fuente (group 0.70, craft 0.90, quest/instancia 0.80, sin fuente 0.50).
-- `buyCeiling`: sintético 45% del mid con cap de 50% de la mediana del tipo; market high 75%; medium 60% con cap de 1 mediana; low 45% / low 75%; manipulación 35% / low 70%.
+- El precio sintético usa type_p40 + multiplicadores de supply, demanda, dificultad, factor de fuente (group 0.70, craft 0.90, quest/instancia 0.80, sin fuente 0.50) y factor de equipo.
+- Items sin fuente usan min(type_p10, 1M) * 0.50.
+- `npcBuyPrice`: sintético 45% del mid con cap de 50% de la mediana del tipo; market high 75%; medium 60% con cap de 1 mediana; low 45% / low 75%; manipulación 35% / low 70%.
+- `npcSellPrice` usa margen y se limita a 1.10–1.50x del `npcBuyPrice`.
 - La manipulación se marca con CV > 3 o `atlantis_extreme_max`, sin listas de excepciones.
 - Los tags vienen de categorías de taxonomía + restricciones de acceso.

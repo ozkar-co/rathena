@@ -65,6 +65,7 @@ def load_inputs() -> dict[str, Any]:
         "spawns": spawns,
         "spawn_report": spawn_report,
         "master": master,
+        "canon": common.load_canon(),
     }
 
 
@@ -119,6 +120,9 @@ def build_metrics(data: dict[str, Any]) -> dict[int, dict[str, Any]]:
             "type": item_type,
             "slots": item.get("slots", 0),
             "refineable": bool(item.get("refineable")),
+            "attack": item.get("attack", 0),
+            "defense": item.get("defense", 0),
+            "equipLevelMin": item.get("equipLevelMin", 0),
             "custom": bool(item.get("custom")),
             "npcSellToPlayer": item.get("buy", 0),
             "npcBuyFromPlayer": item.get("sell", 0),
@@ -188,8 +192,15 @@ def build_tags(taxonomy: dict[str, Any], metric: dict[str, Any]) -> list[str]:
 
 def build_prices(data: dict[str, Any], metrics: dict[int, dict[str, Any]]) -> None:
     master = data["master"]
+    canon = data.get("canon") or {}
+    manual_prices = {
+        int(key): int(value)
+        for key, value in ((canon.get("pricing") or {}).get("manual_prices") or {}).items()
+    }
     priced = [m for m in metrics.values() if (m.get("history") or {}).get("price", {}).get("reference")]
+    type_bases: dict[str, float] = {}
     type_medians: dict[str, float] = {}
+    type_lows: dict[str, float] = {}
     for item_type in {m["type"] for m in priced}:
         values = [
             math.log(m["history"]["price"]["reference"])
@@ -197,9 +208,12 @@ def build_prices(data: dict[str, Any], metrics: dict[int, dict[str, Any]]) -> No
             if m["type"] == item_type and m["history"]["price"]["reference"] > 0
         ]
         if values:
+            type_bases[item_type] = math.exp(common.percentile(values, 0.40))
             type_medians[item_type] = math.exp(common.median(values))
+            type_lows[item_type] = math.exp(common.percentile(values, 0.10))
     open_supplies = [m["supplyOpen"] for m in metrics.values() if m["supplyOpen"] > 0]
     median_open_supply = common.median(open_supplies) if open_supplies else 1.0
+    equipment_types = {"Weapon", "Armor", "ShadowGear", "Shadowgear"}
 
     for metric in metrics.values():
         hist = metric.get("history") or {}
@@ -211,44 +225,7 @@ def build_prices(data: dict[str, Any], metrics: dict[int, dict[str, Any]]) -> No
         outlier_flags = hist.get("outlier_flags") or []
         manipulation = bool((cv is not None and cv > 3) or "atlantis_extreme_max" in outlier_flags)
         metric["manipulationSuspected"] = manipulation
-
-        base = float(reference) if reference else type_medians.get(metric["type"], 1000.0)
-        access_best = str(metric["taxonomy"].get("access", {}).get("best") or "none")
-        source_factor = 1.0
-        if not reference:
-            source_factor = {
-                "group": 0.70,
-                "craft": 0.90,
-                "quest": 0.80,
-                "instance": 0.80,
-                "guild": 0.70,
-                "unknown": 0.50,
-                "none": 0.50,
-            }.get(access_best, 1.0)
-            base *= source_factor
-        supply_mult = 1.0
-        if metric["supplyOpen"] > 0 and median_open_supply > 0:
-            supply_mult = common.clamp((median_open_supply / metric["supplyOpen"]) ** 0.25, 0.5, 2.0)
-        demand_z = ((metric["demandPercentile"] or 50) - 50) / 50
-        difficulty_z = ((metric["difficultyPercentile"] or 50) - 50) / 50
-        demand_mult = common.clamp(1 + 0.25 * demand_z, 0.7, 1.5)
-        difficulty_mult = common.clamp(1 + 0.15 * difficulty_z, 0.8, 1.5)
-        raw = base * supply_mult * demand_mult * difficulty_mult
-
         tags = set(build_tags(data["taxonomy"], metric))
-        npc_shop = "npc_shop" in tags or "npc_shop" in metric["taxonomy"].get("sources", [])
-        floor = metric["npcBuyFromPlayer"] * 1.05 if metric["npcBuyFromPlayer"] > 0 else 1.0
-        ceiling = float("inf")
-        if npc_shop and metric["npcSellToPlayer"] > 0:
-            ceiling = metric["npcSellToPlayer"] * 0.95
-        mid = common.clamp(raw, floor, ceiling)
-        uncertainty = CONFIDENCE_UNCERTAINTY.get(confidence, 0.50)
-        if not reference:
-            uncertainty = max(uncertainty, 0.50)
-        low = max(floor, mid * (1 - uncertainty))
-        high = min(ceiling, mid * (1 + uncertainty))
-        if high <= low:
-            high = low * 1.05
 
         is_untradeable = "untradeable" in tags
         is_unobtainable = "unobtainable" in tags
@@ -256,38 +233,132 @@ def build_prices(data: dict[str, Any], metrics: dict[int, dict[str, Any]]) -> No
         market_eligible = not is_untradeable and (not is_unobtainable or bool(reference)) and (has_source or bool(reference))
         metric["marketEligible"] = market_eligible
 
-        if reference:
-            status = "market"
-        elif market_eligible:
-            status = "synthetic"
-        else:
-            status = "not_applicable"
-        if manipulation:
-            status = "market" if reference else status
-        type_median = type_medians.get(metric["type"], base)
-        type_cap = type_median * 0.50
-        if status == "synthetic":
-            buy_ceiling = min(mid * 0.45, type_cap)
-        elif status == "not_applicable":
-            buy_ceiling = 0.0
-        elif manipulation:
-            buy_ceiling = min(mid * 0.35, low * 0.70, type_cap)
-        elif confidence == "high":
-            buy_ceiling = mid * 0.75
-        elif confidence == "server":
-            buy_ceiling = min(mid * 0.60, metric["npcBuyFromPlayer"] if metric["npcBuyFromPlayer"] > 0 else mid)
-        elif confidence == "medium":
-            buy_ceiling = min(mid * 0.60, type_median)
-        else:
-            buy_ceiling = min(mid * 0.45, low * 0.75, type_cap)
-        buy_ceiling = min(buy_ceiling, ceiling * 0.95, high * 0.80)
-        buy_ceiling = max(floor, buy_ceiling)
-        sell_floor = max(floor, mid * 0.50)
+        access_best = str(metric["taxonomy"].get("access", {}).get("best") or "none")
+        manual_mid = manual_prices.get(metric["itemId"])
+        source_factor = 1.0
+        gear_factor = 1.0
+        supply_mult = 1.0
+        demand_mult = 1.0
+        difficulty_mult = 1.0
+        floor = metric["npcBuyFromPlayer"] * 1.05 if metric["npcBuyFromPlayer"] > 0 else 1.0
+        npc_shop = "npc_shop" in tags or "npc_shop" in metric["taxonomy"].get("sources", [])
+        ceiling = float("inf")
+        if npc_shop and metric["npcSellToPlayer"] > 0:
+            ceiling = metric["npcSellToPlayer"] * 0.95
 
+        if manual_mid:
+            status = "manual"
+            base = float(manual_mid)
+            base_method = "manual"
+            mid = float(manual_mid)
+            low = high = mid
+            uncertainty = 0.0
+            buy_ceiling = mid
+            npc_sell = mid
+            sell_margin = 0.0
+        else:
+            if reference:
+                status = "market"
+                base = float(reference)
+                base_method = "historical"
+            else:
+                status = "synthetic"
+                source_factor = {
+                    "group": 0.70,
+                    "craft": 0.90,
+                    "quest": 0.80,
+                    "instance": 0.80,
+                    "guild": 0.70,
+                    "unknown": 0.50,
+                    "none": 0.50,
+                }.get(access_best, 1.0)
+                if metric["type"] in equipment_types:
+                    combat = metric["attack"] + metric["defense"]
+                    gear_factor = common.clamp(
+                        1
+                        + 0.08 * metric["slots"]
+                        + 0.05 * math.log1p(max(0, combat))
+                        + 0.10 * max(0, metric["equipLevelMin"] - 50) / 50,
+                        0.70,
+                        2.00,
+                    )
+                if not has_source:
+                    base = min(type_lows.get(metric["type"], 1000.0), 1_000_000.0) * 0.50
+                    source_factor = 0.50
+                    base_method = "no_source_cap"
+                else:
+                    base = type_bases.get(metric["type"], type_medians.get(metric["type"], 1000.0)) * source_factor * gear_factor
+                    base_method = "type_p40"
+
+            if metric["supplyOpen"] > 0 and median_open_supply > 0:
+                supply_mult = common.clamp((median_open_supply / metric["supplyOpen"]) ** 0.25, 0.5, 2.0)
+            demand_z = ((metric["demandPercentile"] or 50) - 50) / 50
+            difficulty_z = ((metric["difficultyPercentile"] or 50) - 50) / 50
+            demand_mult = common.clamp(1 + 0.25 * demand_z, 0.7, 1.5)
+            difficulty_mult = common.clamp(1 + 0.15 * difficulty_z, 0.8, 1.5)
+            raw = base * supply_mult * demand_mult * difficulty_mult
+
+            mid = common.clamp(raw, floor, ceiling)
+            uncertainty = CONFIDENCE_UNCERTAINTY.get(confidence, 0.50)
+            if not reference:
+                uncertainty = max(uncertainty, 0.50)
+            low = max(floor, mid * (1 - uncertainty))
+            high = min(ceiling, mid * (1 + uncertainty))
+            if high <= low:
+                high = low * 1.05
+
+            type_median = type_medians.get(metric["type"], base)
+            type_cap = type_median * 0.50
+            if manipulation:
+                buy_ceiling = min(mid * 0.35, low * 0.70, type_cap)
+            elif status == "synthetic":
+                buy_ceiling = min(mid * 0.45, type_cap)
+            elif confidence == "high":
+                buy_ceiling = mid * 0.75
+            elif confidence == "server":
+                buy_ceiling = min(mid * 0.60, metric["npcBuyFromPlayer"] if metric["npcBuyFromPlayer"] > 0 else mid)
+            elif confidence == "medium":
+                buy_ceiling = min(mid * 0.60, type_median)
+            else:
+                buy_ceiling = min(mid * 0.45, low * 0.75, type_cap)
+            buy_ceiling = min(buy_ceiling, ceiling * 0.95, high * 0.80)
+            buy_ceiling = max(floor, buy_ceiling)
+
+            if manipulation:
+                sell_margin = 0.50
+            elif status == "synthetic":
+                sell_margin = 0.35
+            elif confidence == "high":
+                sell_margin = 0.10
+            elif confidence in {"medium", "server"}:
+                sell_margin = 0.20
+            else:
+                sell_margin = 0.30
+            candidate_sell = mid * (1 + sell_margin)
+            npc_sell = max(buy_ceiling * 1.10, min(candidate_sell, buy_ceiling * 1.50))
+            if not math.isinf(ceiling):
+                npc_sell = min(npc_sell, ceiling)
+            npc_sell = max(npc_sell, buy_ceiling * 1.05)
+
+        demand_pct = metric["demandPercentile"]
+        supply_pct = metric["supplyPercentile"]
+        if demand_pct is None and supply_pct is None:
+            market_pressure = None
+            stock_hint = "unknown"
+            restock_weight = None
+        else:
+            market_pressure = (demand_pct if demand_pct is not None else 50) - (supply_pct if supply_pct is not None else 50)
+            stock_hint = "low" if market_pressure > 25 else "high" if market_pressure < -25 else "normal"
+            restock_weight = common.clamp(0.5 + market_pressure / 200, 0.1, 0.9)
+
+        metric["marketPressure"] = round(market_pressure, 2) if market_pressure is not None else None
+        metric["stockHint"] = stock_hint
+        metric["restockWeight"] = round(restock_weight, 4) if restock_weight is not None else None
         metric["tags"] = sorted(tags)
         metric["npcShop"] = npc_shop
         metric["price"] = {
             "status": status,
+            "baseMethod": base_method,
             "historicalReference": reference,
             "historicalSource": price.get("reference_source"),
             "historicalConfidence": confidence,
@@ -295,16 +366,20 @@ def build_prices(data: dict[str, Any], metrics: dict[int, dict[str, Any]]) -> No
             "manipulationSuspected": manipulation,
             "base": common.round_price(base),
             "sourceFactor": source_factor,
-            "rawMid": common.round_price(raw),
-            "clamped": raw > ceiling or raw < floor,
+            "gearFactor": round(gear_factor, 4),
+            "rawMid": common.round_price(raw if not manual_mid else mid),
+            "clamped": (not manual_mid and (raw > ceiling or raw < floor)),
             "supplyMultiplier": round(supply_mult, 4),
             "demandMultiplier": round(demand_mult, 4),
             "difficultyMultiplier": round(difficulty_mult, 4),
             "low": common.round_price(low),
             "mid": common.round_price(mid),
             "high": common.round_price(high),
+            "npcBuyPrice": common.round_price(buy_ceiling),
+            "npcSellPrice": common.round_price(npc_sell),
             "buyCeiling": common.round_price(buy_ceiling),
-            "sellFloor": common.round_price(sell_floor),
+            "sellFloor": common.round_price(mid if status == "manual" else buy_ceiling),
+            "sellMargin": sell_margin,
             "floor": common.round_price(floor),
             "ceiling": None if math.isinf(ceiling) else common.round_price(ceiling),
             "uncertainty": uncertainty,
@@ -313,8 +388,12 @@ def build_prices(data: dict[str, Any], metrics: dict[int, dict[str, Any]]) -> No
         review: list[str] = []
         if manipulation:
             review.append("manipulation_suspected")
-        if not reference:
+        if status == "manual":
+            review.append("manual_price")
+        if status == "synthetic":
             review.append("synthetic_price")
+        if not has_source:
+            review.append("no_source")
         if metric["supplyOpen"] <= 0:
             review.append("no_open_supply")
         if tags & {"instance_only", "guild_only"}:
@@ -327,8 +406,7 @@ def build_prices(data: dict[str, Any], metrics: dict[int, dict[str, Any]]) -> No
             review.append("custom_item")
         if not market_eligible:
             review.append("not_market_eligible")
-        metric["reviewReasons"] = review
-
+        metric["reviewReasons"] = sorted(set(review))
 
 def serialize(metric: dict[str, Any]) -> dict[str, Any]:
     tax = metric["taxonomy"]
@@ -341,6 +419,7 @@ def serialize(metric: dict[str, Any]) -> dict[str, Any]:
         "slots": metric["slots"],
         "refineable": metric["refineable"],
         "custom": metric["custom"],
+        "npcEligible": True,
         "marketEligible": metric["marketEligible"],
         "tags": metric["tags"],
         "sources": tax.get("sources", []),
@@ -371,6 +450,9 @@ def serialize(metric: dict[str, Any]) -> dict[str, Any]:
             "residual": round(metric["demandResidual"], 4) if metric["demandResidual"] is not None else None,
             "percentile": round(metric["demandPercentile"], 2) if metric["demandPercentile"] is not None else None,
             "tier": metric["demandTier"],
+            "marketPressure": metric["marketPressure"],
+            "stockHint": metric["stockHint"],
+            "restockWeight": metric["restockWeight"],
         },
         "npc": {
             "sellToPlayer": metric["npcSellToPlayer"],
@@ -422,6 +504,16 @@ def edge_candidates(metrics: dict[int, dict[str, Any]]) -> dict[str, list[int]]:
             categories["synthetic_price"].append(item_id)
         if m["marketEligible"]:
             categories["market_eligible"].append(item_id)
+        if "untradeable" in tags:
+            categories["untradeable"].append(item_id)
+        if "unobtainable" in tags:
+            categories["unobtainable"].append(item_id)
+        if not m["taxonomy"].get("sources"):
+            categories["no_source"].append(item_id)
+        if m["price"]["status"] == "manual":
+            categories["manual_price"].append(item_id)
+        if not m["marketEligible"]:
+            categories["not_market_eligible"].append(item_id)
     if categories.get("market_price"):
         values = [(metrics[i]["price"]["historicalReference"], i) for i in categories["market_price"]]
         values.sort()
@@ -482,6 +574,7 @@ def summary(data: dict[str, Any], metrics: dict[int, dict[str, Any]], general: l
             "withHistory": sum(1 for m in metrics.values() if m.get("history")),
             "marketPrice": sum(1 for m in metrics.values() if m["price"]["status"] == "market"),
             "syntheticPrice": sum(1 for m in metrics.values() if m["price"]["status"] == "synthetic"),
+            "manualPrice": sum(1 for m in metrics.values() if m["price"]["status"] == "manual"),
             "notApplicable": sum(1 for m in metrics.values() if m["price"]["status"] == "not_applicable"),
             "marketEligible": sum(1 for m in metrics.values() if m["marketEligible"]),
             "marketEligibleMarket": sum(1 for m in metrics.values() if m["marketEligible"] and m["price"]["status"] == "market"),
@@ -546,6 +639,7 @@ def report(data: dict[str, Any], metrics: dict[int, dict[str, Any]], general: li
         f"- Items con histórico: {summary_data['universe']['withHistory']}",
         f"- Precio `market`: {summary_data['universe']['marketPrice']}",
         f"- Precio `synthetic`: {summary_data['universe']['syntheticPrice']}",
+        f"- Precio `manual`: {summary_data['universe']['manualPrice']}",
         f"- `not_applicable`: {summary_data['universe']['notApplicable']}",
         f"- `marketEligible`: {summary_data['universe']['marketEligible']}",
         f"- Clampeados por ancla: {summary_data['universe']['clampedByAnchor']}",
@@ -632,8 +726,10 @@ def report(data: dict[str, Any], metrics: dict[int, dict[str, Any]], general: li
         "",
         "- `supplyOpen` excluye boss, instancia, guild, quest y event; usa field + dungeon.",
         "- El HP efectivo aplica `monster_hp_rate`/`mvp_hp_rate` (2x).",
-        "- El precio sintético usa mediana del tipo + multiplicadores de supply, demanda, dificultad y un factor de calidad de fuente (group 0.70, craft 0.90, quest/instancia 0.80, sin fuente 0.50).",
-        "- `buyCeiling`: sintético 45% del mid con cap de 50% de la mediana del tipo; market high 75%; medium 60% con cap de 1 mediana; low 45% / low 75%; manipulación 35% / low 70%.",
+        "- El precio sintético usa type_p40 + multiplicadores de supply, demanda, dificultad, factor de fuente (group 0.70, craft 0.90, quest/instancia 0.80, sin fuente 0.50) y factor de equipo.",
+        "- Items sin fuente usan min(type_p10, 1M) * 0.50.",
+        "- `npcBuyPrice`: sintético 45% del mid con cap de 50% de la mediana del tipo; market high 75%; medium 60% con cap de 1 mediana; low 45% / low 75%; manipulación 35% / low 70%.",
+        "- `npcSellPrice` usa margen y se limita a 1.10–1.50x del `npcBuyPrice`.",
         "- La manipulación se marca con CV > 3 o `atlantis_extreme_max`, sin listas de excepciones.",
         "- Los tags vienen de categorías de taxonomía + restricciones de acceso.",
         "",
