@@ -20,6 +20,11 @@ import sys
 from collections import Counter, defaultdict
 from datetime import datetime, timezone
 
+try:
+    import yaml
+except ImportError:  # pragma: no cover - PyYAML is a build-time dependency
+    yaml = None
+
 DECL_KINDS = {
     "script",
     "shop",
@@ -38,6 +43,10 @@ DUPLICATE_RE = re.compile(r"^duplicate\(\s*([^)]+?)\s*\)$", re.IGNORECASE)
 QUEST_SET_RE = re.compile(r"\bsetquest\s+(\d+)")
 QUEST_COMPLETE_RE = re.compile(r"\bcompletequest\s+(\d+)")
 QUEST_CHECK_RE = re.compile(r"\bcheckquest\s*\(\s*(\d+)")
+SHOP_KINDS = {"shop", "cashshop", "itemshop", "pointshop", "marketshop"}
+SHOP_ITEM_RE = re.compile(r"(\d+)\s*:\s*(-?\d+)(?:\s*:\s*(-?\d+))?")
+CALLSHOP_RE = re.compile(r"\bcallshop\s*\(?\s*[\"']([^\"']+)[\"']", re.IGNORECASE)
+OZRO_CUSTOM_RE = re.compile(r"(?:^|/)npc/custom/ozro/")
 
 
 def read_script(path: str) -> str:
@@ -90,6 +99,121 @@ def variant_for(rel_path: str) -> str:
     if "/pre-re/" in normalized:
         return "pre-re"
     return "base"
+
+
+def is_ozro_custom(rel_path: str) -> bool:
+    normalized = "/" + rel_path.replace(os.sep, "/")
+    return bool(OZRO_CUSTOM_RE.search(normalized))
+
+
+def parse_shop_items(field: str) -> list[dict]:
+    items: list[dict] = []
+    for match in SHOP_ITEM_RE.finditer(field):
+        item = {"itemId": int(match.group(1)), "price": int(match.group(2))}
+        if match.group(3) is not None:
+            item["stock"] = int(match.group(3))
+        items.append(item)
+    return items
+
+
+def load_item_ids(root: str) -> dict[str, int]:
+    if yaml is None:
+        return {}
+    ids: dict[str, int] = {}
+    for rel in (
+        "db/re/item_db.yml",
+        "db/re/item_db_equip.yml",
+        "db/re/item_db_etc.yml",
+        "db/re/item_db_usable.yml",
+        "db/import/item_db.yml",
+    ):
+        path = os.path.join(root, rel)
+        if not os.path.isfile(path):
+            continue
+        with open(path, "r", encoding="utf-8") as handle:
+            data = yaml.safe_load(handle) or {}
+        for entry in data.get("Body") or []:
+            if not isinstance(entry, dict):
+                continue
+            aegis = entry.get("AegisName")
+            item_id = entry.get("Id")
+            if aegis is not None and item_id is not None:
+                ids[str(aegis)] = int(item_id)
+    return ids
+
+
+def load_barters(root: str, item_ids: dict[str, int]) -> dict[str, dict]:
+    """Load active barter shops, following Footer.Imports in load order."""
+    if yaml is None:
+        return {}
+
+    seen: set[str] = set()
+    barters: dict[str, dict] = {}
+
+    def add_items(name: str, entries: list) -> None:
+        shop = barters.setdefault(name, {"type": "barter", "items": []})
+        for entry in entries or []:
+            if not isinstance(entry, dict) or not entry.get("Item"):
+                continue
+            item = {"item": str(entry["Item"])}
+            item_id = item_ids.get(item["item"])
+            if item_id is not None:
+                item["itemId"] = item_id
+            for key, output in (("Stock", "stock"), ("Zeny", "zeny"), ("Refine", "refine")):
+                if entry.get(key) is not None:
+                    item[output] = int(entry[key])
+            required = []
+            for req in entry.get("RequiredItems") or []:
+                if not isinstance(req, dict) or not req.get("Item"):
+                    continue
+                req_entry = {"item": str(req["Item"])}
+                req_id = item_ids.get(req_entry["item"])
+                if req_id is not None:
+                    req_entry["itemId"] = req_id
+                if req.get("Amount") is not None:
+                    req_entry["amount"] = int(req["Amount"])
+                if req.get("Refine") is not None:
+                    req_entry["refine"] = int(req["Refine"])
+                required.append(req_entry)
+            if required:
+                item["requiredItems"] = required
+            shop["items"].append(item)
+
+    def walk(rel: str) -> None:
+        path = os.path.normpath(os.path.join(root, rel))
+        if path in seen or not os.path.isfile(path):
+            return
+        seen.add(path)
+        with open(path, "r", encoding="utf-8") as handle:
+            data = yaml.safe_load(handle) or {}
+        for entry in data.get("Body") or []:
+            if isinstance(entry, dict) and entry.get("Name"):
+                add_items(str(entry["Name"]), entry.get("Items"))
+        imports = (data.get("Footer") or {}).get("Imports") or []
+        for entry in imports:
+            target = entry.get("Path") if isinstance(entry, dict) else entry
+            if target:
+                walk(str(target))
+
+    walk("npc/barters.yml")
+    return {name: shop for name, shop in barters.items() if shop["items"]}
+
+
+def shop_for(kind: str, field: str, body: str, barters: dict[str, dict]) -> dict | None:
+    if kind in SHOP_KINDS:
+        items = parse_shop_items(field)
+        return {"type": kind, "items": items} if items else None
+
+    if kind == "script":
+        items: list[dict] = []
+        shop_type = "barter"
+        for name in dict.fromkeys(CALLSHOP_RE.findall(body)):
+            shop = barters.get(name)
+            if shop:
+                items.extend(shop["items"])
+        if items:
+            return {"type": shop_type, "items": items}
+    return None
 
 
 def strip_comments(body: str) -> str:
@@ -218,7 +342,7 @@ def classify(kind: str, name: str, body: str) -> str:
     clean = code_only(body).lower()
     if re.search(r"\b(setquest|completequest|checkquest|questinfo)\b", clean):
         return "quest"
-    if re.search(r"\b(cashshop|marketshop|itemshop|pointshop|shop)\b", clean):
+    if re.search(r"\b(cashshop|marketshop|itemshop|pointshop|shop|callshop)\b", clean):
         return "tienda"
     if re.search(r"\bwarp\b", clean):
         return "warp"
@@ -272,7 +396,9 @@ def prettify_map(map_name: str) -> str:
     return map_name[:1].upper() + map_name[1:]
 
 
-def parse_file(path: str, root: str) -> tuple[list[dict], list[dict], list[dict]]:
+def parse_file(
+    path: str, root: str, barters: dict[str, dict]
+) -> tuple[list[dict], list[dict], list[dict]]:
     """Return (definitions, placements, errors) found in one active script."""
     rel = os.path.relpath(path, root)
     text = read_script(path)
@@ -346,6 +472,8 @@ def parse_file(path: str, root: str) -> tuple[list[dict], list[dict], list[dict]
             "function": classify(kind, name, body),
             "quests": quests,
             "isTemplate": is_template,
+            "isCustom": is_ozro_custom(rel),
+            "shop": shop_for(kind, field, body, barters),
         }
 
         if is_template:
@@ -408,6 +536,7 @@ def main() -> int:
         return 1
 
     files = resolve_script_files(root, args.conf)
+    barters = load_barters(root, load_item_ids(root))
 
     definitions: list[dict] = []
     placements: list[dict] = []
@@ -415,7 +544,7 @@ def main() -> int:
 
     for path in files:
         try:
-            defs, placed, errs = parse_file(path, root)
+            defs, placed, errs = parse_file(path, root, barters)
         except OSError as error:
             errors.append({"file": path, "reason": f"read error: {error}"})
             continue
@@ -479,6 +608,8 @@ def main() -> int:
             placement["function"] = resolved["function"]
             placement["quests"] = resolved["quests"]
             placement["sprite"] = placement["sprite"] or resolved["sprite"]
+            placement["shop"] = resolved.get("shop")
+            placement["isCustom"] = placement["isCustom"] or resolved["isCustom"]
             placement["definitionFile"] = resolved["file"]
             placement["definitionLine"] = resolved["line"]
             placement["resolvedLabel"] = resolved.get("label")
@@ -522,8 +653,11 @@ def main() -> int:
                     "INVISIBLE",
                 },
                 "isInstance": bool(re.match(r"^\d+@", placement["map"])),
+                "isCustom": placement["isCustom"]
+                or is_ozro_custom(placement.get("definitionFile") or ""),
                 "function": placement["function"],
                 "quests": placement["quests"],
+                "shop": placement.get("shop"),
                 "source": placement["file"],
                 "sourceLine": placement["line"],
                 "placementFile": placement["file"],
@@ -542,6 +676,9 @@ def main() -> int:
                 # Keep the shortest/cleanest name for display.
                 if len(placement["name"]) < len(record["name"]):
                     record["name"] = placement["name"]
+            if placement.get("shop"):
+                record["shop"] = placement["shop"]
+            record["isCustom"] = record["isCustom"] or placement["isCustom"]
         record["placements"] += 1
 
     npcs: list[dict] = []
@@ -586,6 +723,8 @@ def main() -> int:
             "unresolvedDefinitions": len(unresolved_definitions),
             "duplicateLabels": len(duplicate_labels),
             "functions": dict(sorted(function_counts.items())),
+            "custom": sum(1 for item in npcs if item["isCustom"]),
+            "shops": sum(1 for item in npcs if item.get("shop")),
         },
         "npcs": npcs,
     }
@@ -643,6 +782,8 @@ def main() -> int:
                 "isInstance",
                 "function",
                 "quests",
+                "isCustom",
+                "shopItems",
                 "source",
                 "sourceLine",
                 "placementFile",
@@ -669,6 +810,8 @@ def main() -> int:
                         for kind, ids in item["quests"].items()
                         if ids
                     ),
+                    "1" if item["isCustom"] else "0",
+                    len(item["shop"]["items"]) if item.get("shop") else 0,
                     item["source"],
                     item["sourceLine"],
                     item["placementFile"],
@@ -705,9 +848,13 @@ def main() -> int:
                 "visible": item["visible"],
                 "isInstance": item["isInstance"],
             }
+            if item["isCustom"]:
+                row["isCustom"] = True
             quests = {key: value for key, value in item["quests"].items() if value}
             if quests:
                 row["quests"] = quests
+            if item.get("shop"):
+                row["shop"] = item["shop"]
             rows.append(row)
         with open(
             os.path.join(npcs_dir, f"{map_name}.json"), "w", encoding="utf-8"
@@ -720,6 +867,7 @@ def main() -> int:
                 "mapName": prettify_map(map_name),
                 "total": len(items),
                 "visible": sum(1 for item in items if item["visible"]),
+                "custom": sum(1 for item in items if item["isCustom"]),
                 "instance": any(item["isInstance"] for item in items),
             }
         )
@@ -745,6 +893,8 @@ def main() -> int:
     print(f"Sin definición:         {counts['unresolvedPlacements']}")
     print(f"Sin placement:          {counts['unresolvedDefinitions']}")
     print(f"Labels duplicados:      {counts['duplicateLabels']}")
+    print(f"NPCs custom de OzRo:    {counts['custom']}")
+    print(f"NPCs con tienda:        {counts['shops']}")
     print(f"Funciones:              {counts['functions']}")
     print(f"Salida:                 {args.out}")
     print(f"Web:                    {web_dir}")
