@@ -6,7 +6,10 @@ status: closed-v2
 
 master:
   scope: all_items
-  source_of_truth: data/market/master.jsonl
+  source_of_truth_spec: data/market/SPEC.md
+  source_of_truth_decisions: data/market/canon.yml
+  current_sample: data/market/samples/
+  future_master: data/market/master.jsonl
   taxonomy_role: intermediate_input
   general_sample_population: marketEligible
   npc_market: all_items
