@@ -24,7 +24,7 @@ from pathlib import Path
 from typing import Any
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
-from market import common  # noqa: E402
+from market import common, valuation  # noqa: E402
 
 OUT_DIR = common.ROOT / "data" / "market" / "samples"
 GENERAL_SIZE = 150
@@ -56,6 +56,9 @@ def load_inputs() -> dict[str, Any]:
     drops = common.load_drop_sources(taxonomy, items, mobs)
     spawns, spawn_report = common.load_spawns()
     master = common.load_master_list()
+    groups = common.load_item_groups(taxonomy, items)
+    craft = common.load_craft_recipes()
+    cash = common.load_cash_prices(taxonomy, items)
     return {
         "taxonomy": taxonomy,
         "items": items,
@@ -65,6 +68,9 @@ def load_inputs() -> dict[str, Any]:
         "spawns": spawns,
         "spawn_report": spawn_report,
         "master": master,
+        "groups": groups,
+        "craft": craft,
+        "cash": cash,
         "canon": common.load_canon(),
     }
 
@@ -124,6 +130,9 @@ def build_metrics(data: dict[str, Any]) -> dict[int, dict[str, Any]]:
             "defense": item.get("defense", 0),
             "equipLevelMin": item.get("equipLevelMin", 0),
             "custom": bool(item.get("custom")),
+            "groupInfo": data["groups"].get(item_id, {}),
+            "craftRecipe": data["craft"].get(item_id),
+            "cashInfo": data["cash"].get(item_id),
             "npcSellToPlayer": item.get("buy", 0),
             "npcBuyFromPlayer": item.get("sell", 0),
             "taxonomy": tax,
@@ -146,27 +155,46 @@ def build_metrics(data: dict[str, Any]) -> dict[int, dict[str, Any]]:
         metric["difficultyPercentile"] = common.percentile_rank(threat_values, metric["difficultyRaw"])
         metric["difficultyTier"] = tier(metric["difficultyPercentile"], DIFFICULTY_BANDS) if metric["difficultyRaw"] is not None else "unknown"
 
-    # Demand residual: sold / expected sold for the same type and abundance tier.
-    expected: dict[tuple[str, str], list[float]] = defaultdict(list)
-    type_sold: dict[str, list[float]] = defaultdict(list)
+    def residual_map(field: str) -> dict[int, float]:
+        expected: dict[tuple[str, str], list[float]] = defaultdict(list)
+        fallback: dict[str, list[float]] = defaultdict(list)
+        for metric in metrics.values():
+            sold = metric[field]
+            if sold:
+                expected[(metric["type"], metric["abundanceTier"])].append(math.log1p(sold))
+                fallback[metric["type"]].append(math.log1p(sold))
+        expected_median = {key: common.median(values) for key, values in expected.items()}
+        fallback_median = {key: common.median(values) for key, values in fallback.items()}
+        result: dict[int, float] = {}
+        for metric in metrics.values():
+            sold = metric[field]
+            if not sold:
+                continue
+            key = (metric["type"], metric["abundanceTier"])
+            expected_log = expected_median.get(key, fallback_median.get(metric["type"], 0.0))
+            result[metric["itemId"]] = math.log1p(sold) - expected_log
+        return result
+
+    latam_residuals = residual_map("salesLatam")
+    atlantis_residuals = residual_map("salesAtlantis")
     for metric in metrics.values():
-        sold = metric["soldForRank"]
-        if sold:
-            expected[(metric["type"], metric["abundanceTier"])].append(math.log1p(sold))
-            type_sold[metric["type"]].append(math.log1p(sold))
-    expected_median = {key: common.median(values) for key, values in expected.items()}
-    type_median_sold = {key: common.median(values) for key, values in type_sold.items()}
-    residuals: list[float] = []
-    for metric in metrics.values():
-        sold = metric["soldForRank"]
-        if not sold:
+        item_id = metric["itemId"]
+        metric["demandLatamResidual"] = latam_residuals.get(item_id)
+        metric["demandAtlantisResidual"] = atlantis_residuals.get(item_id)
+        sources = []
+        if item_id in latam_residuals:
+            sources.append((latam_residuals[item_id], min(15.0, math.log1p(metric["salesLatam"] or 0))))
+        if item_id in atlantis_residuals:
+            sources.append((atlantis_residuals[item_id], min(15.0, math.log1p(metric["salesAtlantis"] or 0))))
+        if sources:
+            weight = sum(weight for _, weight in sources)
+            metric["demandResidual"] = sum(value * weight for value, weight in sources) / weight if weight else None
+            metric["demandSources"] = len(sources)
+        else:
             metric["demandResidual"] = None
-            continue
-        key = (metric["type"], metric["abundanceTier"])
-        expected_log = expected_median.get(key, type_median_sold.get(metric["type"], 0.0))
-        metric["demandResidual"] = math.log1p(sold) - expected_log
-        residuals.append(metric["demandResidual"])
-    residuals.sort()
+            metric["demandSources"] = 0
+
+    residuals = sorted(m["demandResidual"] for m in metrics.values() if m["demandResidual"] is not None)
     for metric in metrics.values():
         residual = metric["demandResidual"]
         metric["demandPercentile"] = common.percentile_rank(residuals, residual)
@@ -201,6 +229,7 @@ def build_prices(data: dict[str, Any], metrics: dict[int, dict[str, Any]]) -> No
     type_bases: dict[str, float] = {}
     type_medians: dict[str, float] = {}
     type_lows: dict[str, float] = {}
+    type_highs: dict[str, float] = {}
     for item_type in {m["type"] for m in priced}:
         values = [
             math.log(m["history"]["price"]["reference"])
@@ -211,6 +240,7 @@ def build_prices(data: dict[str, Any], metrics: dict[int, dict[str, Any]]) -> No
             type_bases[item_type] = math.exp(common.percentile(values, 0.40))
             type_medians[item_type] = math.exp(common.median(values))
             type_lows[item_type] = math.exp(common.percentile(values, 0.10))
+            type_highs[item_type] = math.exp(common.percentile(values, 0.90))
     open_supplies = [m["supplyOpen"] for m in metrics.values() if m["supplyOpen"] > 0]
     median_open_supply = common.median(open_supplies) if open_supplies else 1.0
     equipment_types = {"Weapon", "Armor", "ShadowGear", "Shadowgear"}
@@ -272,6 +302,9 @@ def build_prices(data: dict[str, Any], metrics: dict[int, dict[str, Any]]) -> No
                     "unknown": 0.50,
                     "none": 0.50,
                 }.get(access_best, 1.0)
+                group_share = float((metric.get("groupInfo") or {}).get("bestShare") or 0.0)
+                if access_best == "group" and group_share > 0:
+                    source_factor = 0.60 + 0.10 * (1.0 - group_share)
                 if metric["type"] in equipment_types:
                     combat = metric["attack"] + metric["defense"]
                     gear_factor = common.clamp(
@@ -299,6 +332,8 @@ def build_prices(data: dict[str, Any], metrics: dict[int, dict[str, Any]]) -> No
             raw = base * supply_mult * demand_mult * difficulty_mult
 
             mid = common.clamp(raw, floor, ceiling)
+            if status == "synthetic" and has_source:
+                mid = min(mid, type_highs.get(metric["type"], mid))
             uncertainty = CONFIDENCE_UNCERTAINTY.get(confidence, 0.50)
             if not reference:
                 uncertainty = max(uncertainty, 0.50)
@@ -408,6 +443,46 @@ def build_prices(data: dict[str, Any], metrics: dict[int, dict[str, Any]]) -> No
             review.append("not_market_eligible")
         metric["reviewReasons"] = sorted(set(review))
 
+
+def apply_craft_costs(metrics: dict[int, dict[str, Any]]) -> None:
+    for metric in metrics.values():
+        recipe = metric.get("craftRecipe")
+        if not recipe:
+            continue
+        cost = 0.0
+        complete = True
+        for material in recipe.get("materials") or []:
+            material_metric = metrics.get(material["itemId"])
+            if not material_metric:
+                complete = False
+                break
+            cost += material_metric["price"]["mid"] * material["amount"]
+        if not complete or cost <= 0:
+            continue
+        craft_cost = cost * 1.15
+        metric["craftCost"] = common.round_price(craft_cost)
+        if (
+            metric["price"]["status"] == "synthetic"
+            and metric["taxonomy"].get("access", {}).get("best") == "craft"
+            and craft_cost > metric["price"]["mid"]
+        ):
+            old_mid = max(1, metric["price"]["mid"])
+            ratio = craft_cost / old_mid
+            metric["price"]["mid"] = common.round_price(craft_cost)
+            metric["price"]["low"] = common.round_price(metric["price"]["low"] * ratio)
+            metric["price"]["high"] = common.round_price(metric["price"]["high"] * ratio)
+            metric["price"]["npcBuyPrice"] = common.round_price(
+                min(craft_cost * 0.45, metric["price"]["npcBuyPrice"] * 1.50)
+            )
+            metric["price"]["buyCeiling"] = metric["price"]["npcBuyPrice"]
+            metric["price"]["sellFloor"] = metric["price"]["npcBuyPrice"]
+            metric["price"]["npcSellPrice"] = common.round_price(
+                max(metric["price"]["npcBuyPrice"] * 1.10, min(craft_cost * 1.35, metric["price"]["npcBuyPrice"] * 1.50))
+            )
+            metric["price"]["baseMethod"] = "craft_cost"
+            metric["price"]["craftCost"] = metric["craftCost"]
+
+
 def serialize(metric: dict[str, Any]) -> dict[str, Any]:
     tax = metric["taxonomy"]
     return {
@@ -423,6 +498,10 @@ def serialize(metric: dict[str, Any]) -> dict[str, Any]:
         "marketEligible": metric["marketEligible"],
         "tags": metric["tags"],
         "sources": tax.get("sources", []),
+        "groupInfo": metric.get("groupInfo") or {},
+        "craftRecipe": metric.get("craftRecipe"),
+        "craftCost": metric.get("craftCost"),
+        "cash": metric.get("cashInfo"),
         "access": tax.get("access", {}),
         "spawnSupply": {
             "field": round(metric["flows"].get("field", 0), 6),
@@ -448,6 +527,9 @@ def serialize(metric: dict[str, Any]) -> dict[str, Any]:
             "salesAtlantis": metric["salesAtlantis"],
             "soldForRank": metric["soldForRank"],
             "residual": round(metric["demandResidual"], 4) if metric["demandResidual"] is not None else None,
+            "latamResidual": round(metric["demandLatamResidual"], 4) if metric.get("demandLatamResidual") is not None else None,
+            "atlantisResidual": round(metric["demandAtlantisResidual"], 4) if metric.get("demandAtlantisResidual") is not None else None,
+            "sources": metric.get("demandSources", 0),
             "percentile": round(metric["demandPercentile"], 2) if metric["demandPercentile"] is not None else None,
             "tier": metric["demandTier"],
             "marketPressure": metric["marketPressure"],
@@ -544,7 +626,60 @@ def choose_edge(metrics: dict[int, dict[str, Any]]) -> list[dict[str, Any]]:
     return rows
 
 
-def summary(data: dict[str, Any], metrics: dict[int, dict[str, Any]], general: list[dict], edge: list[dict]) -> dict[str, Any]:
+
+def build_composed(metrics: dict[int, dict[str, Any]]) -> list[dict[str, Any]]:
+    bases = [
+        m
+        for m in metrics.values()
+        if m["type"] in {"Weapon", "Armor"} and m["slots"] > 0 and m["price"]["status"] in {"market", "synthetic"}
+    ]
+    bases.sort(key=lambda m: (m["price"]["mid"], m["itemId"]))
+    if len(bases) > 12:
+        indices = sorted({round(i * (len(bases) - 1) / 11) for i in range(12)})
+        bases = [bases[index] for index in indices]
+    cards = [
+        m
+        for m in metrics.values()
+        if m["type"] == "Card" and m["price"]["status"] == "market"
+    ]
+    cards.sort(key=lambda m: (m["price"]["mid"], m["itemId"]))
+    if not bases or not cards:
+        return []
+    card_pool = [
+        cards[index]
+        for index in sorted({0, len(cards) // 4, len(cards) // 2, (3 * len(cards)) // 4, len(cards) - 1})
+    ]
+    rows = []
+    for base_index, base in enumerate(bases[:12]):
+        count = min(base["slots"], len(card_pool), 3)
+        chosen = [card_pool[(base_index + offset) % len(card_pool)] for offset in range(count)]
+        for refine in (0, 4, 7, 10):
+            breakdown = valuation.compose_value(
+                base["price"]["mid"],
+                refine=refine,
+                card_mids=[card["price"]["mid"] for card in chosen],
+                slots=base["slots"],
+            )
+            rows.append(
+                {
+                    "schemaVersion": 1,
+                    "sampleKind": "composed",
+                    "itemId": base["itemId"],
+                    "name": base["name"],
+                    "baseMid": base["price"]["mid"],
+                    "slots": base["slots"],
+                    "refine": refine,
+                    "cards": [
+                        {"itemId": card["itemId"], "name": card["name"], "mid": card["price"]["mid"]}
+                        for card in chosen
+                    ],
+                    "breakdown": breakdown,
+                }
+            )
+    return rows
+
+
+def summary(data: dict[str, Any], metrics: dict[int, dict[str, Any]], general: list[dict], edge: list[dict], composed: list[dict]) -> dict[str, Any]:
     def counts(rows: list[dict], key: str) -> dict[str, int]:
         result: dict[str, int] = defaultdict(int)
         for row in rows:
@@ -587,6 +722,7 @@ def summary(data: dict[str, Any], metrics: dict[int, dict[str, Any]], general: l
         "samples": {
             "general": len(general),
             "edge": len(edge),
+            "composed": len(composed),
             "generalTypes": counts(general, "type"),
             "generalStatus": counts(general, "price.status"),
             "generalAccess": counts(general, "access.best"),
@@ -692,7 +828,13 @@ def report(data: dict[str, Any], metrics: dict[int, dict[str, Any]], general: li
     for key, value in summary_data["samples"]["edgeTags"].items():
         lines.append(f"| `{key}` | {value} |")
 
-    lines += ["", "## Señales detectadas", ""]
+    lines += [
+        "",
+        f"Ejemplos compuestos: {summary_data['samples']['composed']} filas en `composed.jsonl`.",
+        "",
+        "## Señales detectadas",
+        "",
+    ]
     lines.append("### Sintéticos más caros")
     lines.append("")
     lines.append("| Item | Tipo | mid | supply abierto | review |")
@@ -726,8 +868,10 @@ def report(data: dict[str, Any], metrics: dict[int, dict[str, Any]], general: li
         "",
         "- `supplyOpen` excluye boss, instancia, guild, quest y event; usa field + dungeon.",
         "- El HP efectivo aplica `monster_hp_rate`/`mvp_hp_rate` (2x).",
-        "- El precio sintético usa type_p40 + multiplicadores de supply, demanda, dificultad, factor de fuente (group 0.70, craft 0.90, quest/instancia 0.80, sin fuente 0.50) y factor de equipo.",
-        "- Items sin fuente usan min(type_p10, 1M) * 0.50.",
+        "- El precio sintético usa type_p40 + supply/demanda/dificultad + factor de fuente (group 0.60-0.70, craft 0.90, quest/instancia 0.80, sin fuente 0.50) + factor de grupo + factor de equipo.",
+        "- Items sin fuente usan min(type_p10, 1M) * 0.50; los sintéticos con fuente se capan a type_p90.",
+        "- La demanda combina LATAM y Atlantis ponderando por log1p(total_sold).",
+        "- Los objetos compuestos se calculan con components.yml y valuation.py.",
         "- `npcBuyPrice`: sintético 45% del mid con cap de 50% de la mediana del tipo; market high 75%; medium 60% con cap de 1 mediana; low 45% / low 75%; manipulación 35% / low 70%.",
         "- `npcSellPrice` usa margen y se limita a 1.10–1.50x del `npcBuyPrice`.",
         "- La manipulación se marca con CV > 3 o `atlantis_extreme_max`, sin listas de excepciones.",
@@ -758,6 +902,7 @@ def main() -> None:
     data = load_inputs()
     metrics = build_metrics(data)
     build_prices(data, metrics)
+    apply_craft_costs(metrics)
 
     general_population = sorted(item_id for item_id, metric in metrics.items() if metric["marketEligible"])
     rng = random.Random(args.seed)
@@ -768,17 +913,19 @@ def main() -> None:
         row["sampleKind"] = "general"
         general.append(row)
     edge = choose_edge(metrics)
+    composed = build_composed(metrics)
 
-    summary_data = summary(data, metrics, general, edge)
+    summary_data = summary(data, metrics, general, edge, composed)
     args.out.mkdir(parents=True, exist_ok=True)
     write_jsonl(args.out / "general.jsonl", general)
     write_jsonl(args.out / "edge.jsonl", edge)
+    write_jsonl(args.out / "composed.jsonl", composed)
     (args.out / "summary.json").write_text(
         json.dumps(summary_data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
     )
     (args.out / "REPORT.md").write_text(report(data, metrics, general, edge, summary_data), encoding="utf-8")
 
-    print(f"wrote {len(general)} general and {len(edge)} edge samples -> {args.out}")
+    print(f"wrote {len(general)} general, {len(edge)} edge and {len(composed)} composed samples -> {args.out}")
     print(f"items: {len(metrics)}, open supply: {summary_data['universe']['withOpenSupply']}, "
           f"market: {summary_data['universe']['marketPrice']}, synthetic: {summary_data['universe']['syntheticPrice']}")
 

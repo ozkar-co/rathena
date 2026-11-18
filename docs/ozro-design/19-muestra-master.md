@@ -1,6 +1,6 @@
 # Muestra de la master de mercado
 
-**Estado:** muestra iterada v1 (no es el master final)
+**Estado:** muestra iterada v2 (no es el master final)
 **Fecha:** 2026-11-18  
 **Herramientas:** `tools/market/common.py`, `tools/market/build_sample.py`  
 **Datos:** `data/market/samples/general.jsonl`, `edge.jsonl`, `summary.json`, `REPORT.md`  
@@ -29,6 +29,7 @@ Salida:
 
 - `general.jsonl`: 150 items de la población market-eligible.
 - `edge.jsonl`: 119 casos borde con `edgeTags`.
+- `composed.jsonl`: 48 ejemplos de objetos compuestos (refine + cartas).
 - `summary.json`: conteos, rates, tipos de spawn y distribución.
 - `REPORT.md`: reporte generado.
 
@@ -82,7 +83,7 @@ Fórmula sintética:
 
 | Mejor acceso | Factor |
 |---|---:|
-| `group` | 0,70 |
+| `group` | 0,60–0,70 |
 | `craft` | 0,90 |
 | `quest` / `instance` | 0,80 |
 | `guild` | 0,70 |
@@ -90,9 +91,12 @@ Fórmula sintética:
 | `normal` / `npc` / `cash` | 1,00 |
 
 3. Factor de equipo para armas/armaduras/shadow: slots, ataque/defensa y nivel mínimo.
-4. Multiplicadores de supply abierto, demanda residual y dificultad.
-5. Cap para items sin fuente: `min(type_p10, 1.000.000) * 0,50`.
-6. `mid` clampeado por anclas NPC (`Buy`/`Sell`).
+4. Factor de grupo: `0,60 + 0,10 * (1 - bestGroupShare)`.
+5. Multiplicadores de supply abierto, demanda residual y dificultad.
+6. Cap `type_p90` para sintéticos con fuente.
+7. Cap para items sin fuente: `min(type_p10, 1.000.000) * 0,50`.
+8. Costo de receta cuando `produce_db` tiene materiales: `craftCost = suma(materiales * 1,15)`.
+9. `mid` clampeado por anclas NPC (`Buy`/`Sell`).
 
 ### 2.4 Compra y venta NPC
 
@@ -131,9 +135,25 @@ Además de precio, cada item guarda:
 - `demand.stockHint` (`low`, `normal`, `high`, `unknown`);
 - `demand.restockWeight` (0,1–0,9).
 
+La demanda combina LATAM y Atlantis: se calcula el residual por fuente y se pondera por `log1p(total_sold)`. Si solo hay una fuente, usa esa.
+
 Eso permite que un NPC futuro decida stock o frecuencia sin recalcular todo.
 
-### 2.6 Tags
+### 2.6 Objetos compuestos
+
+`composed.jsonl` usa `data/market/components.yml` y `tools/market/valuation.py`:
+
+```
+valor = base * refineFactor + cartas * liquidityDiscount + enchantValue
+```
+
+- `refineFactors`: +0 a +10.
+- `liquidityDiscount`: 0,85.
+- Cap: base * 5 + cartas * 1,5.
+- No se enumeran combinaciones; se valoran con la función.
+- `enchantValue` queda como placeholder hasta mapear encantamientos.
+
+### 2.7 Tags
 
 Los tags salen de categorías de taxonomía + restricciones de `access`. Un item puede tener varios: `group`, `craft`, `instance_only`, `guild_only`, `boss_only`, `high_hp`, `npc_shop`, `unobtainable`, `untradeable`, etc.
 
@@ -154,7 +174,7 @@ Los tags salen de categorías de taxonomía + restricciones de `access`. Un item
 | Con supply abierto | 1.620 |
 | Market-eligible con supply abierto | 1.615 |
 | Market-eligible sin supply abierto | 8.007 |
-| Clampeados por ancla NPC | 1.266 |
+| Clampeados por ancla NPC | 1.265 |
 | Manipulación sospechada | 166 |
 
 La mayor parte del catálogo tiene precio sintético. El modelo de abundancia solo cubre 1.615 items market-eligible; para 8.007 el precio se apoya en el tipo y la calidad de fuente.
@@ -184,12 +204,15 @@ La mayor parte del catálogo tiene precio sintético. El modelo de abundancia so
 - 123 de 150 no tienen supply abierto.
 - 37 de los 49 sintéticos son `group`.
 - Solo 2 sintéticos tienen supply abierto.
+- Demanda: 66 sin fuente, 64 con una fuente y 20 con LATAM + Atlantis.
+- Factor de grupo: bestShare mediano 0,02; el factor queda cerca de 0,70.
+- Craft: solo 1 item de la muestra general tiene receta en `produce_db`; en edge hay 12.
 
 Precios medianos:
 
 | Estado | mid | compra NPC | venta NPC |
 |---|---:|---:|---:|
-| `market` | 859.000z | 160.000z | 240.000z |
+| `market` | 889.000z | 176.000z | 264.000z |
 | `synthetic` | 700.000z | 315.000z | 472.000z |
 
 Después de usar `type_p40` y el factor de fuente, el sintético quedó **por debajo** del mercado en la mediana. El spread compra/venta quedó en un rango razonable (1,5x–2,0x), no en 9x como antes.
@@ -198,7 +221,7 @@ Después de usar `type_p40` y el factor de fuente, el sintético quedó **por de
 
 ## 5. Casos borde
 
-119 items. Categorías principales:
+119 items, más 48 ejemplos compuestos. Categorías principales:
 
 | Caso | n | Lectura |
 |---|---:|---|
@@ -226,7 +249,10 @@ Después de usar `type_p40` y el factor de fuente, el sintético quedó **por de
 - **No-source:** el cap `min(type_p10, 1M) * 0,5` evita los 50M de pet eggs sin fuente.
 - **Custom:** las monedas quedaron con precio manual; no dependen del modelo.
 - **Manipulación:** Red Potion, hierbas y Apple se marcan; el `npcBuyPrice` los contiene.
-- **NPC anchors:** 1.266 items fueron clampeados; el precio externo y el precio NPC no siempre coinciden.
+- **NPC anchors:** 1.265 items fueron clampeados; el precio externo y el precio NPC no siempre coinciden.
+- **Compuestos:** en bases baratas la carta domina el valor; en bases caras el refine casi no mueve el precio. Las tablas son placeholders y necesitan validación.
+- **Craft:** el costo de receta solo aplica a `produce_db`; Laphine y tasas de éxito siguen fuera.
+- **Sintético de grupo:** el cap `type_p90` y el factor 0,60–0,70 evitan los valores extremos, pero el prior sigue siendo grueso.
 
 ---
 
@@ -272,19 +298,22 @@ Estado actual: 156 items `high_hp` y 105 `high_hp_source`.
 8. **Presión de mercado, stockHint y restockWeight** para stock/frecuencia futura.
 9. **Tags múltiples**, sin reglas especiales por item.
 10. **Muestra general market-eligible**; los casos raros y no elegibles van a la muestra borde.
+11. **Demanda combinada LATAM + Atlantis**.
+12. **Factor de grupo y costo de craft** donde hay datos.
+13. **Objetos compuestos** con tablas y contrato de valoración.
 
 ---
 
 ## 8. Riesgos y pendientes
 
 - **Group/package:** 8.007 market-eligible sin supply abierto. El sintético por tipo es el fallback, pero no distingue bien dentro del grupo.
-- **Craft:** falta costo de receta y tasa de éxito.
+- **Craft:** `produce_db` cubre pocos casos; Laphine y tasas de éxito siguen pendientes.
 - **Item mall:** no hay conversión a zeny; el techo queda en NPC/manual.
 - **Pet eggs y equipo caro:** el `mid` puede ser alto; el `npcBuyPrice` lo contiene, pero conviene revisar.
 - **Custom:** los precios manuales son canon; si cambia la economía, se actualizan en `canon.yml`.
 - **Umbral de HP:** 10M efectivo; confirmar si queda como canon.
 - **Demanda:** residual por tipo/abundancia; faltan pesos LATAM/Atlantis.
-- **Compuestos:** el master debe incluir tablas de refine/cartas/slots/encantamientos y el contrato `compose_value`.
+- **Compuestos:** las tablas son placeholder; faltan encantamientos reales y validación contra mercado.
 
 ---
 

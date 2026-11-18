@@ -53,12 +53,13 @@
     "marketEligibleSynthetic": 3970,
     "marketEligibleWithOpenSupply": 1615,
     "marketEligibleNoOpenSupply": 8007,
-    "clampedByAnchor": 1266,
+    "clampedByAnchor": 1265,
     "manipulationSuspected": 166
   },
   "samples": {
     "general": 150,
     "edge": 119,
+    "composed": 48,
     "generalTypes": {
       "Armor": 38,
       "Etc": 38,

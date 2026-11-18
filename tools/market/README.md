@@ -1,5 +1,7 @@
 # Market tools
 
+Technical specification: `data/market/SPEC.md`.
+
 Sample pipeline for the future OzRo market master. The taxonomy is an
 intermediate artifact; the master is the source of truth.
 
@@ -15,6 +17,7 @@ Outputs:
 - `data/market/samples/edge.jsonl`
 - `data/market/samples/summary.json`
 - `data/market/samples/REPORT.md`
+- `data/market/samples/composed.jsonl`
 
 ## Inputs
 
@@ -29,7 +32,10 @@ Outputs:
 - All items receive a canonical price: `market`, `synthetic` or `manual`.
 - `supplyOpen = field + dungeon`; boss/instance/guild/quest/event/other are separate.
 - Effective HP uses `monster_hp_rate`/`mvp_hp_rate` (currently 2x).
-- Synthetic base is `type_p40` plus source-factor and gear-factor adjustments.
+- Synthetic base is `type_p40` plus source, group, gear and `type_p90` cap adjustments.
+- Demand combines LATAM and Atlantis residuals.
+- Craft cost uses `produce_db` when available.
+- Composed items use `data/market/components.yml` and `tools/market/valuation.py`.
 - Items without source use `min(type_p10, 1M) * 0.50`.
 - `npcBuyPrice` and `npcSellPrice` are separate, with a controlled spread.
 - `marketPressure`, `stockHint` and `restockWeight` are stored for future NPC stock logic.

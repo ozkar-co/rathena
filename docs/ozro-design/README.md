@@ -47,6 +47,7 @@ La sección **Comentarios** al final de cada archivo es un borrador libre: se ap
 | [17-quests-de-job.md](./17-quests-de-job.md) | Quests de cambio de job: estado actual, uso de las quests 1-1 de pre-re y plan de traducción/balance archivo por archivo |
 | [18-precio-mercado-maestro.md](./18-precio-mercado-maestro.md) | Precio de mercado maestro: análisis de datos, clasificación de abundancia/dificultad/demanda, modelo de precio y plan de herramientas |
 | [19-muestra-master.md](./19-muestra-master.md) | Muestra generada del master: herramientas, datos aleatorios, casos borde, decisiones y hallazgos |
+| [20-master-schema.md](./20-master-schema.md) | Contrato del master: campos, fórmulas, tags, compra/venta NPC y reglas para consumidores |
 
 ## Repos relacionados
 

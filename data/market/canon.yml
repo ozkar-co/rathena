@@ -1,6 +1,8 @@
 schemaVersion: 1
+version: 2
 updatedAt: "2026-11-18"
-status: sample
+closedAt: "2026-11-18"
+status: closed-v2
 
 master:
   scope: all_items
@@ -32,7 +34,9 @@ pricing:
     35004: 100000
     35005: 500000
   synthetic_base: type_p40
+  synthetic_cap: type_p90
   synthetic_gear_factor: "slots, attack+defense, equip level; clamped 0.70-2.00"
+  synthetic_group_factor: "0.60 + 0.10 * (1 - bestGroupShare)"
   no_source_base_cap: 1000000
   no_source_formula: "min(type_p10, 1000000) * 0.50"
   npc_sell_formula: "max(buy * 1.10, min(mid * (1 + margin), buy * 1.50))"
@@ -54,6 +58,9 @@ pricing:
     normal: 1.00
     npc: 1.00
     cash: 1.00
+  demand_combine: "LATAM and Atlantis residuals weighted by log1p(total_sold)"
+  cash_shop: "tag and cashPrice only; no zeny conversion yet"
+  composed: "data/market/components.yml + tools/market/valuation.py"
   buy_ceiling:
     synthetic: "45% of mid, capped at 50% of type median"
     market_high: "75% of mid"

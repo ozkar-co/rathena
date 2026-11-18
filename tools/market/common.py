@@ -34,6 +34,9 @@ ITEM_FILES = [
     ROOT / "db/import/item_db.yml",
 ]
 MOB_FILES = [ROOT / "db/re/mob_db.yml", ROOT / "db/import/mob_db.yml"]
+GROUP_FILES = [ROOT / "db/re/item_group_db.yml", ROOT / "db/import/item_group_db.yml"]
+PRODUCE_FILES = [ROOT / "db/re/produce_db.txt", ROOT / "db/import/produce_db.txt"]
+CASH_FILES = [ROOT / "db/item_cash.yml", ROOT / "db/import/item_cash.yml"]
 
 sys.path.insert(0, str(TOOLS))
 import mob_spawns  # noqa: E402
@@ -125,6 +128,93 @@ def load_mobs() -> dict[int, dict[str, Any]]:
             if mob_id >= 0:
                 mobs[mob_id] = row
     return mobs
+
+
+def build_aegis_map(taxonomy: dict[str, Any], items: dict[int, dict[str, Any]]) -> dict[str, int]:
+    aegis_to_id: dict[str, int] = {}
+    for item in items.values():
+        if item["aegis"]:
+            aegis_to_id[normalize_aegis(item["aegis"])] = item["id"]
+    for key, meta in taxonomy["items"].items():
+        if meta.get("aegis"):
+            aegis_to_id.setdefault(normalize_aegis(str(meta["aegis"])), as_int(key, -1))
+    return aegis_to_id
+
+
+def load_item_groups(taxonomy: dict[str, Any], items: dict[int, dict[str, Any]]) -> dict[int, dict[str, Any]]:
+    aegis_to_id = build_aegis_map(taxonomy, items)
+    result: dict[int, dict[str, Any]] = defaultdict(lambda: {"groups": [], "bestShare": 0.0})
+    for path in GROUP_FILES:
+        for group in body(path):
+            group_name = str(group.get("Group") or "")
+            for subgroup in group.get("SubGroups") or []:
+                entries = subgroup.get("List") or []
+                total = sum(as_int(entry.get("Rate")) for entry in entries) or 1
+                for entry in entries:
+                    item_id = aegis_to_id.get(normalize_aegis(str(entry.get("Item") or "")))
+                    if item_id is None:
+                        continue
+                    rate = as_int(entry.get("Rate"))
+                    share = rate / total if total else 0.0
+                    result[item_id]["groups"].append(
+                        {
+                            "group": group_name,
+                            "subGroup": as_int(subgroup.get("SubGroup")),
+                            "rate": rate,
+                            "share": round(share, 6),
+                        }
+                    )
+                    result[item_id]["bestShare"] = max(result[item_id]["bestShare"], share)
+    return result
+
+
+def load_craft_recipes() -> dict[int, dict[str, Any]]:
+    recipes: dict[int, dict[str, Any]] = {}
+    for path in PRODUCE_FILES:
+        if not path.exists():
+            continue
+        for raw in path.read_text(encoding="utf-8", errors="replace").splitlines():
+            line = raw.split("//", 1)[0].strip()
+            if not line:
+                continue
+            parts = [part.strip() for part in line.split(",")]
+            if len(parts) < 6:
+                continue
+            output = as_int(parts[1])
+            if output <= 0:
+                continue
+            materials = []
+            for index in range(5, len(parts) - 1, 2):
+                item_id = as_int(parts[index])
+                if item_id > 0:
+                    materials.append({"itemId": item_id, "amount": as_int(parts[index + 1], 1)})
+            if materials:
+                recipes[output] = {
+                    "itemId": output,
+                    "itemLevel": as_int(parts[2]),
+                    "skill": as_int(parts[3]),
+                    "skillLevel": as_int(parts[4]),
+                    "materials": materials,
+                }
+    return recipes
+
+
+def load_cash_prices(taxonomy: dict[str, Any], items: dict[int, dict[str, Any]]) -> dict[int, dict[str, Any]]:
+    aegis_to_id = build_aegis_map(taxonomy, items)
+    result: dict[int, dict[str, Any]] = {}
+    for path in CASH_FILES:
+        data = load_yaml(path)
+        for tab in data.get("Body") or []:
+            tab_name = str(tab.get("Tab") or "")
+            for entry in tab.get("Items") or []:
+                item_id = aegis_to_id.get(normalize_aegis(str(entry.get("Item") or "")))
+                if item_id is None:
+                    continue
+                result[item_id] = {
+                    "tab": tab_name,
+                    "cashPrice": as_int(entry.get("Price")),
+                }
+    return result
 
 
 def load_drop_sources(
