@@ -112,13 +112,13 @@ Excluir o capar si el item está en NPC shop y `npcSellToPlayer <= npcBuyPrice`.
 Precio de oferta:
 
 ```
-offerPrice = min(npcBuyPrice * 1.15, mid * 0.85, npcSellPrice * 0.95)
+offerPrice = npcBuyPrice * 2.00
 if item is npc_shop:
     offerPrice = min(offerPrice, npcSellToPlayer * 0.90)
 offerPrice = max(500, offerPrice)
 ```
 
-El multiplicador 1,15 es el “Garrett paga más” del lore. El cap evita pagar más que el valor canónico o que una tienda NPC.
+El multiplicador 2,00 es el “Garrett paga el doble” del lore. El único cap es la tienda NPC, para evitar arbitraje.
 
 Opcional futuro: multiplicador histórico por NPC, como dice el diseño:
 
@@ -162,7 +162,7 @@ qty = round(targetPayout / max(1, unit))
 qty = clamp(qty, minQty[tier], maxQty[tier])
 qty = min(qty, floor(MAX_MISSION_WEIGHT / max(1, weight)))
 
-payout = max(1_000, round(unit * qty * 1.10))
+payout = max(1_000, round(unit * qty * 1.00))
 payout = min(payout, 1_500_000)
 ```
 
@@ -170,11 +170,11 @@ Valores de la propuesta:
 
 | Tier | `tierTarget` | `minQty` | `maxQty` |
 |---|---:|---:|---:|
-| Común | 800.000 | 20 | 1.000 |
-| Poco común | 1.050.000 | 10 | 500 |
-| Raro | 1.300.000 | 5 | 200 |
+| Común | 800.000 | 20 | 300 |
+| Poco común | 1.050.000 | 10 | 200 |
+| Raro | 1.300.000 | 5 | 100 |
 
-`missionMultiplier`: 1,10.
+`missionMultiplier`: 1,00.
 `MAX_MISSION_WEIGHT`: 5.000.
 No hay piso de 500k.
 
@@ -183,13 +183,13 @@ Resultado de la propuesta generada:
 | Métrica | Valor |
 |---|---:|
 | Misiones | 50 |
-| Payout promedio | 1.018.340 |
-| Payout mínimo | 715.000 |
-| Payout máximo | 1.408.000 |
+| Payout promedio | 1.022.640 |
+| Payout mínimo | 780.000 |
+| Payout máximo | 1.368.000 |
 | Cantidad mínima | 5 |
-| Cantidad máxima | 500 |
-| Ratio promedio `payout / (npcBuy × qty)` | 1,259 |
-| Misiones limitadas por peso | 26 |
+| Cantidad máxima | 300 |
+| Ratio promedio `payout / (npcBuy × qty)` | 1,989 |
+| Misiones limitadas por peso | 9 |
 
 Efecto:
 
@@ -283,7 +283,7 @@ def build_missions(master, day_seed):
         qty = round(target / unit)
         qty = clamp(qty, min_qty[tier], max_qty[tier])
         qty = min(qty, MAX_WEIGHT // max(1, item.weight))
-        payout = min(1_500_000, max(1_000, round(unit * qty * 1.10)))
+        payout = min(1_500_000, max(1_000, round(unit * qty * 1.00)))
         result.append({"tier": tier, "item": item, "qty": qty, "payout": payout})
     return result
 ```
@@ -358,7 +358,7 @@ mobLevel, map, spawnAmount, dropRate
 
 1. `tierTarget` definitivo (800k/1.05M/1.3M).
 2. `minQty`/`maxQty` por tier (20/10/5 y 1000/500/200).
-3. `missionMultiplier` 1,10.
+3. `missionMultiplier` 1,00.
 4. Tabla fija: 50 misiones y 200 ofertas.
 5. Entregas parciales y pérdida total por fracaso.
 6. Pago de misiones por item o por paquete.
@@ -374,7 +374,7 @@ El problema de Garrett no es solo el precio: es que el pago no está atado al es
 ```
 precio = npcBuyPrice
 cantidad = targetPayout / npcBuyPrice
-payout = cantidad * npcBuyPrice * 1,10
+payout = cantidad * npcBuyPrice * 1,00
 ```
 
 Eso corrige el caso de items fáciles pagados a 600k: o sube mucho la cantidad, o baja el pago. Y deja el sistema listo para un multiplicador histórico por NPC sin cambiar la base.

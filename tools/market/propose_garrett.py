@@ -23,11 +23,11 @@ OFFER_COUNT = 200
 MISSION_COUNTS = {"common": 20, "uncommon": 20, "rare": 10}
 TIER_TARGET = {"common": 800_000, "uncommon": 1_050_000, "rare": 1_300_000}
 MIN_QTY = {"common": 20, "uncommon": 10, "rare": 5}
-MAX_QTY = {"common": 1000, "uncommon": 500, "rare": 200}
-MISSION_MULTIPLIER = 1.10
+MAX_QTY = {"common": 300, "uncommon": 200, "rare": 100}
+MISSION_MULTIPLIER = 1.00
 MISSION_CAP = 1_500_000
 MAX_WEIGHT = 5000
-GARRETT_MULTIPLIER = 1.15
+GARRETT_MULTIPLIER = 2.00
 MIN_OFFER_PRICE = 500
 
 RESTRICTED_TAGS = {
@@ -44,11 +44,10 @@ RESTRICTED_TAGS = {
 
 def garrett_buy(metric: dict[str, Any]) -> int:
     base = metric["price"]["npcBuyPrice"]
-    mid = metric["price"]["mid"]
     npc_sell = metric["npcSellToPlayer"]
-    cap = min(mid * 0.85, metric["price"]["npcSellPrice"] * 0.95)
+    cap = float("inf")
     if metric["npcShop"] and npc_sell > 0:
-        cap = min(cap, npc_sell * 0.90)
+        cap = npc_sell * 0.90
     return max(1, common.round_price(min(base * GARRETT_MULTIPLIER, cap)))
 
 
