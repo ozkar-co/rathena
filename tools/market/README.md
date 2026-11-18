@@ -33,7 +33,7 @@ Outputs:
 python3 tools/market/propose_garrett.py
 ```
 
-Writes `data/market/samples/garrett_proposal.json` and `.md`.
+Writes `data/market/samples/garrett_proposal.json`, `.md`, and `ozro-site/assets/items/garrett.json`.
 
 ## Garrett legacy comparison
 
@@ -55,3 +55,5 @@ Writes `data/market/samples/garrett_comparison.json` and `.md`.
 - Items without source use `min(type_p10, 1M) * 0.50`.
 - `npcBuyPrice` and `npcSellPrice` are separate, with a controlled spread.
 - `marketPressure`, `stockHint` and `restockWeight` are stored for future NPC stock logic.
+- Garrett excludes cards, `scarce`/`rare` abundance and items used by repeatable
+  custom NPCs in `npc/custom/ozro/repeteables/`.

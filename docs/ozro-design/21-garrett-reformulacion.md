@@ -128,7 +128,17 @@ offerPrice *= npcHistoryMultiplier
 
 La base sigue siendo la fórmula canónica v2.
 
-### 4.3 Pool de misiones
+### 4.3 Blacklist
+
+Además de los filtros de acceso, se excluyen:
+
+- `type == "Card"`: todas las cartas.
+- `abundanceTier in {scarce, rare}`: demasiado raras.
+- Items usados por NPCs custom repetibles de `npc/custom/ozro/repeteables/`: 15 IDs detectados por `delitem`/`countitem`/`getitem`.
+
+El blacklist se aplica a ofertas y misiones.
+
+### 4.4 Pool de misiones
 
 Incluir solo si:
 
@@ -149,7 +159,7 @@ Tiers:
 | Poco común | `abundanceTier in {common, uncommon}` y `difficultyTier in {easy, medium, hard}` |
 | Raro | `abundanceTier in {uncommon, scarce, rare}` o `difficultyTier in {hard, extreme}` |
 
-### 4.4 Cantidad y pago
+### 4.5 Cantidad y pago
 
 La cantidad sale de un **pago objetivo**, no de un mínimo fijo.
 
@@ -183,9 +193,9 @@ Resultado de la propuesta generada:
 | Métrica | Valor |
 |---|---:|
 | Misiones | 50 |
-| Payout promedio | 1.022.640 |
+| Payout promedio | 1.021.280 |
 | Payout mínimo | 780.000 |
-| Payout máximo | 1.368.000 |
+| Payout máximo | 1.380.000 |
 | Cantidad mínima | 5 |
 | Cantidad máxima | 300 |
 | Ratio promedio `payout / (npcBuy × qty)` | 1,989 |
@@ -198,7 +208,7 @@ Efecto:
 - Item de instancia/boss/high-HP: no entra.
 - Nunca se paga el piso de 500k por un item trivial.
 
-### 4.5 Entregas parciales y fracaso
+### 4.6 Entregas parciales y fracaso
 
 Las misiones pueden requerir cantidades grandes, así que se permite entregar por partes:
 
@@ -218,16 +228,16 @@ Reglas:
 
 Esto es el “precio de hacer tratos con Garrett”.
 
-### 4.6 Tabla fija, sin generación dinámica
+### 4.7 Tabla fija, sin generación dinámica
 
 La tabla se genera una vez y se deja fija en el NPC:
 
-- `propose_garrett.py` genera `garrett_proposal.json` y `.md`.
+- `propose_garrett.py` genera `garrett_proposal.json`, `.md` y `ozro-site/assets/items/garrett.json`.
 - El NPC usa arrays fijos generados desde esa tabla.
 - No hay selección aleatoria diaria de items.
 - El cronograma puede ser fijo: 50 misiones y 200 ofertas siempre disponibles según diseño.
 
-### 4.7 Anti-arbitraje
+### 4.8 Anti-arbitraje
 
 ```
 if item is npc_shop and npcSellToPlayer < offerPrice:
@@ -243,7 +253,7 @@ payout = min(payout, maxPayoutByShop)
 
 Si el item se puede comprar más barato en NPC shop, Garrett no debe pagar más que eso.
 
-### 4.8 Frecuencia y stock
+### 4.9 Frecuencia y stock
 
 No hace falta stock para Garrett; las ofertas ya son diarias. Pero se puede usar:
 
@@ -320,6 +330,8 @@ Generada por `tools/market/propose_garrett.py`:
 
 - `data/market/samples/garrett_proposal.json`: datos completos.
 - `data/market/samples/garrett_proposal.md`: tabla legible.
+
+El JSON de la web es `ozro-site/assets/items/garrett.json`.
 
 Columnas de misión:
 

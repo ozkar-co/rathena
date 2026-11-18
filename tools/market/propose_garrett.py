@@ -9,6 +9,7 @@ from __future__ import annotations
 import json
 import math
 import random
+import re
 import sys
 from collections import defaultdict
 from pathlib import Path
@@ -18,6 +19,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from market import build_sample, common  # noqa: E402
 
 OUT_DIR = common.ROOT / "data" / "market" / "samples"
+WEB_OUTPUT = common.ROOT.parent / "ozro-site" / "assets" / "items" / "garrett.json"
 SEED = 20261118
 OFFER_COUNT = 200
 MISSION_COUNTS = {"common": 20, "uncommon": 20, "rare": 10}
@@ -30,6 +32,10 @@ MAX_WEIGHT = 5000
 GARRETT_MULTIPLIER = 2.00
 MIN_OFFER_PRICE = 500
 
+REPEATABLE_GLOB = common.ROOT / "npc" / "custom" / "ozro" / "repeteables" / "*.txt"
+EXCLUDED_ABUNDANCE = {"scarce", "rare"}
+ITEM_CMD_RE = re.compile(r"\b(?:delitem|countitem|getitem|getitembound|getitem2|getgroupitem)\s*\(?\s*(?:\"([^\"]+)\"|(\d+))", re.IGNORECASE)
+
 RESTRICTED_TAGS = {
     "instance_only",
     "guild_only",
@@ -40,6 +46,32 @@ RESTRICTED_TAGS = {
     "untradeable",
     "cash_shop",
 }
+
+
+def load_repeatable_blacklist(data: dict[str, Any]) -> set[int]:
+    name_to_id = {}
+    for metric in data.get("items", {}).values():
+        name_to_id[str(metric.get("name") or "").lower()] = metric["id"]
+        if metric.get("aegis"):
+            name_to_id[str(metric["aegis"]).lower()] = metric["id"]
+    for key, meta in data["taxonomy"]["items"].items():
+        if meta.get("name"):
+            name_to_id.setdefault(str(meta["name"]).lower(), int(key))
+        if meta.get("aegis"):
+            name_to_id.setdefault(str(meta["aegis"]).lower(), int(key))
+    blacklist: set[int] = set()
+    for path in sorted(REPEATABLE_GLOB.parent.glob(REPEATABLE_GLOB.name)):
+        text = path.read_text(encoding="latin-1", errors="replace")
+        for raw_line in text.splitlines():
+            line = raw_line.split("//", 1)[0]
+            for name, number in ITEM_CMD_RE.findall(line):
+                if number:
+                    blacklist.add(int(number))
+                elif name:
+                    item_id = name_to_id.get(name.lower())
+                    if item_id:
+                        blacklist.add(item_id)
+    return blacklist
 
 
 def garrett_buy(metric: dict[str, Any]) -> int:
@@ -54,17 +86,23 @@ def garrett_buy(metric: dict[str, Any]) -> int:
 def mission_tier(metric: dict[str, Any]) -> str:
     abundance = metric["abundanceTier"]
     difficulty = metric["difficultyTier"]
-    if abundance in {"uncommon", "scarce", "rare"} or difficulty in {"hard", "extreme"}:
+    if abundance == "uncommon" or difficulty in {"hard", "extreme"}:
         return "rare"
     if abundance == "common" or difficulty == "medium":
         return "uncommon"
     return "common"
 
 
-def eligible(metric: dict[str, Any]) -> bool:
+def eligible(metric: dict[str, Any], blacklist: set[int]) -> bool:
     tags = set(metric["tags"])
     access = metric["taxonomy"].get("access", {})
     if not metric["marketEligible"]:
+        return False
+    if metric["type"] == "Card":
+        return False
+    if metric["abundanceTier"] in EXCLUDED_ABUNDANCE:
+        return False
+    if metric["itemId"] in blacklist:
         return False
     if not access.get("commonFarmEligible"):
         return False
@@ -164,7 +202,8 @@ def main() -> None:
     build_sample.build_prices(data, metrics)
     build_sample.apply_craft_costs(metrics)
 
-    candidates = [metric for metric in metrics.values() if eligible(metric)]
+    blacklist = load_repeatable_blacklist(data)
+    candidates = [metric for metric in metrics.values() if eligible(metric, blacklist)]
     candidates.sort(key=lambda m: (m["abundanceTier"], m["price"]["npcBuyPrice"], m["itemId"]))
     rng = random.Random(SEED)
 
@@ -232,7 +271,7 @@ def main() -> None:
     ]
     offers = pick_buckets(
         offer_pool,
-        {"abundant": 70, "common": 70, "uncommon": 40, "scarce": 20, "rare": 0},
+        {"abundant": 80, "common": 80, "uncommon": 40},
     )[:OFFER_COUNT]
     offer_rows = []
     for metric in offers:
@@ -279,6 +318,8 @@ def main() -> None:
         "policy": {
             "garrettMultiplier": GARRETT_MULTIPLIER,
             "minOfferPrice": MIN_OFFER_PRICE,
+            "excludedAbundance": sorted(EXCLUDED_ABUNDANCE),
+            "blacklistedRepeatableItems": len(blacklist),
             "missionMultiplier": MISSION_MULTIPLIER,
             "missionCap": MISSION_CAP,
             "maxWeight": MAX_WEIGHT,
@@ -336,7 +377,57 @@ def main() -> None:
         )
     (OUT_DIR / "garrett_proposal.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
 
+    web = {
+        "schemaVersion": 1,
+        "seed": SEED,
+        "source": "ozro-market-v2",
+        "policy": out["policy"],
+        "offers": [
+            {
+                "itemId": row["itemId"],
+                "name": row["name"],
+                "type": row["type"],
+                "price": row["garrettBuy"],
+                "canonicalBuy": row["canonicalBuy"],
+                "mid": row["canonicalMid"],
+                "tier": row["abundance"],
+                "demand": row["demand"],
+                "mob": row["mob"],
+                "mobHp": row["mobHp"],
+                "mobLevel": row["mobLevel"],
+                "map": row["map"],
+                "spawnAmount": row["spawnAmount"],
+                "dropRate": row["dropRate"],
+            }
+            for row in offer_rows
+        ],
+        "missions": [
+            {
+                "missionId": index,
+                "tier": row["tier"],
+                "itemId": row["itemId"],
+                "name": row["name"],
+                "quantity": row["quantity"],
+                "unitPrice": row["garrettUnit"],
+                "payout": row["payout"],
+                "canonicalBuy": row["canonicalBuy"],
+                "canonicalBuyValue": row["canonicalBuyValue"],
+                "abundance": row["abundance"],
+                "difficulty": row["difficulty"],
+                "mob": row["mob"],
+                "mobHp": row["mobHp"],
+                "mobLevel": row["mobLevel"],
+                "partialDelivery": True,
+                "forfeitOnFail": True,
+            }
+            for index, row in enumerate(missions, 1)
+        ],
+    }
+    WEB_OUTPUT.parent.mkdir(parents=True, exist_ok=True)
+    WEB_OUTPUT.write_text(json.dumps(web, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+
     print(f"wrote {OUT_DIR / 'garrett_proposal.json'}")
+    print(f"wrote {WEB_OUTPUT}")
     print(json.dumps(summary, indent=2))
 
 
