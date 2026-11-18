@@ -130,7 +130,7 @@ function CheckRequirements {
 // Warp to dungeon after payment
 function WarpToDungeon {
 	// Check if player has required items
-	if (countitem(Blue_Gemstone) < 1) {
+	if (countitem(717) < 1) {
 		mes "[Teletransportadora Renegada]";
 		mes "Necesitas ^FF00001 Gema Azul^000000 para usar este servicio.";
 		close;
@@ -158,7 +158,7 @@ function WarpToDungeon {
 	}
 	
 	// Deduct payment
-	delitem Blue_Gemstone, 1;
+	delitem 717, 1;
 	Zeny -= 10000;
 	
 	mes "[Teletransportadora Renegada]";
