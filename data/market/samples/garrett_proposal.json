@@ -5081,7 +5081,8 @@
       "delaySeconds": 5.0,
       "dropRate": 200,
       "effectiveRate": 0.2,
-      "flow": 81.60000000000001
+      "flow": 81.60000000000001,
+      "coinReward": 1
     },
     {
       "tier": "common",
@@ -5114,7 +5115,8 @@
       "delaySeconds": 5.0,
       "dropRate": 500,
       "effectiveRate": 0.25,
-      "flow": 480.0
+      "flow": 480.0,
+      "coinReward": 1
     },
     {
       "tier": "common",
@@ -5147,7 +5149,8 @@
       "delaySeconds": 5.0,
       "dropRate": 2500,
       "effectiveRate": 1.0,
-      "flow": 864.0
+      "flow": 864.0,
+      "coinReward": 1
     },
     {
       "tier": "common",
@@ -5180,7 +5183,8 @@
       "delaySeconds": 5.0,
       "dropRate": 2000,
       "effectiveRate": 1.0,
-      "flow": 2172.0
+      "flow": 2172.0,
+      "coinReward": 1
     },
     {
       "tier": "common",
@@ -5213,7 +5217,8 @@
       "delaySeconds": 5.0,
       "dropRate": 1000,
       "effectiveRate": 0.5,
-      "flow": 306.0
+      "flow": 306.0,
+      "coinReward": 1
     },
     {
       "tier": "common",
@@ -5246,7 +5251,8 @@
       "delaySeconds": 5.0,
       "dropRate": 1000,
       "effectiveRate": 0.5,
-      "flow": 402.0
+      "flow": 402.0,
+      "coinReward": 1
     },
     {
       "tier": "common",
@@ -5279,7 +5285,8 @@
       "delaySeconds": 5.0,
       "dropRate": 3000,
       "effectiveRate": 1.0,
-      "flow": 2172.0
+      "flow": 2172.0,
+      "coinReward": 1
     },
     {
       "tier": "common",
@@ -5312,7 +5319,8 @@
       "delaySeconds": 5.0,
       "dropRate": 4500,
       "effectiveRate": 1.0,
-      "flow": 2256.0
+      "flow": 2256.0,
+      "coinReward": 1
     },
     {
       "tier": "common",
@@ -5345,7 +5353,8 @@
       "delaySeconds": 5.0,
       "dropRate": 2750,
       "effectiveRate": 1.0,
-      "flow": 795.6
+      "flow": 795.6,
+      "coinReward": 1
     },
     {
       "tier": "common",
@@ -5378,7 +5387,8 @@
       "delaySeconds": 5.0,
       "dropRate": 2668,
       "effectiveRate": 1.0,
-      "flow": 2040.0
+      "flow": 2040.0,
+      "coinReward": 1
     },
     {
       "tier": "common",
@@ -5411,7 +5421,8 @@
       "delaySeconds": 5.0,
       "dropRate": 2425,
       "effectiveRate": 1.0,
-      "flow": 1091.4
+      "flow": 1091.4,
+      "coinReward": 1
     },
     {
       "tier": "common",
@@ -5444,7 +5455,8 @@
       "delaySeconds": 5.0,
       "dropRate": 1000,
       "effectiveRate": 0.5,
-      "flow": 246.0
+      "flow": 246.0,
+      "coinReward": 1
     },
     {
       "tier": "common",
@@ -5477,7 +5489,8 @@
       "delaySeconds": 5.0,
       "dropRate": 1500,
       "effectiveRate": 0.75,
-      "flow": 1332.0
+      "flow": 1332.0,
+      "coinReward": 1
     },
     {
       "tier": "common",
@@ -5510,7 +5523,8 @@
       "delaySeconds": 5.0,
       "dropRate": 1100,
       "effectiveRate": 0.55,
-      "flow": 475.2
+      "flow": 475.2,
+      "coinReward": 1
     },
     {
       "tier": "common",
@@ -5543,7 +5557,8 @@
       "delaySeconds": 5.0,
       "dropRate": 4500,
       "effectiveRate": 1.0,
-      "flow": 1122.0
+      "flow": 1122.0,
+      "coinReward": 1
     },
     {
       "tier": "common",
@@ -5576,7 +5591,8 @@
       "delaySeconds": 5.0,
       "dropRate": 2425,
       "effectiveRate": 1.0,
-      "flow": 1044.0
+      "flow": 1044.0,
+      "coinReward": 1
     },
     {
       "tier": "common",
@@ -5609,7 +5625,8 @@
       "delaySeconds": 5.0,
       "dropRate": 2500,
       "effectiveRate": 1.0,
-      "flow": 1020.0
+      "flow": 1020.0,
+      "coinReward": 1
     },
     {
       "tier": "common",
@@ -5642,7 +5659,8 @@
       "delaySeconds": 5.0,
       "dropRate": 600,
       "effectiveRate": 0.3,
-      "flow": 666.0
+      "flow": 666.0,
+      "coinReward": 1
     },
     {
       "tier": "common",
@@ -5675,7 +5693,8 @@
       "delaySeconds": 5.0,
       "dropRate": 1500,
       "effectiveRate": 0.75,
-      "flow": 420.75
+      "flow": 420.75,
+      "coinReward": 1
     },
     {
       "tier": "common",
@@ -5708,7 +5727,8 @@
       "delaySeconds": 5.0,
       "dropRate": 8000,
       "effectiveRate": 1.0,
-      "flow": 1332.0
+      "flow": 1332.0,
+      "coinReward": 1
     },
     {
       "tier": "uncommon",
@@ -5741,7 +5761,8 @@
       "delaySeconds": 5.0,
       "dropRate": 10,
       "effectiveRate": 0.005,
-      "flow": 12.180000000000001
+      "flow": 12.180000000000001,
+      "coinReward": 1
     },
     {
       "tier": "uncommon",
@@ -5774,7 +5795,8 @@
       "delaySeconds": 5.0,
       "dropRate": 1000,
       "effectiveRate": 0.5,
-      "flow": 209.1
+      "flow": 209.1,
+      "coinReward": 2
     },
     {
       "tier": "uncommon",
@@ -5807,7 +5829,8 @@
       "delaySeconds": 5.0,
       "dropRate": 5,
       "effectiveRate": 0.0025,
-      "flow": 5.1
+      "flow": 5.1,
+      "coinReward": 1
     },
     {
       "tier": "uncommon",
@@ -5840,7 +5863,8 @@
       "delaySeconds": 5.0,
       "dropRate": 150,
       "effectiveRate": 0.075,
-      "flow": 42.839999999999996
+      "flow": 42.839999999999996,
+      "coinReward": 1
     },
     {
       "tier": "uncommon",
@@ -5873,7 +5897,8 @@
       "delaySeconds": 5.0,
       "dropRate": 2207,
       "effectiveRate": 1.0,
-      "flow": 428.3999999999999
+      "flow": 428.3999999999999,
+      "coinReward": 2
     },
     {
       "tier": "uncommon",
@@ -5906,7 +5931,8 @@
       "delaySeconds": 5.0,
       "dropRate": 10,
       "effectiveRate": 0.005,
-      "flow": 5.457
+      "flow": 5.457,
+      "coinReward": 2
     },
     {
       "tier": "uncommon",
@@ -5939,7 +5965,8 @@
       "delaySeconds": 5.0,
       "dropRate": 10,
       "effectiveRate": 0.015,
-      "flow": 13.922999999999998
+      "flow": 13.922999999999998,
+      "coinReward": 1
     },
     {
       "tier": "uncommon",
@@ -5972,7 +5999,8 @@
       "delaySeconds": 5.0,
       "dropRate": 3,
       "effectiveRate": 0.0015,
-      "flow": 1.1934
+      "flow": 1.1934,
+      "coinReward": 2
     },
     {
       "tier": "uncommon",
@@ -6005,7 +6033,8 @@
       "delaySeconds": 5.0,
       "dropRate": 25,
       "effectiveRate": 0.0375,
-      "flow": 39.14999999999999
+      "flow": 39.14999999999999,
+      "coinReward": 1
     },
     {
       "tier": "uncommon",
@@ -6038,7 +6067,8 @@
       "delaySeconds": 5.0,
       "dropRate": 50,
       "effectiveRate": 0.05,
-      "flow": 25.5
+      "flow": 25.5,
+      "coinReward": 2
     },
     {
       "tier": "uncommon",
@@ -6071,7 +6101,8 @@
       "delaySeconds": 5.0,
       "dropRate": 1500,
       "effectiveRate": 0.75,
-      "flow": 1944.0
+      "flow": 1944.0,
+      "coinReward": 2
     },
     {
       "tier": "uncommon",
@@ -6104,7 +6135,8 @@
       "delaySeconds": 5.0,
       "dropRate": 1000,
       "effectiveRate": 0.5,
-      "flow": 515.1
+      "flow": 515.1,
+      "coinReward": 2
     },
     {
       "tier": "uncommon",
@@ -6137,7 +6169,8 @@
       "delaySeconds": 5.0,
       "dropRate": 5,
       "effectiveRate": 0.0075,
-      "flow": 7.7265
+      "flow": 7.7265,
+      "coinReward": 2
     },
     {
       "tier": "uncommon",
@@ -6170,7 +6203,8 @@
       "delaySeconds": 5.0,
       "dropRate": 10,
       "effectiveRate": 0.01,
-      "flow": 6.2219999999999995
+      "flow": 6.2219999999999995,
+      "coinReward": 1
     },
     {
       "tier": "uncommon",
@@ -6203,7 +6237,8 @@
       "delaySeconds": 5.0,
       "dropRate": 10,
       "effectiveRate": 0.01,
-      "flow": 8.976
+      "flow": 8.976,
+      "coinReward": 1
     },
     {
       "tier": "uncommon",
@@ -6236,7 +6271,8 @@
       "delaySeconds": 5.0,
       "dropRate": 150,
       "effectiveRate": 0.15,
-      "flow": 24.48
+      "flow": 24.48,
+      "coinReward": 1
     },
     {
       "tier": "uncommon",
@@ -6269,7 +6305,8 @@
       "delaySeconds": 5.0,
       "dropRate": 10,
       "effectiveRate": 0.01,
-      "flow": 19.2
+      "flow": 19.2,
+      "coinReward": 1
     },
     {
       "tier": "uncommon",
@@ -6302,7 +6339,8 @@
       "delaySeconds": 5.0,
       "dropRate": 4,
       "effectiveRate": 0.006,
-      "flow": 14.112
+      "flow": 14.112,
+      "coinReward": 1
     },
     {
       "tier": "uncommon",
@@ -6335,7 +6373,8 @@
       "delaySeconds": 5.0,
       "dropRate": 30,
       "effectiveRate": 0.03,
-      "flow": 31.32
+      "flow": 31.32,
+      "coinReward": 1
     },
     {
       "tier": "uncommon",
@@ -6368,7 +6407,8 @@
       "delaySeconds": 5.0,
       "dropRate": 150,
       "effectiveRate": 0.075,
-      "flow": 18.0
+      "flow": 18.0,
+      "coinReward": 2
     }
   ]
 }

@@ -1,7 +1,7 @@
 //===== OzRo Script ==========================================
 //= Garrett el Recolector
 //===== Description: =========================================
-//= Ofertas y misiones fijas generadas desde:
+//= Ofertas y encargos fijos generados desde:
 //= ozro-site/assets/items/garrett.json
 //= Sin generación dinámica en runtime.
 //============================================================
@@ -34,11 +34,11 @@ geffen,143,70,3	script	Garrett	1_M_SIGN1,{
 
 	mes .npc_name$;
 	mes "Recorro las afueras de Geffen buscando lo que otros tiran.";
-	mes "Hoy tengo " + .offer_count + " cosas en el ojo.";
-	mes "Presupuesto de compras: " + F_InsertComma(.daily_cap - #GARRETT_SPENT) + " zeny.";
+	mes "Hoy ando con ganas de comprar. Tengo " + .offer_count + " cosas en mente.";
+	mes "Me quedan " + F_InsertComma(.daily_cap - #GARRETT_SPENT) + " zeny para gastar hoy.";
 	next;
 
-	switch (select("Ver ofertas del día:Misiones:Sobre tu negocio:Marcharme")) {
+	switch (select("¿Qué me vendes?:Tengo un encargo:¿Cómo va el negocio?:Me voy")) {
 	case 1:
 		callsub L_Offers;
 		break;
@@ -49,7 +49,7 @@ geffen,143,70,3	script	Garrett	1_M_SIGN1,{
 		mes .npc_name$;
 		mes "Llevo " + F_InsertComma(#GARRETT_TOTAL_SPENT) + " zeny invertidos en chatarra de aventureros.";
 		mes "Contigo he cerrado " + #GARRETT_TRADES + " tratos. Cada uno cuenta.";
-		mes "Misiones completadas: " + #GARRETT_MISSIONS_DONE + ".";
+		mes "Encargos cumplidos: " + #GARRETT_MISSIONS_DONE + ".";
 		break;
 	case 4:
 		mes .npc_name$;
@@ -71,20 +71,20 @@ L_Offers:
 	while (1) {
 		.@start = .@page * .offer_page_size;
 		mes .npc_name$;
-		mes "Ofertas " + (.@start + 1) + "-" + ((.@start + .offer_page_size > .offer_count) ? .offer_count : (.@start + .offer_page_size)) + " de " + .offer_count + ":";
+		mes "Me interesa esto (" + (.@start + 1) + "-" + ((.@start + .offer_page_size > .offer_count) ? .offer_count : (.@start + .offer_page_size)) + " de " + .offer_count + "):";
 		for (.@i = 0; .@i < .offer_page_size; .@i++) {
 			.@idx = .@start + .@i;
 			if (.@idx >= .offer_count) break;
 			mes (.@i + 1) + ") " + getitemname(.offer_id[.@idx]) + " - " + F_InsertComma(.offer_price[.@idx]) + " zeny c/u";
 		}
-		mes "Presupuesto restante: " + F_InsertComma(.daily_cap - #GARRETT_SPENT) + " zeny.";
+		mes "Me queda " + F_InsertComma(.daily_cap - #GARRETT_SPENT) + " zeny.";
 		next;
 
 		.@items = .offer_count - .@start;
 		if (.@items > .offer_page_size) .@items = .offer_page_size;
 		.@menu$ = "";
 		for (.@i = 0; .@i < .@items; .@i++) {
-			.@menu$ = .@menu$ + "Comprar " + (.@i + 1) + ":";
+			.@menu$ = .@menu$ + "Te vendo " + (.@i + 1) + ":";
 		}
 		.@menu$ = .@menu$ + "Siguiente:Anterior:Volver";
 		.@sel = select(.@menu$) - 1;
@@ -113,8 +113,8 @@ L_BuyOffer:
 	.@today = gettime(DT_YYYYMMDD);
 
 	mes .npc_name$;
-	mes "¿Cuántos " + getitemname(.@item) + " me vendes?";
-	mes "Tienes " + countitem(.@item) + " en el inventario.";
+	mes "¿Cuántos " + getitemname(.@item) + " traes?";
+	mes "Llevas " + countitem(.@item) + ".";
 	next;
 
 	input .@amount;
@@ -126,7 +126,7 @@ L_BuyOffer:
 	}
 	if (countitem(.@item) < .@amount) {
 		mes .npc_name$;
-		mes "No tienes tantos. Solo llevas " + countitem(.@item) + ".";
+		mes "No llevas tantos. Tienes " + countitem(.@item) + ".";
 		next;
 		return;
 	}
@@ -135,24 +135,24 @@ L_BuyOffer:
 	.@max = .@remaining / .@price;
 	if (.@max <= 0) {
 		mes .npc_name$;
-		mes "Con lo que me queda hoy no puedo comprar ni uno.";
+		mes "Con lo que me queda hoy no te compro ni uno.";
 		next;
 		return;
 	}
 	if (.@amount > .@max) {
 		mes .npc_name$;
-		mes "Solo puedo comprar " + .@max + " con lo que me queda hoy.";
+		mes "Solo te compro " + .@max + " con lo que me queda hoy.";
 		next;
 		.@amount = .@max;
 	}
 
 	.@total = .@price * .@amount;
 	mes .npc_name$;
-	mes .@amount + " x " + getitemname(.@item) + " = " + F_InsertComma(.@total) + " zeny. ¿Trato?";
+	mes .@amount + " x " + getitemname(.@item) + " = " + F_InsertComma(.@total) + " zeny. ¿Va?";
 	next;
-	if (select("Trato hecho", "Paso") == 2) {
+	if (select("Va", "Déjalo") == 2) {
 		mes .npc_name$;
-		mes "La puerta sigue abierta.";
+		mes "Tú decides.";
 		next;
 		return;
 	}
@@ -169,11 +169,11 @@ L_BuyOffer:
 	}
 
 	mes .npc_name$;
-	mes "Un placer hacer negocios.";
+	mes "Buen trato.";
 	if (#GARRETT_TRADES % .trades_for_coin == 0) {
 		getitem "Ozro_Bronze_Coin", 1;
-		mes "Por cierto... eres un sujeto agradable.";
-		mes "Creo que esto te sirve más a ti que a mí.";
+		mes "Y toma algo extra. Me caes bien.";
+		mes "No le des más vueltas.";
 	}
 	next;
 	return;
@@ -182,7 +182,7 @@ L_MissionMenu:
 	.@today = getarg(0);
 	if (#GARRETT_MISSION_DAY == .@today) {
 		mes .npc_name$;
-		mes "Hoy ya no tengo misiones para ti. Vuelve mañana.";
+		mes "Hoy ya no tengo encargos para ti. Vuelve mañana.";
 		next;
 		return;
 	}
@@ -191,21 +191,20 @@ L_MissionMenu:
 	while (1) {
 		.@start = .@page * .mission_page_size;
 		mes .npc_name$;
-		mes "Misiones " + (.@start + 1) + "-" + ((.@start + .mission_page_size > .mission_count) ? .mission_count : (.@start + .mission_page_size)) + " de " + .mission_count + ":";
+		mes "Encargos (" + (.@start + 1) + "-" + ((.@start + .mission_page_size > .mission_count) ? .mission_count : (.@start + .mission_page_size)) + " de " + .mission_count + "):";
 		for (.@i = 0; .@i < .mission_page_size; .@i++) {
 			.@idx = .@start + .@i;
 			if (.@idx >= .mission_count) break;
-			.@t$ = .tier_name$[.mission_tier[.@idx]];
-			mes (.@i + 1) + ") " + .@t$ + ": " + getitemname(.mission_item[.@idx]) + " x" + .mission_qty[.@idx] + " - " + F_InsertComma(.mission_pay[.@idx]) + " zeny";
+			mes (.@i + 1) + ") " + getitemname(.mission_item[.@idx]) + " x" + .mission_qty[.@idx] + " - " + F_InsertComma(.mission_pay[.@idx]) + " zeny";
 		}
-		mes "Tienes 6 horas. Entregas parciales permitidas; si fallas, pierdes lo entregado.";
+		mes "Tienes 6 horas. Puedes traerlo de a poco; si no llegas, lo entregado se queda conmigo.";
 		next;
 
 		.@items = .mission_count - .@start;
 		if (.@items > .mission_page_size) .@items = .mission_page_size;
 		.@menu$ = "";
 		for (.@i = 0; .@i < .@items; .@i++) {
-			.@menu$ = .@menu$ + "Misión " + (.@i + 1) + ":";
+			.@menu$ = .@menu$ + "Encargo " + (.@i + 1) + ":";
 		}
 		.@menu$ = .@menu$ + "Siguiente:Anterior:Volver";
 		.@sel = select(.@menu$) - 1;
@@ -235,14 +234,14 @@ L_AcceptMission:
 	.@pay = .mission_pay[.@idx];
 
 	mes .npc_name$;
-	mes "Misión " + .tier_name$[.mission_tier[.@idx]] + ":";
+	mes "Te encargo:";
 	mes "- " + getitemname(.@item) + " x" + .@qty;
 	mes "- Pago: " + F_InsertComma(.@pay) + " zeny";
 	mes "- Tiempo: 6 horas";
-	mes "Entregas parciales permitidas. Si no completas, pierdes lo entregado.";
+	mes "Puedes traerlo de a poco. Si no completas, lo entregado se queda conmigo.";
 	next;
 
-	if (select("Aceptar", "Rechazar") == 2) {
+	if (select("Hecho", "Déjalo") == 2) {
 		mes .npc_name$;
 		mes "Sin prisa. Los buenos tratos requieren calma.";
 		next;
@@ -256,10 +255,11 @@ L_AcceptMission:
 	#GARRETT_MISSION_DAY = .@today;
 	#GARRETT_MISSION_END = gettimetick(2) + .mission_seconds;
 	#GARRETT_MISSION_DELIVERED = 0;
+	#GARRETT_MISSION_COIN = .mission_coin[.@idx];
 
 	mes .npc_name$;
-	mes "Aceptado. Tienes 6 horas.";
-	mes "Puedes entregar por partes. Si no completas, pierdes lo entregado.";
+	mes "Hecho. Tienes 6 horas.";
+	mes "Puedes traerlo de a poco. Si no completas, lo entregado se queda conmigo.";
 	next;
 	return;
 
@@ -272,7 +272,7 @@ L_MissionStatus:
 		#GARRETT_MISSION_DAY = .@today;
 		mes .npc_name$;
 		mes "Llegaste tarde.";
-		mes "Los items entregados se perdieron. Así son los tratos conmigo.";
+		mes "Lo que me trajiste se queda conmigo. Así son los tratos.";
 		next;
 		return;
 	}
@@ -281,23 +281,23 @@ L_MissionStatus:
 	.@hours = .@left / 3600;
 	.@mins = (.@left % 3600) / 60;
 	mes .npc_name$;
-	mes "Misión activa:";
+	mes "Lo que te encargué:";
 	mes "- " + getitemname(#GARRETT_MISSION_ITEM) + " x" + #GARRETT_MISSION_QTY;
-	mes "Entregado: " + #GARRETT_MISSION_DELIVERED + "/" + #GARRETT_MISSION_QTY;
-	mes "Restante: " + .@remaining;
-	mes "Tiempo: " + .@hours + "h " + .@mins + "m";
+	mes "Me has traído: " + #GARRETT_MISSION_DELIVERED + "/" + #GARRETT_MISSION_QTY;
+	mes "Falta: " + .@remaining;
+	mes "Te quedan: " + .@hours + "h " + .@mins + "m";
 	next;
 
-	switch (select("Entregar items:Cancelar misión:Volver")) {
+	switch (select("Te traigo algo:Lo dejo:Volver")) {
 	case 1:
 		if (countitem(#GARRETT_MISSION_ITEM) <= 0) {
 			mes .npc_name$;
-			mes "No tienes nada de lo que me pediste.";
+			mes "No traes nada de lo que te pedí.";
 			next;
 			return;
 		}
 		mes .npc_name$;
-		mes "¿Cuántos entregas? Tienes " + countitem(#GARRETT_MISSION_ITEM) + ", faltan " + .@remaining + ".";
+		mes "¿Cuántos me traes? Llevas " + countitem(#GARRETT_MISSION_ITEM) + ", faltan " + .@remaining + ".";
 		next;
 		input .@amount;
 		if (.@amount <= 0) {
@@ -309,7 +309,7 @@ L_MissionStatus:
 		if (.@amount > .@remaining) .@amount = .@remaining;
 		if (countitem(#GARRETT_MISSION_ITEM) < .@amount) {
 			mes .npc_name$;
-			mes "No tienes tantos. Solo llevas " + countitem(#GARRETT_MISSION_ITEM) + ".";
+			mes "No llevas tantos. Tienes " + countitem(#GARRETT_MISSION_ITEM) + ".";
 			next;
 			return;
 		}
@@ -323,20 +323,23 @@ L_MissionStatus:
 			#GARRETT_MISSIONS_DONE++;
 			#GARRETT_MISSION_EARNED += #GARRETT_MISSION_PAY;
 			mes .npc_name$;
-			mes "Trato hecho. Aquí tienes " + F_InsertComma(#GARRETT_MISSION_PAY) + " zeny.";
-			mes "No tendré otra misión para ti hasta mañana.";
+			mes "Hecho. Aquí tienes " + F_InsertComma(#GARRETT_MISSION_PAY) + " zeny.";
+			mes "Y toma algo extra por tu esfuerzo.";
+			if (#GARRETT_MISSION_COIN <= 0) #GARRETT_MISSION_COIN = 1;
+			getitem "Ozro_Bronze_Coin", #GARRETT_MISSION_COIN;
+			mes "No tendré otro encargo para ti hasta mañana.";
 			next;
 		} else {
 			mes .npc_name$;
-			mes "Entregaste " + .@amount + ". Faltan " + (#GARRETT_MISSION_QTY - #GARRETT_MISSION_DELIVERED) + ".";
+			mes "Me trajiste " + .@amount + ". Faltan " + (#GARRETT_MISSION_QTY - #GARRETT_MISSION_DELIVERED) + ".";
 			next;
 		}
 		return;
 	case 2:
 		mes .npc_name$;
-		mes "Si cancelas, pierdes lo entregado y no habrá otra misión hasta mañana.";
+		mes "Si lo dejas, pierdes lo entregado y no habrá otro encargo hasta mañana.";
 		next;
-		if (select("Sí, cancelar", "No, continuar") == 1) {
+		if (select("Sí, lo dejo", "Sigo") == 1) {
 			#GARRETT_MISSION_ACTIVE = 0;
 			#GARRETT_MISSION_DELIVERED = 0;
 			#GARRETT_MISSION_DAY = .@today;
@@ -369,8 +372,7 @@ OnInit:
 	setarray .mission_item[0], 12700, 7041, 7151, 1067, 966, 6509, 1068, 1013, 1041, 1042, 1097, 6510, 6041, 7111, 950, 1034, 908, 7043, 913, 946, 703, 7512, 708, 7277, 967, 1006, 2206, 731, 5118, 12006, 7564, 25127, 5005, 631, 630, 643, 625, 2262, 12015, 724;
 	setarray .mission_qty[0], 91, 236, 191, 253, 83, 87, 256, 205, 300, 300, 72, 54, 98, 243, 300, 300, 184, 212, 105, 202, 128, 175, 31, 37, 200, 113, 50, 22, 50, 20, 11, 169, 38, 65, 100, 126, 76, 50, 20, 50;
 	setarray .mission_pay[0], 801000, 802000, 802000, 810000, 813000, 818000, 819000, 820000, 780000, 780000, 821000, 821000, 823000, 826000, 840000, 840000, 846000, 848000, 882000, 889000, 1050000, 1050000, 1048000, 1043000, 1040000, 1062000, 1035000, 1074000, 1080000, 1020000, 1100000, 1115000, 1117000, 1118000, 1120000, 1134000, 1140000, 960000, 960000, 1150000;
-	setarray .mission_tier[0], 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1;
-	setarray .tier_name$[0], "Común", "Poco común", "Raro";
+	setarray .mission_coin[0], 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 2, 2, 1, 2, 1, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 2;
 
 	.offer_count = getarraysize(.offer_id);
 	.offer_pages = (.offer_count + .offer_page_size - 1) / .offer_page_size;

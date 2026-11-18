@@ -226,6 +226,17 @@ Reglas:
 - El contador `DELIVERED` se incrementa solo después de un `delitem` exitoso.
 - Al completar, se verifica `DELIVERED >= quantity` y se resetea.
 
+Al completar, Garrett entrega además `coinReward` monedas de bronce:
+
+| Dificultad | Monedas |
+|---|---:|
+| easy | 1 |
+| medium | 2 |
+| hard | 3 |
+| extreme | 4 |
+
+No se menciona la moneda en el diálogo; solo “Y toma algo extra por tu esfuerzo”.
+
 Esto es el “precio de hacer tratos con Garrett”.
 
 ### 4.7 Tabla fija, sin generación dinámica
@@ -236,6 +247,7 @@ La tabla se genera una vez y se deja fija en el NPC:
 - El NPC usa arrays fijos generados desde esa tabla.
 - No hay selección aleatoria diaria de items.
 - El cronograma puede ser fijo: 40 misiones y 200 ofertas siempre disponibles según diseño.
+- Los diálogos no muestran tier ni rareza; Garrett habla como comerciante informal.
 
 ### 4.8 Anti-arbitraje
 

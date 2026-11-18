@@ -259,6 +259,7 @@ def main() -> None:
                     "weightLimited": weight_limited,
                     "partialDelivery": True,
                     "forfeitOnFail": True,
+                    "coinReward": {"easy": 1, "medium": 2, "hard": 3, "extreme": 4}.get(metric["difficultyTier"], 1),
                     **source,
                 }
             )
@@ -419,6 +420,7 @@ def main() -> None:
                 "mobLevel": row["mobLevel"],
                 "partialDelivery": True,
                 "forfeitOnFail": True,
+                "coinReward": row["coinReward"],
             }
             for index, row in enumerate(missions, 1)
         ],
