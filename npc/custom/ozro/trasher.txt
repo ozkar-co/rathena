@@ -3,8 +3,7 @@
 //===== Description: =========================================
 //= Compra chatarra por cuenta. Cinco ofertas diarias con cap de
 //= 500.000 zeny y una misión diaria de 6 horas.
-//= Los datos se precalculan en:
-//= ozro-site/assets/items/garrett-missions.json
+//= Datos legacy embebidos: se reemplazarán por el master de mercado.
 //= Las variables viejas TRSH_* quedan como historial y no se usan.
 //============================================================
 

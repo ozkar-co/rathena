@@ -67,6 +67,23 @@ ITEM_ARG_RE = re.compile(
 )
 SHOP_RE = re.compile(r"\b(shop|itemshop|pointshop|marketshop|cashshop)\b", re.IGNORECASE)
 SHOP_ITEM_RE = re.compile(r"(\d+)\s*:\s*-?\d+")
+# A drop source above this effective HP is flagged as a hard source. This is a
+# rule, not an item allow/deny list: the flag is exposed in the item metadata so
+# consumers (NPCs, quests, market tools) can decide what to do with it.
+HIGH_HP_THRESHOLD = 10_000_000
+BATTLE_CONF = ROOT / "conf/import/battle_conf.txt"
+
+
+def load_hp_rates() -> dict[str, int]:
+    rates = {"monster_hp_rate": 100, "mvp_hp_rate": 100}
+    if not BATTLE_CONF.exists():
+        return rates
+    for raw in BATTLE_CONF.read_text(encoding="utf-8", errors="replace").splitlines():
+        line = raw.split("//", 1)[0].strip()
+        match = re.match(r"(monster_hp_rate|mvp_hp_rate):\s*(\d+)", line)
+        if match:
+            rates[match.group(1)] = int(match.group(2))
+    return rates
 
 
 def load_yaml(path: Path) -> dict[str, Any]:
@@ -169,10 +186,30 @@ def parse_drops(rows: Iterable[dict[str, Any]], aegis_map: dict[str, int]) -> di
                 item_id = aegis_map.get(normalize_aegis(name))
                 if item_id is None:
                     continue
-                entry = drops.setdefault(item_id, {"mobs": set(), "mvp": False, "maps": set()})
+                entry = drops.setdefault(
+                    item_id,
+                    {
+                        "mobs": set(),
+                        "normal_mobs": set(),
+                        "mvp_mobs": set(),
+                        "mvp": False,
+                        "maps": set(),
+                    },
+                )
                 entry["mobs"].add(as_int(row.get("Id"), -1))
                 entry["mvp"] = entry["mvp"] or kind == "mvp"
+                if kind == "mvp":
+                    entry["mvp_mobs"].add(as_int(row.get("Id"), -1))
+                else:
+                    entry["normal_mobs"].add(as_int(row.get("Id"), -1))
     return drops
+
+
+def is_instance_like(map_name: str, instance_maps: set[str]) -> bool:
+    if map_name in instance_maps:
+        return True
+    # Instance copies of fields/dungeons end in "_i"; instance dungeons use "N@".
+    return map_name.endswith("_i") or (map_name[:1].isdigit() and "@" in map_name)
 
 
 def load_spawns(instance_maps: set[str]) -> tuple[dict[int, set[str]], dict[str, str]]:
@@ -190,7 +227,7 @@ def load_spawns(instance_maps: set[str]) -> tuple[dict[int, set[str]], dict[str,
         mob_maps[mob_id].add(map_name)
         if map_name.startswith("gld"):
             map_kind[map_name] = "guild"
-        elif map_name in instance_maps:
+        elif is_instance_like(map_name, instance_maps):
             map_kind[map_name] = "instance"
         else:
             map_kind[map_name] = "normal"
@@ -331,27 +368,6 @@ def load_produce() -> tuple[set[int], set[int]]:
     return outputs, materials
 
 
-def load_whitelist(
-    items: dict[int, dict[str, Any]],
-    aegis_map: dict[str, int],
-    display_map: dict[str, int],
-) -> set[int]:
-    path = ROOT / "npc/custom/ozro/trasher.txt"
-    if not path.exists():
-        return set()
-    text = path.read_text(encoding="latin-1", errors="replace")
-    result: set[int] = set()
-    for match in re.finditer(r"setarray\s+\.(?:abundant|common|uncommon|rare)_id\[0\]\s*,\s*([^;]+);", text):
-        result |= {int(value) for value in re.findall(r"\d+", match.group(1))}
-    if result:
-        return {item_id for item_id in result if item_id in items}
-    for match in re.finditer(r'"([A-Za-z0-9_]+)"', text):
-        item_id = lookup_item(match.group(1), aegis_map, display_map)
-        if item_id is not None and item_id in items:
-            result.add(item_id)
-    return result
-
-
 def script_references(
     files: list[Path],
     aegis_map: dict[str, int],
@@ -405,7 +421,7 @@ def script_references(
 
 
 def classify_map(map_name: str, map_kind: dict[str, str], instance_maps: set[str]) -> str:
-    if map_name in instance_maps or map_name in map_kind and map_kind[map_name] == "instance":
+    if is_instance_like(map_name, instance_maps) or map_kind.get(map_name) == "instance":
         return "instance"
     if map_name.startswith("gld"):
         return "guild"
@@ -437,7 +453,128 @@ def load_unidentified_items() -> set[int]:
     return result
 
 
-def build_taxonomy() -> dict[str, Any]:
+def access_info(
+    item_id: int,
+    source_kinds: set[str],
+    drops: dict[int, dict[str, Any]],
+    map_drops: dict[int, set[str]],
+    mob_maps: dict[int, set[str]],
+    map_kind: dict[str, str],
+    instance_maps: set[str],
+    mob_meta: dict[int, dict[str, Any]],
+    high_hp_threshold: int,
+) -> dict[str, Any]:
+    """Classify an item's access and farmability from its sources.
+
+    This is metadata, not a category: an item can carry several restriction tags
+    at once, and the consumer decides which ones matter.
+    """
+    drop_entry = drops.get(item_id, {})
+    drop_mobs = drop_entry.get("mobs", set())
+    mvp_mobs = drop_entry.get("mvp_mobs", set())
+    spawn_mobs = {mob_id for mob_id in drop_mobs if mob_maps.get(mob_id)}
+    drop_maps = set(drop_entry.get("maps", set())) | set(map_drops.get(item_id, set()))
+
+    map_classes: dict[str, set[str]] = {"normal": set(), "guild": set(), "instance": set()}
+    for map_name in drop_maps:
+        map_classes[classify_map(map_name, map_kind, instance_maps)].add(map_name)
+
+    normal_maps = map_classes["normal"]
+    guild_maps = map_classes["guild"]
+    instance_drop_maps = map_classes["instance"]
+
+    # Use the easiest source with a known spawn. An item with one hard mob and
+    # one easy mob is not a hard item; the player can farm the easy one.
+    source_mobs = spawn_mobs or drop_mobs
+    hp_values = [
+        as_int(mob_meta.get(mob_id, {}).get("hp_effective"))
+        for mob_id in source_mobs
+        if as_int(mob_meta.get(mob_id, {}).get("hp_effective")) > 0
+    ]
+    level_values = [
+        as_int(mob_meta.get(mob_id, {}).get("level"))
+        for mob_id in source_mobs
+        if as_int(mob_meta.get(mob_id, {}).get("level")) > 0
+    ]
+    min_hp = min(hp_values) if hp_values else None
+    max_hp = max(hp_values) if hp_values else None
+    min_level = min(level_values) if level_values else None
+    max_level = max(level_values) if level_values else None
+
+    boss_only = bool(drop_mobs) and all(
+        mob_id in mvp_mobs or str(mob_meta.get(mob_id, {}).get("class") or "") == "Boss"
+        for mob_id in drop_mobs
+    )
+    no_spawn = bool(drop_mobs) and not spawn_mobs
+    high_hp = bool(min_hp and min_hp >= high_hp_threshold)
+    high_hp_source = bool(max_hp and max_hp >= high_hp_threshold)
+
+    if normal_maps:
+        farm_access = "normal"
+    elif guild_maps:
+        farm_access = "guild"
+    elif instance_drop_maps:
+        farm_access = "instance"
+    elif drop_mobs:
+        farm_access = "unknown"
+    elif "npc_shop" in source_kinds:
+        farm_access = "npc"
+    elif "cash_shop" in source_kinds:
+        farm_access = "cash"
+    elif "craft" in source_kinds:
+        farm_access = "craft"
+    elif "quest_reward" in source_kinds:
+        farm_access = "quest"
+    elif source_kinds & {"group", "package"}:
+        farm_access = "group"
+    else:
+        farm_access = "none"
+
+    restrictions: list[str] = []
+    if not normal_maps:
+        if guild_maps:
+            restrictions.append("guild_only")
+        elif instance_drop_maps:
+            restrictions.append("instance_only")
+        elif drop_mobs and no_spawn:
+            restrictions.append("no_spawn")
+        elif drop_mobs:
+            restrictions.append("unknown_spawn")
+    if boss_only:
+        restrictions.append("boss_only")
+    if high_hp:
+        restrictions.append("high_hp")
+    elif high_hp_source:
+        restrictions.append("high_hp_source")
+    if "quest_reward" in source_kinds:
+        restrictions.append("quest_source")
+    if "instance_reward" in source_kinds:
+        restrictions.append("instance_source")
+
+    return {
+        "best": farm_access,
+        "normalMaps": len(normal_maps),
+        "guildMaps": len(guild_maps),
+        "instanceMaps": len(instance_drop_maps),
+        "dropMobs": len(drop_mobs),
+        "spawnMobs": len(spawn_mobs),
+        "bossOnly": boss_only,
+        "minMobHp": min_hp,
+        "maxMobHp": max_hp,
+        "minMobLevel": min_level,
+        "maxMobLevel": max_level,
+        "highHp": high_hp,
+        "highHpSource": high_hp_source,
+        "noSpawn": no_spawn,
+        "restrictions": restrictions,
+        # Rule used by market/NPC tools: normal spawn, non-boss, and at least
+        # one source below the high-HP threshold. It is exposed as data so the
+        # policy can change without reclassifying items by hand.
+        "commonFarmEligible": bool(normal_maps) and not boss_only and not high_hp,
+    }
+
+
+def build_taxonomy(high_hp_threshold: int = HIGH_HP_THRESHOLD) -> dict[str, Any]:
     items = load_items()
     aegis_map, display_map = load_name_maps(items)
     instance_maps = load_instance_maps()
@@ -449,6 +586,18 @@ def build_taxonomy() -> dict[str, Any]:
             mob_id = as_int(row.get("Id"), -1)
             if mob_id >= 0:
                 mobs[mob_id] = row
+    hp_rates = load_hp_rates()
+    mob_meta = {}
+    for mob_id, row in mobs.items():
+        raw_hp = as_int(row.get("Hp"))
+        monster_class = str(row.get("Class") or "")
+        hp_rate = hp_rates["mvp_hp_rate"] if monster_class == "Boss" else hp_rates["monster_hp_rate"]
+        mob_meta[mob_id] = {
+            "level": as_int(row.get("Level")),
+            "hp": raw_hp,
+            "hp_effective": raw_hp * hp_rate // 100,
+            "class": monster_class,
+        }
     drops = parse_drops(mobs.values(), aegis_map)
     map_drops = load_map_drops(aegis_map)
 
@@ -464,7 +613,6 @@ def build_taxonomy() -> dict[str, Any]:
     combos = load_combos(aegis_map)
     laphine_materials, laphine_rewards = load_laphine(aegis_map, groups)
     produce_outputs, produce_materials = load_produce()
-    whitelist = load_whitelist(items, aegis_map, display_map)
     script_refs = script_references(active_script_files(), aegis_map, display_map, set(items))
     image_index = load_image_index()
     unidentified_items = load_unidentified_items()
@@ -535,6 +683,18 @@ def build_taxonomy() -> dict[str, Any]:
             if not drop_kind:
                 source_kinds.add("unknown_drop")
 
+        access = access_info(
+            item_id,
+            source_kinds,
+            drops,
+            map_drops,
+            mob_maps,
+            map_kind,
+            instance_maps,
+            mob_meta,
+            high_hp_threshold,
+        )
+
         direct_sources = source_kinds - {"group", "package"}
         references = {
             "quest": item_id in quest_referenced,
@@ -603,8 +763,6 @@ def build_taxonomy() -> dict[str, Any]:
         )
         if junk_base:
             categories["junk_npc_unused"].add(item_id)
-            if not item["untradeable"]:
-                categories["garrett_candidates"].add(item_id)
 
         flags: list[str] = []
         if references["quest"]:
@@ -678,8 +836,6 @@ def build_taxonomy() -> dict[str, Any]:
                 categories["junk_mid"].add(item_id)
             else:
                 categories["junk_high"].add(item_id)
-        if item_id in whitelist:
-            categories["garrett_whitelist"].add(item_id)
 
         item_meta[str(item_id)] = {
             "aegis": item["aegis"],
@@ -688,6 +844,7 @@ def build_taxonomy() -> dict[str, Any]:
             "sell": item["sell"],
             "sources": sorted(source_kinds),
             "flags": flags,
+            "access": access,
             "marketPrice": master_prices.get(item_id, 0),
         }
 
@@ -705,6 +862,10 @@ def build_taxonomy() -> dict[str, Any]:
             "spawns": str(SPAWNS.relative_to(ROOT.parent)) if SPAWNS.exists() else None,
             "masterList": str(MASTER_LIST.relative_to(ROOT.parent)) if MASTER_LIST.exists() else None,
             "itemImages": str(IMAGE_INDEX.relative_to(ROOT.parent)) if IMAGE_INDEX.exists() else None,
+            "rules": {
+                "highHpThreshold": high_hp_threshold,
+                "hpRates": hp_rates,
+            },
         },
         "counts": {key: len(value) for key, value in ordered.items()},
         "categories": ordered,
@@ -715,8 +876,14 @@ def build_taxonomy() -> dict[str, Any]:
 def main() -> None:
     parser = argparse.ArgumentParser(description="Generate the OzRo item taxonomy")
     parser.add_argument("--output", type=Path, default=DEFAULT_OUTPUT)
+    parser.add_argument(
+        "--high-hp-threshold",
+        type=int,
+        default=HIGH_HP_THRESHOLD,
+        help="Effective mob HP at or above which a drop source is flagged as high_hp",
+    )
     args = parser.parse_args()
-    taxonomy = build_taxonomy()
+    taxonomy = build_taxonomy(high_hp_threshold=args.high_hp_threshold)
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(
         json.dumps(taxonomy, ensure_ascii=False, separators=(",", ":")) + "\n",

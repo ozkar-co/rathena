@@ -1,0 +1,149 @@
+{
+  "schemaVersion": 1,
+  "seed": 20261118,
+  "sources": {
+    "taxonomy": "/home/oz/Code/ozro-site/assets/items/taxonomy.json",
+    "masterList": "/home/oz/Code/ragnabots/staging/market/pricing/master_list.json",
+    "battleConf": "/home/oz/Code/rathena/conf/import/battle_conf.txt"
+  },
+  "rates": {
+    "item_rate_common": 500,
+    "item_rate_common_boss": 500,
+    "item_rate_heal": 1000,
+    "item_rate_heal_boss": 1000,
+    "item_rate_use": 1000,
+    "item_rate_use_boss": 1000,
+    "item_rate_equip": 1500,
+    "item_rate_equip_boss": 1500,
+    "item_rate_card": 1000,
+    "item_rate_card_boss": 10000,
+    "item_rate_card_mvp": 10000,
+    "item_rate_mvp": 500,
+    "item_rate_treasure": 500,
+    "mvp_hp_rate": 200,
+    "monster_hp_rate": 200
+  },
+  "spawns": {
+    "files": 884,
+    "spawns": 3656,
+    "maps": 405,
+    "mobs": 1223,
+    "parseErrors": [],
+    "unresolvedMobs": {},
+    "byType": {
+      "boss": 75,
+      "dungeon": 1521,
+      "field": 1161,
+      "guild": 61,
+      "instance": 53,
+      "other": 306,
+      "quest": 479
+    }
+  },
+  "universe": {
+    "items": 29061,
+    "withOpenSupply": 1620,
+    "withHistory": 5858,
+    "marketPrice": 5847,
+    "syntheticPrice": 3970,
+    "notApplicable": 19244,
+    "marketEligible": 9622,
+    "marketEligibleMarket": 5652,
+    "marketEligibleSynthetic": 3970,
+    "marketEligibleWithOpenSupply": 1615,
+    "marketEligibleNoOpenSupply": 8007,
+    "clampedByAnchor": 1004,
+    "manipulationSuspected": 166
+  },
+  "samples": {
+    "general": 150,
+    "edge": 103,
+    "generalTypes": {
+      "Armor": 38,
+      "Etc": 38,
+      "Weapon": 21,
+      "Card": 18,
+      "Usable": 8,
+      "Shadowgear": 7,
+      "ShadowGear": 6,
+      "DelayConsume": 5,
+      "Healing": 3,
+      "Ammo": 2,
+      "Petegg": 2,
+      "Cash": 1,
+      "Petarmor": 1
+    },
+    "generalStatus": {
+      "market": 101,
+      "synthetic": 49
+    },
+    "generalAccess": {
+      "group": 57,
+      "normal": 33,
+      "craft": 23,
+      "npc": 14,
+      "unknown": 10,
+      "none": 6,
+      "instance": 4,
+      "quest": 3
+    },
+    "generalAbundance": {
+      "none": 123,
+      "common": 7,
+      "uncommon": 7,
+      "abundant": 6,
+      "scarce": 4,
+      "rare": 3
+    },
+    "generalDifficulty": {
+      "unknown": 116,
+      "easy": 18,
+      "hard": 8,
+      "medium": 6,
+      "extreme": 2
+    },
+    "generalReview": {
+      "['no_open_supply']": 42,
+      "['synthetic_price', 'no_open_supply', 'no_direct_farm']": 40,
+      "['no_open_supply', 'no_direct_farm']": 26,
+      "[]": 23,
+      "['no_open_supply', 'hard_source']": 5,
+      "['synthetic_price', 'no_open_supply']": 5,
+      "['no_open_supply', 'restricted_access']": 3,
+      "['manipulation_suspected']": 2,
+      "['synthetic_price']": 2,
+      "['synthetic_price', 'no_open_supply', 'hard_source']": 1,
+      "['synthetic_price', 'no_open_supply', 'restricted_access']": 1
+    },
+    "edgeTags": {
+      "['craft_best']": 8,
+      "['guild_only']": 8,
+      "['min_open_supply']": 8,
+      "['no_price_with_open_supply']": 8,
+      "['price_top_1pct']": 8,
+      "['group_only']": 7,
+      "['high_hp']": 7,
+      "['instance_only']": 7,
+      "['boss_only']": 5,
+      "['custom']": 5,
+      "['max_open_supply']": 5,
+      "['price_bottom_1pct']": 5,
+      "['priced_low_confidence']": 3,
+      "['manipulation_suspected', 'market_eligible', 'market_price', 'npc_shop']": 2,
+      "['manipulation_suspected', 'priced_low_confidence']": 2,
+      "['market_eligible', 'market_price', 'npc_shop', 'priced_high_confidence']": 2,
+      "['priced_high_confidence']": 2,
+      "['boss_only', 'high_hp']": 1,
+      "['boss_only', 'market_eligible', 'market_price', 'npc_shop', 'priced_high_confidence']": 1,
+      "['boss_only', 'priced_low_confidence']": 1,
+      "['group_only', 'market_eligible']": 1,
+      "['instance_only', 'price_bottom_1pct']": 1,
+      "['manipulation_suspected', 'market_eligible', 'market_price', 'max_open_supply', 'priced_high_confidence']": 1,
+      "['manipulation_suspected', 'market_eligible', 'market_price', 'npc_shop', 'price_bottom_1pct', 'priced_high_confidence']": 1,
+      "['manipulation_suspected', 'market_price', 'max_open_supply']": 1,
+      "['manipulation_suspected', 'npc_shop', 'price_bottom_1pct', 'priced_low_confidence']": 1,
+      "['max_open_supply', 'priced_high_confidence']": 1,
+      "['npc_shop', 'priced_low_confidence']": 1
+    }
+  }
+}
