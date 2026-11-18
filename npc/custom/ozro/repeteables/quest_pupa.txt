@@ -189,7 +189,7 @@ gef_fild04,191,54,3	script	Halgus#Pupa_Hunt	123,{
 					// Kill Count Quest
 					mes "[Halgus]";
 					mes "Thank you so much!";
-					mes "How many would you like to get rid of?";
+					mes "How many should I get rid of?";
 					next;
 					switch(select("50 Pupa:100 Pupa:150 Pupa")) {
 					case 1:
@@ -221,7 +221,7 @@ gef_fild04,191,54,3	script	Halgus#Pupa_Hunt	123,{
 		}
 		else {
 			mes "[Halgus]";
-			mes "You could probably easily help me out, but I want to give charity to those who are not as strong as you.";
+			mes "You could easily help me, but I want to give charity to those not as strong as you.";
 			close;
 		}
 	}

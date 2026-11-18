@@ -235,7 +235,7 @@ um_fild01,34,281,5	script	Lilla#Dryad_Hunt	724,{
 	}
 	else {
 		mes "[Lilla]";
-		mes "You are way too tiny to be helping me.";
+		mes "You are too tiny to be helping me.";
 		mes "Thank you for your offer though.";
 		close;
 	}

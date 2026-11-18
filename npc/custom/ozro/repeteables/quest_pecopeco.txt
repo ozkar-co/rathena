@@ -50,7 +50,7 @@ moc_fild02,74,329,3	script	Gregor#PecoPeco_Hunt	97,{
 		else {
 			mes "[Gregor]";
 			mes "Oh thank you so much!";
-			mes "I think that I can rest easily now.";
+			mes "I think I can rest easy now.";
 			getexp 4000,2000;
 			erasequest 60101;
 			close;
@@ -91,7 +91,7 @@ moc_fild02,74,329,3	script	Gregor#PecoPeco_Hunt	97,{
 		else {
 			mes "[Gregor]";
 			mes "Oh thank you so much!";
-			mes "I think that I can rest easily now.";
+			mes "I think I can rest easy now.";
 			getexp 4000,2000;
 			getexp 4000,2000;
 			erasequest 60102;
@@ -133,7 +133,7 @@ moc_fild02,74,329,3	script	Gregor#PecoPeco_Hunt	97,{
 		else {
 			mes "[Gregor]";
 			mes "Oh thank you so much!";
-			mes "I think that I can rest easily now.";
+			mes "I think I can rest easy now.";
 			getexp 4000,2000;
 			getexp 4000,2000;
 			getexp 4000,2000;

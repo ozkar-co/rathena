@@ -41,12 +41,12 @@ function	script	F_Bounty_Board	{
 			case 2: mes "These bounties are available only to adventurers who are between levels "+getarg(0)+" and "+getarg(1)+"."; break;
 			case 3: mes "These bounties are available only to adventurers who are above level "+getarg(0)+"."; break;
 			case 4: mes "These bounties are available only to adventurers who are higher than level "+getarg(0)+"."; break;
-			case 5: mes "You've stumbled upon what appears to be a bulletin board with wanted ads. Nothing looks that interesting."; break;
+			case 5: mes "You've found a bulletin board covered in wanted ads. Nothing looks that interesting."; break;
 		}
 		close;
 	}
 	mes "[Bounty Board]";
-	mes "You've stumbled upon what appears to be a bulletin board with wanted ads.";
+	mes "You've found a bulletin board covered in wanted ads.";
 	mes "Take a closer look?";
 	next;
 	mes "[Bounty Board]";
@@ -84,7 +84,8 @@ function	script	F_Bounty_Board	{
 			if (checkquest(getarg(.@bounty),HUNTING) == -1)
 				setquest getarg(.@bounty);
 			mes "[Bounty Board]";
-			mes "You have accepted the bounty to hunt "+.@monster$+".";
+			mes "You have accepted this bounty:";
+			mes .@monster$ + ".";
 		}
 		close;
 	case 2:	// Collect bounty rewards
@@ -100,7 +101,7 @@ function	script	F_Bounty_Board	{
 	case 3:	// Where do I go to hunt?
 		mes "[Bounty Board]";
 		switch(getarg(2)){
-			case 1: mes "You can hunt them at the dungeon. You're staring at the entrance now!"; break;
+			case 1: mes "You can hunt them at the dungeon. It's right in front of you!"; break;
 			case 2: mes "You can hunt them at the forests surrounding Payon and at the Cave up north at Archer Village."; break;
 			case 3: mes "You can hunt them at various fields surrounding Prontera."; break;
 			case 4: mes "You can hunt them at various fields and dungeons around Prontera."; break;
@@ -148,7 +149,7 @@ function	script	F_Bounty_Board	{
 	case 6:	// Not interested.
 		mes "[Bounty Board]";
 		mes "Life is full of dangers.";
-		mes "You don't live life unless you put yourself in danger from time to time";
+		mes "You don't live life unless you put yourself in danger sometimes.";
 		close;
 	}
 

@@ -57,7 +57,7 @@ L_Summary:
 	}
 	if (@MVPJ_KILLS == 0 && @MVPJ_SUPPS == 0) {
 		mes "Aún no has derrotado ninguna gran bestia.";
-		mes "Vuelve cuando hayas enfrentado a una.";
+		mes "Vuelve cuando enfrentes a una.";
 	}
 	next;
 	return;

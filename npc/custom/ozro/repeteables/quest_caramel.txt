@@ -158,8 +158,7 @@ mjolnir_01,296,29,6	script	Yullo#Caramel_Hunt	95,{
 					mes "[Yullo]";
 					mes "Ok, so I need 25 Porcupine";
 					mes "Quill's.";
-					mes "Please tell me you have some or can";
-					mes "help me";
+					mes "Please tell me you have some or can help me";
 					next;
 					switch(select("I have Porcupine Quills:Well I don't think I can help.")) {
 					case 1:

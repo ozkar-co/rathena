@@ -181,7 +181,7 @@ L_Offers:
 	mes .npc_name$;
 	mes "Un placer hacer negocios.";
 	if (#GARRETT_SPENT >= .daily_cap) {
-		mes "Con eso agoto el presupuesto de hoy.";
+		mes "Así agoto el presupuesto de hoy.";
 		mes "Mañana habrá más oportunidades.";
 	}
 	next;

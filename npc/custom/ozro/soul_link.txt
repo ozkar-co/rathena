@@ -99,7 +99,7 @@ S_SpiritHint:
 	case Job_Bard:
 	case Job_Dancer:
 		mes .name$;
-		mes "Oigo una melodía que vuelve sobre ti.";
+		mes "Oigo una melodía que vuelve a ti.";
 		mes "Tus canciones y bailes te afectan a ti mismo.";
 		mes "Si dominas tu arte, nuevos estilos se abren.";
 		next;
@@ -154,7 +154,7 @@ S_SpiritHint:
 		mes .name$;
 		mes "Huellas que se borran entre la niebla.";
 		mes "Ningún Dispell te arrancará el vínculo.";
-		mes "Las White Potions te curan mucho más.";
+		mes "Las White Potions curan mucho más.";
 		next;
 		mes .name$;
 		mes "En Stealth, te mueves como el viento.";
@@ -163,7 +163,7 @@ S_SpiritHint:
 	case Job_Sage:
 		mes .name$;
 		mes "Páginas que se escriben en el instante preciso.";
-		mes "Hindsight invocará el bolt más alto";
+		mes "Hindsight invoca el bolt más alto.";
 		mes "que hayas aprendido en cada elemento.";
 		break;
 	case Job_Soul_Linker:
@@ -275,7 +275,7 @@ S_SpiritSuccess:
 		break;
 	case Job_Priest:
 		mes "Has obtenido el espíritu de un gran ^FFFFFFPriest^000000.";
-		mes "Holy Light arde con cinco veces tu fe.";
+		mes "Holy Light arde con 5x tu fe.";
 		mes "Que la luz te acompañe sin pedir permiso.";
 		break;
 	case Job_Rogue:

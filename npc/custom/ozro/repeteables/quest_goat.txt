@@ -151,13 +151,13 @@ ein_fild06,82,171,0	script	Vegetable Farmer#Goat	919,{
 			case 1:
 				mes "[Vegetable Farmer]";
 				mes "These Goats keep eating my vegetables.";
-				mes "Can you do what you can to help me?";
+				mes "Can you help me with this?";
 				next;
 				switch(select("Gather Items:Hunt Goats:Cancel")) {
 				case 1:
 					// Item turn in
 					mes "[Vegetable Farmer]";
-					mes "I need ^FF0000Antelope Horns^000000 to show for your hard work, and I will reward you.";
+					mes "I need ^FF0000Antelope Horns^000000 to prove your work, and I'll reward you.";
 					next;
 					switch(select("I have Antelope Horns:What did you need?")) {
 					case 1:
@@ -231,13 +231,13 @@ ein_fild06,82,171,0	script	Vegetable Farmer#Goat	919,{
 			mes "Oh boy, Oh boy!";
 			next;
 			mes "[Vegetable Farmer]";
-			mes "Sorry I can't talk right now I am in a world of hurt here, these darn Goats are going to kill me.";
+			mes "Sorry, I can't talk now. Those Goats are going to kill me.";
 			close;
 		}
 	}
 	else {
 		mes "[Vegetable Farmer]";
-		mes "My vegetables, where did they all go?";
+		mes "Where did all my vegetables go?";
 		mes "Oh, no..no!!!";
 		close;
 	}

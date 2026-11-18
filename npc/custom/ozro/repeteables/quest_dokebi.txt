@@ -143,7 +143,7 @@ pay_fild10,108,357,5	script	Li#Dokebi_Hunt	90,{
 		//for maximum level
 		if (BaseLevel < 71) {
 			mes "[Li]";
-			mes "Hello. DO you think you could help me?";
+			mes "Hello. Could you help me?";
 			next;
 			switch(select("Sure:No")) {
 			case 1:

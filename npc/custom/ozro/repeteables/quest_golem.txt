@@ -144,7 +144,7 @@ moc_fild11,57,138,0	script	Private Jeremy#hunt	707,{
 		if (BaseLevel < 61) {
 			mes "[Private Jeremy]";
 			mes "Greetings citizen!";
-			mes "Say, how would you like to help me?";
+			mes "Say, would you like to help me?";
 			next;
 			switch(select("Sure:No")) {
 			case 1:

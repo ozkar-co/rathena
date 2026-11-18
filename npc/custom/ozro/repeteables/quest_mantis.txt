@@ -67,7 +67,7 @@ lou_fild01,240,354,4	script	Mantis Researcher	878,{
 			mes "There are to many Mantis around, which makes it impossible for the lower level players to gain good experience here.";
 			next;
 			mes "[Mantis Researcher]";
-			mes "So, would you still like to help me?";
+			mes "Would you still like to help me?";
 			next;
 			switch(select("Sure:Cancel")) {
 			case 1:
@@ -96,6 +96,6 @@ lou_fild01,240,354,4	script	Mantis Researcher	878,{
 	mes "Oh boy, Oh boy!";
 	next;
 	mes "[Mantis Researcher]";
-	mes "Sorry I can't talk right now I am in a world of pain here, these darn Mantis are going to kill me.";
+	mes "Sorry, I can't talk now. Those Mantis are going to kill me.";
 	close;
 }

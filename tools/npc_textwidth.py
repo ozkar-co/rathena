@@ -26,11 +26,38 @@ COLOR_CODE_RE = re.compile(r"\^[0-9A-Fa-f]{6}")
 INFO_RE = re.compile(r"<INFO>.*?</INFO>", re.IGNORECASE)
 TAG_RE = re.compile(r"<[^>]+>")
 NPC_START_RE = re.compile(
-    r"^\s*(?:-|[^,\s]+,\s*-?\d+,\s*-?\d+(?:,\s*-?\d+)?)\s+(?:script|shop|etc)\b",
+    r"^\s*(?:(?:-|[^,\s]+,\s*-?\d+,\s*-?\d+(?:,\s*-?\d+)?)\s+(?:script|shop|etc)|function\s+script)\b",
     re.IGNORECASE,
 )
 MES_RE = re.compile(r"\bmes\b(.*?);", re.IGNORECASE | re.DOTALL)
 STRING_RE = re.compile(r'"((?:[^"\\]|\\.)*)"')
+
+
+def strip_comments(source: str) -> str:
+    """Remove // and /* */ comments, keeping newlines and string literals."""
+    out: list[str] = []
+    index = 0
+    length = len(source)
+    while index < length:
+        char = source[index]
+        if char == '"':
+            end = index + 1
+            while end < length and source[end] != '"':
+                end += 2 if source[end] == "\\" else 1
+            out.append(source[index : end + 1])
+            index = end + 1
+        elif source.startswith("//", index):
+            end = source.find("\n", index)
+            index = length if end == -1 else end
+        elif source.startswith("/*", index):
+            end = source.find("*/", index + 2)
+            chunk = source[index : length if end == -1 else end + 2]
+            out.append("\n" * chunk.count("\n"))
+            index = length if end == -1 else end + 2
+        else:
+            out.append(char)
+            index += 1
+    return "".join(out)
 
 
 def visible_text(raw: str) -> str:
@@ -100,7 +127,7 @@ def parse_blocks(source: str) -> list[tuple[str, list[list[str]]]]:
 def report(path: str, limit: int) -> int:
     with open(path, "r", encoding="latin-1", errors="replace") as handle:
         source = handle.read()
-    blocks = parse_blocks(source)
+    blocks = parse_blocks(strip_comments(source))
     if not blocks:
         return 0
     print(f"{path}")
