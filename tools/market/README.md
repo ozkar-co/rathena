@@ -27,6 +27,14 @@ Outputs:
 - `ragnabots/staging/market/pricing/master_list.json` (historical reference only)
 - `data/market/canon.yml` (manual prices and policies)
 
+## Garrett legacy comparison
+
+```bash
+python3 tools/market/analyze_garrett.py
+```
+
+Writes `data/market/samples/garrett_comparison.json` and `.md`.
+
 ## Decisions in this pass
 
 - All items receive a canonical price: `market`, `synthetic` or `manual`.
