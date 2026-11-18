@@ -488,13 +488,8 @@ bool cashshop_buylist( map_session_data* sd, uint32 kafrapoints, int32 n, const 
 #if PACKETVER_SUPPORTS_SALES
 			struct sale_item_data* sale = sale_find_item( nameid, true );
 
-			if( sale == nullptr ){
-				// Client tried to buy an item from sale that was not even on sale
-				clif_cashshop_result( sd, nameid, CASHSHOP_RESULT_ERROR_UNKNOWN );
-				return false;
-			}
-
-			if( sale->amount < quantity ){
+			// Items in the Sale tab without an active sale are sold at their normal price.
+			if( sale != nullptr && sale->amount < quantity ){
 				// Client tried to buy a higher quantity than is available
 				clif_cashshop_result( sd, nameid, CASHSHOP_RESULT_ERROR_UNKNOWN );
 				// Maybe he did not get refreshed in time -> do it now
@@ -559,13 +554,8 @@ bool cashshop_buylist( map_session_data* sd, uint32 kafrapoints, int32 n, const 
 		if( tab == CASHSHOP_TAB_SALE ){
 			sale = sale_find_item( nameid, true );
 
-			if( sale == nullptr ){
-				// Client tried to buy an item from sale that was not even on sale
-				clif_cashshop_result( sd, nameid, CASHSHOP_RESULT_ERROR_UNKNOWN );
-				return false;
-			}
-
-			if( sale->amount < quantity ){
+			// Items in the Sale tab without an active sale are sold at their normal price.
+			if( sale != nullptr && sale->amount < quantity ){
 				// Client tried to buy a higher quantity than is available
 				clif_cashshop_result( sd, nameid, CASHSHOP_RESULT_ERROR_UNKNOWN );
 				// Maybe he did not get refreshed in time -> do it now
@@ -601,7 +591,7 @@ bool cashshop_buylist( map_session_data* sd, uint32 kafrapoints, int32 n, const 
 			clif_cashshop_result( sd, nameid, CASHSHOP_RESULT_SUCCESS );
 
 #if PACKETVER_SUPPORTS_SALES
-			if( tab == CASHSHOP_TAB_SALE ){
+			if( sale != nullptr ){
 				uint32 new_amount = sale->amount - get_amt;
 
 				if( new_amount == 0 ){

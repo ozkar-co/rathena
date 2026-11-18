@@ -37,27 +37,6 @@ Header:
   Version: 1
 
 Body:
-  - Tab: New
-    Items:
-      - Item: Beholder_Ring_Box    # ID: 14242
-        Price: 250
-      - Item: Bloody_Ring_Box      # ID: 14249
-        Price: 250
-      - Item: Chemical_Ring_Box    # ID: 14245
-        Price: 250
-      - Item: Clamorous_Ring_Box   # ID: 14244
-        Price: 250
-      - Item: Decussate_Ring_Box   # ID: 14248
-        Price: 250
-      - Item: Fisher_Ring_Box      # ID: 14247
-        Price: 250
-      - Item: Hallow_Ring_Box      # ID: 14243
-        Price: 250
-      - Item: Insecticide_Ring_Box # ID: 14246
-        Price: 250
-      - Item: Satanic_Ring_Box     # ID: 14250
-        Price: 250
-
   - Tab: Hot
     Items:
       - Item: HD_Elunium           # ID: 6241
@@ -229,3 +208,24 @@ Body:
         Price: 500
       - Item: Clock_Tower_Card_Box # ID: 13877
         Price: 500
+
+  - Tab: Sale
+    Items:
+      - Item: Beholder_Ring_Box    # ID: 14242
+        Price: 250
+      - Item: Bloody_Ring_Box      # ID: 14249
+        Price: 250
+      - Item: Chemical_Ring_Box    # ID: 14245
+        Price: 250
+      - Item: Clamorous_Ring_Box   # ID: 14244
+        Price: 250
+      - Item: Decussate_Ring_Box   # ID: 14248
+        Price: 250
+      - Item: Fisher_Ring_Box      # ID: 14247
+        Price: 250
+      - Item: Hallow_Ring_Box      # ID: 14243
+        Price: 250
+      - Item: Insecticide_Ring_Box # ID: 14246
+        Price: 250
+      - Item: Satanic_Ring_Box     # ID: 14250
+        Price: 250
