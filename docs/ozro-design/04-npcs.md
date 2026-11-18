@@ -1,6 +1,6 @@
 # NPCs personalizados
 
-**Última revisión:** 2026-11-16
+**Última revisión:** 2026-11-18
 **Config:** `npc/scripts_custom.conf`
 
 > **Regla de documentación:** lo que ya está implementado sale de este archivo y queda registrado en el changelog público y en el git log. Acá solo se mantiene lo pendiente, lo que hay que reformular y las decisiones de diseño.
@@ -13,6 +13,31 @@
 - No tocar el cliente si no es imprescindible; evitar items que dependan de sprites o iconos que el cliente actual no tenga.
 - No hay server de prueba: se prueba directo en producción con los 3 jugadores. Si algo falla, se corrige o se apaga el server.
 - Antes de agregar contenido nuevo, **balancear lo que ya está activo**.
+
+## Ancho de línea del diálogo (regla del cliente)
+
+El cliente `2019-06-05` corta el texto de cada `mes` a **34 caracteres visibles por línea**:
+
+- Los códigos de color `^RRGGBB` y el contenido de `<INFO>...</INFO>` **no** cuentan.
+- El corte es greedy por palabra; el espacio donde corta se descarta.
+- Una palabra de más de 34 caracteres se corta a la fuerza en 34 (verificado con 40 `i` → 34 + 6).
+- **No depende del ancho del cuadro:** 34 `W` (337px) desbordan la ventana sin cortarse.
+- Cada `mes` empieza línea nueva; `mes ""` agrega una línea en blanco.
+
+Verificado en juego con capturas de `screenrAthena005/007` y contra los diálogos de Kafra Warp Staff y Pet Groomer.
+
+### Herramienta: `tools/npc_textwidth.py`
+
+Cuenta las líneas que va a renderizar el cliente, sin abrirlo. Lee los scripts en latin-1 y no necesita dependencias.
+
+```bash
+python3 tools/npc_textwidth.py npc/custom/ozro/warps/yuno.txt   # un archivo
+python3 tools/npc_textwidth.py npc/custom/ozro                  # un directorio completo
+python3 tools/npc_textwidth.py --text "Cool Event Corp fue designada para operar."
+python3 tools/npc_textwidth.py --limit 34 npc/custom/ozro       # límite explícito (default 34)
+```
+
+Reporta por NPC y por página (las páginas se separan con `next`/`close`/`select`): líneas y caracteres por `mes`, y el total de la interacción. Los `mes` que concatenan variables se marcan `<-- dinamico` porque no se pueden calcular estáticamente.
 
 ## Activos (referencia)
 
