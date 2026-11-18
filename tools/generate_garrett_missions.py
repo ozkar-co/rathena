@@ -42,6 +42,9 @@ DAILY_CAP = 500_000
 DAILY_OFFER_COUNT = 5
 # Illusion Deep Sea quest maps: not open-world farm, supply is restricted.
 RESTRICTED_MAPS = {"iz_d04_i", "iz_d05_i"}
+# Items whose easiest open-world source is above this monster level are not
+# offered: the risk of farming them does not justify Garrett's payout.
+MAX_SOURCE_MOB_LEVEL = 120
 
 
 def load_weights() -> dict[int, int]:
@@ -52,6 +55,13 @@ def load_weights() -> dict[int, int]:
             if item_id >= 0:
                 weights[item_id] = taxonomy.as_int(row.get("Weight"), 0)
     return weights
+
+
+def is_instance_map(map_name: str, instance_maps: set[str]) -> bool:
+    if map_name in instance_maps:
+        return True
+    # Instance copies of fields/dungeons end in "_i"; instance dungeons use "N@".
+    return map_name.endswith("_i") or (map_name[:1].isdigit() and "@" in map_name)
 
 
 def load_mob_amounts() -> tuple[dict[int, int], dict[int, set[str]], dict[str, str]]:
@@ -74,7 +84,7 @@ def load_mob_amounts() -> tuple[dict[int, int], dict[int, set[str]], dict[str, s
             map_kind[map_name] = "guild"
         elif map_name in RESTRICTED_MAPS:
             map_kind[map_name] = "restricted"
-        elif map_name in instance_maps:
+        elif is_instance_map(map_name, instance_maps):
             map_kind[map_name] = "instance"
         else:
             map_kind[map_name] = "normal"
@@ -97,6 +107,50 @@ def load_rates(aegis_map: dict[str, int]) -> dict[int, dict[int, int]]:
                             taxonomy.as_int(drop.get("Rate")),
                         )
     return rates
+
+
+def load_mob_meta() -> dict[int, dict[str, object]]:
+    meta: dict[int, dict[str, object]] = {}
+    for path in taxonomy.MOB_FILES:
+        for row in taxonomy.body(path):
+            mob_id = taxonomy.as_int(row.get("Id"), -1)
+            if mob_id < 0:
+                continue
+            meta[mob_id] = {
+                "level": taxonomy.as_int(row.get("Level"), 0),
+                "class": str(row.get("Class") or "Normal"),
+            }
+    return meta
+
+
+def farmable_sources(
+    item_id: int,
+    rates: dict[int, dict[int, int]],
+    maps: dict[int, set[str]],
+    map_kind: dict[str, str],
+    mob_meta: dict[int, dict[str, object]],
+) -> list[tuple[int, str]]:
+    """Open-world sources of an item as (monster level, monster class).
+
+    A source counts only if its monster spawns on at least one normal map, so
+    items that only come from instances, guild castles or restricted quest maps
+    are dropped entirely.
+    """
+    sources: list[tuple[int, str]] = []
+    for mob_id in rates.get(item_id, {}):
+        mob_maps = maps.get(mob_id)
+        if not mob_maps:
+            continue
+        if not any(map_kind.get(name, "normal") == "normal" for name in mob_maps):
+            continue
+        meta = mob_meta.get(mob_id, {})
+        sources.append(
+            (
+                taxonomy.as_int(meta.get("level"), 0),
+                str(meta.get("class") or "Normal"),
+            )
+        )
+    return sources
 
 
 def supply_for(
@@ -142,9 +196,18 @@ def main() -> None:
     aegis_map, _ = taxonomy.load_name_maps(taxonomy.load_items())
     rates = load_rates(aegis_map)
     amounts, mob_maps, map_kind = load_mob_amounts()
+    mob_meta = load_mob_meta()
 
     known: list[dict] = []
     for item_id in candidates:
+        sources = farmable_sources(item_id, rates, mob_maps, map_kind, mob_meta)
+        if not sources:
+            continue
+        levels = [level for level, _ in sources if level > 0]
+        if levels and min(levels) > MAX_SOURCE_MOB_LEVEL:
+            continue
+        if all(monster_class == "Boss" for _, monster_class in sources):
+            continue
         supply, mobs, map_count = supply_for(item_id, rates, amounts, mob_maps, map_kind)
         if supply <= 0 or map_count == 0:
             continue
