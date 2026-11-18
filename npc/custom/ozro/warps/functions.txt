@@ -11,7 +11,7 @@ function	script	F_OzroWarp	{
 		close;
 	}
 
-	if (countitem(Blue_Gemstone) < 1) {
+	if (countitem(717) < 1) {
 		mes "[Servicio de Warp]";
 		mes "El viaje cuesta 4.000 zeny y 1 Blue Gemstone.";
 		mes "Necesitas 1 Blue Gemstone.";
@@ -30,7 +30,7 @@ function	script	F_OzroWarp	{
 	}
 
 	set Zeny, Zeny - 4000;
-	delitem Blue_Gemstone, 1;
+	delitem 717, 1;
 	mes "[Servicio de Warp]";
 	mes "Buen viaje.";
 	close2;
