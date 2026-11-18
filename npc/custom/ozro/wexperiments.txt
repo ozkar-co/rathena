@@ -1,5 +1,5 @@
 prontera,150,150,4	script	WrapTest#ozro	861,{
-	mes "iiii iiii iiii iiii iiii iiii iiii iiii iiii";
-	mes "WWWW WWWW WWWW WWWW WWWW WWWW WWWW";
+	mes "AAAA ^FF0000BBBB^000000 CCCC DDDD EEEE";
+	mes "iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii";
 	close;
 }
