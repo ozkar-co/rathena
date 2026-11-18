@@ -1,3 +1,4 @@
+// i18n: es 2026-11-18
 //===== rAthena Script =======================================
 //= iRO Repeatable EXP Quests.
 //===== By: ==================================================
@@ -18,84 +19,84 @@ lou_fild01,240,354,4	script	Mantis Researcher	878,{
 	if (checkquest(60179) != -1) {
 		if (checkquest(60179,HUNTING) != 2 ) {
 			mes "[Mantis Researcher]";
-			mes "Have you finished hunting the 50 Mantis?";
+			mes "¿Ya terminaste de cazar los 50 Mantis?";
 			next;
-			switch(select("Yes:No:I want to quit")) {
+			switch(select("Sí:No:Quiero renunciar")) {
 			case 1:
 				mes "[Mantis Researcher]";
-				mes "Hmm, I don't think you've hunted 50 yet.";
+				mes "Mmm, no creo que hayas cazado 50 todavía.";
 				close;
 			case 2:
 				mes "[Mantis Researcher]";
-				mes "Remember, I need help hunting Mantis so go and hunt 50 of them.";
+				mes "Recuerda, necesito ayuda para cazar Mantis, así que ve y caza 50 de ellos.";
 				close;
 			case 3:
 				mes "[Mantis Researcher]";
-				mes "Are you sure that you want to stop hunting?";
-				mes "Any progress that you've made will be erased";
+				mes "¿Estás seguro de que quieres dejar de cazar?";
+				mes "Cualquier progreso que hayas hecho se borrará";
 				next;
-				switch(select("Yes:No")) {
+				switch(select("Sí:No")) {
 				case 1:
 					mes "[Mantis Researcher]";
-					mes "Ok then, well come back here if you change your mind.";
+					mes "Está bien, vuelve aquí si cambias de opinión.";
 					erasequest 60179;
 					close;
 				case 2:
 					mes "[Mantis Researcher]";
-					mes "Please kill 50 Mantis in order to make this a Place were people can go to and gather Experience.";
+					mes "Por favor, mata 50 Mantis para hacer de este un lugar al que la gente pueda ir a ganar Experiencia.";
 					close;
 				}
 			}
 		}
 		mes "[Mantis Researcher]";
-		mes "Amazing, you did that with speed.";
+		mes "Increíble, lo hiciste con rapidez.";
 		getexp 18818,7527;
 		erasequest 60179;
 		close;
 	}
 	if ((BaseLevel > 34) && (BaseLevel < 71)) {
 		mes "[Mantis Researcher]";
-		mes "Oh great!";
-		mes "You are here to help me right?";
-		mes "If not, i don't know what to do with the Monsters in this Place!";
+		mes "¡Genial!";
+		mes "Estás aquí para ayudarme, ¿verdad?";
+		mes "Si no, ¡no sé qué hacer con los monstruos en este lugar!";
 		next;
-		switch(select("Sure:No")) {
+		switch(select("Claro:No")) {
 		case 1:
 			mes "[Mantis Researcher]";
-			mes "Great! I knew the moment i saw you that i can count on you!";
-			mes "I need you to reduce the Amount of Monsters which are currently rampaging on this Map!";
-			mes "There are to many Mantis around, which makes it impossible for the lower level players to gain good experience here.";
+			mes "¡Genial! Supe al verte que puedo contar contigo.";
+			mes "¡Necesito que reduzcas los monstruos que arrasan este mapa!";
+			mes "Hay demasiados Mantis aquí: los niveles bajos no pueden ganar buena experiencia.";
 			next;
 			mes "[Mantis Researcher]";
-			mes "Would you still like to help me?";
+			mes "¿Todavía quieres ayudarme?";
 			next;
-			switch(select("Sure:Cancel")) {
+			switch(select("Claro:Cancelar")) {
 			case 1:
 				if (BaseLevel > 70) {
 					mes "[Mantis Researcher]";
-					mes "Thank you for your great help with the Mantis!";
-					mes "Currently the Situation is stable and i'm not in need of your help anymore to kill them.";
+					mes "¡Gracias por tu gran ayuda con los Mantis!";
+					mes "Actualmente la situación es estable y ya no necesito tu ayuda para matarlos.";
 					close;
 				}
 				mes "[Mantis Researcher]";
-				mes "Kill 50 of those Mantis and let me know when you're done. I will reward you for your efforts.";
+				mes "Mata 50 de esos Mantis y avísame cuando termines. Te recompensaré por tus esfuerzos.";
 				setquest 60179;
 				close;
 			case 2:
 				mes "[Mantis Researcher]";
-				mes "If you change your mind, please come back.";
+				mes "Si cambias de opinión, vuelve, por favor.";
 				close;
 			}
 		case 2:
 			mes "[Mantis Researcher]";
-			mes "If you change your mind, please come back.";
+			mes "Si cambias de opinión, vuelve, por favor.";
 			close;
 		}
 	}
 	mes "[Mantis Researcher]";
-	mes "Oh boy, Oh boy!";
+	mes "¡Ay, ay!";
 	next;
 	mes "[Mantis Researcher]";
-	mes "Sorry, I can't talk now. Those Mantis are going to kill me.";
+	mes "Lo siento, no puedo hablar ahora. Esos Mantis van a matarme.";
 	close;
 }

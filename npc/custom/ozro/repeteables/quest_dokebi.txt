@@ -1,3 +1,4 @@
+// i18n: es 2026-11-18
 //===== rAthena Script =======================================
 //= iRO Repeatable EXP Quests.
 //===== By: ==================================================
@@ -18,38 +19,38 @@ pay_fild10,108,357,5	script	Li#Dokebi_Hunt	90,{
 	if (checkquest(60128) != -1) {
 		if (checkquest(60128,HUNTING) != 2 ) {
 			mes "[Li]";
-			mes "Have you finished hunting the 50 Dokebis?";
+			mes "¿Has terminado de cazar los 50 Dokebis?";
 			next;
-			switch(select("Yes:No:I want to quit")) {
+			switch(select("Sí:No:Quiero renunciar")) {
 			case 1:
 				mes "[Li]";
-				mes "Hmm, I don't think you've hunted 50 yet...";
+				mes "Mmm, no creo que hayas cazado 50 todavía...";
 				close;
 			case 2:
 				mes "[Li]";
-				mes "Remember, I need help hunting Dokebis so go and hunt 50 of them.";
+				mes "Recuerda, necesito ayuda para cazar Dokebis, así que ve y caza 50 de ellos.";
 				close;
 			case 3:
 				mes "[Li]";
-				mes "Are you sure that you want to stop hunting?";
-				mes "Any progress that you've made will be erased";
+				mes "¿Estás seguro de que quieres dejar de cazar?";
+				mes "Cualquier progreso que hayas hecho se borrará";
 				next;
-				switch(select("Yes:No")) {
+				switch(select("Sí:No")) {
 				case 1:
 					mes "[Li]";
-					mes "Ok then, well come back here if you change your mind.";
+					mes "Está bien, vuelve aquí si cambias de opinión.";
 					erasequest 60128;
 					close;
 				case 2:
 					mes "[Li]";
-					mes "Please kill 50 Dokebis.";
+					mes "Por favor, mata 50 Dokebis.";
 					close;
 				}
 			}
 		}
 		else {
 			mes "[Li]";
-			mes "Amazing, you did that with speed.";
+			mes "Increíble, lo hiciste con rapidez.";
 			getexp 42000,36000;
 			erasequest 60128;
 			close;
@@ -58,38 +59,38 @@ pay_fild10,108,357,5	script	Li#Dokebi_Hunt	90,{
 	if (checkquest(60129) != -1) {
 		if (checkquest(60129,HUNTING) != 2 ) {
 			mes "[Li]";
-			mes "Have you finished hunting the 50 Dokebis?";
+			mes "¿Has terminado de cazar los 50 Dokebis?";
 			next;
-			switch(select("Yes:No:I want to quit")) {
+			switch(select("Sí:No:Quiero renunciar")) {
 			case 1:
 				mes "[Li]";
-				mes "Hmm, I don't think you've hunted 100 yet...";
+				mes "Mmm, no creo que hayas cazado 100 todavía...";
 				close;
 			case 2:
 				mes "[Li]";
-				mes "Remember, I need help hunting Dokebis so go and hunt 100 of them.";
+				mes "Recuerda, necesito ayuda para cazar Dokebis, así que ve y caza 100 de ellos.";
 				close;
 			case 3:
 				mes "[Li]";
-				mes "Are you sure that you want to stop hunting?";
-				mes "Any progress that you've made will be erased";
+				mes "¿Estás seguro de que quieres dejar de cazar?";
+				mes "Cualquier progreso que hayas hecho se borrará";
 				next;
-				switch(select("Yes:No")) {
+				switch(select("Sí:No")) {
 				case 1:
 					mes "[Li]";
-					mes "Ok then, well come back here if you change your mind.";
+					mes "Está bien, vuelve aquí si cambias de opinión.";
 					erasequest 60129;
 					close;
 				case 2:
 					mes "[Li]";
-					mes "Please kill 100 Dokebis.";
+					mes "Por favor, mata 100 Dokebis.";
 					close;
 				}
 			}
 		}
 		else {
 			mes "[Li]";
-			mes "Amazing, you did that with speed.";
+			mes "Increíble, lo hiciste con rapidez.";
 			getexp 42000,36000;
 			getexp 42000,36000;
 			erasequest 60129;
@@ -99,38 +100,38 @@ pay_fild10,108,357,5	script	Li#Dokebi_Hunt	90,{
 	if (checkquest(60130) != -1) {
 		if (checkquest(60130,HUNTING) != 2 ) {
 			mes "[Li]";
-			mes "Have you finished hunting the 150 Dokebis?";
+			mes "¿Ya terminaste de cazar los 150 Dokebis?";
 			next;
-			switch(select("Yes:No:I want to quit")) {
+			switch(select("Sí:No:Quiero renunciar")) {
 			case 1:
 				mes "[Li]";
-				mes "Hmm, I don't think you've hunted 150 yet...";
+				mes "Mmm, no creo que hayas cazado 150 todavía...";
 				close;
 			case 2:
 				mes "[Li]";
-				mes "Remember, I need help hunting Dokebis so go and hunt 150 of them.";
+				mes "Recuerda, necesito ayuda para cazar Dokebis, así que ve y caza 150 de ellos.";
 				close;
 			case 3:
 				mes "[Li]";
-				mes "Are you sure that you want to stop hunting?";
-				mes "Any progress that you've made will be erased";
+				mes "¿Estás seguro de que quieres dejar de cazar?";
+				mes "Cualquier progreso que hayas hecho se borrará";
 				next;
-				switch(select("Yes:No")) {
+				switch(select("Sí:No")) {
 				case 1:
 					mes "[Li]";
-					mes "Ok then, well come back here if you change your mind.";
+					mes "Está bien, vuelve aquí si cambias de opinión.";
 					erasequest 60130;
 					close;
 				case 2:
 					mes "[Li]";
-					mes "Please kill 150 Dokebis.";
+					mes "Por favor, mata 150 Dokebis.";
 					close;
 				}
 			}
 		}
 		else {
 			mes "[Li]";
-			mes "Amazing, you did that with speed.";
+			mes "Increíble, lo hiciste con rapidez.";
 			getexp 42000,36000;
 			getexp 42000,36000;
 			getexp 42000,36000;
@@ -143,90 +144,90 @@ pay_fild10,108,357,5	script	Li#Dokebi_Hunt	90,{
 		//for maximum level
 		if (BaseLevel < 71) {
 			mes "[Li]";
-			mes "Hello. Could you help me?";
+			mes "Hola. ¿Podrías ayudarme?";
 			next;
-			switch(select("Sure:No")) {
+			switch(select("Claro:No")) {
 			case 1:
 				mes "[Li]";
-				mes "There are so many Dokebis here...I just don't feel safe.";
+				mes "Hay tantos Dokebis aquí... No me siento seguro.";
 				next;
-				switch(select("Gather Items:Hunt Dokebis:Cancel")) {
+				switch(select("Reunir objetos:Cazar Dokebis:Cancelar")) {
 				case 1:
 					// Item turn in
 					mes "[Li]";
-					mes "My fortune teller business needs a good supply of ^FF0000Dokebi Horns^000000 to give my customers good luck.";
+					mes "Mi negocio de adivinación necesita un buen suministro de ^FF0000Dokebi Horns^000000 para dar buena suerte a mis clientes.";
 					next;
-					switch(select("I have some Dokebi Horns:What did you need?")) {
+					switch(select("Tengo algunos Dokebi Horns:¿Qué necesitabas?")) {
 					case 1:
 						if (countitem(1021) > 49) {
 							mes "[Li]";
-							mes "Oh, great!";
-							mes "Thank you for the horns.";
+							mes "¡Oh, genial!";
+							mes "Gracias por los cuernos.";
 							delitem 1021,50; //Dokkaebi_Horn
 							getexp 42000,36000;
 							close;
 						}
 						else {
 							mes "[Li]";
-							mes "It doesn't look like you have enough.";
+							mes "No parece que tengas suficiente.";
 							next;
 							mes "[Li]";
-							mes "I need ^FF000050 Dokebi Horns^000000 for my fortune telling.";
+							mes "Necesito ^FF000050 Dokebi Horns^000000 para mi adivinación.";
 							close;
 						}
 					case 2:
 						mes "[Li]";
-						mes "If you bring me";
-						mes "^FF000050 Dokebi Horns^000000, I can give you some good luck.";
+						mes "Si me traes";
+						mes "^FF000050 Dokebi Horns^000000, puedo darte algo de buena suerte.";
 						close;
 					}
 				case 2:
 					// Kill Count Quest
 					mes "[Li]";
-					mes "Ah, ok I think you can help me out by hunting some Dokebis.";
-					mes "How many would you like to hunt?";
+					mes "Ah, ok, creo que puedes ayudarme cazando algunos Dokebis.";
+					mes "¿Cuántos quieres cazar?";
 					next;
 					switch(select("50 Dokebis:100 Dokebis:150 Dokebis")) {
 					case 1:
 						mes "[Li]";
-						mes "Come back when you've finished your task and I will give you a small reward.";
+						mes "Vuelve cuando hayas terminado tu tarea y te daré una pequeña recompensa.";
 						setquest 60128;
 						close;
 					case 2:
 						mes "[Li]";
-						mes "Come back when you've finished your task and I will give you a small reward.";
+						mes "Vuelve cuando hayas terminado tu tarea y te daré una pequeña recompensa.";
 						setquest 60129;
 						close;
 					case 3:
 						mes "[Li]";
-						mes "Come back when you've finished your task and I will give you a small reward.";
+						mes "Vuelve cuando hayas terminado tu tarea y te daré una pequeña recompensa.";
 						setquest 60130;
 						close;
 					}
 				case 3:
 					mes "[Li]";
-					mes "If you change your mind, please come back.";
+					mes "Si cambias de opinión, vuelve, por favor.";
 					close;
 				}
 			case 2:
 				mes "[Li]";
-				mes "If you change your mind, please come back.";
+				mes "Si cambias de opinión, vuelve, por favor.";
 				close;
 			}
 		}
 		else {
 			mes "[Li]";
-			mes "Hello";
-			mes "I read fortunes in Payon.";
+			mes "Hola";
+			mes "Leo la fortuna en Payon.";
 			close;
 		}
 	}
 	else {
 		mes "[Li]";
-		mes "This place is dangerous!";
+		mes "¡Este lugar es peligroso!";
 		next;
 		mes "[Li]";
-		mes "You should leave quickly!";
+		mes "¡Deberías irte rápido!";
 		close;
 	}
 }

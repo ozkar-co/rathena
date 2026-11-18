@@ -1,3 +1,4 @@
+// i18n: es 2026-11-18
 //===== rAthena Script =======================================
 //= iRO Repeatable EXP Quests.
 //===== By: ==================================================
@@ -18,38 +19,38 @@ cmd_fild01,362,256,3	script	Cuir#Gator_Hunt	106,{
 	if (checkquest(60119) != -1) {
 		if (checkquest(60119,HUNTING) != 2 ) {
 			mes "[Cuir]";
-			mes "Have you finished hunting the 50 Alligators?";
+			mes "¿Has terminado de cazar los 50 Alligators?";
 			next;
-			switch(select("Yes:No:I want to quit")) {
+			switch(select("Sí:No:Quiero renunciar")) {
 			case 1:
 				mes "[Cuir]";
-				mes "Hmm, I don't think you've hunted 50 yet...";
+				mes "Mmm, no creo que hayas cazado 50 todavía...";
 				close;
 			case 2:
 				mes "[Cuir]";
-				mes "Remember, I need help hunting Alligators so go and hunt 50 of them.";
+				mes "Recuerda que necesito ayuda para cazar Alligators, así que ve y caza 50 de ellos.";
 				close;
 			case 3:
 				mes "[Cuir]";
-				mes "Are you sure that you want to stop hunting?";
-				mes "Any progress that you've made will be erased";
+				mes "¿Estás seguro de que quieres dejar de cazar?";
+				mes "Cualquier progreso que hayas hecho se borrará";
 				next;
-				switch(select("Yes:No")) {
+				switch(select("Sí:No")) {
 				case 1:
 					mes "[Cuir]";
-					mes "Ok then, well come back here if you change your mind.";
+					mes "Está bien, vuelve aquí si cambias de opinión.";
 					erasequest 60119;
 					close;
 				case 2:
 					mes "[Cuir]";
-					mes "Please kill 50 Alligators.";
+					mes "Por favor, mata 50 Alligators.";
 					close;
 				}
 			}
 		}
 		else {
 			mes "[Cuir]";
-			mes "Amazing, you did that with speed.";
+			mes "Increíble, lo hiciste con rapidez.";
 			getexp 68950,43300;
 			erasequest 60119;
 			close;
@@ -58,38 +59,38 @@ cmd_fild01,362,256,3	script	Cuir#Gator_Hunt	106,{
 	if (checkquest(60120) != -1) {
 		if (checkquest(60120,HUNTING) != 2 ) {
 			mes "[Cuir]";
-			mes "Have you finished hunting the 50 Alligators?";
+			mes "¿Has terminado de cazar los 50 Alligators?";
 			next;
-			switch(select("Yes:No:I want to quit")) {
+			switch(select("Sí:No:Quiero renunciar")) {
 			case 1:
 				mes "[Cuir]";
-				mes "Hmm, I don't think you've hunted 100 yet...";
+				mes "Mmm, no creo que hayas cazado 100 todavía...";
 				close;
 			case 2:
 				mes "[Cuir]";
-				mes "Remember, I need help hunting Alligators so go and hunt 100 of them.";
+				mes "Recuerda que necesito ayuda para cazar Alligators, así que ve y caza 100 de ellos.";
 				close;
 			case 3:
 				mes "[Cuir]";
-				mes "Are you sure that you want to stop hunting?";
-				mes "Any progress that you've made will be erased";
+				mes "¿Estás seguro de que quieres dejar de cazar?";
+				mes "Cualquier progreso que hayas hecho se borrará";
 				next;
-				switch(select("Yes:No")) {
+				switch(select("Sí:No")) {
 				case 1:
 					mes "[Cuir]";
-					mes "Ok then, well come back here if you change your mind.";
+					mes "Está bien, vuelve aquí si cambias de opinión.";
 					erasequest 60120;
 					close;
 				case 2:
 					mes "[Cuir]";
-					mes "Please kill 100 Alligators.";
+					mes "Por favor, mata 100 Alligators.";
 					close;
 				}
 			}
 		}
 		else {
 			mes "[Cuir]";
-			mes "Amazing, you did that with speed.";
+			mes "Increíble, lo hiciste con rapidez.";
 			getexp 68950,43300;
 			getexp 68950,43300;
 			erasequest 60120;
@@ -99,38 +100,38 @@ cmd_fild01,362,256,3	script	Cuir#Gator_Hunt	106,{
 	if (checkquest(60121) != -1) {
 		if (checkquest(60121,HUNTING) != 2 ) {
 			mes "[Cuir]";
-			mes "Have you finished hunting the 150 Alligators?";
+			mes "¿Ya terminaste de cazar los 150 Alligators?";
 			next;
-			switch(select("Yes:No:I want to quit")) {
+			switch(select("Sí:No:Quiero renunciar")) {
 			case 1:
 				mes "[Cuir]";
-				mes "Hmm, I don't think you've hunted 150 yet...";
+				mes "Mmm, no creo que hayas cazado 150 todavía...";
 				close;
 			case 2:
 				mes "[Cuir]";
-				mes "Remember, I need help hunting Alligators so go and hunt 150 of them.";
+				mes "Recuerda que necesito ayuda para cazar Alligators, así que ve y caza 150 de ellos.";
 				close;
 			case 3:
 				mes "[Cuir]";
-				mes "Are you sure that you want to stop hunting?";
-				mes "Any progress that you've made will be erased";
+				mes "¿Estás seguro de que quieres dejar de cazar?";
+				mes "Cualquier progreso que hayas hecho se borrará";
 				next;
-				switch(select("Yes:No")) {
+				switch(select("Sí:No")) {
 				case 1:
 					mes "[Cuir]";
-					mes "Ok then, well come back here if you change your mind.";
+					mes "Está bien, vuelve aquí si cambias de opinión.";
 					erasequest 60121;
 					close;
 				case 2:
 					mes "[Cuir]";
-					mes "Please kill 150 Alligators.";
+					mes "Por favor, mata 150 Alligators.";
 					close;
 				}
 			}
 		}
 		else {
 			mes "[Cuir]";
-			mes "Amazing, you did that with speed.";
+			mes "Increíble, lo hiciste con rapidez.";
 			getexp 68950,43300;
 			getexp 68950,43300;
 			getexp 68950,43300;
@@ -143,25 +144,25 @@ cmd_fild01,362,256,3	script	Cuir#Gator_Hunt	106,{
 		//for maximum level
 		if (BaseLevel < 81) {
 			mes "[Cuir]";
-			mes "You look like a sturdy adventurer!";
+			mes "¡Pareces un aventurero robusto!";
 			next;
 			mes "[Cuir]";
-			mes "I was sent here to minimize the Alligator population but the task is proving to be quite difficult for just me to complete.";
-			mes "How'd you like to help me out?";
+			mes "Me enviaron aquí para reducir la población de Alligators, pero la tarea está resultando bastante difícil de completar solo para mí.";
+			mes "¿Qué te parece si me ayudas?";
 			next;
-			switch(select("Sure:No")) {
+			switch(select("Claro:No")) {
 			case 1:
 				mes "[Cuir]";
-				mes "You can help me out by either hunting Alligators or by gathering items for me.";
-				mes "Which would you like to do?";
+				mes "Puedes ayudarme cazando Alligators o reuniendo objetos para mí.";
+				mes "¿Cuál te gustaría hacer?";
 				next;
-				switch(select("Gather Items:Hunt Alligators:Cancel")) {
+				switch(select("Reunir objetos:Cazar Alligators:Cancelar")) {
 				case 1:
 					// Item turn in
 					mes "[Cuir]";
-					mes "If you can bring me ^00CC0020 Anolian Skins^000000. I'll help you get stronger.";
+					mes "Si puedes traerme ^00CC0020 Anolian Skins^000000. Te ayudaré a hacerte más fuerte.";
 					next;
-					switch(select("I have the Anolian Skins:Gators bite!")) {
+					switch(select("Tengo las Anolian Skins:¡Los caimanes muerden!")) {
 					case 1:
 						/*
 						if (checkweight(503,10) == 0) {
@@ -174,9 +175,9 @@ cmd_fild01,362,256,3	script	Cuir#Gator_Hunt	106,{
 						*/
 						if (countitem(7003) > 19) {
 							mes "[Cuir]";
-							mes "Thank you for the ^00CE0020 Anolian Skins^000000!";
-							mes "I hope you can continue to help me collect these skins.";
-							mes "The armor creators around the world are clamoring for them.";
+							mes "¡Gracias por las ^00CE0020 Anolian Skins^000000!";
+							mes "Espero que puedas seguir ayudándome a reunir estas pieles.";
+							mes "Los creadores de armaduras de todo el mundo las reclaman.";
 							delitem 7003,20; //Anolian_Skin
 							getexp 68950,43300;
 							//getitem 503,10; //Yellow_Potion
@@ -184,59 +185,59 @@ cmd_fild01,362,256,3	script	Cuir#Gator_Hunt	106,{
 						}
 						else {
 							mes "[Cuir]";
-							mes "I know a gator skin when I see it and I don't see ^00CE0020 Anolian Skins^000000.";
+							mes "Sé reconocer una piel de caimán cuando la veo, y no veo ^00CE0020 Anolian Skins^000000.";
 							close;
 						}
 					case 2:
 						mes "[Cuir]";
-						mes "I need ^00CE0020 Anolian Skins^000000.";
+						mes "Necesito ^00CE0020 Anolian Skins^000000.";
 						close;
 					}
 				case 2:
 					// Kill Count Quest
 					mes "[Cuir]";
-					mes "Ah, ok I think you can help me out by hunting some Alligators.";
-					mes "How many would you like to hunt?";
+					mes "Ah, ok, creo que puedes ayudarme cazando algunos Alligators.";
+					mes "¿Cuántos quieres cazar?";
 					next;
 					switch(select("50 Alligators:100 Alligators:150 Alligators")) {
 					case 1:
 						mes "[Cuir]";
-						mes "Come back when you've finished your task and I will give you a small reward.";
+						mes "Vuelve cuando hayas terminado tu tarea y te daré una pequeña recompensa.";
 						setquest 60119;
 						close;
 					case 2:
 						mes "[Cuir]";
-						mes "Come back when you've finished your task and I will give you a small reward.";
+						mes "Vuelve cuando hayas terminado tu tarea y te daré una pequeña recompensa.";
 						setquest 60120;
 						close;
 					case 3:
 						mes "[Cuir]";
-						mes "Come back when you've finished your task and I will give you a small reward.";
+						mes "Vuelve cuando hayas terminado tu tarea y te daré una pequeña recompensa.";
 						setquest 60121;
 						close;
 					}
 				case 3:
 					mes "[Cuir]";
-					mes "If you change your mind, please come back.";
+					mes "Si cambias de opinión, vuelve, por favor.";
 					close;
 				}
 			case 2:
 				mes "[Cuir]";
-				mes "If you change your mind, please come back.";
+				mes "Si cambias de opinión, vuelve, por favor.";
 				close;
 			}
 		}
 		else {
 			mes "[Cuir]";
-			mes "You are too powerful for this task, I need the skins in fair condition, not exploded!";
+			mes "¡Eres demasiado poderoso para esta tarea, necesito las pieles en buen estado, no reventadas!";
 			next;
 			close;
 		}
 	}
 	else {
 		mes "[Cuir]";
-		mes "You certainly are brave, but bravery turns to foolishness if you continue going East.";
-		mes "Perhaps when you are stronger you and I can do business.";
+		mes "Sin duda eres valiente, pero la valentía se vuelve insensatez si sigues yendo hacia el Este.";
+		mes "Quizá cuando seas más fuerte tú y yo podamos hacer negocios.";
 		close;
 	}
 }

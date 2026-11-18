@@ -1,3 +1,4 @@
+// i18n: es 2026-11-18
 //===== rAthena Script =======================================
 //= iRO Repeatable EXP Quests.
 //===== By: ==================================================
@@ -18,38 +19,38 @@ ein_fild06,82,171,0	script	Vegetable Farmer#Goat	919,{
 	if (checkquest(60137) != -1) {
 		if (checkquest(60137,HUNTING) != 2 ) {
 			mes "[Vegetable Farmer]";
-			mes "Have you finished hunting the 50 Goats?";
+			mes "¿Ya terminaste de cazar las 50 Goats?";
 			next;
-			switch(select("Yes:No:I want to quit")) {
+			switch(select("Sí:No:Quiero renunciar")) {
 			case 1:
 				mes "[Vegetable Farmer]";
-				mes "Hmm, I don't think you've hunted 50 yet.";
+				mes "Mmm, no creo que hayas cazado 50 todavía.";
 				close;
 			case 2:
 				mes "[Vegetable Farmer]";
-				mes "Remember, I need help hunting Goats so go and hunt 50 of them.";
+				mes "Recuerda, necesito ayuda para cazar Goats, así que ve y caza 50 de ellas.";
 				close;
 			case 3:
 				mes "[Vegetable Farmer]";
-				mes "Are you sure that you want to stop hunting?";
-				mes "Any progress that you've made will be erased";
+				mes "¿Estás seguro de que quieres dejar de cazar?";
+				mes "Cualquier progreso que hayas hecho se borrará";
 				next;
-				switch(select("Yes:No")) {
+				switch(select("Sí:No")) {
 				case 1:
 					mes "[Vegetable Farmer]";
-					mes "Ok then, well come back here if you change your mind.";
+					mes "Está bien, vuelve aquí si cambias de opinión.";
 					erasequest 60137;
 					close;
 				case 2:
 					mes "[Vegetable Farmer]";
-					mes "Please kill 50 Goats so I can farm my vegetables without any worries.";
+					mes "Por favor, mata 50 Goats para que pueda cultivar mis verduras sin preocupaciones.";
 					close;
 				}
 			}
 		}
 		else {
 			mes "[Vegetable Farmer]";
-			mes "Amazing, you did that with speed.";
+			mes "Increíble, lo hiciste con rapidez.";
 			getexp 258489,155155;
 			erasequest 60137;
 			close;
@@ -58,38 +59,38 @@ ein_fild06,82,171,0	script	Vegetable Farmer#Goat	919,{
 	if (checkquest(60138) != -1) {
 		if (checkquest(60138,HUNTING) != 2) {
 			mes "[Vegetable Farmer]";
-			mes "Have you finished hunting the 100 Goats?";
+			mes "¿Ya terminaste de cazar las 100 Goats?";
 			next;
-			switch(select("Yes:No:I want to quit")) {
+			switch(select("Sí:No:Quiero renunciar")) {
 			case 1:
 				mes "[Vegetable Farmer]";
-				mes "Hmm, I don't think you've hunted 100 yet.";
+				mes "Mmm, no creo que hayas cazado 100 todavía.";
 				close;
 			case 2:
 				mes "[Vegetable Farmer]";
-				mes "Remember, I need help hunting Goats so go and hunt 100 of them.";
+				mes "Recuerda, necesito ayuda para cazar Goats, así que ve y caza 100 de ellas.";
 				close;
 			case 3:
 				mes "[Vegetable Farmer]";
-				mes "Are you sure that you want to stop hunting?";
-				mes "Any progress that you've made will be erased";
+				mes "¿Estás seguro de que quieres dejar de cazar?";
+				mes "Cualquier progreso que hayas hecho se borrará";
 				next;
-				switch(select("Yes:No")) {
+				switch(select("Sí:No")) {
 				case 1:
 					mes "[Vegetable Farmer]";
-					mes "Ok then, well come back here if you change your mind.";
+					mes "Está bien, vuelve aquí si cambias de opinión.";
 					erasequest 60138;
 					close;
 				case 2:
 					mes "[Vegetable Farmer]";
-					mes "Please kill 100 Goats so I can farm my vegetables without any worries.";
+					mes "Por favor, mata 100 Goats para que pueda cultivar mis verduras sin preocupaciones.";
 					close;
 				}
 			}
 		}
 		else {
 			mes "[Vegetable Farmer]";
-			mes "Amazing, you did that with speed.";
+			mes "Increíble, lo hiciste con rapidez.";
 			getexp 258489,155155;
 			getexp 258489,155155;
 			erasequest 60138;
@@ -99,38 +100,38 @@ ein_fild06,82,171,0	script	Vegetable Farmer#Goat	919,{
 	if (checkquest(60139) != -1) {
 		if (checkquest(60139,HUNTING) != 2) {
 			mes "[Vegetable Farmer]";
-			mes "Have you finished hunting the 150 Goats?";
+			mes "¿Ya terminaste de cazar las 150 Goats?";
 			next;
-			switch(select("Yes:No:I want to quit")) {
+			switch(select("Sí:No:Quiero renunciar")) {
 			case 1:
 				mes "[Vegetable Farmer]";
-				mes "Hmm, I don't think you've hunted 150 yet.";
+				mes "Mmm, no creo que hayas cazado 150 todavía.";
 				close;
 			case 2:
 				mes "[Vegetable Farmer]";
-				mes "Remember, I need help hunting Goats so go and hunt 150 of them.";
+				mes "Recuerda, necesito ayuda para cazar Goats, así que ve y caza 150 de ellas.";
 				close;
 			case 3:
 				mes "[Vegetable Farmer]";
-				mes "Are you sure that you want to stop hunting?";
-				mes "Any progress that you've made will be erased";
+				mes "¿Estás seguro de que quieres dejar de cazar?";
+				mes "Cualquier progreso que hayas hecho se borrará";
 				next;
-				switch(select("Yes:No")) {
+				switch(select("Sí:No")) {
 				case 1:
 					mes "[Vegetable Farmer]";
-					mes "Ok then, well come back here if you change your mind.";
+					mes "Está bien, vuelve aquí si cambias de opinión.";
 					erasequest 60139;
 					close;
 				case 2:
 					mes "[Vegetable Farmer]";
-					mes "Please kill 150 Goats so I can farm my vegetables without any worries.";
+					mes "Por favor, mata 150 Goats para que pueda cultivar mis verduras sin preocupaciones.";
 					close;
 				}
 			}
 		}
 		else {
 			mes "[Vegetable Farmer]";
-			mes "Amazing, you did that with speed.";
+			mes "Increíble, lo hiciste con rapidez.";
 			getexp 258489,155155;
 			getexp 258489,155155;
 			getexp 258489,155155;
@@ -143,23 +144,23 @@ ein_fild06,82,171,0	script	Vegetable Farmer#Goat	919,{
 		//for maximum level
 		if (BaseLevel < 85) {
 			mes "[Vegetable Farmer]";
-			mes "Oh great!";
-			mes "You are here to help me right?";
-			mes "If not, then I am in a world of hurt.";
+			mes "¡Genial!";
+			mes "Estás aquí para ayudarme, ¿verdad?";
+			mes "Si no, estaré en serios problemas.";
 			next;
-			switch(select("Sure:No")) {
+			switch(select("Claro:No")) {
 			case 1:
 				mes "[Vegetable Farmer]";
-				mes "These Goats keep eating my vegetables.";
-				mes "Can you help me with this?";
+				mes "Estas Goats no dejan de comerse mis verduras.";
+				mes "¿Puedes ayudarme con esto?";
 				next;
-				switch(select("Gather Items:Hunt Goats:Cancel")) {
+				switch(select("Reunir objetos:Cazar Goats:Cancelar")) {
 				case 1:
 					// Item turn in
 					mes "[Vegetable Farmer]";
-					mes "I need ^FF0000Antelope Horns^000000 to prove your work, and I'll reward you.";
+					mes "Necesito ^FF0000Antelope Horns^000000 para probar tu trabajo, y te recompensaré.";
 					next;
-					switch(select("I have Antelope Horns:What did you need?")) {
+					switch(select("Tengo Antelope Horns:¿Qué necesitabas?")) {
 					case 1:
 						/*
 						if (checkweight(504,10) == 0) {
@@ -172,8 +173,8 @@ ein_fild06,82,171,0	script	Vegetable Farmer#Goat	919,{
 						*/
 						if (countitem(7106) > 49) {
 							mes "[Vegetable Farmer]";
-							mes "Amazing, you did that with speed.";
-							mes "I am truly grateful.";
+							mes "Increíble, lo hiciste con rapidez.";
+							mes "Estoy realmente agradecido.";
 							delitem 7106,50; //Goat's_Horn
 							getexp 258489,155155;
 							//getitem 504,10; //White_Potion
@@ -181,64 +182,64 @@ ein_fild06,82,171,0	script	Vegetable Farmer#Goat	919,{
 						}
 						else {
 							mes "[Vegetable Farmer]";
-							mes "It doesn't look like you have enough.";
+							mes "No parece que tengas suficiente.";
 							next;
 							mes "[Vegetable Farmer]";
-							mes "I need to see that you have gathered ^FF000050 Antelope Horns^000000, and then I can reward you.";
+							mes "Necesito ver que hayas reunido ^FF000050 Antelope Horns^000000, y entonces podré recompensarte.";
 							close;
 						}
 					case 2:
 						mes "[Vegetable Farmer]";
-						mes "I need to see that you have gathered ^FF000050 Antelope Horns^000000, and then I can reward you.";
+						mes "Necesito ver que hayas reunido ^FF000050 Antelope Horns^000000, y entonces podré recompensarte.";
 						close;
 					}
 				case 2:
 					// Kill Count Quest
 					mes "[Vegetable Farmer]";
-					mes "Thank you.";
-					mes "How many Goats would you like to hunt?";
+					mes "Gracias.";
+					mes "¿Cuántas Goats te gustaría cazar?";
 					next;
 					switch(select("50 Goats:100 Goats:150 Goats")) {
 					case 1:
 						mes "[Vegetable Farmer]";
-						mes "Kill 50 of those Goats and let me know when you're done. I will reward you for your efforts.";
+						mes "Mata 50 de esas Goats y avísame cuando termines. Te recompensaré por tus esfuerzos.";
 						setquest 60137;
 						close;
 					case 2:
 						mes "[Vegetable Farmer]";
-						mes "Kill 100 of those Goats and let me know when you're done. I will reward you for your efforts.";
+						mes "Mata 100 de esas Goats y avísame cuando termines. Te recompensaré por tus esfuerzos.";
 						setquest 60138;
 						close;
 					case 3:
 						mes "[Vegetable Farmer]";
-						mes "Kill 150 of those Goats and let me know when you're done. I will reward you for your efforts.";
+						mes "Mata 150 de esas Goats y avísame cuando termines. Te recompensaré por tus esfuerzos.";
 						setquest 60139;
 						close;
 					}
 				case 3:
 					mes "[Vegetable Farmer]";
-					mes "If you change your mind, please come back.";
+					mes "Si cambias de opinión, vuelve, por favor.";
 					close;
 				}
 			case 2:
 				mes "[Vegetable Farmer]";
-				mes "If you change your mind, please come back.";
+				mes "Si cambias de opinión, vuelve, por favor.";
 				close;
 			}
 		}
 		else {
 			mes "[Vegetable Farmer]";
-			mes "Oh boy, Oh boy!";
+			mes "¡Ay, ay!";
 			next;
 			mes "[Vegetable Farmer]";
-			mes "Sorry, I can't talk now. Those Goats are going to kill me.";
+			mes "Lo siento, no puedo hablar ahora. Esas Goats van a matarme.";
 			close;
 		}
 	}
 	else {
 		mes "[Vegetable Farmer]";
-		mes "Where did all my vegetables go?";
-		mes "Oh, no..no!!!";
+		mes "¿Adónde fueron todas mis verduras?";
+		mes "Oh, no..¡no!!!";
 		close;
 	}
 }

@@ -31,6 +31,9 @@ NPC_START_RE = re.compile(
 )
 MES_RE = re.compile(r"\bmes\b(.*?);", re.IGNORECASE | re.DOTALL)
 STRING_RE = re.compile(r'"((?:[^"\\]|\\.)*)"')
+PAGE_END_RE = re.compile(r"^\s*(?:next|close2?|end)\s*;", re.IGNORECASE)
+PAGE_BREAK_RE = re.compile(r"\b(?:select\s*\(|menu\b|case\b|default\s*:|else\b)", re.IGNORECASE)
+MAX_PAGE_LINES = 8
 
 
 def strip_comments(source: str) -> str:
@@ -107,8 +110,7 @@ def parse_blocks(source: str) -> list[tuple[str, list[list[str]]]]:
             continue
         if not blocks:
             continue
-        stripped = line.strip()
-        if stripped.startswith(("next;", "close;", "close2;", "menu ", "select(", "end;")) and pages[-1]:
+        if pages[-1] and (PAGE_END_RE.match(line) or PAGE_BREAK_RE.search(line)):
             pages.append([])
         for match in MES_RE.finditer(line):
             args = match.group(1)
@@ -124,7 +126,7 @@ def parse_blocks(source: str) -> list[tuple[str, list[list[str]]]]:
     return [(l, p) for l, p in blocks if p]
 
 
-def report(path: str, limit: int) -> int:
+def report(path: str, limit: int, max_lines: int, over: list[tuple[str, str, int, int]]) -> int:
     with open(path, "r", encoding="latin-1", errors="replace") as handle:
         source = handle.read()
     blocks = parse_blocks(strip_comments(source))
@@ -141,10 +143,13 @@ def report(path: str, limit: int) -> int:
                     lines = wrap_lines(visible_text(segment), limit)
                     total += len(lines)
                     details.append((len(visible_text(segment)), len(lines), segment))
-            print(f"    pagina {index}: {total} lineas")
+            warn = f"  <-- SCROLL (>{max_lines})" if total > max_lines else ""
+            print(f"    pagina {index}: {total} lineas{warn}")
             for chars, count, segment in details:
                 flag = "  <-- dinamico" if segment == "<dynamic>" else ""
                 print(f"      {count} lineas  {chars:3d} chars  {segment}{flag}")
+            if total > max_lines:
+                over.append((path, label, index, total))
     return len(blocks)
 
 
@@ -153,6 +158,12 @@ def main() -> int:
     parser.add_argument("paths", nargs="*", help="script files or directories")
     parser.add_argument("--text", help="wrap a single string instead of files")
     parser.add_argument("--limit", type=int, default=LINE_LIMIT, help="visible chars per line (default 34)")
+    parser.add_argument(
+        "--max-lines",
+        type=int,
+        default=MAX_PAGE_LINES,
+        help="max rendered lines per dialog page before the client scrolls (default 8)",
+    )
     args = parser.parse_args()
 
     if args.text:
@@ -170,8 +181,11 @@ def main() -> int:
     if not files:
         parser.error("no script files given")
 
-    blocks = sum(report(path, args.limit) for path in sorted(files))
-    print(f"\n{blocks} NPCs revisados")
+    over: list[tuple[str, str, int, int]] = []
+    blocks = sum(report(path, args.limit, args.max_lines, over) for path in sorted(files))
+    print(f"\n{blocks} NPCs revisados, {len(over)} paginas con scroll (>{args.max_lines} lineas)")
+    for path, label, index, total in over:
+        print(f"  {path}: {label} pagina {index} ({total} lineas)")
     return 0
 
 

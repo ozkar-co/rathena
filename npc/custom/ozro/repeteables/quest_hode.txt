@@ -1,3 +1,4 @@
+// i18n: es 2026-11-18
 //===== rAthena Script =======================================
 //= iRO Repeatable EXP Quests.
 //===== By: ==================================================
@@ -18,38 +19,38 @@ moc_fild17,208,346,5	script	Shone#Hode_Hunt	707,{
 	if (checkquest(60104) != -1) {
 		if (checkquest(60104,HUNTING) != 2 ) {
 			mes "[Shone]";
-			mes "Have you finished hunting the 50 Hodes?";
+			mes "¿Has terminado de cazar los 50 Hodes?";
 			next;
-			switch(select("Yes:No:I want to quit")) {
+			switch(select("Sí:No:Quiero renunciar")) {
 			case 1:
 				mes "[Shone]";
-				mes "Hmm, I don't think you've hunted 50 yet...";
+				mes "Mmm, no creo que hayas cazado 50 todavía...";
 				close;
 			case 2:
 				mes "[Shone]";
-				mes "Remember, I need help hunting Hodes so go and hunt 50 of them.";
+				mes "Recuerda, necesito ayuda para cazar Hodes, así que ve y caza 50 de ellos.";
 				close;
 			case 3:
 				mes "[Shone]";
-				mes "Are you sure that you want to stop hunting?";
-				mes "Any progress that you've made will be erased";
+				mes "¿Estás seguro de que quieres dejar de cazar?";
+				mes "Cualquier progreso que hayas hecho se borrará";
 				next;
-				switch(select("Yes:No")) {
+				switch(select("Sí:No")) {
 				case 1:
 					mes "[Shone]";
-					mes "Ok then, well come back here if you change your mind.";
+					mes "Está bien, vuelve aquí si cambias de opinión.";
 					erasequest 60104;
 					close;
 				case 2:
 					mes "[Shone]";
-					mes "Please kill 50 Hodes.";
+					mes "Por favor, mata 50 Hodes.";
 					close;
 				}
 			}
 		}
 		else {
 			mes "[Shone]";
-			mes "Amazing, you did that with speed.";
+			mes "Increíble, lo hiciste con rapidez.";
 			getexp 15775,1125;
 			erasequest 60104;
 			close;
@@ -58,38 +59,38 @@ moc_fild17,208,346,5	script	Shone#Hode_Hunt	707,{
 	if (checkquest(60105) != -1) {
 		if (checkquest(60105,HUNTING) != 2 ) {
 			mes "[Shone]";
-			mes "Have you finished hunting the 50 Hodes?";
+			mes "¿Has terminado de cazar los 50 Hodes?";
 			next;
-			switch(select("Yes:No:I want to quit")) {
+			switch(select("Sí:No:Quiero renunciar")) {
 			case 1:
 				mes "[Shone]";
-				mes "Hmm, I don't think you've hunted 100 yet...";
+				mes "Mmm, no creo que hayas cazado 100 todavía...";
 				close;
 			case 2:
 				mes "[Shone]";
-				mes "Remember, I need help hunting Hodes so go and hunt 100 of them.";
+				mes "Recuerda, necesito ayuda para cazar Hodes, así que ve y caza 100 de ellos.";
 				close;
 			case 3:
 				mes "[Shone]";
-				mes "Are you sure that you want to stop hunting?";
-				mes "Any progress that you've made will be erased";
+				mes "¿Estás seguro de que quieres dejar de cazar?";
+				mes "Cualquier progreso que hayas hecho se borrará";
 				next;
-				switch(select("Yes:No")) {
+				switch(select("Sí:No")) {
 				case 1:
 					mes "[Shone]";
-					mes "Ok then, well come back here if you change your mind.";
+					mes "Está bien, vuelve aquí si cambias de opinión.";
 					erasequest 60105;
 					close;
 				case 2:
 					mes "[Shone]";
-					mes "Please kill 100 Hodes.";
+					mes "Por favor, mata 100 Hodes.";
 					close;
 				}
 			}
 		}
 		else {
 			mes "[Shone]";
-			mes "Amazing, you did that with speed.";
+			mes "Increíble, lo hiciste con rapidez.";
 			getexp 15775,1125;
 			getexp 15775,1125;
 			erasequest 60105;
@@ -99,38 +100,38 @@ moc_fild17,208,346,5	script	Shone#Hode_Hunt	707,{
 	if (checkquest(60106) != -1) {
 		if (checkquest(60106,HUNTING) != 2 ) {
 			mes "[Shone]";
-			mes "Have you finished hunting the 150 Hodes?";
+			mes "¿Ya terminaste de cazar los 150 Hodes?";
 			next;
-			switch(select("Yes:No:I want to quit")) {
+			switch(select("Sí:No:Quiero renunciar")) {
 			case 1:
 				mes "[Shone]";
-				mes "Hmm, I don't think you've hunted 150 yet...";
+				mes "Mmm, no creo que hayas cazado 150 todavía...";
 				close;
 			case 2:
 				mes "[Shone]";
-				mes "Remember, I need help hunting Hodes so go and hunt 150 of them.";
+				mes "Recuerda, necesito ayuda para cazar Hodes, así que ve y caza 150 de ellos.";
 				close;
 			case 3:
 				mes "[Shone]";
-				mes "Are you sure that you want to stop hunting?";
-				mes "Any progress that you've made will be erased";
+				mes "¿Estás seguro de que quieres dejar de cazar?";
+				mes "Cualquier progreso que hayas hecho se borrará";
 				next;
-				switch(select("Yes:No")) {
+				switch(select("Sí:No")) {
 				case 1:
 					mes "[Shone]";
-					mes "Ok then, well come back here if you change your mind.";
+					mes "Está bien, vuelve aquí si cambias de opinión.";
 					erasequest 60106;
 					close;
 				case 2:
 					mes "[Shone]";
-					mes "Please kill 150 Hodes.";
+					mes "Por favor, mata 150 Hodes.";
 					close;
 				}
 			}
 		}
 		else {
 			mes "[Shone]";
-			mes "Amazing, you did that with speed.";
+			mes "Increíble, lo hiciste con rapidez.";
 			getexp 15775,1125;
 			getexp 15775,1125;
 			getexp 15775,1125;
@@ -143,25 +144,25 @@ moc_fild17,208,346,5	script	Shone#Hode_Hunt	707,{
 		//for maximum level
 		if (BaseLevel < 61) {
 			mes "[Shone]";
-			mes "Wait! You can see me?";
-			mes "Oh well, I haven't yet mastered my skills.";
+			mes "¡Espera! ¿Puedes verme?";
+			mes "Bueno, todavía no domino mis habilidades.";
 			next;
 			mes "[Shone]";
-			mes "Hey do you think you can help me?";
+			mes "Oye, ¿crees que puedes ayudarme?";
 			next;
-			switch(select("Sure:No")) {
+			switch(select("Claro:No")) {
 			case 1:
 				mes "[Shone]";
-				mes "Thanks a lot, pal!";
+				mes "¡Muchas gracias, amigo!";
 				next;
-				switch(select("Gather Items:Hunt Hodes:Cancel")) {
+				switch(select("Reunir objetos:Cazar Hodes:Cancelar")) {
 				case 1:
 					// Item turn in
 					mes "[Shone]";
-					mes "I am trying to collect ^00CE0025 Earthworm Peelings^000000.";
-					mes "I will reward you if you help.";
+					mes "Estoy intentando reunir ^00CE0025 Earthworm Peelings^000000.";
+					mes "Te recompensaré si me ayudas.";
 					next;
-					switch(select("I have 25 Earthworm Peelings:What was it again?")) {
+					switch(select("Tengo 25 Earthworm Peelings:¿Qué era lo que necesitabas?")) {
 					case 1:
 						/*
 						if (checkweight(502,10) == 0) {
@@ -173,9 +174,9 @@ moc_fild17,208,346,5	script	Shone#Hode_Hunt	707,{
 						}
 						*/
 						if (countitem(1055) > 24) {
-							mes "Thank you for the 25 Earthworm";
-							mes "Peelings!";
-							mes "Here is that reward I promised you, I hope take this wisdom I have passed on to you and share it with others.";
+							mes "Gracias por las 25 Peladuras de";
+							mes "¡Lombriz!";
+							mes "Aquí está esa recompensa que te prometí, espero que tomes esta sabiduría que te he transmitido y la compartas con los demás.";
 							delitem 1055,25; //Earthworm_Peeling
 							getexp 15775,1125;
 							//getitem 502,10; //Orange_Potion
@@ -183,59 +184,59 @@ moc_fild17,208,346,5	script	Shone#Hode_Hunt	707,{
 						}
 						else {
 							mes "[Shone]";
-							mes "I don't see any ^00CE00Earthworm Peerlings^000000.";
-							mes "Are you trying to scam me?";
+							mes "No veo ninguna ^00CE00Earthworm Peelings^000000.";
+							mes "¿Intentas estafarme?";
 							close;
 						}
 					case 2:
 						mes "[Shone]";
-						mes "I need ^00CE0025 Earthworm Peelings^000000.";
+						mes "Necesito ^00CE0025 Earthworm Peelings^000000.";
 						close;
 					}
 				case 2:
 					// Kill Count Quest
 					mes "[Shone]";
-					mes "Ah, ok I think you can help me out by hunting some Hodes.";
-					mes "How many would you like to hunt?";
+					mes "Ah, vale, creo que puedes ayudarme cazando algunos Hodes.";
+					mes "¿Cuántos quieres cazar?";
 					next;
 					switch(select("50 Hodes:100 Hodes:150 Hodes")) {
 					case 1:
 						mes "[Shone]";
-						mes "Come back when you've finished your task and I will give you a small reward.";
+						mes "Vuelve cuando hayas terminado tu tarea y te daré una pequeña recompensa.";
 						setquest 60104;
 						close;
 					case 2:
 						mes "[Shone]";
-						mes "Come back when you've finished your task and I will give you a small reward.";
+						mes "Vuelve cuando hayas terminado tu tarea y te daré una pequeña recompensa.";
 						setquest 60105;
 						close;
 					case 3:
 						mes "[Shone]";
-						mes "Come back when you've finished your task and I will give you a small reward.";
+						mes "Vuelve cuando hayas terminado tu tarea y te daré una pequeña recompensa.";
 						setquest 60106;
 						close;
 					}
 				case 3:
 					mes "[Shone]";
-					mes "If you change your mind, please come back.";
+					mes "Si cambias de opinión, vuelve, por favor.";
 					close;
 				}
 			case 2:
 				mes "[Shone]";
-				mes "If you change your mind, please come back.";
+				mes "Si cambias de opinión, vuelve, por favor.";
 				close;
 			}
 		}
 		else {
 			mes "[Shone]";
-			mes "You are much too strong to be fighting these things!";
+			mes "¡Eres demasiado fuerte para estar peleando con estas cosas!";
 			close;
 		}
 	}
 	else {
 		mes "[Shone]";
-		mes "You need some help, but I can't provide that for you.";
-		mes "Come back when you are stronger and have earned much more wisdom.";
+		mes "Necesitas ayuda, pero no puedo dártela.";
+		mes "Vuelve cuando seas más fuerte y hayas ganado mucha más sabiduría.";
 		close;
 	}
 }

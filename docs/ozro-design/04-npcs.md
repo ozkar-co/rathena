@@ -26,6 +26,13 @@ El cliente `2019-06-05` corta el texto de cada `mes` a **34 caracteres visibles 
 
 Verificado en juego con capturas de `screenrAthena005/007` y contra los diálogos de Kafra Warp Staff y Pet Groomer.
 
+### Regla de scroll: máximo 8 líneas por página
+
+Lo que importa no es si un `mes` aislado salta de línea, sino **cuántas líneas suma la página** (todo lo que se muestra entre un `next`/`close` y el siguiente). Con **8 líneas o menos no hay scrollbar**; por encima de 8, el cliente agrega scroll. Objetivo: ninguna página con scroll.
+
+- `select`/`menu` y los `case`/`else` cortan la página: son ramas excluyentes y no se suma el texto de todas.
+- Se puede tolerar que un `mes` ocupe 2-3 líneas mientras el total de la página no pase de 8.
+
 ### Herramienta: `tools/npc_textwidth.py`
 
 Cuenta las líneas que va a renderizar el cliente, sin abrirlo. Lee los scripts en latin-1 y no necesita dependencias.
@@ -35,9 +42,20 @@ python3 tools/npc_textwidth.py npc/custom/ozro/warps/yuno.txt   # un archivo
 python3 tools/npc_textwidth.py npc/custom/ozro                  # un directorio completo
 python3 tools/npc_textwidth.py --text "Cool Event Corp fue designada para operar."
 python3 tools/npc_textwidth.py --limit 34 npc/custom/ozro       # límite explícito (default 34)
+python3 tools/npc_textwidth.py --max-lines 8 npc/custom/ozro    # umbral de scroll (default 8)
 ```
 
-Reporta por NPC y por página (las páginas se separan con `next`/`close`/`select`): líneas y caracteres por `mes`, y el total de la interacción. Los `mes` que concatenan variables se marcan `<-- dinamico` porque no se pueden calcular estáticamente.
+Reporta por NPC y por página: líneas y caracteres por `mes`, total de la página y marca `<-- SCROLL (N)` cuando supera el umbral. Al final lista todas las páginas con scroll. Los `mes` que concatenan variables se marcan `<-- dinamico` porque no se pueden calcular estáticamente.
+
+### Etiqueta de traducción
+
+Los archivos ya traducidos llevan como primera línea:
+
+```
+// i18n: es 2026-11-18
+```
+
+`grep -rl "^// i18n:" npc/custom/ozro` lista los traducidos y la fecha; los que no la tienen están pendientes. Al traducir un archivo nuevo, agregar esa línea con el idioma y la fecha.
 
 ## Activos (referencia)
 

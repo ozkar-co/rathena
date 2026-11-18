@@ -1,3 +1,4 @@
+// i18n: es 2026-11-18
 //===== rAthena Script =======================================
 //= iRO Repeatable EXP Quests.
 //===== By: ==================================================
@@ -18,38 +19,38 @@ prt_fild04,356,148,3	script	Laertes#Creamy_Hunt	798,{
 	if (checkquest(60122) != -1) {
 		if (checkquest(60122,HUNTING) != 2 ) {
 			mes "[Laertes]";
-			mes "Have you finished hunting the 50 Creamys?";
+			mes "¿Has terminado de cazar los 50 Creamys?";
 			next;
-			switch(select("Yes:No:I want to quit")) {
+			switch(select("Sí:No:Quiero renunciar")) {
 			case 1:
 				mes "[Laertes]";
-				mes "Hmm, I don't think you've hunted 50 yet...";
+				mes "Mmm, no creo que hayas cazado 50 todavía...";
 				close;
 			case 2:
 				mes "[Laertes]";
-				mes "Remember, I need help hunting Creamys so go and hunt 50 of them.";
+				mes "Recuerda que necesito ayuda para cazar Creamys, así que ve y caza 50 de ellos.";
 				close;
 			case 3:
 				mes "[Laertes]";
-				mes "Are you sure that you want to stop hunting?";
-				mes "Any progress that you've made will be erased";
+				mes "¿Estás seguro de que quieres dejar de cazar?";
+				mes "Cualquier progreso que hayas hecho se borrará";
 				next;
-				switch(select("Yes:No")) {
+				switch(select("Sí:No")) {
 				case 1:
 					mes "[Laertes]";
-					mes "Ok then, well come back here if you change your mind.";
+					mes "Está bien, vuelve aquí si cambias de opinión.";
 					erasequest 60122;
 					close;
 				case 2:
 					mes "[Laertes]";
-					mes "Please kill 50 Creamys.";
+					mes "Por favor, mata 50 Creamys.";
 					close;
 				}
 			}
 		}
 		else {
 			mes "[Laertes]";
-			mes "Amazing, you did that with speed.";
+			mes "Increíble, lo hiciste con rapidez.";
 			getexp 2950,1125;
 			erasequest 60122;
 			close;
@@ -58,38 +59,38 @@ prt_fild04,356,148,3	script	Laertes#Creamy_Hunt	798,{
 	if (checkquest(60123) != -1) {
 		if (checkquest(60123,HUNTING) != 2 ) {
 			mes "[Laertes]";
-			mes "Have you finished hunting the 50 Creamys?";
+			mes "¿Has terminado de cazar los 50 Creamys?";
 			next;
-			switch(select("Yes:No:I want to quit")) {
+			switch(select("Sí:No:Quiero renunciar")) {
 			case 1:
 				mes "[Laertes]";
-				mes "Hmm, I don't think you've hunted 100 yet...";
+				mes "Mmm, no creo que hayas cazado 100 todavía...";
 				close;
 			case 2:
 				mes "[Laertes]";
-				mes "Remember, I need help hunting Creamys so go and hunt 100 of them.";
+				mes "Recuerda que necesito ayuda para cazar Creamys, así que ve y caza 100 de ellos.";
 				close;
 			case 3:
 				mes "[Laertes]";
-				mes "Are you sure that you want to stop hunting?";
-				mes "Any progress that you've made will be erased";
+				mes "¿Estás seguro de que quieres dejar de cazar?";
+				mes "Cualquier progreso que hayas hecho se borrará";
 				next;
-				switch(select("Yes:No")) {
+				switch(select("Sí:No")) {
 				case 1:
 					mes "[Laertes]";
-					mes "Ok then, well come back here if you change your mind.";
+					mes "Está bien, vuelve aquí si cambias de opinión.";
 					erasequest 60123;
 					close;
 				case 2:
 					mes "[Laertes]";
-					mes "Please kill 100 Creamys.";
+					mes "Por favor, mata 100 Creamys.";
 					close;
 				}
 			}
 		}
 		else {
 			mes "[Laertes]";
-			mes "Amazing, you did that with speed.";
+			mes "Increíble, lo hiciste con rapidez.";
 			getexp 2950,1125;
 			getexp 2950,1125;
 			erasequest 60123;
@@ -99,38 +100,38 @@ prt_fild04,356,148,3	script	Laertes#Creamy_Hunt	798,{
 	if (checkquest(60124) != -1) {
 		if (checkquest(60124,HUNTING) != 2 ) {
 			mes "[Laertes]";
-			mes "Have you finished hunting the 150 Creamys?";
+			mes "¿Ya terminaste de cazar los 150 Creamys?";
 			next;
-			switch(select("Yes:No:I want to quit")) {
+			switch(select("Sí:No:Quiero renunciar")) {
 			case 1:
 				mes "[Laertes]";
-				mes "Hmm, I don't think you've hunted 150 yet...";
+				mes "Mmm, no creo que hayas cazado 150 todavía...";
 				close;
 			case 2:
 				mes "[Laertes]";
-				mes "Remember, I need help hunting Creamys so go and hunt 150 of them.";
+				mes "Recuerda que necesito ayuda para cazar Creamys, así que ve y caza 150 de ellos.";
 				close;
 			case 3:
 				mes "[Laertes]";
-				mes "Are you sure that you want to stop hunting?";
-				mes "Any progress that you've made will be erased";
+				mes "¿Estás seguro de que quieres dejar de cazar?";
+				mes "Cualquier progreso que hayas hecho se borrará";
 				next;
-				switch(select("Yes:No")) {
+				switch(select("Sí:No")) {
 				case 1:
 					mes "[Laertes]";
-					mes "Ok then, well come back here if you change your mind.";
+					mes "Está bien, vuelve aquí si cambias de opinión.";
 					erasequest 60124;
 					close;
 				case 2:
 					mes "[Laertes]";
-					mes "Please kill 150 Creamys.";
+					mes "Por favor, mata 150 Creamys.";
 					close;
 				}
 			}
 		}
 		else {
 			mes "[Laertes]";
-			mes "Amazing, you did that with speed.";
+			mes "Increíble, lo hiciste con rapidez.";
 			getexp 2950,1125;
 			getexp 2950,1125;
 			getexp 2950,1125;
@@ -143,22 +144,22 @@ prt_fild04,356,148,3	script	Laertes#Creamy_Hunt	798,{
 		//for maximum level
 		if (BaseLevel < 45) {
 			mes "[Laertes]";
-			mes "Good Morning!";
-			mes "Perhaps you could help me?";
+			mes "¡Buenos días!";
+			mes "¿Quizá podrías ayudarme?";
 			next;
-			switch(select("Sure:No")) {
+			switch(select("Claro:No")) {
 			case 1:
 				mes "[Laertes]";
-				mes "I work for an apothecary in Prontera.";
-				mes "I come here to collect materials for medicine.";
+				mes "Trabajo para un boticario en Prontera.";
+				mes "Vengo aquí a recolectar materiales para medicina.";
 				next;
-				switch(select("Gather Items:Hunt Creamys:Cancel")) {
+				switch(select("Reunir objetos:Cazar Creamys:Cancelar")) {
 				case 1:
 					// Item turn in
 					mes "[Laertes]";
-					mes "I need to have a good supply of ^FF0000Powder of Butterfly^000000";
+					mes "Necesito tener un buen suministro de ^FF0000Powder of Butterfly^000000";
 					next;
-					switch(select("I have Powder of Butterfly:What did you need?")) {
+					switch(select("Tengo Powder of Butterfly:¿Qué necesitabas?")) {
 					case 1:
 						/*
 						if (checkweight(502,5) == 0) {
@@ -171,8 +172,8 @@ prt_fild04,356,148,3	script	Laertes#Creamy_Hunt	798,{
 						*/
 						if (countitem(924) > 24) {
 							mes "[Laertes]";
-							mes "Hey, thank you again.";
-							mes "Here you go, as promised.";
+							mes "Oye, gracias de nuevo.";
+							mes "Aquí tienes, como lo prometí.";
 							delitem 924,25; //Powder_Of_Butterfly
 							getexp 2950,1125;
 							//getitem 502,5; //Orange_Potion
@@ -180,69 +181,69 @@ prt_fild04,356,148,3	script	Laertes#Creamy_Hunt	798,{
 						}
 						else {
 							mes "[Laertes]";
-							mes "It doesn't look like you have enough.";
+							mes "No parece que tengas suficiente.";
 							next;
 							mes "[Laertes]";
-							mes "If you bring me ^FF000025 Powder of Butterfly^000000,";
-							mes "I will give you some medical supplies.";
+							mes "Si me traes ^FF000025 Powder of Butterfly^000000,";
+							mes "Te daré algunos suministros médicos.";
 							close;
 						}
 					case 2:
 						mes "[Laertes]";
-						mes "If you bring me ^FF000025 Powder of Butterfly^000000,";
-						mes "I will give you some medical supplies.";
+						mes "Si me traes ^FF000025 Powder of Butterfly^000000,";
+						mes "Te daré algunos suministros médicos.";
 						close;
 					}
 				case 2:
 					// Kill Count Quest
 					mes "[Laertes]";
-					mes "Ah, ok I think you can help me out by hunting some Creamys.";
-					mes "How many would you like to hunt?";
+					mes "Ah, ok, creo que puedes ayudarme cazando algunos Creamys.";
+					mes "¿Cuántos quieres cazar?";
 					next;
 					switch(select("50 Creamys:100 Creamys:150 Creamys")) {
 					case 1:
 						mes "[Laertes]";
-						mes "Come back when you've finished your task and I will give you a small reward.";
+						mes "Vuelve cuando hayas terminado tu tarea y te daré una pequeña recompensa.";
 						setquest 60122;
 						close;
 					case 2:
 						mes "[Laertes]";
-						mes "Come back when you've finished your task and I will give you a small reward.";
+						mes "Vuelve cuando hayas terminado tu tarea y te daré una pequeña recompensa.";
 						setquest 60123;
 						close;
 					case 3:
 						mes "[Laertes]";
-						mes "Come back when you've finished your task and I will give you a small reward.";
+						mes "Vuelve cuando hayas terminado tu tarea y te daré una pequeña recompensa.";
 						setquest 60124;
 						close;
 					}
 				case 3:
 					mes "[Laertes]";
-					mes "If you change your mind, please come back.";
+					mes "Si cambias de opinión, vuelve, por favor.";
 					close;
 				}
 			case 2:
 				mes "[Laertes]";
-				mes "If you change your mind, please come back.";
+				mes "Si cambias de opinión, vuelve, por favor.";
 				close;
 			}
 		}
 		else {
 			mes "[Laertes]";
-			mes "Good Morning!";
+			mes "¡Buenos días!";
 			next;
 			mes "[Laertes]";
-			mes "I work for an apothecary in Prontera";
-			mes "I come here to collect materials for medicine.";
+			mes "Trabajo para un boticario en Prontera";
+			mes "Vengo aquí a recolectar materiales para medicina.";
 			close;
 		}
 	}
 	else {
 		mes "[Laertes]";
-		mes "Your level is too low!";
+		mes "¡Tu nivel es demasiado bajo!";
 		next;
 		mes "[Laertes]";
-		mes "Go kill more Porings!";
+		mes "¡Ve a matar más Porings!";
 		close;
 	}
 }
