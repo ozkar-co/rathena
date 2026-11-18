@@ -526,10 +526,12 @@ SQL is a generated projection, not the source of truth. The canonical data remai
 python3 tools/market/build_sample.py
 ```
 
-Future full build:
+Full build:
 
 ```bash
 python3 tools/market/build_master.py
 ```
+
+Outputs: `data/market/master.jsonl`, `data/market/master_summary.json` and `data/market/sql/ozro_market_data.sql`.
 
 Outputs must be deterministic. Manual changes go only in `canon.yml` and `components.yml`.

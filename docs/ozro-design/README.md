@@ -45,10 +45,14 @@ La sección **Comentarios** al final de cada archivo es un borrador libre: se ap
 | [15-vendedor-viajero.md](./15-vendedor-viajero.md) | Vendedor viajero: items de invocación, stock limitado, precios y reposición |
 | [16-eventos-automaticos.md](./16-eventos-automaticos.md) | Eventos automáticos para pocos jugadores, recompensas en OzCoin y cronograma semanal |
 | [17-quests-de-job.md](./17-quests-de-job.md) | Quests de cambio de job: estado actual, uso de las quests 1-1 de pre-re y plan de traducción/balance archivo por archivo |
-| [18-precio-mercado-maestro.md](./18-precio-mercado-maestro.md) | Precio de mercado maestro: análisis de datos, clasificación de abundancia/dificultad/demanda, modelo de precio y plan de herramientas |
-| [19-muestra-master.md](./19-muestra-master.md) | Muestra generada del master: herramientas, datos aleatorios, casos borde, decisiones y hallazgos |
-| [20-master-schema.md](./20-master-schema.md) | Contrato del master: campos, fórmulas, tags, compra/venta NPC y reglas para consumidores |
-| [21-garrett-reformulacion.md](./21-garrett-reformulacion.md) | Análisis legacy vs v2 y propuesta de reformulación de ofertas y misiones de Garrett |
+
+## Mercado y Garrett
+
+- Especificación técnica del master: [`data/market/SPEC.md`](../../data/market/SPEC.md)
+- Master canónico: `data/market/master.jsonl`
+- Proyección SQL: `data/market/sql/`
+- Datos de Garrett para la web: `ozro-site/assets/items/garrett.json`
+- NPC: `npc/custom/ozro/trasher.txt`
 
 ## Repos relacionados
 
@@ -74,5 +78,4 @@ La sección **Comentarios** al final de cada archivo es un borrador libre: se ap
 - **2026-11-16:** No hay server de prueba; se prueba directo en producción con los 3 jugadores.
 - **2026-11-16:** Lo implementado se borra de la documentación y queda en el changelog público (general) y en el git log (detalle técnico).
 - **2026-11-17:** Eventos automáticos con recompensa en OzCoin; cronograma semanal en [16-eventos-automaticos.md](./16-eventos-automaticos.md).
-- **2026-11-18:** Se eliminan los generadores específicos de Garrett; su tabla pasa a ser un caso de uso del futuro master de mercado. La taxonomía ahora expone `access` por item con reglas (normal/guild/instancia/quest/boss/HP), sin listas de IDs. Ver [18-precio-mercado-maestro.md](./18-precio-mercado-maestro.md).
-- **2026-11-18:** La master list será de todos los items, reconstruida desde el estado actual del servidor (rates y HP custom incluidos), con tags integrados, precio sintético como fallback y JSONL canónico. Será la fuente de verdad; `taxonomy.json` queda como vista de compatibilidad.
+- **2026-11-18:** Mercado v2 cerrado. Master de todos los items en `data/market/master.jsonl`, spec en `data/market/SPEC.md`, proyección SQL en `data/market/sql/` y Garrett fijo en `npc/custom/ozro/trasher.txt` + `garrett.json`. La taxonomía queda como insumo; los generadores específicos de Garrett se eliminaron.

@@ -9,7 +9,8 @@ master:
   source_of_truth_spec: data/market/SPEC.md
   source_of_truth_decisions: data/market/canon.yml
   current_sample: data/market/samples/
-  future_master: data/market/master.jsonl
+  master: data/market/master.jsonl
+  sql_projection: data/market/sql/ozro_market_data.sql
   taxonomy_role: intermediate_input
   general_sample_population: marketEligible
   npc_market: all_items
