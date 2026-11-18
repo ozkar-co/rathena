@@ -73,24 +73,24 @@ Body:
 
   - Tab: Rental
     Items:
-      - Item: Beholder_Ring_Box    # ID: 14242
+      - Item: B_Halter_Box_30Days   # ID: 16683
         Price: 250
-      - Item: Bloody_Ring_Box      # ID: 14249
-        Price: 250
-      - Item: Chemical_Ring_Box    # ID: 14245
-        Price: 250
-      - Item: Clamorous_Ring_Box   # ID: 14244
-        Price: 250
-      - Item: Decussate_Ring_Box   # ID: 14248
-        Price: 250
-      - Item: Fisher_Ring_Box     # ID: 14247
-        Price: 250
-      - Item: Hallow_Ring_Box      # ID: 14243
-        Price: 250
-      - Item: Insecticide_Ring_Box # ID: 14246
-        Price: 250
-      - Item: Satanic_Ring_Box     # ID: 14250
-        Price: 250
+      - Item: C_Wing_Of_Fly_Box     # ID: 17229
+        Price: 100
+      - Item: C_CatPaw_7Day_Box     # ID: 17766
+        Price: 150
+      - Item: C_Giant_Fly_1Day_Box  # ID: 17608
+        Price: 50
+      - Item: Toast_Box             # ID: 13959
+        Price: 50
+      - Item: Handcuff_Box          # ID: 13612
+        Price: 40
+      - Item: Guildsman_Recruiter_Box # ID: 14331
+        Price: 40
+      - Item: Party_Recruiter_Hat_Box # ID: 14332
+        Price: 40
+      - Item: Love_Angel_Box_1m     # ID: 13942
+        Price: 60
 
   - Tab: Permanent
     Items:
@@ -151,3 +151,21 @@ Body:
         Price: 500
       - Item: Clock_Tower_Card_Box # ID: 13877
         Price: 500
+      - Item: Beholder_Ring_Box    # ID: 14242
+        Price: 250
+      - Item: Bloody_Ring_Box      # ID: 14249
+        Price: 250
+      - Item: Chemical_Ring_Box    # ID: 14245
+        Price: 250
+      - Item: Clamorous_Ring_Box   # ID: 14244
+        Price: 250
+      - Item: Decussate_Ring_Box   # ID: 14248
+        Price: 250
+      - Item: Fisher_Ring_Box     # ID: 14247
+        Price: 250
+      - Item: Hallow_Ring_Box      # ID: 14243
+        Price: 250
+      - Item: Insecticide_Ring_Box # ID: 14246
+        Price: 250
+      - Item: Satanic_Ring_Box     # ID: 14250
+        Price: 250
