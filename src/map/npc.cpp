@@ -1156,12 +1156,12 @@ TIMER_FUNC(npc_secure_timeout_timer){
 	}
 
 	if( DIFF_TICK(cur_tick,sd->npc_idle_tick) > (timeout*1000) ) {
-		// TEMP DEBUG: confirmar si el timeout de menú realmente se dispara.
-		ShowWarning("TEMP NPC timeout: char=%u npc_id=%d type=%d diff=%d timeout=%u\n",
-			sd->status.char_id, sd->npc_id, sd->npc_idle_type, DIFF_TICK(cur_tick,sd->npc_idle_tick), timeout);
 		pc_close_npc(sd,1);
-	} else if(sd->st && (sd->st->state == END || sd->st->state == CLOSE)){
-		// stop timer the script is already ending
+	} else if( sd->st && sd->st->state == CLOSE ){
+		// The client did not acknowledge the close; finalize the NPC state.
+		pc_close_npc(sd,1);
+	} else if( sd->st && sd->st->state == END ){
+		// stop timer, the script is already ending
 		if( sd->npc_idle_timer != INVALID_TIMER ){
 			delete_timer( sd->npc_idle_timer, npc_secure_timeout_timer );
 			sd->npc_idle_timer = INVALID_TIMER;
@@ -2306,9 +2306,6 @@ bool npc_scriptcont(map_session_data* sd, int32 id, bool closing){
 	if( id != sd->npc_id ){
 		TBL_NPC* nd_sd = (TBL_NPC*)map_id2bl(sd->npc_id);
 
-		// TEMP DEBUG: ver si el ID del paquete no coincide con el NPC activo.
-		ShowWarning("TEMP npc_scriptcont mismatch: char=%u id=%d sd_npc_id=%d\n",
-			sd->status.char_id, id, sd->npc_id);
 		ShowDebug("npc_scriptcont: %s (sd->npc_id=%d) is not %s (id=%d).\n",
 			nd_sd?(char*)nd_sd->name:"'Unknown NPC'", (int32)sd->npc_id,
 			nd?(char*)nd->name:"'Unknown NPC'", (int32)id);
@@ -2377,16 +2374,8 @@ bool npc_scriptcont(map_session_data* sd, int32 id, bool closing){
 		}
 	}
 
-	// TEMP DEBUG: estado antes/después de ejecutar el script.
-	ShowWarning("TEMP npc_scriptcont BEFORE: char=%u id=%d st=%p state=%d menu_or_input=%d npc_menu=%d\n",
-		sd->status.char_id, id, (void*)sd->st, sd->st->state, sd->state.menu_or_input, sd->npc_menu);
-
 	// Call this even, if it was set to end, because it will free the script state
 	run_script_main(sd->st);
-
-	// TEMP DEBUG: estado después de ejecutar el script.
-	ShowWarning("TEMP npc_scriptcont AFTER: char=%u id=%d st=%p npc_id=%d menu_or_input=%d npc_menu=%d\n",
-		sd->status.char_id, id, (void*)sd->st, sd->npc_id, sd->state.menu_or_input, sd->npc_menu);
 
 	return false;
 }
