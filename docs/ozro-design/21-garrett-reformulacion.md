@@ -192,14 +192,14 @@ Resultado de la propuesta generada:
 
 | Métrica | Valor |
 |---|---:|
-| Misiones | 50 |
-| Payout promedio | 1.021.280 |
+| Misiones | 40 |
+| Payout promedio | 947.425 |
 | Payout mínimo | 780.000 |
-| Payout máximo | 1.380.000 |
-| Cantidad mínima | 5 |
+| Payout máximo | 1.150.000 |
+| Cantidad mínima | 11 |
 | Cantidad máxima | 300 |
-| Ratio promedio `payout / (npcBuy × qty)` | 1,989 |
-| Misiones limitadas por peso | 9 |
+| Ratio promedio `payout / (npcBuy × qty)` | 1,986 |
+| Misiones limitadas por peso | 7 |
 
 Efecto:
 
@@ -235,7 +235,7 @@ La tabla se genera una vez y se deja fija en el NPC:
 - `propose_garrett.py` genera `garrett_proposal.json`, `.md` y `ozro-site/assets/items/garrett.json`.
 - El NPC usa arrays fijos generados desde esa tabla.
 - No hay selección aleatoria diaria de items.
-- El cronograma puede ser fijo: 50 misiones y 200 ofertas siempre disponibles según diseño.
+- El cronograma puede ser fijo: 40 misiones y 200 ofertas siempre disponibles según diseño.
 
 ### 4.8 Anti-arbitraje
 
@@ -356,7 +356,7 @@ mobLevel, map, spawnAmount, dropRate
 - [ ] 0 items `group_only` en misiones.
 - [ ] Payout promedio entre 0,9M y 1,1M.
 - [ ] 100% de los pagos dentro de `[1k, 1.5M]`.
-- [ ] 50 misiones / 200 ofertas fijas.
+- [ ] 40 misiones / 200 ofertas fijas.
 - [ ] Cap diario de 500k respetado.
 - [ ] Cantidad dentro de `minQty/maxQty` y cap de peso.
 - [ ] Anti-arbitraje contra NPC shop activo.
@@ -371,7 +371,7 @@ mobLevel, map, spawnAmount, dropRate
 1. `tierTarget` definitivo (800k/1.05M/1.3M).
 2. `minQty`/`maxQty` por tier (20/10/5 y 1000/500/200).
 3. `missionMultiplier` 1,00.
-4. Tabla fija: 50 misiones y 200 ofertas.
+4. Tabla fija: 40 misiones y 200 ofertas.
 5. Entregas parciales y pérdida total por fracaso.
 6. Pago de misiones por item o por paquete.
 7. Uso de `marketPressure` para ajustar cantidad o solo para stock.

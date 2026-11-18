@@ -7,19 +7,19 @@ Seed: `20261118`. Fixed table, no dynamic generation.
 ```json
 {
   "offers": 200,
-  "missions": 50,
+  "missions": 40,
   "missionsByTier": {
     "common": 20,
     "uncommon": 20,
-    "rare": 10
+    "rare": 0
   },
-  "missionPayoutAvg": 1021280,
+  "missionPayoutAvg": 947425,
   "missionPayoutMin": 780000,
-  "missionPayoutMax": 1380000,
-  "missionQtyMin": 6,
+  "missionPayoutMax": 1150000,
+  "missionQtyMin": 11,
   "missionQtyMax": 300,
-  "missionRatioAvg": 1.989,
-  "weightLimited": 9
+  "missionRatioAvg": 1.986,
+  "weightLimited": 7
 }
 ```
 
@@ -67,16 +67,6 @@ Seed: `20261118`. Fixed table, no dynamic generation.
 | 38 | uncommon | Clown Nose | 50 | 9,600 | 19,200 | 960,000 | 480,000 | Lunatic | 96 | 3 | common | easy | yes | yes |
 | 39 | uncommon | Rusty Arrow Quiver | 20 | 24,000 | 48,000 | 960,000 | 480,000 | Kobold Archer | 22,944 | 108 | common | easy | yes | yes |
 | 40 | uncommon | Cursed Ruby | 50 | 11,500 | 23,000 | 1,150,000 | 575,000 | Gibbet | 27,810 | 105 | common | medium | yes | yes |
-| 41 | rare | Fin | 13 | 50,000 | 100,000 | 1,300,000 | 650,000 | Strouf | 5,492 | 61 | abundant | hard | yes | yes |
-| 42 | rare | Level 8 Cookbook | 13 | 50,000 | 100,000 | 1,300,000 | 650,000 | Death Word | 36,410 | 114 | uncommon | medium | yes | yes |
-| 43 | rare | Level 9 Cookbook | 13 | 50,000 | 100,000 | 1,300,000 | 650,000 | Death Word | 36,410 | 114 | uncommon | easy | yes | yes |
-| 44 | rare | Nurse Cap | 50 | 13,000 | 26,000 | 1,300,000 | 650,000 | Sohee | 5,056 | 64 | uncommon | easy | yes | yes |
-| 45 | rare | Level 7 Cookbook | 15 | 43,200 | 86,400 | 1,296,000 | 648,000 | Evil Druid | 9,440 | 80 | uncommon | easy | yes | yes |
-| 46 | rare | Necklace of Oblivion | 30 | 22,500 | 45,000 | 1,350,000 | 675,000 | Jakk | 3,802 | 63 | uncommon | easy | yes | yes |
-| 47 | rare | Elixir Bandages | 41 | 16,500 | 33,000 | 1,353,000 | 676,500 | Evil Druid | 9,440 | 80 | uncommon | easy | yes | yes |
-| 48 | rare | Icicle Staff | 6 | 114,000 | 228,000 | 1,368,000 | 684,000 | Ice Ghost | 4,836,630 | 189 | common | extreme | yes | yes |
-| 49 | rare | Seismic Fist | 6 | 115,000 | 230,000 | 1,380,000 | 690,000 | Stapo | 13,968 | 95 | uncommon | medium | yes | yes |
-| 50 | rare | Hardened Dust | 100 | 6,100 | 12,200 | 1,220,000 | 610,000 | Poisonous | 4,814,172 | 188 | common | extreme | yes | yes |
 
 ## Offers
 
