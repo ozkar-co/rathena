@@ -37,6 +37,27 @@ Header:
   Version: 1
 
 Body:
+  - Tab: New
+    Items:
+      - Item: Beholder_Ring_Box    # ID: 14242
+        Price: 250
+      - Item: Bloody_Ring_Box      # ID: 14249
+        Price: 250
+      - Item: Chemical_Ring_Box    # ID: 14245
+        Price: 250
+      - Item: Clamorous_Ring_Box   # ID: 14244
+        Price: 250
+      - Item: Decussate_Ring_Box   # ID: 14248
+        Price: 250
+      - Item: Fisher_Ring_Box      # ID: 14247
+        Price: 250
+      - Item: Hallow_Ring_Box      # ID: 14243
+        Price: 250
+      - Item: Insecticide_Ring_Box # ID: 14246
+        Price: 250
+      - Item: Satanic_Ring_Box     # ID: 14250
+        Price: 250
+
   - Tab: Hot
     Items:
       - Item: HD_Elunium           # ID: 6241
@@ -61,7 +82,7 @@ Body:
       - Item: Max_Weight_Up_Scroll # ID: 7776
         Price: 100
       - Item: Kafra_Card           # ID: 12211
-        Price: 5
+        Price: 2
       - Item: Abrasive             # ID: 14536
         Price: 5
       - Item: MVP_Hunt_Box         # ID: 13909
@@ -77,20 +98,67 @@ Body:
         Price: 250
       - Item: C_Wing_Of_Fly_Box     # ID: 17229
         Price: 100
-      - Item: C_CatPaw_7Day_Box     # ID: 17766
+      - Item: Wing_Of_Baalzebub_Box # ID: 17289
         Price: 150
       - Item: C_Giant_Fly_1Day_Box  # ID: 17608
         Price: 50
       - Item: Toast_Box             # ID: 13959
         Price: 50
-      - Item: Handcuff_Box          # ID: 13612
-        Price: 40
-      - Item: Guildsman_Recruiter_Box # ID: 14331
-        Price: 40
-      - Item: Party_Recruiter_Hat_Box # ID: 14332
-        Price: 40
-      - Item: Love_Angel_Box_1m     # ID: 13942
+      - Item: E_Bunny_Band_Box      # ID: 16492
+        Price: 80
+      - Item: Ramen_Hat_Box1        # ID: 13737
         Price: 60
+      - Item: Lolli_Pop_Box         # ID: 12607
+        Price: 60
+      - Item: Hockey_Mask_Box       # ID: 13864
+        Price: 80
+
+    # Alternativas evaluadas (no activas, se conservan como referencia)
+    # - Item: C_Center_Pot_Box       # ID: 17226 - Concentración infinita 7d; descartado por atajo de poder.
+    #   Price: 50
+    # - Item: C_Awakening_Pot_Box    # ID: 17227 - Awakening infinito 7d; mismo motivo.
+    #   Price: 50
+    # - Item: C_Berserk_Pot_Box      # ID: 17228 - Berserk infinito 7d; mismo motivo.
+    #   Price: 80
+    # - Item: Pecopeco_Hairband_Box  # ID: 13722 - +25% velocidad, +5% ASPD y -5% cast 14d; demasiado stat.
+    #   Price: 150
+    # - Item: Red_Glasses_Box        # ID: 13723 - +1 INT 14d; stat menor, no cosmético puro.
+    #   Price: 50
+    # - Item: Whisper_Mask_Box       # ID: 13724 - +3 AGI y -10% daño Ghost 14d; stat.
+    #   Price: 50
+    # - Item: Cheer_Scarf_Box        # ID: 12565 - +20% EXP 7d; atajo de progresión.
+    #   Price: 50
+    # - Item: Bubblegum_Lower_Box    # ID: 13968 - +100% EXP 1d; demasiado para el servidor.
+    #   Price: 50
+    # - Item: 3D_Glasses_Box         # ID: 12564 - Cosmético puro, pero solo 60s.
+    #   Price: 20
+    # - Item: Clover_Box_Mouth4      # ID: 16386 - +5 ATK/MATK y +2 MDEF, 4 horas.
+    #   Price: 20
+    # - Item: F_BGum_Box_In_Mouth4   # ID: 16392 - +5 ATK/MATK y +2 MDEF, 4 horas.
+    #   Price: 20
+    # - Item: Squirrel_Box_1m        # ID: 13943 - Fuente cosmética 30d; ojo: setfont podría no estar implementado.
+    #   Price: 60
+    # - Item: Gogo_Box_1m            # ID: 13944 - Fuente cosmética 30d; ojo: setfont podría no estar implementado.
+    #   Price: 60
+    # - Item: Certificate_TW_Box     # ID: 13765 - Accesorio cosmético sin script 1d; duración corta.
+    #   Price: 30
+    # - Item: Dun_Voucher_Box2       # ID: 17570 - Acceso a Sky Fortress 3h; contenido, no poder.
+    #   Price: 100
+    # - Item: Octo_Hstick_Box3       # ID: 16767 - Acceso a Malangdo Culvert 7d; contenido, no poder.
+    #   Price: 100
+    # - Item: Ptotection_Seagod_Box3 # ID: 16764 - Acceso a Malangdo Culvert 15d; contenido, no poder.
+    #   Price: 150
+    # Descartados:
+    # - Item: C_CatPaw_7Day_Box      # ID: 17766 - Bug en el servidor.
+    #   Price: 150
+    # - Item: Love_Angel_Box_1m      # ID: 13942 - No implementado (setfont).
+    #   Price: 60
+    # - Item: Handcuff_Box           # ID: 13612 - Cosmético inútil.
+    #   Price: 40
+    # - Item: Guildsman_Recruiter_Box # ID: 14331 - Reemplazado por cosmético más divertido.
+    #   Price: 40
+    # - Item: Party_Recruiter_Hat_Box # ID: 14332 - Reemplazado por cosmético más divertido.
+    #   Price: 40
 
   - Tab: Permanent
     Items:
@@ -102,6 +170,16 @@ Body:
         Price: 150
       - Item: Poring_Box           # ID: 12109
         Price: 5
+      - Item: Green_Box            # ID: 12187
+        Price: 1500
+      - Item: Old_Gift_Box         # ID: 12244
+        Price: 1000
+      - Item: Advanced_Taiming_Item # ID: 23284
+        Price: 2500
+      - Item: Old_Ore_Box          # ID: 12609
+        Price: 1800
+      - Item: Famous_Hat_Box       # ID: 100470
+        Price: 2500
 
   - Tab: Scrolls
     Items:
@@ -130,8 +208,8 @@ Body:
         Price: 1
       - Item: Blue_Potion_Box      # ID: 13810
         Price: 15
-      - Item: Acidbomb_10_Box        # ID: 13989
-        Price: 30
+      - Item: Acidbomb_Box50         # ID: 17068
+        Price: 100
       - Item: Poison_Bottle_30_Box    # ID: 13973
         Price: 60
       - Item: Token_Of_Siegfried   # ID: 7621
@@ -151,21 +229,3 @@ Body:
         Price: 500
       - Item: Clock_Tower_Card_Box # ID: 13877
         Price: 500
-      - Item: Beholder_Ring_Box    # ID: 14242
-        Price: 250
-      - Item: Bloody_Ring_Box      # ID: 14249
-        Price: 250
-      - Item: Chemical_Ring_Box    # ID: 14245
-        Price: 250
-      - Item: Clamorous_Ring_Box   # ID: 14244
-        Price: 250
-      - Item: Decussate_Ring_Box   # ID: 14248
-        Price: 250
-      - Item: Fisher_Ring_Box     # ID: 14247
-        Price: 250
-      - Item: Hallow_Ring_Box      # ID: 14243
-        Price: 250
-      - Item: Insecticide_Ring_Box # ID: 14246
-        Price: 250
-      - Item: Satanic_Ring_Box     # ID: 14250
-        Price: 250
