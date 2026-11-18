@@ -1156,6 +1156,9 @@ TIMER_FUNC(npc_secure_timeout_timer){
 	}
 
 	if( DIFF_TICK(cur_tick,sd->npc_idle_tick) > (timeout*1000) ) {
+		// TEMP DEBUG: confirmar si el timeout de menú realmente se dispara.
+		ShowWarning("TEMP NPC timeout: char=%u npc_id=%d type=%d diff=%d timeout=%u\n",
+			sd->status.char_id, sd->npc_id, sd->npc_idle_type, DIFF_TICK(cur_tick,sd->npc_idle_tick), timeout);
 		pc_close_npc(sd,1);
 	} else if(sd->st && (sd->st->state == END || sd->st->state == CLOSE)){
 		// stop timer the script is already ending
@@ -2303,6 +2306,9 @@ bool npc_scriptcont(map_session_data* sd, int32 id, bool closing){
 	if( id != sd->npc_id ){
 		TBL_NPC* nd_sd = (TBL_NPC*)map_id2bl(sd->npc_id);
 
+		// TEMP DEBUG: ver si el ID del paquete no coincide con el NPC activo.
+		ShowWarning("TEMP npc_scriptcont mismatch: char=%u id=%d sd_npc_id=%d\n",
+			sd->status.char_id, id, sd->npc_id);
 		ShowDebug("npc_scriptcont: %s (sd->npc_id=%d) is not %s (id=%d).\n",
 			nd_sd?(char*)nd_sd->name:"'Unknown NPC'", (int32)sd->npc_id,
 			nd?(char*)nd->name:"'Unknown NPC'", (int32)id);

@@ -13313,6 +13313,10 @@ void clif_parse_NpcSelectMenu(int32 fd,map_session_data *sd){
 	int32 npc_id = RFIFOL(fd,info->pos[0]);
 	uint8 select = RFIFOB(fd,info->pos[1]);
 
+	// TEMP DEBUG: confirmar si el cliente manda cancel (select == 0xFF) al cerrar el choose window.
+	ShowWarning("TEMP NPC SelectMenu: char=%u npc_id=%d select=%u sd_npc_id=%d sd_npc_menu=%d idle_timer=%d menu_or_input=%d\n",
+		sd->status.char_id, npc_id, select, sd->npc_id, sd->npc_menu, sd->npc_idle_timer, sd->state.menu_or_input);
+
 #ifdef SECURE_NPCTIMEOUT
 	if( sd->npc_idle_timer == INVALID_TIMER && !sd->state.ignoretimeout )
 		return;
@@ -13409,6 +13413,10 @@ void clif_parse_NpcCloseClicked(int32 fd,map_session_data *sd)
 	}
 
 	const PACKET_CZ_CLOSE_DIALOG* p = reinterpret_cast<PACKET_CZ_CLOSE_DIALOG*>( RFIFOP( fd, 0 ) );
+
+	// TEMP DEBUG: confirmar si llega el close dialog y con qué NPC ID.
+	ShowWarning("TEMP NPC CloseDialog: char=%u pkt_gid=%u sd_npc_id=%d menu_or_input=%d\n",
+		sd->status.char_id, p->GID, sd->npc_id, sd->state.menu_or_input);
 
 	npc_scriptcont( sd, p->GID, true );
 }
