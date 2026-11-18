@@ -472,7 +472,12 @@ The website already uses the game DB. Recommended projection:
 CREATE TABLE ozro_market_item (
   item_id INT UNSIGNED NOT NULL PRIMARY KEY,
   name VARCHAR(100) NOT NULL,
+  aegis VARCHAR(100) NOT NULL DEFAULT '',
   type VARCHAR(32) NOT NULL,
+  slots TINYINT UNSIGNED NOT NULL DEFAULT 0,
+  refineable TINYINT(1) NOT NULL DEFAULT 0,
+  weight SMALLINT UNSIGNED NOT NULL DEFAULT 0,
+  custom TINYINT(1) NOT NULL DEFAULT 0,
   price_status ENUM('market','synthetic','manual') NOT NULL,
   low BIGINT UNSIGNED NOT NULL,
   mid BIGINT UNSIGNED NOT NULL,
@@ -491,7 +496,8 @@ CREATE TABLE ozro_market_item (
   restock_weight DOUBLE NULL,
   market_eligible TINYINT(1) NOT NULL,
   npc_eligible TINYINT(1) NOT NULL,
-  updated_at TIMESTAMP NOT NULL
+  dataset_version VARCHAR(32) NOT NULL DEFAULT 'v2',
+  updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
 CREATE TABLE ozro_market_item_tag (
@@ -501,6 +507,8 @@ CREATE TABLE ozro_market_item_tag (
   KEY idx_tag (tag)
 );
 ```
+
+The ready-to-run DDL is `data/market/sql/ozro_market_item.sql`.
 
 SQL is a generated projection, not the source of truth. The canonical data remains JSONL + `canon.yml`.
 
