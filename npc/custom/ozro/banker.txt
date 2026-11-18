@@ -1,0 +1,33 @@
+// Banquero de Rune-Midgard.
+// Servicio de banco oficial en las ciudades principales.
+prontera,160,320,4	script	Banquero	109,{
+	mes "[Banquero]";
+	mes "Hola, aventurero. Bienvenido al Banco de Rune-Midgard.";
+	next;
+	mes "[Banquero]";
+	mes "Desde la era de los héroes, esta casa resguarda el zeny de quienes cruzan el continente. Tu cuenta te sigue a donde vayas.";
+	next;
+	mes "[Banquero]";
+	mes "¿Deseas abrir tu cuenta o revisar tu saldo?";
+	next;
+	menu "Abrir mi cuenta", L_OPEN, "Solo estoy mirando", L_BYE;
+L_OPEN:
+	close2;
+	openbank;
+	end;
+L_BYE:
+	mes "[Banquero]";
+	mes "Que los caminos te sean favorables.";
+	close;
+}
+
+izlude,135,140,4	duplicate(Banquero)	Banquero#izlude	109
+geffen,128,62,4	duplicate(Banquero)	Banquero#geffen	109
+payon,175,110,4	duplicate(Banquero)	Banquero#payon	109
+alberta,120,60,4	duplicate(Banquero)	Banquero#alberta	109
+aldebaran,150,119,4	duplicate(Banquero)	Banquero#aldebaran	109
+yuno,145,190,4	duplicate(Banquero)	Banquero#yuno	109
+lighthalzen,170,100,4	duplicate(Banquero)	Banquero#lighthalzen	109
+einbroch,235,205,4	duplicate(Banquero)	Banquero#einbroch	109
+comodo,202,150,4	duplicate(Banquero)	Banquero#comodo	109
+morocc,163,97,4	duplicate(Banquero)	Banquero#morocc	109
