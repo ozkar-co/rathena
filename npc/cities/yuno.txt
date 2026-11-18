@@ -339,6 +339,7 @@ yuno,157,205,4	script	Juno Artisan#juno	54,{
 	close;
 }
 
+/*
 yuno,142,183,5	script	Airship Representative	100,{
 	mes "[Airship Representative]";
 	mes "Good day, I am here to inform you";
@@ -391,3 +392,4 @@ S_Warp:
 		close;
 	}
 }
+*/
