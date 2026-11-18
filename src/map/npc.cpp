@@ -2377,8 +2377,16 @@ bool npc_scriptcont(map_session_data* sd, int32 id, bool closing){
 		}
 	}
 
+	// TEMP DEBUG: estado antes/después de ejecutar el script.
+	ShowWarning("TEMP npc_scriptcont BEFORE: char=%u id=%d st=%p state=%d menu_or_input=%d npc_menu=%d\n",
+		sd->status.char_id, id, (void*)sd->st, sd->st->state, sd->state.menu_or_input, sd->npc_menu);
+
 	// Call this even, if it was set to end, because it will free the script state
 	run_script_main(sd->st);
+
+	// TEMP DEBUG: estado después de ejecutar el script.
+	ShowWarning("TEMP npc_scriptcont AFTER: char=%u id=%d st=%p npc_id=%d menu_or_input=%d npc_menu=%d\n",
+		sd->status.char_id, id, (void*)sd->st, sd->npc_id, sd->state.menu_or_input, sd->npc_menu);
 
 	return false;
 }

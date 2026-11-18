@@ -5237,6 +5237,10 @@ BUILDIN_FUNC(select)
 	sd->npc_idle_type = NPCT_MENU;
 #endif
 
+	// TEMP DEBUG: estado del script al entrar a select.
+	ShowWarning("TEMP buildin_select: char=%u npc=%d st=%p state=%d menu_or_input=%d npc_menu=%d bk_st=%p bk_npcid=%d\n",
+		sd->status.char_id, st->oid, (void*)st, st->state, sd->state.menu_or_input, sd->npc_menu, (void*)st->bk_st, st->bk_npcid);
+
 	if( sd->state.menu_or_input == 0 ) {
 		struct StringBuf buf;
 
@@ -5274,6 +5278,9 @@ BUILDIN_FUNC(select)
 			script_reportsrc(st);
 		}
 	} else if( sd->npc_menu == 0xff ) {// Cancel was pressed
+		// TEMP DEBUG: confirmar que el cancel entra a la rama y cierra.
+		ShowWarning("TEMP buildin_select CANCEL: char=%u npc=%d st=%p state=%d\n",
+			sd->status.char_id, st->oid, (void*)st, st->state);
 		sd->state.menu_or_input = 0;
 		st->mes_active = 0;
 		clif_scriptclose( *sd, st->oid );
