@@ -31,8 +31,9 @@ NPC_START_RE = re.compile(
 )
 MES_RE = re.compile(r"\bmes\b(.*?);", re.IGNORECASE | re.DOTALL)
 STRING_RE = re.compile(r'"((?:[^"\\]|\\.)*)"')
-PAGE_END_RE = re.compile(r"^\s*(?:next|close2?|end)\s*;", re.IGNORECASE)
+PAGE_END_RE = re.compile(r"^\s*(?:next|close2?|end|return)\s*;", re.IGNORECASE)
 PAGE_BREAK_RE = re.compile(r"\b(?:select\s*\(|menu\b|case\b|default\s*:|else\b)", re.IGNORECASE)
+PAGE_LABEL_RE = re.compile(r"^\s*[A-Za-z_]\w*\s*:")
 MAX_PAGE_LINES = 8
 
 
@@ -95,9 +96,9 @@ def wrap_lines(text: str, limit: int = LINE_LIMIT) -> list[str]:
     return lines
 
 
-def parse_blocks(source: str) -> list[tuple[str, list[list[str]]]]:
-    """Return (npc label, pages) where each page is a list of mes strings."""
-    blocks: list[tuple[str, list[list[str]]]] = []
+def parse_blocks(source: str) -> list[tuple[str, list[list[tuple[str, bool]]]]]:
+    """Return (npc label, pages) with one (text, dynamic) entry per `mes` statement."""
+    blocks: list[tuple[str, list[list[tuple[str, bool]]]]] = []
     label = ""
     pages: list[list[str]] = [[]]
     for line in source.splitlines():
@@ -110,16 +111,18 @@ def parse_blocks(source: str) -> list[tuple[str, list[list[str]]]]:
             continue
         if not blocks:
             continue
-        if pages[-1] and (PAGE_END_RE.match(line) or PAGE_BREAK_RE.search(line)):
+        if pages[-1] and (
+            PAGE_END_RE.match(line) or PAGE_BREAK_RE.search(line) or PAGE_LABEL_RE.match(line)
+        ):
             pages.append([])
         for match in MES_RE.finditer(line):
             args = match.group(1)
-            parts = STRING_RE.findall(args)
-            if not parts:
+            literals = STRING_RE.findall(args)
+            if not literals:
                 continue
-            if STRING_RE.sub("", args).replace(",", "").strip():
-                parts.append("<dynamic>")
-            pages[-1].extend(p.replace("\\n", "\n") for p in parts)
+            dynamic = bool(STRING_RE.sub("", args).replace(",", "").strip())
+            text = "".join(literals).replace("\\n", "\n")
+            pages[-1].append((text, dynamic))
     for _, pages in blocks:
         while pages and not pages[-1]:
             pages.pop()
@@ -138,15 +141,15 @@ def report(path: str, limit: int, max_lines: int, over: list[tuple[str, str, int
         for index, mes_list in enumerate(pages, 1):
             total = 0
             details = []
-            for mes in mes_list:
-                for segment in mes.split("\n"):
+            for text, dynamic in mes_list:
+                for segment in text.split("\n"):
                     lines = wrap_lines(visible_text(segment), limit)
                     total += len(lines)
-                    details.append((len(visible_text(segment)), len(lines), segment))
+                    details.append((len(visible_text(segment)), len(lines), segment, dynamic))
             warn = f"  <-- SCROLL (>{max_lines})" if total > max_lines else ""
             print(f"    pagina {index}: {total} lineas{warn}")
-            for chars, count, segment in details:
-                flag = "  <-- dinamico" if segment == "<dynamic>" else ""
+            for chars, count, segment, dynamic in details:
+                flag = "  <-- dinamico" if dynamic else ""
                 print(f"      {count} lineas  {chars:3d} chars  {segment}{flag}")
             if total > max_lines:
                 over.append((path, label, index, total))

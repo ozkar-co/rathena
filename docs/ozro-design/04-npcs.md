@@ -31,6 +31,9 @@ Verificado en juego con capturas de `screenrAthena005/007` y contra los diálogo
 Lo que importa no es si un `mes` aislado salta de línea, sino **cuántas líneas suma la página** (todo lo que se muestra entre un `next`/`close` y el siguiente). Con **8 líneas o menos no hay scrollbar**; por encima de 8, el cliente agrega scroll. Objetivo: ninguna página con scroll.
 
 - `select`/`menu` y los `case`/`else` cortan la página: son ramas excluyentes y no se suma el texto de todas.
+- Cada `mes` es **un solo mensaje**: sus literales (`mes "a" + .@x + "b"`) se concatenan y no van a líneas distintas.
+- La página también corta en `return` y en etiquetas de subroutine, que no se ejecutan seguidas.
+- Los bucles (`for`) cuentan su cuerpo una vez: si imprimen N items reales, el cliente puede mostrar más líneas que las calculadas (caso típico de listas largas).
 - Se puede tolerar que un `mes` ocupe 2-3 líneas mientras el total de la página no pase de 8.
 
 ### Herramienta: `tools/npc_textwidth.py`
