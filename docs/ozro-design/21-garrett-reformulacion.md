@@ -112,10 +112,13 @@ Excluir o capar si el item está en NPC shop y `npcSellToPlayer <= npcBuyPrice`.
 Precio de oferta:
 
 ```
-offerPrice = npcBuyPrice
+offerPrice = min(npcBuyPrice * 1.15, mid * 0.85, npcSellPrice * 0.95)
+if item is npc_shop:
+    offerPrice = min(offerPrice, npcSellToPlayer * 0.90)
+offerPrice = max(500, offerPrice)
 ```
 
-Sin factors extra. `npcBuyPrice` ya aplica supply, demanda, dificultad y caps.
+El multiplicador 1,15 es el “Garrett paga más” del lore. El cap evita pagar más que el valor canónico o que una tienda NPC.
 
 Opcional futuro: multiplicador histórico por NPC, como dice el diseño:
 
@@ -123,7 +126,7 @@ Opcional futuro: multiplicador histórico por NPC, como dice el diseño:
 offerPrice *= npcHistoryMultiplier
 ```
 
-La base sigue siendo `npcBuyPrice`.
+La base sigue siendo la fórmula canónica v2.
 
 ### 4.3 Pool de misiones
 
@@ -148,30 +151,45 @@ Tiers:
 
 ### 4.4 Cantidad y pago
 
-La cantidad debe salir de un **pago objetivo**, no de un pago fijo por tier.
+La cantidad sale de un **pago objetivo**, no de un mínimo fijo.
 
 ```
-unit = max(1, npcBuyPrice)
-targetPayout = tierTarget[tier] * (1 + marketPressure / 200)
-targetPayout = clamp(targetPayout, 100_000, 600_000)
+unit = offerPrice
+targetPayout = tierTarget[tier] * (1 + demandPercentile / 200)
+targetPayout = clamp(targetPayout, 300_000, 1_500_000)
 
-qty = round(targetPayout / unit)
+qty = round(targetPayout / max(1, unit))
 qty = clamp(qty, minQty[tier], maxQty[tier])
 qty = min(qty, floor(MAX_MISSION_WEIGHT / max(1, weight)))
 
-payout = round(unit * qty * missionMultiplier)
-payout = clamp(payout, 50_000, 1_500_000)
+payout = max(1_000, round(unit * qty * 1.10))
+payout = min(payout, 1_500_000)
 ```
 
-Valores iniciales:
+Valores de la propuesta:
 
 | Tier | `tierTarget` | `minQty` | `maxQty` |
 |---|---:|---:|---:|
-| Común | 200.000 | 20 | 300 |
-| Poco común | 350.000 | 10 | 150 |
-| Raro | 500.000 | 5 | 60 |
+| Común | 800.000 | 20 | 1.000 |
+| Poco común | 1.050.000 | 10 | 500 |
+| Raro | 1.300.000 | 5 | 200 |
 
-`missionMultiplier`: 1,20.
+`missionMultiplier`: 1,10.
+`MAX_MISSION_WEIGHT`: 5.000.
+No hay piso de 500k.
+
+Resultado de la propuesta generada:
+
+| Métrica | Valor |
+|---|---:|
+| Misiones | 50 |
+| Payout promedio | 1.018.340 |
+| Payout mínimo | 715.000 |
+| Payout máximo | 1.408.000 |
+| Cantidad mínima | 5 |
+| Cantidad máxima | 500 |
+| Ratio promedio `payout / (npcBuy × qty)` | 1,259 |
+| Misiones limitadas por peso | 26 |
 
 Efecto:
 
@@ -180,7 +198,36 @@ Efecto:
 - Item de instancia/boss/high-HP: no entra.
 - Nunca se paga el piso de 500k por un item trivial.
 
-### 4.5 Anti-arbitraje
+### 4.5 Entregas parciales y fracaso
+
+Las misiones pueden requerir cantidades grandes, así que se permite entregar por partes:
+
+```
+#GARRETT_MISSION_DELIVERED += cantidad_entregada
+delitem item, cantidad_entregada
+```
+
+Reglas:
+
+- El pago se entrega solo al completar `quantity`.
+- Si el jugador entrega parcialmente y no completa antes de `#GARRETT_MISSION_END`, los items entregados se pierden.
+- No hay devolución ni pago parcial.
+- La misión se cancela/resetea y no hay otra hasta el día siguiente.
+- El contador `DELIVERED` se incrementa solo después de un `delitem` exitoso.
+- Al completar, se verifica `DELIVERED >= quantity` y se resetea.
+
+Esto es el “precio de hacer tratos con Garrett”.
+
+### 4.6 Tabla fija, sin generación dinámica
+
+La tabla se genera una vez y se deja fija en el NPC:
+
+- `propose_garrett.py` genera `garrett_proposal.json` y `.md`.
+- El NPC usa arrays fijos generados desde esa tabla.
+- No hay selección aleatoria diaria de items.
+- El cronograma puede ser fijo: 50 misiones y 200 ofertas siempre disponibles según diseño.
+
+### 4.7 Anti-arbitraje
 
 ```
 if item is npc_shop and npcSellToPlayer < offerPrice:
@@ -196,7 +243,7 @@ payout = min(payout, maxPayoutByShop)
 
 Si el item se puede comprar más barato en NPC shop, Garrett no debe pagar más que eso.
 
-### 4.6 Frecuencia y stock
+### 4.8 Frecuencia y stock
 
 No hace falta stock para Garrett; las ofertas ya son diarias. Pero se puede usar:
 
@@ -231,13 +278,12 @@ def build_missions(master, day_seed):
         pool = [i for i in master if mission_eligible(i) and mission_tier(i) == tier]
         item = choose_daily(pool, day_seed + tier)
         unit = max(1, item.price.npcBuyPrice)
-        target = tier_target[tier] * (1 + (item.demand.marketPressure or 0) / 200)
-        target = clamp(target, 100_000, 600_000)
+        target = tier_target[tier] * (1 + (item.demand.percentile or 50) / 200)
+        target = clamp(target, 300_000, 1_500_000)
         qty = round(target / unit)
         qty = clamp(qty, min_qty[tier], max_qty[tier])
         qty = min(qty, MAX_WEIGHT // max(1, item.weight))
-        payout = round(unit * qty * 1.20)
-        payout = clamp(payout, 50_000, 1_500_000)
+        payout = min(1_500_000, max(1_000, round(unit * qty * 1.10)))
         result.append({"tier": tier, "item": item, "qty": qty, "payout": payout})
     return result
 ```
@@ -268,41 +314,67 @@ La selección diaria debe ser determinista por cuenta/día o global/día; decidi
 
 ---
 
-## 7. Validación propuesta
+## 7. Tabla de revisión
+
+Generada por `tools/market/propose_garrett.py`:
+
+- `data/market/samples/garrett_proposal.json`: datos completos.
+- `data/market/samples/garrett_proposal.md`: tabla legible.
+
+Columnas de misión:
+
+```
+tier, item, quantity, canonicalBuy, garrettUnit, payout, canonicalBuyValue,
+abundance, difficulty, mob, mobHp, mobLevel, map, spawnAmount, dropRate,
+partialDelivery, forfeitOnFail
+```
+
+Columnas de oferta:
+
+```
+item, canonicalBuy, garrettBuy, mid, abundance, demand, mob, mobHp,
+mobLevel, map, spawnAmount, dropRate
+```
+
+## 8. Validación propuesta
 
 - [ ] 0 misiones con ratio `payout / (npcBuyPrice * qty) > 1,5`.
 - [ ] 0 ofertas con ratio `price / npcBuyPrice > 1,2`.
 - [ ] 0 items `instance_only`, `guild_only`, `boss_only`, `high_hp` en ofertas/misiones.
 - [ ] 0 items `group_only` en misiones.
-- [ ] 100% de los pagos dentro de `[50k, 1.5M]`.
+- [ ] Payout promedio entre 0,9M y 1,1M.
+- [ ] 100% de los pagos dentro de `[1k, 1.5M]`.
+- [ ] 50 misiones / 200 ofertas fijas.
 - [ ] Cap diario de 500k respetado.
 - [ ] Cantidad dentro de `minQty/maxQty` y cap de peso.
 - [ ] Anti-arbitraje contra NPC shop activo.
 - [ ] Comparación legacy vs v2 documentada en `garrett_comparison.md`.
+- [ ] Tabla de revisión generada en `garrett_proposal.md`.
+- [ ] Entregas parciales y pérdida por fracaso documentadas.
 
 ---
 
-## 8. Decisiones pendientes
+## 9. Decisiones pendientes
 
-1. `tierTarget` definitivo (200k/350k/500k).
-2. `minQty`/`maxQty` por tier.
-3. `missionMultiplier` 1,20 vs 1,25/1,30.
-4. Selección diaria global o por cuenta.
-5. Mantener 5 ofertas o reducir a 3.
+1. `tierTarget` definitivo (800k/1.05M/1.3M).
+2. `minQty`/`maxQty` por tier (20/10/5 y 1000/500/200).
+3. `missionMultiplier` 1,10.
+4. Tabla fija: 50 misiones y 200 ofertas.
+5. Entregas parciales y pérdida total por fracaso.
 6. Pago de misiones por item o por paquete.
 7. Uso de `marketPressure` para ajustar cantidad o solo para stock.
 8. Multiplicador histórico por NPC (futuro).
 
 ---
 
-## 9. Conclusión
+## 10. Conclusión
 
 El problema de Garrett no es solo el precio: es que el pago no está atado al esfuerzo ni al valor canónico. La v2 permite reemplazar tiers viejos por:
 
 ```
 precio = npcBuyPrice
 cantidad = targetPayout / npcBuyPrice
-payout = cantidad * npcBuyPrice * 1,2
+payout = cantidad * npcBuyPrice * 1,10
 ```
 
 Eso corrige el caso de items fáciles pagados a 600k: o sube mucho la cantidad, o baja el pago. Y deja el sistema listo para un multiplicador histórico por NPC sin cambiar la base.

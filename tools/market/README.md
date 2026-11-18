@@ -27,6 +27,14 @@ Outputs:
 - `ragnabots/staging/market/pricing/master_list.json` (historical reference only)
 - `data/market/canon.yml` (manual prices and policies)
 
+## Garrett proposal
+
+```bash
+python3 tools/market/propose_garrett.py
+```
+
+Writes `data/market/samples/garrett_proposal.json` and `.md`.
+
 ## Garrett legacy comparison
 
 ```bash

@@ -110,6 +110,7 @@ def load_items() -> dict[int, dict[str, Any]]:
                 "type": str(row.get("Type") or "Etc"),
                 "buy": buy,
                 "sell": sell,
+                "weight": as_int(row.get("Weight")),
                 "slots": as_int(row.get("Slots")),
                 "refineable": bool(row.get("Refineable")),
                 "attack": as_int(row.get("Attack")),
