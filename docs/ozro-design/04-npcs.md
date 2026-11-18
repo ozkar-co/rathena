@@ -36,7 +36,6 @@
 
 | NPC | Archivo | Función | Notas |
 |-----|---------|---------|-------|
-| Dungeon Warper | `dungeon_warper.txt` | Teleport a dungeons | QoL solo/LAN |
 | Hunting Missions | `hunting_missions.txt` | Misiones caza aleatorias + shop | Candidato daily loop; balancear antes |
 
 ## Reformulaciones prioritarias
