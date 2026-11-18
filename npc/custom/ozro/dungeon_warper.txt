@@ -27,12 +27,7 @@ if (!CheckRequirements()) {
 // Different menus based on NPC location
 if (strnpcinfo(NPC_NAME_HIDDEN) == "geffen") {
 	mes "[Teletransportadora Renegada]";
-	mes "[Teletransportadora Renegada]";
-	mes "Soy una Kafra que ya no sirve a la Corporacion... Uso tecnicas de teletransportacion ^FF0000EXPERIMENTALES^000000.";
-	mes "Solo las almas mas fuertes pueden resistir este poder.";
-	mes " ";
-	mes "^0000FFDungeons de Rune-Midgard^000000";
-	mes " ";
+	mes "Teletransportacion ^FF0000experimental^000000 a dungeons de Rune-Midgard.";
 	mes "^FF0000Costo: 1 Gema Azul + 10,000 Zeny^000000";
 	next;
 	
@@ -76,11 +71,7 @@ if (strnpcinfo(NPC_NAME_HIDDEN) == "geffen") {
 } else {
 	// Juno NPC - Arunafeltz and Schwartzvald dungeons
 	mes "[Teletransportadora Renegada]";
-	mes "Soy una Kafra que ya no sirve a la Corporacion... Uso tecnicas de teletransportacion ^FF0000EXPERIMENTALES^000000.";
-	mes "Solo las almas mas fuertes pueden resistir este poder.";
-	mes " ";
-	mes "^0000FFDungeons de Arunafeltz y Schwartzvald^000000";
-	mes " ";
+	mes "Teletransportacion ^FF0000experimental^000000 a dungeons de Arunafeltz y Schwartzvald.";
 	mes "^FF0000Costo: 1 Gema Azul + 10,000 Zeny^000000";
 	next;
 	
