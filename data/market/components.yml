@@ -19,6 +19,16 @@ refine:
     - 1.58
     - 1.74
     - 1.93
+    - 2.14
+    - 2.38
+    - 2.65
+    - 2.95
+    - 3.29
+    - 3.67
+    - 4.09
+    - 4.56
+    - 5.08
+    - 5.66
 
 slots:
   # Informational: the base item price already includes its own slots.

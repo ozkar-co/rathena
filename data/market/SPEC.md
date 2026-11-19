@@ -416,12 +416,7 @@ cap = baseMid * 5 + cardValue * 1.5
 value = min(raw, cap)
 ```
 
-`refineFactor` from `data/market/components.yml`:
-
-```
-+0 1.00  +1 1.03  +2 1.07  +3 1.12  +4 1.18
-+5 1.25  +6 1.34  +7 1.45  +8 1.58  +9 1.74  +10 1.93
-```
+`refineFactor` from `data/market/components.yml` (+0 a +20). La tabla se usa también en el simulador; el master no enumera objetos refinados.
 
 ---
 

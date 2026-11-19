@@ -41,8 +41,11 @@ La custodia obliga a poder reconstruir el objeto **exactamente**. Todo lo que no
 | Categoría | ¿Aceptar? | Motivo |
 |---|---|---|
 | Equipo/ETC comerciable, identificado | Sí | Caso base |
-| Cartas, refine y random options | Sí, si la valuación los soporta | `mail` y `getitem4` permiten devolverlos |
-| Enchant grade > `ENCHANTGRADE_NONE` | No | `mail` no expone el grade; se perdería al devolver |
+| Cartas, refine y random options | Sí, si la valuación los soporta | `mail` permite devolverlos |
+| Enchant items en card slots | Sí | `item_enchant` los guarda en `card0..3`; `mail` los restaura |
+| Enchant grade > `ENCHANTGRADE_NONE` | No | `mail` no recibe el grade; se perdería al devolver |
+| Atributo elemental (`attribute`) | No | `mail` no lo recibe; se perdería |
+| Item sin identificar | No | `mail` fuerza `identify = 1` |
 | Bound | No | No es comerciable y no debe venderse |
 | Rental / `expire_time > 0` | No | Ningún comando script fija el `expire_time` original |
 | Stackables con `amount > 1` | No en v1 | La recuperación tras un crash es ambigua |
@@ -87,7 +90,7 @@ Campos mínimos del snapshot:
 - `item_nameid`, `amount`, `identify`, `refine`, `attribute`.
 - `card0..card3`.
 - `option_id1..5`, `option_val1..5`, `option_param1..5`.
-- `bound`, `expire_time`, `enchantgrade` (se guardan aunque en v1 se rechacen, para auditoría).
+- `attribute`, `identify`, `unique_id`, `bound`, `expire_time`, `enchantgrade` (se guardan aunque en v1 se rechacen, para auditoría).
 - `fingerprint` del inventario antes de borrar (para recuperación).
 - `price`, `requested_at`, `priced_at`, `closed_at`.
 - `mail_token` (identificador único para verificar la devolución).
@@ -131,8 +134,8 @@ Tabla append-only con `request_id`, estado anterior, estado nuevo, actor (`npc`,
 
 rAthena no tiene un comando `rodex_*` en script. La devolución se hace con **`mail`** (`doc/script_commands.txt:5963`), que envía a un `char_id` y funciona con el personaje desconectado.
 
-- Soporta id, amount, refine, bound, cartas y las 5 random options.
-- **No** recibe `enchantgrade` ni `expire_time`; de ahí las restricciones de objetos aceptados.
+- **No** recibe `enchantgrade`, `expire_time`, `unique_id` ni `attribute`; fuerza `identify = 1`. De ahí las restricciones de objetos aceptados.
+- Sí recibe refine, bound, `card0..3` (incluye enchant items en card slots) y 5 random options (`id`, `value`, `param`).
 - `MAIL_MAX_ITEM` es 5 en PACKETVER moderno (`src/common/mmo.hpp:196`); una solicitud es un solo objeto, así que sobra.
 - Si el inventario está lleno, el objeto queda en el correo; no se pierde.
 - El correo caduca: no es custodia permanente. Hay que definir plazo y aviso, y dejar herramienta de GM para reenviar.
