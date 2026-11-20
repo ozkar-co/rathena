@@ -77,6 +77,17 @@ Orden sugerido; cada fase con smoke test (`./map-server --run-once` + checklist 
 - `tools/mob_spawns.py` — spawns según conf activo.
 - Comparación de mapas: §9 de [09-estado-tecnico-y-estabilidad.md](./09-estado-tecnico-y-estabilidad.md).
 
+## Raíz del repositorio (2026-11-20)
+
+Eliminado por no usarse en OzRo:
+
+- `.github/` (CI upstream), `tools/docker/`, `tools/ci/`
+- Metadatos upstream: `AUTHORS`, `.mailmap`, `CODE_OF_CONDUCT.md`, `.git-blame-ignore-revs`
+- IDE local: `.claude/`, `.cursor/`, `.kilo/`
+- `install.sh`, `uninstall.sh` (targets `install`/`uninstall` quitados del `Makefile`)
+
+Nuevo `README.md` orientado a OzRo; atribución y autores históricos apuntan a [rathena/rathena](https://github.com/rathena/rathena).
+
 ## Comentarios
 
 <!-- Ideas sueltas de mantenimiento del repo -->

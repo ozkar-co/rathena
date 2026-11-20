@@ -78,4 +78,4 @@ La sección **Comentarios** al final de cada archivo es un borrador libre: se ap
 - **2026-11-16:** Lo implementado se borra de la documentación y queda en el changelog público (general) y en el git log (detalle técnico).
 - **2026-11-17:** Eventos automáticos con recompensa en OzCoin; cronograma semanal en [16-eventos-automaticos.md](./16-eventos-automaticos.md).
 - **2026-11-18:** Mercado v2 cerrado. Master de todos los items en `data/market/master.jsonl`, spec en `data/market/SPEC.md`, proyección SQL en `data/market/sql/` y Garrett fijo en `npc/custom/ozro/trasher.txt` + `garrett.json`. La taxonomía queda como insumo; los generadores específicos de Garrett se eliminaron.
-- **2026-11-20:** Limpieza freeze: NPC inactivos y capas pre-re/SQL/doc en `trash_bin/`; `data/market/` eliminado (pivote, mercado se rehace). Ver [18-repo-freeze-y-limpieza.md](./18-repo-freeze-y-limpieza.md).
+- **2026-11-20:** Limpieza freeze: NPC inactivos y capas pre-re/SQL/doc en `trash_bin/`; `data/market/` eliminado (pivote, mercado se rehace). CI/Docker, metadatos upstream y `README.md` OzRo. Ver [18-repo-freeze-y-limpieza.md](./18-repo-freeze-y-limpieza.md).
