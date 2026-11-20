@@ -1,9 +1,20 @@
 # trash_bin (Ozro freeze)
 
-Scripts de NPC **no cargados** en la versión estable Renewal (`npc/re/scripts_main.conf` + cadena `npc/barters.yml`).
+Archivo de contenido **no usado** en OzRo Renewal estable. Misma estructura de rutas que en el repo activo (`npc/`, `db/`, etc.) bajo este directorio.
 
-- La estructura bajo `trash_bin/npc/` replica la ruta original bajo `npc/`.
-- Las referencias comentadas en `*.conf` y barters apuntan a `trash_bin/npc/...` para reactivar sin adivinar rutas.
-- Para volver a cargar uno: muévelo de vuelta a `npc/...` **o** descomenta la línea `npc:` y cambia la ruta a `trash_bin/npc/...` (el servidor resuelve rutas desde la raíz del repo).
+## Contenido
 
-Ver `MANIFEST.txt` para la lista completa.
+| Carpeta | Qué es |
+|---------|--------|
+| `npc/` | Scripts NPC no cargados por `npc/re/scripts_main.conf` + barters activos (ver `MANIFEST.txt`). Incluye `npc/pre-re/` completo. |
+| `db/pre-re/` | YAML pre-renewal; no se lee con `RENEWAL`. |
+| `db/import-tmpl/` | Plantillas de `db/import/` para nuevos servers. |
+| `doc/` | Documentación upstream rAthena. |
+| `sql-files/` | Schema SQL legacy (`use_sql_db: no` en OzRo). |
+
+## Reactivar algo
+
+- **NPC:** mover a `npc/...` o línea `npc: trash_bin/npc/...` en `scripts_custom.conf` (las referencias comentadas en conf ya usan ese prefijo).
+- **DB/doc/SQL:** copiar solo el archivo o subárbol necesario; no restaurar carpetas enteras sin revisión.
+
+Documentación del proceso: [`docs/ozro-design/18-repo-freeze-y-limpieza.md`](../docs/ozro-design/18-repo-freeze-y-limpieza.md).

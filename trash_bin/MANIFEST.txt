@@ -1,3 +1,12 @@
+# Ozro freeze — ver también trash_bin/README.md y docs/ozro-design/18-repo-freeze-y-limpieza.md
+#
+# Directorios archivados (además de npc/ listados abajo):
+#   trash_bin/db/pre-re/
+#   trash_bin/db/import-tmpl/
+#   trash_bin/npc/pre-re/
+#   trash_bin/doc/
+#   trash_bin/sql-files/
+#
 # Ozro freeze — NPC scripts no cargados por npc/re/scripts_main.conf
 # Generado: 2026-11-20 17:15 UTC
 # Archivos movidos: 335
