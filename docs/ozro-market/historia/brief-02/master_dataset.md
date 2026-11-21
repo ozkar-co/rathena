@@ -1831,6 +1831,20 @@ Registrar:
 
 Un combo puede involucrar dos o más ítems.
 
+### Hallazgos Etapa 3 (OzRo) — Combos
+
+| Métrica | Valor |
+|---|---|
+| Grupos con script (`item_combos.yml`) en scope | 2965 |
+| Sets jugables (todos los miembros en cliente) | 4381 |
+| Filas miembro | 10589 |
+| Sets omitidos (algún ítem fuera de cliente) | 4236 |
+| Tamaño set | 2→3266 · 3→685 · 4→249 · 5→82 · 6→97 · 7→2 |
+
+**Hecho:** `item_combo_groups` (script + effect tags) / `item_combo_sets` / `item_combo_members`; gate cliente; import `Clear` soportado.
+
+**Pending:** grafos consume/produce; refine/socket; skill/quest item deps (§22.2).
+
 ## 22.2. Dependencias
 
 Registrar las relaciones de consumo, producción y compatibilidad.
@@ -2201,8 +2215,9 @@ Orden de trabajo (Skills **antes** de NPCs):
 - **Instances:** catálogo + maps + NPC bind por `instance_create` literal; create dinámico pending (ver §18).
 - **Boxes:** `item_group_db` + links `getgroupitem`; nested flags; probs SharedPool diferidas (ver §19).
 - **Recipes:** `produce_db` (+ import); materiales `consumed`/`guide`; familia por `ItemLV`; NPC/zeny/fail diferidos (ver §20).
-- **Enchantments:** stones/orbs ≠ cards; UI `item_enchant`/`reform`/`grade` off en OzRo (trash_bin + `grademk` unload); catálogo orbs + NPC `getitem2` pending; **Random Options = dominio aparte** (§21bis).
+- **Enchantments:** stones/orbs ≠ cards; UI `item_enchant`/`reform`/`grade` off en OzRo (`grademk` unload); catálogo orbs + NPC `getitem2` pending; **Random Options = dominio aparte** (§21bis).
 - **Barters rgsr / EnchantGradeExchange:** diferidos a etapa barters (huérfanos tras corte UI).
+- **Item Relationships (combos):** `item_combos.yml` → groups/sets/members; gate cliente; deps consume/produce/etc. diferidas (§22).
 
 ## Etapa 4 — Resolución de valores efectivos
 
