@@ -1674,6 +1674,21 @@ Una caja que entrega otra caja debe representarse mediante relaciones entre fuen
 
 También deben contemplarse recompensas entregadas mediante NPC, quests, instancias, eventos y scripts personalizados.
 
+## 19.1. Hallazgos Etapa 3 (OzRo)
+
+| Métrica | Valor |
+|---|---|
+| Grupos (`item_group_db`) | ~2973 |
+| Filas reward | ~34252 |
+| Links ítem→grupo (`getgroupitem`) | ~2668 (~2667 ítems) |
+| Grupos con reward anidado (container / abre otro grupo) | ~781 |
+| `getgroupitem` sin grupo en DB | 2 |
+| Algoritmos (subgrupos) | All ~2074 · SharedPool ~699 · Random ~309 |
+
+**Hecho:** catálogo de grupos; rewards con `rate`/`amount` raw; link desde scripts; flag `contains_nested_box` / `reward_opens_group`.
+
+**Pending:** normalizar probabilidad según algoritmo (SharedPool ≠ % directo); cajas solo vía NPC/quest/instance; args completos de `getrandgroupitem`.
+
 ---
 
 # 20. RECIPES & CRAFTING — Recetas
@@ -2117,6 +2132,7 @@ Orden de trabajo (Skills **antes** de NPCs):
 - **Drops:** `mob_db` per_10000 + adjust; `map_specific` = bonus de mapa per_100000 sin `item_rate_*`; `pending_config_verify` para `*_mvp` vs `@iteminfo` (ver §15).
 - **Quests:** `quest_db` + targets/drops + `npc_quest_links`; rewards/tipo/Location diferidos (ver §17).
 - **Instances:** catálogo + maps + NPC bind por `instance_create` literal; create dinámico pending (ver §18).
+- **Boxes:** `item_group_db` + links `getgroupitem`; nested flags; probs SharedPool diferidas (ver §19).
 
 ## Etapa 4 — Resolución de valores efectivos
 
