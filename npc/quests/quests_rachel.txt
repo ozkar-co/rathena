@@ -6820,7 +6820,7 @@ ra_temin,275,226,0	script	#rachel33	45,1,1,{
 	end;
 OnTouch_:
 	if (aru_em == 21)
-		warp "que_temsky",99,11;
+		//warp "que_temsky",99,11; // OzRo: dst map no client (que_temsky)
 	else
 		warp "ra_temsky",99,11;
 	end;

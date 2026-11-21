@@ -105,11 +105,11 @@ OnTimer371000:
 OnTimer372000:
 OnTimer373000:
 OnTimer374000:
-	mapwarp "force_2-1","prt_are_in",126,139,0,0;
+	//mapwarp "force_2-1","prt_are_in",126,139,0,0; // OzRo: dst map no client (force_2-1)
 	end;
 
 OnTimer375000:
-	mapwarp "force_2-1","prt_are_in",126,139,0,0;
+	//mapwarp "force_2-1","prt_are_in",126,139,0,0; // OzRo: dst map no client (force_2-1)
 	donpcevent "Minilover#arena::OnFailClearStage";
 	end;
 
@@ -119,7 +119,7 @@ OnTimerOff:
 
 OnFailClearStage:
  	donpcevent "cast#60::OnTimeOver1";
-	mapwarp "force_2-1","prt_are_in",126,139,0,0;
+	//mapwarp "force_2-1","prt_are_in",126,139,0,0; // OzRo: dst map no client (force_2-1)
 	donpcevent "Minilover#arena::OnTimerOff";
 	donpcevent "arena#60::OnReset_All";
 	donpcevent "alloff#60::OnEnable";
@@ -304,14 +304,14 @@ OnReset_All:
 force_2-1,62,26,1	script	force_08_01#60	45,1,1,{
 OnTouch_:
 	donpcevent "Minilover#arena::On01_Start";
-	warp "force_2-1",40,26;
+	//warp "force_2-1",40,26; // OzRo: dst map no client (force_2-1)
 	end;
 }
 
 force_2-1,25,44,1	script	force_01_02#60	45,1,1,{
 OnTouch_:
 	donpcevent "Minilover#arena::On02_Start";
-	warp "force_2-1",25,69;
+	//warp "force_2-1",25,69; // OzRo: dst map no client (force_2-1)
 	end;
 }
 
@@ -319,42 +319,42 @@ force_2-1,25,134,1	script	force_02_03#60	45,1,1,{
 OnTouch_:
 	donpcevent "arena#60::OnReset_02";
 	donpcevent "Minilover#arena::On03_Start";
-	warp "force_2-1",25,159;
+	//warp "force_2-1",25,159; // OzRo: dst map no client (force_2-1)
 	end;
 }
 
 force_2-1,44,174,1	script	force_03_04#60	45,1,1,{
 OnTouch_:
 	donpcevent "Minilover#arena::On04_Start";
-	warp "force_2-1",69,174;
+	//warp "force_2-1",69,174; // OzRo: dst map no client (force_2-1)
 	end;
 }
 
 force_2-1,134,174,1	script	force_04_05#60	45,1,1,{
 OnTouch_:
 	donpcevent "Minilover#arena::On05_Start";
-	warp "force_2-1",159,174;
+	//warp "force_2-1",159,174; // OzRo: dst map no client (force_2-1)
 	end;
 }
 
 force_2-1,174,155,1	script	force_05_06#60	45,1,1,{
 OnTouch_:
 	donpcevent "Minilover#arena::On06_Start";
-	warp "force_2-1",174,130;
+	//warp "force_2-1",174,130; // OzRo: dst map no client (force_2-1)
 	end;
 }
 
 force_2-1,174,65,1	script	force_06_07#60	45,1,1,{
 OnTouch_:
 	donpcevent "Minilover#arena::On07_Start";
-	warp "force_2-1",174,40;
+	//warp "force_2-1",174,40; // OzRo: dst map no client (force_2-1)
 	end;
 }
 
 force_2-1,155,26,1	script	force_07_08#60	45,1,1,{
 OnTouch_:
 	donpcevent "Minilover#arena::On08_Start";
-	warp "force_2-1",132,26;
+	//warp "force_2-1",132,26; // OzRo: dst map no client (force_2-1)
 	enablenpc "force_08_09#60";
 	end;
 }
@@ -362,7 +362,7 @@ OnTouch_:
 force_2-1,99,54,1	script	force_08_09#60	45,1,1,{
 OnTouch_:
 	donpcevent "Minilover#arena::On09_Start";
-	warp "force_2-1",99,82;
+	//warp "force_2-1",99,82; // OzRo: dst map no client (force_2-1)
 	end;
 }
 
@@ -370,7 +370,7 @@ force_2-1,99,124,1	script	force_exit#60	45,1,1,{
 OnTouch_:
 	donpcevent "Minilover#arena::OnTimerOff";
 	donpcevent "#arn_timer_60::OnEnable";
-	mapwarp "force_2-1","prt_are_in",22,139,0,0;
+	//mapwarp "force_2-1","prt_are_in",22,139,0,0; // OzRo: dst map no client (force_2-1)
 	end;
 }
 
@@ -987,7 +987,7 @@ OnTimeOver2:
 
 -	script	alloff#60	-1,{
 OnEnable:
-	mapwarp "force_2-1","prt_are_in",126,139,0,0;
+	//mapwarp "force_2-1","prt_are_in",126,139,0,0; // OzRo: dst map no client (force_2-1)
 	donpcevent "force_01mob#60::OnReset";
 	donpcevent "force_02mob#60::OnReset";
 	donpcevent "force_03mob#60::OnReset";

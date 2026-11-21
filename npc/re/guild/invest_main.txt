@@ -1148,35 +1148,35 @@ OnAgitInvest:
 		close2;
 		if (compare(strnpcinfo(2),"alde")) {
 			switch(.@id) {
-				case 1: warp "gld_dun02_2",32,122; end;
-				case 2: warp "gld_dun02_2",79,30; end;
-				case 3: warp "gld_dun02_2",165,38; end;
-				case 4: warp "gld_dun02_2",160,148; end;
-				case 5: warp "gld_dun02_2",103,169; end;
+				//case 1: warp "gld_dun02_2",32,122; end; // OzRo: dst map no client (gld_dun02_2)
+				//case 2: warp "gld_dun02_2",79,30; end; // OzRo: dst map no client (gld_dun02_2)
+				//case 3: warp "gld_dun02_2",165,38; end; // OzRo: dst map no client (gld_dun02_2)
+				//case 4: warp "gld_dun02_2",160,148; end; // OzRo: dst map no client (gld_dun02_2)
+				//case 5: warp "gld_dun02_2",103,169; end; // OzRo: dst map no client (gld_dun02_2)
 			}
 		} else if (compare(strnpcinfo(2),"gef")) {
 			switch(.@id) {
-				case 1: warp "gld_dun04_2",39,258; end;
-				case 2: warp "gld_dun04_2",125,270; end;
-				case 3: warp "gld_dun04_2",268,251; end;
-				case 4: warp "gld_dun04_2",268,108; end;
-				case 5: warp "gld_dun04_2",230,35; end;
+				//case 1: warp "gld_dun04_2",39,258; end; // OzRo: dst map no client (gld_dun04_2)
+				//case 2: warp "gld_dun04_2",125,270; end; // OzRo: dst map no client (gld_dun04_2)
+				//case 3: warp "gld_dun04_2",268,251; end; // OzRo: dst map no client (gld_dun04_2)
+				//case 4: warp "gld_dun04_2",268,108; end; // OzRo: dst map no client (gld_dun04_2)
+				//case 5: warp "gld_dun04_2",230,35; end; // OzRo: dst map no client (gld_dun04_2)
 			}
 		} else if (compare(strnpcinfo(2),"pay")) {
 			switch(.@id) {
-				case 1: warp "gld_dun01_2",186,165; end;
-				case 2: warp "gld_dun01_2",54,165; end;
-				case 3: warp "gld_dun01_2",54,39; end;
-				case 4: warp "gld_dun01_2",186,39; end;
-				case 5: warp "gld_dun01_2",223,202; end;
+				//case 1: warp "gld_dun01_2",186,165; end; // OzRo: dst map no client (gld_dun01_2)
+				//case 2: warp "gld_dun01_2",54,165; end; // OzRo: dst map no client (gld_dun01_2)
+				//case 3: warp "gld_dun01_2",54,39; end; // OzRo: dst map no client (gld_dun01_2)
+				//case 4: warp "gld_dun01_2",186,39; end; // OzRo: dst map no client (gld_dun01_2)
+				//case 5: warp "gld_dun01_2",223,202; end; // OzRo: dst map no client (gld_dun01_2)
 			}
 		} else if (compare(strnpcinfo(2),"prt")) {
 			switch(.@id) {
-				case 1: warp "gld_dun03_2",28,251; end;
-				case 2: warp "gld_dun03_2",164,268; end;
-				case 3: warp "gld_dun03_2",164,179; end;
-				case 4: warp "gld_dun03_2",268,203; end;
-				case 5: warp "gld_dun03_2",199,28; end;
+				//case 1: warp "gld_dun03_2",28,251; end; // OzRo: dst map no client (gld_dun03_2)
+				//case 2: warp "gld_dun03_2",164,268; end; // OzRo: dst map no client (gld_dun03_2)
+				//case 3: warp "gld_dun03_2",164,179; end; // OzRo: dst map no client (gld_dun03_2)
+				//case 4: warp "gld_dun03_2",268,203; end; // OzRo: dst map no client (gld_dun03_2)
+				//case 5: warp "gld_dun03_2",199,28; end; // OzRo: dst map no client (gld_dun03_2)
 			}
 		}
 		end;

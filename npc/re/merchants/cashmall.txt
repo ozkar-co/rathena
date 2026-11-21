@@ -41,7 +41,7 @@ prontera,137,125,4	script	Cash Sales Guide#prontera::cashmall_warper	4_M_HUMAN_0
 	else // Default to Prontera if not found
 		cashmall_return = 0;
 
-	warp "itemmall",22,43;
+	//warp "itemmall",22,43; // OzRo: dst map no client (itemmall)
 	end;
 }
 morocc,164,39,4	duplicate(cashmall_warper)	Cash Sales Guide#morocc	4_M_HUMAN_02

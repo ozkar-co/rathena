@@ -424,7 +424,7 @@ pvp_2vs2,40,40,0	script	Combat Square Staff#5	45,1,1,{
 			case 4: warp "pvp_2vs2",73,39; end;
 		}
 	case 2:
-		warp "pvp_c_room",84,39;
+		//warp "pvp_c_room",84,39; // OzRo: dst map no client (pvp_c_room)
 		end;
 	}
 }

@@ -1085,7 +1085,7 @@ y_airport,168,41,3	script	Crux#ep162_04	4_EP16_CRUX,{
 		setquest 7736;// Small differences between sightseeing and secret bussiness
 		terra_gloria_main = 8;
 		close2;
-		warp "lhz_airport",185,37;
+		//warp "lhz_airport",185,37; // OzRo: dst map no client (lhz_airport)
 		end;
 	}
 	if (terra_gloria_main == 8) {
@@ -1102,7 +1102,7 @@ y_airport,168,41,3	script	Crux#ep162_04	4_EP16_CRUX,{
 		mes "[Crux]";
 		mes "This way ...";
 		close2;
-		warp "lhz_airport",185,37;
+		//warp "lhz_airport",185,37; // OzRo: dst map no client (lhz_airport)
 		end;
 	}
 	if (terra_gloria_main < 18) {

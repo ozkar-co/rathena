@@ -1059,7 +1059,7 @@ OnTimer252000:
 	end;
 
 OnTimer300000:
-	mapwarp "p_track02","hugel",63,73;
+	//mapwarp "p_track02","hugel",63,73; // OzRo: dst map no client (p_track02)
 	disablenpc "Medal Distributor#medal";
 	donpcevent "#race_timer2-1::OnEnable";
 	stopnpctimer;
@@ -1174,7 +1174,7 @@ hugel,62,69,1	script	Eckar Erenes#double	798,{
 			Zeny -= 2000;
 			monster_race_2_1 = monster_race_2_2 = 0;
 			close2;
-			warp "p_track02",75,41;
+			//warp "p_track02",75,41; // OzRo: dst map no client (p_track02)
 			end;
 		}
 		else if ($@mon_time_2_1 == 2) {
@@ -1196,7 +1196,7 @@ hugel,62,69,1	script	Eckar Erenes#double	798,{
 			Zeny -= 2000;
 			monster_race_2_1 = monster_race_2_2 = 0;
 			close2;
-			warp "p_track02",75,41;
+			//warp "p_track02",75,41; // OzRo: dst map no client (p_track02)
 			end;
 		} else if ($@mon_time_2_1 == 2) {
 			mes "[Eckar Erenes]";
@@ -1233,7 +1233,7 @@ hugel,62,69,1	script	Eckar Erenes#double	798,{
 			Zeny -= 500;
 			monster_race_2_1 = monster_race_2_2 = 0;
 			close2;
-			warp "p_track02",75,41;
+			//warp "p_track02",75,41; // OzRo: dst map no client (p_track02)
 			end;
 		}
 		mes "[Eckar Erenes]";

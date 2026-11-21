@@ -15,7 +15,7 @@ function	script	F_mesnavi	{
 xmas_fild01,158,246,2	script	Dimensional barrier#got1	GATE_SKYBLUE,2,2,{
 	// Fallthrough
 OnTouch:
-	warp "t_garden",116,47;
+	//warp "t_garden",116,47; // OzRo: dst map no client (t_garden)
 	end;
 
 OnInit:
@@ -41,7 +41,7 @@ OnTouch:
 	if (BaseLevel < 250)
 		warp "xmas_fild01",150,240;
 	else
-		warp "t_garden",118,79;
+		//warp "t_garden",118,79; // OzRo: dst map no client (t_garden)
 	end;
 }
 
@@ -56,7 +56,7 @@ OnTouch:
 	if (BaseLevel < 250)
 		warp "xmas_fild01",150,240;
 	else
-		warp "t_garden",118,61;
+		//warp "t_garden",118,61; // OzRo: dst map no client (t_garden)
 	end;
 }
 
@@ -367,13 +367,13 @@ t_garden,78,92,2	script(CLOAKED)	Passage of Time#1	GATE_SKYBLUE,{
 	}
 	switch( select( "Forgotten memories, Zone 1, 6 o'clock", "Forgotten memories, Zone 1, Center", "Forgotten memories, Zone 1, 10 o'clock" ) ) {
 	case 1:
-		warp "for_dun01",159,35;
+		//warp "for_dun01",159,35; // OzRo: dst map no client (for_dun01)
 		break;
 	case 2:
-		warp "for_dun01",101,136;
+		//warp "for_dun01",101,136; // OzRo: dst map no client (for_dun01)
 		break;
 	case 3:
-		warp "for_dun01",62,266;
+		//warp "for_dun01",62,266; // OzRo: dst map no client (for_dun01)
 		break;
 	}
 	end;
@@ -457,13 +457,13 @@ t_garden,157,92,2	script(CLOAKED)	Passage of Time#2	GATE_SKYBLUE,{
 	}
 	switch( select( "Forgotten Memories, Zone 2, 7 o'clock", "Forgotten Memories, Zone 2, 1 o'clock", "Forgotten Memories, Zone 2, 5 o'clock" ) ) {
 	case 1:
-		warp "for_dun02",33,55;
+		//warp "for_dun02",33,55; // OzRo: dst map no client (for_dun02)
 		break;
 	case 2:
-		warp "for_dun02",211,269;
+		//warp "for_dun02",211,269; // OzRo: dst map no client (for_dun02)
 		break;
 	case 3:
-		warp "for_dun02",271,38;
+		//warp "for_dun02",271,38; // OzRo: dst map no client (for_dun02)
 		break;
 	}
 	end;
@@ -475,7 +475,7 @@ for_dun01,100,146,2	script	Spatial coordinate probe#1	4_SYSTEM_BOX,{
 	next;
 	if (select( "Cancel", "Return" ) == 1)
 		end;
-	warp "t_garden",83,92;
+	//warp "t_garden",83,92; // OzRo: dst map no client (t_garden)
 	end;
 
 OnInit:
@@ -499,7 +499,7 @@ for_dun02,190,147,2	script	Spatial coordinate probe#12	4_SYSTEM_BOX,{
 	next;
 	if (select( "Cancel", "Return" ) == 1)
 		end;
-	warp "t_garden",152,92;
+	//warp "t_garden",152,92; // OzRo: dst map no client (t_garden)
 	end;
 
 OnInit:

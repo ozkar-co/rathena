@@ -413,12 +413,12 @@ schg_cas02,101,301,0	warp	schg203	1,1,schg_cas02,340,78
 schg_cas03,337,336,0	warp	schg301	1,1,sch_gld,97,196
 sch_gld,97,183,0	warp	schg302	1,1,schg_cas03,337,330
 schg_cas03,57,9,0	warp	schg303	1,1,schg_cas03,337,330
-schg_cas04,119,4,0	warp	schg401	1,1,sch_gld,137,90
-sch_gld,137,98,0	warp	schg402	1,1,schg_cas04,119,8
-schg_cas04,275,240,0	warp	schg403	1,1,schg_cas04,120,7
-schg_cas05,119,4,0	warp	schg501	1,1,sch_gld,71,315
-sch_gld,65,315,0	warp	schg502	1,1,schg_cas05,119,8
-schg_cas05,275,240,0	warp	schg503	1,1,schg_cas05,120,7
+//schg_cas04,119,4,0	warp	schg401	1,1,sch_gld,137,90 // OzRo: map no client (src)
+//sch_gld,137,98,0	warp	schg402	1,1,schg_cas04,119,8 // OzRo: map no client (dst)
+//schg_cas04,275,240,0	warp	schg403	1,1,schg_cas04,120,7 // OzRo: map no client (src)
+//schg_cas05,119,4,0	warp	schg501	1,1,sch_gld,71,315 // OzRo: map no client (src)
+//sch_gld,65,315,0	warp	schg502	1,1,schg_cas05,119,8 // OzRo: map no client (dst)
+//schg_cas05,275,240,0	warp	schg503	1,1,schg_cas05,120,7 // OzRo: map no client (src)
 
 // Arunafeltz Map Guild Castles Map Connection
 ve_fild02,191,21,0	warp	arug001	1,1,aru_gld,195,360
@@ -434,93 +434,93 @@ arug_cas02,393,324,0	warp	arug203	1,1,arug_cas02,139,31
 arug_cas03,141,40,0	warp	arug301	1,1,aru_gld,68,155
 aru_gld,68,150,0	warp	arug302	1,1,arug_cas03,141,45
 arug_cas03,321,52,0	warp	arug303	1,1,arug_cas03,141,45
-arug_cas04,141,40,0	warp	arug401	1,1,aru_gld,299,345
-aru_gld,289,347,0	warp	arug402	1,1,arug_cas04,141,45
-arug_cas04,321,52,0	warp	arug403	1,1,arug_cas04,141,45
-arug_cas05,141,40,0	warp	arug501	1,1,aru_gld,292,107
-aru_gld,287,107,0	warp	arug502	1,1,arug_cas05,141,45
-arug_cas05,321,52,0	warp	arug503	1,1,arug_cas05,141,45
+//arug_cas04,141,40,0	warp	arug401	1,1,aru_gld,299,345 // OzRo: map no client (src)
+//aru_gld,289,347,0	warp	arug402	1,1,arug_cas04,141,45 // OzRo: map no client (dst)
+//arug_cas04,321,52,0	warp	arug403	1,1,arug_cas04,141,45 // OzRo: map no client (src)
+//arug_cas05,141,40,0	warp	arug501	1,1,aru_gld,292,107 // OzRo: map no client (src)
+//aru_gld,287,107,0	warp	arug502	1,1,arug_cas05,141,45 // OzRo: map no client (dst)
+//arug_cas05,321,52,0	warp	arug503	1,1,arug_cas05,141,45 // OzRo: map no client (src)
 
 //==================  4 Novices Guild Castles =============================
 //Novices Guild: Al de Baran Guild Castles Map
-n_castle,184,16,0	warp	naldg01	1,1,nguild_alde,34,248
-nguild_alde,34,252,0	warp	naldg01-1	1,1,n_castle,187,16
+//n_castle,184,16,0	warp	naldg01	1,1,nguild_alde,34,248 // OzRo: map no client (dst)
+//nguild_alde,34,252,0	warp	naldg01-1	1,1,n_castle,187,16 // OzRo: map no client (src)
 
-nguild_alde,50,222,0	warp	naldg101	1,1,nguild_alde,104,108
-nguild_alde,104,112,0	warp	naldg101-1	1,1,nguild_alde,45,224
-nguild_alde,66,191,0	warp	naldg102	1,1,nguild_alde,122,61
-nguild_alde,126,61,0	warp	naldg102-1	1,1,nguild_alde,62,191
-nguild_alde,54,27,0	warp	naldg102-2	1,1,nguild_alde,62,191
-nguild_alde,26,188,0	warp	naldg103	1,1,nguild_alde,50,70
-nguild_alde,46,70,0	warp	naldg103-1	1,1,nguild_alde,24,188
-nguild_alde,70,112,0	warp	naldg104	1,1,nguild_alde,42,225
-nguild_alde,39,222,0	warp	naldg104-1	1,1,nguild_alde,70,108
-nguild_alde,89,23,0	warp	naldg105	1,1,nguild_alde,207,132
-nguild_alde,207,128,0	warp	naldg105-1	1,1,nguild_alde,89,27
-nguild_alde,206,188,0	warp	naldg106	1,1,nguild_alde,216,50
-nguild_alde,216,54,0	warp	naldg106-1	1,1,nguild_alde,206,184
-nguild_alde,232,186,0	warp	naldg107	1,1,nguild_alde,42,197
-nguild_alde,46,197,0	warp	naldg107-1	1,1,nguild_alde,232,182
-nguild_alde,171,175,0	warp	naldg108	1,1,nguild_alde,35,197
-nguild_alde,31,197,0	warp	naldg108-1	1,1,nguild_alde,175,175
+//nguild_alde,50,222,0	warp	naldg101	1,1,nguild_alde,104,108 // OzRo: map no client (src)
+//nguild_alde,104,112,0	warp	naldg101-1	1,1,nguild_alde,45,224 // OzRo: map no client (src)
+//nguild_alde,66,191,0	warp	naldg102	1,1,nguild_alde,122,61 // OzRo: map no client (src)
+//nguild_alde,126,61,0	warp	naldg102-1	1,1,nguild_alde,62,191 // OzRo: map no client (src)
+//nguild_alde,54,27,0	warp	naldg102-2	1,1,nguild_alde,62,191 // OzRo: map no client (src)
+//nguild_alde,26,188,0	warp	naldg103	1,1,nguild_alde,50,70 // OzRo: map no client (src)
+//nguild_alde,46,70,0	warp	naldg103-1	1,1,nguild_alde,24,188 // OzRo: map no client (src)
+//nguild_alde,70,112,0	warp	naldg104	1,1,nguild_alde,42,225 // OzRo: map no client (src)
+//nguild_alde,39,222,0	warp	naldg104-1	1,1,nguild_alde,70,108 // OzRo: map no client (src)
+//nguild_alde,89,23,0	warp	naldg105	1,1,nguild_alde,207,132 // OzRo: map no client (src)
+//nguild_alde,207,128,0	warp	naldg105-1	1,1,nguild_alde,89,27 // OzRo: map no client (src)
+//nguild_alde,206,188,0	warp	naldg106	1,1,nguild_alde,216,50 // OzRo: map no client (src)
+//nguild_alde,216,54,0	warp	naldg106-1	1,1,nguild_alde,206,184 // OzRo: map no client (src)
+//nguild_alde,232,186,0	warp	naldg107	1,1,nguild_alde,42,197 // OzRo: map no client (src)
+//nguild_alde,46,197,0	warp	naldg107-1	1,1,nguild_alde,232,182 // OzRo: map no client (src)
+//nguild_alde,171,175,0	warp	naldg108	1,1,nguild_alde,35,197 // OzRo: map no client (src)
+//nguild_alde,31,197,0	warp	naldg108-1	1,1,nguild_alde,175,175 // OzRo: map no client (src)
 
 //Novices Guild: Geffen Castles Map
-n_castle,183,183,0	warp	ngefg01	1,1,nguild_gef,34,140
-nguild_gef,34,136,0	warp	ngefg01-1	1,1,n_castle,183,180
-nguild_gef,99,178,0	warp	ngefg02-1	1,1,n_castle,183,180
+//n_castle,183,183,0	warp	ngefg01	1,1,nguild_gef,34,140 // OzRo: map no client (dst)
+//nguild_gef,34,136,0	warp	ngefg01-1	1,1,n_castle,183,180 // OzRo: map no client (src)
+//nguild_gef,99,178,0	warp	ngefg02-1	1,1,n_castle,183,180 // OzRo: map no client (src)
 
-nguild_gef,170,14,0	warp	ngefg106-1	1,1,nguild_gef,50,84
-nguild_gef,170,34,0	warp	ngefg105-1	1,1,nguild_gef,30,167
-nguild_gef,181,52,0	warp	ngefg107	1,1,nguild_gef,198,160
-nguild_gef,202,160,0	warp	ngefg107-1	1,1,nguild_gef,185,52
-nguild_gef,209,34,0	warp	ngefg103-1	1,1,nguild_gef,56,170
-nguild_gef,31,185,0	warp	ngefg104	1,1,nguild_gef,33,47
-nguild_gef,33,51,0	warp	ngefg104-1	1,1,nguild_gef,35,185
-nguild_gef,34,167,0	warp	ngefg105	1,1,nguild_gef,174,34
-nguild_gef,39,196,0	warp	ngefg101	1,1,nguild_gef,62,13
-nguild_gef,54,84,0	warp	ngefg106	1,1,nguild_gef,174,14
-nguild_gef,58,185,0	warp	ngefg102	1,1,nguild_gef,90,47
-nguild_gef,59,170,0	warp	ngefg103	1,1,nguild_gef,205,34
-nguild_gef,62,9,0	warp	ngefg101-1	1,1,nguild_gef,39,192
-nguild_gef,90,51,0	warp	ngefg102-1	1,1,nguild_gef,54,185
+//nguild_gef,170,14,0	warp	ngefg106-1	1,1,nguild_gef,50,84 // OzRo: map no client (src)
+//nguild_gef,170,34,0	warp	ngefg105-1	1,1,nguild_gef,30,167 // OzRo: map no client (src)
+//nguild_gef,181,52,0	warp	ngefg107	1,1,nguild_gef,198,160 // OzRo: map no client (src)
+//nguild_gef,202,160,0	warp	ngefg107-1	1,1,nguild_gef,185,52 // OzRo: map no client (src)
+//nguild_gef,209,34,0	warp	ngefg103-1	1,1,nguild_gef,56,170 // OzRo: map no client (src)
+//nguild_gef,31,185,0	warp	ngefg104	1,1,nguild_gef,33,47 // OzRo: map no client (src)
+//nguild_gef,33,51,0	warp	ngefg104-1	1,1,nguild_gef,35,185 // OzRo: map no client (src)
+//nguild_gef,34,167,0	warp	ngefg105	1,1,nguild_gef,174,34 // OzRo: map no client (src)
+//nguild_gef,39,196,0	warp	ngefg101	1,1,nguild_gef,62,13 // OzRo: map no client (src)
+//nguild_gef,54,84,0	warp	ngefg106	1,1,nguild_gef,174,14 // OzRo: map no client (src)
+//nguild_gef,58,185,0	warp	ngefg102	1,1,nguild_gef,90,47 // OzRo: map no client (src)
+//nguild_gef,59,170,0	warp	ngefg103	1,1,nguild_gef,205,34 // OzRo: map no client (src)
+//nguild_gef,62,9,0	warp	ngefg101-1	1,1,nguild_gef,39,192 // OzRo: map no client (src)
+//nguild_gef,90,51,0	warp	ngefg102-1	1,1,nguild_gef,54,185 // OzRo: map no client (src)
 
 //Novices Guild: Payon Guild Castles Map
-n_castle,18,181,0	warp	npayg01	1,1,nguild_pay,214,48
-nguild_pay,214,44,0	warp	npayg01-1	1,1,n_castle,18,178
+//n_castle,18,181,0	warp	npayg01	1,1,nguild_pay,214,48 // OzRo: map no client (dst)
+//nguild_pay,214,44,0	warp	npayg01-1	1,1,n_castle,18,178 // OzRo: map no client (src)
 
-nguild_pay,201,125,0	warp	npayg101	1,1,nguild_pay,102,19
-nguild_pay,102,16,0	warp	npayg101-1	3,1,nguild_pay,201,122
-nguild_pay,222,130,0	warp	npayg102	1,1,nguild_pay,130,43
-nguild_pay,134,43,0	warp	npayg102-1	1,1,nguild_pay,226,130
-nguild_pay,218,112,0	warp	npayg103	1,1,nguild_pay,230,94
-nguild_pay,230,98,0	warp	npayg103-1	1,1,nguild_pay,222,112
-nguild_pay,213,76,0	warp	npayg104	1,1,nguild_pay,201,118
-nguild_pay,201,114,0	warp	npayg104-1	1,1,nguild_pay,213,72
-nguild_pay,84,15,0	warp	npayg105	1,1,nguild_pay,15,115
-nguild_pay,11,115,0	warp	npayg105-1	1,1,nguild_pay,81,15
-nguild_pay,53,111,0	warp	npayg106	1,1,nguild_pay,115,147
-nguild_pay,115,151,0	warp	npayg106-1	1,1,nguild_pay,53,115
+//nguild_pay,201,125,0	warp	npayg101	1,1,nguild_pay,102,19 // OzRo: map no client (src)
+//nguild_pay,102,16,0	warp	npayg101-1	3,1,nguild_pay,201,122 // OzRo: map no client (src)
+//nguild_pay,222,130,0	warp	npayg102	1,1,nguild_pay,130,43 // OzRo: map no client (src)
+//nguild_pay,134,43,0	warp	npayg102-1	1,1,nguild_pay,226,130 // OzRo: map no client (src)
+//nguild_pay,218,112,0	warp	npayg103	1,1,nguild_pay,230,94 // OzRo: map no client (src)
+//nguild_pay,230,98,0	warp	npayg103-1	1,1,nguild_pay,222,112 // OzRo: map no client (src)
+//nguild_pay,213,76,0	warp	npayg104	1,1,nguild_pay,201,118 // OzRo: map no client (src)
+//nguild_pay,201,114,0	warp	npayg104-1	1,1,nguild_pay,213,72 // OzRo: map no client (src)
+//nguild_pay,84,15,0	warp	npayg105	1,1,nguild_pay,15,115 // OzRo: map no client (src)
+//nguild_pay,11,115,0	warp	npayg105-1	1,1,nguild_pay,81,15 // OzRo: map no client (src)
+//nguild_pay,53,111,0	warp	npayg106	1,1,nguild_pay,115,147 // OzRo: map no client (src)
+//nguild_pay,115,151,0	warp	npayg106-1	1,1,nguild_pay,53,115 // OzRo: map no client (src)
 
 //Novices Guild: Prontera Castles Map
-n_castle,16,14,0	warp	nprtg01	1,1,nguild_prt,99,32
-nguild_prt,103,32,0	warp	nprtg01-1	1,1,n_castle,19,14
+//n_castle,16,14,0	warp	nprtg01	1,1,nguild_prt,99,32 // OzRo: map no client (dst)
+//nguild_prt,103,32,0	warp	nprtg01-1	1,1,n_castle,19,14 // OzRo: map no client (src)
 
-nguild_prt,109,163,0	warp	nprtg107	1,1,nguild_prt,202,183
-nguild_prt,147,120,0	warp	nprtg106	1,1,nguild_prt,75,187
-nguild_prt,196,119,0	warp	nprtg103-1	1,1,nguild_prt,40,54
-nguild_prt,196,65,0	warp	nprtg104-1	1,1,nguild_prt,75,54
-nguild_prt,206,183,0	warp	nprtg107-1	1,1,nguild_prt,113,163
-nguild_prt,206,92,0	warp	nprtg105-1	1,1,nguild_prt,55,70
-nguild_prt,37,47,0	warp	nprtg102-1	1,1,nguild_prt,45,34
-nguild_prt,37,54,0	warp	nprtg103	1,1,nguild_prt,192,119
-nguild_prt,41,34,0	warp	nprtg102	1,1,nguild_prt,40,47
-nguild_prt,51,70,0	warp	nprtg105	1,1,nguild_prt,202,92
-nguild_prt,57,19,0	warp	nprtg101	1,1,nguild_prt,80,49
-nguild_prt,62,34,0	warp	nprtg108	1,1,nguild_prt,192,119
-nguild_prt,71,54,0	warp	nprtg104	1,1,nguild_prt,192,65
-nguild_prt,75,183,0	warp	nprtg106-1	1,1,nguild_prt,147,116
-nguild_prt,84,19,0	warp	nprtg109	1,1,nguild_prt,192,65
-nguild_prt,84,49,0	warp	nprtg101-1	1,1,nguild_prt,61,19
+//nguild_prt,109,163,0	warp	nprtg107	1,1,nguild_prt,202,183 // OzRo: map no client (src)
+//nguild_prt,147,120,0	warp	nprtg106	1,1,nguild_prt,75,187 // OzRo: map no client (src)
+//nguild_prt,196,119,0	warp	nprtg103-1	1,1,nguild_prt,40,54 // OzRo: map no client (src)
+//nguild_prt,196,65,0	warp	nprtg104-1	1,1,nguild_prt,75,54 // OzRo: map no client (src)
+//nguild_prt,206,183,0	warp	nprtg107-1	1,1,nguild_prt,113,163 // OzRo: map no client (src)
+//nguild_prt,206,92,0	warp	nprtg105-1	1,1,nguild_prt,55,70 // OzRo: map no client (src)
+//nguild_prt,37,47,0	warp	nprtg102-1	1,1,nguild_prt,45,34 // OzRo: map no client (src)
+//nguild_prt,37,54,0	warp	nprtg103	1,1,nguild_prt,192,119 // OzRo: map no client (src)
+//nguild_prt,41,34,0	warp	nprtg102	1,1,nguild_prt,40,47 // OzRo: map no client (src)
+//nguild_prt,51,70,0	warp	nprtg105	1,1,nguild_prt,202,92 // OzRo: map no client (src)
+//nguild_prt,57,19,0	warp	nprtg101	1,1,nguild_prt,80,49 // OzRo: map no client (src)
+//nguild_prt,62,34,0	warp	nprtg108	1,1,nguild_prt,192,119 // OzRo: map no client (src)
+//nguild_prt,71,54,0	warp	nprtg104	1,1,nguild_prt,192,65 // OzRo: map no client (src)
+//nguild_prt,75,183,0	warp	nprtg106-1	1,1,nguild_prt,147,116 // OzRo: map no client (src)
+//nguild_prt,84,19,0	warp	nprtg109	1,1,nguild_prt,192,65 // OzRo: map no client (src)
+//nguild_prt,84,49,0	warp	nprtg101-1	1,1,nguild_prt,61,19 // OzRo: map no client (src)
 
 //Guild Dungeons
 gld_dun01,119,14,0	warp	gdun01_payg	1,1,pay_gld,53,141

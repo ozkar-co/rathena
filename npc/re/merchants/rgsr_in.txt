@@ -446,6 +446,6 @@ rgsr_in,129,160,3	script	Exit Guard#rg02	4_M_LGTGUARD,{
 	mes "[Exit guard]";
 	mes "Let me guide you on the way back.";
 	close2;
-	warp "itemmall",16,47;
+	//warp "itemmall",16,47; // OzRo: dst map no client (itemmall)
 	end;
 }

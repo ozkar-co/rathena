@@ -98,7 +98,7 @@ OnTouch_:
 		set Zeny,Zeny -1000;
 		set $arn_partywait,0;
 		donpcevent "toout#party::OnStop";
-		warp "force_1-2",99,26;
+		//warp "force_1-2",99,26; // OzRo: dst map no client (force_1-2)
 	}
 
 OnEnter:
@@ -231,7 +231,7 @@ OnTimer600000:
 
 OnTimer605000:
 	donpcevent "arena_p::OnReset";
-	mapwarp "force_1-2","prt_are_in",177,138;
+	//mapwarp "force_1-2","prt_are_in",177,138; // OzRo: dst map no client (force_1-2)
 	end;
 
 OnTimer606000:
@@ -242,17 +242,17 @@ OnTimer610000:
 OnTimer611000:
 OnTimer612000:
 OnTimer613000:
-	mapwarp "force_1-2","prt_are_in",177,138;
+	//mapwarp "force_1-2","prt_are_in",177,138; // OzRo: dst map no client (force_1-2)
 	end;
 
 OnTimer614000:
-	mapwarp "force_1-2","prt_are_in",177,138;
+	//mapwarp "force_1-2","prt_are_in",177,138; // OzRo: dst map no client (force_1-2)
 	donpcevent "Slipslowrun#party::OnFail";
 	end;
 
 OnFail:
 	donpcevent "Slipslowrun#party::OnTimerOff";
-	mapwarp "force_1-2","prt_are_in",177,138;
+	//mapwarp "force_1-2","prt_are_in",177,138; // OzRo: dst map no client (force_1-2)
 	donpcevent "arena_p::OnReset";
 	donpcevent "alloff#party::OnInit";
 	donpcevent "Ponox::OnStart";
@@ -317,7 +317,7 @@ On10_End:
 
 -	script	arena_p	-1,{
 OnStart:
-	mapwarp "force_1-2","prt_are_in",177,138;
+	//mapwarp "force_1-2","prt_are_in",177,138; // OzRo: dst map no client (force_1-2)
 	disablenpc "force_01_00";
 	disablenpc "force_02_00";
 	disablenpc "force_03_00";
@@ -1178,7 +1178,7 @@ OnTimeOver2:
 
 -	script	alloff#pt	-1,{
 OnEnable:
-	mapwarp "force_1-2","prt_are_in",126,139,0,0;
+	//mapwarp "force_1-2","prt_are_in",126,139,0,0; // OzRo: dst map no client (force_1-2)
 	donpcevent "force_01mob#party::OnReset";
 	donpcevent "force_02mob#party::OnReset";
 	donpcevent "force_03mob#party::OnReset";

@@ -18,7 +18,7 @@ prontera,246,62,3	script	Training Instructor#prontera_in	8W_SOLDIER,{
 		close2;
 		.@x = rand(109,110);
 		.@y = rand(93,94);
-		warp "tra_fild01",.@x,.@y;
+		//warp "tra_fild01",.@x,.@y; // OzRo: dst map no client (tra_fild01)
 		break;
 	case 2:
 		mes "[Training Instructor]";
@@ -26,7 +26,7 @@ prontera,246,62,3	script	Training Instructor#prontera_in	8W_SOLDIER,{
 		close2;
 		.@x = rand(109,110);
 		.@y = rand(93,94);
-		warp "tra_fild02",109,94;
+		//warp "tra_fild02",109,94; // OzRo: dst map no client (tra_fild02)
 		break;
 	case 3:
 		mes "[Training Instructor]";
@@ -34,7 +34,7 @@ prontera,246,62,3	script	Training Instructor#prontera_in	8W_SOLDIER,{
 		close2;
 		.@x = rand(109,110);
 		.@y = rand(93,94);
-		warp "tra_fild03",.@x,.@y;
+		//warp "tra_fild03",.@x,.@y; // OzRo: dst map no client (tra_fild03)
 		break;
 	case 4:
 		break;
@@ -136,17 +136,17 @@ OnTouch:
 	case 2:
 		.@x = rand(109,110);
 		.@y = rand(93,94);
-		warp "tra_fild01",.@x,.@y;
+		//warp "tra_fild01",.@x,.@y; // OzRo: dst map no client (tra_fild01)
 		break;
 	case 3:
 		.@x = rand(109,110);
 		.@y = rand(93,94);
-		warp "tra_fild02",.@x,.@y;
+		//warp "tra_fild02",.@x,.@y; // OzRo: dst map no client (tra_fild02)
 		break;
 	case 4:
 		.@x = rand(109,110);
 		.@y = rand(93,94);
-		warp "tra_fild03",.@x,.@y;
+		//warp "tra_fild03",.@x,.@y; // OzRo: dst map no client (tra_fild03)
 		break;
 	case 5:
 		break;

@@ -286,7 +286,7 @@ dic_dun01,284,102,5	script	Dirty Vigilante#ep13_3	450,{
 				mes "Okay. Then good luck to you. Be careful.";
 				delitem 6437,1; //Scaraba_Perfume
 				close2;
-				warp "dic_dun03",101,142;
+				//warp "dic_dun03",101,142; // OzRo: dst map no client (dic_dun03)
 				end;
 			}
 		}
@@ -7638,3 +7638,4 @@ moc_fild22b,182,179,3	script	Cat Paw Agent#Tat	495,{
 	mes "Aren't you suppose to be done getting ready before you come here?";
 	close;
 }
+

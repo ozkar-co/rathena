@@ -113,7 +113,7 @@ OnTouch:
 OnInit:
 	if (getbattleflag("feature.bgqueue"))
 		bg_unbook "bat_c02";
-	mapwarp "bat_c02","bat_room",154,150;
+	//mapwarp "bat_c02","bat_room",154,150; // OzRo: dst map no client (bat_c02)
 	setwall "bat_c02",54,122,6,7,0,"batc02wall_a";
 	setwall "bat_c02",55,122,5,7,0,"batc02wall_b";
 	setwall "bat_c02",140,56,6,7,0,"batc02wall_c";
@@ -159,11 +159,11 @@ OnCroixDie:
 	end;
 
 OnGuillaumeActive:
-	warp "bat_c02",62,119;
+	//warp "bat_c02",62,119; // OzRo: dst map no client (bat_c02)
 	end;
 
 OnCroixActive:
-	warp "bat_c02",137,64;
+	//warp "bat_c02",137,64; // OzRo: dst map no client (bat_c02)
 	end;
 
 OnStart:
@@ -338,7 +338,7 @@ OnTimer60000:
 	stopnpctimer;
 	if (getbattleflag("feature.bgqueue"))
 		bg_reserve "bat_c02", true;
-	mapwarp "bat_c02","bat_room",154,150;
+	//mapwarp "bat_c02","bat_room",154,150; // OzRo: dst map no client (bat_c02)
 	set getvariableofnpc(.Croix_Count,"KvM02_BG"), 0;
 	set getvariableofnpc(.Guillaume_Count,"KvM02_BG"), 0;
 	set $@KvM02BG_Victory, 0;

@@ -193,11 +193,11 @@ OnTimer491000:
 OnTimer492000:
 OnTimer493000:
 OnTimer494000:
-	mapwarp "force_5-1","prt_are_in",177,86;
+	//mapwarp "force_5-1","prt_are_in",177,86; // OzRo: dst map no client (force_5-1)
 	end;
 
 OnTimer495000:
-	mapwarp "force_5-1","prt_are_in",177,86;
+	//mapwarp "force_5-1","prt_are_in",177,86; // OzRo: dst map no client (force_5-1)
 	donpcevent "Trocco#aco1::OnFailClearStage";
 	end;
 
@@ -206,7 +206,7 @@ OnTimerOff:
 	end;
 
 OnFailClearStage:
-	mapwarp "force_5-1","prt_are_in",177,86;
+	//mapwarp "force_5-1","prt_are_in",177,86; // OzRo: dst map no client (force_5-1)
 	donpcevent "Trocco#aco1::OnTimerOff";
 	//donpcevent "arena_aco1::OnReset";
 	donpcevent "Acolyte Waiting Room::OnStart";
@@ -621,11 +621,11 @@ OnTimer491000:
 OnTimer492000:
 OnTimer493000:
 OnTimer494000:
-	mapwarp "force_5-1","prt_are_in",177,86;
+	//mapwarp "force_5-1","prt_are_in",177,86; // OzRo: dst map no client (force_5-1)
 	end;
 
 OnTimer495000:
-	mapwarp "force_5-1","prt_are_in",177,86;
+	//mapwarp "force_5-1","prt_are_in",177,86; // OzRo: dst map no client (force_5-1)
 	donpcevent "Trocco#aco2::OnFailClearStage";
 	end;
 
@@ -634,7 +634,7 @@ OnTimerOff:
 	end;
 
 OnFailClearStage:
-	mapwarp "force_5-1","prt_are_in",177,86;
+	//mapwarp "force_5-1","prt_are_in",177,86; // OzRo: dst map no client (force_5-1)
 	donpcevent "Trocco#aco2::OnTimerOff";
 	//donpcevent "arena_aco2::OnReset";
 	donpcevent "Acolyte Waiting Room::OnStart";
@@ -1028,7 +1028,7 @@ OnMyMobDead:
 
 force_5-1,62,26,0	script	force_08_01#aco	45,1,1,{
 OnTouch_:
-	warp "force_5-1",40,26;
+	//warp "force_5-1",40,26; // OzRo: dst map no client (force_5-1)
 	if (BaseJob == Job_Acolyte) {
 		enablenpc "force_01start#aco";
 	}
@@ -1042,7 +1042,7 @@ force_5-1,99,124,0	script	force_exit#aco	45,1,1,{
 OnTouch_:
 	donpcevent "Trocco#aco1::OnTimerOff";
 	donpcevent "#arn_timer_aco::OnEnable";
-	mapwarp "force_5-1","prt_are_in",21,35;
+	//mapwarp "force_5-1","prt_are_in",21,35; // OzRo: dst map no client (force_5-1)
 	end;
 }
 

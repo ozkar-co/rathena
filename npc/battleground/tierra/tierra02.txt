@@ -61,7 +61,7 @@ OnTimer1000:
 		donpcevent "countdown#bat_a02::OnStop";
 		if (getbattleflag("feature.bgqueue"))
 			bg_reserve "bat_a02", true;
-		mapwarp "bat_a02","bat_room",154,150;
+		//mapwarp "bat_a02","bat_room",154,150; // OzRo: dst map no client (bat_a02)
 		$@TierraBG2 = 0; $@TierraBG2_Victory = 0;
 		if( $@TierraBG2_id1 ) { bg_destroy $@TierraBG2_id1; $@TierraBG2_id1 = 0; }
 		if( $@TierraBG2_id2 ) { bg_destroy $@TierraBG2_id2; $@TierraBG2_id2 = 0; }
@@ -100,7 +100,7 @@ bat_a02,15,15,3	script	start#bat_a02	844,{
 OnInit:
 	if (getbattleflag("feature.bgqueue"))
 		bg_unbook "bat_a02";
-	mapwarp "bat_a02","bat_room",154,150;
+	//mapwarp "bat_a02","bat_room",154,150; // OzRo: dst map no client (bat_a02)
 	end;
 
 OnEnable:
@@ -126,11 +126,11 @@ OnEnable:
 	end;
 
 OnGuillaumeActive:
-	warp "bat_a02",352,342;
+	//warp "bat_a02",352,342; // OzRo: dst map no client (bat_a02)
 	end;
 
 OnCroixActive:
-	warp "bat_a02",353,52;
+	//warp "bat_a02",353,52; // OzRo: dst map no client (bat_a02)
 	end;
 
 OnGuillaumeQuit:
@@ -544,7 +544,7 @@ OnInit:
 
 OnTouch:
 	percentheal 100,100;
-	warp "bat_a02",352,342;
+	//warp "bat_a02",352,342; // OzRo: dst map no client (bat_a02)
 	end;
 }
 */
@@ -598,7 +598,7 @@ OnInit:
 
 OnTouch:
 	percentheal 100,100;
-	warp "bat_a02",353,52;
+	//warp "bat_a02",353,52; // OzRo: dst map no client (bat_a02)
 	end;
 }
 */
@@ -642,7 +642,7 @@ OnInit:
 
 OnTouch:
 	percentheal 100,100;
-	warp "bat_a02",301,209;
+	//warp "bat_a02",301,209; // OzRo: dst map no client (bat_a02)
 	end;
 }
 */
@@ -650,28 +650,28 @@ OnTouch:
 bat_a02,194,267,0	script	barri_warp_up#bat_a02_a	-1,7,0,{
 OnTouch:
 	if (getcharid(4) == $@TierraBG2_id1)
-		warp "bat_a02",194,261;
+		//warp "bat_a02",194,261; // OzRo: dst map no client (bat_a02)
 	end;
 }
 
 bat_a02,194,265,0	script	barri_warp_down#bat_a02a	-1,7,0,{
 OnTouch:
 	if (getcharid(4) == $@TierraBG2_id1) 
-		warp "bat_a02",194,270;
+		//warp "bat_a02",194,270; // OzRo: dst map no client (bat_a02)
 	end;
 }
 
 bat_a02,177,130,0	script	barri_warp_up#bat_a02_b	-1,7,0,{
 OnTouch:
 	if (getcharid(4) == $@TierraBG2_id2)
-		warp "bat_a02",178,125;
+		//warp "bat_a02",178,125; // OzRo: dst map no client (bat_a02)
 	end;
 }
 
 bat_a02,177,128,0	script	barri_warp_down#bat_a02b	-1,7,0,{
 OnTouch:
 	if (getcharid(4) == $@TierraBG2_id2)
-		warp "bat_a02",178,134;
+		//warp "bat_a02",178,134; // OzRo: dst map no client (bat_a02)
 	end;
 }
 
@@ -691,8 +691,8 @@ OnTouch:
 	end;
 }
 
-bat_a02,169,227,0	warp	underladd#bat_a02_1	1,1,bat_a02,178,228
-bat_a02,208,164,0	warp	underladd#bat_a02_2	1,1,bat_a02,200,171
+//bat_a02,169,227,0	warp	underladd#bat_a02_1	1,1,bat_a02,178,228 // OzRo: map no client (src)
+//bat_a02,208,164,0	warp	underladd#bat_a02_2	1,1,bat_a02,200,171 // OzRo: map no client (src)
 
 bat_a02,171,309,3	script	Guillaume Camp#flag11	973,{ end; }
 bat_a02,149,310,3	script	Guillaume Camp#flag12	973,{ end; }
@@ -798,7 +798,7 @@ OnTimer1825000:
 	end;
 
 OnTimer1830000:
-	mapwarp "bat_a02","bat_room",154,150;
+	//mapwarp "bat_a02","bat_room",154,150; // OzRo: dst map no client (bat_a02)
 	donpcevent "countdown#bat_a02::OnStop";
 	end;
 }
@@ -829,7 +829,7 @@ bat_a02,1,1,3	script	Release all#a02	81,{
 		case 1:
 			mes "Bye.";
 			close2;
-			mapwarp "bat_a02","bat_room",154,150;
+			//mapwarp "bat_a02","bat_room",154,150; // OzRo: dst map no client (bat_a02)
 			end;
 		case 2:
 			mes "Cancelled.";

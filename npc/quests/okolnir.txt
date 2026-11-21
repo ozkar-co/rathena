@@ -157,16 +157,16 @@ schg_cas03,84,101,3	duplicate(Guide#gq_main)	Guide#gq_sch03	899
 schg_cas04,376,307,3	duplicate(Guide#gq_main)	Guide#gq_sch04	899
 schg_cas05,376,307,3	duplicate(Guide#gq_main)	Guide#gq_sch05	899
 
-que_qaru01,345,23,0	warp	Gate02#gq_aru01	1,1,arug_cas01,157,369
-que_qaru02,345,23,0	warp	Gate02#gq_aru02	1,1,arug_cas02,349,355
-que_qaru03,345,23,0	warp	Gate02#gq_aru03	1,1,arug_cas03,321,153
-que_qaru04,345,23,0	warp	Gate02#gq_aru04	1,1,arug_cas04,321,153
-que_qaru05,345,23,0	warp	Gate02#gq_aru05	1,1,arug_cas05,321,153
+//que_qaru01,345,23,0	warp	Gate02#gq_aru01	1,1,arug_cas01,157,369 // OzRo: map no client (src)
+//que_qaru02,345,23,0	warp	Gate02#gq_aru02	1,1,arug_cas02,349,355 // OzRo: map no client (src)
+//que_qaru03,345,23,0	warp	Gate02#gq_aru03	1,1,arug_cas03,321,153 // OzRo: map no client (src)
+//que_qaru04,345,23,0	warp	Gate02#gq_aru04	1,1,arug_cas04,321,153 // OzRo: map no client (src)
+//que_qaru05,345,23,0	warp	Gate02#gq_aru05	1,1,arug_cas05,321,153 // OzRo: map no client (src)
 que_qsch01,345,23,0	warp	Gate02#gq_sch01	1,1,schg_cas01,369,306
-que_qsch02,345,23,0	warp	Gate02#gq_sch02	1,1,schg_cas02,177,355
-que_qsch03,345,23,0	warp	Gate02#gq_sch03	1,1,schg_cas03,81,95
-que_qsch04,345,23,0	warp	Gate02#gq_sch04	1,1,schg_cas04,369,306
-que_qsch05,345,23,0	warp	Gate02#gq_sch05	1,1,schg_cas05,369,306
+//que_qsch02,345,23,0	warp	Gate02#gq_sch02	1,1,schg_cas02,177,355 // OzRo: map no client (src)
+//que_qsch03,345,23,0	warp	Gate02#gq_sch03	1,1,schg_cas03,81,95 // OzRo: map no client (src)
+//que_qsch04,345,23,0	warp	Gate02#gq_sch04	1,1,schg_cas04,369,306 // OzRo: map no client (src)
+//que_qsch05,345,23,0	warp	Gate02#gq_sch05	1,1,schg_cas05,369,306 // OzRo: map no client (src)
 
 -	script	Wish Maiden#gq_main	-1,{
 	set .@sub$, callfunc("F_Okolnir");
@@ -960,16 +960,16 @@ que_qsch03,132,172,0	duplicate(windpath01_main)	windpath01_sch03	45,1,1
 que_qsch04,132,172,0	duplicate(windpath01_main)	windpath01_sch04	45,1,1
 que_qsch05,132,172,0	duplicate(windpath01_main)	windpath01_sch05	45,1,1
 
-que_qaru01,113,165,0	warp	windpath02_aru01	1,1,que_qaru01,139,172
-que_qaru02,113,165,0	warp	windpath02_aru02	1,1,que_qaru02,139,172
-que_qaru03,113,165,0	warp	windpath02_aru03	1,1,que_qaru03,139,172
-que_qaru04,113,165,0	warp	windpath02_aru04	1,1,que_qaru04,139,172
-que_qaru05,113,165,0	warp	windpath02_aru05	1,1,que_qaru05,139,172
+//que_qaru01,113,165,0	warp	windpath02_aru01	1,1,que_qaru01,139,172 // OzRo: map no client (src)
+//que_qaru02,113,165,0	warp	windpath02_aru02	1,1,que_qaru02,139,172 // OzRo: map no client (src)
+//que_qaru03,113,165,0	warp	windpath02_aru03	1,1,que_qaru03,139,172 // OzRo: map no client (src)
+//que_qaru04,113,165,0	warp	windpath02_aru04	1,1,que_qaru04,139,172 // OzRo: map no client (src)
+//que_qaru05,113,165,0	warp	windpath02_aru05	1,1,que_qaru05,139,172 // OzRo: map no client (src)
 que_qsch01,113,165,0	warp	windpath02_sch01	1,1,que_qsch01,139,172
-que_qsch02,113,165,0	warp	windpath02_sch02	1,1,que_qsch02,139,172
-que_qsch03,113,165,0	warp	windpath02_sch03	1,1,que_qsch03,139,172
-que_qsch04,113,165,0	warp	windpath02_sch04	1,1,que_qsch04,139,172
-que_qsch05,113,165,0	warp	windpath02_sch05	1,1,que_qsch05,139,172
+//que_qsch02,113,165,0	warp	windpath02_sch02	1,1,que_qsch02,139,172 // OzRo: map no client (src)
+//que_qsch03,113,165,0	warp	windpath02_sch03	1,1,que_qsch03,139,172 // OzRo: map no client (src)
+//que_qsch04,113,165,0	warp	windpath02_sch04	1,1,que_qsch04,139,172 // OzRo: map no client (src)
+//que_qsch05,113,165,0	warp	windpath02_sch05	1,1,que_qsch05,139,172 // OzRo: map no client (src)
 
 -	script	Piamette#main	-1,{
 	end;
@@ -2280,16 +2280,16 @@ OnTouch_:
 			case 1:	warp "arug_cas01",157,369;	break;
 			case 2:	warp "arug_cas02",349,355;	break;
 			case 3:	warp "arug_cas03",321,153;	break;
-			case 4:	warp "arug_cas04",321,153;	break;
-			case 5:	warp "arug_cas05",321,153;	break;
+			//case 4:	warp "arug_cas04",321,153;	break; // OzRo: dst map no client (arug_cas04)
+			//case 5:	warp "arug_cas05",321,153;	break; // OzRo: dst map no client (arug_cas05)
 		}
 	} else {
 		switch(.@i) {
 			case 1:	warp "schg_cas01",369,306;	break;
 			case 2:	warp "schg_cas02",177,355;	break;
 			case 3:	warp "schg_cas03",81,95;	break;
-			case 4:	warp "schg_cas04",369,306;	break;
-			case 5:	warp "schg_cas05",369,306;	break;
+			//case 4:	warp "schg_cas04",369,306;	break; // OzRo: dst map no client (schg_cas04)
+			//case 5:	warp "schg_cas05",369,306;	break; // OzRo: dst map no client (schg_cas05)
 		}
 	}
 	end;
