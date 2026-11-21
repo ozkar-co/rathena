@@ -405,19 +405,20 @@ rgsr_in,122,160,5	script	Exit Guard#rg01	4_M_LGTGUARD,{
 	end;
 }
 
-rgsr_in,129,160,3	script	Exit Guard#rg02	4_M_LGTGUARD,{
-	mes "[Exit guard]";
-	mes "Are you done?";
-	mes "^FF0000Return to Item Mall^000000?";
-	next;
-	if (select( "Return.", "Work remaining." ) == 2) {
-		mes "[Exit guard]";
-		mes "Please tell us at any time when you are finished.";
-		close;
-	}
-	mes "[Exit guard]";
-	mes "Let me guide you on the way back.";
-	close2;
-	//warp "itemmall",16,47; // OzRo: dst map no client (itemmall)
-	end;
-}
+// OzRo: itemmall exit removed
+//rgsr_in,129,160,3	script	Exit Guard#rg02	4_M_LGTGUARD,{
+	//mes "[Exit guard]";
+	//mes "Are you done?";
+	//mes "^FF0000Return to Item Mall^000000?";
+	//next;
+	//if (select( "Return.", "Work remaining." ) == 2) {
+		//mes "[Exit guard]";
+		//mes "Please tell us at any time when you are finished.";
+		//close;
+	//}
+	//mes "[Exit guard]";
+	//mes "Let me guide you on the way back.";
+	//close2;
+	////warp "itemmall",16,47; // OzRo: dst map no client (itemmall)
+	//end;
+//}

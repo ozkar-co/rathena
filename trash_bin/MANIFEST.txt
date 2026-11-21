@@ -454,3 +454,7 @@ bat_b01
 bat_c01
 ordeal_a00
 ordeal_a02
+
+# OzRo: itemmall cashmall + double race cleanup
+npc/re/merchants/cashmall.txt (moved/disabled)
+npc/other/monster_race.txt.double_race_extract
