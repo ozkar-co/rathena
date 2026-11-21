@@ -218,9 +218,10 @@ El Master World Dataset estará compuesto por los siguientes dominios.
 16. Instances.
 17. Boxes and Rewards.
 18. Recipes and Crafting.
-19. Enchanting and Socketing.
-20. Item Relationships.
-21. Source Provenance.
+19. Enchanting and Socketing *(stones/orbs ≠ cards; ver §21)*.
+20. Random Options *(dominio aparte; ver §21bis — p. ej. Crimson)*.
+21. Item Relationships.
+22. Source Provenance.
 
 **Nota de orden (Etapa 3):** el barrido de **Skills** (en especial `mob_skill_db` y summons de `skill_db`) entra **antes** del análisis profundo de NPCs. Muchos `mob_role: pending` y spawns no-mapa (slaves de boss) solo se resuelven con esa evidencia; el análisis de scripts NPC puede refinar relaciones adicionales después.
 
@@ -1745,6 +1746,57 @@ El modelo debe permitir representar procesos destructivos, probabilísticos o co
 
 (ver 14. ACQUISITION SOURCES)
 
+## 21.0. Separación Cards vs Enchant stones
+
+Aunque en `item_db` muchos enchants son `Type: Card`, **no se catalogan como cartas de monstruo**.
+
+| | Cards | Enchant stones / orbs |
+|--|-------|------------------------|
+| Rol | Drop/slot de mob card | Charm en slot de equipo (4º u oculto) |
+| Ejemplos | Poring Card | `Strength3`, `Wolf_Orb_Str_1` |
+| Obtención típica | Drops / albums | NPC craft (Craftsman, Mora…) o futuro NPC custom |
+| Dataset | Items + drops | Dominio **Enchantments** (catálogo de stones + scripts NPC que los aplican) |
+
+Criterio OzRo: stone “suelto” (en DB, sin NPC/UI que lo entregue) = inventario de diseño para NPCs custom; no borrarlo del `item_db` solo porque la UI moderna esté off.
+
+## 21.1. Hallazgos Etapa 3 (OzRo)
+
+### Runtime cliente 20190605
+
+| Sistema | Estado |
+|---|---|
+| UI `item_enchant` / `item_reform` | **Off** — lab `rgsr_in.txt` → `trash_bin` (PACKETVER ≥ 2021-11-03) |
+| UI `enchantgrade` + mapa `grademk` | **Off** — `enchantgrade.txt` → `trash_bin`; mapa unload (`C3dWorldRes Unsupported Version`) |
+| Mapa `rgsr_in` | **On** — quest EP17.1 (`quests_17_1.txt`); lab reform ya no carga |
+| Craftsman / Mora / Mal / Verus / … (`getitem2`) | **On** — smoke OK |
+| Orbs en slot (`@item2 … 310478`) | **On** — buffs aplican; se quedan en catálogo |
+
+### Extract `item_enchant.yml` (referencia / diseño; UI no jugable)
+
+| Métrica | Valor |
+|---|---|
+| Grupos con target en cliente | 123 |
+| Options / perfect / upgrades | 2920 / 1835 / 701 |
+| Stones únicos en pools | ~1202 (`Type: Card`) |
+| Overlap con Strength/Int/… clásicos | 30 |
+
+**Hecho:** corte superficie lab reform + grade; orbs/stones catalogables aparte de cards; equip `equip_level_min` ya en items (filtrar 175+ después).
+
+**Pending:** inventariar NPCs `getitem2` enchant (Craftsman, Mora…) como fuentes del dominio; barters `barter_rgsr_in_*` / `EnchantGradeExchange` al llegar a barters; Random Options (§21bis); Socket Enchant Seiyablem/Leablem.
+
+## 21bis. RANDOM OPTIONS (dominio aparte)
+
+**No** es el dominio Enchantments ni Cards.
+
+| | Random Options | Enchant stones |
+|--|----------------|----------------|
+| Qué es | Stats en el ítem (opción 1–5) | Ítem/carta en card slot |
+| Ejemplos | Crimson weapons (ATK%, ASPD…) | `Wolf_Orb_*`, `Strength3` |
+| Fuentes | `item_randomopt_db.yml`, `item_randomopt_group.yml`, drops/`RandomOptionGroup` | `item_db` + NPC/`getitem2` / (UI moderna off) |
+| Etapa | Tras Item Relationships o paso dedicado | §21 |
+
+Debe tener extract propio (catálogo de opciones + grupos + vínculo ítem/drop). No mezclar con `item_enchant.yml`.
+
 ---
 
 # 22. RELATIONSHIPS — Relaciones entre ítems
@@ -2149,6 +2201,8 @@ Orden de trabajo (Skills **antes** de NPCs):
 - **Instances:** catálogo + maps + NPC bind por `instance_create` literal; create dinámico pending (ver §18).
 - **Boxes:** `item_group_db` + links `getgroupitem`; nested flags; probs SharedPool diferidas (ver §19).
 - **Recipes:** `produce_db` (+ import); materiales `consumed`/`guide`; familia por `ItemLV`; NPC/zeny/fail diferidos (ver §20).
+- **Enchantments:** stones/orbs ≠ cards; UI `item_enchant`/`reform`/`grade` off en OzRo (trash_bin + `grademk` unload); catálogo orbs + NPC `getitem2` pending; **Random Options = dominio aparte** (§21bis).
+- **Barters rgsr / EnchantGradeExchange:** diferidos a etapa barters (huérfanos tras corte UI).
 
 ## Etapa 4 — Resolución de valores efectivos
 
