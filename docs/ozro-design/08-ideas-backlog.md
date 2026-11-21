@@ -55,6 +55,25 @@ Lluvia de ideas del documento antiguo, **reformuladas** y etiquetadas. No es lis
 | Evento diario EXP/drop por dungeon + warp | `pendiente` | Un dungeon completo al día con rates aumentados y warp temporal |
 | Retos fuera del juego con impacto in-game | `pendiente` | Se resuelven en la web y otorgan recompensa in-game |
 | Minijuego diario web obligatorio | `pendiente` | Login diario en la página + tarea/minijuego para obtener recompensas in-game; racha y calendario. Evitar que sea solo un click. |
+| Club de la pelea: Invoca tu sombra | `pendiente` | Duelo 1v1 vs clone propio (`clone`/`mob_clone_spawn`); ver detalle abajo |
+
+---
+
+### Club de la pelea — Invoca tu sombra (idea definida)
+
+Evento tipo “derrota tu sombra → reward”. Una sola pelea a la vez (cola / exclusivo). Base técnica: `clone()` / `@evilclone` / `mob_clone_spawn` + script NPC; sin source en el MVP.
+
+**Decisiones cerradas**
+
+1. **Visual:** SC cosmético en el clone (más oscuro / vibe sombra). Suficiente; sin sprite custom.
+2. **Skills:** Arrancar con comportamiento nativo del clone (skills del tree aprendidas + IA mob). Si se siente raro → ajustar (whitelist de skills u otra variante). Evaluar en prueba.
+3. **Equip:** `nude` está bien si el gear queda en inventario (no se pierde). Alternativa/complemento: el NPC exige **Weight = 0** antes de entrar + protecciones para que no se puedan equipar items mid-fight.
+4. **Mapa / duración:** `nopenalty` obligatorio; **timeout** obligatorio (pelea no eterna). Buffs/debuffs/enrage y %stats se definen al implementar.
+5. **Aforo:** club de la pelea — **una pelea a la vez**.
+6. **Interferencia:** sin party/helpers en la arena (acceso solo). Homun/merc/pets: apagar o bloquear. `noskill` en el mapa evita que otros casteén ayuda, pero también apaga skills del duelista y de la sombra (incompatible con prueba B); usarlo si se cae a melee o se acepta ese tradeoff.
+7. **Cleanup:** matar clone + restore estado en kill / die / logout / timeout / warp. Reward solo si el killer es el summoner y el GID es su sombra.
+
+**Pendiente al implementar:** reward, duración exacta, % HP/ATK de la sombra, kit de buffs, mapa/instancia, cola, anti-abuse fino.
 
 ---
 
