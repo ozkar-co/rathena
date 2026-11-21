@@ -1,0 +1,233 @@
+// Extracted entities on maps without client
+// Source: npc/re/quests/quests_illusion_dungeons.txt
+
+prt_elib,57,18,4	script	Jerrymon#jerry	1_M_01,{
+	if (ill_underwater == 0) {
+		mes "[Jerrymon]";
+		mes "Um... Uhm...";
+		next;
+		mes "[Jerrymon]";
+		mes "Oh, what a surprise!!";
+		next;
+		mes "[Jerrymon]";
+		mes "What's up? I'm busy right now, so I'll talk to you later.";
+		close;
+	}
+	if (ill_underwater == 1) {
+		mes "[Jerrymon]";
+		mes "Um... Uhm...";
+		next;
+		mes "[Jerrymon]";
+		mes "Oh, what a surprise!!";
+		next;
+		mes "[Jerrymon]";
+		mes "What's up? I'm a bit busy right now...";
+		next;
+		mes "[Jerrymon]";
+		mes "Ah, you're the one introduced by Raket. I've been waiting for you.";
+		mes "Can you show me your fishing rod?";
+		next;
+		mes "- Jerrymon began to examine the rod closely. -";
+		next;
+		mes ".";
+		next;
+		mes "..";
+		next;
+		mes "...";
+		next;
+		mes "....";
+		next;
+		mes ".....";
+		next;
+		mes "[Jerrymon]";
+		mes "Yes, that's right... this substance is just that... to discover it again like this...";
+		next;
+		select( "What material are you talking about?" );
+		mes "[Jerrymon]";
+		mes "Adventurer, do you know where the deepest part of the sea is?";
+		next;
+		select( "Well...??" );
+		mes "[Jerrymon]";
+		mes "It is a place called the ^4d4dffTrench^000000. To put it simply, you can think of it as a deep cliff in the sea.";
+		next;
+		mes "[Jerrymon]";
+		mes "It is known that there are hundreds of different types of trenches in the world's oceans.";
+		next;
+		mes "[Jerrymon]";
+		mes "The widest and deepest known trench is the ^4d4dffBahia Trench^000000 near Izlude.";
+		next;
+		mes "[Jerrymon]";
+		mes "There are rare life forms at the bottom of the trench, and marine scientists like myself have shown great interest and have been exploring them.";
+		next;
+		mes "[Jerrymon]";
+		mes "Though shallow trenches can be explored to some extent.";
+		next;
+		mes "[Jerrymon]";
+		mes "But in the case of the Bahia Trench, scientists have calculated that scientifically, no life can exist because it is so incredibly deep.";
+		next;
+		mes "[Jerrymon]";
+		mes "I recently found out that there is life in the Bahia Trench.";
+		next;
+		select( "How do you know that??" );
+		mes "[Jerrymon]";
+		mes "You can tell by the stone that contains my magic.";
+		next;
+		select( "A stone with magical power?" );
+		mes "[Jerrymon]";
+		mes "Yes, I'm a mage-turned-oceanographer. I learned magic for oceanography.";
+		next;
+		mes "[Jerrymon]";
+		mes "Enchant a large boulder and make it fall to the floor where the trench exists.";
+		next;
+		mes "[Jerrymon]";
+		mes "The magic on the dropped stone is connected to me, so by measuring the distance, I can get a little idea of how deep it is and what's going on near the stone.";
+		next;
+		mes "[Jerrymon]";
+		mes "To tell you what I found out...";
+		next;
+		mes "[Jerrymon]";
+		mes "The composition of normal sea water and deep sea water is almost the same. But the only difference is the deep sea of Bahia Trench.";
+		next;
+		mes "[Jerrymon]";
+		mes "Should I say it's like water and oil? There's a section where they never mix.";
+		next;
+		mes "[Jerrymon]";
+		mes "A strong boundary was formed where they meet each other, and it felt as if the deep seawater in that section was desperately blocking the seawater coming down from above.";
+		next;
+		mes "[Jerrymon]";
+		mes "The water pressure is also much lower than that of normal seawater, so it is assumed that it has a favorable environment for life.";
+		next;
+		mes "[Jerrymon]";
+		mes "We call it ^4d4dffdeep seawater^000000";
+		next;
+		select( "Is this gloss related to what you said?" );
+		mes "[Jerrymon]";
+		mes "Yes! That's right!!";
+		mes "We only identified the existence of Abyssal Seawater deep in the Bahia Trench, and it was very difficult to obtain samples. This fishing rod has a lot of Abyssal Seawater on it...";
+		next;
+		mes "[Jerrymon]";
+		mes "Could you leave this fishing rod with me? I think I can figure something out if I extract this sea water and turn it into essence.";
+		next;
+		mes "[Jerrymon]";
+		mes "Oh, and I heard that the fishing rod was found today. Can I ask you to check if there is another floating substance in the nearby sea?";
+		next;
+		if (select( "Okay, I'll be back.", "I'm a bit busy right now..." ) == 2) {
+			mes "[Jerrymon]";
+			mes "Please come back to me when you're done!";
+			close;
+		}
+		mes "[Jerrymon]";
+		mes "Yes, thanks! I'll be waiting for you!!";
+		close2;
+		if (countitem(25898) > 0)
+			delitem 25898,1;	// Siroods_Fish_Rod
+		ill_underwater = 2;
+		erasequest 3407;
+		end;
+	}
+	if (ill_underwater == 2) {
+		mes "[Jerrymon]";
+		mes "I'm sorry to bother you, but please. I'll be waiting for you here.";
+		close;
+	}
+	if (ill_underwater == 3) {
+		if (countitem(25899) < 1) {
+			mes "[Jerrymon]";
+			mes "I'm sorry to bother you, but please. I'll be waiting for you here.";
+			close;
+		}
+		mes "[Jerrymon]";
+		mes "Ah, welcome, adventurer!";
+		next;
+		mes "[Jerrymon]";
+		mes "The investigation is going smoothly~";
+		mes "Hey, could you take a look at this?";
+		next;
+		mes "[Jerrymon]";
+		mes "See those two little water bottles here?";
+		next;
+		mes "[Jerrymon]";
+		mes "One side is normal seawater, and the other side is seawater mixed with seawater from the abyss buried in fishing rods. I'll try mixing these two.";
+		next;
+		mes " - Jerrymon poured both waters into one bottle and began to shake them together. - ";
+		next;
+		mes "[Jerrymon]";
+		mes "Now, look. As I said before, they don't mix at all, do they?";
+		next;
+		mes "[Jerrymon]";
+		mes "This... this!!";
+		next;
+		mes "[Jerrymon]";
+		mes "If you shake it like crazy!!";
+		next;
+		mes "[Jerrymon]";
+		mes "<FONT COLOR = E68F8F><FONT SIZE = 16><B>Wow!!!!!!</FONT></FONT></B>";
+		next;
+		mes "[Jerrymon]";
+		mes "<FONT COLOR = E68F8F><FONT SIZE = 16><B>Uwachachaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa!!!!!!</FONT></FONT></B>";
+		next;
+		mes "[Jerrymon]";
+		mes "<FONT COLOR = E68F8F><FONT SIZE = 16><B>Ahhhhhhh!!!!!!</FONT></FONT></B>";
+		next;
+		mes "[Jerrymon]";
+		mes "Ahhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh...";
+		next;
+		select( "Oh, I'm going to catch someone, is it okay?" );
+		mes "[Jerrymon]";
+		mes "Keep... Whoa... Whoa... OK now.";
+		next;
+		mes "- Looking into the bottle Jerrymon is holding, I can clearly see the shape of the vortex. - ";
+		next;
+		mes "[Jerrymon]";
+		mes "Now, do you see this whirlpool!! This is the passage that connects to the bottom of the Bahia Trench!";
+		next;
+		select( "??? Isn't that just a whirlpool created by shaking it?" );
+		mes "[Jerrymon]";
+		mes "No. This is the stone that contains my magical power. Let's look at it.";
+		next;
+		mes " - Jerrymon put a glowing stone into the bottle. The glowing stone was sucked into the whirlpool inside the bottle and disappeared without a trace! - ";
+		next;
+		select( "No, how could it be?" );
+		mes "[Jerrymon]";
+		mes "Did I ever tell you that the stone that contains my magic can measure the distance to me?";
+		next;
+		mes "[Jerrymon]";
+		mes "It feels the same as the last time I threw a pebble into the Bahia Trench..";
+		mes "If you follow this whirlpool, you may be able to find the owner of the fishing rod.";
+		next;
+		mes "[Jerrymon]";
+		mes "The problem is... the amount of essence on a fishing rod can't make a whirlpool large enough for a person to fit in.";
+		next;
+		select( "Is this amount okay?" );
+		mes "- Showed the ^4d4dff" + getitemname(25899) + "^000000 received from Gein to Jerrymon. - ";
+		next;
+		mes "[Jerrymon]";
+		mes "Oh, just in case, I actually found it!";
+		next;
+		mes "[Jerrymon]";
+		mes "With this amount, I think I can create a vortex of fissures that normal people can enter. You can pass it to me.";
+		next;
+		mes "[Jerrymon]";
+		mes "The place is too small to do this much here, so let's do it in Izlude. In order to get help from your friends.";
+		mes "Then see you in Izlude!!";
+		close2;
+		delitem 25899,1;	// E_Abyss1
+		ill_underwater = 4;
+		erasequest 3408;
+		setquest 3409;
+		end;
+	}
+	if (ill_underwater == 4) {
+		mes "[Jerrymon]";
+		mes "Then let's meet in Izlude!!";
+		close;
+	}
+	mes "[Jerrymon]";
+	mes "I'm sorry to bother you, but please. I'll be waiting for you here.";
+	close;
+
+OnInit:
+	// note: no questinfo for 3407
+	questinfo( QTYPE_QUEST2, QMARK_YELLOW, "isbegin_quest(3408) == 1" );
+	end;
+}

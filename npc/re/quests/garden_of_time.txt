@@ -15,7 +15,7 @@ function	script	F_mesnavi	{
 xmas_fild01,158,246,2	script	Dimensional barrier#got1	GATE_SKYBLUE,2,2,{
 	// Fallthrough
 OnTouch:
-	warp "t_garden",116,47;
+	//warp "t_garden",116,47; // OzRo: dst map no client (t_garden)
 	end;
 
 OnInit:
@@ -23,60 +23,13 @@ OnInit:
 	end;
 }
 
-t_garden,111,36,2	script	Dimensional Barrier#got2	GATE_SKYBLUE,2,2,{
-	// Fallthrough
-OnTouch:
-	warp "xmas_fild01",150,240;
-	end;
-}
 
 // t_garden,118,66,0	script	#wp01	HIDDEN_WARP_NPC,3,1,{	// (NPC name is not unique)
-t_garden,118,66,0	script	#wp01_t_garden	HIDDEN_WARP_NPC,3,1,{
-	end;
-OnTouch:
-	specialeffect2 EF_FLOWERCAST;
-	setpcblock PCBLOCK_NPC, true;
-	sleep2 500;
-	setpcblock PCBLOCK_NPC, false;
-	if (BaseLevel < 250)
-		warp "xmas_fild01",150,240;
-	else
-		warp "t_garden",118,79;
-	end;
-}
 
 // t_garden,118,72,0	script	#wp02	HIDDEN_WARP_NPC,3,1,{	// (NPC name is not unique)
-t_garden,118,72,0	script	#wp02_t_garden	HIDDEN_WARP_NPC,3,1,{
-	end;
-OnTouch:
-	specialeffect2 EF_FLOWERCAST;
-	setpcblock PCBLOCK_NPC, true;
-	sleep2 500;
-	setpcblock PCBLOCK_NPC, false;
-	if (BaseLevel < 250)
-		warp "xmas_fild01",150,240;
-	else
-		warp "t_garden",118,61;
-	end;
-}
 
 
 // Quest starter
-t_garden,116,47,0	script	#life_wp11	HIDDEN_WARP_NPC,2,2,{
-	end;
-OnTouch:
-	if (BaseLevel < 250)
-		end;
-	if (isbegin_quest(12592) == 0) {
-		removespecialeffect 1145, AREA, "Oscar#life";
-		cloakoffnpcself( "Oscar#life" );
-		cloakoffnpcself( "Leticia#life" );
-		cloakoffnpcself( "Rigel#life" );
-		specialeffect 1145, AREA, "Oscar#life";
-		end;
-	}
-	end;
-}
 	
 t_garden,114,49,6	script(CLOAKED)	Leticia#life	4_4JOB_LETICIA,{
 	mes "^0000ffShe is not paying attention to you because she is explaining something to Oscar.^000007";
@@ -217,15 +170,6 @@ OnInit:
 
 // A. Quests to access dungeons
 // t_garden,118,91,0	script	#wp01	HIDDEN_WARP_NPC,2,2,{	// (NPC name is not unique)
-t_garden,118,91,0	script	#wp01_t_garden_1	HIDDEN_WARP_NPC,2,2,{
-	end;
-OnTouch:
-	if (isbegin_quest(12592) == 2) {
-		cloakoffnpcself( "Leticia#life2" );	// note: always uncloaked at this point
-		end;
-	}
-	end;
-}
 
 t_garden,118,91,6	script(CLOAKED)	Leticia#life2	4_4JOB_LETICIA,{
 	if (isbegin_quest(12593) == 1) {
@@ -289,71 +233,6 @@ OnInit:
 	end;
 }
 
-t_garden,82,92,0	script	#life_wp2	HIDDEN_WARP_NPC,3,3,{
-	end;
-OnTouch:
-	switch( isbegin_quest(12595) ) {
-	case 0:
-		end;
-	case 1:
-		cutin "4job_leticia_01.png",2;
-		mes "[Leticia]";
-		mes "Okay, that's enough. It will open a passage to the place where the unholy energy is on the time seal seen there.";
-		next;
-		cutin "4job_leticia_02.png",2;
-		mes "[Leticia]";
-		mes "Are you ready? Then extend your hand forward and keep your eyes on the seal as if you are focusing the power I'm giving you onto the seal.";
-		// close2;
-		next;
-		select( "Reach out hand and watch the seal" );
-		setpcblock PCBLOCK_NPC, true;
-		cutin "",255;
-		specialeffect2 EF_BEGINSPELL_N3;
-		sleep2 2500;
-		specialeffect EF_LORD, AREA, "Passage of Time#1";
-		sleep2 1500;
-		specialeffect EF_BAKU, AREA, "Passage of Time#1";
-		sleep2 1000;
-		specialeffect EF_THUNDERSTORM2, AREA, "Passage of Time#1";
-		cloakoffnpcself( "Passage of Time#1" );
-		sleep2 1000;
-		setpcblock PCBLOCK_NPC, false;
-		if (isbegin_quest(12596) == 1) {
-			cutin "4job_leticia_04.png",2;
-			mes "[Leticia]";
-			mes "Now then, let's open the other one as well. Move to the site opposite this gate.";
-			completequest 12595;
-			close3;
-		}
-		cutin "4job_leticia_04.png",2;
-		mes "[Leticia]";
-		mes "It's simpler than you think, isn't it?. With this, we'll be able to stop strange guys from flooding the garden until Oscar completes the mansion, so it's a relief.";
-		next;
-		cutin "4job_leticia_01.png",2;
-		mes "[Leticia]";
-		mes "And since you've already helped me, from now on you'll have to work with me every day. It's no big deal. Reduce the number of unholy things in the dungeon under the passage created here.";
-		next;
-		select( "I think I've heard this before" );
-		cutin "4job_leticia_03.png",2;
-		mes "[Leticia]";
-		mes "Why are you muttering? Do you have any complaints?";
-		next;
-		select( "No." );
-		cutin "4job_leticia_05.png",2;
-		mes "[Leticia]";
-		mes "I think it's finished. Let's come to the central square for a moment and talk about the next thing.";
-		completequest 12595;
-		close3;
-	case 2:
-		cloakoffnpcself( "Passage of Time#1" );
-		end;
-	}
-	end;
-
-OnInit:
-	questinfo( QTYPE_QUEST, QMARK_YELLOW, "isbegin_quest(12595) == 1" );
-	end;
-}
 
 // t_garden,78,92,2	script(CLOAKED)	Passage of Time#1	GATE_SKYBLUE,2,2,{	// unknown OnTouch effect (NPC unreachable)
 t_garden,78,92,2	script(CLOAKED)	Passage of Time#1	GATE_SKYBLUE,{
@@ -367,83 +246,18 @@ t_garden,78,92,2	script(CLOAKED)	Passage of Time#1	GATE_SKYBLUE,{
 	}
 	switch( select( "Forgotten memories, Zone 1, 6 o'clock", "Forgotten memories, Zone 1, Center", "Forgotten memories, Zone 1, 10 o'clock" ) ) {
 	case 1:
-		warp "for_dun01",159,35;
+		//warp "for_dun01",159,35; // OzRo: dst map no client (for_dun01)
 		break;
 	case 2:
-		warp "for_dun01",101,136;
+		//warp "for_dun01",101,136; // OzRo: dst map no client (for_dun01)
 		break;
 	case 3:
-		warp "for_dun01",62,266;
+		//warp "for_dun01",62,266; // OzRo: dst map no client (for_dun01)
 		break;
 	}
 	end;
 }
 
-t_garden,151,92,0	script	#life_wp3	HIDDEN_WARP_NPC,3,3,{
-	end;
-OnTouch:
-	switch( isbegin_quest(12596) ) {
-	case 0:
-		end;
-	case 1:
-		cutin "4job_leticia_01.png",2;
-		mes "[Leticia]";
-		mes "Okay, that's enough. It will open a passage to the place where the unholy energy is on the time seal seen there.";
-		next;
-		cutin "4job_leticia_02.png",2;
-		mes "[Leticia]";
-		mes "Are you ready? Then extend your hand forward and keep your eyes on the seal as if you are focusing the power I'm giving you onto the seal.";
-		// close2;
-		next;
-		select( "Reach out hand and watch the seal" );
-		setpcblock PCBLOCK_NPC, true;
-		cutin "",255;
-		specialeffect2 EF_BEGINSPELL_N3;
-		sleep2 2000;
-		specialeffect EF_LORD, AREA, "Passage of Time#2";
-		sleep2 2000;
-		specialeffect EF_BAKU, AREA, "Passage of Time#2";
-		sleep2 1000;
-		specialeffect EF_THUNDERSTORM2, AREA, "Passage of Time#2";
-		cloakoffnpcself( "Passage of Time#2" );
-		sleep2 1000;
-		setpcblock PCBLOCK_NPC, false;
-		if (isbegin_quest(12595) == 1) {
-			cutin "4job_leticia_04.png",2;
-			mes "[Leticia]";
-			mes "Now then, let's open the other one as well. Move to the site opposite this gate.";
-			completequest 12596;
-			close3;
-		}
-		cutin "4job_leticia_04.png",2;
-		mes "[Leticia]";
-		mes "It's simpler than you think, isn't it?. With this, we'll be able to stop strange guys from flooding the garden until Oscar completes the mansion, so it's a relief.";
-		next;
-		cutin "4job_leticia_01.png",2;
-		mes "[Leticia]";
-		mes "And since you've already helped me, from now on you'll have to work with me every day. It's no big deal. Reduce the number of unholy things in the dungeon under the passage created here.";
-		next;
-		select( "I think I've heard this before" );
-		cutin "4job_leticia_03.png",2;
-		mes "[Leticia]";
-		mes "Why are you muttering? Do you have any complaints?";
-		next;
-		select( "No." );
-		cutin "4job_leticia_05.png",2;
-		mes "[Leticia]";
-		mes "I think it's finished. Let's come to the central square for a moment and talk about the next thing.";
-		completequest 12596;
-		close3;
-	case 2:
-		cloakoffnpcself( "Passage of Time#2" );
-		end;
-	}
-	end;
-
-OnInit:
-	questinfo( QTYPE_QUEST, QMARK_YELLOW, "isbegin_quest(12596) == 1" );
-	end;
-}
 
 // t_garden,157,92,2	script(CLOAKED)	Passage of Time#2	GATE_SKYBLUE,2,2,{	// unknown OnTouch effect (NPC unreachable)
 t_garden,157,92,2	script(CLOAKED)	Passage of Time#2	GATE_SKYBLUE,{
@@ -457,77 +271,24 @@ t_garden,157,92,2	script(CLOAKED)	Passage of Time#2	GATE_SKYBLUE,{
 	}
 	switch( select( "Forgotten Memories, Zone 2, 7 o'clock", "Forgotten Memories, Zone 2, 1 o'clock", "Forgotten Memories, Zone 2, 5 o'clock" ) ) {
 	case 1:
-		warp "for_dun02",33,55;
+		//warp "for_dun02",33,55; // OzRo: dst map no client (for_dun02)
 		break;
 	case 2:
-		warp "for_dun02",211,269;
+		//warp "for_dun02",211,269; // OzRo: dst map no client (for_dun02)
 		break;
 	case 3:
-		warp "for_dun02",271,38;
+		//warp "for_dun02",271,38; // OzRo: dst map no client (for_dun02)
 		break;
 	}
 	end;
 }
 
 
-for_dun01,100,146,2	script	Spatial coordinate probe#1	4_SYSTEM_BOX,{
-	mes "Would you like to go back to the Garden of Time?";
-	next;
-	if (select( "Cancel", "Return" ) == 1)
-		end;
-	warp "t_garden",83,92;
-	end;
-
-OnInit:
-	questinfo( QTYPE_CLICKME, QMARK_YELLOW, "isbegin_quest(12595) == 2" );
-	end;
-}
-for_dun01,128,282,2	duplicate(Spatial coordinate probe#1)	Spatial coordinate probe#2	4_SYSTEM_BOX
-for_dun01,55,142,2	duplicate(Spatial coordinate probe#1)	Spatial coordinate probe#3	4_SYSTEM_BOX
-for_dun01,262,167,2	duplicate(Spatial coordinate probe#1)	Spatial coordinate probe#4	4_SYSTEM_BOX
-for_dun01,204,67,2	duplicate(Spatial coordinate probe#1)	Spatial coordinate probe#5	4_SYSTEM_BOX
-for_dun01,57,270,2	duplicate(Spatial coordinate probe#1)	Spatial coordinate probe#6	4_SYSTEM_BOX
-for_dun01,65,34,2	duplicate(Spatial coordinate probe#1)	Spatial coordinate probe#7	4_SYSTEM_BOX
-for_dun01,146,27,2	duplicate(Spatial coordinate probe#1)	Spatial coordinate probe#8	4_SYSTEM_BOX
-for_dun01,154,139,2	duplicate(Spatial coordinate probe#1)	Spatial coordinate probe#9	4_SYSTEM_BOX
-for_dun01,124,203,2	duplicate(Spatial coordinate probe#1)	Spatial coordinate probe#10	4_SYSTEM_BOX
-for_dun01,267,265,2	duplicate(Spatial coordinate probe#1)	Spatial coordinate probe#11	4_SYSTEM_BOX
 
 
-for_dun02,190,147,2	script	Spatial coordinate probe#12	4_SYSTEM_BOX,{
-	mes "Would you like to go back to the Garden of Time?";
-	next;
-	if (select( "Cancel", "Return" ) == 1)
-		end;
-	warp "t_garden",152,92;
-	end;
-
-OnInit:
-	questinfo( QTYPE_CLICKME, QMARK_YELLOW, "isbegin_quest(12596) == 2" );
-	end;
-}
-for_dun02,143,149,2	duplicate(Spatial coordinate probe#12)	Spatial coordinate probe#13	4_SYSTEM_BOX
-for_dun02,276,29,2	duplicate(Spatial coordinate probe#12)	Spatial coordinate probe#14	4_SYSTEM_BOX
-for_dun02,106,34,2	duplicate(Spatial coordinate probe#12)	Spatial coordinate probe#15	4_SYSTEM_BOX
-for_dun02,216,271,2	duplicate(Spatial coordinate probe#12)	Spatial coordinate probe#16	4_SYSTEM_BOX
-for_dun02,64,268,2	duplicate(Spatial coordinate probe#12)	Spatial coordinate probe#17	4_SYSTEM_BOX
-for_dun02,18,170,2	duplicate(Spatial coordinate probe#12)	Spatial coordinate probe#18	4_SYSTEM_BOX
-for_dun02,16,92,2	duplicate(Spatial coordinate probe#12)	Spatial coordinate probe#19	4_SYSTEM_BOX
-for_dun02,29,52,2	duplicate(Spatial coordinate probe#12)	Spatial coordinate probe#20	4_SYSTEM_BOX
-for_dun02,276,255,2	duplicate(Spatial coordinate probe#12)	Spatial coordinate probe#21	4_SYSTEM_BOX
-for_dun02,283,197,2	duplicate(Spatial coordinate probe#12)	Spatial coordinate probe#22	4_SYSTEM_BOX
 
 
 // B. Event with Oscar
-t_garden,118,141,0	script	#life_wp4	HIDDEN_WARP_NPC,3,3,{
-	end;
-OnTouch:
-	if (isbegin_quest(12618) == 1) {
-		cloakoffnpcself( "Oscar#life2" );
-		end;
-	}
-	end;
-}
 
 // t_garden,118,142,3	script(CLOAKED)	Oscar#life2	4_ED_OSCAR,2,2,{	// unknown OnTouch effect
 t_garden,118,142,3	script(CLOAKED)	Oscar#life2	4_ED_OSCAR,{
@@ -610,20 +371,10 @@ OnInit:
 	end;
 }
 
-t_garden,115,139,7	duplicate(dummy_cloaked_npc)	Leticia#life3	4_4JOB_LETICIA
 
 
 // C. Instances
 // t_garden,166,217,0	script	#wp11	HIDDEN_WARP_NPC,2,2,{	// (NPC name is not unique)
-t_garden,166,217,0	script	#wp11_t_garden	HIDDEN_WARP_NPC,2,2,{
-	end;
-OnTouch:
-	if (isbegin_quest(12594) == 1) {
-		cloakoffnpcself( "Rigel#life2" );
-		end;
-	}
-	end;
-}
 
 t_garden,166,217,3	script(CLOAKED)	Rigel#life2	4_CS_RIGEL,{
 	if (isbegin_quest(12594) == 1) {
@@ -675,23 +426,6 @@ OnInit:
 // }
 
 // t_garden,166,235,0	script	#wp12	HIDDEN_WARP_NPC,3,3,{	// (NPC name is not unique)
-t_garden,166,235,0	script	#wp12_t_garden	HIDDEN_WARP_NPC,3,3,{
-	end;
-OnTouch:
-	switch( isbegin_quest(12597) ) {
-	case 0:
-		end;
-	case 1:
-		cloakoffnpcself( "Sealing Spirit Stone#life2" );
-		end;
-	case 2:
-		cloakoffnpcself( "Sealing Spirit Stone#life2" );
-		cloakoffnpcself( "Dimensional Prison#1" );
-		cloakoffnpcself( "Dimensional Prison#2" );
-		end;
-	}
-	end;
-}
 
 t_garden,166,235,3	script(CLOAKED)	Sealing Spirit Stone#life2	HEROS_OUT_ORB,{
 	switch( isbegin_quest(12597) ) {
@@ -1010,63 +744,6 @@ t_garden,173,235,2	script(CLOAKED)	Dimension Prison#2	GATE_SKYBLUE,{
 
 // Daily Quests
 // t_garden,105,118,0	script	#wp01	HIDDEN_WARP_NPC,6,5,{	// (NPC name is not unique)
-t_garden,105,118,0	script	#wp01_t_garden_2	HIDDEN_WARP_NPC,6,5,{
-	end;
-OnTouch:
-	.@state = isbegin_quest(12620);
-	if (.@state == 0)
-		end;
-	cloakoffnpcself( "Ardor#life2" );
-	cloakoffnpcself( "Diluvio#life2" );
-	cloakoffnpcself( "Procella#life2" );
-	cloakoffnpcself( "Terremotus#life2" );
-	cloakoffnpcself( "Serpens#life2" );
-
-	if (.@state == 1) {
-		mes "[Terremotus]";
-		mes "^777700Oh, the adventurer Leticia sent has finally arrived.";
-		next;
-		mes "[Ardor]";
-		mes "^aa0000Adventurer! Are you willing to fight? We don't need a weakling!";
-		next;
-		mes "[Diluvio]";
-		mes "^0000ffArdor! Have you forgotten what Leticia told you to be at least polite?";
-		next;
-		mes "[Procella]";
-		mes "^00cc00Diluvio is right. It would be good to show some courtesy to the humans who come to help us.";
-		next;
-		select( "I'm fine, please tell me what to do" );
-		mes "[Serpens]";
-		mes "^aa00aaWe are ancient spirits from a world connected to this garden. It is an instinct engraved in our spirit bodies to help each natural element remain harmonious.";
-		next;
-		mes "[Serpens]";
-		mes "^aa00aaHowever, after being swept away by a strange dimensional storm, the elements of the world connected to this garden began to run wild, and eventually began to turn into spirits.";
-		next;
-		mes "[Terremotus]";
-		mes "^777700If the elements continue to become elementals, eventually the material world that makes up this world will collapse. That must be prevented.";
-		next;
-		mes "[Diluvio]";
-		mes "^0000ffAdventurer, you must no longer allow the elements to turn into spirits. Use your power to send them back to nature.";
-		next;
-		mes "[Terremotus]";
-		mes "^777700This is not an act of destroying nature. It is a matter of returning the disappearing elements that have been transformed into spirits back to their original positions. Will you listen to our request?";
-		next;
-		select( "I will." );
-		mes "[Ardor]";
-		mes "^aa0000You're a good communicator! Okay then, I'll tell you what to do every day!^000000";
-		next;
-		mes "[Ardor]";
-		mes "^aa0000Let's place the sacred items prepared by the constellations across from us. In human language, it's called a vending machine.^000000";
-		next;
-		mes "[Ardor]";
-		mes "^aa0000The reward for helping us and the constellations' work here will be received through that sacred item.^000000";
-		next;
-		completequest 12620;
-		navigateto("t_garden",126,117);
-		end;
-	}
-	end;
-}
 
 t_garden,97,114,5	script(CLOAKED)	Diluvio#life2	4_EM_DILUVIO,{
 	if (isbegin_quest(12620) != 2)
@@ -1285,19 +962,6 @@ OnInit:
 
 
 // Uncloak quest NPC rewards and exchange/enchants NPCs
-t_garden,126,123,0	script	#v_wp01	HIDDEN_WARP_NPC,3,3,{
-	end;
-OnTouch:
-	if (isbegin_quest(12620) != 2)
-		end;
-	cloakoffnpcself( "Subspace vending machine#1" );
-	cloakoffnpcself( "Subspace vending machine#2" );
-	cloakoffnpcself( "Subspace vending machine#3" );
-	cloakoffnpcself( "Spirit Complaint Terminal#1" );
-	end;
-}
-t_garden,130,119,0	duplicate(#v_wp01)	#v_wp02	HIDDEN_WARP_NPC,3,3
-t_garden,134,115,0	duplicate(#v_wp01)	#v_wp03	HIDDEN_WARP_NPC,4,4
 
 
 // Quest rewards
@@ -1548,48 +1212,3 @@ OnInit:
 // Storages
 -	shop	t_garden_shop	-1,501:-1
 
-t_garden,156,222,2	script	Functional Vending Machine#1	4_VENDING_MACHINE2,{
-	// switch( select( "Tool Dealer", "Storage 1 (100z)", "Storage 2 (100z)", "Storage 3 (100z)", "Use savepoint service" ) ) {
-	switch( select( "Tool Dealer", "Storage 1 (100z)", "", "", "Use savepoint service" ) ) {
-	case 1:
-		callshop( "t_garden_shop", 2 );
-		end;
-	case 2:
-		.@storage_num = 1;
-		break;
-	case 3:
-		.@storage_num = 2;
-		break;
-	case 4:
-		.@storage_num = 3;
-		break;
-	case 5:
-		npctalk "" + strcharinfo(0) + " your location has been safely saved.", "", bc_self;
-
-		.@num = atoi( strnpcinfo(2) );
-		if (.@num == 1)
-			savepoint "t_garden",156,220;
-		else if (.@num == 2)
-			savepoint "t_garden",97,135;
-		else if (.@num == 3)
-			savepoint "t_garden",90,115;
-		else if (.@num == 4)
-			savepoint "t_garden",137,106;
-		break;
-	}
-	if (Zeny < 100) {
-		npctalk "To use the Storage, please insert 100 zeny.", "", bc_self;
-		end;
-	}
-	Zeny -= 100;
-	npctalk "I will open storage number " + .@storage_num + ". Thank you for using it.", "", bc_self;
-	openstorage;
-	end;
-
-OnInit:
-	questinfo( QTYPE_CLICKME, QMARK_YELLOW, "isbegin_quest(12592) == 2" );
-	end;
-}
-t_garden,97,138,6	duplicate(Functional Vending Machine#1)	Functional Vending Machine#2	4_VENDING_MACHINE2
-t_garden,91,116,2	duplicate(Functional Vending Machine#1)	Functional Vending Machine#3	4_VENDING_MACHINE2
-t_garden,144,116,2	duplicate(Functional Vending Machine#1)	Functional Vending Machine#4	4_VENDING_MACHINE2

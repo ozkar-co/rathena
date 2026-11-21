@@ -1,81 +1,48 @@
-<img src="doc/logo.png" align="right" height="90" />
+# OzRo Server
 
-# rAthena
-![clang](https://img.shields.io/github/actions/workflow/status/rathena/rathena/build_servers_clang.yml?label=clang%20build&logo=llvm) 
-![cmake](https://img.shields.io/github/actions/workflow/status/rathena/rathena/build_servers_cmake.yml?label=cmake%20build&logo=cmake)
-![gcc](https://img.shields.io/github/actions/workflow/status/rathena/rathena/build_servers_gcc.yml?label=gcc%20build&logo=gnu) 
-![ms](https://img.shields.io/github/actions/workflow/status/rathena/rathena/build_servers_msbuild.yml?label=ms%20build&logo=visualstudio) 
-![GitHub](https://img.shields.io/github/license/rathena/rathena.svg) 
-![commit activity](https://img.shields.io/github/commit-activity/w/rathena/rathena) 
-![GitHub repo size](https://img.shields.io/github/repo-size/rathena/rathena.svg)
-[![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/rathena/rathena)
+Emulador de Ragnarok Online para el servidor privado **OzRo**: Renewal, pocos jugadores, acceso por invitación. Este repositorio es un fork operativo de [rAthena](https://github.com/rathena/rathena), no un emulador genérico para terceros.
 
+## Qué es esto
 
-> rAthena is a collaborative software development project revolving around the creation of a robust massively multiplayer online role playing game (MMORPG) server package. Written in C++, the program is very versatile and provides NPCs, warps and modifications. The project is jointly managed by a group of volunteers located around the world as well as a tremendous community providing QA and support. rAthena is a continuation of the eAthena project.
+- **Base:** rAthena Renewal (snapshot enero 2026), `PACKETVER` congelado alineado al cliente OzRo (~2021).
+- **Contenido propio:** `npc/custom/ozro/`, `db/import/`, `conf/import/`.
+- **Archivo:** scripts y capas que no cargamos en `trash_bin/` (ver `trash_bin/README.md`).
+- **Documentación de diseño:** [`docs/ozro-design/`](docs/ozro-design/README.md).
 
-[Forum](https://rathena.org/board)|[Discord](https://rathena.org/discord)|[Wiki](https://github.com/rathena/rathena/wiki)|[FluxCP](https://github.com/rathena/FluxCP)|[Crowdfunding](https://rathena.org/board/crowdfunding/)|[Fork and Pull Request Q&A](https://rathena.org/board/topic/86913-pull-request-qa/)
---------|--------|--------|--------|--------|--------
+Repos relacionados: web (`ozro-site/`), API (`ozro-backup/`), parches de cliente (`ozro-cli/`).
 
-### Table of Contents
-1. [Prerequisites](#1-prerequisites)
-2. [Installation](#2-installation)
-3. [Troubleshooting](#3-troubleshooting)
-4. [More Documentation](#4-more-documentation)
-5. [How to Contribute](#5-how-to-contribute)
-6. [License](#6-license)
+## Requisitos
 
-## 1. Prerequisites
-Before installing rAthena there are certain tools and applications you will need which
-differs between the varying operating systems available.
+- Linux, GCC, `make`, autotools (`./configure`)
+- MariaDB/MySQL para login/char (YAML para datos de juego; `use_sql_db: no`)
+- Cliente Ragnarok OzRo en LAN/VPN
 
-### Hardware
-Hardware Type | Minimum | Recommended
-------|------|------
-CPU | 1 Core | 2 Cores
-RAM | 1 GB | 2 GB
-Disk Space | 300 MB | 500 MB
+## Compilar y arrancar
 
-### Operating System & Preferred Compiler
-Operating System | Compiler
-------|------
-Linux  | [gcc-6 or newer](https://www.gnu.org/software/gcc/gcc-6/) / [Make](https://www.gnu.org/software/make/)
-Windows | [MS Visual Studio 2017 or newer](https://www.visualstudio.com/downloads/)
+```bash
+./configure --enable-packetver=20210703   # ajustar al PACKETVER del cliente si cambia la doc
+make -j"$(nproc)" server
+./athena-start start
+```
 
-### Required Applications
-Application | Name
-------|------
-Database | [MySQL 5 or newer](https://www.mysql.com/downloads/) / [MariaDB 5 or newer](https://downloads.mariadb.org/)
-Git | [Windows](https://gitforwindows.org/) / [Linux](https://git-scm.com/download/linux)
+Ajustes de rates, features y protocolo: `conf/import/`. NPCs custom: `npc/scripts_custom.conf`.
 
-### Optional Applications
-Application | Name
-------|------
-Database | [MySQL Workbench 5 or newer](http://www.mysql.com/downloads/workbench/)
+## Estructura útil
 
-## 2. Installation 
+| Ruta | Uso |
+|------|-----|
+| `npc/custom/ozro/` | NPCs, warps, sistemas jugables |
+| `db/import/` | Items, mobs, skills, quests custom |
+| `conf/import/` | Battle, char, inter, packet |
+| `docs/ozro-design/` | Decisiones y freeze |
+| `tools/` | Scripts locales (inventario NPC, spawns, etc.) |
+| `trash_bin/` | Contenido archivado, no cargado |
 
-### Full Installation Instructions
-  * [Windows](https://github.com/rathena/rathena/wiki/Install-on-Windows)
-  * [CentOS](https://github.com/rathena/rathena/wiki/Install-on-Centos)
-  * [Debian](https://github.com/rathena/rathena/wiki/Install-on-Debian)
-  * [FreeBSD](https://github.com/rathena/rathena/wiki/Install-on-FreeBSD)
+## Licencia y atribución
 
-## 3. Troubleshooting
+El código del emulador está bajo **GNU GPLv3** (`LICENSE`), heredado de rAthena y del proyecto eAthena.
 
-If you're having problems with starting your server, the first thing you should
-do is check what's happening on your consoles. More often that not, all support issues
-can be solved simply by looking at the error messages given. Check out the [wiki](https://github.com/rathena/rathena/wiki)
-or [forums](https://rathena.org/board) if you need more support on troubleshooting.
+- Proyecto upstream: **[rathena/rathena](https://github.com/rathena/rathena)**
+- Lista de autores histórica del upstream: ver [AUTHORS](https://github.com/rathena/rathena/blob/master/AUTHORS) en GitHub
 
-## 4. More Documentation
-rAthena has a large collection of help files and sample NPC scripts located in the /doc/
-directory. These include detailed explanations of NPC script commands, atcommands (@),
-group permissions, item bonuses, and packet structures, among many other topics. We
-recommend that all users take the time to look over this directory before asking for
-assistance elsewhere.
-
-## 5. How to Contribute
-Details on how to contribute to rAthena can be found in [CONTRIBUTING.md](https://github.com/rathena/rathena/blob/master/.github/CONTRIBUTING.md)!
-
-## 6. License
-Copyright (c) rAthena Development Team - Licensed under [GNU General Public License v3.0](https://github.com/rathena/rathena/blob/master/LICENSE)
+Las modificaciones y el contenido OzRo en este repo son mantenidos por el equipo OzRo; no implican afiliación con Gravity ni con la comunidad rAthena más allá del uso del emulador bajo GPLv3.

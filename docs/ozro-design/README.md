@@ -45,14 +45,14 @@ La sección **Comentarios** al final de cada archivo es un borrador libre: se ap
 | [15-vendedor-viajero.md](./15-vendedor-viajero.md) | Vendedor viajero: items de invocación, stock limitado, precios y reposición |
 | [16-eventos-automaticos.md](./16-eventos-automaticos.md) | Eventos automáticos para pocos jugadores, recompensas en OzCoin y cronograma semanal |
 | [17-quests-de-job.md](./17-quests-de-job.md) | Quests de cambio de job: estado actual, uso de las quests 1-1 de pre-re y plan de traducción/balance archivo por archivo |
+| [18-repo-freeze-y-limpieza.md](./18-repo-freeze-y-limpieza.md) | Limpieza del repo: `trash_bin`, NPC inactivos, eliminación de `data/market` y trabajo futuro |
+| [19-woe-gve-castillos.md](./19-woe-gve-castillos.md) | Reemplazo de WoE: conquista/defensa GvE de castillos, hub semanal y plan por etapas (no prioridad) |
 
 ## Mercado y Garrett
 
-- Especificación técnica del master: [`data/market/SPEC.md`](../../data/market/SPEC.md)
-- Master canónico: `data/market/master.jsonl`
-- Proyección SQL: `data/market/sql/`
-- Datos de Garrett para la web: `ozro-site/assets/items/garrett.json`
-- NPC: `npc/custom/ozro/trasher.txt`
+- Diseño mercado (rediseño pendiente): [13-mercado-npc-tasador.md](./13-mercado-npc-tasador.md), briefs en `docs/ozro-market/`
+- Garrett en juego: `npc/custom/ozro/trasher.txt`
+- Datos web Garrett: `ozro-site/assets/items/garrett.json`
 
 ## Repos relacionados
 
@@ -79,3 +79,5 @@ La sección **Comentarios** al final de cada archivo es un borrador libre: se ap
 - **2026-11-16:** Lo implementado se borra de la documentación y queda en el changelog público (general) y en el git log (detalle técnico).
 - **2026-11-17:** Eventos automáticos con recompensa en OzCoin; cronograma semanal en [16-eventos-automaticos.md](./16-eventos-automaticos.md).
 - **2026-11-18:** Mercado v2 cerrado. Master de todos los items en `data/market/master.jsonl`, spec en `data/market/SPEC.md`, proyección SQL en `data/market/sql/` y Garrett fijo en `npc/custom/ozro/trasher.txt` + `garrett.json`. La taxonomía queda como insumo; los generadores específicos de Garrett se eliminaron.
+- **2026-11-20:** Limpieza freeze: NPC inactivos y capas pre-re/SQL/doc en `trash_bin/`; `data/market/` eliminado (pivote, mercado se rehace). CI/Docker, metadatos upstream y `README.md` OzRo. Ver [18-repo-freeze-y-limpieza.md](./18-repo-freeze-y-limpieza.md).
+- **2026-11-20:** Reemplazo de WoE definido a nivel idea: castillos GvE (conquista/defensa el finde, hub entre semana). No es prioridad. Ver [19-woe-gve-castillos.md](./19-woe-gve-castillos.md).

@@ -29,12 +29,12 @@ lhz_airport,143,43,5	script	Airport Staff#lhz_air1a::lhz_airport1	90,{
 		if (select("Yes:No") == 1) {
 			if (countitem(7311) > 0) {
 				delitem 7311,1; //Free_Flying_Ship_Ticket
-				warp "lhz_airport",148,51;
+				//warp "lhz_airport",148,51; // OzRo: dst map no client (lhz_airport)
 				end;
 			}
 			if (Zeny >= 1200) {
 				set Zeny, Zeny - 1200;
-				warp "lhz_airport",148,51;
+				//warp "lhz_airport",148,51; // OzRo: dst map no client (lhz_airport)
 				end;
 			}
 			mes "[Airship Staff]";
@@ -69,7 +69,7 @@ lhz_airport,143,49,3	script	Arrival Staff#lhz_air2a::lhz_airport2	90,{
 		mes "proceed to the main terminal?";
 		next;
 		if (select("Yes:No") == 1) {
-			warp "lhz_airport",142,40;
+			//warp "lhz_airport",142,40; // OzRo: dst map no client (lhz_airport)
 			end;
 		}
 	}

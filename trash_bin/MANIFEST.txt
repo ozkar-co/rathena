@@ -1,0 +1,460 @@
+# Ozro freeze — ver también trash_bin/README.md y docs/ozro-design/18-repo-freeze-y-limpieza.md
+#
+# Directorios archivados (además de npc/ listados abajo):
+#   trash_bin/db/pre-re/
+#   trash_bin/db/import-tmpl/
+#   trash_bin/npc/pre-re/
+#   trash_bin/doc/
+#   trash_bin/sql-files/
+#
+# Ozro freeze — NPC scripts no cargados por npc/re/scripts_main.conf
+# Generado: 2026-11-20 17:15 UTC
+# Archivos movidos: 335
+
+npc/custom/battleground/bg_emp.txt
+npc/custom/battleground/bg_pvp.txt
+npc/custom/breeder.txt
+npc/custom/card_remover.txt
+npc/custom/card_seller.txt
+npc/custom/etc/airplane.txt
+npc/custom/etc/autopot.txt
+npc/custom/etc/bank.txt
+npc/custom/etc/bank_kafra.txt
+npc/custom/etc/blackjack.txt
+npc/custom/etc/floating_rates.txt
+npc/custom/etc/lottery.txt
+npc/custom/etc/marriage.txt
+npc/custom/etc/monster_arena.txt
+npc/custom/etc/morroc_raceway.txt
+npc/custom/etc/mvp_arena.txt
+npc/custom/etc/mvp_room.txt
+npc/custom/etc/penal_servitude.txt
+npc/custom/etc/quest_warper.txt
+npc/custom/etc/rpsroulette.txt
+npc/custom/etc/shifty_assassin.txt
+npc/custom/etc/stock_market.txt
+npc/custom/events/cluckers.txt
+npc/custom/events/devil_square.txt
+npc/custom/events/disguise.txt
+npc/custom/events/holiday/hallow06.txt
+npc/custom/events/holiday/uneasy_cemetery.txt
+npc/custom/events/holiday/valentinesdayexp.txt
+npc/custom/events/holiday/xmas_rings_event.txt
+npc/custom/events/mushroom_event.txt
+npc/custom/events/mvp_ladder.txt
+npc/custom/healer.txt
+npc/custom/item_signer.txt
+npc/custom/itemmall.txt
+npc/custom/jobmaster.txt
+npc/custom/official/GeffenMagicTournament.txt
+npc/custom/ozro/bounty/Eclage.txt
+npc/custom/ozro/hunting_missions.txt
+npc/custom/platinum_skills.txt
+npc/custom/quests/bandit_beard.txt
+npc/custom/quests/berzebub.txt
+npc/custom/quests/dead_branch.txt
+npc/custom/quests/elvenear.txt
+npc/custom/quests/event_6_new_hats.txt
+npc/custom/quests/hunting_missions.txt
+npc/custom/quests/jewel_case.txt
+npc/custom/quests/kaho_balmung.txt
+npc/custom/quests/kahohorn.txt
+npc/custom/quests/kings_items.txt
+npc/custom/quests/may_hats.txt
+npc/custom/quests/quest_shop.txt
+npc/custom/quests/questboard.txt
+npc/custom/quests/sphinx_mask.txt
+npc/custom/quests/sunglasses.txt
+npc/custom/quests/tha_statues.txt
+npc/custom/quests/thq/THQS_ChattingNPC.txt
+npc/custom/quests/thq/THQS_GuildNPC.txt
+npc/custom/quests/thq/THQS_QuestNPC.txt
+npc/custom/quests/thq/THQS_Quests.txt
+npc/custom/quests/thq/THQS_TTShop.txt
+npc/custom/quests/umbalian_language.txt
+npc/custom/quests/valhallen.txt
+npc/custom/resetnpc.txt
+npc/custom/stylist.txt
+npc/custom/warper.txt
+npc/custom/woe_controller.txt
+npc/events/MemorialDay_2008.txt
+npc/events/RWC_2011.txt
+npc/events/RWC_2012.txt
+npc/events/StPatrick_2008.txt
+npc/events/bossnia.txt
+npc/events/children_week.txt
+npc/events/christmas_2005.txt
+npc/events/christmas_2008.txt
+npc/events/christmas_2013.txt
+npc/events/dumplingfestival.txt
+npc/events/easter_2008.txt
+npc/events/easter_2010.txt
+npc/events/event_skill_reset.txt
+npc/events/halloween_2006.txt
+npc/events/halloween_2008.txt
+npc/events/halloween_2009.txt
+npc/events/halloween_2013.txt
+npc/events/idul_fitri.txt
+npc/events/lunar_2008.txt
+npc/events/nguild/nguild_dunsw.txt
+npc/events/nguild/nguild_ev_agit.txt
+npc/events/nguild/nguild_flags.txt
+npc/events/nguild/nguild_guardians.txt
+npc/events/nguild/nguild_kafras.txt
+npc/events/nguild/nguild_managers.txt
+npc/events/nguild/nguild_treas.txt
+npc/events/nguild/nguild_warper.txt
+npc/events/twintowers.txt
+npc/events/valentinesday.txt
+npc/events/valentinesday_2009.txt
+npc/events/valentinesday_2012.txt
+npc/events/whiteday.txt
+npc/events/xmas.txt
+npc/guild/trs_rp.txt
+npc/kafras/dts_warper.txt
+npc/mapflag/partylock.txt
+npc/merchants/cash_trader.txt
+npc/merchants/clothes_dyer.txt
+npc/merchants/icecream.txt
+npc/other/acolyte_warp.txt
+npc/other/card_trader.txt
+npc/other/msg_boards.txt
+npc/pre-re/airports/izlude.txt
+npc/pre-re/cities/alberta.txt
+npc/pre-re/cities/brasilis.txt
+npc/pre-re/cities/izlude.txt
+npc/pre-re/cities/jawaii.txt
+npc/pre-re/cities/lutie.txt
+npc/pre-re/cities/prontera.txt
+npc/pre-re/cities/yuno.txt
+npc/pre-re/guides/guides_alberta.txt
+npc/pre-re/guides/guides_aldebaran.txt
+npc/pre-re/guides/guides_amatsu.txt
+npc/pre-re/guides/guides_ayothaya.txt
+npc/pre-re/guides/guides_brasilis.txt
+npc/pre-re/guides/guides_comodo.txt
+npc/pre-re/guides/guides_einbroch.txt
+npc/pre-re/guides/guides_geffen.txt
+npc/pre-re/guides/guides_gonryun.txt
+npc/pre-re/guides/guides_hugel.txt
+npc/pre-re/guides/guides_izlude.txt
+npc/pre-re/guides/guides_juno.txt
+npc/pre-re/guides/guides_lighthalzen.txt
+npc/pre-re/guides/guides_louyang.txt
+npc/pre-re/guides/guides_morroc.txt
+npc/pre-re/guides/guides_moscovia.txt
+npc/pre-re/guides/guides_niflheim.txt
+npc/pre-re/guides/guides_payon.txt
+npc/pre-re/guides/guides_prontera.txt
+npc/pre-re/guides/guides_rachel.txt
+npc/pre-re/guides/guides_umbala.txt
+npc/pre-re/guides/guides_veins.txt
+npc/pre-re/jobs/1-1/acolyte.txt
+npc/pre-re/jobs/1-1/archer.txt
+npc/pre-re/jobs/1-1/mage.txt
+npc/pre-re/jobs/1-1/merchant.txt
+npc/pre-re/jobs/1-1/swordman.txt
+npc/pre-re/jobs/1-1/thief.txt
+npc/pre-re/jobs/1-1e/taekwon.txt
+npc/pre-re/jobs/2-2/crusader.txt
+npc/pre-re/jobs/novice/novice.txt
+npc/pre-re/kafras/kafras.txt
+npc/pre-re/mapflag/gvg.txt
+npc/pre-re/mapflag/hidemobhpbar.txt
+npc/pre-re/mapflag/invincible_time.txt
+npc/pre-re/mapflag/nosave.txt
+npc/pre-re/merchants/ammo_boxes.txt
+npc/pre-re/merchants/ammo_dealer.txt
+npc/pre-re/merchants/hair_dyer.txt
+npc/pre-re/merchants/hair_style.txt
+npc/pre-re/merchants/shops.txt
+npc/pre-re/merchants/socket_enchant2.txt
+npc/pre-re/mobs/citycleaners.txt
+npc/pre-re/mobs/dungeons/abbey.txt
+npc/pre-re/mobs/dungeons/abyss.txt
+npc/pre-re/mobs/dungeons/alde_dun.txt
+npc/pre-re/mobs/dungeons/ama_dun.txt
+npc/pre-re/mobs/dungeons/anthell.txt
+npc/pre-re/mobs/dungeons/ayo_dun.txt
+npc/pre-re/mobs/dungeons/beach_dun.txt
+npc/pre-re/mobs/dungeons/bra_dun.txt
+npc/pre-re/mobs/dungeons/c_tower.txt
+npc/pre-re/mobs/dungeons/ein_dun.txt
+npc/pre-re/mobs/dungeons/gef_dun.txt
+npc/pre-re/mobs/dungeons/gefenia.txt
+npc/pre-re/mobs/dungeons/glastheim.txt
+npc/pre-re/mobs/dungeons/gld_dun.txt
+npc/pre-re/mobs/dungeons/gld_dunSE.txt
+npc/pre-re/mobs/dungeons/gon_dun.txt
+npc/pre-re/mobs/dungeons/ice_dun.txt
+npc/pre-re/mobs/dungeons/in_sphinx.txt
+npc/pre-re/mobs/dungeons/iz_dun.txt
+npc/pre-re/mobs/dungeons/juperos.txt
+npc/pre-re/mobs/dungeons/kh_dun.txt
+npc/pre-re/mobs/dungeons/lhz_dun.txt
+npc/pre-re/mobs/dungeons/lou_dun.txt
+npc/pre-re/mobs/dungeons/mag_dun.txt
+npc/pre-re/mobs/dungeons/mjo_dun.txt
+npc/pre-re/mobs/dungeons/moc_pryd.txt
+npc/pre-re/mobs/dungeons/mosk_dun.txt
+npc/pre-re/mobs/dungeons/nyd_dun.txt
+npc/pre-re/mobs/dungeons/odin.txt
+npc/pre-re/mobs/dungeons/orcsdun.txt
+npc/pre-re/mobs/dungeons/pay_dun.txt
+npc/pre-re/mobs/dungeons/prt_maze.txt
+npc/pre-re/mobs/dungeons/prt_sew.txt
+npc/pre-re/mobs/dungeons/ra_san.txt
+npc/pre-re/mobs/dungeons/tha_t.txt
+npc/pre-re/mobs/dungeons/thor_v.txt
+npc/pre-re/mobs/dungeons/treasure.txt
+npc/pre-re/mobs/dungeons/tur_dun.txt
+npc/pre-re/mobs/dungeons/um_dun.txt
+npc/pre-re/mobs/dungeons/xmas_dun.txt
+npc/pre-re/mobs/dungeons/yggdrasil.txt
+npc/pre-re/mobs/fields/amatsu.txt
+npc/pre-re/mobs/fields/ayothaya.txt
+npc/pre-re/mobs/fields/brasilis.txt
+npc/pre-re/mobs/fields/comodo.txt
+npc/pre-re/mobs/fields/einbroch.txt
+npc/pre-re/mobs/fields/geffen.txt
+npc/pre-re/mobs/fields/gonryun.txt
+npc/pre-re/mobs/fields/hugel.txt
+npc/pre-re/mobs/fields/lighthalzen.txt
+npc/pre-re/mobs/fields/louyang.txt
+npc/pre-re/mobs/fields/lutie.txt
+npc/pre-re/mobs/fields/manuk.txt
+npc/pre-re/mobs/fields/mjolnir.txt
+npc/pre-re/mobs/fields/morocc.txt
+npc/pre-re/mobs/fields/moscovia.txt
+npc/pre-re/mobs/fields/niflheim.txt
+npc/pre-re/mobs/fields/payon.txt
+npc/pre-re/mobs/fields/prontera.txt
+npc/pre-re/mobs/fields/rachel.txt
+npc/pre-re/mobs/fields/splendide.txt
+npc/pre-re/mobs/fields/umbala.txt
+npc/pre-re/mobs/fields/veins.txt
+npc/pre-re/mobs/fields/yuno.txt
+npc/pre-re/other/bulletin_boards.txt
+npc/pre-re/other/mercenary_rent.txt
+npc/pre-re/other/msg_boards.txt
+npc/pre-re/other/pvp.txt
+npc/pre-re/other/resetskill.txt
+npc/pre-re/other/turbo_track.txt
+npc/pre-re/quests/collection/quest_alligator.txt
+npc/pre-re/quests/collection/quest_caramel.txt
+npc/pre-re/quests/collection/quest_coco.txt
+npc/pre-re/quests/collection/quest_creamy.txt
+npc/pre-re/quests/collection/quest_demonpungus.txt
+npc/pre-re/quests/collection/quest_disguiseloliruri.txt
+npc/pre-re/quests/collection/quest_dokebi.txt
+npc/pre-re/quests/collection/quest_dryad.txt
+npc/pre-re/quests/collection/quest_fabre.txt
+npc/pre-re/quests/collection/quest_frilldora.txt
+npc/pre-re/quests/collection/quest_goat.txt
+npc/pre-re/quests/collection/quest_golem.txt
+npc/pre-re/quests/collection/quest_hode.txt
+npc/pre-re/quests/collection/quest_leafcat.txt
+npc/pre-re/quests/collection/quest_mantis.txt
+npc/pre-re/quests/collection/quest_pecopeco.txt
+npc/pre-re/quests/collection/quest_pupa.txt
+npc/pre-re/quests/collection/quest_zhupolong.txt
+npc/pre-re/quests/cooking_quest.txt
+npc/pre-re/quests/first_class/tu_archer.txt
+npc/pre-re/quests/monstertamers.txt
+npc/pre-re/quests/mrsmile.txt
+npc/pre-re/quests/quest_payon.txt
+npc/pre-re/quests/quests_13_1.txt
+npc/pre-re/quests/quests_izlude.txt
+npc/pre-re/quests/quests_lighthalzen.txt
+npc/pre-re/quests/quests_morocc.txt
+npc/pre-re/quests/quests_nameless.txt
+npc/pre-re/quests/quests_niflheim.txt
+npc/pre-re/quests/quests_veins.txt
+npc/pre-re/quests/seals/brisingamen_seal.txt
+npc/pre-re/quests/seals/megingard_seal.txt
+npc/pre-re/quests/skills/swordman_skills.txt
+npc/pre-re/quests/the_sign_quest.txt
+npc/pre-re/warps/cities/alberta.txt
+npc/pre-re/warps/cities/einbroch.txt
+npc/pre-re/warps/cities/izlude.txt
+npc/pre-re/warps/cities/prontera.txt
+npc/pre-re/warps/cities/rachel.txt
+npc/pre-re/warps/cities/yggdrasil.txt
+npc/pre-re/warps/fields/com_fild.txt
+npc/pre-re/warps/fields/geffen_fild.txt
+npc/pre-re/warps/fields/hugel_fild.txt
+npc/pre-re/warps/fields/morroc_fild.txt
+npc/pre-re/warps/fields/payon_fild.txt
+npc/pre-re/warps/fields/prontera_fild.txt
+npc/pre-re/warps/fields/rachel_fild.txt
+npc/pre-re/warps/fields/veins_fild.txt
+npc/pre-re/warps/fields/yuno_fild.txt
+npc/pre-re/warps/guildcastles.txt
+npc/pre-re/warps/other/arena.txt
+npc/pre-re/warps/other/sign.txt
+npc/quests/dandelion_request.txt
+npc/quests/skills/novice_skills.txt
+npc/re/instances/HiddenGarden.txt
+npc/re/instances/LostFarm.txt
+npc/re/instances/MazeofOz.txt
+npc/re/instances/ThorGunsuBase.txt
+npc/re/instances/TwilightGarden.txt
+npc/re/instances/VillaofDeception.txt
+npc/re/instances/VillaofHighPriest.txt
+npc/re/instances/WaterGarden.txt
+npc/re/instances/WaveMode.txt
+npc/re/instances/Wolves.txt
+npc/re/jobs/novice/academy.txt
+npc/re/jobs/novice/novice.txt
+npc/re/kafras/Kafra_Teleportation_Services.txt
+npc/re/kafras/Zonda_Teleportation_Services.txt
+npc/re/mapflag/nowarp.txt
+npc/re/mapflag/partylock.txt
+npc/re/merchants/barters/Pet_Groomer.yml
+npc/re/merchants/barters/enchan_illusion_dungeons.yml
+npc/re/merchants/barters/enchantgrade.yml
+npc/re/merchants/barters/garden_of_time.yml
+npc/re/merchants/barters/quests_16_1.yml
+npc/re/merchants/barters/quests_17_2.yml
+npc/re/merchants/barters/quests_18.yml
+npc/re/merchants/barters/refine.yml
+npc/re/merchants/barters/rgsr_in.yml
+npc/re/merchants/blessed_refiner.txt
+npc/re/merchants/card_exchange.txt
+npc/re/merchants/cash_trader-idRO.txt
+npc/re/merchants/enchan_illusion_17_1.txt
+npc/re/merchants/enchan_illusion_dungeons.txt
+npc/re/merchants/enchan_sage_legacy_17_2.txt
+npc/re/merchants/shopping_boards.txt
+npc/re/merchants/ticket_refiner.txt
+npc/re/mobs/academy.txt
+npc/re/mobs/dungeons/for_dun.txt
+npc/re/mobs/tra_fild.txt
+npc/re/other/achievements.txt
+npc/re/quests/cupet.txt
+npc/re/quests/eden/eden_iro.txt
+npc/re/quests/quests_16_1.txt
+npc/re/quests/quests_17_2.txt
+npc/re/quests/quests_18.txt
+npc/re/warps/dungeons/ecl_tdun.txt
+npc/re/warps/other/TrainingZone.txt
+npc/test/OnInterInit.txt
+npc/test/ci/0000_funcs.txt
+npc/test/ci/5573.txt
+npc/test/ci/7291.txt
+npc/test/ci/8886.txt
+npc/test/infinite_warp.txt
+npc/test/npc_test_checkweight.txt
+npc/test/npc_test_longvar.txt
+
+# OzRo map-client cleanup — mixed extracts (*.disabled_maps_extract):
+
+
+# OzRo map-client cleanup — additional pure files moved:
+
+# Mixed extracts:
+npc/airports/airships.txt (15 blocks)
+npc/airports/yuno.txt (8 blocks)
+npc/battleground/flavius/flavius02.txt (42 blocks)
+npc/battleground/kvm/kvm02.txt (18 blocks)
+npc/battleground/kvm/kvm03.txt (18 blocks)
+npc/battleground/tierra/tierra02.txt (48 blocks)
+npc/events/gdevent_sch.txt (70 blocks)
+npc/guild2/arug_cas04.txt (33 blocks)
+npc/guild2/arug_cas05.txt (33 blocks)
+npc/guild2/schg_cas04.txt (34 blocks)
+npc/guild2/schg_cas05.txt (34 blocks)
+npc/other/arena/arena_aco.txt (21 blocks)
+npc/other/arena/arena_lvl50.txt (11 blocks)
+npc/other/arena/arena_lvl60.txt (11 blocks)
+npc/other/arena/arena_lvl70.txt (11 blocks)
+npc/other/arena/arena_lvl80.txt (11 blocks)
+npc/other/arena/arena_party.txt (13 blocks)
+npc/other/monster_race.txt (94 blocks)
+npc/other/turbo_track.txt (2087 blocks)
+npc/quests/okolnir.txt (887 blocks)
+npc/quests/quests_airship.txt (14 blocks)
+npc/quests/quests_lighthalzen.txt (3 blocks)
+npc/quests/quests_nameless.txt (12 blocks)
+npc/quests/quests_rachel.txt (4 blocks)
+npc/quests/the_sign_quest.txt (11 blocks)
+npc/re/merchants/cashmall.txt (7 blocks)
+npc/re/merchants/rgsr_in.txt (1 blocks)
+npc/re/mobs/championmobs.txt (5 blocks)
+npc/re/mobs/dungeons/dic_dun.txt (9 blocks)
+npc/re/mobs/dungeons/gld_re.txt (19 blocks)
+npc/re/quests/garden_of_time.txt (41 blocks)
+npc/re/quests/quests_16_2.txt (3 blocks)
+npc/re/quests/quests_illusion_dungeons.txt (1 blocks)
+npc/re/warps/other/TrainingZone123.txt (18 blocks)
+
+# OzRo map-client cleanup — pure-dead scripts moved:
+npc/airports/lighthalzen.txt
+npc/mobs/pvp.txt
+npc/other/guildpvp.txt
+npc/re/merchants/enchan_upg.txt
+npc/re/mobs/tra_fild_123.txt
+npc/re/other/TrainingZone123.txt
+npc/re/other/item_merge.txt
+npc/re/other/pvp.txt
+
+# OzRo: BG/PVP fully disabled — scripts moved:
+npc/re/battleground/bg_common.txt
+npc/re/warps/other/arena.txt
+npc/battleground/flavius/flavius_enter.txt
+npc/battleground/flavius/flavius01.txt
+npc/battleground/flavius/flavius02.txt
+npc/battleground/kvm/kvm_enter.txt
+npc/battleground/kvm/kvm_item_pay.txt
+npc/battleground/kvm/kvm01.txt
+npc/battleground/kvm/kvm02.txt
+npc/battleground/kvm/kvm03.txt
+npc/battleground/tierra/tierra_enter.txt
+npc/battleground/tierra/tierra01.txt
+npc/battleground/tierra/tierra02.txt
+npc/battleground/bg_common.txt
+npc/other/arena/arena_aco.txt
+npc/other/arena/arena_lvl50.txt
+npc/other/arena/arena_lvl60.txt
+npc/other/arena/arena_lvl70.txt
+npc/other/arena/arena_lvl80.txt
+npc/other/arena/arena_party.txt
+npc/other/arena/arena_point.txt
+npc/other/arena/arena_room.txt
+npc/other/pvp.txt
+npc/mapflag/pvp.txt
+npc/mapflag/pvp_noparty.txt
+npc/mapflag/pvp_noguild.txt
+npc/mapflag/battleground.txt
+npc/warps/other/arena.txt
+npc/warps/pvp.txt
+npc/mapflag/nightmare.txt
+
+# Maps disabled (BG/PVP):
+arena_room
+prt_are_in
+pvp_room
+pvp_2vs2
+pvp_y_1-2
+pvp_y_2-2
+pvp_y_3-2
+pvp_y_4-2
+pvp_y_5-2
+pvp_y_6-2
+pvp_y_7-2
+pvp_y_8-2
+guild_vs1
+guild_vs2
+guild_vs3
+guild_vs4
+guild_vs5
+bat_room
+bat_a01
+bat_b01
+bat_c01
+ordeal_a00
+ordeal_a02
+
+# OzRo: itemmall cashmall + double race cleanup
+npc/re/merchants/cashmall.txt (moved/disabled)
+npc/other/monster_race.txt.double_race_extract

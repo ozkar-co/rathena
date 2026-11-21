@@ -85,20 +85,15 @@ Lluvia de ideas del documento antiguo, **reformuladas** y etiquetadas. No es lis
 | NPC buffs por temporadas (esferas monk, adrenaline) | `pendiente` | Eventos estacionales |
 | Old Blacksmith: monedas OzRo → piedras BS | `pendiente` | Depende de bounty rewards; ya no Special Gold |
 | MVP room con cleaner | `pendiente` | Sala de MVPs con NPC de limpieza |
-| Reemplazo de WoE: GvE / invasiones + castillos | `reformular` | En vez de GvG: invasiones de bichos o eventos PvE para acceder a castillos con pocos jugadores; obliga a defender, se puede perder y hay que renovar. Si algún día hay 6+, GvG chico o battleground. La guild debe servir para algo más que WoE, salvo que la WoE sea PvE. |
+| Reemplazo de WoE: GvE / invasiones + castillos | `pendiente` | Idea general cerrada (no prioridad). Ver [19-woe-gve-castillos.md](./19-woe-gve-castillos.md). |
 | Karma en misiones custom | `pendiente` | Karma +/- por personaje; misiones que exigen karma o dan recompensa según karma |
 | Quests de cambio de job traducidas y más fáciles | `pendiente` | Ver [17-quests-de-job.md](./17-quests-de-job.md); incluye usar las quests 1-1 de pre-re (con pruebas) solo si es fácil |
 
 ---
 
-### WoE → GvE / castillos (idea abierta)
+### WoE → GvE / castillos
 
-- Objetivo: que los castillos y la guild tengan sentido con pocos jugadores (3–6).
-- En vez de GvG puro: invasiones de bichos o eventos PvE para abrir acceso al castillo.
-- El castillo se debe defender; si se pierde, hay que recuperarlo/renovarlo.
-- Si algún día hay 6+ jugadores, evaluar un GvG chico o battleground como alternativa.
-- La guild debe servir para algo más que WoE (buffs, storage, misiones, economía del castillo), salvo que la WoE sea PvE.
-- Pendiente: cómo se dispara la invasión, schedule, decay del castillo, recompensas y anti-solo.
+Diseño general en [19-woe-gve-castillos.md](./19-woe-gve-castillos.md). No es prioridad.
 
 ---
 

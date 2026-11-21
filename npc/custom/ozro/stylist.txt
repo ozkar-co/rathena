@@ -3,7 +3,7 @@
 //===== By: ==================================================
 //= Euphy / Ozro
 //===== Current Version: =====================================
-//= 2.0
+//= 2.1
 //===== Description: =========================================
 //= Cambia peinado, color de pelo y color de ropa.
 //= Los rangos salen de las paletas reales del cliente.
@@ -11,20 +11,74 @@
 //= 1.0 Euphy.
 //= 1.3 Ajustes de dialogo y ciclo de estilos.
 //= 2.0 Lore de Vesper, rangos por job y dialogos aleatorios.
+//= 2.1 Rangos de ropa actualizados tras ampliar paletas del cliente.
 //============================================================
 
 function	script	F_StylistClothMax	{
 	set .@job, getarg(0);
 
 	switch (.@job) {
+	case Job_Novice:
+	case Job_Novice_High:
+	case Job_Baby:
+	case Job_Super_Novice:
+	case Job_Super_Novice_E:
+	case Job_Super_Baby:
+	case Job_Super_Baby_E:
+	case Job_Taekwon:
+	case Job_Baby_Taekwon:
 	case Job_Star_Gladiator:
 	case Job_Star_Gladiator2:
 	case Job_Baby_Star_Gladiator:
 	case Job_Baby_Star_Gladiator2:
-		return 1;
-	}
-
-	switch (.@job) {
+	case Job_Soul_Linker:
+	case Job_Baby_Soul_Linker:
+	case Job_Star_Emperor:
+	case Job_Star_Emperor2:
+	case Job_Baby_Star_Emperor:
+	case Job_Baby_Star_Emperor2:
+	case Job_Soul_Reaper:
+	case Job_Baby_Soul_Reaper:
+	case Job_Ninja:
+	case Job_Baby_Ninja:
+	case Job_Kagerou:
+	case Job_Oboro:
+	case Job_Gunslinger:
+	case Job_Baby_Gunslinger:
+	case Job_Rebellion:
+	case Job_Baby_Rebellion:
+	case Job_Rune_Knight:
+	case Job_Rune_Knight2:
+	case Job_Baby_Rune_Knight:
+	case Job_Baby_Rune_Knight2:
+	case Job_Warlock:
+	case Job_Baby_Warlock:
+	case Job_Ranger:
+	case Job_Ranger2:
+	case Job_Baby_Ranger:
+	case Job_Baby_Ranger2:
+	case Job_Arch_Bishop:
+	case Job_Baby_Arch_Bishop:
+	case Job_Mechanic:
+	case Job_Mechanic2:
+	case Job_Baby_Mechanic:
+	case Job_Baby_Mechanic2:
+	case Job_Guillotine_Cross:
+	case Job_Baby_Guillotine_Cross:
+	case Job_Royal_Guard:
+	case Job_Baby_Royal_Guard:
+	case Job_Sorcerer:
+	case Job_Baby_Sorcerer:
+	case Job_Minstrel:
+	case Job_Baby_Minstrel:
+	case Job_Wanderer:
+	case Job_Baby_Wanderer:
+	case Job_Sura:
+	case Job_Baby_Sura:
+	case Job_Genetic:
+	case Job_Baby_Genetic:
+	case Job_Shadow_Chaser:
+	case Job_Baby_Shadow_Chaser:
 	case Job_Dragon_Knight:
 	case Job_Dragon_Knight2:
 	case Job_Meister:
@@ -54,9 +108,6 @@ function	script	F_StylistClothMax	{
 	}
 
 	switch (.@job) {
-	case Job_Novice:
-	case Job_Novice_High:
-	case Job_Baby:
 	case Job_Swordman:
 	case Job_Swordman_High:
 	case Job_Baby_Swordman:
@@ -76,9 +127,7 @@ function	script	F_StylistClothMax	{
 	case Job_Thief_High:
 	case Job_Baby_Thief:
 	case Job_Knight:
-	case Job_Knight2:
 	case Job_Baby_Knight:
-	case Job_Baby_Knight2:
 	case Job_Wizard:
 	case Job_Baby_Wizard:
 	case Job_Priest:
@@ -95,10 +144,6 @@ function	script	F_StylistClothMax	{
 	case Job_Baby_Alchemist:
 	case Job_Assassin:
 	case Job_Baby_Assassin:
-	case Job_Super_Novice:
-	case Job_Super_Novice_E:
-	case Job_Super_Baby:
-	case Job_Super_Baby_E:
 		return 4;
 	}
 

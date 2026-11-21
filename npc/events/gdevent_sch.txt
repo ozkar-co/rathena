@@ -158,7 +158,7 @@ schg_dun01,194,148,5	script	Dwarf#sch_gd	826,{
 						set $@gdevents_s$,.@chk_yourgdname$;
 						close2;
 						setquest 2144;
-						warp "schg_que01",103,133;
+						//warp "schg_que01",103,133; // OzRo: dst map no client (schg_que01)
 						end;
 					}
 				}
@@ -192,7 +192,7 @@ schg_dun01,194,148,5	script	Dwarf#sch_gd	826,{
 					mes "[Morestone]";
 					mes "I hope you enjoy yourself, my friend.";
 					close2;
-					warp "schg_que01",103,133;
+					//warp "schg_que01",103,133; // OzRo: dst map no client (schg_que01)
 					end;
 				case 2:
 					mes "[Morestone]";
@@ -291,7 +291,7 @@ schg_dun01,194,148,5	script	Dwarf#sch_gd	826,{
 							set $@gdevents_s$,.@chk_yourgdname$;
 							close2;
 							setquest 2144;
-							warp "schg_que01",103,133;
+							//warp "schg_que01",103,133; // OzRo: dst map no client (schg_que01)
 							end;
 						}
 					}
@@ -335,7 +335,7 @@ schg_dun01,194,148,5	script	Dwarf#sch_gd	826,{
 					mes "[Morestone]";
 					mes "I hope you enjoy yourself, my friend.";
 					close2;
-					warp "schg_que01",103,133;
+					//warp "schg_que01",103,133; // OzRo: dst map no client (schg_que01)
 					end;
 				case 2:
 					mes "[Morestone]";
@@ -434,7 +434,7 @@ schg_dun01,194,148,5	script	Dwarf#sch_gd	826,{
 							set $@gdevents_s$,.@chk_yourgdname$;
 							close2;
 							setquest 2144;
-							warp "schg_que01",103,133;
+							//warp "schg_que01",103,133; // OzRo: dst map no client (schg_que01)
 							end;
 						}
 					}
@@ -477,6 +477,52 @@ OnEnable:
 	end;
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+schg_que01,104,140,0	warp	back#sch_gd	1,1,schg_dun01,199,192
+
+/*
+*/
+
+
+
+schg_dun01,5,5,1	script	Event controller#sch_gd	81,{
+	if (callfunc("F_GM_NPC",1854,0) < 1) {
+		mes "Incorrect password.";
+		close;
+	} else {
+		mes "How can I help you?";
+		next;
+		switch(select("Reset.:No, thanks.")) {
+		case 1:
+			mes "Completed.";
+			donpcevent "Monster Controler1#sch::OnControler1#sch_gd";
+			donpcevent "Monster Controler1#sch::OnControler1#sch_gd";
+			disablenpc "Dwarf#sch_gd";
+			set $@gdeventv_s1,0;
+			set $@gdeventv_s2,0;
+			set $@gdevents_s$,"";
+			close;
+		case 2:
+			mes "Good bye~";
+			close;
+		}
+	}
+}
+
+// OzRo: restored extract from gdevent_sch.txt.disabled_maps_extract
 schg_que01,100,81,3	script	Pierrot Pier#sch_gd	715,{
 	specialeffect EF_POISONHIT;
 	set .@sprchg_gd,rand(1,5);
@@ -1080,7 +1126,7 @@ OnTimer40000:
 
 OnTimer60000:
 	mapannounce "schg_que01", "Pierrot Pier: Time is up!",bc_map,"0x99CC00";
-	mapwarp "schg_que01","schg_que01",100,79;
+	//mapwarp "schg_que01","schg_que01",100,79; // OzRo: dst map no client (schg_que01)
 	enablenpc "removepp_sch_gd";
 	set $@gdeventv_s2,2;
 	end;
@@ -1427,9 +1473,6 @@ OnTimer50000:
 	end;
 }
 
-schg_que01,104,140,0	warp	back#sch_gd	1,1,schg_dun01,199,192
-
-/*
 schg_que01,104,140,1	script	treg#sch_gd	844,{
 	end;
 
@@ -1452,87 +1495,115 @@ OnMyMobDead:
 	}
 	end;
 }
-*/
 
 schg_que01,98,105,3	script	#sch_flower_01::GD_Ev_Flower2	978,{
 	end;
 }
 
 schg_que01,94,105,3	duplicate(GD_Ev_Flower2)	#sch_flower_02	977
-schg_que01,90,105,3	duplicate(GD_Ev_Flower2)	#sch_flower_03	978
-schg_que01,86,105,3	duplicate(GD_Ev_Flower2)	#sch_flower_04	977
-schg_que01,82,105,3	duplicate(GD_Ev_Flower2)	#sch_flower_05	978
-schg_que01,79,103,3	duplicate(GD_Ev_Flower2)	#sch_flower_06	977
-schg_que01,79,100,3	duplicate(GD_Ev_Flower2)	#sch_flower_07	978
-schg_que01,79,97,3	duplicate(GD_Ev_Flower2)	#sch_flower_08	977
-schg_que01,79,97,3	duplicate(GD_Ev_Flower2)	#sch_flower_09	978
-schg_que01,79,94,3	duplicate(GD_Ev_Flower2)	#sch_flower_10	977
-schg_que01,79,91,3	duplicate(GD_Ev_Flower2)	#sch_flower_11	978
-schg_que01,79,88,3	duplicate(GD_Ev_Flower2)	#sch_flower_12	977
-schg_que01,79,85,3	duplicate(GD_Ev_Flower2)	#sch_flower_13	978
-schg_que01,79,82,3	duplicate(GD_Ev_Flower2)	#sch_flower_14	977
-schg_que01,79,79,3	duplicate(GD_Ev_Flower2)	#sch_flower_15	978
-schg_que01,79,76,3	duplicate(GD_Ev_Flower2)	#sch_flower_16	977
-schg_que01,79,73,3	duplicate(GD_Ev_Flower2)	#sch_flower_17	978
-schg_que01,79,70,3	duplicate(GD_Ev_Flower2)	#sch_flower_18	977
-schg_que01,79,67,3	duplicate(GD_Ev_Flower2)	#sch_flower_19	978
-schg_que01,79,64,3	duplicate(GD_Ev_Flower2)	#sch_flower_20	977
-schg_que01,79,61,3	duplicate(GD_Ev_Flower2)	#sch_flower_21	978
-schg_que01,79,58,3	duplicate(GD_Ev_Flower2)	#sch_flower_22	977
-schg_que01,84,58,3	duplicate(GD_Ev_Flower2)	#sch_flower_23	978
-schg_que01,89,58,3	duplicate(GD_Ev_Flower2)	#sch_flower_24	977
-schg_que01,94,58,3	duplicate(GD_Ev_Flower2)	#sch_flower_25	978
-schg_que01,99,58,3	duplicate(GD_Ev_Flower2)	#sch_flower_26	977
-schg_que01,104,58,3	duplicate(GD_Ev_Flower2)	#sch_flower_27	978
-schg_que01,109,58,3	duplicate(GD_Ev_Flower2)	#sch_flower_28	977
-schg_que01,114,58,3	duplicate(GD_Ev_Flower2)	#sch_flower_29	978
-schg_que01,119,58,3	duplicate(GD_Ev_Flower2)	#sch_flower_30	977
-schg_que01,124,58,3	duplicate(GD_Ev_Flower2)	#sch_flower_31	978
-schg_que01,129,58,3	duplicate(GD_Ev_Flower2)	#sch_flower_32	977
-schg_que01,129,105,3	duplicate(GD_Ev_Flower2)	#sch_flower_33	978
-schg_que01,129,103,3	duplicate(GD_Ev_Flower2)	#sch_flower_34	977
-schg_que01,129,100,3	duplicate(GD_Ev_Flower2)	#sch_flower_35	978
-schg_que01,129,97,3	duplicate(GD_Ev_Flower2)	#sch_flower_36	977
-schg_que01,129,97,3	duplicate(GD_Ev_Flower2)	#sch_flower_37	978
-schg_que01,129,94,3	duplicate(GD_Ev_Flower2)	#sch_flower_38	977
-schg_que01,129,91,3	duplicate(GD_Ev_Flower2)	#sch_flower_39	978
-schg_que01,129,88,3	duplicate(GD_Ev_Flower2)	#sch_flower_40	977
-schg_que01,129,85,3	duplicate(GD_Ev_Flower2)	#sch_flower_41	978
-schg_que01,129,82,3	duplicate(GD_Ev_Flower2)	#sch_flower_42	977
-schg_que01,129,79,3	duplicate(GD_Ev_Flower2)	#sch_flower_43	978
-schg_que01,129,76,3	duplicate(GD_Ev_Flower2)	#sch_flower_44	977
-schg_que01,129,73,3	duplicate(GD_Ev_Flower2)	#sch_flower_45	978
-schg_que01,129,70,3	duplicate(GD_Ev_Flower2)	#sch_flower_46	977
-schg_que01,129,67,3	duplicate(GD_Ev_Flower2)	#sch_flower_47	978
-schg_que01,129,64,3	duplicate(GD_Ev_Flower2)	#sch_flower_48	977
-schg_que01,129,61,3	duplicate(GD_Ev_Flower2)	#sch_flower_49	978
-schg_que01,129,58,3	duplicate(GD_Ev_Flower2)	#sch_flower_50	977
-schg_que01,124,105,3	duplicate(GD_Ev_Flower2)	#sch_flower_51	978
-schg_que01,119,105,3	duplicate(GD_Ev_Flower2)	#sch_flower_52	977
-schg_que01,114,105,3	duplicate(GD_Ev_Flower2)	#sch_flower_53	978
-schg_que01,109,105,3	duplicate(GD_Ev_Flower2)	#sch_flower_54	977
-schg_que01,104,105,3	duplicate(GD_Ev_Flower2)	#sch_flower_55	976
 
-schg_dun01,5,5,1	script	Event controller#sch_gd	81,{
-	if (callfunc("F_GM_NPC",1854,0) < 1) {
-		mes "Incorrect password.";
-		close;
-	} else {
-		mes "How can I help you?";
-		next;
-		switch(select("Reset.:No, thanks.")) {
-		case 1:
-			mes "Completed.";
-			donpcevent "Monster Controler1#sch::OnControler1#sch_gd";
-			donpcevent "Monster Controler1#sch::OnControler1#sch_gd";
-			disablenpc "Dwarf#sch_gd";
-			set $@gdeventv_s1,0;
-			set $@gdeventv_s2,0;
-			set $@gdevents_s$,"";
-			close;
-		case 2:
-			mes "Good bye~";
-			close;
-		}
-	}
-}
+schg_que01,90,105,3	duplicate(GD_Ev_Flower2)	#sch_flower_03	978
+
+schg_que01,86,105,3	duplicate(GD_Ev_Flower2)	#sch_flower_04	977
+
+schg_que01,82,105,3	duplicate(GD_Ev_Flower2)	#sch_flower_05	978
+
+schg_que01,79,103,3	duplicate(GD_Ev_Flower2)	#sch_flower_06	977
+
+schg_que01,79,100,3	duplicate(GD_Ev_Flower2)	#sch_flower_07	978
+
+schg_que01,79,97,3	duplicate(GD_Ev_Flower2)	#sch_flower_08	977
+
+schg_que01,79,97,3	duplicate(GD_Ev_Flower2)	#sch_flower_09	978
+
+schg_que01,79,94,3	duplicate(GD_Ev_Flower2)	#sch_flower_10	977
+
+schg_que01,79,91,3	duplicate(GD_Ev_Flower2)	#sch_flower_11	978
+
+schg_que01,79,88,3	duplicate(GD_Ev_Flower2)	#sch_flower_12	977
+
+schg_que01,79,85,3	duplicate(GD_Ev_Flower2)	#sch_flower_13	978
+
+schg_que01,79,82,3	duplicate(GD_Ev_Flower2)	#sch_flower_14	977
+
+schg_que01,79,79,3	duplicate(GD_Ev_Flower2)	#sch_flower_15	978
+
+schg_que01,79,76,3	duplicate(GD_Ev_Flower2)	#sch_flower_16	977
+
+schg_que01,79,73,3	duplicate(GD_Ev_Flower2)	#sch_flower_17	978
+
+schg_que01,79,70,3	duplicate(GD_Ev_Flower2)	#sch_flower_18	977
+
+schg_que01,79,67,3	duplicate(GD_Ev_Flower2)	#sch_flower_19	978
+
+schg_que01,79,64,3	duplicate(GD_Ev_Flower2)	#sch_flower_20	977
+
+schg_que01,79,61,3	duplicate(GD_Ev_Flower2)	#sch_flower_21	978
+
+schg_que01,79,58,3	duplicate(GD_Ev_Flower2)	#sch_flower_22	977
+
+schg_que01,84,58,3	duplicate(GD_Ev_Flower2)	#sch_flower_23	978
+
+schg_que01,89,58,3	duplicate(GD_Ev_Flower2)	#sch_flower_24	977
+
+schg_que01,94,58,3	duplicate(GD_Ev_Flower2)	#sch_flower_25	978
+
+schg_que01,99,58,3	duplicate(GD_Ev_Flower2)	#sch_flower_26	977
+
+schg_que01,104,58,3	duplicate(GD_Ev_Flower2)	#sch_flower_27	978
+
+schg_que01,109,58,3	duplicate(GD_Ev_Flower2)	#sch_flower_28	977
+
+schg_que01,114,58,3	duplicate(GD_Ev_Flower2)	#sch_flower_29	978
+
+schg_que01,119,58,3	duplicate(GD_Ev_Flower2)	#sch_flower_30	977
+
+schg_que01,124,58,3	duplicate(GD_Ev_Flower2)	#sch_flower_31	978
+
+schg_que01,129,58,3	duplicate(GD_Ev_Flower2)	#sch_flower_32	977
+
+schg_que01,129,105,3	duplicate(GD_Ev_Flower2)	#sch_flower_33	978
+
+schg_que01,129,103,3	duplicate(GD_Ev_Flower2)	#sch_flower_34	977
+
+schg_que01,129,100,3	duplicate(GD_Ev_Flower2)	#sch_flower_35	978
+
+schg_que01,129,97,3	duplicate(GD_Ev_Flower2)	#sch_flower_36	977
+
+schg_que01,129,97,3	duplicate(GD_Ev_Flower2)	#sch_flower_37	978
+
+schg_que01,129,94,3	duplicate(GD_Ev_Flower2)	#sch_flower_38	977
+
+schg_que01,129,91,3	duplicate(GD_Ev_Flower2)	#sch_flower_39	978
+
+schg_que01,129,88,3	duplicate(GD_Ev_Flower2)	#sch_flower_40	977
+
+schg_que01,129,85,3	duplicate(GD_Ev_Flower2)	#sch_flower_41	978
+
+schg_que01,129,82,3	duplicate(GD_Ev_Flower2)	#sch_flower_42	977
+
+schg_que01,129,79,3	duplicate(GD_Ev_Flower2)	#sch_flower_43	978
+
+schg_que01,129,76,3	duplicate(GD_Ev_Flower2)	#sch_flower_44	977
+
+schg_que01,129,73,3	duplicate(GD_Ev_Flower2)	#sch_flower_45	978
+
+schg_que01,129,70,3	duplicate(GD_Ev_Flower2)	#sch_flower_46	977
+
+schg_que01,129,67,3	duplicate(GD_Ev_Flower2)	#sch_flower_47	978
+
+schg_que01,129,64,3	duplicate(GD_Ev_Flower2)	#sch_flower_48	977
+
+schg_que01,129,61,3	duplicate(GD_Ev_Flower2)	#sch_flower_49	978
+
+schg_que01,129,58,3	duplicate(GD_Ev_Flower2)	#sch_flower_50	977
+
+schg_que01,124,105,3	duplicate(GD_Ev_Flower2)	#sch_flower_51	978
+
+schg_que01,119,105,3	duplicate(GD_Ev_Flower2)	#sch_flower_52	977
+
+schg_que01,114,105,3	duplicate(GD_Ev_Flower2)	#sch_flower_53	978
+
+schg_que01,109,105,3	duplicate(GD_Ev_Flower2)	#sch_flower_54	977
+
+schg_que01,104,105,3	duplicate(GD_Ev_Flower2)	#sch_flower_55	976

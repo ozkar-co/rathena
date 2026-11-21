@@ -1,0 +1,31 @@
+// Extracted entities — itemmall entry kept disabled
+// Source: npc/re/merchants/rgsr_in.txt
+
+itemmall,14,50,3	script	Equipment Reform PR Agent#it01	4_F_ZONDAGIRL,{
+	mes "[Equipment Reform PR Agent]";
+	mes "Hello, adventurer!";
+	mes "Are you unhappy with your equipment now?";
+	mes "Don't you want to try a new modification than just any other normal method?";
+	mes "Join the Regenschirm Institute!";
+	next;
+	switch( select( "Let's go.", "Listen to the explanation.", "Quit." ) ) {
+	case 1:
+		mes "[Equipment Reform PR Agent]";
+		mes "Good! Other facilities in the institute are confidential and are not accessible, so we will guide you on a special path where you outsiders can enter!";
+		close2;
+		warp "rgsr_in",125,170;
+		end;
+	case 2:
+		mes "[Equipment Reform PR Agent]";
+		mes "All around the world research is being conducted at the Regenschirm Institute to modify weapons, armor, accessories and other equipment items...";
+		mes "We're still collecting data and researching modifications, so we need a lot of adventurer's equipment to increase our modification research.";
+		next;
+		mes "[Equipment Reform PR Agent]";
+		mes "Research is ongoing, so please look forward to the addition of multiple new equipment as soon as it is completed!";
+		close;
+	case 3:
+		mes "[Equipment Reform PR Agent]";
+		mes "If you're interested later, come back!";
+		close;
+	}
+}

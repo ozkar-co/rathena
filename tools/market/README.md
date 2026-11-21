@@ -1,6 +1,8 @@
 # Market tools
 
-Technical specification: `data/market/SPEC.md`.
+> **2026-11-20:** `data/market/` was removed from the repo (design pivot). These scripts are stale until a new data layout exists. See `docs/ozro-design/18-repo-freeze-y-limpieza.md`.
+
+Technical specification (removed): former `data/market/SPEC.md`.
 
 ## Build the master
 

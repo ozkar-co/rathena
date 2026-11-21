@@ -678,146 +678,7 @@ OnInit:
 
 
 // Lighthalzen airport
-lhz_airport,187,40,6	duplicate(dummy_cloaked_npc)	Skia#ep162_03	4_EP16_SKIA
 
-lhz_airport,189,39,3	script	Crux#ep162_01	4_EP16_CRUX,{
-	if (terra_gloria_main < 3) {
-		cutin "ep16_crux_findel03.bmp",1;
-		mes "[Crux]";
-		mes "Oh, hello.";
-		mes "Nice to meet you here.";
-		mes "Me? I am just doing the task the Lady gave me.";
-		sleep2 300;
-		cutin "ep16_crux_findel02.bmp",1;
-		close2;
-		cutin "",255;
-		npctalk "I have to finish quickly and go back ...", "", bc_self;
-		end;
-	}
-	if (terra_gloria_main == 3) {
-		cutin "ep16_crux_findel01.bmp",2;
-		mes "[Crux]";
-		mes "Ah, have you arrived?";
-		mes "Have you come alone?";
-		mes "I heard Skia was coming too ...";
-		next;
-		cloakoffnpcself( "Skia#ep162_03" );
-		npctalk "I'm here!", "Skia#ep162_03", bc_self;
-		mes "[Crux]";
-		mes "Oh! You've arrived.";
-		mes "The Prince of the Heine family ordered me, so I came to Lighthalzen. Do you think that man will show up?";
-		cutin "ep16_crux_findel03.bmp",2;
-		next;
-		cutin "ep16_skia_nerius01.bmp",0;
-		mes "[Skia]";
-		mes "I think he will.";
-		mes "That man who used to be a chamberlain ... Didn't you write on the report that he was trying to contact someone?";
-		next;
-		mes "[Crux]";
-		mes "Yes. I did.";
-		mes "I thought he was seeking the person behind the chamberlain.";
-		mes "He was also asking for more payment.";
-		cutin "ep16_crux_findel01.bmp",2;
-		next;
-		cutin "ep16_skia_nerius01.bmp",0;
-		mes "[Skia]";
-		mes "According to Nihil, the person behind the chamberlain is likely to be in Lighthalzen.";
-		mes "Here or Einbroch. But Nihil said those guys would probably hate a city full of smoke.";
-		next;
-		mes "[Crux]";
-		mes "Hmm. Really?";
-		mes "Then the person behind him may be in a high position or have authority. Or he/she might be rich.";
-		cutin "ep16_crux_findel01.bmp",2;
-		next;
-		cutin "ep16_skia_nerius01.bmp",0;
-		mes "[Skia]";
-		mes "Umm. Anyway, what we have to do is find that guy here in Lighthalzen.";
-		mes "And what do we know about his features and clothes?";
-		next;
-		mes "[Crux]";
-		mes "A man with a neat appearance, with light brown hair down to his shoulders.";
-		mes "His name is Bruno ... Since it's such a common name, it may be an alias.";
-		cutin "ep16_crux_findel01.bmp",2;
-		next;
-		mes "[Crux]";
-		mes "I will investigate southern Lighthalzen, and the lady will investigate nearby the department store and hotel.";
-		mes "Adventurer, please search ^4d4dffthe north and northeast area^000000.";
-		next;
-		mes "[Crux]";
-		mes "Once you find anything, ^4d4dffplease meet in front of the central department store and we'll share information^000000.";
-		mes "Now let us move quickly.";
-		next;
-		cutin "ep16_skia_nerius01.bmp",0;
-		mes "[Skia]";
-		mes "Oh, yes.";
-		mes "Crux ... You are a great actor.";
-		mes "See you later.";
-		mes "You too, hero!";
-		erasequest 7731;// Secret Action
-		setquest 7732;// Searching the suspect
-		terra_gloria_main = 4;
-		close2;
-		cloakonnpcself( "Skia#ep162_03" );
-		cutin "",255;
-		end;
-	}
-	if (terra_gloria_main == 4) {
-		mes "[Crux]";
-		mes "I will investigate southern Lighthalzen, including the airport.";
-		mes "Adventurer, please take care of the north and northeast areas.";
-		cutin "ep16_crux_findel01.bmp",1;
-		next;
-		mes "[Crux]";
-		mes "Once you find anything, ^4d4dffplease meet in front of the central department store and we'll share information^000000.";
-		close3;
-	}
-	if (terra_gloria_main == 5) {
-		mes "[Crux]";
-		mes "Really? He headed to the slum?";
-		mes "We are in trouble.";
-		mes "I will follow you with the lady by any means.";
-		mes "Adventurer, please go there first.";
-		cutin "ep16_crux_findel03.bmp",1;
-		close3;
-	}
-	if (terra_gloria_main == 6) {
-		cutin "ep16_crux_findel01.bmp",1;
-		mes "[Crux]";
-		mes "You mean ... Bruno?";
-		mes "It will be difficult to use the airship. So we are moving separately.";
-		next;
-		mes "[Crux]";
-		mes "Don't worry about me, I will see you again in the palace.";
-		mes "Please give my regards to Lady Spica.";
-		close3;
-	}
-	if (terra_gloria_main == 7) {
-		cutin "ep16_crux_findel03.bmp",1;
-		mes "[Crux]";
-		mes "Don't you have to go to Yuno?";
-		close3;
-	}
-	if (terra_gloria_main == 8) {
-		cutin "ep16_crux_findel01.bmp",1;
-		mes "[Crux]";
-		mes "I have an appointment in the hotel in Lighthalzen.";
-		mes "Let's go.";
-		close3;
-	}
-	cutin "ep16_crux_findel01.bmp",1;
-	mes "[Crux]";
-	mes "I don't like leaving you like this for a long time ...";
-	mes "... I have no other choice.";
-	next;
-	cutin "ep16_crux_findel02.bmp",1;
-	mes "[Crux]";
-	mes "This is what you want.";
-	close3;
-
-OnInit:
-	questinfo( QTYPE_QUEST, QMARK_NONE, "isbegin_quest(7731) == 1" );
-	end;
-}
 
 // Lighthalzen
 lighthalzen,202,167,5	script	Skia#ep162_n	4_EP16_SKIA,{
@@ -1030,98 +891,6 @@ OnInit:
 }
 
 // Yuno Airport
-y_airport,168,41,3	script	Crux#ep162_04	4_EP16_CRUX,{
-	if (terra_gloria_main < 7) {
-		npctalk "... Ah ... I miss him.", "", bc_self;
-		end;
-	}
-	if (terra_gloria_main == 7) {
-		cutin "ep16_crux_findel01.bmp",2;
-		mes "[Crux]";
-		mes "I have been waiting.";
-		mes "Since there has been a change in the schedule, we might miss each other.";
-		next;
-		select("You are escorting Spica, right?");
-		mes "[Crux]";
-		mes "That's what I would like to talk about.";
-		mes "Do you know Lady Skia and I requested a meeting in Yuno earlier?";
-		next;
-		mes "[Crux]";
-		mes "Since there are too many eyes in Yuno as well as the presidential residence, they wanted to meet us in a different location.";
-		next;
-		mes "[Crux]";
-		mes "I thought Lady Spica would draw their attention if she stayed too long in Yuno. So she moved to the appointed place immediately.";
-		next;
-		mes "[Crux]";
-		mes "She disguised herself as a tourist ... and is now in ^4d4dffthe hotel in Lighthalzen^000000.";
-		next;
-		mes "[Crux]";
-		mes "I wanted to send her a note to update the changed schedule. But I thought I would meet her here ... So I've been waiting.";
-		next;
-		cutin "ep16_crux_findel02.bmp",2;
-		mes "[Crux]";
-		mes "... ...";
-		mes "Since we do these things secretly, this happens quite often.";
-		mes "I know it's funny, but I am sorry that your trip was in vain.";
-		next;
-		cutin "ep16_crux_findel01.bmp",2;
-		mes "[Crux]";
-		mes "But the Schwartz government is positive about it.";
-		mes "However, I don't know what kind of card the ladies showed them ...";
-		next;
-		mes "[Crux]";
-		mes "Well, I have to take care of my task.";
-		mes "Then let us go to ^4d4dffLighthalzen^000000.";
-		next;
-		if (select( "I will count on you.", "Wait a minute." ) == 2) {
-			mes "[Crux]";
-			mes "Please tell me when you are ready.";
-			mes "Then we will get going.";
-			close3;
-		}
-		mes "[Crux]";
-		mes "This way ...";
-		erasequest 7735;// Secret Action 2
-		setquest 7736;// Small differences between sightseeing and secret bussiness
-		terra_gloria_main = 8;
-		close2;
-		warp "lhz_airport",185,37;
-		end;
-	}
-	if (terra_gloria_main == 8) {
-		cutin "ep16_crux_findel01.bmp",2;
-		mes "[Crux]";
-		mes "Let's go to Lighthalzen.";
-		next;
-		if (select( "I will count on you.", "Wait a minute." ) == 2) {
-			mes "[Crux]";
-			mes "Please tell me when you are ready.";
-			mes "Then we will get going.";
-			close3;
-		}
-		mes "[Crux]";
-		mes "This way ...";
-		close2;
-		warp "lhz_airport",185,37;
-		end;
-	}
-	if (terra_gloria_main < 18) {
-		cutin "ep16_crux_findel01.bmp",2;
-		mes "[Crux]";
-		mes "The appointed place is ^4d4dffEinbroch train station^000000.";
-		mes "An agent named ^4d4dffLazy^000000 is waiting for us.";
-		mes "We have to hurry.";
-		close3;
-	}
-	cutin "ep16_crux_findel01.bmp",2;
-	mes "[Crux]";
-	mes "I never imagined that I would be traveling overseas ... I hope everything goes well.";
-	close3;
-
-OnInit:
-	questinfo( QTYPE_QUEST, QMARK_YELLOW, "isbegin_quest(7735) == 1" );
-	end;
-}
 
 // Lighthalzen In
 lhz_in02,238,150,0	script	#ep162_lhz_evt02	HIDDEN_WARP_NPC,1,1,{
@@ -14724,4 +14493,239 @@ payon_in03,194,39,3	script	Hunter Sherine#ep162	4_F_JOB_HUNTER,{
 		mes "... I'm sorry.";
 		close;
 	}
+}
+
+// OzRo: restored extract from quests_16_2.txt.disabled_maps_extract
+lhz_airport,187,40,6	duplicate(dummy_cloaked_npc)	Skia#ep162_03	4_EP16_SKIA
+
+lhz_airport,189,39,3	script	Crux#ep162_01	4_EP16_CRUX,{
+	if (terra_gloria_main < 3) {
+		cutin "ep16_crux_findel03.bmp",1;
+		mes "[Crux]";
+		mes "Oh, hello.";
+		mes "Nice to meet you here.";
+		mes "Me? I am just doing the task the Lady gave me.";
+		sleep2 300;
+		cutin "ep16_crux_findel02.bmp",1;
+		close2;
+		cutin "",255;
+		npctalk "I have to finish quickly and go back ...", "", bc_self;
+		end;
+	}
+	if (terra_gloria_main == 3) {
+		cutin "ep16_crux_findel01.bmp",2;
+		mes "[Crux]";
+		mes "Ah, have you arrived?";
+		mes "Have you come alone?";
+		mes "I heard Skia was coming too ...";
+		next;
+		cloakoffnpcself( "Skia#ep162_03" );
+		npctalk "I'm here!", "Skia#ep162_03", bc_self;
+		mes "[Crux]";
+		mes "Oh! You've arrived.";
+		mes "The Prince of the Heine family ordered me, so I came to Lighthalzen. Do you think that man will show up?";
+		cutin "ep16_crux_findel03.bmp",2;
+		next;
+		cutin "ep16_skia_nerius01.bmp",0;
+		mes "[Skia]";
+		mes "I think he will.";
+		mes "That man who used to be a chamberlain ... Didn't you write on the report that he was trying to contact someone?";
+		next;
+		mes "[Crux]";
+		mes "Yes. I did.";
+		mes "I thought he was seeking the person behind the chamberlain.";
+		mes "He was also asking for more payment.";
+		cutin "ep16_crux_findel01.bmp",2;
+		next;
+		cutin "ep16_skia_nerius01.bmp",0;
+		mes "[Skia]";
+		mes "According to Nihil, the person behind the chamberlain is likely to be in Lighthalzen.";
+		mes "Here or Einbroch. But Nihil said those guys would probably hate a city full of smoke.";
+		next;
+		mes "[Crux]";
+		mes "Hmm. Really?";
+		mes "Then the person behind him may be in a high position or have authority. Or he/she might be rich.";
+		cutin "ep16_crux_findel01.bmp",2;
+		next;
+		cutin "ep16_skia_nerius01.bmp",0;
+		mes "[Skia]";
+		mes "Umm. Anyway, what we have to do is find that guy here in Lighthalzen.";
+		mes "And what do we know about his features and clothes?";
+		next;
+		mes "[Crux]";
+		mes "A man with a neat appearance, with light brown hair down to his shoulders.";
+		mes "His name is Bruno ... Since it's such a common name, it may be an alias.";
+		cutin "ep16_crux_findel01.bmp",2;
+		next;
+		mes "[Crux]";
+		mes "I will investigate southern Lighthalzen, and the lady will investigate nearby the department store and hotel.";
+		mes "Adventurer, please search ^4d4dffthe north and northeast area^000000.";
+		next;
+		mes "[Crux]";
+		mes "Once you find anything, ^4d4dffplease meet in front of the central department store and we'll share information^000000.";
+		mes "Now let us move quickly.";
+		next;
+		cutin "ep16_skia_nerius01.bmp",0;
+		mes "[Skia]";
+		mes "Oh, yes.";
+		mes "Crux ... You are a great actor.";
+		mes "See you later.";
+		mes "You too, hero!";
+		erasequest 7731;// Secret Action
+		setquest 7732;// Searching the suspect
+		terra_gloria_main = 4;
+		close2;
+		cloakonnpcself( "Skia#ep162_03" );
+		cutin "",255;
+		end;
+	}
+	if (terra_gloria_main == 4) {
+		mes "[Crux]";
+		mes "I will investigate southern Lighthalzen, including the airport.";
+		mes "Adventurer, please take care of the north and northeast areas.";
+		cutin "ep16_crux_findel01.bmp",1;
+		next;
+		mes "[Crux]";
+		mes "Once you find anything, ^4d4dffplease meet in front of the central department store and we'll share information^000000.";
+		close3;
+	}
+	if (terra_gloria_main == 5) {
+		mes "[Crux]";
+		mes "Really? He headed to the slum?";
+		mes "We are in trouble.";
+		mes "I will follow you with the lady by any means.";
+		mes "Adventurer, please go there first.";
+		cutin "ep16_crux_findel03.bmp",1;
+		close3;
+	}
+	if (terra_gloria_main == 6) {
+		cutin "ep16_crux_findel01.bmp",1;
+		mes "[Crux]";
+		mes "You mean ... Bruno?";
+		mes "It will be difficult to use the airship. So we are moving separately.";
+		next;
+		mes "[Crux]";
+		mes "Don't worry about me, I will see you again in the palace.";
+		mes "Please give my regards to Lady Spica.";
+		close3;
+	}
+	if (terra_gloria_main == 7) {
+		cutin "ep16_crux_findel03.bmp",1;
+		mes "[Crux]";
+		mes "Don't you have to go to Yuno?";
+		close3;
+	}
+	if (terra_gloria_main == 8) {
+		cutin "ep16_crux_findel01.bmp",1;
+		mes "[Crux]";
+		mes "I have an appointment in the hotel in Lighthalzen.";
+		mes "Let's go.";
+		close3;
+	}
+	cutin "ep16_crux_findel01.bmp",1;
+	mes "[Crux]";
+	mes "I don't like leaving you like this for a long time ...";
+	mes "... I have no other choice.";
+	next;
+	cutin "ep16_crux_findel02.bmp",1;
+	mes "[Crux]";
+	mes "This is what you want.";
+	close3;
+
+OnInit:
+	questinfo( QTYPE_QUEST, QMARK_NONE, "isbegin_quest(7731) == 1" );
+	end;
+}
+
+y_airport,168,41,3	script	Crux#ep162_04	4_EP16_CRUX,{
+	if (terra_gloria_main < 7) {
+		npctalk "... Ah ... I miss him.", "", bc_self;
+		end;
+	}
+	if (terra_gloria_main == 7) {
+		cutin "ep16_crux_findel01.bmp",2;
+		mes "[Crux]";
+		mes "I have been waiting.";
+		mes "Since there has been a change in the schedule, we might miss each other.";
+		next;
+		select("You are escorting Spica, right?");
+		mes "[Crux]";
+		mes "That's what I would like to talk about.";
+		mes "Do you know Lady Skia and I requested a meeting in Yuno earlier?";
+		next;
+		mes "[Crux]";
+		mes "Since there are too many eyes in Yuno as well as the presidential residence, they wanted to meet us in a different location.";
+		next;
+		mes "[Crux]";
+		mes "I thought Lady Spica would draw their attention if she stayed too long in Yuno. So she moved to the appointed place immediately.";
+		next;
+		mes "[Crux]";
+		mes "She disguised herself as a tourist ... and is now in ^4d4dffthe hotel in Lighthalzen^000000.";
+		next;
+		mes "[Crux]";
+		mes "I wanted to send her a note to update the changed schedule. But I thought I would meet her here ... So I've been waiting.";
+		next;
+		cutin "ep16_crux_findel02.bmp",2;
+		mes "[Crux]";
+		mes "... ...";
+		mes "Since we do these things secretly, this happens quite often.";
+		mes "I know it's funny, but I am sorry that your trip was in vain.";
+		next;
+		cutin "ep16_crux_findel01.bmp",2;
+		mes "[Crux]";
+		mes "But the Schwartz government is positive about it.";
+		mes "However, I don't know what kind of card the ladies showed them ...";
+		next;
+		mes "[Crux]";
+		mes "Well, I have to take care of my task.";
+		mes "Then let us go to ^4d4dffLighthalzen^000000.";
+		next;
+		if (select( "I will count on you.", "Wait a minute." ) == 2) {
+			mes "[Crux]";
+			mes "Please tell me when you are ready.";
+			mes "Then we will get going.";
+			close3;
+		}
+		mes "[Crux]";
+		mes "This way ...";
+		erasequest 7735;// Secret Action 2
+		setquest 7736;// Small differences between sightseeing and secret bussiness
+		terra_gloria_main = 8;
+		close2;
+		//warp "lhz_airport",185,37; // OzRo: dst map no client (lhz_airport)
+		end;
+	}
+	if (terra_gloria_main == 8) {
+		cutin "ep16_crux_findel01.bmp",2;
+		mes "[Crux]";
+		mes "Let's go to Lighthalzen.";
+		next;
+		if (select( "I will count on you.", "Wait a minute." ) == 2) {
+			mes "[Crux]";
+			mes "Please tell me when you are ready.";
+			mes "Then we will get going.";
+			close3;
+		}
+		mes "[Crux]";
+		mes "This way ...";
+		close2;
+		//warp "lhz_airport",185,37; // OzRo: dst map no client (lhz_airport)
+		end;
+	}
+	if (terra_gloria_main < 18) {
+		cutin "ep16_crux_findel01.bmp",2;
+		mes "[Crux]";
+		mes "The appointed place is ^4d4dffEinbroch train station^000000.";
+		mes "An agent named ^4d4dffLazy^000000 is waiting for us.";
+		mes "We have to hurry.";
+		close3;
+	}
+	cutin "ep16_crux_findel01.bmp",2;
+	mes "[Crux]";
+	mes "I never imagined that I would be traveling overseas ... I hope everything goes well.";
+	close3;
+
+OnInit:
+	questinfo( QTYPE_QUEST, QMARK_YELLOW, "isbegin_quest(7735) == 1" );
+	end;
 }

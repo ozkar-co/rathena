@@ -1,0 +1,240 @@
+// Double Monster Race (p_track02) removed - no client asset
+
+hugel,47,56,0	script	#race_timer2-1	-1,{
+OnEnable:
+	enablenpc "#race_timer2-1";
+OnInit:
+	$@mon_time_2_1 = 2;
+	initnpctimer;
+	end;
+
+OnTimer10000:
+	mapannounce "hugel","The Dual Monster Race will soon begin. We hope to see many of you participate!",bc_map,"0xffb6c1";
+	end;
+
+OnTimer30000:
+	mapannounce "hugel","The Dual Monster Race Arena has just opened.",bc_map,"0xffb6c1";
+	$@mon_time_2_1 = 1;
+	donpcevent "#race_timer2-2::OnEnable";
+	donpcevent "TrapGlobal#race02::OnEnable";
+	enablenpc "Ticket Helper#2";
+	end;
+
+OnTimer90000:
+	mapannounce "hugel","The Dual Monster Race arena is now open. Participants should enter the Arena as soon as they can.",bc_map,"0xffb6c1";
+	end;
+
+OnTimer210000:
+	mapannounce "hugel","The entrance to the Dual Monster Race Arena will close shortly. Participants, please enter the arena now.",bc_map,"0xffb6c1";
+	end;
+
+OnTimer270000:
+	mapannounce "hugel","The Dual Monster Race Arena's entrance will soon close.",bc_map,"0xffb6c1";
+	end;
+
+OnTimer272000:
+	mapannounce "hugel","Participants, please enter the Arena before the doors close.",bc_map,"0xffb6c1";
+	end;
+
+OnTimer330000:
+	mapannounce "hugel","The race is now starting. If you missed your chance to enter this race, please try again next time~!",bc_map,"0xffb6c1";
+	$@mon_time_2_1 = 0;
+	disablenpc "#race_timer2-1";
+	stopnpctimer;
+	end;
+}
+
+hugel,62,69,1	script	Eckar Erenes#double	798,{
+	mes "[Eckar Erenes]";
+	mes "Welcome to the";
+	mes "Monster Race Arena,";
+	mes "the pride and joy of";
+	mes "the village of Hugel!";
+	mes "How may I help you?";
+	next;
+	if (select("Monster Race Info:Enter Monster Race") == 1) {
+		mes "[Eckar Erenes]";
+		mes "Monster Races originated from";
+		mes "simple children's games in which";
+		mes "Cute Pets would race against each other. This grew into an adult";
+		mes "pastime that is so popular, we've built a racing arena in Hugel.";
+		next;
+		mes "[Eckar Erenes]";
+		mes "Our Monster Race Arena hosts";
+		mes "two types of monster races. First, we have the Single Monster Race,";
+		mes "in which those that wagered on the 1st place monster are rewarded.";
+		next;
+		mes "[Eckar Erenes]";
+		mes "Then, we have the Dual Monster";
+		mes "Race in which the house odds and rewards are greater than in Single";
+		mes "Monster Races: you must wager on 2 monsters, and they must place in";
+		mes "1st and 2nd for you to win.";
+		next;
+		mes "[Eckar Erenes]";
+		mes "Although a small entrance";
+		mes "fee is required, we only use";
+		mes "the money to give rewards to";
+		mes "participants and maintain this";
+		mes "arena. Therefore, we're not";
+		mes "profiting from this enterprise.";
+		next;
+		mes "[Eckar Erenes]";
+		mes "Also, we prohibit others";
+		mes "from making personal bets";
+		mes "and wagers, using items and";
+		mes "zeny, based on the outcomes";
+		mes "of these races. That kind of";
+		mes "gambling is illegal here...";
+		next;
+		mes "[Eckar Erenes]";
+		mes "Once you enter the Race Arena, you will receive a Racing Ticket.";
+		mes "Keep in mind that winning Racing Tickets can only be exchanged for";
+		mes "Prize Medals during a 5 minute window after the end of the race.";
+		next;
+	}
+	mes "[Eckar Erenes]";
+	mes "The entrance fee for all races";
+	mes "in the Monster Race Arena is";
+	mes "2,000 zeny. If you'd like to wager on a Single Monster Race,";
+	mes "then please ask my brother";
+	mes "Ellebird to help you.";
+	next;
+	mes "[Eckar Erenes]";
+	mes "Otherwise, I'll help get you";
+	mes "started if you're interested";
+	mes "in a Dual Monster Race.";
+	mes "Would you like to wager";
+	mes "on a Dual Monster Race?";
+	next;
+	if (select("Yes, please.:No, thanks.") == 2) {
+		mes "[Eckar Erenes]";
+		mes "Very well. I hope that";
+		mes "you enjoy your time here";
+		mes "in the Monster Race Arena~";
+		close;
+	}
+	if (!checkweight("Jellopy",700)) {
+		mes "[Eckar Erenes]";
+		mes "Hmm... You're toting";
+		mes "too many things with you";
+		mes "right now. You better put";
+		mes "some of your stuff away in";
+		mes "Kafra Storage before you can";
+		mes "wager on any monster races...";
+		close;
+	}
+	if (Zeny < 2000) {
+		mes "[Eckar Erenes]";
+		mes "I'm sorry, but you";
+		mes "don't have enough";
+		mes "money to pay the";
+		mes "2,000 zeny entrance fee. ";
+		close;
+	}
+	if (countitem(7514)) {
+		mes "[Eckar Erenes]";
+		mes "Hm? What are you doing";
+		mes "with an expired Racing Ticket?";
+		mes "Well, I better get rid of it for you before it can get mixed up";
+		mes "with your new Racing Ticket.";
+		delitem 7514,1; //Monster_Ticket
+		next;
+		if ($@mon_time_2_1 == 1) {
+			mes "[Eckar Erenes]";
+			mes "Alright, I think you";
+			mes "should be all set. I hope";
+			mes "that you enjoy the race~";
+			mes "Let me guide you inside";
+			mes "the Monster Race Arena now.";
+			Zeny -= 2000;
+			monster_race_2_1 = monster_race_2_2 = 0;
+			close2;
+			//warp "p_track02",75,41; // OzRo: dst map no client (p_track02)
+			end;
+		}
+		else if ($@mon_time_2_1 == 2) {
+			mes "[Eckar Erenes]";
+			mes "We're still finishing our";
+			mes "preparations for the next";
+			mes "Double Monster Race, so";
+			mes "we ask that you please";
+			mes "wait a little while longer...";
+			close;
+		}
+	} else {
+		if ($@mon_time_2_1 == 1) {
+			mes "[Eckar Erenes]";
+			mes "Thanks, I hope that";
+			mes "you enjoy this race.";
+			mes "Let me guide you now";
+			mes "to the Monster Race Arena.";
+			Zeny -= 2000;
+			monster_race_2_1 = monster_race_2_2 = 0;
+			close2;
+			//warp "p_track02",75,41; // OzRo: dst map no client (p_track02)
+			end;
+		} else if ($@mon_time_2_1 == 2) {
+			mes "[Eckar Erenes]";
+			mes "We're still finishing our";
+			mes "preparations for the next";
+			mes "Double Monster Race, so";
+			mes "we ask that you please";
+			mes "wait a little while longer...";
+			close;
+		}
+	}
+	if ($@mon_time_2_2 == 1) {
+		mes "[Eckar Erenes]";
+		mes "Right now, a Monster Race";
+		mes "is in progress. It's too late to place a wager, but if you'd like";
+		mes "to watch, the fee is 500 zeny";
+		mes "for spectators. Would you like to enter the Monster Race Arena?";
+		next;
+		if (select("Enter:Cancel") == 2) {
+			mes "[Eckar Erenes]";
+			mes "Alright, then. If you'd like";
+			mes "to wager on a monster";
+			mes "race, please wait for the";
+			mes "current race to finish. I hope";
+			mes "that you enjoy your time here";
+			mes "in the Monster Race Arena~";
+			close;
+		}
+		if (Zeny > 499) {
+			mes "[Eckar Erenes]";
+			mes "Thank you~";
+			mes "I hope you enjoy";
+			mes "watching this race!";
+			Zeny -= 500;
+			monster_race_2_1 = monster_race_2_2 = 0;
+			close2;
+			//warp "p_track02",75,41; // OzRo: dst map no client (p_track02)
+			end;
+		}
+		mes "[Eckar Erenes]";
+		mes "I'm sorry, but you don't";
+		mes "have enough money to pay";
+		mes "the 500 zeny spectator fee.";
+		close;
+	}
+	mes "[Eckar Erenes]";
+	mes "I'm sorry, but a monster";
+	mes "race has just ended, so we're";
+	mes "having the 5 minute period in";
+	mes "which the winners can claim";
+	mes "their Prize Medals. The gate";
+	mes "will open soon, so please wait.";
+	close;
+OnEnable:
+	enablenpc "Eckar Erenes#double";
+	end;
+OnDisable:
+	disablenpc "Eckar Erenes#double";
+	end;
+}
+
+		donpcevent "#race_timer2-3::OnEnable";
+
+			donpcevent "Eckar Erenes#double::OnEnable";
+
+			donpcevent "Eckar Erenes#double::OnDisable";
