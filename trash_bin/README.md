@@ -14,7 +14,7 @@ Archivo de contenido **no usado** en OzRo Renewal estable. Misma estructura de r
 
 ## Reactivar algo
 
-- **NPC:** mover a `npc/...` o línea `npc: trash_bin/npc/...` en `scripts_custom.conf` (las referencias comentadas en conf ya usan ese prefijo).
+- **NPC:** buscar en `MANIFEST.txt`, mover a `npc/...` y volver a declarar `npc:` en el conf activo.
 - **DB/doc/SQL:** copiar solo el archivo o subárbol necesario; no restaurar carpetas enteras sin revisión.
 
 Documentación del proceso: [`docs/ozro-design/18-repo-freeze-y-limpieza.md`](../docs/ozro-design/18-repo-freeze-y-limpieza.md).

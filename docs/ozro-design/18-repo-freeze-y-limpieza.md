@@ -13,7 +13,7 @@ Reducir ruido en el árbol del servidor sin perder referencia: lo que no carga e
 
 - **Criterio:** scripts `.txt` / `.yml` bajo `npc/` que no aparecen en la cadena activa de `npc/re/scripts_main.conf` (imports + líneas `npc:` sin comentar) ni en imports activos de `npc/barters.yml`.
 - **Cantidad:** 335 archivos movidos (manifiesto en `trash_bin/MANIFEST.txt`).
-- **Config:** en 17 `.conf` / barters, rutas comentadas actualizadas a `trash_bin/npc/...` para recuperación rápida.
+- **Config:** líneas `npc:` de scripts archivados eliminadas de los `.conf` / barters (el inventario queda en `trash_bin/MANIFEST.txt`).
 - **Verificación:** 884 entradas `npc:` activas, 0 rutas faltantes en disco.
 
 ### 2. Fase “muy seguro” → `trash_bin/`
@@ -45,7 +45,7 @@ trash_bin/
 ```
 
 - **Consultar:** buscar en `MANIFEST.txt` o `rg` bajo `trash_bin/`.
-- **Recuperar un NPC:** mover a `npc/...` o descomentar `npc:` con ruta `trash_bin/npc/...`.
+- **Recuperar un NPC:** buscar en `MANIFEST.txt`, mover de `trash_bin/npc/...` a `npc/...` y añadir de nuevo la línea `npc:` en el conf correspondiente.
 - **Recuperar pre-re / SQL / doc:** copiar de vuelta solo lo necesario; no reimportar carpetas enteras sin revisar.
 
 ## Política Ozro (custom only)
