@@ -33,6 +33,7 @@ Lluvia de ideas del documento antiguo, **reformuladas** y etiquetadas. No es lis
 | Gambler → refine safe con monedas OzRo | `reformular` | Sin Special Gold; “si falla no se rompe”, no nivel fijo |
 | Resurrect con costo de item | `pendiente` | Similar a Call Homunculus (que ya gasta Germination_Breed + Yggdrasilberry_Dew); caro pero no prohibitivo; definir item/cantidad |
 | Monedas OzRo por tiers | `pendiente` | Bronce/plata/oro/platino; definir usos a medida que crece el contenido |
+| Revisar barter Mysterious Cookie Shop (Malangdo) | `pendiente` | `@warp malangdo 124 152` — barters stone/costume; revisar con detalle la desc de la moneda que usa |
 | Stock Market NPC | `en-repo` | `npc/custom/etc/stock_market.txt` |
 | Blessed Ores en vez de Safe tickets + quest lore | `pendiente` | |
 | Incluir más cajas cashshop + World Tour Ticket crafteable | `pendiente` | |
