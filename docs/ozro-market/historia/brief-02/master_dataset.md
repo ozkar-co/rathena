@@ -1169,6 +1169,45 @@ Cada registro debe representar un script asociado a un ítem.
 
 El análisis semántico de los scripts puede ser asistido por LLM, pero el contenido original debe permanecer intacto.
 
+### Triggers (capa original YAML)
+
+| `script_kind` | `trigger` | Notas |
+|---|---|---|
+| `Script` | `OnUse` | En equipamiento rAthena también aplica bonos pasivos vía este campo (mayoría de gears). |
+| `EquipScript` | `OnEquip` | Raro en RE (~decenas); efectos al equipar. |
+| `UnEquipScript` | `OnUnequip` | Más frecuente que EquipScript; cleanup de SC/efectos. |
+
+Un ítem YAML tiene **como máximo un** bloque por kind → PK lógica `(item_id, script_kind)`.
+
+### Hallazgos Etapa 3 — Item Scripts (OzRo)
+
+| Métrica | Valor |
+|---|---|
+| Scripts extraídos | ~20300 |
+| Ítems con ≥1 script | ~19984 (= `has_script` del catálogo; cobertura 1:1) |
+| `Script` / `UnEquipScript` / `EquipScript` | ~19968 / ~313 / ~19 |
+| Ítems con ≥2 kinds | ~315 (casi todos Script+UnEquip) |
+| `parse_status: effects_partial` | ~20231 |
+| `parse_status: raw` | ~69 (tras etiquetar cmds frecuentes) |
+
+Tags principales: `bonus` ~13.8k · `getitem` ~4.0k · `effect`/`hateffect` ~0.7k · `status`/`skill`/`heal` ~0.6k · `laphine` ~382 · `reform` ~137 · `rent`/`pet`/`mercenary` · …
+
+#### Huecos identificados (revisión pre-commit)
+
+| Hueco | Estado |
+|---|---|
+| Cobertura vs `has_script` | Cerrado (0 faltantes) |
+| `pet;` / cmds bare `cmd;` | Cerrado (matcher acepta `;`) |
+| `hateffect` / laphine / reform / rent / mercenary | Cerrado como tags |
+| ~2764 scripts con `getgroupitem*` | **Diferido** → Boxes / `item_group_db` |
+| ~60 `callfunc` | **Diferido** (expandir cuerpo) |
+| ~69 raw residual | roulette / searchstores / showscript / `if` / zeny / announce — OK dejar raw |
+| Combos `item_combos.yml` | **Diferido** (no están YAML Script) |
+| Semántica LLM / efectos condicionales | **Diferido** |
+| `db/import/item_db.yml` scripts | 0 en OzRo hoy |
+
+**Hecho:** original + hash + trigger + tags parciales. **No inventar** significado de raw/callfunc/groups.
+
 ---
 
 # 11. ITEM RESTRICTIONS — Restricciones
@@ -1962,6 +2001,7 @@ Orden de trabajo (Skills **antes** de NPCs):
 - **NPC Shops:** headers → `npc_shops` / `npc_shop_items`; `callshop` → `npc_shop_links` (literal/prefijo resuelto; barter solo clasificado).
 - **Barter inventory / callshop dinámico / buysell runtime:** diferidos (ver §16).
 - **NPC script analysis:** evidencia de cuerpo → `functions`; duplicates heredan; pending ~9k; ruido Transport/Healer aceptado.
+- **Item Scripts:** cobertura 1:1 con `has_script`; tags parciales (~69 raw OK); groups/`callfunc`/combos diferidos (ver §10).
 
 ## Etapa 4 — Resolución de valores efectivos
 
