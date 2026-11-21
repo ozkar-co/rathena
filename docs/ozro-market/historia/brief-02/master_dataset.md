@@ -529,7 +529,7 @@ Con ese inventario se determina `functions` de forma efectiva: marcar solo lo de
 
 **Shops (headers):** ~342 tiendas (`shop` 300 · `marketshop` 42); ~2911 filas ítem; ~555 ítems únicos. Currency: `zeny`. `cashshop`/`itemshop`/`pointshop` no aparecen en scripts enabled (parser listo).
 
-**callshop → inventario (hecho, parcial):** ~98 usos. Literales → `shop_id` **70**; prefijo (`"market_refine_" + …`) **1** → 7 marketshops. **24** → **barter** (nombres ~66 indexados desde `barters.yml` enabled, sin inventario; incluye prefijos `shop_ext162_*`). **1** dinámico. Residuo: `EnchantGradeExchange` ×2 — barter solo en `trash_bin/…/enchantgrade.yml`, **no** cargado en OzRo.
+**callshop → inventario (hecho, parcial):** ~98 usos. Literales → `shop_id` **70**; prefijo (`"market_refine_" + …`) **1** → 7 marketshops. **24** → **barter** (nombres ~66 indexados desde `barters.yml` enabled, sin inventario; incluye prefijos `shop_ext162_*`). **1** dinámico. Residuo: `EnchantGradeExchange` ×2 — barter de grade UI, **no** cargado en OzRo.
 
 **Decisión:** resolver de una vez el enlace callshop→tienda ya parseada (cara del NPC + inventario flotante). **No** meter inventario barter aquí: modelo distinto (`RequiredItems`, stock, zeny/ítem) → paso/dominio propio después.
 
@@ -1765,8 +1765,8 @@ Criterio OzRo: stone “suelto” (en DB, sin NPC/UI que lo entregue) = inventar
 
 | Sistema | Estado |
 |---|---|
-| UI `item_enchant` / `item_reform` | **Off** — lab `rgsr_in.txt` → `trash_bin` (PACKETVER ≥ 2021-11-03) |
-| UI `enchantgrade` + mapa `grademk` | **Off** — `enchantgrade.txt` → `trash_bin`; mapa unload (`C3dWorldRes Unsupported Version`) |
+| UI `item_enchant` / `item_reform` | **Off** — lab reform NPCs no cargados (PACKETVER ≥ 2021-11-03) |
+| UI `enchantgrade` + mapa `grademk` | **Off** — NPCs/warps no cargados; mapa no listado (`C3dWorldRes Unsupported Version`) |
 | Mapa `rgsr_in` | **On** — quest EP17.1 (`quests_17_1.txt`); lab reform ya no carga |
 | Craftsman / Mora / Mal / Verus / … (`getitem2`) | **On** — smoke OK |
 | Orbs en slot (`@item2 … 310478`) | **On** — buffs aplican; se quedan en catálogo |
@@ -1843,7 +1843,9 @@ Un combo puede involucrar dos o más ítems.
 
 **Hecho:** `item_combo_groups` (script + effect tags) / `item_combo_sets` / `item_combo_members`; gate cliente; import `Clear` soportado.
 
-**Pending:** grafos consume/produce; refine/socket; skill/quest item deps (§22.2).
+**Nota — combos muertos (hecho):** ~4236 sets / 2749 groups purgados de `db/re/item_combos.yml` (miembro ausente del `item_db` OzRo). Re-extract: `skipped=0`. Tool: `ozro-data/tools/purge_dead_item_combos.py`.
+
+**Pending:** grafos consume/produce; refine/socket; skill/quest item deps (§22.2); Acquisition Sources (§14) para obtenibilidad completa de ítems vivos.
 
 ## 22.2. Dependencias
 
