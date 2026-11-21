@@ -1420,6 +1420,17 @@ Las probabilidades deben conservar su unidad original y, cuando sea posible, su 
 
 **Estado vs Etapa 3:** el dominio Acquisition es la **unión** de fuentes ya extraídas (drops, shops, boxes, recipes, quests, …). No formaba parte del orden E3 1–14; el extract unificado y la obtenibilidad completa de ítems vivos son trabajo de catálogo posterior al cierre del orden (no Etapa 4). Las **probabilidades efectivas** de cada fuente se resuelven en Etapa 4.
 
+### Hallazgos — Acquisition unificado
+
+| Métrica | Valor |
+|---|---|
+| Filas `acquisition_outputs` | ~51446 |
+| Por tipo | mob_drop ~13123 · map_drop ~679 · npc_shop ~2911 · npc_barter ~1114 · box_reward ~33178 · crafting ~293 · quest_drop ~69 · enchanting ~79 |
+| Ítems cliente con ≥1 fuente | ~10031 / ~22622 |
+| Sin fuente en unión actual | ~12591 (pool no cableado: cash/script/custom/event; no son huecos de contenido) |
+
+**Hecho:** unión de reports existentes (+ barters + stones NPC). **Fuera de alcance aquí:** rewards solo-script de quest/instance; probs efectivas (Etapa 4).
+
 ---
 
 # 15. DROPS — Extracción de drops
@@ -1554,7 +1565,18 @@ También deben identificarse las tiendas que utilicen monedas o recursos distint
 
 **Etapa 3 (hecho):** headers + `npc_shop_links` (`callshop` literal/prefijo → `shop_ids` + inventario ya extraído).
 
-**Etapa 3 (alcance shops headers/callshop):** cerrado. Inventario **barter** = extract de catálogo aparte (modelo `RequiredItems`). Precio `-1`, buysell runtime → **Etapa 4**.
+**Etapa 3 (alcance shops headers/callshop):** cerrado. Precio `-1`, buysell runtime → **Etapa 4**.
+
+### Hallazgos — Barters (inventario)
+
+| Métrica | Valor |
+|---|---|
+| Barters (`Name`) | 66 |
+| Ofertas (cliente) | ~1114 (~806 ítems únicos) |
+| `RequiredItems` resueltos | ~1028 |
+| Ofertas skip (no cliente / unresolved) | ~4 offer · ~90 unresolved incl. reqs |
+
+**Hecho:** árbol `npc/barters.yml` → Imports; gate cliente en oferta. Nombres = shops flotantes (`callshop`), no `npc_id` de script header.
 
 ---
 
@@ -1770,7 +1792,18 @@ Criterio OzRo: stone “suelto” (en DB, sin NPC/UI que lo entregue) = inventar
 
 **Hecho:** corte superficie lab reform + grade; orbs/stones catalogables aparte de cards; equip `equip_level_min` ya en items (filtrar 175+ después).
 
-**Etapa 3 (stones/orbs + corte UI):** cerrado. Inventario NPC `getitem2` (Craftsman/Mora/socket) y Random Options (§21bis) = extracts de catálogo posteriores al orden E3, no Etapa 4.
+**Etapa 3 (stones/orbs + corte UI):** cerrado.
+
+### Hallazgos — NPC `getitem2` / socket
+
+| Métrica | Valor |
+|---|---|
+| Scripts inventariados | 31 (enchanting 28 · socketing 3) |
+| Filas ítem (stone/target) | ~177 |
+| Stones / targets únicos | ~63 / ~98 |
+| Craftsman (`enchan_arm`) | stones 4700–4752 + targets setarray OK |
+
+**Hecho:** evidencia `set_addpart` / `setarray` enchant* / `getitem2` literales. Socket Seiyablem/Leablem registrados como servicio (`socketing`) sin pool de stones (no usan `getitem2`).
 
 ## 21bis. RANDOM OPTIONS (dominio aparte)
 
@@ -1783,7 +1816,17 @@ Criterio OzRo: stone “suelto” (en DB, sin NPC/UI que lo entregue) = inventar
 | Fuentes | `item_randomopt_db.yml`, `item_randomopt_group.yml`, drops/`RandomOptionGroup` | `item_db` + NPC/`getitem2` / (UI moderna off) |
 | Etapa | Extract de catálogo (no depende del resolver E4) | §21 |
 
-Debe tener extract propio (catálogo de opciones + grupos + vínculo ítem/drop). No mezclar con `item_enchant.yml`. Fuera del orden E3 1–14; no bloquea el cierre formal de ese orden.
+### Hallazgos
+
+| Métrica | Valor |
+|---|---|
+| Opciones (`item_randomopt_db`) | 249 |
+| Grupos | 108 |
+| Entradas slot / Random | ~3237 / ~653 |
+| Links drop→grupo | 336 (0 grupos desconocidos) |
+| Chance unit | per_10000 |
+
+**Hecho:** catálogo + import override + `drop_random_option_links`. No mezclar con `item_enchant.yml`.
 
 ---
 
