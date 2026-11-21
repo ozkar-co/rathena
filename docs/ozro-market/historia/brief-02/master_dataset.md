@@ -261,7 +261,7 @@ La información debe permitir:
 | `height` | Integer | Alto, cuando esté disponible |
 | `source` | JSON | Procedencia |
 
-Las categorías iniciales serán:
+Las categorías serán:
 
 - City.
 - Field.
@@ -270,25 +270,39 @@ Las categorías iniciales serán:
 - Quest.
 - Guild.
 - Interior.
+- Arena.
+- Transport.
+- Special.
 
-No deben ser necesariamente excluyentes. Un mapa puede quedar sin categoría principal si las heurísticas no alcanzan; eso debe quedar explícito (`category` nulo), no forzado.
+No deben ser necesariamente excluyentes. Todo mapa enabled debe recibir una `category` principal en Etapa 2 (usar `Special` si no encaja; no dejar nulo).
 
 ### Reglas de clasificación verificadas (Etapa 2)
 
 | Señal | Fuente canónica | Notas |
 |---|---|---|
-| `is_town` / City | Mapflags `npc/mapflag/town.txt` + `npc/re/mapflag/town.txt` (ambos cargados por `scripts_main`) | No inventar listas fijas de ciudades. |
-| Instance | `instance_db` + nombres `N@…` | Membership en DB prima sobre naming. |
-| Field / Dungeon / Interior / Guild / Quest | Heurísticas de nombre + normalización | Capa `inferred`. Ampliar con spawns/scripts en Etapa 3. |
-| `display_name` | Cliente `data/mapnametable.txt` (vía inventario GRF) | No confundir con texturas `display_mapname/`. |
-| `width` / `height` | Cabecera `.gat` del stack activo | Requiere decode DES del GRF cuando el entry está cifrado. |
-| Recurso presente | `client_maps.jsonl` (rsw+gat+gnd) | El cliente no define categorías. |
-| `access_conditions` | Mapflags + scripts + quests/instances | Etapa 3+, no solo el extractor de Maps. |
+| `is_town` | Solo mapflags `town` (pre-re + re) | Flag mecánico (p. ej. mailbox). **No** equivale a “es una ciudad del lore”. Ej.: `morocc` puede ser hub sin `town`. |
+| City | `is_town` **o** hubs urbanos explícitos sin mapflag | Lista corta documentada en el extractor (p. ej. `morocc`, `niflheim`). |
+| Instance | `instance_db` + nombres `N@…` | Prima sobre naming. |
+| Guild | `gld_` / `gld2_` / castillos / `06guild` / etc. | Guild dungeons y castillos. |
+| Dungeon | Heurísticas incl. `gl_*` (Glast Heim), `*_dun*`, `gefenia`, etc. | `gl_cas` / `gl_church` son dungeons. |
+| Arena | `force_*`, `ordeal_*`, `guild_vs`, etc. | PvP / pruebas. |
+| Transport | `airplane`, `airport`, naves | |
+| Field | `_fild` / campos conocidos sin sufijo (`mjolnir_*`) | |
+| Interior | `_in`, `in_*`, `ba_*`, iglesias/castillos interiores, etc. | |
+| Quest / Special | `que_*` / `evt_*` / utilitarios | `Special` = cajón etiquetado, no null. |
+| `display_name` | 1) `mapnametable.txt` 2) fallback `instance_db.Name` 3) null | Ver abajo. |
+| `width` / `height` | Cabecera `.gat` | |
+| Recurso presente | `client_maps.jsonl` | |
+| `access_conditions` | Mapflags + scripts + quests/instances | Etapa 3+. |
 
-Hallazgos a tener en cuenta:
+### `display_name` ausente ≠ mapa injugable
 
-- Una fracción material de mapas enabled queda sin categoría por naming (transporte, arenas `force_*`, interiores `ba_*`, etc.). No son errores de extracción; son deuda de taxonomía.
-- `is_accessible` en Etapa 2 = “está en `maps_athena` habilitado”. Condiciones reales de acceso van aparte.
+El exportador de cliente **ya** entrega `display_name` cuando existe en `mapnametable.txt`. Si falta:
+
+- El mapa puede seguir siendo **jugable** si tiene rsw+gat+gnd (`client_resource_present`).
+- El cliente suele mostrar el `map_id` técnico o un título de instancia/UI.
+- Fallback permitido en el extractor de Maps: nombre de `instance_db` para mapas de instancia.
+- No inventar nombres bonitos; si no hay fuente, `display_name` queda null y se reporta.
 
 ## 5.3. Fuentes
 
@@ -296,11 +310,11 @@ Hallazgos a tener en cuenta:
 |---|---|
 | Existencia del mapa | `conf/maps_athena.conf` (líneas `map:` habilitadas) |
 | Nombre técnico | Mismo conf / `map_index` |
-| Nombre visible | Cliente: `mapnametable.txt` |
+| Nombre visible | Cliente `mapnametable.txt`; fallback servidor `instance_db` |
 | Disponibilidad del recurso | Inventario GRF (`ozro-cli` → `client_maps.jsonl`) |
 | Dimensiones | Cliente: cabecera `.gat` |
 | `is_town` | Mapflags `town` (pre-re + re) |
-| Clasificación restante | Extracción + normalización (inferida) |
+| Clasificación | Extracción + normalización (inferida) |
 | Condiciones de acceso | Scripts, mapflags, quests, instances |
 
 ## 5.4. Criterio de extracción
@@ -524,31 +538,39 @@ No todos los registros de `mob_db` son monstruos de campo farmeables. El catálo
 | `aegis_name` | Nombre Aegis (`AegisName`) |
 | `name` | Nombre en inglés del YAML (`Name`) |
 | `display_name` | Nombre visible al jugador, cuando exista fuente distinta |
-| `mob_class` | Valor original `Class` del YAML (ver abajo) |
-| `mob_role` | Rol normalizado del registro (ver abajo) |
+| `mob_class` | Protocolo de clase rAthena (`Class` YAML): Normal, Boss, Event, … |
+| `is_mvp` | Flag **distinto**: tiene recompensa/identidad MVP (`MvpExp` hoy; ampliable) |
+| `mob_role` | Rol de aparición / uso del registro (ver abajo) |
 | `sprite_name` | Nombre del recurso visual |
 | `has_sprite` | Existencia del recurso en el cliente activo |
 
-### `mob_class` vs MVP (hallazgo Etapa 2)
+### Boss protocol vs MVP (dos campos, no uno)
 
-`Class` en `mob_db` **no** es `{Normal, Boss, MVP}`.
+| Campo | Significa | No significa |
+|---|---|---|
+| `mob_class = Boss` | **Boss protocol** de rAthena (reglas de combate/exp/damage distintas) | Que sea MVP anunciable / farmeable como MVP |
+| `is_mvp = true` | Es MVP (hoy: `MvpExp` presente; luego MVP drops/spawn flags) | Que `Class` sea Boss |
 
-Valores observados en OzRo RE: `Normal`, `Boss`, `Event`, `Guardian`, `Battlefield`.
+Puede haber Boss protocol **sin** ser MVP (mayoría). Puede haber MVP que también sea Boss. **Nunca** colapsar ambos en un solo enum.
 
-**MVP no es un `Class`.** Se deriva (p. ej. presencia de `MvpExp` / MVP drops / convenciones de spawn). En el snapshot Etapa 2: cientos de `Class: Boss` sin `MvpExp`. Los consumidores no deben tratar “Boss” como sinónimo de MVP.
-
-### `mob_role` (normalizado, ampliable)
+### `mob_role` y qué significa `field` provisional
 
 | Rol | Descripción | Ejemplos observados |
 |---|---|---|
-| `field` | Mob de mundo / cacería vía spawn de mapa (default provisional hasta Etapa 3) | Mayoría del `mob_db` |
-| `skill_summon` | Invocado por skill de jugador; HP/stats a menudo en skill, no en YAML | ABR Meister (`20834–20837`), Biolo wooden (`20848–20851`) |
-| `quest_prop` | Prop/blanco de quest o script; no economía de drops | Blancos Rebellion (`3169–3170`), `GLASS_PLATE` |
-| `pet` | Definido como pet (`pet_db`), no spawn de campo | `J_TAINI` |
-| `stub` | Entrada mínima (casi solo Id/Aegis/Name); sin uso hallado | `MD_PRI_DRAGON_1..4` |
-| `unknown` | Aún no clasificado | — |
+| `field` | **Pendiente de evidencia de spawn** (ver abajo) | Default actual para el grueso del `mob_db` |
+| `skill_summon` | Invocado por skill de jugador | ABR / Biolo wooden |
+| `quest_prop` | Prop/blanco de quest o script | Rebellion targets, `GLASS_PLATE` |
+| `pet` | Solo tiene sentido como pet, no como mob de mapa | `J_TAINI` |
+| `stub` | Entrada mínima sin uso hallado | `MD_PRI_DRAGON_*` |
+| `unknown` | Reservado; preferir no usarlo si hay default explícito | — |
 
-El rol puede combinarse con evidencia de spawns/skills/pets. Hasta completar Etapa 3, muchos quedarán `field` o `unknown` de forma provisional; los casos estudiados (summons/stubs/props) deben etiquetarse en cuanto se conozcan.
+**`field` provisional no afirma** “este mob aparece en un field map”. Significa:
+
+1. No lo clasificamos aún como summon/pet/prop/stub.
+2. **Aún no corrimos Etapa 3 (spawns/scripts)** para demostrar aparición en mapa.
+3. Por tanto incluye ruido: dummies sin identity, mobs solo de instancia, mobs de script, etc.
+
+Tras Etapa 3, `field` debería restringirse a mobs con spawn de mapa (u otro rol más preciso: `instance_mob`, `event_mob`, …). Hasta entonces, **no usar `mob_role=field` como filtro de economía/farmeo**.
 
 ### Propiedades
 
@@ -789,15 +811,48 @@ Observado en OzRo (~3104 ítems):
 
 Implicación de modelo:
 
-1. **Capa original:** conservar `type` = `Armor` y `locations` tal cual el YAML.
-2. **Capa normalizada:** `is_costume = true` si alguna location empieza por `Costume_`.
-3. **`item_category`:** `Costume` cuando `is_costume` (no mezclarlos con Armor de combate en filtros de economía/UI).
-4. **`equip_location`:** location costume concreta (p. ej. `Costume_Head_Top`).
-5. **`equip_location_family`:** familia de slot comparable al equipo normal (`head_top` / `head_mid` / `head_low` / `garment`), para relacionar “versión costume” vs “versión equipable” del mismo slot visual.
+1. **Capa original:** `type`, `locations` (dict YAML) — única fuente cruda.
+2. **`is_costume`:** true si alguna location es `Costume_*`.
+3. **`item_category`:** `Costume` cuando `is_costume`.
+4. **Slots normalizados:** ver regla de verdad única abajo (aplica a costume y no costume).
 
 Shadow Gear es ortogonal: locations `Shadow_*` (y/o `Type: ShadowGear`) → categoría `Shadow Gear`, no costume.
 
 No usar el nombre del ítem (“Costume …”) como fuente de verdad; solo `Locations`.
+
+### Verdad única de slots de equipo (Etapa 2 — corregir dualidad)
+
+**Prohibido** mantener un `equip_location` “primario” parcial además de `locations` como si fueran dos verdades.
+
+| Campo | Capa | Regla |
+|---|---|---|
+| `locations` | original | Dict/list exacto del YAML. |
+| `equip_slot_key` | normalized | **Una** clave sintética derivada del conjunto ordenado de locations de equipo (no cards). |
+| `equip_slot_families` | normalized | Lista de familias (`head_top`, `garment`, …) cubiertas por ese conjunto. |
+
+Ejemplos de `equip_slot_key` (sintéticos):
+
+| Locations | `equip_slot_key` |
+|---|---|
+| `Head_Top` | `head_top` |
+| `Head_Top`+`Head_Mid` | `headgear_top_mid` |
+| `Head_Top`+`Head_Mid`+`Head_Low` | `headgear_entire` |
+| `Costume_Head_Top`+`Costume_Head_Mid` | `costume_headgear_top_mid` |
+| `Costume_*` (las tres) | `costume_headgear_entire` |
+| `Right_Hand` | `right_hand` |
+
+La función de síntesis vive en el normalizador de ítems (Etapa 2). Ampliar la tabla de sintéticos sin cambiar el esquema.
+
+### Cards: campo aparte (no reutilizar equip slots)
+
+Las `Locations` de una **Card** significan *en qué slot de equipo puede insertarse la carta*, no que la carta se “equipe” como armadura.
+
+| Campo | Uso |
+|---|---|
+| `card_insert_slots` | Lista/clave sintética de slots donde la carta puede ir |
+| `equip_slot_key` | **null** para `Type: Card` |
+
+No exponer cards en filtros de “equipamiento por slot” via `equip_slot_key`.
 
 ### Separación de Cards y Enchantments
 
