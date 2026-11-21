@@ -1467,6 +1467,53 @@ El resultado debe ser el rate efectivo utilizado por OzRo.
 
 Se conservará también el valor original para auditoría.
 
+## 15.3. Hallazgos Etapa 3 (OzRo)
+
+| Métrica | Valor |
+|---|---|
+| Filas drop | ~13810 |
+| `normal` / `mvp` / `map_specific` | ~12607 / ~516 / ~687 |
+| Mobs / ítems únicos | ~1940 / ~3174 |
+| Ítems/mobs sin resolver | 0 |
+
+### Drops de `mob_db` (`normal` / `mvp`)
+
+**Rates:** merge `conf/battle/drops.conf` → `conf/import/battle_conf.txt`. Ajuste lineal `rate * rate_adjust/100` acotado min/max (`mob_drop_adjust`; `logarithmic_drops` off). Unidad: **per_10000**.
+
+| Lista | Rate key |
+|---|---|
+| `MvpDrops` | siempre `item_rate_mvp` |
+| `Drops` + treasure | `item_rate_treasure` si `RaceGroups.Treasure` |
+| `Drops` resto | `item_rate_{heal\|use\|equip\|card\|common}{,_boss\|,_mvp}` según tipo + boss_kind |
+
+`rate_status`: `adjusted` | `pending_config_verify` (MVP-normal con `*_mvp` aún en 100/1× del conf base).
+
+### Map bonus (`map_specific`) — capa distinta
+
+Fuente: `db/re/map_drops.yml` (`GlobalDrops` / `SpecificDrops`). **No reemplaza** la tabla del mob: es drop **extra** al matar en ese `map_id`.
+
+| Campo | Valor / semántica |
+|---|---|
+| `drop_category` | `map_specific` |
+| `is_map_bonus` | `true` |
+| `map_id` | obligatorio |
+| `rate_unit` | **`per_100000`** (doc rAthena; ≠ mob_db) |
+| `chance_effective` | = `chance_base` YAML (sin `item_rate_*`) |
+| `stealable` | siempre `false` |
+| `rate_status` | `map_yaml_base` |
+
+UI/guías: listar aparte (“bonus si farméas en este mapa”); no sumar ciegas a drops “del mob en general”.
+
+### Pending / diferido (explícito)
+
+| Tema | Estado | Cuándo |
+|---|---|---|
+| `item_rate_*_mvp` (familias no override en import) | `pending_config_verify` en filas afectadas | **Paso ajustar config:** comparar `@iteminfo` in-game vs dataset; alinear `battle_conf` import y regenerar drops |
+| `enable_bonus_map_drops` runtime | pending | Paridad exacta del camino `mob_getdroprate` en map drops (OzRo lo tiene `yes`) |
+| `mob_item_ratio.yml` | pending (import vacío hoy) | Si se llena Body → debe entrar al extractor o los efectivos mienten; mitigar con gate “Body no vacío ⇒ re-extract” |
+| Drops solo-script / evento | diferido | Dominios script/event |
+| VIP / LUK / boosts de kill | diferido | No pertenecen a capa DB+conf |
+
 ---
 
 # 16. NPC SHOPS — Tiendas
@@ -2028,6 +2075,7 @@ Orden de trabajo (Skills **antes** de NPCs):
 - **NPC script analysis:** evidencia de cuerpo → `functions`; duplicates heredan; pending ~9k; ruido Transport/Healer aceptado.
 - **Item Scripts:** cobertura 1:1 con `has_script`; tags parciales (~69 raw OK); groups/`callfunc`/combos diferidos (ver §10).
 - **Item Restrictions:** `trade.*` + `noequip` + `flag.NoConsume`; NoSell≠NoTrade; Jobs quedan en items (ver §11).
+- **Drops:** `mob_db` per_10000 + adjust; `map_specific` = bonus de mapa per_100000 sin `item_rate_*`; `pending_config_verify` para `*_mvp` vs `@iteminfo` (ver §15).
 
 ## Etapa 4 — Resolución de valores efectivos
 
@@ -2041,6 +2089,8 @@ Integrar:
 - Reglas particulares de OzRo.
 
 Los extractores deben consumir un único componente de resolución.
+
+**Nota — drops / `item_rate_*_mvp`:** al ajustar `conf/import/battle_conf.txt`, comparar `@iteminfo` (o drop info in-game) contra filas con `rate_status: pending_config_verify` (~drops normales de MVP cuyas claves `*_mvp` siguen en 100). Tras alinear conf, regenerar `extract drops`. También: si `mob_item_ratio.yml` deja de estar vacío, debe participar en el resolver.
 
 ## Etapa 5 — Persistencia SQL
 
