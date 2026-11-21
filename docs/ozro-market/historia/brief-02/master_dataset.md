@@ -1640,6 +1640,21 @@ Extraer:
 
 Las apariciones de monstruos dentro de instancias deben relacionarse con el sistema general de spawns, conservando la referencia a la instancia.
 
+## 18.1. Hallazgos Etapa 3 (OzRo)
+
+| Métrica | Valor |
+|---|---|
+| Instancias (`instance_db` + import) | ~79 |
+| Filas mapa (enter + additional) | ~114 |
+| Mapas no en catálogo | ~5 |
+| NPC links bound (`instance_create "Name"`) | ~1460 |
+| `instance_create` literal / dinámico (`.@var`) | ~18 / ~25 |
+| NPCs Instance en path sin bind literal | ~966 (contados; **sin** fila link) |
+
+**Hecho:** catálogo Id/Name/Enter/TimeLimit; `instance_maps`; links NPC cuando el create usa nombre literal igual a `Name`.
+
+**Pending / diferido:** create con variable (mayoría); requisitos/rewards de script; IdleTimeout u otros campos si aparecen; spawns ya tienen `spawn_type: instance` por mapa.
+
 ---
 
 # 19. BOXES & REWARDS — Cajas y recompensas
@@ -2101,6 +2116,7 @@ Orden de trabajo (Skills **antes** de NPCs):
 - **Item Restrictions:** `trade.*` + `noequip` + `flag.NoConsume`; NoSell≠NoTrade; Jobs quedan en items (ver §11).
 - **Drops:** `mob_db` per_10000 + adjust; `map_specific` = bonus de mapa per_100000 sin `item_rate_*`; `pending_config_verify` para `*_mvp` vs `@iteminfo` (ver §15).
 - **Quests:** `quest_db` + targets/drops + `npc_quest_links`; rewards/tipo/Location diferidos (ver §17).
+- **Instances:** catálogo + maps + NPC bind por `instance_create` literal; create dinámico pending (ver §18).
 
 ## Etapa 4 — Resolución de valores efectivos
 
