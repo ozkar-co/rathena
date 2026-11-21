@@ -202,24 +202,27 @@ El Master World Dataset estará compuesto por los siguientes dominios.
 
 1. Maps.
 2. Map Connections.
-3. NPCs.
-4. Mobs.
-5. Spawns.
-6. Items.
-7. Item Properties.
-8. Item Scripts.
-9. Item Restrictions.
-10. Item Enchantments.
-11. Acquisition Sources.
-12. Drops.
-13. NPC Shops.
-14. Quests.
-15. Instances.
-16. Boxes and Rewards.
-17. Recipes and Crafting.
-18. Enchanting and Socketing.
-19. Item Relationships.
-20. Source Provenance.
+3. Mobs.
+4. Spawns.
+5. Skills *(jugador y monstruo; ver §8bis)*.
+6. NPCs.
+7. Items.
+8. Item Properties.
+9. Item Scripts.
+10. Item Restrictions.
+11. Item Enchantments.
+12. Acquisition Sources.
+13. Drops.
+14. NPC Shops.
+15. Quests.
+16. Instances.
+17. Boxes and Rewards.
+18. Recipes and Crafting.
+19. Enchanting and Socketing.
+20. Item Relationships.
+21. Source Provenance.
+
+**Nota de orden (Etapa 3):** el barrido de **Skills** (en especial `mob_skill_db` y summons de `skill_db`) entra **antes** del análisis profundo de NPCs. Muchos `mob_role: pending` y spawns no-mapa (slaves de boss) solo se resuelven con esa evidencia; el análisis de scripts NPC puede refinar relaciones adicionales después.
 
 Cada dominio tendrá sus propias tablas SQL, pero podrá relacionarse con los demás mediante identificadores estables.
 
@@ -425,6 +428,8 @@ El cálculo debe ser determinista e idempotente y regenerarse cuando cambien los
 
 Este dominio debe incorporarse como una entidad de primer nivel.
 
+> **Dependencia Etapa 3:** el análisis profundo de NPCs (§6.3) va **después** del barrido de Skills (§8bis). Los summons/slaves de boss no deben “descubrirse” solo desde diálogos NPC si ya constan en `mob_skill_db`.
+
 No basta con registrar NPCs que ofrecen tiendas o transportes. Necesitamos conocer para qué sirve cada NPC y con qué contenido está relacionado.
 
 ## 6.1. Objetivo
@@ -602,13 +607,36 @@ Puede haber Boss protocol **sin** ser MVP (mayoría). Puede haber MVP que tambi�
 
 | Rol | Cuándo |
 |---|---|
-| `skill_summon` | Evidencia de skill/src |
+| `map_spawn` | Header `monster`/`boss_monster` de mapa (permanente/event) |
+| `instance` | Solo evidencia de aparición en instancia |
+| `scripted` | Solo `monster`/`areamonster`/`guardian` en scripts NPC (mob_id resuelto) |
+| `slave` | Invocado como slave/summon de otro mob vía `mob_skill_db` (`NPC_SUMMONSLAVE` / `NPC_SUMMONMONSTER`) |
+| `skill_summon` | Invocación por skill de **jugador** (evidencia `skill_db` / src `MOBID_*`) |
 | `quest_prop` | Evidencia de script de quest/prop |
-| `pet` | Pet-only (p. ej. en `pet_db` sin ficha de mob de mapa) |
+| `pet` | Pet-only (p. ej. en `pet_db` **sin** ficha usable de mapa; la mayoría de pets tameables son `map_spawn`) |
 | `stub` | YAML mínimo sin uso hallado |
-| `pending` | **Default honesto:** está en `mob_db`, aún sin evidencia de rol de aparición |
+| `pending` | **Default honesto:** está en `mob_db`, aún sin evidencia de aparición |
 
-`pending` es válido al cerrar Etapa 2. Se resuelve en **Etapa 3 — Spawns** (y scripts asociados) hacia roles más precisos (`map_spawn`, `instance`, etc. según se definan). No usar `field` como sinónimo de “aún no sabemos”.
+`pending` es válido al cerrar Etapa 2. Se resuelve en **Etapa 3** con esta prioridad de evidencia: headers de mapa → instancia → scripted → slave (`mob_skill_db`) → skill de jugador. No usar `field` como sinónimo de “aún no sabemos”.
+
+### Hallazgo Etapa 3 — volumen de `pending` (esperado, no bug)
+
+Tras headers + scripted + slaves (`mob_skill_db`), OzRo quedó en **~1003 `pending`** (antes ~1137 sin slaves). Roles verificados: `map_spawn` 1199 · `instance` 242 · `slave` 134 · `scripted` 81 · `skill_summon` 8 · `pet` 1 · `quest_prop` 3 · `stub` 4.
+
+Desglose típico de lo que **sigue** `pending`:
+
+| Grupo | ~n | Origen / resolución |
+|---|---|---|
+| Clones `G_*` no listados como `val` de summon | ~195 | Muchos `G_*` tienen filas propias en `mob_skill_db` (como **padres** con skills) pero **no** aparecen en `val1–val5` de `NPC_SUMMON*`. No inventar `slave`; pueden salir por script NPC o quedar sin uso. |
+| `E_*` / event | ~78 | Eventos no cargados o por ítem |
+| `MD_*` | ~69 | Instancias / contenido por variable |
+| Treasure boxes | ~63 | Scripts de castillo con ID por fórmula |
+| `M_*` / `META_*` | ~34 | Variantes quest/job |
+| Resto | ~564 | Sin mención estática segura |
+
+**Slaves resueltos:** ~316 mobs únicos invocados vía `NPC_SUMMONSLAVE` / `NPC_SUMMONMONSTER` / `NPC_DEATHSUMMON` (`val[0..4]`, amount = `skill_lv`). De ellos, solo los que no tenían ya `map_spawn`/`instance`/`scripted` reciben `mob_role: slave` (~134); el resto conserva el rol de mayor prioridad.
+
+**Pets:** casi todos los de `pet_db` que existen en campo quedan `map_spawn` (tameables). Solo stubs pet-only llevan `pet`.
 
 ### Propiedades
 
@@ -672,7 +700,7 @@ Para **skill summons**, el HP “efectivo” puede depender del nivel de skill /
 | Estadísticas originales | `db/re/mob_db.yml` + merge `db/import/mob_db.yml` (por `Id`; el import puede ser parcial) |
 | `mob_class` | Campo `Class` del YAML (default `Normal` si ausente) |
 | MVP | `MvpExp` / MVP drops / spawns — no el enum `Class` |
-| `mob_role` | Inferencia: `pet_db`, `skill_db` + enums src, spawns/scripts, stubs |
+| `mob_role` | Inferencia: spawns headers/scripted, `mob_skill_db` (slaves), `pet_db`, `skill_db` + enums src, stubs |
 | Comportamiento original | `Modes`, AI, etc. en `mob_db` |
 | Sprite / gaps | Inventario cliente (`client_mob_*`) |
 | Personalizaciones de rates | Archivos conf → Effective Resolver (Etapa 4) |
@@ -736,7 +764,8 @@ La información debe permitir estimar posteriormente:
 | `timed` | Aparición controlada por temporizador |
 | `one_time` | Aparición única |
 | `event` | Aparición de evento |
-| `scripted` | Aparición generada por script (`monster`/`areamonster` en NPC) |
+| `scripted` | Aparición generada por script (`monster`/`areamonster`/`guardian` en NPC) |
+| `slave` | **Slave/summon de boss u otro mob** vía `mob_skill_db` (`NPC_SUMMONSLAVE` / `NPC_SUMMONMONSTER`). Sin `map_id` fijo: aparece donde esté el padre. Guardar `parent_mob_id` + skill. |
 | `skill_summon` | Invocación por skill de jugador (no es spawn de mapa) |
 | `pet` | Vinculado a `pet_db` / egg; no spawn de campo |
 | `instance` | Aparición asociada a instancia |
@@ -744,7 +773,22 @@ La información debe permitir estimar posteriormente:
 
 También debe identificarse si la aparición es natural o generada mediante un script.
 
-Los tipos `skill_summon` y `pet` pueden materializarse como relaciones mob↔skill / mob↔pet en lugar de filas de spawn de mapa; lo importante es no contarlos como densidad de farmeo de un `map_id`.
+**Hallazgo Etapa 3:** los slaves de MVP/boss **no** aparecen como headers `monster` ni siempre como `monster()` en NPC. Sin barrer `mob_skill_db` quedan como `mob_role: pending`. Es un tipo de spawn de primera clase.
+
+**Extracción verificada (OzRo):** ~1177 filas `spawn_type: slave` (`map_id` null, `spawn_kind: mob_skill_summon`) a partir de `skill_summons`; total spawns ~9375 (permanent 3565 · instance 2840 · scripted 1758 · slave 1177 · event 35).
+
+**Semántica rAthena:** `mob_summonslave()` usa hasta **5** IDs en `val[]` (round-robin) y `skill_lv` como **cantidad**. Skills: `NPC_SUMMONSLAVE`, `NPC_SUMMONMONSTER`, `NPC_DEATHSUMMON`. No basta con `val1`.
+
+Los tipos `slave`, `skill_summon` y `pet` **no** cuentan como densidad de farmeo de un `map_id`. Pueden vivir como filas de spawn con `map_id` null + metadatos, y/o como relaciones mob↔mob / mob↔skill en el dominio Skills.
+
+Campos adicionales cuando aplique:
+
+| Campo | Uso |
+|---|---|
+| `parent_mob_id` | Mob que invoca (slaves) |
+| `skill_id` / `skill_name` | Skill de invocación |
+| `amount` | Cantidad (`skill_lv` en summons de mob) |
+| `map_id` | **Nullable** para `slave` / `skill_summon` / parciales scripted |
 
 ## 8.4. Spawns dinámicos
 
@@ -780,6 +824,92 @@ Se pueden generar datos agregados:
 - Distribución por tipo de spawn.
 
 Estos datos deben derivarse de los registros individuales, no reemplazarlos.
+
+---
+
+# 8bis. SKILLS — Catálogo de skills (jugador y monstruo)
+
+**Nuevo dominio (Etapa 3).** No se contempló al inicio; el barrido de skills es obligatorio para cerrar spawns/roles de mobs y para informar el análisis de NPCs.
+
+## 8bis.1. Objetivo
+
+Representar de forma estructurada:
+
+1. Skills de **jugador** relevantes al mundo de datos (summons, consumos de ítem, warps, crafting ligado a skill, etc.).
+2. Skills de **monstruo** (`mob_skill_db`), en especial invocaciones.
+
+Debe permitir responder:
+
+- ¿Qué mobs invoca este boss (slaves)?
+- ¿Qué skill de jugador invoca qué mob (`skill_summon`)?
+- ¿Qué skills usan monstruos (para enciclopedia / dificultad)?
+- ¿Qué relaciones mob↔skill existen sin pasar por scripts NPC?
+
+## 8bis.2. Fuentes
+
+| Información | Fuente |
+|---|---|
+| Skills de monstruo + slaves | `db/re/mob_skill_db.txt` (+ import si existe) |
+| Skills de jugador / summons | `db/re/skill_db.yml` (+ import) |
+| IDs `MOBID_*` de summons | Código src / enums (cuando el YAML no baste) |
+| Condiciones / rates | Mismos archivos (capa original; efectiva en Etapa 4 si aplica) |
+
+## 8bis.3. Modelo mínimo
+
+### Catálogo de skill (opcional al inicio; ampliable)
+
+| Campo | Descripción |
+|---|---|
+| `skill_id` | ID |
+| `aegis_name` / `name` | Nombre |
+| `skill_owner` | `player` / `monster` / `both` |
+| `source` | Procedencia |
+
+### Relación de invocación (obligatoria en Etapa 3)
+
+| Campo | Descripción |
+|---|---|
+| `summon_id` | Identificador estable |
+| `summon_kind` | `mob_slave` / `player_skill_summon` / … |
+| `parent_mob_id` | Mob invocador (si aplica) |
+| `skill_id` | Skill usada |
+| `summoned_mob_id` | Mob invocado |
+| `amount` / condiciones | Cuando consten (p. ej. `slavele`, rate) |
+| `source` | Archivo + línea / registro |
+
+Estas relaciones **alimentan** Spawns (`spawn_type: slave` o `skill_summon`) y resuelven `mob_role` pendientes.
+
+## 8bis.4. Orden en Etapa 3
+
+1. Map Connections (+ Dijkstra).
+2. Spawns (headers + scripted).
+3. **Skills / mob skills** ← aquí.
+4. Reconciliar Spawns slaves + `mob_role`.
+5. **NPCs** (análisis de script; puede añadir más summons scripted y relaciones).
+6. Resto (drops, shops, quests, …).
+
+Sin el paso 3, cientos de `G_*` y slaves de MVP quedan `pending` sin motivo de calidad de datos.
+
+## 8bis.5. Reglas
+
+- No inventar slaves: solo `val[0..4]` de skills de summon en `mob_skill_db` (`NPC_SUMMONSLAVE` / `NPC_SUMMONMONSTER` / `NPC_DEATHSUMMON`).
+- `amount` = `skill_lv` (no confundir con el ID del mob).
+- No contar slaves/skill_summon en densidad de farmeo por mapa.
+- Separar summon de jugador (`skill_summon`) vs slave de mob (`slave`).
+- Trazabilidad hasta la fila de `mob_skill_db` / skill YAML.
+- Un `G_*` con skills propias **no** implica `slave`; solo si algún padre lo lista en `val[]`.
+
+## 8bis.6. Hallazgos verificados (OzRo)
+
+| Métrica | Valor |
+|---|---|
+| Filas `mob_skill_db` parseadas | 14449 |
+| Relaciones `skill_summons` (`mob_slave`) | 1177 |
+| Padres únicos / invocados únicos | 294 / 316 |
+| `spawn_type: slave` materializados | 1177 |
+| `mob_role: slave` (prioridad tras map/instance/scripted) | 134 |
+| `pending` restante tras slaves | ~1003 |
+| Diferido | summons de jugador (`skill_db`), catálogo completo de skills de jugador |
 
 ---
 
@@ -1557,6 +1687,10 @@ ozro_npc_functions
 ozro_mobs
 ozro_spawns
 
+ozro_skills
+ozro_mob_skills
+ozro_skill_summons
+
 ozro_items
 ozro_item_properties
 ozro_item_scripts
@@ -1762,20 +1896,33 @@ Campos `pending` (p. ej. `mob_role`, `functions` de NPC) **cierran Etapa 2** si 
 
 ## Etapa 3 — Extractores de relaciones
 
-Desarrollar:
+Orden de trabajo (Skills **antes** de NPCs):
 
-- Map Connections.
-- Spawns. *(resuelve `mob_role` pending donde haya evidencia de aparición)*
-- Item Scripts.
-- Item Restrictions.
-- NPC Shops / análisis de script NPC. *(resuelve `functions` pending; ver §6.3 nota Etapa 3)*
-- Drops.
-- Quests.
-- Instances.
-- Boxes.
-- Recipes.
-- Enchantments.
-- Item Relationships.
+1. Map Connections *(+ grafo Dijkstra / fricción)*.
+2. Spawns — headers + scripted (`monster`/`areamonster`).
+3. **Skills / mob skills** *(§8bis; `mob_skill_db` → slaves)*.
+4. Spawns — materializar `slave` / `skill_summon` y **resolver `mob_role`** pendiente con esa evidencia.
+5. NPC Shops / análisis de script NPC. *(resuelve `functions` pending; ver §6.3; puede añadir más spawns scripted)*.
+6. Item Scripts.
+7. Item Restrictions.
+8. Drops.
+9. Quests.
+10. Instances.
+11. Boxes.
+12. Recipes.
+13. Enchantments.
+14. Item Relationships.
+
+### Hallazgos ya aplicados / a respetar (Connections + Spawns + Skills)
+
+- **Kafra VIP:** con `#define VIP_SCRIPT 0` el ×2 de precio no aplica; ignorar VIP en grafo/economía de teleports.
+- **Airship:** aristas ciudad↔ciudad peso 1.5 (proxy de ir al aeropuerto); sin nodos `airport` por ahora.
+- **Boat:** peso 1.2; zeny irrelevante para Dijkstra; puertos a field (`gon_fild01`, `lou_fild01`) son intencionales.
+- **Dijkstra:** colapsar paralelas; excluir quest-gated, instancias y `scripted` atajos especiales del grafo.
+- **Pets:** tameables de campo = `map_spawn`; casi nunca `pet`.
+- **Skills antes de NPC:** §8bis; `mob_skill_db` → `skill_summons` → spawns `slave` → `mob_role`.
+- **Slaves:** tipo de spawn obligatorio; `val[0..4]` + `skill_lv`=amount; skills `NPC_SUMMONSLAVE`/`NPC_SUMMONMONSTER`/`NPC_DEATHSUMMON`.
+- **`G_*` residuales:** ~195 siguen `pending` tras el barrido — tienen skills como padre, no como `val` de summon; no forzar `slave`.
 
 ## Etapa 4 — Resolución de valores efectivos
 
