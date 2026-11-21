@@ -58,7 +58,6 @@ dew_dun02,0,0	monster	Solid Banaspaty	2888,2,180000
 dew_fild01,0,0	monster	Swift Rafflesia Arnoldi	2906,2,180000
 dic_dun01,0,0	monster	Swift Uni-horn Scaraba	2799,2,180000
 dic_dun02,0,0	monster	Elusive Antler Scaraba	2896,2,180000
-dic_dun03,0,0	monster	Furious Rake Scaraba	2693,2,180000
 dic_fild01,0,0	monster	Swift Centipede	2873,2,180000
 dic_fild02,0,0	monster	Dolomedes Ringleader	2850,2,180000
 ecl_fild01,0,0	monster	Elusive Menblatt	2758,1,180000
@@ -114,13 +113,9 @@ gl_sew03,0,0	monster	Elusive Sting	2640,2,180000
 gl_sew04,0,0	monster	Furious Anolian	2899,2,180000
 gl_step,0,0	monster	Solid Wind Ghost	2614,2,180000
 glast_01,0,0	monster	Gargoyle Ringleader	2826,1,180000
-gld_dun01_2,0,0	monster	Furious Skeleton General	2659,2,180000
 gld_dun01,0,0	monster	Solid Leib Olmai	2780,2,180000
-gld_dun02_2,0,0	monster	Swift Angra Mantis	2901,2,180000
 gld_dun02,0,0	monster	Giant Hornet Ringleader	2821,2,180000
-gld_dun03_2,0,0	monster	Elusive Dark Hammer Kobold	2818,2,180000
 gld_dun03,0,0	monster	Furious Caterpillar	2876,2,180000
-gld_dun04_2,0,0	monster	Solid Dark Shadow	2820,2,180000
 gld_dun04,0,0	monster	Zombie Master Ringleader	2605,2,180000
 gld2_ald,0,0	monster	Elusive Angra Mantis	2900,2,180000
 gld2_gef,0,0	monster	Swift Dark Shadow	2819,2,180000

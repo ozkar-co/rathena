@@ -1,0 +1,12 @@
+// Extracted entities on maps without client
+// Source: npc/re/mobs/championmobs.txt
+
+dic_dun03,0,0	monster	Furious Rake Scaraba	2693,2,180000
+
+gld_dun01_2,0,0	monster	Furious Skeleton General	2659,2,180000
+
+gld_dun02_2,0,0	monster	Swift Angra Mantis	2901,2,180000
+
+gld_dun03_2,0,0	monster	Elusive Dark Hammer Kobold	2818,2,180000
+
+gld_dun04_2,0,0	monster	Solid Dark Shadow	2820,2,180000

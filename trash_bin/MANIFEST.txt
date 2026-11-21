@@ -346,3 +346,54 @@ npc/test/ci/8886.txt
 npc/test/infinite_warp.txt
 npc/test/npc_test_checkweight.txt
 npc/test/npc_test_longvar.txt
+
+# OzRo map-client cleanup — mixed extracts (*.disabled_maps_extract):
+
+
+# OzRo map-client cleanup — additional pure files moved:
+
+# Mixed extracts:
+npc/airports/airships.txt (15 blocks)
+npc/airports/yuno.txt (8 blocks)
+npc/battleground/flavius/flavius02.txt (42 blocks)
+npc/battleground/kvm/kvm02.txt (18 blocks)
+npc/battleground/kvm/kvm03.txt (18 blocks)
+npc/battleground/tierra/tierra02.txt (48 blocks)
+npc/events/gdevent_sch.txt (70 blocks)
+npc/guild2/arug_cas04.txt (33 blocks)
+npc/guild2/arug_cas05.txt (33 blocks)
+npc/guild2/schg_cas04.txt (34 blocks)
+npc/guild2/schg_cas05.txt (34 blocks)
+npc/other/arena/arena_aco.txt (21 blocks)
+npc/other/arena/arena_lvl50.txt (11 blocks)
+npc/other/arena/arena_lvl60.txt (11 blocks)
+npc/other/arena/arena_lvl70.txt (11 blocks)
+npc/other/arena/arena_lvl80.txt (11 blocks)
+npc/other/arena/arena_party.txt (13 blocks)
+npc/other/monster_race.txt (94 blocks)
+npc/other/turbo_track.txt (2087 blocks)
+npc/quests/okolnir.txt (887 blocks)
+npc/quests/quests_airship.txt (14 blocks)
+npc/quests/quests_lighthalzen.txt (3 blocks)
+npc/quests/quests_nameless.txt (12 blocks)
+npc/quests/quests_rachel.txt (4 blocks)
+npc/quests/the_sign_quest.txt (11 blocks)
+npc/re/merchants/cashmall.txt (7 blocks)
+npc/re/merchants/rgsr_in.txt (1 blocks)
+npc/re/mobs/championmobs.txt (5 blocks)
+npc/re/mobs/dungeons/dic_dun.txt (9 blocks)
+npc/re/mobs/dungeons/gld_re.txt (19 blocks)
+npc/re/quests/garden_of_time.txt (41 blocks)
+npc/re/quests/quests_16_2.txt (3 blocks)
+npc/re/quests/quests_illusion_dungeons.txt (1 blocks)
+npc/re/warps/other/TrainingZone123.txt (18 blocks)
+
+# OzRo map-client cleanup — pure-dead scripts moved:
+npc/airports/lighthalzen.txt
+npc/mobs/pvp.txt
+npc/other/guildpvp.txt
+npc/re/merchants/enchan_upg.txt
+npc/re/mobs/tra_fild_123.txt
+npc/re/other/TrainingZone123.txt
+npc/re/other/item_merge.txt
+npc/re/other/pvp.txt

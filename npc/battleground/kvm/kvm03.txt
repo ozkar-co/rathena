@@ -53,57 +53,9 @@ OnKvM03Two:
 	end;
 }
 
-bat_c03,54,124,3	duplicate(CellEffect3)	#RedcellA1-3	139
-bat_c03,55,124,3	duplicate(CellEffect3)	#RedcellA2-3	139
-bat_c03,56,124,3	duplicate(CellEffect3)	#RedcellA3-3	139
-bat_c03,57,124,3	duplicate(CellEffect3)	#RedcellA4-3	139
-bat_c03,57,125,3	duplicate(CellEffect3)	#RedcellA5-3	139
-bat_c03,57,126,3	duplicate(CellEffect3)	#RedcellA6-3	139
-bat_c03,57,127,3	duplicate(CellEffect3)	#RedcellA7-3	139
 
-bat_c03,145,59,3	duplicate(CellEffect3)	#RedcellB1-3	139
-bat_c03,144,59,3	duplicate(CellEffect3)	#RedcellB2-3	139
-bat_c03,143,59,3	duplicate(CellEffect3)	#RedcellB3-3	139
-bat_c03,142,59,3	duplicate(CellEffect3)	#RedcellB4-3	139
-bat_c03,142,56,3	duplicate(CellEffect3)	#RedcellB5-3	139
-bat_c03,142,57,3	duplicate(CellEffect3)	#RedcellB6-3	139
-bat_c03,142,58,3	duplicate(CellEffect3)	#RedcellB7-3	139
 
-bat_c03,54,128,3	script	#A_camp_start03	139,4,4,{
-	end;
-OnInit:
-	disablenpc "#A_camp_start03";
-	end;
-OnEnable:
-	enablenpc "#A_camp_start03";
-	end;
-OnDisable:
-	disablenpc "#A_camp_start03";
-	end;
-OnTouch:
-	set Bat_Team,1;
-	if (!getbattleflag("feature.bgqueue"))
-		setquest 6025;
-	end;
-}
 
-bat_c03,146,56,3	script	#B_camp_start03	139,4,4,{
-	end;
-OnInit:
-	disablenpc "#B_camp_start03";
-	end;
-OnEnable:
-	enablenpc "#B_camp_start03";
-	end;
-OnDisable:
-	disablenpc "#B_camp_start03";
-	end;
-OnTouch:
-	set Bat_Team,2;
-	if (!getbattleflag("feature.bgqueue"))
-		setquest 6025;
-	end;
-}
 
 // Battleground Engine
 //============================================================
@@ -370,31 +322,6 @@ OnCroixJoin:
 
 // Battleground rewards
 //============================================================
-bat_c03,51,130,5	script	KVM Officer#KVM03A	419,{
-	if( $@KvM03BG_Victory ) {
-		mes "[KVM Officer]";
-		if( $@KvM03BG_Victory == Bat_Team ) {
-			mes "Good Game.";
-			mes "May the glory of KVM be with you.";
-			mes "You aquire the winning points: 2";
-			close2;
-			set kvm_point,kvm_point + 2;
-		}
-		else {
-			mes "I am so sorry.";
-			mes "I wish you better luck next time.";
-			mes "You aquire the losing points: 1";
-			close2;
-			set kvm_point,kvm_point + 1;
-		}
-		bg_leave;
-		set Bat_Team,0;
-		if (!getbattleflag("feature.bgqueue"))
-			warp "bat_room",154,150;
-	}
-	end;
-}
-bat_c03,148,53,1	duplicate(KVM Officer#KVM03A)	KVM Officer#KVM03B	415
 
 // BG Queue makes these scripts useless
 -	script	BGQueueInit#kvm03	-1,{

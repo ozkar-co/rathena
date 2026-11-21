@@ -1,0 +1,204 @@
+// Extracted entities on maps without client
+// Source: npc/other/arena/arena_aco.txt
+
+force_5-1,100,12,0	script	arena#aco	-1,5,5,{
+OnTouch_:
+	donpcevent "allkill#aco::OnEnable";
+	if (BaseJob == Job_Acolyte) {
+		donpcevent "arena_aco1::OnStart";
+	}
+	else {
+		donpcevent "arena_aco2::OnStart";
+	}
+	disablenpc "arena#aco";
+	end;
+}
+
+force_5-1,40,26,0	script	force_01start#aco	-1,1,1,{
+OnTouch_:
+	donpcevent "force_01mob#aco::OnEnable";
+	disablenpc "force_01start#aco";
+	end;
+}
+
+force_5-1,25,69,0	script	force_02start#aco	-1,1,1,{
+OnTouch_:
+	set $@drop_gate,0;
+	donpcevent "force_02mob#aco::OnEnable";
+	disablenpc "force_02start#aco";
+	end;
+}
+
+force_5-1,25,159,0	script	force_03start#aco	-1,1,1,{
+OnTouch_:
+	donpcevent "force_03mob#aco::OnEnable";
+	disablenpc "force_03start#aco";
+}
+
+force_5-1,69,174,0	script	force_04start#aco	-1,1,1,{
+OnTouch_:
+	donpcevent "Trocco#aco1::On04_Start";
+	donpcevent "arena_aco1::OnReset_04";
+	percentheal 50,50;
+	disablenpc "force_04start#aco";
+	end;
+}
+
+force_5-1,159,174,0	script	force_05start#aco	-1,1,1,{
+OnTouch_:
+	donpcevent "force_05mob#aco::OnEnable";
+	disablenpc "force_05start#aco";
+	end;
+}
+
+force_5-1,174,130,0	script	force_06start#aco	-1,1,1,{
+OnTouch_:
+	donpcevent "force_06mob#aco::OnEnable";
+	donpcevent "arena_aco1::OnReset_06";
+	disablenpc "force_06start#aco";
+	end;
+}
+
+force_5-1,174,40,0	script	force_07start#aco	-1,1,1,{
+OnTouch_:
+	donpcevent "force_07mob#aco::OnEnable";
+	disablenpc "force_07start#aco";
+}
+
+force_5-1,132,26,0	script	force_08start#aco	-1,1,1,{
+OnTouch_:
+	percentheal 50,50;
+	donpcevent "Trocco#aco1::On08_Start";
+	donpcevent "arena_aco1::OnReset_08";
+	disablenpc "force_08start#aco";
+	end;
+}
+
+force_5-1,99,82,0	script	force_09start#aco	-1,1,1,{
+OnTouch_:
+	donpcevent "Trocco#aco1::On09_Start";
+	donpcevent "force_09mob#aco::OnEnable";
+	disablenpc "force_09start#aco";
+	end;
+}
+
+force_5-1,40,26,0	script	force_01start#pri	-1,1,1,{
+OnTouch_:
+	donpcevent "force_01mob#pri::OnEnable";
+	disablenpc "force_01start#pri";
+	end;
+}
+
+force_5-1,25,69,0	script	force_02start#pri	-1,1,1,{
+OnTouch_:
+	if (BaseLevel < 70) {
+		donpcevent "force_02mob#pri::OnOn1";
+	}
+	else {
+		donpcevent "force_02mob#pri::OnOn2";
+	}
+	disablenpc "force_02start#pri";
+	end;
+}
+
+force_5-1,25,159,0	script	force_03start#pri	-1,1,1,{
+OnTouch_:
+	donpcevent "force_03mob#pri::OnEnable";
+	disablenpc "force_03start#pri";
+	end;
+}
+
+force_5-1,69,174,0	script	force_04start#pri	-1,1,1,{
+OnTouch_:
+	if (BaseLevel < 90) {
+		donpcevent "force_04mob#pri::OnOn1";
+	}
+	else {
+		donpcevent "force_04mob#pri::OnOn2";
+	}
+	disablenpc "force_04start#pri";
+	end;
+}
+
+force_5-1,159,174,0	script	force_05start#pri	-1,1,1,{
+OnTouch_:
+	donpcevent "force_05mob#pri::OnEnable";
+	if (BaseLevel < 70) {
+		donpcevent "force_05ex#pri::OnOn1";
+	}
+	else {
+		donpcevent "force_05ex#pri::OnOn2";
+	}
+	disablenpc "force_05start#pri";
+	end;
+}
+
+force_5-1,174,130,0	script	force_06start#pri	-1,1,1,{
+OnTouch_:
+	donpcevent "force_06ex#pri::OnEnable";
+	if (BaseLevel < 70) {
+		donpcevent "force_06mob#pri::OnOn1";
+	}
+	else if (BaseLevel < 80) {
+		donpcevent "force_06mob#pri::OnOn2";
+	}
+	else {
+		donpcevent "force_06mob#pri::OnOn3";
+	}
+	disablenpc "force_06start#pri";
+	end;
+}
+
+force_5-1,174,40,0	script	force_07start#pri	-1,1,1,{
+OnTouch_:
+	donpcevent "force_07mob#pri::OnEnable";
+	disablenpc "force_07start#pri";
+	end;
+}
+
+force_5-1,132,26,0	script	force_08start#pri	-1,1,1,{
+OnTouch_:
+	donpcevent "Trocco#aco2::On08_Start";
+	donpcevent "arena_aco2::OnReset_08";
+	disablenpc "force_08start#pri";
+	end;
+}
+
+force_5-1,99,82,0	script	force_09start#pri	-1,1,1,{
+OnTouch_:
+	donpcevent "Trocco#aco2::On09_Start";
+	if (BaseLevel < 70) {
+		donpcevent "force_09mob#pri::OnOn4";
+	}
+	else if (BaseLevel < 80) {
+		donpcevent "force_09mob#pri::OnOn1";
+	}
+	else if (BaseLevel < 90) {
+		donpcevent "force_09mob#pri::OnOn2";
+	}
+	else {
+		donpcevent "force_09mob#pri::OnOn3";
+	}
+	disablenpc "force_09start#pri";
+	end;
+}
+
+force_5-1,62,26,0	script	force_08_01#aco	45,1,1,{
+OnTouch_:
+	//warp "force_5-1",40,26; // OzRo: dst map no client (force_5-1)
+	if (BaseJob == Job_Acolyte) {
+		enablenpc "force_01start#aco";
+	}
+	else {
+		enablenpc "force_01start#pri";
+	}
+	end;
+}
+
+force_5-1,99,124,0	script	force_exit#aco	45,1,1,{
+OnTouch_:
+	donpcevent "Trocco#aco1::OnTimerOff";
+	donpcevent "#arn_timer_aco::OnEnable";
+	//mapwarp "force_5-1","prt_are_in",21,35; // OzRo: dst map no client (force_5-1)
+	end;
+}
