@@ -271,25 +271,36 @@ Las categorías serán:
 - Guild.
 - Interior.
 - Arena.
-- Transport.
 - Special.
 
-No deben ser necesariamente excluyentes. Todo mapa enabled debe recibir una `category` principal en Etapa 2 (usar `Special` si no encaja; no dejar nulo).
+No deben ser necesariamente excluyentes. Todo mapa enabled debe recibir una `category` principal en Etapa 2. Lo que no encaje con reglas claras va a **`Special`** (cajón explícito “sin clasificar fino”), nunca `null`.
+
+### Dos capas: verdad del servidor vs categoría nuestra
+
+| Campo | Origen | Capa | Naturaleza |
+|---|---|---|---|
+| `is_town` | Mapflag `town` en `npc/mapflag/town.txt` + `npc/re/mapflag/town.txt` | **original / configuración absoluta** | Verdad del sistema rAthena OzRo. No se inventa ni se “completa” con listas nuestras. |
+| `category` / `categories` | Extracción + reglas de normalización del dataset | **inferred / normalizado** | Etiqueta nuestra para catálogo. Puede discrepar de flags mecánicos. |
+| `classification_layer` | Siempre `inferred` para `category` | metadato | Obliga a no confundir categoría con config. |
+
+Principio: **está permitido** que definamos `category` nosotros en esta etapa, **siempre que** el origen quede explícito y los flags de configuración (`is_town`, etc.) se guarden aparte como verdad absoluta.
+
+Ejemplo válido: `morocc` → `is_town: false` (no está en el mapflag) y `category: City` (nosotros lo etiquetamos ciudad/hub). Eso no es contradicción: son dos preguntas distintas.
 
 ### Reglas de clasificación verificadas (Etapa 2)
 
 | Señal | Fuente canónica | Notas |
 |---|---|---|
-| `is_town` | Solo mapflags `town` (pre-re + re) | Flag mecánico (p. ej. mailbox). **No** equivale a “es una ciudad del lore”. Ej.: `morocc` puede ser hub sin `town`. |
-| City | `is_town` **o** hubs urbanos explícitos sin mapflag | Lista corta documentada en el extractor (p. ej. `morocc`, `niflheim`). |
-| Instance | `instance_db` + nombres `N@…` | Prima sobre naming. |
-| Guild | `gld_` / `gld2_` / castillos / `06guild` / etc. | Guild dungeons y castillos. |
-| Dungeon | Heurísticas incl. `gl_*` (Glast Heim), `*_dun*`, `gefenia`, etc. | `gl_cas` / `gl_church` son dungeons. |
-| Arena | `force_*`, `ordeal_*`, `guild_vs`, etc. | PvP / pruebas. |
-| Transport | `airplane`, `airport`, naves | |
-| Field | `_fild` / campos conocidos sin sufijo (`mjolnir_*`) | |
-| Interior | `_in`, `in_*`, `ba_*`, iglesias/castillos interiores, etc. | |
-| Quest / Special | `que_*` / `evt_*` / utilitarios | `Special` = cajón etiquetado, no null. |
+| `is_town` | Solo mapflags `town` (pre-re + re) | Absoluto. No mezclar con `category`. |
+| City | Reglas/lista del normalizador (inferred) | Independiente de `is_town`. |
+| Instance | `instance_db` + nombres `N@…` | |
+| Guild | `gld_` / `gld2_` / castillos / `06guild` / etc. | |
+| Dungeon | Heurísticas incl. `gl_*` (Glast Heim), `*_dun*`, etc. | |
+| Arena | `force_*`, `ordeal_*`, `guild_vs`, etc. | |
+| Field | `_fild` / campos conocidos (`mjolnir_*`, …) | |
+| Interior | `_in`, `in_*`, `ba_*`, interiores de ciudad, etc. | |
+| Quest | `que_*`, `evt_*`, … | |
+| Special | Resto (transporte, utilitarios, dudosos) | Incluye airplane/airport/naves, etc. **No** crear categoría Transport. |
 | `display_name` | 1) `mapnametable.txt` 2) fallback `instance_db.Name` 3) null | Ver abajo. |
 | `width` / `height` | Cabecera `.gat` | |
 | Recurso presente | `client_maps.jsonl` | |
@@ -313,8 +324,8 @@ El exportador de cliente **ya** entrega `display_name` cuando existe en `mapname
 | Nombre visible | Cliente `mapnametable.txt`; fallback servidor `instance_db` |
 | Disponibilidad del recurso | Inventario GRF (`ozro-cli` → `client_maps.jsonl`) |
 | Dimensiones | Cliente: cabecera `.gat` |
-| `is_town` | Mapflags `town` (pre-re + re) |
-| Clasificación | Extracción + normalización (inferida) |
+| `is_town` | Mapflags `town` únicamente (verdad de configuración) |
+| `category` | Normalizador del dataset (inferred; no sustituye mapflags) |
 | Condiciones de acceso | Scripts, mapflags, quests, instances |
 
 ## 5.4. Criterio de extracción
@@ -553,24 +564,19 @@ No todos los registros de `mob_db` son monstruos de campo farmeables. El catálo
 
 Puede haber Boss protocol **sin** ser MVP (mayoría). Puede haber MVP que también sea Boss. **Nunca** colapsar ambos en un solo enum.
 
-### `mob_role` y qué significa `field` provisional
+### `mob_role` — para qué existe el campo
 
-| Rol | Descripción | Ejemplos observados |
-|---|---|---|
-| `field` | **Pendiente de evidencia de spawn** (ver abajo) | Default actual para el grueso del `mob_db` |
-| `skill_summon` | Invocado por skill de jugador | ABR / Biolo wooden |
-| `quest_prop` | Prop/blanco de quest o script | Rebellion targets, `GLASS_PLATE` |
-| `pet` | Solo tiene sentido como pet, no como mob de mapa | `J_TAINI` |
-| `stub` | Entrada mínima sin uso hallado | `MD_PRI_DRAGON_*` |
-| `unknown` | Reservado; preferir no usarlo si hay default explícito | — |
+`mob_role` responde: **¿qué clase de entrada es este registro del `mob_db` en el mundo OzRo?**, no “¿en qué mapa aparece?” (eso es Spawns).
 
-**`field` provisional no afirma** “este mob aparece en un field map”. Significa:
+| Rol | Cuándo |
+|---|---|
+| `skill_summon` | Evidencia de skill/src |
+| `quest_prop` | Evidencia de script de quest/prop |
+| `pet` | Pet-only (p. ej. en `pet_db` sin ficha de mob de mapa) |
+| `stub` | YAML mínimo sin uso hallado |
+| `pending` | **Default honesto:** está en `mob_db`, aún sin evidencia de rol de aparición |
 
-1. No lo clasificamos aún como summon/pet/prop/stub.
-2. **Aún no corrimos Etapa 3 (spawns/scripts)** para demostrar aparición en mapa.
-3. Por tanto incluye ruido: dummies sin identity, mobs solo de instancia, mobs de script, etc.
-
-Tras Etapa 3, `field` debería restringirse a mobs con spawn de mapa (u otro rol más preciso: `instance_mob`, `event_mob`, …). Hasta entonces, **no usar `mob_role=field` como filtro de economía/farmeo**.
+`pending` se resuelve en Etapa 3+ (spawns/scripts) hacia roles más precisos (`map_spawn`, `instance`, etc. según se definan). No usar `field` como sinónimo de “aún no sabemos”.
 
 ### Propiedades
 
