@@ -378,5 +378,5 @@ OnInit:
 	.offer_pages = (.offer_count + .offer_page_size - 1) / .offer_page_size;
 	.mission_count = getarraysize(.mission_item);
 	.mission_pages = (.mission_count + .mission_page_size - 1) / .mission_page_size;
-	return;
+	end;
 }

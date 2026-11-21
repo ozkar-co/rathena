@@ -56,6 +56,7 @@ feature.barter: on
 feature.barter_extended: off
 feature.instance_allow_reconnect: yes
 feature.roulette: off
+feature.mesitemicon: off
 
 
 vending_tax: 0

@@ -47,7 +47,7 @@
 
 Header:
   Type: QUEST_DB
-  Version: 1
+  Version: 3
 
 Body:
   - Id: 62556
