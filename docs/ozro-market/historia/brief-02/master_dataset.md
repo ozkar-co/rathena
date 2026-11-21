@@ -1591,6 +1591,30 @@ Debe existir una relación explícita entre estas entidades.
 
 Cuando una quest sea compleja o condicional, se debe conservar el script original y documentar el grado de interpretación alcanzado.
 
+## 17.3. Hallazgos Etapa 3 (OzRo)
+
+| Métrica | Valor |
+|---|---|
+| Quests (`quest_db` + import) | ~5111 |
+| Con Targets / Drops / TimeLimit | ~977 / ~52 / ~872 |
+| Filas target / quest-drop | ~1237 / ~69 |
+| Links NPC↔quest (evidence) | ~4710 |
+| Quests con ≥1 NPC link | ~2795 |
+| Links a quest_id ausente en DB | ~16 (ids solo en script) |
+| Mob/ítem sin resolver | 0 |
+
+**Hecho:** catálogo YAML; `Mob` + expansión de `MapMobTargets` → filas con `mob_id` (casing insensitive); `Id` en Targets = **objective index**, no mob; drops quest; `npc_quest_links` desde evidence.
+
+**Pending / diferido:**
+
+| Tema | Nota |
+|---|---|
+| Targets solo `Race` (sin mob list) | `mob_id` null; válido |
+| Recompensas / requisitos en script NPC | Diferido (getitem/delitem condicional) |
+| Tipo de quest; `Location` como mapa tipado | Diferido (Location ya en target rows) |
+| Bounties / repetibles OzRo custom | Diferido |
+| Orphan quest ids en scripts | Link con `in_quest_db=false` |
+
 ---
 
 # 18. INSTANCES — Instancias
@@ -2076,6 +2100,7 @@ Orden de trabajo (Skills **antes** de NPCs):
 - **Item Scripts:** cobertura 1:1 con `has_script`; tags parciales (~69 raw OK); groups/`callfunc`/combos diferidos (ver §10).
 - **Item Restrictions:** `trade.*` + `noequip` + `flag.NoConsume`; NoSell≠NoTrade; Jobs quedan en items (ver §11).
 - **Drops:** `mob_db` per_10000 + adjust; `map_specific` = bonus de mapa per_100000 sin `item_rate_*`; `pending_config_verify` para `*_mvp` vs `@iteminfo` (ver §15).
+- **Quests:** `quest_db` + targets/drops + `npc_quest_links`; rewards/tipo/Location diferidos (ver §17).
 
 ## Etapa 4 — Resolución de valores efectivos
 
