@@ -60,13 +60,13 @@ trash_bin/
 
 **No tocar en limpiezas rutinarias:** `src/`, `3rdparty/`, `db/re/` masivo sin auditoría, `PACKETVER`.
 
-## Trabajo futuro (no hecho aún)
+## Trabajo futuro
 
 Orden sugerido; cada fase con smoke test (`./map-server --run-once` + checklist en [09-estado-tecnico-y-estabilidad.md](./09-estado-tecnico-y-estabilidad.md) §8–9).
 
-1. **Mapas vs cliente** — diff `conf/maps_athena.conf` contra `.gat` del cliente 2021; comentar mapas ausentes.
-2. **Cascada** — por cada mapa quitado: warps, instancias (`db/re/instance_db.yml` + `db/import/instance_db.yml`) y NPC activos que lo referencien.
-3. **Episodios / instancias** — desactivar contenido Episode 18–21 si el cliente no lo soporta (NPC + mapas, no borrar DB entera).
+1. **Mapas vs cliente** — `implementado` (2026-11-20): `conf/maps_athena.conf` alineado con `client_maps.jsonl` (0 enabled sin `.gat`); warps a destinos disabled comentados; NPCs en mapas disabled archivados; 54 comentarios OzRo stale restaurados (destino sí habilitado).
+2. **Cascada** — `parcial`: warps/NPC en mapas disabled hechos; falta auditoría fina de `instance_db` y quests que solo referencian mapas disabled sin spawnear ahí.
+3. **Episodios / instancias** — desactivar contenido Episode 18–21 si el cliente no lo soporta (NPC + mapas, no borrar DB entera). `garden_of_time` / `t_garden` ya en `trash_bin/`.
 4. **Jobs / skills** — límites en `db/import/` (`skill_tree.yml`, `skill_db.yml`, jobs) según lo que el cliente muestre, no recortar `db/re/` a ciegas.
 5. **Features apagadas** — con `achievement`, `attendance`, `equipswitch` off en `conf/import/battle_conf.txt`, archivar NPC/DB asociados si siguen cargándose.
 6. **Mercado v3** — nuevo diseño en `docs/ozro-market/` y custom; no revivir `data/market/` del repo.

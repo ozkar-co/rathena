@@ -3095,7 +3095,7 @@ OnTouch_:
 
 prt_maze02,25,161,0	script	#music	-1,7,7,{
 OnTouch_:
-	soundeffect "effect\\¼®¾çÀÇ ¾î½Ø½Å.wav",1;
+	soundeffect "effect\\ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ø½ï¿½.wav",1;
 	end;
 }
 
@@ -8174,7 +8174,7 @@ OnTouch_:
 		delitem 953,12; //Stone_Heart
 		delitem 7013,365; //Coral_Reef
 		set sign_q,81;
-		//warp "himinn",49,10; // OzRo: dst map no client (himinn)
+		warp "himinn",49,10;
 		end;
 	}
 	else if (sign_q == 203) {
@@ -8184,7 +8184,7 @@ OnTouch_:
 		close;
 	}
 	else if (sign_q > 80) {
-		//warp "himinn",49,10; // OzRo: dst map no client (himinn)
+		warp "himinn",49,10;
 	}
 	end;
 }
@@ -9607,7 +9607,7 @@ que_sign01,122,141,4	script	Witch#s	792,{
 				mes "be too much for just";
 				mes "one adventurer alone...";
 				close2;
-				//warp "que_sign02",35,313; // OzRo: dst map no client (que_sign02)
+				warp "que_sign02",35,313;
 				end;
 			}
 		case 2:
@@ -10098,7 +10098,7 @@ que_sign01,122,141,4	script	Witch#s	792,{
 				mes "Good luck,";
 				mes ""+strcharinfo(0)+"...";
 				close2;
-				//warp "que_sign02",35,313; // OzRo: dst map no client (que_sign02)
+				warp "que_sign02",35,313;
 				end;
 			case 2:
 				mes "[Kirkena]";

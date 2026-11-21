@@ -458,3 +458,11 @@ ordeal_a02
 # OzRo: itemmall cashmall + double race cleanup
 npc/re/merchants/cashmall.txt (moved/disabled)
 npc/other/monster_race.txt.double_race_extract
+
+# OzRo map-client cleanup finish (2026-11-20):
+# Restored 54 stale //warp OzRo comments (dst map was enabled + in client).
+# Left real disabled-dst comments: tra_fild*, for_dun*, t_garden entry.
+# Files moved (dead / map disabled):
+npc/re/quests/garden_of_time.txt
+npc/re/warps/other/TrainingZone123.txt
+npc/re/merchants/shadow_refiner.txt
