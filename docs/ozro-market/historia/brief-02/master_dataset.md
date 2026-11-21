@@ -1236,6 +1236,31 @@ Por ejemplo, impedir que un objeto se venda a NPC no implica necesariamente impe
 
 El sistema debe exponer cada restricción por separado.
 
+## 11.1. Fuentes y claves (Etapa 3)
+
+| Fuente | `restriction_key` | Valor |
+|---|---|---|
+| YAML `Trade.*` | `trade.NoDrop` / `NoTrade` / `NoSell` / `NoStorage` / `NoCart` / `NoMail` / `NoAuction` / `NoGuildStorage` | `true` (cada una aparte) |
+| YAML `Trade.Override` | `trade.Override` | nivel numérico (raro) |
+| YAML `Flags.NoConsume` | `flag.NoConsume` | `true` |
+| `item_noequip.txt` | `noequip` | `{flag, flags_decoded:[…]}` bitmask |
+
+`Jobs` / nivel de equipo **no** se duplican aquí: viven en el catálogo de ítems (allow-list / props).
+
+## 11.2. Hallazgos Etapa 3 (OzRo)
+
+| Métrica | Valor |
+|---|---|
+| Filas de restricción | ~48367 |
+| Ítems con ≥1 restricción | ~7318 |
+| Filas Trade | ~48140 |
+| `noequip` (ítems únicos) | ~213 |
+| `flag.NoConsume` | 14 |
+
+Trade más frecuentes: NoDrop ~7132 · NoCart ~6877 · NoTrade ~6851 · NoAuction/NoGuildStorage/NoMail ~6.8k · NoSell ~4445 · NoStorage ~2302.
+
+**Diferido:** nombres de zonas (`restricted N` mapflag), Jobs como restricción, bloqueos de uso solo-script, import noequip (vacío hoy).
+
 ---
 
 # 12. ITEM ECONOMY — Valores nativos de NPC
@@ -2002,6 +2027,7 @@ Orden de trabajo (Skills **antes** de NPCs):
 - **Barter inventory / callshop dinámico / buysell runtime:** diferidos (ver §16).
 - **NPC script analysis:** evidencia de cuerpo → `functions`; duplicates heredan; pending ~9k; ruido Transport/Healer aceptado.
 - **Item Scripts:** cobertura 1:1 con `has_script`; tags parciales (~69 raw OK); groups/`callfunc`/combos diferidos (ver §10).
+- **Item Restrictions:** `trade.*` + `noequip` + `flag.NoConsume`; NoSell≠NoTrade; Jobs quedan en items (ver §11).
 
 ## Etapa 4 — Resolución de valores efectivos
 
