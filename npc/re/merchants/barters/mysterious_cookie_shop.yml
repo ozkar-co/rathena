@@ -397,12 +397,6 @@ Body:
           - Index: 0
             Item: Evt_Cos_Coin
             Amount: 25
-      - Index: 58
-        Item: SuNoviceStone_Top
-        RequiredItems:
-          - Index: 0
-            Item: Evt_Cos_Coin
-            Amount: 25
   - Name: barter_stone_mid
     Items:
       - Index: 0
@@ -741,12 +735,6 @@ Body:
           - Index: 0
             Item: Evt_Cos_Coin
             Amount: 25
-      - Index: 56
-        Item: SuNoviceStone_Middle
-        RequiredItems:
-          - Index: 0
-            Item: Evt_Cos_Coin
-            Amount: 25
   - Name: barter_stone_low
     Items:
       - Index: 0
@@ -1079,12 +1067,6 @@ Body:
           - Index: 0
             Item: Evt_Cos_Coin
             Amount: 25
-      - Index: 55
-        Item: SuNoviceStone_Bottom
-        RequiredItems:
-          - Index: 0
-            Item: Evt_Cos_Coin
-            Amount: 25
   - Name: barter_stone_garment
     Items:
       - Index: 0
@@ -1311,12 +1293,6 @@ Body:
             Amount: 20
       - Index: 37
         Item: ASPDStone_Robe
-        RequiredItems:
-          - Index: 0
-            Item: Evt_Cos_Coin
-            Amount: 20
-      - Index: 38
-        Item: SuNoviceStone_Robe
         RequiredItems:
           - Index: 0
             Item: Evt_Cos_Coin

@@ -1424,12 +1424,12 @@ Las probabilidades deben conservar su unidad original y, cuando sea posible, su 
 
 | Métrica | Valor |
 |---|---|
-| Filas `acquisition_outputs` | ~51446 |
-| Por tipo | mob_drop ~13123 · map_drop ~679 · npc_shop ~2911 · npc_barter ~1114 · box_reward ~33178 · crafting ~293 · quest_drop ~69 · enchanting ~79 |
-| Ítems cliente con ≥1 fuente | ~10031 / ~22622 |
-| Sin fuente en unión actual | ~12591 (pool no cableado: cash/script/custom/event; no son huecos de contenido) |
+| Filas `acquisition_outputs` | ~53684 |
+| Por tipo | + `socketing` ~112 · `npc_reward` ~2212 (getitem literales) |
+| Ítems cliente con ≥1 fuente | ~10540 / ~22622 |
+| Sin fuente | ~12082 (pool custom; no huecos) |
 
-**Hecho:** unión de reports existentes (+ barters + stones NPC). **Fuera de alcance aquí:** rewards solo-script de quest/instance; probs efectivas (Etapa 4).
+**Hecho:** unión (+ barters + stones + socket + script rewards literales). Probs efectivas → Etapa 4.
 
 ---
 
@@ -1571,12 +1571,12 @@ También deben identificarse las tiendas que utilicen monedas o recursos distint
 
 | Métrica | Valor |
 |---|---|
-| Barters (`Name`) | 66 |
-| Ofertas (cliente) | ~1114 (~806 ítems únicos) |
-| `RequiredItems` resueltos | ~1028 |
-| Ofertas skip (no cliente / unresolved) | ~4 offer · ~90 unresolved incl. reqs |
+| Barters (`Name`) vivos | 62 |
+| Ofertas / RequiredItems (cliente) | 1028 / 1028 · 0 unresolved |
 
 **Hecho:** árbol `npc/barters.yml` → Imports; gate cliente en oferta. Nombres = shops flotantes (`callshop`), no `npc_id` de script header.
+
+**Purga OzRo (trash_bin):** ofertas `SuNoviceStone_*` (sin `item_db`/cliente) desde `mysterious_cookie_shop.yml`; shops `barter_mall_coupon_1..4` (coupons fantasma) desde `cashmall.yml`. Archivo: `trash_bin/npc/re/merchants/barters/`.
 
 ---
 
@@ -1799,11 +1799,11 @@ Criterio OzRo: stone “suelto” (en DB, sin NPC/UI que lo entregue) = inventar
 | Métrica | Valor |
 |---|---|
 | Scripts inventariados | 31 (enchanting 28 · socketing 3) |
-| Filas ítem (stone/target) | ~177 |
-| Stones / targets únicos | ~63 / ~98 |
+| Stones / targets (getitem2 path) | ~63 / ~98 |
 | Craftsman (`enchan_arm`) | stones 4700–4752 + targets setarray OK |
+| Socket transforms (`Func_Socket` / `Func_Socket2`) | ~112 pares A→A_ (Seiyablem + Leablem) |
 
-**Hecho:** evidencia `set_addpart` / `setarray` enchant* / `getitem2` literales. Socket Seiyablem/Leablem registrados como servicio (`socketing`) sin pool de stones (no usan `getitem2`).
+**Hecho:** evidencia `set_addpart` / `setarray` enchant* / `getitem2` literales. **Socketing** = caso especial `npc_item_transforms` (ítem sin slot → versión con más slots; origen de acquisition `socketing`). Otros item→item de quest/craft: basta mapear “lo entrega este NPC” cuando se inventaríe rewards script.
 
 ## 21bis. RANDOM OPTIONS (dominio aparte)
 
@@ -1876,13 +1876,19 @@ Un combo puede involucrar dos o más ítems.
 
 **Nota — combos muertos (hecho):** ~4236 sets / 2749 groups purgados de `db/re/item_combos.yml` (miembro ausente del `item_db` OzRo). Re-extract: `skipped=0`. Tool: `ozro-data/tools/purge_dead_item_combos.py`.
 
-**Etapa 3 (combos):** cerrado. Grafos §22.2 y Acquisition Sources (§14) = extracts/relaciones de catálogo posteriores (obtenibilidad completa de ítems vivos); no son resolución de rates.
+**Etapa 3 (combos):** cerrado. Acquisition unificado (§14) hecho.
 
 ## 22.2. Dependencias
 
 Registrar las relaciones de consumo, producción y compatibilidad.
 
 Esto permitirá construir posteriormente grafos de recetas y dependencias.
+
+### Hallazgos — `item_dependencies`
+
+Unión tipada desde reports ya extraídos (sin re-parsear scripts): `craft_consume`, `barter_consume`, `combo_member`, `socket_transform`, `box_contains`. Ver `item_dependencies_summary.json` tras `extract item_dependencies`.
+
+**Rewards script residual:** `npc_script_rewards` = `getitem`/`getitembound` literales → `npc_id` + acquisition `npc_reward`. Variables omitidas a propósito.
 
 ---
 
@@ -2260,7 +2266,7 @@ Orden de trabajo (Skills **antes** de NPCs):
 | Gate cliente en ítems / relaciones item-centric | Cumplido |
 | Hallazgos OzRo documentados por dominio | Cumplido |
 | Pendientes que requieren rates/config/efectivos | **Trasladados a Etapa 4** (abajo) |
-| Dominios §4 sin extract dedicado aún (p. ej. Random Options, Acquisition unificado, inventario barter) | No bloquean el cierre del **orden** E3; se atienden en el plan operativo de cierre / siguientes extractores de catálogo |
+| Extractores post-orden + §22.2 + script rewards + closure_sanity | **Hechos** (`ok: true` en `etapa3_closure_sanity.json`) |
 
 No reabrir Etapa 3 para trabajo de resolución efectiva (buy/sell, `item_rate_*`, probs normalizadas, etc.).
 

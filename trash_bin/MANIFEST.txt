@@ -466,3 +466,7 @@ npc/other/monster_race.txt.double_race_extract
 npc/re/quests/garden_of_time.txt
 npc/re/warps/other/TrainingZone123.txt
 npc/re/merchants/shadow_refiner.txt
+
+# OzRo: dead barter offers/shops (missing item_db + client)
+npc/re/merchants/barters/mysterious_cookie_shop_SuNoviceStone_offers.yml
+npc/re/merchants/barters/cashmall_barter_mall_coupon_1_to_4.yml

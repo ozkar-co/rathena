@@ -1,0 +1,27 @@
+# Archived from npc/re/merchants/barters/mysterious_cookie_shop.yml
+# Reason: Item missing from item_db and client
+Body:
+      - Index: 58
+        Item: SuNoviceStone_Top
+        RequiredItems:
+          - Index: 0
+            Item: Evt_Cos_Coin
+            Amount: 25
+      - Index: 56
+        Item: SuNoviceStone_Middle
+        RequiredItems:
+          - Index: 0
+            Item: Evt_Cos_Coin
+            Amount: 25
+      - Index: 55
+        Item: SuNoviceStone_Bottom
+        RequiredItems:
+          - Index: 0
+            Item: Evt_Cos_Coin
+            Amount: 25
+      - Index: 38
+        Item: SuNoviceStone_Robe
+        RequiredItems:
+          - Index: 0
+            Item: Evt_Cos_Coin
+            Amount: 20
