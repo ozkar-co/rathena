@@ -147,6 +147,31 @@ Reglas: `data.ini` (clave menor gana). Conteos = archivo ganador tras override. 
   - Series: `geffen_mage_*`×11[1–2, 4–12]; `ep14_mors_mob*`×6[1–6]; `elemetal_master_s*`×5[1–5]; `goblin_*`×5[1–5]; `kobold_*`×5[1–5]; `meister_abr*`×4[1–4]; `venatu_*`×4[1–4]; `pere*`×4[1–4]; `dimik_*`×4[1–4]; `crystal_*`×4[1–4]; `morocc_*`×4[1–4]; `ep18_armed_villager*`×3[1–3]; `poton_canon_*`×3[1–3]; `e_cowraiders*`×3[1–3]; `g_cowraiders*`×3[1–3]; `dr_basilisk*`×3[1–3]; `ep14_3_death_a_mob*`×3[1–3]; `ep14_3_death_b_mob*`×3[1–3]; `cowraiders*`×3[1–3]; `geffen_mage_3_*`×3[1–3]; +3 series
   - Nombres no-ID: **2685** (`14_3_mercenary_a` … `워그`)
 
+### Server↔client — mobs (schema 4, 2026-11-21)
+
+Machine-readable: `ozro-data/reports/client_mob_*.jsonl` + counts en `client_grf_index_meta.json`.
+
+| Métrica | n |
+|---|---:|
+| Server mobs | 2675 |
+| OK (identity+jobname+spr/act\|gr2) | 2551 |
+| `no_identity` | 120 (`S_DUMMY_*`) |
+| `missing_sprite` | 4 |
+| ACT→wav gaps | 0 |
+
+**Residual `missing_sprite` (sin asset en donor):**
+
+| Id | AegisName |
+|---:|---|
+| 2200 | J_TAINI |
+| 2336 | DOMOVOI |
+| 2373 | ROCK |
+| 2374 | THICKET |
+
+**Smoke verificado (OK):** `1002` PORING · `1007` FABRE · `1113` DROPS · `21387` ILL_SOLDIER_ANDR · `21388` ILL_ANDRE_LARVA · `21395` ILL_MAYA · `22177` MD_PRI_DRAGON_1 · `22195` SPIRIT_G_LAND_SL · `22199` SPIRIT_B_FLAME_SL · `22220` SPIRIT_D_WIND_S · `22224` SPIRIT_R_FLAME_S · `22234` SPIRIT_C_WATER_L · `1285` ARCHER_GUARDIAN (`.gr2`) · `1288` EMPELIUM (`.gr2`) · `3501` DR_SPORE (wav placeholder)
+
+**Smoke residual (falla esperada):** `2200` J_TAINI · `2336` DOMOVOI · `2373` ROCK · `2374` THICKET · `21087` / `22551` `S_DUMMY_*`
+
 ## NPCs — sprites (`data/sprite/npc`)
 
 - **Archivos:** 2473
