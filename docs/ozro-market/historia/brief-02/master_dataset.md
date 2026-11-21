@@ -524,6 +524,28 @@ Al llegar a NPCs en Etapa 3, el extractor de relaciones debe inventariar por NPC
 
 Con ese inventario se determina `functions` de forma efectiva: marcar solo lo demostrado; si sigue sin ser claro → permanece `pending`. Un mismo NPC puede acumular varias funciones.
 
+### Hallazgos Etapa 3 — shops + análisis de script (OzRo)
+
+**Shops (headers):** ~342 tiendas (`shop` 300 · `marketshop` 42); ~2911 filas ítem; ~555 ítems únicos. Currency: `zeny`. `cashshop`/`itemshop`/`pointshop` no aparecen en scripts enabled (parser listo).
+
+**callshop → inventario (hecho, parcial):** ~98 usos. Literales → `shop_id` **70**; prefijo (`"market_refine_" + …`) **1** → 7 marketshops. **24** → **barter** (nombres ~66 indexados desde `barters.yml` enabled, sin inventario; incluye prefijos `shop_ext162_*`). **1** dinámico. Residuo: `EnchantGradeExchange` ×2 — barter solo en `trash_bin/…/enchantgrade.yml`, **no** cargado en OzRo.
+
+**Decisión:** resolver de una vez el enlace callshop→tienda ya parseada (cara del NPC + inventario flotante). **No** meter inventario barter aquí: modelo distinto (`RequiredItems`, stock, zeny/ítem) → paso/dominio propio después.
+
+**Script bodies:** ~7479 scripts analizados; `functions` pending **16518 → ~9066**. Duplicates heredan del `duplicate_of` (~4259).
+
+| Función | ~n (tras análisis) | Evidencia típica |
+|---|---|---|
+| Warper | 3930 | header `warp`/`warp2` |
+| Transport | 3428 | `warp` / `savepoint` / `warpparty`… en cuerpo |
+| Quest | 1980 | `setquest` / `checkquest` / … |
+| Instance | 1329 | `instance_create` / `instance_enter` / … |
+| Healer | 1105 | `percentheal` / `fullheal` (también en quests) |
+| Shop | 581 | header shop + `callshop` / `npcshop*` |
+| Kafra / Storage / Refine / … | menor | `F_Kafra`, `openstorage`, `successrefitem`, … |
+
+**Ruido aceptado (no “bug”):** `Transport`/`Healer` en quests que warpean/curan una vez = multi-función real; no implica NPC de servicio dedicado. Comandos rAthena suelen ir **sin paréntesis**.
+
 ## 6.4. Relaciones
 
 Los NPC deben relacionarse con:
@@ -1396,23 +1418,35 @@ Un NPC puede tener varias tiendas y cada tienda puede ofrecer diferentes product
 - `shop_id`.
 - `npc_id`.
 - `shop_name`.
-- `shop_type`.
-- `currency_type`.
+- `shop_type` — `shop` / `cashshop` / `itemshop` / `pointshop` / `marketshop`.
+- `currency` — `zeny` / `cash` / `item:<id>` / `var:<name>`.
+- `cost_item_id` / `cost_variable` — cuando aplique.
+- `discount` — yes/no del header, si consta.
 - `conditions`.
-- `source_script`.
+- `source_script` (+ línea).
 
 ### Productos
 
-- `shop_item_id`.
 - `shop_id`.
 - `item_id`.
-- `buy_price`.
-- `stock`.
+- `price` — `-1` = default `item_db` (`price_is_default`).
+- `stock` — solo `marketshop` (`item:price:qty`).
 - `conditions`.
 
 Debe contemplarse tanto la compra como la venta de ítems por parte de NPC.
 
 También deben identificarse las tiendas que utilicen monedas o recursos distintos de Zeny.
+
+**Etapa 3 (hecho):** headers + `npc_shop_links` (`callshop` literal/prefijo → `shop_ids` + inventario ya extraído).
+
+**Diferido (documentado a propósito):**
+
+| Qué | Por qué después |
+|---|---|
+| Inventario **barter** (`barters.yml` + imports) | Modelo distinto (coste en ítems/`RequiredItems`, no `item:price` de shop). ~23 callshops + NPCs barter. |
+| `callshop` con variable/array | 1 caso; requiere análisis de asignación de `.@shopname$[]`. |
+| Buysell / `npcshopadditem` runtime | Inventario mutado en script; no header estático. |
+| Precio efectivo de `-1` | Etapa 4 (`item_db` buy price + rates). |
 
 ---
 
@@ -1896,6 +1930,8 @@ Campos `pending` (p. ej. `mob_role`, `functions` de NPC) **cierran Etapa 2** si 
 
 ## Etapa 3 — Extractores de relaciones
 
+**Gate antes de cada paso:** revisar por escrito (1) qué ya existe, (2) qué falta, (3) qué se puede romper, (4) qué se define después, (5) qué no se puede cerrar aún. No implementar hasta esa revisión.
+
 Orden de trabajo (Skills **antes** de NPCs):
 
 1. Map Connections *(+ grafo Dijkstra / fricción)*.
@@ -1923,6 +1959,9 @@ Orden de trabajo (Skills **antes** de NPCs):
 - **Skills antes de NPC:** §8bis; `mob_skill_db` → `skill_summons` → spawns `slave` → `mob_role`.
 - **Slaves:** tipo de spawn obligatorio; `val[0..4]` + `skill_lv`=amount; skills `NPC_SUMMONSLAVE`/`NPC_SUMMONMONSTER`/`NPC_DEATHSUMMON`.
 - **`G_*` residuales:** ~195 siguen `pending` tras el barrido — tienen skills como padre, no como `val` de summon; no forzar `slave`.
+- **NPC Shops:** headers → `npc_shops` / `npc_shop_items`; `callshop` → `npc_shop_links` (literal/prefijo resuelto; barter solo clasificado).
+- **Barter inventory / callshop dinámico / buysell runtime:** diferidos (ver §16).
+- **NPC script analysis:** evidencia de cuerpo → `functions`; duplicates heredan; pending ~9k; ruido Transport/Healer aceptado.
 
 ## Etapa 4 — Resolución de valores efectivos
 
