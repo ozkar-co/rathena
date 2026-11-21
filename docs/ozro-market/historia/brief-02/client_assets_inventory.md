@@ -4,6 +4,8 @@ Generado: 2026-11-20 22:52 UTC
 
 Complementario a `master_dataset.md` (no lo reemplaza ni se integra). Inventario de lo que **existe** en el cliente activo para validación previa server↔client.
 
+**Machine-readable:** `python3 ozro-cli/tools/export_client_inventory.py` → `ozro-data/reports/client_*.jsonl` + `client_grf_index_meta.json`.
+
 Reglas: `data.ini` (clave menor gana). Conteos = archivo ganador tras override. Rangos cuando el stem es numérico o `prefijo+N`. Iconos/collection/cardbmp usan `ResourceName` (no item ID).
 
 ## Fuentes
