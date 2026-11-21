@@ -1199,8 +1199,6 @@ que_qsch01,161,105,0	duplicate(#main_cages)	#sch01_cage04	-1,1,1
 que_qsch01,168,135,0	duplicate(#main_cages)	#sch01_cage05	-1,1,1
 que_qsch01,150,159,0	duplicate(#main_cages)	#sch01_cage06	-1,1,1
 
-que_qsch01,1,8,0	duplicate(#gd_main_mobctrl)	#gd_sch01_mobctrl	844
-
 -	script	windpaths_main	-1,{
 	end;
 	
@@ -2464,6 +2462,8 @@ que_qaru03,1,8,0	duplicate(#gd_main_mobctrl)	#gd_aru03_mobctrl	844
 que_qaru04,1,8,0	duplicate(#gd_main_mobctrl)	#gd_aru04_mobctrl	844
 
 que_qaru05,1,8,0	duplicate(#gd_main_mobctrl)	#gd_aru05_mobctrl	844
+
+que_qsch01,1,8,0	duplicate(#gd_main_mobctrl)	#gd_sch01_mobctrl	844
 
 que_qsch02,1,8,0	duplicate(#gd_main_mobctrl)	#gd_sch02_mobctrl	844
 
