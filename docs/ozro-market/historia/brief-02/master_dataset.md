@@ -752,7 +752,8 @@ La clasificación debe incluir, como mínimo:
 | Categoría | Ejemplos |
 |---|---|
 | Weapon | Armas |
-| Armor | Armaduras |
+| Armor | Armaduras / headgear de combate (no costume) |
+| Costume | Equipamiento costume (ver abajo) |
 | Garment | Capas |
 | Shoes | Zapatos |
 | Accessory | Accesorios |
@@ -768,8 +769,35 @@ La clasificación debe incluir, como mínimo:
 | Miscellaneous | Materiales y objetos varios |
 | Quest | Objetos de quest |
 | Currency | Monedas y recursos económicos |
+| Ammo | Munición |
+| Cash | Ítems cash shop (tipo original `Cash`) |
 
 Las categorías deben poder ampliarse sin modificar la estructura principal.
+
+### Costume vs Armor (hallazgo Etapa 2)
+
+En rAthena RE, los costumes **no** son un `Type` distinto: son `Type: Armor` con `Locations` `Costume_*`.
+
+Observado en OzRo (~3104 ítems):
+
+| Location | Rol visual |
+|---|---|
+| `Costume_Head_Top` | Headgear top costume |
+| `Costume_Head_Mid` | Headgear mid costume |
+| `Costume_Head_Low` | Headgear low costume |
+| `Costume_Garment` | Garment/cape costume |
+
+Implicación de modelo:
+
+1. **Capa original:** conservar `type` = `Armor` y `locations` tal cual el YAML.
+2. **Capa normalizada:** `is_costume = true` si alguna location empieza por `Costume_`.
+3. **`item_category`:** `Costume` cuando `is_costume` (no mezclarlos con Armor de combate en filtros de economía/UI).
+4. **`equip_location`:** location costume concreta (p. ej. `Costume_Head_Top`).
+5. **`equip_location_family`:** familia de slot comparable al equipo normal (`head_top` / `head_mid` / `head_low` / `garment`), para relacionar “versión costume” vs “versión equipable” del mismo slot visual.
+
+Shadow Gear es ortogonal: locations `Shadow_*` (y/o `Type: ShadowGear`) → categoría `Shadow Gear`, no costume.
+
+No usar el nombre del ítem (“Costume …”) como fuente de verdad; solo `Locations`.
 
 ### Separación de Cards y Enchantments
 
