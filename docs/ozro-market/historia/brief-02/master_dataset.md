@@ -1418,6 +1418,8 @@ Cada fuente debe poder entregar uno o varios resultados.
 
 Las probabilidades deben conservar su unidad original y, cuando sea posible, su valor efectivo.
 
+**Estado vs Etapa 3:** el dominio Acquisition es la **unión** de fuentes ya extraídas (drops, shops, boxes, recipes, quests, …). No formaba parte del orden E3 1–14; el extract unificado y la obtenibilidad completa de ítems vivos son trabajo de catálogo posterior al cierre del orden (no Etapa 4). Las **probabilidades efectivas** de cada fuente se resuelven en Etapa 4.
+
 ---
 
 # 15. DROPS — Extracción de drops
@@ -1505,15 +1507,16 @@ Fuente: `db/re/map_drops.yml` (`GlobalDrops` / `SpecificDrops`). **No reemplaza*
 
 UI/guías: listar aparte (“bonus si farméas en este mapa”); no sumar ciegas a drops “del mob en general”.
 
-### Pending / diferido (explícito)
+### Etapa 4 (efectivos / conf) — heredado desde E3
 
-| Tema | Estado | Cuándo |
-|---|---|---|
-| `item_rate_*_mvp` (familias no override en import) | `pending_config_verify` en filas afectadas | **Paso ajustar config:** comparar `@iteminfo` in-game vs dataset; alinear `battle_conf` import y regenerar drops |
-| `enable_bonus_map_drops` runtime | pending | Paridad exacta del camino `mob_getdroprate` en map drops (OzRo lo tiene `yes`) |
-| `mob_item_ratio.yml` | pending (import vacío hoy) | Si se llena Body → debe entrar al extractor o los efectivos mienten; mitigar con gate “Body no vacío ⇒ re-extract” |
-| Drops solo-script / evento | diferido | Dominios script/event |
-| VIP / LUK / boosts de kill | diferido | No pertenecen a capa DB+conf |
+| Tema | Nota |
+|---|---|
+| `item_rate_*_mvp` / `pending_config_verify` | Comparar `@iteminfo` vs dataset; alinear `battle_conf` import; regenerar drops |
+| `enable_bonus_map_drops` runtime | Paridad exacta del camino `mob_getdroprate` (OzRo: `yes`) |
+| `mob_item_ratio.yml` | Import vacío hoy; si Body no vacío → entra al resolver / gate re-extract |
+| VIP / LUK / boosts de kill | Política OzRo; fuera de capa DB+conf estática |
+
+Drops solo-script / evento: backlog de catálogo (no rates).
 
 ---
 
@@ -1551,14 +1554,7 @@ También deben identificarse las tiendas que utilicen monedas o recursos distint
 
 **Etapa 3 (hecho):** headers + `npc_shop_links` (`callshop` literal/prefijo → `shop_ids` + inventario ya extraído).
 
-**Diferido (documentado a propósito):**
-
-| Qué | Por qué después |
-|---|---|
-| Inventario **barter** (`barters.yml` + imports) | Modelo distinto (coste en ítems/`RequiredItems`, no `item:price` de shop). ~23 callshops + NPCs barter. |
-| `callshop` con variable/array | 1 caso; requiere análisis de asignación de `.@shopname$[]`. |
-| Buysell / `npcshopadditem` runtime | Inventario mutado en script; no header estático. |
-| Precio efectivo de `-1` | Etapa 4 (`item_db` buy price + rates). |
+**Etapa 3 (alcance shops headers/callshop):** cerrado. Inventario **barter** = extract de catálogo aparte (modelo `RequiredItems`). Precio `-1`, buysell runtime → **Etapa 4**.
 
 ---
 
@@ -1606,15 +1602,7 @@ Cuando una quest sea compleja o condicional, se debe conservar el script origina
 
 **Hecho:** catálogo YAML; `Mob` + expansión de `MapMobTargets` → filas con `mob_id` (casing insensitive); `Id` en Targets = **objective index**, no mob; drops quest; `npc_quest_links` desde evidence.
 
-**Pending / diferido:**
-
-| Tema | Nota |
-|---|---|
-| Targets solo `Race` (sin mob list) | `mob_id` null; válido |
-| Recompensas / requisitos en script NPC | Diferido (getitem/delitem condicional) |
-| Tipo de quest; `Location` como mapa tipado | Diferido (Location ya en target rows) |
-| Bounties / repetibles OzRo custom | Diferido |
-| Orphan quest ids en scripts | Link con `in_quest_db=false` |
+**Etapa 3 (`quest_db` + links):** cerrado. Targets solo `Race` / orphans = comportamiento documentado OK. Recompensas script, tipado fino, bounties OzRo = backlog de catálogo (no rates).
 
 ---
 
@@ -1654,7 +1642,7 @@ Las apariciones de monstruos dentro de instancias deben relacionarse con el sist
 
 **Hecho:** catálogo Id/Name/Enter/TimeLimit; `instance_maps`; links NPC cuando el create usa nombre literal igual a `Name`.
 
-**Pending / diferido:** create con variable (mayoría); requisitos/rewards de script; IdleTimeout u otros campos si aparecen; spawns ya tienen `spawn_type: instance` por mapa.
+**Etapa 3 (catálogo + bind literal):** cerrado. Create con variable / rewards de script = backlog de catálogo. Spawns ya tienen `spawn_type: instance` por mapa.
 
 ---
 
@@ -1688,7 +1676,7 @@ También deben contemplarse recompensas entregadas mediante NPC, quests, instanc
 
 **Hecho:** catálogo de grupos; rewards con `rate`/`amount` raw; link desde scripts; flag `contains_nested_box` / `reward_opens_group`.
 
-**Pending:** normalizar probabilidad según algoritmo (SharedPool ≠ % directo); cajas solo vía NPC/quest/instance; args completos de `getrandgroupitem`.
+**Etapa 4:** normalizar probabilidad según algoritmo (SharedPool ≠ % directo). Args `getrandgroupitem` / cajas solo-NPC: backlog de catálogo si hace falta cobertura.
 
 ---
 
@@ -1738,7 +1726,7 @@ El modelo debe permitir representar procesos destructivos, probabilísticos o co
 
 **Hecho:** catálogo produce + materiales; skill requerida (id/name/lv); familia por `ItemLV`; gate cliente en resultado/materiales.
 
-**Pending:** crafting solo vía NPC/script; zeny / éxito / fallo (runtime de skill); enlaces `itemskill`→produce.
+**Etapa 4:** zeny / éxito / fallo (runtime de skill). Enlaces NPC/`itemskill`→produce: backlog de catálogo si se inventarian crafters.
 
 ---
 
@@ -1782,7 +1770,7 @@ Criterio OzRo: stone “suelto” (en DB, sin NPC/UI que lo entregue) = inventar
 
 **Hecho:** corte superficie lab reform + grade; orbs/stones catalogables aparte de cards; equip `equip_level_min` ya en items (filtrar 175+ después).
 
-**Pending:** inventariar NPCs `getitem2` enchant (Craftsman, Mora…) como fuentes del dominio; barters `barter_rgsr_in_*` / `EnchantGradeExchange` al llegar a barters; Random Options (§21bis); Socket Enchant Seiyablem/Leablem.
+**Etapa 3 (stones/orbs + corte UI):** cerrado. Inventario NPC `getitem2` (Craftsman/Mora/socket) y Random Options (§21bis) = extracts de catálogo posteriores al orden E3, no Etapa 4.
 
 ## 21bis. RANDOM OPTIONS (dominio aparte)
 
@@ -1793,9 +1781,9 @@ Criterio OzRo: stone “suelto” (en DB, sin NPC/UI que lo entregue) = inventar
 | Qué es | Stats en el ítem (opción 1–5) | Ítem/carta en card slot |
 | Ejemplos | Crimson weapons (ATK%, ASPD…) | `Wolf_Orb_*`, `Strength3` |
 | Fuentes | `item_randomopt_db.yml`, `item_randomopt_group.yml`, drops/`RandomOptionGroup` | `item_db` + NPC/`getitem2` / (UI moderna off) |
-| Etapa | Tras Item Relationships o paso dedicado | §21 |
+| Etapa | Extract de catálogo (no depende del resolver E4) | §21 |
 
-Debe tener extract propio (catálogo de opciones + grupos + vínculo ítem/drop). No mezclar con `item_enchant.yml`.
+Debe tener extract propio (catálogo de opciones + grupos + vínculo ítem/drop). No mezclar con `item_enchant.yml`. Fuera del orden E3 1–14; no bloquea el cierre formal de ese orden.
 
 ---
 
@@ -1845,7 +1833,7 @@ Un combo puede involucrar dos o más ítems.
 
 **Nota — combos muertos (hecho):** ~4236 sets / 2749 groups purgados de `db/re/item_combos.yml` (miembro ausente del `item_db` OzRo). Re-extract: `skipped=0`. Tool: `ozro-data/tools/purge_dead_item_combos.py`.
 
-**Pending:** grafos consume/produce; refine/socket; skill/quest item deps (§22.2); Acquisition Sources (§14) para obtenibilidad completa de ítems vivos.
+**Etapa 3 (combos):** cerrado. Grafos §22.2 y Acquisition Sources (§14) = extracts/relaciones de catálogo posteriores (obtenibilidad completa de ítems vivos); no son resolución de rates.
 
 ## 22.2. Dependencias
 
@@ -2207,19 +2195,31 @@ Orden de trabajo (Skills **antes** de NPCs):
 - **Skills antes de NPC:** §8bis; `mob_skill_db` → `skill_summons` → spawns `slave` → `mob_role`.
 - **Slaves:** tipo de spawn obligatorio; `val[0..4]` + `skill_lv`=amount; skills `NPC_SUMMONSLAVE`/`NPC_SUMMONMONSTER`/`NPC_DEATHSUMMON`.
 - **`G_*` residuales:** ~195 siguen `pending` tras el barrido — tienen skills como padre, no como `val` de summon; no forzar `slave`.
-- **NPC Shops:** headers → `npc_shops` / `npc_shop_items`; `callshop` → `npc_shop_links` (literal/prefijo resuelto; barter solo clasificado).
-- **Barter inventory / callshop dinámico / buysell runtime:** diferidos (ver §16).
-- **NPC script analysis:** evidencia de cuerpo → `functions`; duplicates heredan; pending ~9k; ruido Transport/Healer aceptado.
-- **Item Scripts:** cobertura 1:1 con `has_script`; tags parciales (~69 raw OK); groups/`callfunc`/combos diferidos (ver §10).
-- **Item Restrictions:** `trade.*` + `noequip` + `flag.NoConsume`; NoSell≠NoTrade; Jobs quedan en items (ver §11).
-- **Drops:** `mob_db` per_10000 + adjust; `map_specific` = bonus de mapa per_100000 sin `item_rate_*`; `pending_config_verify` para `*_mvp` vs `@iteminfo` (ver §15).
-- **Quests:** `quest_db` + targets/drops + `npc_quest_links`; rewards/tipo/Location diferidos (ver §17).
-- **Instances:** catálogo + maps + NPC bind por `instance_create` literal; create dinámico pending (ver §18).
-- **Boxes:** `item_group_db` + links `getgroupitem`; nested flags; probs SharedPool diferidas (ver §19).
-- **Recipes:** `produce_db` (+ import); materiales `consumed`/`guide`; familia por `ItemLV`; NPC/zeny/fail diferidos (ver §20).
-- **Enchantments:** stones/orbs ≠ cards; UI `item_enchant`/`reform`/`grade` off en OzRo (`grademk` unload); catálogo orbs + NPC `getitem2` pending; **Random Options = dominio aparte** (§21bis).
-- **Barters rgsr / EnchantGradeExchange:** diferidos a etapa barters (huérfanos tras corte UI).
-- **Item Relationships (combos):** `item_combos.yml` → groups/sets/members; gate cliente; deps consume/produce/etc. diferidas (§22).
+- **NPC Shops:** headers → `npc_shops` / `npc_shop_items`; `callshop` → `npc_shop_links` (literal/prefijo resuelto; barter clasificado sin inventario).
+- **NPC script analysis:** evidencia de cuerpo → `functions`; duplicates heredan; pending residual aceptado (~9k; ruido Transport/Healer).
+- **Item Scripts:** cobertura 1:1 con `has_script`; tags parciales (~69 raw OK).
+- **Item Restrictions:** `trade.*` + `noequip` + `flag.NoConsume`; NoSell≠NoTrade; Jobs en items (ver §11).
+- **Drops:** `mob_db` per_10000 + adjust; `map_specific` per_100000; capa original (efectivos → Etapa 4).
+- **Quests:** `quest_db` + targets/drops + `npc_quest_links`.
+- **Instances:** catálogo + maps + NPC bind por `instance_create` literal.
+- **Boxes:** `item_group_db` + links `getgroupitem`; nested flags; rates raw (normalización → Etapa 4).
+- **Recipes:** `produce_db` (+ import); materiales `consumed`/`guide`; familia por `ItemLV`.
+- **Enchantments:** stones/orbs ≠ cards; UI moderna off en OzRo; pools `item_enchant.yml` como referencia; orbs jugables vía slot/`getitem2`.
+- **Item Relationships (combos):** `item_combos.yml` → groups/sets/members; gate cliente; combos muertos purgados.
+
+### Cierre Etapa 3
+
+**Estado: CERRADA** respecto al orden 1–14.
+
+| Criterio | Resultado |
+|---|---|
+| Extractores del orden 1–14 implementados y regenerables | Cumplido |
+| Gate cliente en ítems / relaciones item-centric | Cumplido |
+| Hallazgos OzRo documentados por dominio | Cumplido |
+| Pendientes que requieren rates/config/efectivos | **Trasladados a Etapa 4** (abajo) |
+| Dominios §4 sin extract dedicado aún (p. ej. Random Options, Acquisition unificado, inventario barter) | No bloquean el cierre del **orden** E3; se atienden en el plan operativo de cierre / siguientes extractores de catálogo |
+
+No reabrir Etapa 3 para trabajo de resolución efectiva (buy/sell, `item_rate_*`, probs normalizadas, etc.).
 
 ## Etapa 4 — Resolución de valores efectivos
 
@@ -2234,7 +2234,22 @@ Integrar:
 
 Los extractores deben consumir un único componente de resolución.
 
-**Nota — drops / `item_rate_*_mvp`:** al ajustar `conf/import/battle_conf.txt`, comparar `@iteminfo` (o drop info in-game) contra filas con `rate_status: pending_config_verify` (~drops normales de MVP cuyas claves `*_mvp` siguen en 100). Tras alinear conf, regenerar `extract drops`. También: si `mob_item_ratio.yml` deja de estar vacío, debe participar en el resolver.
+### Alcance heredado desde Etapa 3 (depende del resolver)
+
+| Tema | Origen E3 | Qué resuelve Etapa 4 |
+|---|---|---|
+| `item_rate_*_mvp` / `pending_config_verify` | Drops §15 | Alinear `battle_conf` import vs `@iteminfo`; regenerar drops |
+| `mob_item_ratio.yml` si deja de estar vacío | Drops | Entrar al resolver o gate de re-extract |
+| `enable_bonus_map_drops` paridad runtime | Drops | Efectivo exacto del camino map-server |
+| Precio shop `-1` → buy efectivo | Shops §16 | `item_db` buy + rates |
+| Buysell / mutación runtime de shop | Shops | Solo si se modela estado efectivo, no header |
+| Probabilidad SharedPool / Random (boxes) | Boxes §19 | Normalizar `rate` raw → chance efectiva según algoritmo |
+| Recipe zeny / éxito / fallo | Recipes §20 | Runtime de skill / conf; no está en `produce_db` |
+| Buy/Sell item efectivos | Items / Acceptance | Capa effective del catálogo |
+| VIP/LUK/boosts de kill en drops | Drops | Fuera de DB+conf estática; política OzRo |
+| `callshop` dinámico (variable) | Shops | 1 caso; si aporta valor, análisis de asignación (no es rate, pero no bloqueó E3) |
+
+**Nota — drops / `item_rate_*_mvp`:** al ajustar `conf/import/battle_conf.txt`, comparar `@iteminfo` contra filas `pending_config_verify`. Tras alinear conf, regenerar `extract drops`. Si `mob_item_ratio.yml` tiene Body, debe participar en el resolver.
 
 ## Etapa 5 — Persistencia SQL
 
