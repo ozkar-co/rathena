@@ -1724,6 +1724,21 @@ No todas las recetas son equivalentes.
 
 El modelo debe permitir representar procesos destructivos, probabilísticos o con múltiples resultados.
 
+## 20.2. Hallazgos Etapa 3 (OzRo)
+
+| Métrica | Valor |
+|---|---|
+| Recetas (`produce_db`) | 293 |
+| Filas material | 1003 (890 consumed · 113 guide) |
+| Sin skill requerida | 71 (p. ej. cooking con skill 0) |
+| Familias (`item_lv`) | weapon 52 · cooking 60 · change_material 75 · potions 23 · … (ver `recipes_summary.json`) |
+| Material `amount=0` | `role: guide` (debe estar en inventario; no se consume) |
+| Fuera de cliente / import delete | 0 / 0 |
+
+**Hecho:** catálogo produce + materiales; skill requerida (id/name/lv); familia por `ItemLV`; gate cliente en resultado/materiales.
+
+**Pending:** crafting solo vía NPC/script; zeny / éxito / fallo (runtime de skill); enlaces `itemskill`→produce.
+
 ---
 
 # 21. ENCHANTING & SOCKETING
@@ -2133,6 +2148,7 @@ Orden de trabajo (Skills **antes** de NPCs):
 - **Quests:** `quest_db` + targets/drops + `npc_quest_links`; rewards/tipo/Location diferidos (ver §17).
 - **Instances:** catálogo + maps + NPC bind por `instance_create` literal; create dinámico pending (ver §18).
 - **Boxes:** `item_group_db` + links `getgroupitem`; nested flags; probs SharedPool diferidas (ver §19).
+- **Recipes:** `produce_db` (+ import); materiales `consumed`/`guide`; familia por `ItemLV`; NPC/zeny/fail diferidos (ver §20).
 
 ## Etapa 4 — Resolución de valores efectivos
 
