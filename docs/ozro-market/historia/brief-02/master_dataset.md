@@ -271,24 +271,43 @@ Las categorías iniciales serán:
 - Guild.
 - Interior.
 
-No deben ser necesariamente excluyentes.
+No deben ser necesariamente excluyentes. Un mapa puede quedar sin categoría principal si las heurísticas no alcanzan; eso debe quedar explícito (`category` nulo), no forzado.
+
+### Reglas de clasificación verificadas (Etapa 2)
+
+| Señal | Fuente canónica | Notas |
+|---|---|---|
+| `is_town` / City | Mapflags `npc/mapflag/town.txt` + `npc/re/mapflag/town.txt` (ambos cargados por `scripts_main`) | No inventar listas fijas de ciudades. |
+| Instance | `instance_db` + nombres `N@…` | Membership en DB prima sobre naming. |
+| Field / Dungeon / Interior / Guild / Quest | Heurísticas de nombre + normalización | Capa `inferred`. Ampliar con spawns/scripts en Etapa 3. |
+| `display_name` | Cliente `data/mapnametable.txt` (vía inventario GRF) | No confundir con texturas `display_mapname/`. |
+| `width` / `height` | Cabecera `.gat` del stack activo | Requiere decode DES del GRF cuando el entry está cifrado. |
+| Recurso presente | `client_maps.jsonl` (rsw+gat+gnd) | El cliente no define categorías. |
+| `access_conditions` | Mapflags + scripts + quests/instances | Etapa 3+, no solo el extractor de Maps. |
+
+Hallazgos a tener en cuenta:
+
+- Una fracción material de mapas enabled queda sin categoría por naming (transporte, arenas `force_*`, interiores `ba_*`, etc.). No son errores de extracción; son deuda de taxonomía.
+- `is_accessible` en Etapa 2 = “está en `maps_athena` habilitado”. Condiciones reales de acceso van aparte.
 
 ## 5.3. Fuentes
 
 | Información | Fuente |
 |---|---|
-| Existencia del mapa | Configuración del servidor |
-| Nombre técnico | Archivos de mapas |
-| Disponibilidad del recurso | `ozro-cli` |
-| Clasificación | Extracción + normalización |
-| Dimensiones | Archivos de mapas o herramientas disponibles |
-| Condiciones de acceso | Scripts y configuraciones |
+| Existencia del mapa | `conf/maps_athena.conf` (líneas `map:` habilitadas) |
+| Nombre técnico | Mismo conf / `map_index` |
+| Nombre visible | Cliente: `mapnametable.txt` |
+| Disponibilidad del recurso | Inventario GRF (`ozro-cli` → `client_maps.jsonl`) |
+| Dimensiones | Cliente: cabecera `.gat` |
+| `is_town` | Mapflags `town` (pre-re + re) |
+| Clasificación restante | Extracción + normalización (inferida) |
+| Condiciones de acceso | Scripts, mapflags, quests, instances |
 
 ## 5.4. Criterio de extracción
 
-`ozro-cli` debe utilizarse para consultar los recursos del GRF del cliente y verificar la disponibilidad de los archivos correspondientes.
+`ozro-cli` debe utilizarse para consultar los recursos del GRF del cliente y verificar la disponibilidad de los archivos correspondientes, incluyendo nombre visible y dimensiones cuando existan.
 
-El extractor debe relacionar esa información con los mapas definidos por el servidor.
+El extractor debe relacionar esa información con los mapas definidos por el servidor. El cliente valida presencia y metadatos visuales; no es la fuente de taxonomía.
 
 ## 5.5. Map Connections
 
@@ -487,10 +506,13 @@ Debe permitir consultar:
 - Qué monstruos existen.
 - Sus atributos.
 - Su clasificación.
+- Su rol de aparición (campo, summon, pet, stub, etc.).
 - Su comportamiento.
 - Sus propiedades de combate.
 - Sus drops.
 - Sus apariciones.
+
+No todos los registros de `mob_db` son monstruos de campo farmeables. El catálogo debe representar el universo completo y etiquetar el rol, para que sistemas posteriores (economía, enciclopedia, farmeo) puedan filtrar sin reinterpretar rAthena.
 
 ## 7.2. Campos
 
@@ -499,26 +521,44 @@ Debe permitir consultar:
 | Campo | Descripción |
 |---|---|
 | `mob_id` | ID del monstruo |
-| `name` | Nombre técnico |
-| `display_name` | Nombre visible |
-| `mob_class` | Normal, Boss, MVP |
+| `aegis_name` | Nombre Aegis (`AegisName`) |
+| `name` | Nombre en inglés del YAML (`Name`) |
+| `display_name` | Nombre visible al jugador, cuando exista fuente distinta |
+| `mob_class` | Valor original `Class` del YAML (ver abajo) |
+| `mob_role` | Rol normalizado del registro (ver abajo) |
 | `sprite_name` | Nombre del recurso visual |
+| `has_sprite` | Existencia del recurso en el cliente activo |
+
+### `mob_class` vs MVP (hallazgo Etapa 2)
+
+`Class` en `mob_db` **no** es `{Normal, Boss, MVP}`.
+
+Valores observados en OzRo RE: `Normal`, `Boss`, `Event`, `Guardian`, `Battlefield`.
+
+**MVP no es un `Class`.** Se deriva (p. ej. presencia de `MvpExp` / MVP drops / convenciones de spawn). En el snapshot Etapa 2: cientos de `Class: Boss` sin `MvpExp`. Los consumidores no deben tratar “Boss” como sinónimo de MVP.
+
+### `mob_role` (normalizado, ampliable)
+
+| Rol | Descripción | Ejemplos observados |
+|---|---|---|
+| `field` | Mob de mundo / cacería vía spawn de mapa (default provisional hasta Etapa 3) | Mayoría del `mob_db` |
+| `skill_summon` | Invocado por skill de jugador; HP/stats a menudo en skill, no en YAML | ABR Meister (`20834–20837`), Biolo wooden (`20848–20851`) |
+| `quest_prop` | Prop/blanco de quest o script; no economía de drops | Blancos Rebellion (`3169–3170`), `GLASS_PLATE` |
+| `pet` | Definido como pet (`pet_db`), no spawn de campo | `J_TAINI` |
+| `stub` | Entrada mínima (casi solo Id/Aegis/Name); sin uso hallado | `MD_PRI_DRAGON_1..4` |
+| `unknown` | Aún no clasificado | — |
+
+El rol puede combinarse con evidencia de spawns/skills/pets. Hasta completar Etapa 3, muchos quedarán `field` o `unknown` de forma provisional; los casos estudiados (summons/stubs/props) deben etiquetarse en cuanto se conozcan.
 
 ### Propiedades
 
-- Raza.
-- Tamaño.
-- Elemento.
-- Nivel.
-- HP.
-- ATK mínimo.
-- ATK máximo.
-- DEF.
-- MDEF.
-- Experiencia base.
-- Experiencia de Job.
-- Peso, cuando corresponda.
-- Otras propiedades disponibles en la base original.
+- Raza, tamaño, elemento, nivel.
+- HP / ATK / DEF / MDEF / EXP base (valores del YAML).
+- Si `Hp` (u otros) **faltan en el YAML**, no inventar en la capa original: registrar null/ausencia. rAthena aplica defaults en runtime (p. ej. `Hp` default 1); eso pertenece a capa efectiva/default documentada, no a fingir que el YAML lo decía.
+- Stats, AI, motions, `Modes` originales.
+- Otras propiedades del YAML.
+
+Hallazgo Etapa 2: un puñado de registros sin `Hp` declarado no son “corrupción”; son pets, props, summons o stubs. Estudiarlos evita falsos positivos de calidad.
 
 ### Comportamiento
 
@@ -535,7 +575,13 @@ Registrar los atributos y comportamientos disponibles:
 - Habilidades.
 - Comportamientos especiales.
 
-No asumir que todos estos comportamientos se representan mediante un único campo. Se deben conservar los flags originales y generar una interpretación normalizada.
+No asumir que todos estos comportamientos se representan mediante un único campo. Se deben conservar los flags originales (`Modes`, etc.) y generar una interpretación normalizada en capa aparte.
+
+### Cliente / sprite (riesgos)
+
+- `has_sprite` derivado del inventario cliente (gaps) es útil pero aproximado.
+- Usar `AegisName` como `sprite_name` por defecto puede no coincidir 1:1 con el stem real (`jobname` / identity). Etapas posteriores deben preferir el enlace identity→jobname→sprite cuando exista.
+- Entradas `no_identity` (dummies de skill, etc.) no son mobs de mundo; no deben mezclarse ciegamente en métricas de “contenido jugable”.
 
 ## 7.3. Configuraciones efectivas
 
@@ -557,16 +603,25 @@ Esto permite consultar el valor utilizado en el juego y conocer cómo se obtuvo.
 
 El mismo principio aplica a cualquier atributo modificado.
 
+Para **skill summons**, el HP “efectivo” puede depender del nivel de skill / fórmula del src, no solo de `monster_hp_rate`. No aplicar rates genéricos como si fueran mobs de campo sin verificar.
+
 ## 7.4. Fuentes
 
 | Información | Fuente |
 |---|---|
-| Estadísticas originales | `mob_db` |
-| Clasificación | `mob_db` |
-| Comportamiento | `mob_db` |
-| Personalizaciones | Archivos conf |
-| Habilidades | Bases de datos y scripts |
+| Estadísticas originales | `db/re/mob_db.yml` + merge `db/import/mob_db.yml` (por `Id`; el import puede ser parcial) |
+| `mob_class` | Campo `Class` del YAML (default `Normal` si ausente) |
+| MVP | `MvpExp` / MVP drops / spawns — no el enum `Class` |
+| `mob_role` | Inferencia: `pet_db`, `skill_db` + enums src, spawns/scripts, stubs |
+| Comportamiento original | `Modes`, AI, etc. en `mob_db` |
+| Sprite / gaps | Inventario cliente (`client_mob_*`) |
+| Personalizaciones de rates | Archivos conf → Effective Resolver (Etapa 4) |
+| Habilidades de monstruo | `mob_skill_db` y scripts |
 | Propiedades finales | Effective Resolver |
+
+### Merge de import (hallazgo)
+
+`db/import/mob_db.yml` no siempre reemplaza la ficha completa: a menudo solo pisa campos (`DamageTaken: 100` en bosses). El extractor debe hacer merge superficial por `Id` y marcar `import_override` sin asumir “mob 100 % custom”.
 
 ---
 
@@ -617,15 +672,19 @@ La información debe permitir estimar posteriormente:
 
 | Tipo | Descripción |
 |---|---|
-| `permanent` | Aparición recurrente |
+| `permanent` | Aparición recurrente (archivos `monster` de mapa) |
 | `timed` | Aparición controlada por temporizador |
 | `one_time` | Aparición única |
 | `event` | Aparición de evento |
-| `scripted` | Aparición generada por script |
+| `scripted` | Aparición generada por script (`monster`/`areamonster` en NPC) |
+| `skill_summon` | Invocación por skill de jugador (no es spawn de mapa) |
+| `pet` | Vinculado a `pet_db` / egg; no spawn de campo |
 | `instance` | Aparición asociada a instancia |
 | `unknown` | No determinada |
 
 También debe identificarse si la aparición es natural o generada mediante un script.
+
+Los tipos `skill_summon` y `pet` pueden materializarse como relaciones mob↔skill / mob↔pet en lugar de filas de spawn de mapa; lo importante es no contarlos como densidad de farmeo de un `map_id`.
 
 ## 8.4. Spawns dinámicos
 
@@ -641,10 +700,14 @@ Se deben inspeccionar los scripts que generen monstruos mediante comandos de apa
 - Relación con instancias.
 - Apariciones de MVP.
 - Eventos.
+- Blancos / props de job quests (p. ej. Rebellion en `job_gun`).
+- Summons de clase referenciados solo desde `skill_db` / código (`MOBID_*`), sin línea `monster` en mapa.
 
 Cuando una aparición dependa de condiciones que no puedan resolverse estáticamente, se debe registrar la información conocida y documentar la condición pendiente.
 
 No se debe presentar como permanente una aparición que depende de una ejecución o condición especial.
+
+Cuidado con falsos positivos al buscar IDs numéricos en scripts: el mismo entero puede ser `quest_id`, precio, timer o mob id. Preferir `AegisName` / contexto `monster` / tablas skill-pet.
 
 ## 8.5. Cálculos derivados
 
