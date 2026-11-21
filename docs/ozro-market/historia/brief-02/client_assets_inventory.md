@@ -185,6 +185,18 @@ Machine-readable: `ozro-data/reports/client_mob_*.jsonl` + counts en `client_grf
   - Series: `4_tower_*`×17[1–17]; `4_ragfes_*`×15[2–16]; `4_geffen_*`×14[1–14]; `4_f_kafra*`×9[1–9]; `4_f_*`×8[1–8]; `4_xmas_cat*`×6[1–6]; `4_m_*`×6[1–6]; `4_f_fairykid*`×5[2–6]; `4_cat_sailor*`×5[1–5]; `4_man_piom*`×5[2–6]; `kobold_*`×5[1–5]; `goblin_*`×5[1–5]; `4_m_fairykid*`×5[2–6]; `1_f_*`×4[1–4]; `1_f_orient_*`×4[1–4]; `1_m_*`×4[1–4]; `4_f_ruswoman*`×3[1–3]; `4_m_cactusman*`×3[1–3]; `4_m_kid*`×3[1–3]; `4_f_charleston*`×3[1–3]; +4 series
   - Nombres no-ID: **2191** (`1_etc_1` … `zombie`)
 
+### Client reinforce — NPCs (schema 5, 2026-11-21)
+
+Machine-readable: `ozro-data/reports/client_npc_sprites.jsonl` + `client_npc_act_gaps.jsonl`.
+
+| Métrica | n |
+|---|---:|
+| NPC stems live (= donor parity) | 1366 |
+| Traídos desde kRO 20250416 | 131 |
+| ACT→wav gaps | 0 |
+
+Los 131 nuevos son **solo archivos** (spr/act). Casi ninguno tiene entrada en `npcidentity`/`jobname` del cliente actual → no hay `JT_*`/`@disguise` hasta que un script o update de lubs los cablee. Smoke de NPCs ya cableados: `@disguise 117` (Kafra) · `109` · `79`.
+
 ## Humanoid / jobs (`data/sprite/인간족`)
 
 - **Archivos:** 11733 · GRF: data=8592, rdata=3137, ozro_fix=4
