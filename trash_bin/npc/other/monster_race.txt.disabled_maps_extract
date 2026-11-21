@@ -1,4 +1,4 @@
-// Extracted entities on maps without client
+// Extracted entities on maps without client / OzRo: double race kept disabled
 // Source: npc/other/monster_race.txt
 
 p_track02,42,23,0	script	#race_timer2-2	-1,{

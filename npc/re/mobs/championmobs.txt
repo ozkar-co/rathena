@@ -329,3 +329,14 @@ yuno_fild08,0,0	monster	Grand Peco Ringleader	2811,2,180000
 yuno_fild09,0,0	monster	Solid Grand Peco	2810,2,180000
 yuno_fild11,0,0	monster	Solid Goat	2815,2,180000
 yuno_fild12,0,0	monster	Swift Geographer	2824,1,180000
+
+// OzRo: restored extract from championmobs.txt.disabled_maps_extract
+dic_dun03,0,0	monster	Furious Rake Scaraba	2693,2,180000
+
+gld_dun01_2,0,0	monster	Furious Skeleton General	2659,2,180000
+
+gld_dun02_2,0,0	monster	Swift Angra Mantis	2901,2,180000
+
+gld_dun03_2,0,0	monster	Elusive Dark Hammer Kobold	2818,2,180000
+
+gld_dun04_2,0,0	monster	Solid Dark Shadow	2820,2,180000

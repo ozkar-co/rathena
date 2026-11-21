@@ -1,4 +1,4 @@
-// Extracted
+// Extracted entities — itemmall shadow kept disabled
 // Source: npc/re/merchants/shadow_refiner.txt
 
 itemmall,31,76,3	duplicate(ShadowBlacksmith)	Shadow Blacksmith#itemmall	4_F_JOB_BLACKSMITH

@@ -1,4 +1,4 @@
-// Extracted entities on maps without client
+// Extracted entities — itemmall entry kept disabled
 // Source: npc/re/merchants/rgsr_in.txt
 
 itemmall,14,50,3	script	Equipment Reform PR Agent#it01	4_F_ZONDAGIRL,{
