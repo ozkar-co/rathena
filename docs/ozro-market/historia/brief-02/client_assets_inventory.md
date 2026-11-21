@@ -188,6 +188,7 @@ Machine-readable: `ozro-data/reports/client_mob_*.jsonl` + counts en `client_grf
 ### Client reinforce — NPCs (schema 6, 2026-11-21)
 
 Machine-readable: `ozro-data/reports/client_npc_sprites.jsonl` + `client_npc_act_gaps.jsonl`.
+Schema ≥8: cada fila incluye `sprite_ids` (ints de `npcidentity`) + `jt_names` para join desde headers de script.
 
 Inventario NPC = **solo stems cableados** (referenciados por `jobname`), no archivos sueltos del GRF.
 

@@ -443,27 +443,36 @@ Construir un catálogo que permita responder:
 
 ## 6.2. Campos del NPC
 
-| Campo | Descripción |
+| Campo | Descripción | Etapa |
+|---|---|---|
+| `npc_id` | Identificador estable | 2 |
+| `name` | Nombre técnico o identificador del script | 2 |
+| `display_name` | Nombre visible | 2 |
+| `map_id` | Mapa donde aparece | 2 |
+| `x` / `y` | Coordenadas (null si floating) | 2 |
+| `sprite_id` | Sprite del header (numérico o constante) | 2 |
+| `sprite_stem` / presencia cliente | Join a `client_npc_sprites` vía id numérico | 2 |
+| `npc_type` | `script` / `shop` / `warp` / `duplicate` / … | 2 |
+| `functions` | Funciones identificadas (multi-valor) | 2 (solo seguros) → 3 (refinado) |
+| `description` | Descripción funcional | 3 |
+| `related_quests` | Quests relacionadas | 3 |
+| `related_instances` | Instancias relacionadas | 3 |
+| `related_items` | Ítems involucrados | 3 |
+| `script_ids` / `script_path` | Scripts asociados | 2 path; 3 análisis |
+| `source` | Procedencia | 2 |
+
+### Etapa 2 vs Etapa 3 (NPCs)
+
+| Etapa | Qué se extrae |
 |---|---|
-| `npc_id` | Identificador estable |
-| `name` | Nombre técnico o identificador del script |
-| `display_name` | Nombre visible |
-| `map_id` | Mapa donde aparece |
-| `x` | Coordenada X |
-| `y` | Coordenada Y |
-| `sprite_id` | Sprite utilizado |
-| `npc_type` | Tipo de NPC |
-| `functions` | Funciones identificadas |
-| `description` | Descripción funcional |
-| `related_quests` | Quests relacionadas |
-| `related_instances` | Instancias relacionadas |
-| `related_items` | Ítems involucrados |
-| `script_ids` | Scripts asociados |
-| `source` | Procedencia |
+| **2** | Catálogo de headers: id, nombre, mapa/x/y, `npc_type`, `sprite_id` + enlace a imagen cliente, `functions` **solo** cuando sean evidentes al 100 % de un vistazo al tipo/header. Si no es claro → `pending`. |
+| **3** | Análisis profundo del cuerpo del script (ver nota abajo). Con ese análisis se **refina** `functions` (un NPC puede tener varias) y se llenan relaciones. |
+
+`pending` en `functions` es válido al cerrar Etapa 2: se resuelve en **Etapa 3 — NPCs / relaciones**, cuando exista el inventario de comportamientos del script.
 
 ## 6.3. Clasificación funcional
 
-Un NPC puede cumplir varias funciones.
+Un NPC puede cumplir **varias** funciones a la vez (lista multi-valor; no forzar una sola).
 
 Clasificaciones iniciales:
 
@@ -485,8 +494,30 @@ Clasificaciones iniciales:
 - Event.
 - Utility.
 - Custom.
+- **pending** — aún sin evidencia segura (default Etapa 2).
 
-La clasificación debe admitir múltiples funciones.
+### Etapa 2 — solo marcas 100 % seguras
+
+En Etapa 2 solo se asignan funciones cuando el header/tipo no deja duda, por ejemplo:
+
+- `npc_type` ∈ shop/cashshop/itemshop/pointshop/marketshop → `Shop`.
+- `npc_type` ∈ warp/warp2 → `Warper`.
+
+Heurísticas de path/nombre (“parece quest”, “está bajo guild/”) **no** bastan en Etapa 2: dejar `pending` y resolver en Etapa 3.
+
+### Nota — revisar en Etapa 3 (NPCs)
+
+Al llegar a NPCs en Etapa 3, el extractor de relaciones debe inventariar por NPC (y usar eso para fijar `functions` con evidencia):
+
+- Ítems que **vende** / **compra** (shops, barters, `getitem`/`delitem` de menú, etc.).
+- **Quests** con las que se relaciona (ids, roles).
+- Variables que **lee** o **escribe**: nombre y **scope** (`permanent`, `account`, `player`/`#`, `npc`, `instance`, temporales `.@`, etc.).
+- Si **invoca mobs** (`monster` / `areamonster` / …) y **cuáles** (id / AegisName).
+- Si **crea o entra a instancias**.
+- Si **teleporta** al personaje (destino map/x/y, costos, condiciones).
+- Otros servicios evidentes (refine, enchant, storage, heal, …).
+
+Con ese inventario se determina `functions` de forma efectiva: marcar solo lo demostrado; si sigue sin ser claro → permanece `pending`. Un mismo NPC puede acumular varias funciones.
 
 ## 6.4. Relaciones
 
@@ -501,22 +532,23 @@ Los NPC deben relacionarse con:
 - Recetas.
 - Recompensas.
 - Scripts.
+- Mobs invocados (Etapa 3).
+- Variables / scopes (Etapa 3).
 
 Un NPC puede estar relacionado con varias quests y una quest puede involucrar varios NPC.
 
 ## 6.5. Fuentes
 
-| Información | Fuente |
-|---|---|
-| Definición del NPC | Scripts |
-| Ubicación | Scripts |
-| Sprite | Scripts |
-| Tiendas | Scripts |
-| Funciones | Análisis de scripts |
-| Quests relacionadas | Scripts de quests |
-| Transportes | Scripts |
-| Recompensas | Scripts |
-| Condiciones | Scripts |
+| Información | Fuente | Etapa |
+|---|---|---|
+| Definición / ubicación / sprite header | Scripts | 2 |
+| Imagen cliente | `npcidentity` + `jobname` + `client_npc_sprites` (id numérico) | 2 |
+| Funciones seguras (tipo) | Header `npc_type` | 2 |
+| Funciones refinadas | Análisis de cuerpo de script | 3 |
+| Tiendas / buy-sell | Scripts | 3 |
+| Quests / instancias / warps scripted | Scripts | 3 |
+| Variables y scopes | Scripts | 3 |
+| Invocación de mobs | Scripts | 3 |
 
 ---
 
@@ -576,7 +608,7 @@ Puede haber Boss protocol **sin** ser MVP (mayoría). Puede haber MVP que tambi�
 | `stub` | YAML mínimo sin uso hallado |
 | `pending` | **Default honesto:** está en `mob_db`, aún sin evidencia de rol de aparición |
 
-`pending` se resuelve en Etapa 3+ (spawns/scripts) hacia roles más precisos (`map_spawn`, `instance`, etc. según se definan). No usar `field` como sinónimo de “aún no sabemos”.
+`pending` es válido al cerrar Etapa 2. Se resuelve en **Etapa 3 — Spawns** (y scripts asociados) hacia roles más precisos (`map_spawn`, `instance`, etc. según se definan). No usar `field` como sinónimo de “aún no sabemos”.
 
 ### Propiedades
 
@@ -1726,15 +1758,17 @@ Estos dominios constituyen la base para los demás.
 
 Cada extractor debe producir registros normalizados, trazables y verificables.
 
+Campos `pending` (p. ej. `mob_role`, `functions` de NPC) **cierran Etapa 2** si está documentado **cuándo** se resuelven (casi siempre Etapa 3 del dominio relacionado). No inventar etiquetas para “completar” el catálogo.
+
 ## Etapa 3 — Extractores de relaciones
 
 Desarrollar:
 
 - Map Connections.
-- Spawns.
+- Spawns. *(resuelve `mob_role` pending donde haya evidencia de aparición)*
 - Item Scripts.
 - Item Restrictions.
-- NPC Shops.
+- NPC Shops / análisis de script NPC. *(resuelve `functions` pending; ver §6.3 nota Etapa 3)*
 - Drops.
 - Quests.
 - Instances.
