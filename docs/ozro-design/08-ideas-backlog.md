@@ -38,6 +38,7 @@ Lluvia de ideas del documento antiguo, **reformuladas** y etiquetadas. No es lis
 | Blessed Ores en vez de Safe tickets + quest lore | `pendiente` | |
 | Incluir más cajas cashshop + World Tour Ticket crafteable | `pendiente` | |
 | Deadly Potion, Holy Water en cashshop | `pendiente` | |
+| Extra storage (openstorage2) pagado con OzRo coins | `pendiente` | Kafra base ya en 800; storage adicional vía `inter_server.yml` + NPC/`openstorage2`; desbloqueo o acceso con monedas OzRo (definir costo/tier y si es permanente o por uso) |
 
 ---
 
@@ -135,7 +136,7 @@ Diseño general en [19-woe-gve-castillos.md](./19-woe-gve-castillos.md). No es p
 | Vender casas en ciudad o refugios campo | `pendiente` | Instancia individual |
 | Decorar con dolls | `pendiente` | Sin client: limitado |
 | Vitrina cartas para enseñar | `pendiente` | NPC o instancia |
-| Storage más grande / cofres múltiples | `pendiente` | Viable con pocos jugadores |
+| Storage más grande / cofres múltiples | `pendiente` | Kafra base → 800; extra pago con OzRo coins en Economía y QoL; cofres de casa siguen aparte |
 | Contratar NPCs de servicio (pago mantenimiento) | `pendiente` | |
 | Carta inobtenible aleatoria por precio absurdo | `reformular` | Muy jackpot; evaluar sink extremo |
 
