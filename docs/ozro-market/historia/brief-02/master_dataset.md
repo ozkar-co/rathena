@@ -1522,7 +1522,8 @@ UI/guías: listar aparte (“bonus si farméas en este mapa”); no sumar ciegas
 
 | Tema | Nota |
 |---|---|
-| `item_rate_*_mvp` / `pending_config_verify` | Comparar `@iteminfo` vs dataset; alinear `battle_conf` import; regenerar drops |
+| Catálogo de rates (§24.4) | Persistir keys efectivas para Information/web; no quemar en site |
+| `item_rate_*_mvp` / `pending_config_verify` | Live `@rates`/`@mi`: MVP suelo 1× (card 100×) intencional; cerrar pending |
 | `enable_bonus_map_drops` runtime | Paridad exacta del camino `mob_getdroprate` (OzRo: `yes`) |
 | `mob_item_ratio.yml` | Import vacío hoy; si Body no vacío → entra al resolver / gate re-extract |
 | VIP / LUK / boosts de kill | Política OzRo; fuera de capa DB+conf estática |
@@ -1975,6 +1976,32 @@ La lista anterior es ilustrativa. El equipo debe identificar las configuraciones
 - Conservar los valores originales cuando sea necesario.
 - Registrar la configuración utilizada para generar cada versión.
 
+## 24.4. Catálogo de rates en el Master Dataset (obligatorio)
+
+Además de aplicar rates a entidades (`hp_effective`, `chance_effective`, EXP efectiva, etc.), el Master World Dataset **debe persistir el catálogo de rates efectivos** leídos del merge de battle conf.
+
+Propósito:
+
+- Ser la fuente de verdad para la página de Information / tasas (y cualquier UI que liste multiplicadores).
+- Evitar JSONs o constantes quemadas en `ozro-site` (p. ej. `dropRates.json`) que se desincronicen del server.
+- Permitir regenerar el dataset tras un cambio en `conf/import/battle_conf.txt` y que los consumidores lean los nuevos valores sin recalcular.
+
+Alcance de lo persistido (rates / flags de cálculo, no copy editorial):
+
+| Grupo | Ejemplos de keys |
+|---|---|
+| Drops por familia | `item_rate_{common,heal,use,equip,card}{,_boss,_mvp}` |
+| MVP reward / treasure / adddrop | `item_rate_mvp`, `item_rate_treasure`, `item_rate_adddrop` |
+| EXP | `base_exp_rate`, `job_exp_rate`, `mvp_exp_rate`, `quest_exp_rate` |
+| HP | `monster_hp_rate`, `mvp_hp_rate` |
+| Flags relevantes al cálculo | `item_logarithmic_drops`, `drop_rateincrease`, `enable_bonus_map_drops`, caps `item_drop_*_min/max` / `drop_rate_cap` |
+
+Cada key debe guardar al menos: valor efectivo, unidad semántica (p. ej. `100 = 1x`), archivo/origen del merge, y versión del dataset.
+
+**Fuera de este catálogo:** textos de personalización del servidor (VPN, 4th jobs off, navegación, lore, descargas). Esos se mantienen a mano en la web. Los consumidores **no** deben volver a aplicar rates sobre filas que ya exponen valores efectivos; el catálogo es referencia/auditoría y para pantallas que muestran “5x / 10x”, no un segundo motor de cálculo.
+
+Tabla propuesta: `ozro_dataset_rates` (o equivalente bajo `ozro_dataset_metadata` + filas de rates). Se materializa en Etapa 5; el resolver de Etapa 4 ya debe producir el snapshot (p. ej. `reports/configuration_effective.json`).
+
 ---
 
 # 25. SQL — Persistencia del Master World Dataset
@@ -2040,9 +2067,10 @@ ozro_item_relationships
 
 ozro_source_provenance
 ozro_dataset_metadata
+ozro_dataset_rates
 ```
 
-El prefijo debe estar centralizado en la configuración del proyecto, no escrito manualmente en cada extractor.
+`ozro_dataset_rates` almacena el catálogo de rates/flags de §24.4 (no prosa de features). El prefijo debe estar centralizado en la configuración del proyecto, no escrito manualmente en cada extractor.
 
 ## 25.2. Diseño relacional
 
@@ -2287,10 +2315,11 @@ Los extractores deben consumir un único componente de resolución.
 
 | Tema | Origen E3 | Qué resuelve Etapa 4 |
 |---|---|---|
-| `item_rate_*_mvp` / `pending_config_verify` | Drops §15 | Alinear `battle_conf` import vs `@iteminfo`; regenerar drops |
+| Catálogo de rates (§24.4) | Conf | Snapshot efectivo persistible (`configuration_effective` → SQL en E5) |
+| `item_rate_*_mvp` / `pending_config_verify` | Drops §15 | Verificado live (`@rates`/`@mi`): MVP suelo 1× (card 100×) es política OzRo; cerrar pending como `adjusted` |
 | `mob_item_ratio.yml` si deja de estar vacío | Drops | Entrar al resolver o gate de re-extract |
 | `enable_bonus_map_drops` paridad runtime | Drops | Efectivo exacto del camino map-server |
-| Precio shop `-1` → buy efectivo | Shops §16 | `item_db` buy + rates |
+| Precio shop `-1` → buy efectivo | Shops §16 | `item_db` buy efectivo |
 | Buysell / mutación runtime de shop | Shops | Solo si se modela estado efectivo, no header |
 | Probabilidad SharedPool / Random (boxes) | Boxes §19 | Normalizar `rate` raw → chance efectiva según algoritmo |
 | Recipe zeny / éxito / fallo | Recipes §20 | Runtime de skill / conf; no está en `produce_db` |
@@ -2298,7 +2327,7 @@ Los extractores deben consumir un único componente de resolución.
 | VIP/LUK/boosts de kill en drops | Drops | Fuera de DB+conf estática; política OzRo |
 | `callshop` dinámico (variable) | Shops | 1 caso; si aporta valor, análisis de asignación (no es rate, pero no bloqueó E3) |
 
-**Nota — drops / `item_rate_*_mvp`:** al ajustar `conf/import/battle_conf.txt`, comparar `@iteminfo` contra filas `pending_config_verify`. Tras alinear conf, regenerar `extract drops`. Si `mob_item_ratio.yml` tiene Body, debe participar en el resolver.
+**Nota — rates como referencia para la web:** Information puede citar multiplicadores desde el Master Dataset; no recalcular drops/HP/EXP en `ozro-site`. Features/custom copy siguen editoriales a mano. Si `mob_item_ratio.yml` tiene Body, debe participar en el resolver.
 
 ## Etapa 5 — Persistencia SQL
 
@@ -2333,6 +2362,7 @@ La fase se considerará terminada cuando se cumplan los siguientes requisitos.
 | Item Scripts | Todos los scripts asociados registrados |
 | Restrictions | Restricciones normalizadas |
 | Buy/Sell | Valores efectivos resueltos |
+| Rates catalog | Keys de battle conf efectivas consultables (§24.4) |
 | Enchantments | Catálogo independiente |
 | Drops | Fuentes y rates efectivos |
 | Shops | Tiendas y productos |
