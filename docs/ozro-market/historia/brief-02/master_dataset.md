@@ -1748,7 +1748,7 @@ El modelo debe permitir representar procesos destructivos, probabilísticos o co
 
 **Hecho:** catálogo produce + materiales; skill requerida (id/name/lv); familia por `ItemLV`; gate cliente en resultado/materiales.
 
-**E4:** materiales/skill/familia hechos. Zeny / éxito / fallo desde src (directo o unknown) → **Pre-E5**.
+**E4 + Pre-E5:** materiales/skill/familia; zeny `not_in_produce_db`; éxito `fixed_src` / `fixed_db` / `variable` (fórmulas web: `recipes_variable_formulas.md`).
 
 ---
 
@@ -2358,7 +2358,7 @@ Para re-verificar sin deshacer mentalmente el penalty: personaje con `|mob_lv �
 | Resolver único + snapshot de rates (§24.4) | Cumplido |
 | Drops / HP / EXP / buy-sell / shop `-1` / boxes normalizados | Cumplido |
 | Fidelidad live vs server (muestra Poring + Osiris; penalty Renewal explicada) | Cumplido |
-| Completud de mundo aún pendiente (penalty data, recipes src, scripts, Dijkstra, …) | **Pre-E5** (siguiente) — **no** es Etapa 5 |
+| Completud de mundo efectivo (penalty, recipes src, scripts, Dijkstra, …) | **Pre-E5 cerrado** (2026-11-23) → Etapa 5 SQL |
 
 No reabrir Etapa 4 para SQL ni para trabajo de completud. Si una regeneración desde las mismas fuentes no reproduce los efectivos E4, es bug de extractor/resolver.
 
@@ -2375,7 +2375,7 @@ No reabrir Etapa 4 para SQL ni para trabajo de completud. Si una regeneración d
 | 1 | `level_penalty` | Extraer ya como filas planas (`Type`, `Difference`, `Rate`) desde `db/re` + override OzRo `db/import`. Dato consultable; el cálculo por nivel del jugador se hace donde se necesite. No es un “catálogo merge” ceremonial. |
 | 2 | Map bonus drops | La capa YAML actual (`map_yaml_base`, `per_100000`, sin `item_rate_*`) es suficiente. Cualquier transformación extra de `mob_getdroprate` sobre bonus de mapa queda **fuera**. |
 | 3 | `mob_item_ratio.yml` | **Opción A:** cablear lectura en el extractor de drops. Body vacío = no-op; si hay filas, se aplican al `rate_adjust` como el server. |
-| 4 | Recipes zeny / éxito / fallo | Sacar del **src** (y conf si aplica) lo que sea **directo**. Debe quedar al 100% respecto a lo extraíble; no habrá “versión 2”. Si no es directo del source → `unknown` / no extraíble, sin inventar. |
+| 4 | Recipes zeny / éxito / fallo | Sacar del **src** (y conf si aplica) lo que sea **directo**. Debe quedar al 100% respecto a lo extraíble; no habrá “versión 2”. Si no es directo del source → sin inventar `%`. Player/RNG (weapon forge, pharmacy, cooking, …) → `success_status=variable` + `success_chance=null`. Fórmulas para calculadora web manual: [`recipes_variable_formulas.md`](./recipes_variable_formulas.md). |
 | 5 | HP de skill-summons | Investigar desde src. Si la fórmula no es directa → marcar no extraíble / unknown. **Prohibido inventar.** Pedir verificación manual solo cuando haya un valor concreto que contrastar. |
 | 6 | Shops | Inventario = tiendas **declaradas**. Las mutaciones / flujos runtime llevan un **flag** explícito para poder avisar en UI/guías (“revisar in-game”); no se modela el estado live. |
 | 7 | Completud pre-SQL | Sí — por diseño por etapas. Alcance de lo identificable abajo. |
@@ -2423,17 +2423,17 @@ Ya definido — no reabrir el set de aristas:
 2. `level_penalty` → JSONL/summary plano — **hecho** (`reports/level_penalty.jsonl`; Exp −31→50, Drop ≤−16/≥16→80 OzRo).
 3. `mob_item_ratio` cableado en drops — **hecho** (Body vacío hoy = 0 overrides; Ratio 0 elimina drop).
 4. Shops: flag runtime / no-declarado — **hecho** (`runtime_mutated` 9·`npcshopdelitem`; `is_runtime` 1 callshop dinámico; inventario = header).
-5. Recipes: zeny + chance desde src — **hecho** (fixed_src 48 · fixed_db 75 changematerial · not_extractable 170 player/RNG; zeny `not_in_produce_db`).
+5. Recipes: zeny + chance desde src — **hecho** (fixed_src 48 · fixed_db 75 changematerial · **variable** 170 player/RNG; zeny `not_in_produce_db`; fórmulas en `recipes_variable_formulas.md`).
 6. Skill-summon HP — **hecho** (`hp_status`: slaves/map `from_mob_db`; 8 ABR/bionic `not_extractable` caster formula).
 7. NPC→ítem deliveries — **hecho** (`acquisition_type=npc_delivery`; getitem 2212 · getitem2 literal 1; vars omitidas).
 8. Spawns script NPC→mob — **hecho** (1758 scripted con `npc_id` + `spawn_route=npc_script`).
 9. Instance create NPC — **hecho** (1460 binds literales; 25 dynamic out of scope).
 10. Dijkstra all-pairs §5.6 + E3 — **hecho** (ya en `map_distances`: 617 nodos · 1286 aristas · all-pairs).
-11. Cierre Pre-E5 → solo entonces **Etapa 5 SQL**.
+11. Cierre Pre-E5 — **hecho** (2026-11-23). Siguiente: **Etapa 5 SQL**.
 
 ## Etapa 5 — Persistencia SQL
 
-**Solo** después del cierre Pre-E5.
+**Pre-E5 cerrado.** Implementar a continuación.
 
 Implementar:
 
