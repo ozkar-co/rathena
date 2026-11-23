@@ -2424,11 +2424,11 @@ Ya definido — no reabrir el set de aristas:
 3. `mob_item_ratio` cableado en drops — **hecho** (Body vacío hoy = 0 overrides; Ratio 0 elimina drop).
 4. Shops: flag runtime / no-declarado — **hecho** (`runtime_mutated` 9·`npcshopdelitem`; `is_runtime` 1 callshop dinámico; inventario = header).
 5. Recipes: zeny + chance desde src — **hecho** (fixed_src 48 · fixed_db 75 changematerial · not_extractable 170 player/RNG; zeny `not_in_produce_db`).
-6. Skill-summon HP: evidencia src o unknown (sin inventar).
-7. NPC→ítem deliveries (tipo diferenciado).
-8. Spawns script NPC→mob (tipo diferenciado).
-9. Instance create NPC (completar identificable).
-10. Dijkstra all-pairs según §5.6 + E3.
+6. Skill-summon HP — **hecho** (`hp_status`: slaves/map `from_mob_db`; 8 ABR/bionic `not_extractable` caster formula).
+7. NPC→ítem deliveries — **hecho** (`acquisition_type=npc_delivery`; getitem 2212 · getitem2 literal 1; vars omitidas).
+8. Spawns script NPC→mob — **hecho** (1758 scripted con `npc_id` + `spawn_route=npc_script`).
+9. Instance create NPC — **hecho** (1460 binds literales; 25 dynamic out of scope).
+10. Dijkstra all-pairs §5.6 + E3 — **hecho** (ya en `map_distances`: 617 nodos · 1286 aristas · all-pairs).
 11. Cierre Pre-E5 → solo entonces **Etapa 5 SQL**.
 
 ## Etapa 5 — Persistencia SQL
