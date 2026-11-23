@@ -2419,11 +2419,11 @@ Ya definido — no reabrir el set de aristas:
 
 ### Orden de trabajo Pre-E5 (verificar en cada paso)
 
-1. Brief alineado (este bloque) — **hecho al registrar decisiones**.
-2. `level_penalty` → JSONL/summary plano.
-3. `mob_item_ratio` cableado en drops (+ re-extract si Body deja de estar vacío).
-4. Shops: flag runtime / no-declarado.
-5. Recipes: zeny + chance desde src (directo o unknown).
+1. Brief alineado (este bloque) — **hecho**.
+2. `level_penalty` → JSONL/summary plano — **hecho** (`reports/level_penalty.jsonl`; Exp −31→50, Drop ≤−16/≥16→80 OzRo).
+3. `mob_item_ratio` cableado en drops — **hecho** (Body vacío hoy = 0 overrides; Ratio 0 elimina drop).
+4. Shops: flag runtime / no-declarado — **hecho** (`runtime_mutated` 9·`npcshopdelitem`; `is_runtime` 1 callshop dinámico; inventario = header).
+5. Recipes: zeny + chance desde src — **hecho** (fixed_src 48 · fixed_db 75 changematerial · not_extractable 170 player/RNG; zeny `not_in_produce_db`).
 6. Skill-summon HP: evidencia src o unknown (sin inventar).
 7. NPC→ítem deliveries (tipo diferenciado).
 8. Spawns script NPC→mob (tipo diferenciado).
