@@ -1307,16 +1307,6 @@ Body:
             Rate: 175
             Amount: 5
             UniqueId: true
-  - Group: AQUARIUS_DI_SCROLL_BOX
-    SubGroups:
-      - SubGroup: 0
-        Algorithm: All
-        List:
-          - Index: 0
-            Item: Aquarius_Diadem_Scroll
-            Amount: 10
-            UniqueId: true
-            Stacked: false
   - Group: ARCHER_CARD_BOX
     SubGroups:
       - SubGroup: 0
@@ -1388,16 +1378,6 @@ Body:
             Item: Zeny_Scroll
             Rate: 2300
             Amount: 10
-  - Group: ARIES_SCROLL_BOX
-    SubGroups:
-      - SubGroup: 0
-        Algorithm: All
-        List:
-          - Index: 0
-            Item: Aries_Scroll_
-            Amount: 10
-            UniqueId: true
-            Stacked: false
   - Group: ASGARD_SCROLL
     SubGroups:
       - SubGroup: 1
@@ -5867,16 +5847,6 @@ Body:
             Item: Small_Life_Potion_Box30
             Rate: 10
             UniqueId: true
-  - Group: CAPRICON_DI_SCROLL_BOX
-    SubGroups:
-      - SubGroup: 0
-        Algorithm: All
-        List:
-          - Index: 0
-            Item: Capricon_Di_Scroll
-            Amount: 10
-            UniqueId: true
-            Stacked: false
   - Group: CAPRI_CROWN_SCROLL
     SubGroups:
       - SubGroup: 1
@@ -5940,16 +5910,6 @@ Body:
             Item: Wind_Walk_10_Scroll_Box
             Rate: 60
             UniqueId: true
-  - Group: CAPRI_CROWN_SCROLL_BOX
-    SubGroups:
-      - SubGroup: 0
-        Algorithm: All
-        List:
-          - Index: 0
-            Item: Capri_Crown_Scroll
-            Amount: 10
-            UniqueId: true
-            Stacked: false
   - Group: CARACAS_RING_BOX
     SubGroups:
       - SubGroup: 0
@@ -22900,9 +22860,6 @@ Body:
             Item: Branch_Of_Dead_Tree
             Rate: 80
             Amount: 2
-          - Index: 9
-            Item: Traditional_Firecrack
-            Rate: 100
           - Index: 10
             Item: Magic_Card_Album
             Rate: 5
@@ -24246,16 +24203,6 @@ Body:
           - Index: 27
             Item: Bloody_Dead_Branch
             Rate: 1
-  - Group: PISCES_DIADEM_BOX
-    SubGroups:
-      - SubGroup: 0
-        Algorithm: All
-        List:
-          - Index: 0
-            Item: Pisces_Diadem_Scroll
-            Amount: 10
-            UniqueId: true
-            Stacked: false
   - Group: PISCES_DIADEM_SCROLL
     SubGroups:
       - SubGroup: 1
@@ -25348,16 +25295,6 @@ Body:
             Item: Tyr's_Blessing
             Rate: 110
             UniqueId: true
-  - Group: SAGITTARIUS_SCR_BOX
-    SubGroups:
-      - SubGroup: 0
-        Algorithm: All
-        List:
-          - Index: 0
-            Item: Sagittarius_Scroll
-            Amount: 10
-            UniqueId: true
-            Stacked: false
   - Group: SAGITTAR_DIADEM_SCROLL
     SubGroups:
       - SubGroup: 1
@@ -25365,10 +25302,6 @@ Body:
           - Index: 0
             Item: Spiked_Scarf_Box
             Rate: 2
-            UniqueId: true
-          - Index: 1
-            Item: Sagittarius_Scroll
-            Rate: 10
             UniqueId: true
           - Index: 2
             Item: Neuralizer_Box
@@ -25415,16 +25348,6 @@ Body:
             Rate: 180
             Amount: 5
             UniqueId: true
-  - Group: SAGITTAR_DI_SCROLL_BOX
-    SubGroups:
-      - SubGroup: 0
-        Algorithm: All
-        List:
-          - Index: 0
-            Item: Sagittar_Diadem_Scroll
-            Amount: 10
-            UniqueId: true
-            Stacked: false
   - Group: SAHKKAT_BOX
     SubGroups:
       - SubGroup: 0
@@ -29637,16 +29560,6 @@ Body:
             Item: Zeny_Scroll
             Rate: 2004
             Amount: 10
-  - Group: TAURUS_CROWN_SCROLL_BOX
-    SubGroups:
-      - SubGroup: 0
-        Algorithm: All
-        List:
-          - Index: 0
-            Item: Taurus_Crown_Scroll
-            Amount: 10
-            UniqueId: true
-            Stacked: false
   - Group: TAURUS_DIADEM_SCROLL
     SubGroups:
       - SubGroup: 1
@@ -29698,16 +29611,6 @@ Body:
             Item: Zeny_Scroll
             Rate: 2004
             Amount: 10
-  - Group: TAURUS_DI_SCROLL_BOX
-    SubGroups:
-      - SubGroup: 0
-        Algorithm: All
-        List:
-          - Index: 0
-            Item: Taurus_Diadem_Scroll
-            Amount: 10
-            UniqueId: true
-            Stacked: false
   - Group: TCG_CARD_SCROLL
     SubGroups:
       - SubGroup: 0
@@ -30064,9 +29967,6 @@ Body:
             Rate: 1
           - Index: 2
             Item: Token_Of_Siegfried
-            Rate: 1
-          - Index: 3
-            Item: DF_Token_Of_Siegfried
             Rate: 1
   - Group: TRESURE_BOX_WOE
     SubGroups:
@@ -42031,11 +41931,6 @@ Body:
       - SubGroup: 0
         Algorithm: All
         List:
-          - Index: 0
-            Item: 2022_LunarNewYears_band
-          - Index: 1
-            Item: Special_Tool_Box_Coupon
-            Amount: 3
           - Index: 2
             Item: E_Main_Dish_C
             Amount: 10
@@ -52576,26 +52471,11 @@ Body:
       - SubGroup: 6
         Algorithm: Random
         List:
-          - Index: 0
-            Item: C_Blink_Eyes_Frozen
-            Rate: 50
-          - Index: 1
-            Item: C_Charm_Of_Mistic_Froze
-            Rate: 50
           - Index: 2
             Item: C_Showy_High_Cap
             Rate: 50
-          - Index: 3
-            Item: C_Brother_Keen_Eye
-            Rate: 50
           - Index: 4
             Item: C_Foxtail
-            Rate: 50
-          - Index: 5
-            Item: C_Horo_Ears_WH
-            Rate: 50
-          - Index: 6
-            Item: C_Fluttering_Haze
             Rate: 50
           - Index: 7
             Item: C_Cat_Mouth
@@ -52621,20 +52501,11 @@ Body:
           - Index: 14
             Item: C_Helmet_Of_Siegfried_J
             Rate: 50
-          - Index: 15
-            Item: C_Eis_Spinne
-            Rate: 50
-          - Index: 16
-            Item: C_Little_Abyss_Dragon
-            Rate: 50
           - Index: 17
             Item: C_Blue_Rose_Ornament
             Rate: 50
           - Index: 18
             Item: C_Blue_Rose_Eyepatch
-            Rate: 50
-          - Index: 19
-            Item: C_L_Ribbon_M_BU
             Rate: 50
   - Group: SEALED_SCROLL3
     SubGroups:
@@ -75283,8 +75154,6 @@ Body:
             Item: Dun_Tele_Scroll2
           - Index: 4
             Item: Dun_Tele_Scroll3_fr
-          - Index: 5
-            Item: E_Dun_Tele_Scroll1
           - Index: 6
             Item: F_Dun_Tele_Scroll1
           - Index: 7
@@ -75315,8 +75184,6 @@ Body:
             Item: Siege_Teleport_Scroll
           - Index: 20
             Item: Siege_Teleport_Scroll2
-          - Index: 21
-            Item: E_Siege_Teleport_Scroll
   - Group: GIANT_FLY_WING
     SubGroups:
       - SubGroup: 0
@@ -75991,22 +75858,6 @@ Body:
             Item: R_PATKStone_Robe
             Rate: 1
             Announced: true
-          - Index: 6
-            Item: ShinkiroStone_Robe
-            Rate: 1
-            Announced: true
-          - Index: 7
-            Item: ShiranuiStone_Robe
-            Rate: 1
-            Announced: true
-          - Index: 8
-            Item: ShaCrossStone_Robe
-            Rate: 1
-            Announced: true
-          - Index: 9
-            Item: CardinalStone_Robe
-            Rate: 1
-            Announced: true
           - Index: 10
             Item: ReloadStone_Robe_D
             Rate: 1
@@ -76074,22 +75925,6 @@ Body:
           - Index: 26
             Item: ArchbishopStone_Bottom3
             Rate: 8
-            Announced: true
-          - Index: 27
-            Item: SuNoviceStone_Top
-            Rate: 15
-            Announced: true
-          - Index: 28
-            Item: SuNoviceStone_Middle
-            Rate: 15
-            Announced: true
-          - Index: 29
-            Item: SuNoviceStone_Bottom
-            Rate: 15
-            Announced: true
-          - Index: 30
-            Item: SuNoviceStone_Robe
-            Rate: 15
             Announced: true
           - Index: 31
             Item: Stone_Robe_Box
@@ -76233,18 +76068,6 @@ Body:
             Announced: true
           - Index: 12
             Item: MinorCastStone_Robe_D
-            Rate: 1
-            Announced: true
-          - Index: 13
-            Item: SkyEmperorStone_Robe
-            Rate: 1
-            Announced: true
-          - Index: 14
-            Item: MeisterStone_Robe
-            Rate: 1
-            Announced: true
-          - Index: 15
-            Item: ElementalStone_Robe
             Rate: 1
             Announced: true
           - Index: 16
@@ -76500,34 +76323,6 @@ Body:
             Rate: 100
           - Index: 12
             Item: Blessed_Knife
-            Rate: 100
-  - Group: INTAKE_HAIR_BOX
-    SubGroups:
-      - SubGroup: 1
-        List:
-          - Index: 0
-            Item: C_Intake_WH
-            Rate: 100
-          - Index: 1
-            Item: C_Intake_RD
-            Rate: 100
-          - Index: 2
-            Item: C_Intake_PP
-            Rate: 100
-          - Index: 3
-            Item: C_Intake_GN
-            Rate: 100
-          - Index: 4
-            Item: C_Intake_BU
-            Rate: 100
-          - Index: 5
-            Item: C_Intake_OM
-            Rate: 100
-          - Index: 6
-            Item: C_Intake_YL
-            Rate: 100
-          - Index: 7
-            Item: C_Intake_BL
             Rate: 100
   - Group: PONYTAIL_HAIR_BOX
     SubGroups:
@@ -80079,18 +79874,6 @@ Body:
             Item: MinorCastStone_Robe_D
             Rate: 1
             Announced: true
-          - Index: 13
-            Item: AbysschaserStone_Robe
-            Rate: 1
-            Announced: true
-          - Index: 14
-            Item: TRTRStone_Robe
-            Rate: 1
-            Announced: true
-          - Index: 15
-            Item: HNoviceStone_Robe
-            Rate: 1
-            Announced: true
           - Index: 16
             Item: ReloadStone_Robe_D
             Rate: 1
@@ -80149,18 +79932,6 @@ Body:
             Announced: true
           - Index: 30
             Item: WanderMinsStone_Bottom3
-            Rate: 8
-            Announced: true
-          - Index: 31
-            Item: SuNoviceStone_Top
-            Rate: 8
-            Announced: true
-          - Index: 32
-            Item: SuNoviceStone_Middle
-            Rate: 8
-            Announced: true
-          - Index: 33
-            Item: SuNoviceStone_Bottom
             Rate: 8
             Announced: true
           - Index: 34
@@ -82268,31 +82039,6 @@ Body:
             Item: Snow_F_Stone2
             Rate: 40
             Amount: 2
-  - Group: BROWN_DIA_BOX_3_7
-    SubGroups:
-      - SubGroup: 6
-        Algorithm: Random
-        List:
-          - Index: 0
-            Item: Brown_Dia
-            Rate: 50
-            Amount: 3
-          - Index: 1
-            Item: Brown_Dia
-            Rate: 20
-            Amount: 4
-          - Index: 2
-            Item: Brown_Dia
-            Rate: 15
-            Amount: 5
-          - Index: 3
-            Item: Brown_Dia
-            Rate: 10
-            Amount: 6
-          - Index: 4
-            Item: Brown_Dia
-            Rate: 5
-            Amount: 7
   - Group: BOOSTER_PACK_10
     SubGroups:
       - SubGroup: 0
@@ -97310,9 +97056,6 @@ Body:
           - Index: 13
             Item: StaremperorStone_Robe
             Rate: 10
-          - Index: 14
-            Item: SuNoviceStone_Robe
-            Rate: 10
   - Group: RO_CONCERT_SCROLL
     SubGroups:
       - SubGroup: 0
@@ -97503,119 +97246,21 @@ Body:
             Item: Pet_Coin
             Rate: 1
             Amount: 50
-          - Index: 7
-            Item: South_Pork_Ricebowl
-            Rate: 25
-            Amount: 3
-          - Index: 8
-            Item: South_Pork_Slice
-            Rate: 25
-            Amount: 5
-          - Index: 9
-            Item: Grilled_Veg_Skewers_
-            Rate: 25
-            Amount: 7
           - Index: 10
             Item: Melody_Card_191
             Rate: 5
-          - Index: 11
-            Item: Varmundt_Cotton_Doll
-            Rate: 5
-          - Index: 12
-            Item: South_Pork_Ricebowl
-            Rate: 56
-          - Index: 13
-            Item: South_Pork_Slice
-            Rate: 56
-            Amount: 2
-          - Index: 14
-            Item: Grilled_Veg_Skewers_
-            Rate: 56
-            Amount: 3
           - Index: 15
             Item: Pet_Coin
             Rate: 10
             Amount: 30
-          - Index: 16
-            Item: Poring_Kombucha
-            Rate: 70
-            Amount: 20
-          - Index: 17
-            Item: Monster_Bread
-            Rate: 70
-            Amount: 20
-          - Index: 18
-            Item: Monster_Bread_
-            Rate: 70
-            Amount: 20
-          - Index: 19
-            Item: Poring_Kombucha
-            Rate: 140
-            Amount: 10
-          - Index: 20
-            Item: Monster_Bread
-            Rate: 140
-            Amount: 10
-          - Index: 21
-            Item: Monster_Bread_
-            Rate: 140
-            Amount: 10
           - Index: 22
             Item: Pet_Coin
             Rate: 50
             Amount: 20
-          - Index: 23
-            Item: Night_M_Ice_Flakes
-            Rate: 250
-            Amount: 30
-          - Index: 24
-            Item: Night_M_Ice_Cream
-            Rate: 250
-            Amount: 30
-          - Index: 25
-            Item: Night_M_Cotton_Candy
-            Rate: 250
-            Amount: 30
-          - Index: 26
-            Item: Night_M_Ice_Flakes
-            Rate: 500
-            Amount: 15
-          - Index: 27
-            Item: Night_M_Ice_Cream
-            Rate: 500
-            Amount: 15
-          - Index: 28
-            Item: Night_M_Cotton_Candy
-            Rate: 500
-            Amount: 15
           - Index: 29
             Item: Pet_Coin
             Rate: 100
             Amount: 10
-          - Index: 30
-            Item: Grilled_Fish
-            Rate: 700
-            Amount: 50
-          - Index: 31
-            Item: Grilled_Veg_Skewers
-            Rate: 700
-            Amount: 50
-          - Index: 32
-            Item: Grilled_Hm_Sausage
-            Rate: 700
-            Amount: 50
-          - Index: 33
-            Item: Grilled_Fish
-            Rate: 1400
-            Amount: 25
-          - Index: 34
-            Item: Grilled_Veg_Skewers
-            Rate: 1400
-            Amount: 25
-          - Index: 35
-            Item: Grilled_Hm_Sausage
-            Rate: 1400
-            Amount: 25
           - Index: 36
             Item: Pet_Coin
             Rate: 400
@@ -97667,18 +97312,6 @@ Body:
       - SubGroup: 6
         Algorithm: Random
         List:
-          - Index: 0
-            Item: Cubic_Dia
-            Rate: 1000
-            Amount: 3
-          - Index: 1
-            Item: Cubic_Dia
-            Rate: 1000
-            Amount: 4
-          - Index: 2
-            Item: Cubic_Dia
-            Rate: 1000
-            Amount: 5
           - Index: 3
             Item: Schmidt_Suits
             Rate: 120
@@ -97904,22 +97537,6 @@ Body:
       - SubGroup: 6
         Algorithm: Random
         List:
-          - Index: 0
-            Item: Cubic_Dia
-            Rate: 500
-            Amount: 4
-          - Index: 1
-            Item: Cubic_Dia
-            Rate: 500
-            Amount: 5
-          - Index: 2
-            Item: Cubic_Dia
-            Rate: 500
-            Amount: 6
-          - Index: 3
-            Item: Cubic_Dia
-            Rate: 500
-            Amount: 7
           - Index: 4
             Item: Schmidt_Suits
             Rate: 150
@@ -98103,18 +97720,6 @@ Body:
       - SubGroup: 6
         Algorithm: Random
         List:
-          - Index: 0
-            Item: Cubic_Dia
-            Rate: 1000
-            Amount: 3
-          - Index: 1
-            Item: Cubic_Dia
-            Rate: 1000
-            Amount: 4
-          - Index: 2
-            Item: Cubic_Dia
-            Rate: 1000
-            Amount: 5
           - Index: 3
             Item: Temporal_Str_Boots_
             Rate: 120
@@ -98428,22 +98033,6 @@ Body:
       - SubGroup: 6
         Algorithm: Random
         List:
-          - Index: 0
-            Item: Cubic_Dia
-            Rate: 1000
-            Amount: 4
-          - Index: 1
-            Item: Cubic_Dia
-            Rate: 1000
-            Amount: 5
-          - Index: 2
-            Item: Cubic_Dia
-            Rate: 1000
-            Amount: 6
-          - Index: 3
-            Item: Cubic_Dia
-            Rate: 1000
-            Amount: 7
           - Index: 4
             Item: Temporal_Str_Boots_
             Rate: 130
@@ -98777,26 +98366,6 @@ Body:
       - SubGroup: 6
         Algorithm: Random
         List:
-          - Index: 0
-            Item: Cubic_Dia
-            Rate: 600
-            Amount: 4
-          - Index: 1
-            Item: Cubic_Dia
-            Rate: 600
-            Amount: 5
-          - Index: 2
-            Item: Cubic_Dia
-            Rate: 600
-            Amount: 6
-          - Index: 3
-            Item: Cubic_Dia
-            Rate: 600
-            Amount: 7
-          - Index: 4
-            Item: Cubic_Dia
-            Rate: 600
-            Amount: 8
           - Index: 5
             Item: G_Knight_Sword
             Rate: 95
@@ -99222,26 +98791,6 @@ Body:
       - SubGroup: 6
         Algorithm: Random
         List:
-          - Index: 0
-            Item: Cubic_Dia
-            Rate: 600
-            Amount: 8
-          - Index: 1
-            Item: Cubic_Dia
-            Rate: 600
-            Amount: 9
-          - Index: 2
-            Item: Cubic_Dia
-            Rate: 600
-            Amount: 10
-          - Index: 3
-            Item: Cubic_Dia
-            Rate: 600
-            Amount: 11
-          - Index: 4
-            Item: Cubic_Dia
-            Rate: 600
-            Amount: 12
           - Index: 5
             Item: G_Knight_Sword
             Rate: 75
@@ -99667,26 +99216,6 @@ Body:
       - SubGroup: 6
         Algorithm: Random
         List:
-          - Index: 0
-            Item: Cubic_Dia
-            Rate: 600
-            Amount: 3
-          - Index: 1
-            Item: Cubic_Dia
-            Rate: 600
-            Amount: 4
-          - Index: 2
-            Item: Cubic_Dia
-            Rate: 600
-            Amount: 5
-          - Index: 3
-            Item: Cubic_Dia
-            Rate: 600
-            Amount: 6
-          - Index: 4
-            Item: Cubic_Dia
-            Rate: 600
-            Amount: 7
           - Index: 5
             Item: Volar
             Rate: 30
@@ -100872,22 +100401,6 @@ Body:
       - SubGroup: 6
         Algorithm: Random
         List:
-          - Index: 0
-            Item: Brown_Dia
-            Rate: 500
-            Amount: 5
-          - Index: 1
-            Item: Brown_Dia
-            Rate: 500
-            Amount: 6
-          - Index: 2
-            Item: Brown_Dia
-            Rate: 500
-            Amount: 7
-          - Index: 3
-            Item: Brown_Dia
-            Rate: 500
-            Amount: 8
           - Index: 4
             Item: Poenetentia_Aegis
             Rate: 25
@@ -101926,22 +101439,6 @@ Body:
       - SubGroup: 6
         Algorithm: Random
         List:
-          - Index: 0
-            Item: Brown_Dia
-            Rate: 1000
-            Amount: 5
-          - Index: 1
-            Item: Brown_Dia
-            Rate: 1000
-            Amount: 6
-          - Index: 2
-            Item: Brown_Dia
-            Rate: 1000
-            Amount: 7
-          - Index: 3
-            Item: Brown_Dia
-            Rate: 1000
-            Amount: 8
           - Index: 4
             Item: MD_Airboat_Boots
             Rate: 120
@@ -102148,18 +101645,6 @@ Body:
       - SubGroup: 6
         Algorithm: Random
         List:
-          - Index: 0
-            Item: Cubic_Dia
-            Rate: 1300
-            Amount: 3
-          - Index: 1
-            Item: Cubic_Dia
-            Rate: 1300
-            Amount: 4
-          - Index: 2
-            Item: Cubic_Dia
-            Rate: 1300
-            Amount: 5
           - Index: 3
             Item: Celine_Dress
             Rate: 300
@@ -102295,18 +101780,6 @@ Body:
       - SubGroup: 6
         Algorithm: Random
         List:
-          - Index: 0
-            Item: Cubic_Dia
-            Rate: 1000
-            Amount: 3
-          - Index: 1
-            Item: Cubic_Dia
-            Rate: 1000
-            Amount: 4
-          - Index: 2
-            Item: Cubic_Dia
-            Rate: 1000
-            Amount: 5
           - Index: 3
             Item: Illusion_Armor_A
             Rate: 155
@@ -102494,18 +101967,6 @@ Body:
       - SubGroup: 6
         Algorithm: Random
         List:
-          - Index: 0
-            Item: Cubic_Dia
-            Rate: 1000
-            Amount: 3
-          - Index: 1
-            Item: Cubic_Dia
-            Rate: 1000
-            Amount: 4
-          - Index: 2
-            Item: Cubic_Dia
-            Rate: 1000
-            Amount: 5
           - Index: 3
             Item: Burning_Knuckle_OS
             Rate: 90
@@ -102843,18 +102304,6 @@ Body:
       - SubGroup: 6
         Algorithm: Random
         List:
-          - Index: 0
-            Item: Cubic_Dia
-            Rate: 1000
-            Amount: 3
-          - Index: 1
-            Item: Cubic_Dia
-            Rate: 1000
-            Amount: 4
-          - Index: 2
-            Item: Cubic_Dia
-            Rate: 1000
-            Amount: 5
           - Index: 3
             Item: Auto_Armor_A
             Rate: 155
@@ -103021,18 +102470,6 @@ Body:
       - SubGroup: 6
         Algorithm: Random
         List:
-          - Index: 0
-            Item: Cubic_Dia
-            Rate: 1000
-            Amount: 3
-          - Index: 1
-            Item: Cubic_Dia
-            Rate: 1000
-            Amount: 4
-          - Index: 2
-            Item: Cubic_Dia
-            Rate: 1000
-            Amount: 5
           - Index: 3
             Item: Ep172_1h_Sword
             Rate: 30
@@ -103747,22 +103184,6 @@ Body:
       - SubGroup: 6
         Algorithm: Random
         List:
-          - Index: 0
-            Item: Cubic_Dia
-            Rate: 1000
-            Amount: 4
-          - Index: 1
-            Item: Cubic_Dia
-            Rate: 1000
-            Amount: 5
-          - Index: 2
-            Item: Cubic_Dia
-            Rate: 1000
-            Amount: 6
-          - Index: 3
-            Item: Cubic_Dia
-            Rate: 1000
-            Amount: 7
           - Index: 4
             Item: Ep172_1h_Sword
             Rate: 32
@@ -104620,26 +104041,6 @@ Body:
       - SubGroup: 6
         Algorithm: Random
         List:
-          - Index: 0
-            Item: Black_Dia
-            Rate: 800
-            Amount: 3
-          - Index: 1
-            Item: Black_Dia
-            Rate: 800
-            Amount: 4
-          - Index: 2
-            Item: Black_Dia
-            Rate: 800
-            Amount: 5
-          - Index: 3
-            Item: Black_Dia
-            Rate: 800
-            Amount: 6
-          - Index: 4
-            Item: Black_Dia
-            Rate: 800
-            Amount: 7
           - Index: 5
             Item: Ep172_1h_Sword
             Rate: 40
@@ -105177,26 +104578,6 @@ Body:
       - SubGroup: 6
         Algorithm: Random
         List:
-          - Index: 0
-            Item: Cubic_Dia
-            Rate: 800
-            Amount: 8
-          - Index: 1
-            Item: Cubic_Dia
-            Rate: 800
-            Amount: 9
-          - Index: 2
-            Item: Cubic_Dia
-            Rate: 800
-            Amount: 10
-          - Index: 3
-            Item: Cubic_Dia
-            Rate: 800
-            Amount: 11
-          - Index: 4
-            Item: Cubic_Dia
-            Rate: 800
-            Amount: 12
           - Index: 5
             Item: Adulter_F_G_Sword
             Rate: 20
@@ -107716,26 +107097,6 @@ Body:
       - SubGroup: 6
         Algorithm: Random
         List:
-          - Index: 0
-            Item: Black_Dia
-            Rate: 800
-            Amount: 6
-          - Index: 1
-            Item: Black_Dia
-            Rate: 800
-            Amount: 7
-          - Index: 2
-            Item: Black_Dia
-            Rate: 800
-            Amount: 8
-          - Index: 3
-            Item: Black_Dia
-            Rate: 800
-            Amount: 9
-          - Index: 4
-            Item: Black_Dia
-            Rate: 800
-            Amount: 10
           - Index: 5
             Item: Glacier_Sword
             Rate: 45
@@ -108471,26 +107832,6 @@ Body:
       - SubGroup: 6
         Algorithm: Random
         List:
-          - Index: 0
-            Item: Black_Dia
-            Rate: 800
-            Amount: 4
-          - Index: 1
-            Item: Black_Dia
-            Rate: 800
-            Amount: 5
-          - Index: 2
-            Item: Black_Dia
-            Rate: 800
-            Amount: 6
-          - Index: 3
-            Item: Black_Dia
-            Rate: 800
-            Amount: 7
-          - Index: 4
-            Item: Black_Dia
-            Rate: 800
-            Amount: 8
           - Index: 5
             Item: Snowflower_Armor
             Rate: 100
@@ -108818,22 +108159,6 @@ Body:
       - SubGroup: 6
         Algorithm: Random
         List:
-          - Index: 0
-            Item: Black_Dia
-            Rate: 1000
-            Amount: 7
-          - Index: 1
-            Item: Black_Dia
-            Rate: 1000
-            Amount: 8
-          - Index: 2
-            Item: Black_Dia
-            Rate: 1000
-            Amount: 9
-          - Index: 3
-            Item: Black_Dia
-            Rate: 1000
-            Amount: 10
           - Index: 4
             Item: Glacier_Sword
             Rate: 25
@@ -109929,18 +109254,6 @@ Body:
       - SubGroup: 6
         Algorithm: Random
         List:
-          - Index: 0
-            Item: Brown_Dia
-            Rate: 1000
-            Amount: 3
-          - Index: 1
-            Item: Brown_Dia
-            Rate: 1000
-            Amount: 4
-          - Index: 2
-            Item: Brown_Dia
-            Rate: 1000
-            Amount: 5
           - Index: 3
             Item: Glacier_Armor
             Rate: 100
@@ -110203,22 +109516,6 @@ Body:
       - SubGroup: 6
         Algorithm: Random
         List:
-          - Index: 0
-            Item: Brown_Dia
-            Rate: 500
-            Amount: 4
-          - Index: 1
-            Item: Brown_Dia
-            Rate: 500
-            Amount: 5
-          - Index: 2
-            Item: Brown_Dia
-            Rate: 500
-            Amount: 6
-          - Index: 3
-            Item: Brown_Dia
-            Rate: 500
-            Amount: 7
           - Index: 4
             Item: Glacier_Armor
             Rate: 120
@@ -110582,26 +109879,6 @@ Body:
       - SubGroup: 6
         Algorithm: Random
         List:
-          - Index: 0
-            Item: Brown_Dia
-            Rate: 500
-            Amount: 7
-          - Index: 1
-            Item: Brown_Dia
-            Rate: 500
-            Amount: 8
-          - Index: 2
-            Item: Brown_Dia
-            Rate: 500
-            Amount: 9
-          - Index: 3
-            Item: Brown_Dia
-            Rate: 500
-            Amount: 10
-          - Index: 4
-            Item: Brown_Dia
-            Rate: 500
-            Amount: 11
           - Index: 5
             Item: Glacier_Armor
             Rate: 80
@@ -110907,26 +110184,6 @@ Body:
       - SubGroup: 6
         Algorithm: Random
         List:
-          - Index: 0
-            Item: Black_Dia
-            Rate: 800
-            Amount: 4
-          - Index: 1
-            Item: Black_Dia
-            Rate: 800
-            Amount: 5
-          - Index: 2
-            Item: Black_Dia
-            Rate: 800
-            Amount: 6
-          - Index: 3
-            Item: Black_Dia
-            Rate: 800
-            Amount: 7
-          - Index: 4
-            Item: Black_Dia
-            Rate: 800
-            Amount: 8
           - Index: 5
             Item: Sin_Ring_R
             Rate: 100
@@ -111256,43 +110513,6 @@ Body:
             Amount: 10
           - Index: 4
             Item: Cinnamon_Pack3
-  - Group: BL_DEPTH_EV_1
-    SubGroups:
-      - SubGroup: 6
-        Algorithm: Random
-        List:
-          - Index: 0
-            Item: Bar_D_Fl_Rune
-            Rate: 1250
-            Amount: 10
-          - Index: 1
-            Item: Bar_D_Ea_Rune
-            Rate: 1250
-            Amount: 10
-          - Index: 2
-            Item: Bar_D_Ic_Rune
-            Rate: 1250
-            Amount: 10
-          - Index: 3
-            Item: Bar_D_St_Rune
-            Rate: 1250
-            Amount: 10
-          - Index: 4
-            Item: Bar_D_So_Rune
-            Rate: 1250
-            Amount: 10
-          - Index: 5
-            Item: Bar_D_Pu_Rune
-            Rate: 1250
-            Amount: 10
-          - Index: 6
-            Item: Bar_D_Co_Rune
-            Rate: 1250
-            Amount: 10
-          - Index: 7
-            Item: Bar_D_Po_Rune
-            Rate: 1250
-            Amount: 10
   - Group: BL_DEPTH_EV_2
     SubGroups:
       - SubGroup: 0
@@ -111423,14 +110643,6 @@ Body:
             Amount: 10
           - Index: 2
             Item: Kr_B_Special01
-  - Group: BROWN_DIA_BOX
-    SubGroups:
-      - SubGroup: 0
-        Algorithm: All
-        List:
-          - Index: 0
-            Item: Brown_Dia
-            Amount: 15
   - Group: COSTUMEMILEPACK_33_1
     SubGroups:
       - SubGroup: 0
@@ -111545,14 +110757,6 @@ Body:
           - Index: 2
             Item: 2401_ev_LinTteok
             Amount: 5
-  - Group: BLACK_DIA_3_BOX
-    SubGroups:
-      - SubGroup: 0
-        Algorithm: All
-        List:
-          - Index: 0
-            Item: Black_Dia
-            Amount: 3
   - Group: LI_NYANGVINE_BOX1_34
     SubGroups:
       - SubGroup: 0
@@ -111598,28 +110802,11 @@ Body:
           - Index: 3
             Item: Enchant_Stone_Box34
             Amount: 10
-  - Group: S_BADGE_PACK
-    SubGroups:
-      - SubGroup: 0
-        Algorithm: All
-        List:
-          - Index: 0
-            Item: VR_RING
-            Amount: 8
-          - Index: 1
-            Item: S_Badge
-            Amount: 8
   - Group: SUPER_SONIC_PACK
     SubGroups:
       - SubGroup: 0
         Algorithm: All
         List:
-          - Index: 0
-            Item: VR_RING
-            Amount: 8
-          - Index: 1
-            Item: S_Badge
-            Amount: 8
           - Index: 2
             Item: C_Super_Sonic_Mini
   - Group: CHAOS_EMERALD_PACK
@@ -111627,12 +110814,6 @@ Body:
       - SubGroup: 0
         Algorithm: All
         List:
-          - Index: 0
-            Item: VR_RING
-            Amount: 8
-          - Index: 1
-            Item: S_Badge
-            Amount: 8
           - Index: 2
             Item: C_Chaos_Emerald
   - Group: VIP_BIRTHDAY_BOX
@@ -111866,28 +111047,11 @@ Body:
             Amount: 150
           - Index: 2
             Item: Booster_Call_Package
-  - Group: S_BADGE_PACK_
-    SubGroups:
-      - SubGroup: 0
-        Algorithm: All
-        List:
-          - Index: 0
-            Item: VR_RING
-            Amount: 8
-          - Index: 1
-            Item: S_Badge
-            Amount: 8
   - Group: SUPER_SONIC_PACK_
     SubGroups:
       - SubGroup: 0
         Algorithm: All
         List:
-          - Index: 0
-            Item: VR_RING
-            Amount: 8
-          - Index: 1
-            Item: S_Badge
-            Amount: 8
           - Index: 2
             Item: C_Super_Sonic_Mini
   - Group: CHAOS_EMERALD_PACK_
@@ -111895,12 +111059,6 @@ Body:
       - SubGroup: 0
         Algorithm: All
         List:
-          - Index: 0
-            Item: VR_RING
-            Amount: 8
-          - Index: 1
-            Item: S_Badge
-            Amount: 8
           - Index: 2
             Item: C_Chaos_Emerald
   - Group: E_BOARDING_HALTER_BOX
@@ -112182,9 +111340,6 @@ Body:
           - Index: 56
             Item: ASPDStone_Robe
             Rate: 200
-          - Index: 57
-            Item: SuNoviceStone_Robe
-            Rate: 200
       - SubGroup: 2
         List:
           - Index: 0
@@ -112276,9 +111431,6 @@ Body:
             Rate: 106
           - Index: 17
             Item: DoramStone_Top3
-            Rate: 106
-          - Index: 18
-            Item: SuNoviceStone_Top
             Rate: 106
           - Index: 19
             Item: Magic_Stone_Top
@@ -112575,9 +111727,6 @@ Body:
           - Index: 56
             Item: ASPDStone_Robe
             Rate: 200
-          - Index: 57
-            Item: SuNoviceStone_Robe
-            Rate: 200
       - SubGroup: 2
         List:
           - Index: 0
@@ -112669,9 +111818,6 @@ Body:
             Rate: 106
           - Index: 17
             Item: DoramStone_Middle3
-            Rate: 106
-          - Index: 18
-            Item: SuNoviceStone_Middle
             Rate: 106
           - Index: 19
             Item: Magic_Stone_Middle
@@ -112962,9 +112108,6 @@ Body:
           - Index: 56
             Item: ASPDStone_Robe
             Rate: 200
-          - Index: 57
-            Item: SuNoviceStone_Robe
-            Rate: 200
       - SubGroup: 2
         List:
           - Index: 0
@@ -113056,9 +112199,6 @@ Body:
             Rate: 106
           - Index: 17
             Item: DoramStone_Bottom3
-            Rate: 106
-          - Index: 18
-            Item: SuNoviceStone_Bottom
             Rate: 106
           - Index: 19
             Item: Magic_Stone_Bottom
@@ -113226,18 +112366,6 @@ Body:
             Announced: true
           - Index: 12
             Item: MinorCastStone_Robe_D
-            Rate: 1
-            Announced: true
-          - Index: 13
-            Item: DragonknightStone_Robe
-            Rate: 1
-            Announced: true
-          - Index: 14
-            Item: ImperialguardStone_Robe
-            Rate: 1
-            Announced: true
-          - Index: 15
-            Item: NightwatchStone_Robe
             Rate: 1
             Announced: true
           - Index: 16
@@ -114372,21 +113500,6 @@ Body:
       - SubGroup: 6
         Algorithm: Random
         List:
-          - Index: 0
-            Item: Brown_Dia
-            Rate: 800
-          - Index: 1
-            Item: Brown_Dia
-            Rate: 800
-          - Index: 2
-            Item: Brown_Dia
-            Rate: 800
-          - Index: 3
-            Item: Brown_Dia
-            Rate: 800
-          - Index: 4
-            Item: Brown_Dia
-            Rate: 800
           - Index: 5
             Item: Gaebolg_Armor
             RefineMinimum: 9
@@ -114489,162 +113602,6 @@ Body:
           - Index: 26
             Item: Gaebolg_Necklace
             Rate: 60
-          - Index: 27
-            Item: Ep21_Armor_E_Stone1
-            Rate: 100
-          - Index: 28
-            Item: Ep21_Armor_E_Stone1
-            Rate: 100
-          - Index: 29
-            Item: Ep21_Armor_E_Stone1
-            Rate: 100
-          - Index: 30
-            Item: Ep21_Armor_E_Stone1
-            Rate: 100
-          - Index: 31
-            Item: Ep21_Armor_E_Stone1
-            Rate: 100
-          - Index: 32
-            Item: Ep21_Armor_E_Stone2
-            Rate: 50
-          - Index: 33
-            Item: Ep21_Armor_E_Stone2
-            Rate: 50
-          - Index: 34
-            Item: Ep21_Armor_E_Stone2
-            Rate: 50
-          - Index: 35
-            Item: Ep21_Armor_E_Stone2
-            Rate: 50
-          - Index: 36
-            Item: Ep21_Armor_E_Stone2
-            Rate: 50
-          - Index: 37
-            Item: Ep21_Armor_E_Stone3
-            Rate: 20
-          - Index: 38
-            Item: Ep21_Armor_E_Stone3
-            Rate: 20
-          - Index: 39
-            Item: Ep21_Armor_E_Stone3
-            Rate: 20
-          - Index: 40
-            Item: Ep21_Robe_E_Stone1
-            Rate: 100
-          - Index: 41
-            Item: Ep21_Robe_E_Stone1
-            Rate: 100
-          - Index: 42
-            Item: Ep21_Robe_E_Stone1
-            Rate: 100
-          - Index: 43
-            Item: Ep21_Robe_E_Stone1
-            Rate: 100
-          - Index: 44
-            Item: Ep21_Robe_E_Stone1
-            Rate: 100
-          - Index: 45
-            Item: Ep21_Robe_E_Stone2
-            Rate: 50
-          - Index: 46
-            Item: Ep21_Robe_E_Stone2
-            Rate: 50
-          - Index: 47
-            Item: Ep21_Robe_E_Stone2
-            Rate: 50
-          - Index: 48
-            Item: Ep21_Robe_E_Stone2
-            Rate: 50
-          - Index: 49
-            Item: Ep21_Robe_E_Stone2
-            Rate: 50
-          - Index: 50
-            Item: Ep21_Robe_E_Stone3
-            Rate: 20
-          - Index: 51
-            Item: Ep21_Robe_E_Stone3
-            Rate: 20
-          - Index: 52
-            Item: Ep21_Robe_E_Stone3
-            Rate: 20
-          - Index: 53
-            Item: Ep21_Shoes_E_Stone1
-            Rate: 100
-          - Index: 54
-            Item: Ep21_Shoes_E_Stone1
-            Rate: 100
-          - Index: 55
-            Item: Ep21_Shoes_E_Stone1
-            Rate: 100
-          - Index: 56
-            Item: Ep21_Shoes_E_Stone1
-            Rate: 100
-          - Index: 57
-            Item: Ep21_Shoes_E_Stone1
-            Rate: 100
-          - Index: 58
-            Item: Ep21_Shoes_E_Stone2
-            Rate: 50
-          - Index: 59
-            Item: Ep21_Shoes_E_Stone2
-            Rate: 50
-          - Index: 60
-            Item: Ep21_Shoes_E_Stone2
-            Rate: 50
-          - Index: 61
-            Item: Ep21_Shoes_E_Stone2
-            Rate: 50
-          - Index: 62
-            Item: Ep21_Shoes_E_Stone2
-            Rate: 50
-          - Index: 63
-            Item: Ep21_Shoes_E_Stone3
-            Rate: 20
-          - Index: 64
-            Item: Ep21_Shoes_E_Stone3
-            Rate: 20
-          - Index: 65
-            Item: Ep21_Shoes_E_Stone3
-            Rate: 20
-          - Index: 66
-            Item: Ep21_Acc_E_Stone1
-            Rate: 100
-          - Index: 67
-            Item: Ep21_Acc_E_Stone1
-            Rate: 100
-          - Index: 68
-            Item: Ep21_Acc_E_Stone1
-            Rate: 100
-          - Index: 69
-            Item: Ep21_Acc_E_Stone1
-            Rate: 100
-          - Index: 70
-            Item: Ep21_Acc_E_Stone1
-            Rate: 100
-          - Index: 71
-            Item: Ep21_Acc_E_Stone2
-            Rate: 50
-          - Index: 72
-            Item: Ep21_Acc_E_Stone2
-            Rate: 50
-          - Index: 73
-            Item: Ep21_Acc_E_Stone2
-            Rate: 50
-          - Index: 74
-            Item: Ep21_Acc_E_Stone2
-            Rate: 50
-          - Index: 75
-            Item: Ep21_Acc_E_Stone2
-            Rate: 50
-          - Index: 76
-            Item: Ep21_Acc_E_Stone3
-            Rate: 20
-          - Index: 77
-            Item: Ep21_Acc_E_Stone3
-            Rate: 20
-          - Index: 78
-            Item: Ep21_Acc_E_Stone3
-            Rate: 20
           - Index: 79
             Item: EP19_Gla_Extract
             Rate: 60
@@ -114695,21 +113652,6 @@ Body:
       - SubGroup: 6
         Algorithm: Random
         List:
-          - Index: 0
-            Item: Brown_Dia
-            Rate: 800
-          - Index: 1
-            Item: Brown_Dia
-            Rate: 800
-          - Index: 2
-            Item: Brown_Dia
-            Rate: 800
-          - Index: 3
-            Item: Brown_Dia
-            Rate: 800
-          - Index: 4
-            Item: Brown_Dia
-            Rate: 800
           - Index: 5
             Item: Gaebolg_Armor
             RefineMinimum: 9
@@ -114814,162 +113756,6 @@ Body:
           - Index: 26
             Item: Gaebolg_Necklace
             Rate: 60
-          - Index: 27
-            Item: Ep21_Armor_E_Stone1
-            Rate: 100
-          - Index: 28
-            Item: Ep21_Armor_E_Stone1
-            Rate: 100
-          - Index: 29
-            Item: Ep21_Armor_E_Stone1
-            Rate: 100
-          - Index: 30
-            Item: Ep21_Armor_E_Stone1
-            Rate: 100
-          - Index: 31
-            Item: Ep21_Armor_E_Stone1
-            Rate: 100
-          - Index: 32
-            Item: Ep21_Armor_E_Stone2
-            Rate: 50
-          - Index: 33
-            Item: Ep21_Armor_E_Stone2
-            Rate: 50
-          - Index: 34
-            Item: Ep21_Armor_E_Stone2
-            Rate: 50
-          - Index: 35
-            Item: Ep21_Armor_E_Stone2
-            Rate: 50
-          - Index: 36
-            Item: Ep21_Armor_E_Stone2
-            Rate: 50
-          - Index: 37
-            Item: Ep21_Armor_E_Stone3
-            Rate: 20
-          - Index: 38
-            Item: Ep21_Armor_E_Stone3
-            Rate: 20
-          - Index: 39
-            Item: Ep21_Armor_E_Stone3
-            Rate: 20
-          - Index: 40
-            Item: Ep21_Robe_E_Stone1
-            Rate: 100
-          - Index: 41
-            Item: Ep21_Robe_E_Stone1
-            Rate: 100
-          - Index: 42
-            Item: Ep21_Robe_E_Stone1
-            Rate: 100
-          - Index: 43
-            Item: Ep21_Robe_E_Stone1
-            Rate: 100
-          - Index: 44
-            Item: Ep21_Robe_E_Stone1
-            Rate: 100
-          - Index: 45
-            Item: Ep21_Robe_E_Stone2
-            Rate: 50
-          - Index: 46
-            Item: Ep21_Robe_E_Stone2
-            Rate: 50
-          - Index: 47
-            Item: Ep21_Robe_E_Stone2
-            Rate: 50
-          - Index: 48
-            Item: Ep21_Robe_E_Stone2
-            Rate: 50
-          - Index: 49
-            Item: Ep21_Robe_E_Stone2
-            Rate: 50
-          - Index: 50
-            Item: Ep21_Robe_E_Stone3
-            Rate: 20
-          - Index: 51
-            Item: Ep21_Robe_E_Stone3
-            Rate: 20
-          - Index: 52
-            Item: Ep21_Robe_E_Stone3
-            Rate: 20
-          - Index: 53
-            Item: Ep21_Shoes_E_Stone1
-            Rate: 100
-          - Index: 54
-            Item: Ep21_Shoes_E_Stone1
-            Rate: 100
-          - Index: 55
-            Item: Ep21_Shoes_E_Stone1
-            Rate: 100
-          - Index: 56
-            Item: Ep21_Shoes_E_Stone1
-            Rate: 100
-          - Index: 57
-            Item: Ep21_Shoes_E_Stone1
-            Rate: 100
-          - Index: 58
-            Item: Ep21_Shoes_E_Stone2
-            Rate: 50
-          - Index: 59
-            Item: Ep21_Shoes_E_Stone2
-            Rate: 50
-          - Index: 60
-            Item: Ep21_Shoes_E_Stone2
-            Rate: 50
-          - Index: 61
-            Item: Ep21_Shoes_E_Stone2
-            Rate: 50
-          - Index: 62
-            Item: Ep21_Shoes_E_Stone2
-            Rate: 50
-          - Index: 63
-            Item: Ep21_Shoes_E_Stone3
-            Rate: 20
-          - Index: 64
-            Item: Ep21_Shoes_E_Stone3
-            Rate: 20
-          - Index: 65
-            Item: Ep21_Shoes_E_Stone3
-            Rate: 20
-          - Index: 66
-            Item: Ep21_Acc_E_Stone1
-            Rate: 100
-          - Index: 67
-            Item: Ep21_Acc_E_Stone1
-            Rate: 100
-          - Index: 68
-            Item: Ep21_Acc_E_Stone1
-            Rate: 100
-          - Index: 69
-            Item: Ep21_Acc_E_Stone1
-            Rate: 100
-          - Index: 70
-            Item: Ep21_Acc_E_Stone1
-            Rate: 100
-          - Index: 71
-            Item: Ep21_Acc_E_Stone2
-            Rate: 50
-          - Index: 72
-            Item: Ep21_Acc_E_Stone2
-            Rate: 50
-          - Index: 73
-            Item: Ep21_Acc_E_Stone2
-            Rate: 50
-          - Index: 74
-            Item: Ep21_Acc_E_Stone2
-            Rate: 50
-          - Index: 75
-            Item: Ep21_Acc_E_Stone2
-            Rate: 50
-          - Index: 76
-            Item: Ep21_Acc_E_Stone3
-            Rate: 20
-          - Index: 77
-            Item: Ep21_Acc_E_Stone3
-            Rate: 20
-          - Index: 78
-            Item: Ep21_Acc_E_Stone3
-            Rate: 20
           - Index: 79
             Item: EP19_Gla_Extract
             Rate: 60
@@ -115105,18 +113891,6 @@ Body:
             Rate: 10
           - Index: 11
             Item: CrtStone_Robe_D
-            Rate: 10
-          - Index: 12
-            Item: aegis_1001615
-            Rate: 10
-          - Index: 13
-            Item: BioloStone_Robe
-            Rate: 10
-          - Index: 14
-            Item: InquisitorStone_Robe
-            Rate: 10
-          - Index: 15
-            Item: SpiritHandlerStone_Robe
             Rate: 10
           - Index: 16
             Item: ReloadStone_Robe_D
@@ -115661,18 +114435,6 @@ Body:
             Rate: 1
           - Index: 11
             Item: CrtStone_Robe_D
-            Rate: 1
-          - Index: 12
-            Item: aegis_1001772
-            Rate: 1
-          - Index: 13
-            Item: aegis_1001787
-            Rate: 1
-          - Index: 14
-            Item: aegis_1001788
-            Rate: 1
-          - Index: 15
-            Item: aegis_1001789
             Rate: 1
           - Index: 16
             Item: ReloadStone_Robe_D
@@ -116309,8 +115071,6 @@ Body:
         List:
           - Index: 0
             Item: Blacksmith_Blessing
-          - Index: 1
-            Item: Cubic_Dia
   - Group: RT_EP17_AUTO_A
     SubGroups:
       - SubGroup: 0
@@ -116328,8 +115088,6 @@ Body:
         List:
           - Index: 0
             Item: Blacksmith_Blessing
-          - Index: 1
-            Item: Cubic_Dia
   - Group: RT_EP17_SECRET_A
     SubGroups:
       - SubGroup: 0
@@ -116355,8 +115113,6 @@ Body:
           - Index: 2
             Item: R_Ep17_Album
             Amount: 2
-          - Index: 3
-            Item: Brown_Dia
   - Group: RT_EP17_MUTANT_A
     SubGroups:
       - SubGroup: 0
@@ -116376,9 +115132,6 @@ Body:
           - Index: 0
             Item: Imperfect_Rune
             Amount: 150
-          - Index: 1
-            Item: Cubic_Dia
-            Amount: 2
   - Group: RT_EP17_MIGUEL_A
     SubGroups:
       - SubGroup: 0
@@ -116404,8 +115157,6 @@ Body:
           - Index: 2
             Item: R_Ep17_Album
             Amount: 3
-          - Index: 3
-            Item: Brown_Dia
   - Group: RT_EP17_MIGUEL_2
     SubGroups:
       - SubGroup: 0
@@ -116414,9 +115165,6 @@ Body:
           - Index: 0
             Item: Imperfect_Rune
             Amount: 100
-          - Index: 1
-            Item: Cubic_Dia
-            Amount: 3
           - Index: 2
             Item: R_Ep17_Album
             Amount: 100
@@ -116445,8 +115193,6 @@ Body:
           - Index: 2
             Item: R_Ep17_Album
             Amount: 2
-          - Index: 3
-            Item: Brown_Dia
   - Group: RT_EP17_OVERLOAD_3
     SubGroups:
       - SubGroup: 0
@@ -116458,9 +115204,6 @@ Body:
           - Index: 1
             Item: R_Ep17_Album
             Amount: 100
-          - Index: 2
-            Item: Cubic_Dia
-            Amount: 2
   - Group: RT_EP17_BATH_A
     SubGroups:
       - SubGroup: 0
@@ -116480,9 +115223,6 @@ Body:
           - Index: 0
             Item: Imperfect_Rune
             Amount: 150
-          - Index: 1
-            Item: Cubic_Dia
-            Amount: 2
   - Group: RT_EP17_GARDEN_A
     SubGroups:
       - SubGroup: 0
@@ -116508,8 +115248,6 @@ Body:
           - Index: 2
             Item: R_Ep17_Album
             Amount: 4
-          - Index: 3
-            Item: Brown_Dia
   - Group: RT_EP17_GARDEN_3
     SubGroups:
       - SubGroup: 0
@@ -116518,9 +115256,6 @@ Body:
           - Index: 0
             Item: Imperfect_Rune
             Amount: 200
-          - Index: 1
-            Item: Cubic_Dia
-            Amount: 2
   - Group: RT_EP17_GARDEN_5
     SubGroups:
       - SubGroup: 0
@@ -116530,9 +115265,6 @@ Body:
             Item: R_Ep17_Album
           - Index: 1
             Item: Perfect_Rune
-          - Index: 2
-            Item: Cubic_Dia
-            Amount: 2
   - Group: RT_EP17_GREEN_A
     SubGroups:
       - SubGroup: 0
@@ -116558,8 +115290,6 @@ Body:
           - Index: 2
             Item: R_Ep17_Album
             Amount: 2
-          - Index: 3
-            Item: Brown_Dia
   - Group: RT_EP17_GREEN_2
     SubGroups:
       - SubGroup: 0
@@ -116568,9 +115298,6 @@ Body:
           - Index: 0
             Item: Imperfect_Rune
             Amount: 150
-          - Index: 1
-            Item: Cubic_Dia
-            Amount: 2
   - Group: RT_EP17_GREEN_4
     SubGroups:
       - SubGroup: 0
@@ -116580,9 +115307,6 @@ Body:
             Item: R_Ep17_Album
           - Index: 1
             Item: Perfect_Rune
-          - Index: 2
-            Item: Cubic_Dia
-            Amount: 2
   - Group: RT_EP17_WING_A
     SubGroups:
       - SubGroup: 0
@@ -116609,8 +115333,6 @@ Body:
       - SubGroup: 0
         Algorithm: All
         List:
-          - Index: 0
-            Item: Cubic_Dia
           - Index: 1
             Item: Imperfect_Rune
             Amount: 80
@@ -116622,8 +115344,6 @@ Body:
           - Index: 0
             Item: Imperfect_Rune
             Amount: 120
-          - Index: 1
-            Item: Cubic_Dia
   - Group: RT_EP17_HARMFUL_A
     SubGroups:
       - SubGroup: 0
@@ -116653,8 +115373,6 @@ Body:
           - Index: 0
             Item: Imperfect_Rune
             Amount: 80
-          - Index: 1
-            Item: Cubic_Dia
   - Group: RT_EP17_HARMFUL_4
     SubGroups:
       - SubGroup: 0
@@ -116663,8 +115381,6 @@ Body:
           - Index: 0
             Item: Imperfect_Rune
             Amount: 120
-          - Index: 1
-            Item: Cubic_Dia
   - Group: RT_EP17_BOSS_A
     SubGroups:
       - SubGroup: 0
@@ -116687,9 +115403,6 @@ Body:
           - Index: 1
             Item: Perfect_Rune
             Amount: 8
-          - Index: 2
-            Item: Brown_Dia
-            Amount: 5
           - Index: 3
             Item: R_Ep178_boss
             Amount: 2
@@ -116707,8 +115420,6 @@ Body:
           - Index: 2
             Item: R_Ep17_Album
             Amount: 3
-          - Index: 3
-            Item: Brown_Dia
   - Group: RT_EP17_BOSS_5
     SubGroups:
       - SubGroup: 0
@@ -116722,9 +115433,6 @@ Body:
             Amount: 2
           - Index: 2
             Item: R_Ep17_Album
-            Amount: 5
-          - Index: 3
-            Item: Brown_Dia
             Amount: 5
   - Group: RT_EP17_MALFUN_A
     SubGroups:
@@ -116751,8 +115459,6 @@ Body:
           - Index: 2
             Item: R_Ep17_Album
             Amount: 2
-          - Index: 3
-            Item: Brown_Dia
   - Group: RT_EP17_MALFUN_3
     SubGroups:
       - SubGroup: 0
@@ -116761,9 +115467,6 @@ Body:
           - Index: 0
             Item: Imperfect_Rune
             Amount: 150
-          - Index: 1
-            Item: Cubic_Dia
-            Amount: 3
   - Group: RT_EP18_ARMOR_A
     SubGroups:
       - SubGroup: 0
@@ -116781,8 +115484,6 @@ Body:
         List:
           - Index: 0
             Item: Blacksmith_Blessing
-          - Index: 1
-            Item: Cubic_Dia
   - Group: RT_EP18_MELEE_A
     SubGroups:
       - SubGroup: 0
@@ -116800,8 +115501,6 @@ Body:
         List:
           - Index: 0
             Item: Blacksmith_Blessing
-          - Index: 1
-            Item: Cubic_Dia
   - Group: RT_EP18_MELEE_C
     SubGroups:
       - SubGroup: 0
@@ -116809,8 +115508,6 @@ Body:
         List:
           - Index: 0
             Item: Blacksmith_Blessing
-          - Index: 1
-            Item: Cubic_Dia
   - Group: RT_EP18_MAGIC_A
     SubGroups:
       - SubGroup: 0
@@ -116838,8 +115535,6 @@ Body:
         List:
           - Index: 0
             Item: Blacksmith_Blessing
-          - Index: 1
-            Item: Cubic_Dia
   - Group: RT_EP18_FIELD_A
     SubGroups:
       - SubGroup: 0
@@ -116859,8 +115554,6 @@ Body:
             Item: R_Ep17_Album
           - Index: 1
             Item: Perfect_Rune
-          - Index: 2
-            Item: Cubic_Dia
   - Group: RT_EP18_FIELD_3
     SubGroups:
       - SubGroup: 0
@@ -116869,8 +115562,6 @@ Body:
           - Index: 0
             Item: Imperfect_Rune
             Amount: 120
-          - Index: 1
-            Item: Cubic_Dia
   - Group: RT_EP18_LAVA_A
     SubGroups:
       - SubGroup: 0
@@ -116889,15 +115580,11 @@ Body:
           - Index: 0
             Item: Imperfect_Rune
             Amount: 120
-          - Index: 1
-            Item: Cubic_Dia
   - Group: RT_EP18_LAVA_2
     SubGroups:
       - SubGroup: 0
         Algorithm: All
         List:
-          - Index: 0
-            Item: Cubic_Dia
           - Index: 1
             Item: Imperfect_Rune
             Amount: 80
@@ -116922,9 +115609,6 @@ Body:
           - Index: 1
             Item: Imperfect_Rune
             Amount: 150
-          - Index: 2
-            Item: Cubic_Dia
-            Amount: 3
   - Group: RT_EP18_TOTAL_3
     SubGroups:
       - SubGroup: 0
@@ -116936,8 +115620,6 @@ Body:
           - Index: 1
             Item: R_Ep17_Album
             Amount: 2
-          - Index: 2
-            Item: Cubic_Dia
   - Group: RT_EP18_TOTAL_6
     SubGroups:
       - SubGroup: 0
@@ -116945,8 +115627,6 @@ Body:
         List:
           - Index: 0
             Item: Perfect_Rune
-          - Index: 1
-            Item: Cubic_Dia
   - Group: RT_EP18_FANG_A
     SubGroups:
       - SubGroup: 0
@@ -116967,9 +115647,6 @@ Body:
             Amount: 450
           - Index: 1
             Item: Perfect_Rune
-          - Index: 2
-            Item: Brown_Dia
-            Amount: 3
   - Group: RT_EP18_DEMI_A
     SubGroups:
       - SubGroup: 0
@@ -116992,9 +115669,6 @@ Body:
           - Index: 1
             Item: Perfect_Rune
             Amount: 2
-          - Index: 2
-            Item: Brown_Dia
-            Amount: 5
           - Index: 3
             Item: R_Ep178_boss
   - Group: RT_EP18_DEMI_2
@@ -117010,68 +115684,6 @@ Body:
           - Index: 2
             Item: R_Ep17_Album
             Amount: 2
-          - Index: 3
-            Item: Cubic_Dia
-            Amount: 5
-  - Group: YOR_CARD_P_BOX
-    SubGroups:
-      - SubGroup: 6
-        Algorithm: Random
-        List:
-          - Index: 0
-            Item: aegis_1001837
-            Rate: 556
-          - Index: 1
-            Item: aegis_1001838
-            Rate: 556
-          - Index: 2
-            Item: aegis_1001839
-            Rate: 556
-          - Index: 3
-            Item: aegis_1001840
-            Rate: 556
-          - Index: 4
-            Item: aegis_1001841
-            Rate: 556
-          - Index: 5
-            Item: aegis_1001842
-            Rate: 556
-          - Index: 6
-            Item: aegis_1001843
-            Rate: 556
-          - Index: 7
-            Item: aegis_1001844
-            Rate: 556
-          - Index: 8
-            Item: aegis_1001845
-            Rate: 556
-          - Index: 9
-            Item: aegis_1001846
-            Rate: 556
-          - Index: 10
-            Item: aegis_1001847
-            Rate: 555
-          - Index: 11
-            Item: aegis_1001848
-            Rate: 555
-          - Index: 12
-            Item: aegis_1001849
-            Rate: 555
-          - Index: 13
-            Item: aegis_1001850
-            Rate: 555
-          - Index: 14
-            Item: aegis_1001851
-            Rate: 555
-          - Index: 15
-            Item: aegis_1001852
-            Rate: 555
-          - Index: 16
-            Item: aegis_1001853
-            Rate: 555
-          - Index: 17
-            Item: aegis_1001854
-            Rate: 555
   - Group: EP21_COSTUME_BOX1
     SubGroups:
       - SubGroup: 0
@@ -117099,26 +115711,6 @@ Body:
       - SubGroup: 6
         Algorithm: Random
         List:
-          - Index: 0
-            Item: Brown_Dia
-            Rate: 1000
-            Amount: 12
-          - Index: 1
-            Item: Brown_Dia
-            Rate: 1000
-            Amount: 13
-          - Index: 2
-            Item: Brown_Dia
-            Rate: 1000
-            Amount: 14
-          - Index: 3
-            Item: Brown_Dia
-            Rate: 1000
-            Amount: 15
-          - Index: 4
-            Item: Brown_Dia
-            Rate: 1000
-            Amount: 16
           - Index: 5
             Item: aegis_103523
             Rate: 50
@@ -117130,94 +115722,6 @@ Body:
           - Index: 7
             Item: aegis_103523
             Rate: 200
-          - Index: 8
-            Item: Yorscalp_Serpent
-            Rate: 90
-            Amount: 3
-          - Index: 9
-            Item: Yorscalp_Serpent
-            Rate: 80
-            Amount: 4
-          - Index: 10
-            Item: Yorscalp_Serpent
-            Rate: 70
-            Amount: 5
-          - Index: 11
-            Item: Yorscalp_Serpent
-            Rate: 60
-            Amount: 6
-          - Index: 12
-            Item: Yorscalp_Serpent
-            Rate: 50
-            Amount: 7
-          - Index: 13
-            Item: Yorscalp_Symbol
-            Rate: 200
-            Amount: 11
-          - Index: 14
-            Item: Yorscalp_Symbol
-            Rate: 200
-            Amount: 12
-          - Index: 15
-            Item: Yorscalp_Symbol
-            Rate: 200
-            Amount: 13
-          - Index: 16
-            Item: Yorscalp_Symbol
-            Rate: 180
-            Amount: 14
-          - Index: 17
-            Item: Yorscalp_Symbol
-            Rate: 180
-            Amount: 15
-          - Index: 18
-            Item: Yorscalp_Symbol
-            Rate: 160
-            Amount: 16
-          - Index: 19
-            Item: Yorscalp_Symbol
-            Rate: 160
-            Amount: 17
-          - Index: 20
-            Item: Yorscalp_Spirit
-            Rate: 200
-            Amount: 33
-          - Index: 21
-            Item: Yorscalp_Spirit
-            Rate: 200
-            Amount: 34
-          - Index: 22
-            Item: Yorscalp_Spirit
-            Rate: 200
-            Amount: 35
-          - Index: 23
-            Item: Yorscalp_Spirit
-            Rate: 180
-            Amount: 36
-          - Index: 24
-            Item: Yorscalp_Spirit
-            Rate: 180
-            Amount: 37
-          - Index: 25
-            Item: Yorscalp_Spirit
-            Rate: 180
-            Amount: 38
-          - Index: 26
-            Item: Yorscalp_Spirit
-            Rate: 160
-            Amount: 39
-          - Index: 27
-            Item: Yorscalp_Spirit
-            Rate: 160
-            Amount: 40
-          - Index: 28
-            Item: Yorscalp_Spirit
-            Rate: 100
-            Amount: 41
-          - Index: 29
-            Item: Yorscalp_Spirit
-            Rate: 100
-            Amount: 42
           - Index: 30
             Item: aegis_103501
             Rate: 150
@@ -117234,26 +115738,6 @@ Body:
             Item: aegis_103502
             Rate: 100
             Amount: 200
-          - Index: 34
-            Item: Ep21_Wigner_Ticket
-            Rate: 200
-            Amount: 41
-          - Index: 35
-            Item: Ep21_Wigner_Ticket
-            Rate: 180
-            Amount: 42
-          - Index: 36
-            Item: Ep21_Wigner_Ticket
-            Rate: 160
-            Amount: 43
-          - Index: 37
-            Item: Ep21_Wigner_Ticket
-            Rate: 160
-            Amount: 44
-          - Index: 38
-            Item: Ep21_Wigner_Ticket
-            Rate: 160
-            Amount: 45
   - Group: AEGIS_103582
     SubGroups:
       - SubGroup: 0
@@ -117303,66 +115787,6 @@ Body:
             Rate: 10
           - Index: 11
             Item: CrtStone_Robe_D
-            Rate: 10
-          - Index: 12
-            Item: aegis_1001651
-            Rate: 10
-          - Index: 13
-            Item: ShinkiroStone_Robe
-            Rate: 10
-          - Index: 14
-            Item: ShiranuiStone_Robe
-            Rate: 10
-          - Index: 15
-            Item: ShaCrossStone_Robe
-            Rate: 10
-          - Index: 16
-            Item: CardinalStone_Robe
-            Rate: 10
-          - Index: 17
-            Item: SkyEmperorStone_Robe
-            Rate: 10
-          - Index: 18
-            Item: MeisterStone_Robe
-            Rate: 10
-          - Index: 19
-            Item: ElementalStone_Robe
-            Rate: 10
-          - Index: 20
-            Item: AbysschaserStone_Robe
-            Rate: 10
-          - Index: 21
-            Item: TRTRStone_Robe
-            Rate: 10
-          - Index: 22
-            Item: HNoviceStone_Robe
-            Rate: 10
-          - Index: 23
-            Item: DragonknightStone_Robe
-            Rate: 10
-          - Index: 24
-            Item: ImperialguardStone_Robe
-            Rate: 10
-          - Index: 25
-            Item: NightwatchStone_Robe
-            Rate: 10
-          - Index: 26
-            Item: BioloStone_Robe
-            Rate: 10
-          - Index: 27
-            Item: InquisitorStone_Robe
-            Rate: 10
-          - Index: 28
-            Item: SpiritHandlerStone_Robe
-            Rate: 10
-          - Index: 29
-            Item: aegis_1001787
-            Rate: 10
-          - Index: 30
-            Item: aegis_1001788
-            Rate: 10
-          - Index: 31
-            Item: aegis_1001789
             Rate: 10
           - Index: 32
             Item: ReloadStone_Robe_D
@@ -117922,9 +116346,6 @@ Body:
           - Index: 2
             Item: StarStone_Top3
             Rate: 10
-          - Index: 3
-            Item: SuNoviceStone_Top
-            Rate: 10
           - Index: 4
             Item: RebelStone_Top3
             Rate: 10
@@ -117948,9 +116369,6 @@ Body:
           - Index: 2
             Item: StarStone_Middle3
             Rate: 10
-          - Index: 3
-            Item: SuNoviceStone_Middle
-            Rate: 10
           - Index: 4
             Item: RebelStone_Middle3
             Rate: 10
@@ -117973,9 +116391,6 @@ Body:
             Rate: 10
           - Index: 2
             Item: StarStone_Bottom3
-            Rate: 10
-          - Index: 3
-            Item: SuNoviceStone_Bottom
             Rate: 10
           - Index: 4
             Item: RebelStone_Bottom3
@@ -118207,14 +116622,6 @@ Body:
             Item: Regia_Hunting_Boots
             RefineMinimum: 9
             RefineMaximum: 9
-  - Group: MYSTERIOUS_FRUIT_BOX
-    SubGroups:
-      - SubGroup: 0
-        Algorithm: All
-        List:
-          - Index: 0
-            Item: Mysterious_Fruit
-            Amount: 5
   - Group: ZONDA_SUPPORT_PACKAGE
     SubGroups:
       - SubGroup: 0
@@ -119333,9 +117740,6 @@ Body:
           - Index: 7
             Item: ResistDefStone_Robe
             Rate: 11
-          - Index: 8
-            Item: aegis_1001938
-            Rate: 11
           - Index: 9
             Item: StaminaWISStone_Robe_D
             Rate: 10
@@ -119350,18 +117754,6 @@ Body:
             Rate: 10
           - Index: 13
             Item: CrtStone_Robe_D
-            Rate: 10
-          - Index: 14
-            Item: aegis_1001907
-            Rate: 10
-          - Index: 15
-            Item: aegis_1001948
-            Rate: 10
-          - Index: 16
-            Item: aegis_1001949
-            Rate: 10
-          - Index: 17
-            Item: aegis_1001950
             Rate: 10
           - Index: 18
             Item: ReloadStone_Robe_D
@@ -119389,33 +117781,6 @@ Body:
             Rate: 80
           - Index: 26
             Item: CastStone_Robe
-            Rate: 80
-          - Index: 27
-            Item: aegis_1001939
-            Rate: 80
-          - Index: 28
-            Item: aegis_1001940
-            Rate: 80
-          - Index: 29
-            Item: aegis_1001941
-            Rate: 80
-          - Index: 30
-            Item: aegis_1001942
-            Rate: 80
-          - Index: 31
-            Item: aegis_1001943
-            Rate: 80
-          - Index: 32
-            Item: aegis_1001944
-            Rate: 80
-          - Index: 33
-            Item: aegis_1001945
-            Rate: 80
-          - Index: 34
-            Item: aegis_1001946
-            Rate: 80
-          - Index: 35
-            Item: aegis_1001947
             Rate: 80
           - Index: 36
             Item: Stone_Robe_Box
@@ -120317,298 +118682,6 @@ Body:
           - Index: 3
             Item: aegis_103909
             Amount: 10
-  - Group: MD_FRAGMENT_BOX_BL
-    SubGroups:
-      - SubGroup: 6
-        Algorithm: Random
-        List:
-          - Index: 0
-            Item: Illusion_Fragment_BL
-            Rate: 1400
-            Amount: 26
-          - Index: 1
-            Item: Illusion_Fragment_BL
-            Rate: 1300
-            Amount: 27
-          - Index: 2
-            Item: Illusion_Fragment_BL
-            Rate: 1200
-            Amount: 28
-          - Index: 3
-            Item: Illusion_Fragment_BL
-            Rate: 1100
-            Amount: 29
-          - Index: 4
-            Item: Illusion_Fragment_BL
-            Rate: 1000
-            Amount: 30
-          - Index: 5
-            Item: Illusion_Fragment_BL
-            Rate: 850
-            Amount: 31
-          - Index: 6
-            Item: Illusion_Fragment_BL
-            Rate: 750
-            Amount: 32
-          - Index: 7
-            Item: Illusion_Fragment_BL
-            Rate: 650
-            Amount: 33
-          - Index: 8
-            Item: Illusion_Fragment_BL
-            Rate: 550
-            Amount: 34
-          - Index: 9
-            Item: Illusion_Fragment_BL
-            Rate: 450
-            Amount: 35
-          - Index: 10
-            Item: Illusion_Fragment_BL
-            Rate: 350
-            Amount: 36
-          - Index: 11
-            Item: Illusion_Fragment_BL
-            Rate: 250
-            Amount: 37
-          - Index: 12
-            Item: Illusion_Fragment_BL
-            Rate: 150
-            Amount: 38
-  - Group: MD_FRAGMENT_BOX_YL
-    SubGroups:
-      - SubGroup: 6
-        Algorithm: Random
-        List:
-          - Index: 0
-            Item: Illusion_Fragment_YL
-            Rate: 1400
-            Amount: 26
-          - Index: 1
-            Item: Illusion_Fragment_YL
-            Rate: 1300
-            Amount: 27
-          - Index: 2
-            Item: Illusion_Fragment_YL
-            Rate: 1200
-            Amount: 28
-          - Index: 3
-            Item: Illusion_Fragment_YL
-            Rate: 1100
-            Amount: 29
-          - Index: 4
-            Item: Illusion_Fragment_YL
-            Rate: 1000
-            Amount: 30
-          - Index: 5
-            Item: Illusion_Fragment_YL
-            Rate: 850
-            Amount: 31
-          - Index: 6
-            Item: Illusion_Fragment_YL
-            Rate: 750
-            Amount: 32
-          - Index: 7
-            Item: Illusion_Fragment_YL
-            Rate: 650
-            Amount: 33
-          - Index: 8
-            Item: Illusion_Fragment_YL
-            Rate: 550
-            Amount: 34
-          - Index: 9
-            Item: Illusion_Fragment_YL
-            Rate: 450
-            Amount: 35
-          - Index: 10
-            Item: Illusion_Fragment_YL
-            Rate: 350
-            Amount: 36
-          - Index: 11
-            Item: Illusion_Fragment_YL
-            Rate: 250
-            Amount: 37
-          - Index: 12
-            Item: Illusion_Fragment_YL
-            Rate: 150
-            Amount: 38
-  - Group: MD_FRAGMENT_BOX_GR
-    SubGroups:
-      - SubGroup: 6
-        Algorithm: Random
-        List:
-          - Index: 0
-            Item: Illusion_Fragment_GR
-            Rate: 1400
-            Amount: 26
-          - Index: 1
-            Item: Illusion_Fragment_GR
-            Rate: 1300
-            Amount: 27
-          - Index: 2
-            Item: Illusion_Fragment_GR
-            Rate: 1200
-            Amount: 28
-          - Index: 3
-            Item: Illusion_Fragment_GR
-            Rate: 1100
-            Amount: 29
-          - Index: 4
-            Item: Illusion_Fragment_GR
-            Rate: 1000
-            Amount: 30
-          - Index: 5
-            Item: Illusion_Fragment_GR
-            Rate: 850
-            Amount: 31
-          - Index: 6
-            Item: Illusion_Fragment_GR
-            Rate: 750
-            Amount: 32
-          - Index: 7
-            Item: Illusion_Fragment_GR
-            Rate: 650
-            Amount: 33
-          - Index: 8
-            Item: Illusion_Fragment_GR
-            Rate: 550
-            Amount: 34
-          - Index: 9
-            Item: Illusion_Fragment_GR
-            Rate: 450
-            Amount: 35
-          - Index: 10
-            Item: Illusion_Fragment_GR
-            Rate: 350
-            Amount: 36
-          - Index: 11
-            Item: Illusion_Fragment_GR
-            Rate: 250
-            Amount: 37
-          - Index: 12
-            Item: Illusion_Fragment_GR
-            Rate: 150
-            Amount: 38
-  - Group: MD_FRAGMENT_BOX_BK
-    SubGroups:
-      - SubGroup: 6
-        Algorithm: Random
-        List:
-          - Index: 0
-            Item: Illusion_Fragment_BK
-            Rate: 1400
-            Amount: 26
-          - Index: 1
-            Item: Illusion_Fragment_BK
-            Rate: 1300
-            Amount: 27
-          - Index: 2
-            Item: Illusion_Fragment_BK
-            Rate: 1200
-            Amount: 28
-          - Index: 3
-            Item: Illusion_Fragment_BK
-            Rate: 1100
-            Amount: 29
-          - Index: 4
-            Item: Illusion_Fragment_BK
-            Rate: 1000
-            Amount: 30
-          - Index: 5
-            Item: Illusion_Fragment_BK
-            Rate: 850
-            Amount: 31
-          - Index: 6
-            Item: Illusion_Fragment_BK
-            Rate: 750
-            Amount: 32
-          - Index: 7
-            Item: Illusion_Fragment_BK
-            Rate: 650
-            Amount: 33
-          - Index: 8
-            Item: Illusion_Fragment_BK
-            Rate: 550
-            Amount: 34
-          - Index: 9
-            Item: Illusion_Fragment_BK
-            Rate: 450
-            Amount: 35
-          - Index: 10
-            Item: Illusion_Fragment_BK
-            Rate: 350
-            Amount: 36
-          - Index: 11
-            Item: Illusion_Fragment_BK
-            Rate: 250
-            Amount: 37
-          - Index: 12
-            Item: Illusion_Fragment_BK
-            Rate: 150
-            Amount: 38
-  - Group: CH1_MD_REWARD_1
-    SubGroups:
-      - SubGroup: 0
-        Algorithm: All
-        List:
-          - Index: 0
-            Item: Ch1_Root_Coin
-            Amount: 20
-          - Index: 1
-            Item: Ch1_Mana_Ring
-            Amount: 10
-          - Index: 2
-            Item: MD_Fragment_Box_BL
-  - Group: CH1_MD_REWARD_2
-    SubGroups:
-      - SubGroup: 0
-        Algorithm: All
-        List:
-          - Index: 0
-            Item: Ch1_Root_Coin
-            Amount: 40
-          - Index: 1
-            Item: Ch1_Mana_Ring
-            Amount: 20
-          - Index: 2
-            Item: MD_Fragment_Box_BL
-          - Index: 3
-            Item: MD_Fragment_Box_YL
-  - Group: CH1_MD_REWARD_3
-    SubGroups:
-      - SubGroup: 0
-        Algorithm: All
-        List:
-          - Index: 0
-            Item: Ch1_Root_Coin
-            Amount: 60
-          - Index: 1
-            Item: Ch1_Mana_Ring
-            Amount: 30
-          - Index: 2
-            Item: MD_Fragment_Box_BL
-          - Index: 3
-            Item: MD_Fragment_Box_YL
-          - Index: 4
-            Item: MD_Fragment_Box_GR
-  - Group: CH1_MD_REWARD_4
-    SubGroups:
-      - SubGroup: 0
-        Algorithm: All
-        List:
-          - Index: 0
-            Item: Ch1_Root_Coin
-            Amount: 100
-          - Index: 1
-            Item: Ch1_Mana_Ring
-            Amount: 50
-          - Index: 2
-            Item: MD_Fragment_Box_BL
-          - Index: 3
-            Item: MD_Fragment_Box_YL
-          - Index: 4
-            Item: MD_Fragment_Box_GR
-          - Index: 5
-            Item: MD_Fragment_Box_BK
   - Group: COMP_AID_BUFF_BOX_
     SubGroups:
       - SubGroup: 0
@@ -120663,53 +118736,15 @@ Body:
       - SubGroup: 0
         Algorithm: All
         List:
-          - Index: 0
-            Item: E_EXP_Drop_Up_3days
           - Index: 1
             Item: Comp_AID_Buff_Box
-          - Index: 2
-            Item: CLB_HM_Masitta
-            Amount: 10
-          - Index: 3
-            Item: CLB_HM_PC_Onion
-            Amount: 10
-          - Index: 4
-            Item: CLB_HM_DubleBurger
-            Amount: 5
   - Group: HANMAC_COLLABO_2
     SubGroups:
       - SubGroup: 0
         Algorithm: All
         List:
-          - Index: 0
-            Item: E_EXP_Drop_Up_5days
           - Index: 1
             Item: Comp_AID_Buff_Box
-          - Index: 2
-            Item: CLB_HM_Masitta
-            Amount: 20
-          - Index: 3
-            Item: CLB_HM_PC_Onion
-            Amount: 20
-          - Index: 4
-            Item: CLB_HM_DubleBurger
-            Amount: 10
-  - Group: AEGIS_104386
-    SubGroups:
-      - SubGroup: 6
-        List:
-          - Index: 0
-            Item: CLB_HM_Card_PP
-            Rate: 2500
-          - Index: 1
-            Item: CLB_HM_Card_PK
-            Rate: 2500
-          - Index: 2
-            Item: CLB_HM_Card_GR
-            Rate: 2500
-          - Index: 3
-            Item: CLB_HM_Card_WE
-            Rate: 2500
   - Group: RT_EP19_SNOWFLOWER_A
     SubGroups:
       - SubGroup: 0
@@ -120727,9 +118762,6 @@ Body:
         List:
           - Index: 0
             Item: Blacksmith_Blessing
-          - Index: 1
-            Item: Cubic_Dia
-            Amount: 2
   - Group: RT_EP19_GLACIER_A
     SubGroups:
       - SubGroup: 0
@@ -120747,9 +118779,6 @@ Body:
         List:
           - Index: 0
             Item: Blacksmith_Blessing
-          - Index: 1
-            Item: Cubic_Dia
-            Amount: 2
   - Group: RT_EP19_GLACIER_3
     SubGroups:
       - SubGroup: 0
@@ -120764,8 +118793,6 @@ Body:
         List:
           - Index: 0
             Item: Blacksmith_Blessing
-          - Index: 1
-            Item: Cubic_Dia
   - Group: RT_EP19_ULRALI_A
     SubGroups:
       - SubGroup: 0
@@ -120787,9 +118814,6 @@ Body:
           - Index: 1
             Item: Imperfect_Rune
             Amount: 150
-          - Index: 2
-            Item: Brown_Dia
-            Amount: 5
   - Group: RT_EP19_JUNCEA_A
     SubGroups:
       - SubGroup: 0
@@ -120810,9 +118834,6 @@ Body:
           - Index: 1
             Item: Imperfect_Rune
             Amount: 250
-          - Index: 2
-            Item: Brown_Dia
-            Amount: 5
   - Group: RT_EP19_SNOWFIELD_A
     SubGroups:
       - SubGroup: 0
@@ -120833,16 +118854,11 @@ Body:
           - Index: 1
             Item: Imperfect_Rune
             Amount: 90
-          - Index: 2
-            Item: Cubic_Dia
-            Amount: 2
   - Group: RT_EP19_SNOWFIELD_2
     SubGroups:
       - SubGroup: 0
         Algorithm: All
         List:
-          - Index: 0
-            Item: Cubic_Dia
           - Index: 1
             Item: Imperfect_Rune
             Amount: 90
@@ -120866,16 +118882,11 @@ Body:
           - Index: 1
             Item: Imperfect_Rune
             Amount: 120
-          - Index: 2
-            Item: Cubic_Dia
-            Amount: 2
   - Group: RT_EP19_FAMILY_2
     SubGroups:
       - SubGroup: 0
         Algorithm: All
         List:
-          - Index: 0
-            Item: Cubic_Dia
           - Index: 1
             Item: Imperfect_Rune
             Amount: 80
@@ -120897,9 +118908,6 @@ Body:
           - Index: 0
             Item: Imperfect_Rune
             Amount: 100
-          - Index: 1
-            Item: Cubic_Dia
-            Amount: 2
   - Group: RT_EP19_BASEMENT_A
     SubGroups:
       - SubGroup: 0
@@ -120915,9 +118923,6 @@ Body:
       - SubGroup: 0
         Algorithm: All
         List:
-          - Index: 0
-            Item: Cubic_Dia
-            Amount: 2
           - Index: 1
             Item: Perfect_Rune
   - Group: RT_EP19_RGAN_A
@@ -120935,9 +118940,6 @@ Body:
       - SubGroup: 0
         Algorithm: All
         List:
-          - Index: 0
-            Item: Cubic_Dia
-            Amount: 3
           - Index: 1
             Item: Imperfect_Rune
             Amount: 150
@@ -120948,9 +118950,6 @@ Body:
       - SubGroup: 0
         Algorithm: All
         List:
-          - Index: 0
-            Item: Cubic_Dia
-            Amount: 2
           - Index: 1
             Item: Imperfect_Rune
             Amount: 100
@@ -120969,9 +118968,6 @@ Body:
       - SubGroup: 0
         Algorithm: All
         List:
-          - Index: 0
-            Item: Cubic_Dia
-            Amount: 2
           - Index: 1
             Item: Imperfect_Rune
             Amount: 150
@@ -120983,9 +118979,6 @@ Body:
       - SubGroup: 0
         Algorithm: All
         List:
-          - Index: 0
-            Item: Cubic_Dia
-            Amount: 2
           - Index: 1
             Item: Imperfect_Rune
             Amount: 100
@@ -121006,9 +118999,6 @@ Body:
         List:
           - Index: 0
             Item: Blacksmith_Blessing
-          - Index: 1
-            Item: Cubic_Dia
-            Amount: 2
   - Group: RT_EP20_SANCTUARY_A
     SubGroups:
       - SubGroup: 0
@@ -121030,9 +119020,6 @@ Body:
           - Index: 1
             Item: Imperfect_Rune
             Amount: 250
-          - Index: 2
-            Item: Brown_Dia
-            Amount: 5
   - Group: RT_EP20_SANCTUARY_2
     SubGroups:
       - SubGroup: 0
@@ -121041,8 +119028,6 @@ Body:
           - Index: 0
             Item: Imperfect_Rune
             Amount: 150
-          - Index: 1
-            Item: Brown_Dia
   - Group: RT_EP20_PREDATOR_A
     SubGroups:
       - SubGroup: 0
@@ -121064,9 +119049,6 @@ Body:
           - Index: 1
             Item: Imperfect_Rune
             Amount: 200
-          - Index: 2
-            Item: Brown_Dia
-            Amount: 5
   - Group: RT_EP20_GUARDIAN_A
     SubGroups:
       - SubGroup: 0
@@ -121085,16 +119067,11 @@ Body:
           - Index: 0
             Item: Imperfect_Rune
             Amount: 120
-          - Index: 1
-            Item: Cubic_Dia
-            Amount: 2
   - Group: RT_EP20_GUARDIAN_3
     SubGroups:
       - SubGroup: 0
         Algorithm: All
         List:
-          - Index: 0
-            Item: Cubic_Dia
           - Index: 1
             Item: Imperfect_Rune
             Amount: 80
@@ -121119,9 +119096,6 @@ Body:
           - Index: 1
             Item: Imperfect_Rune
             Amount: 220
-          - Index: 2
-            Item: Brown_Dia
-            Amount: 5
   - Group: RT_EP20_SANGEL_2
     SubGroups:
       - SubGroup: 0
@@ -121130,8 +119104,6 @@ Body:
           - Index: 0
             Item: Imperfect_Rune
             Amount: 150
-          - Index: 1
-            Item: Brown_Dia
   - Group: RT_EP20_DAY_A
     SubGroups:
       - SubGroup: 0
@@ -121147,9 +119119,6 @@ Body:
       - SubGroup: 0
         Algorithm: All
         List:
-          - Index: 0
-            Item: Cubic_Dia
-            Amount: 2
           - Index: 1
             Item: Imperfect_Rune
             Amount: 120
@@ -121171,9 +119140,6 @@ Body:
           - Index: 0
             Item: Imperfect_Rune
             Amount: 120
-          - Index: 1
-            Item: Cubic_Dia
-            Amount: 2
           - Index: 2
             Item: Blacksmith_Blessing
   - Group: RT_EP20_RETIRE_2
@@ -121184,8 +119150,6 @@ Body:
           - Index: 0
             Item: Imperfect_Rune
             Amount: 70
-          - Index: 1
-            Item: Cubic_Dia
   - Group: RT_EP20_RETIRE_4
     SubGroups:
       - SubGroup: 0
@@ -121194,8 +119158,6 @@ Body:
           - Index: 0
             Item: Imperfect_Rune
             Amount: 100
-          - Index: 1
-            Item: Cubic_Dia
   - Group: RT_EP20_ROOTS_A
     SubGroups:
       - SubGroup: 0
@@ -121214,9 +119176,6 @@ Body:
           - Index: 0
             Item: Imperfect_Rune
             Amount: 120
-          - Index: 1
-            Item: Cubic_Dia
-            Amount: 2
           - Index: 2
             Item: Blacksmith_Blessing
   - Group: RT_EP20_ROOTS_3
@@ -121227,8 +119186,6 @@ Body:
           - Index: 0
             Item: Imperfect_Rune
             Amount: 70
-          - Index: 1
-            Item: Cubic_Dia
   - Group: RT_EP20_ROOTS_5
     SubGroups:
       - SubGroup: 0
@@ -121237,9 +119194,6 @@ Body:
           - Index: 0
             Item: Imperfect_Rune
             Amount: 100
-          - Index: 1
-            Item: Cubic_Dia
-            Amount: 2
   - Group: AEGIS_104501
     SubGroups:
       - SubGroup: 6
@@ -121268,9 +119222,6 @@ Body:
           - Index: 7
             Item: ResistDefStone_Robe
             Rate: 11
-          - Index: 8
-            Item: aegis_1001938
-            Rate: 11
           - Index: 9
             Item: StaminaWISStone_Robe_D
             Rate: 10
@@ -121285,18 +119236,6 @@ Body:
             Rate: 10
           - Index: 13
             Item: CrtStone_Robe_D
-            Rate: 10
-          - Index: 14
-            Item: aegis_1002108
-            Rate: 10
-          - Index: 15
-            Item: aegis_1002099
-            Rate: 10
-          - Index: 16
-            Item: aegis_1002103
-            Rate: 10
-          - Index: 17
-            Item: aegis_1002107
             Rate: 10
           - Index: 18
             Item: ReloadStone_Robe_D
@@ -121324,33 +119263,6 @@ Body:
             Rate: 80
           - Index: 26
             Item: CastStone_Robe
-            Rate: 80
-          - Index: 27
-            Item: aegis_1002096
-            Rate: 80
-          - Index: 28
-            Item: aegis_1002097
-            Rate: 80
-          - Index: 29
-            Item: aegis_1002098
-            Rate: 80
-          - Index: 30
-            Item: aegis_1002100
-            Rate: 80
-          - Index: 31
-            Item: aegis_1002101
-            Rate: 80
-          - Index: 32
-            Item: aegis_1002102
-            Rate: 80
-          - Index: 33
-            Item: aegis_1002104
-            Rate: 80
-          - Index: 34
-            Item: aegis_1002105
-            Rate: 80
-          - Index: 35
-            Item: aegis_1002106
             Rate: 80
           - Index: 36
             Item: Stone_Robe_Box
@@ -121453,37 +119365,15 @@ Body:
       - SubGroup: 0
         Algorithm: All
         List:
-          - Index: 0
-            Item: E_EXP_Drop_Up_3days
           - Index: 1
             Item: Comp_AID_Buff_Box
-          - Index: 2
-            Item: CLB_HM_Masitta
-            Amount: 10
-          - Index: 3
-            Item: CLB_HM_PC_Onion
-            Amount: 10
-          - Index: 4
-            Item: CLB_HM_DubleBurger
-            Amount: 5
   - Group: HANMAC_COLLABO_2S
     SubGroups:
       - SubGroup: 0
         Algorithm: All
         List:
-          - Index: 0
-            Item: E_EXP_Drop_Up_5days
           - Index: 1
             Item: Comp_AID_Buff_Box
-          - Index: 2
-            Item: CLB_HM_Masitta
-            Amount: 20
-          - Index: 3
-            Item: CLB_HM_PC_Onion
-            Amount: 20
-          - Index: 4
-            Item: CLB_HM_DubleBurger
-            Amount: 10
   - Group: LI_A_HD_ELUNIUM_BOX2
     SubGroups:
       - SubGroup: 0
@@ -121566,9 +119456,6 @@ Body:
           - Index: 0
             Item: Nyangvine_Fruit
             Amount: 100
-          - Index: 1
-            Item: aegis_104501
-            Amount: 2
           - Index: 2
             Item: Comp_Bubble_Gum
             Amount: 3
@@ -121583,9 +119470,6 @@ Body:
           - Index: 1
             Item: Battle_Manual100
             Amount: 2
-          - Index: 2
-            Item: aegis_104501
-            Amount: 5
   - Group: LI_NYANGVINE_BOX3_39
     SubGroups:
       - SubGroup: 0
@@ -121600,9 +119484,6 @@ Body:
           - Index: 2
             Item: Battle_Manual100
             Amount: 5
-          - Index: 3
-            Item: aegis_104501
-            Amount: 10
   - Group: MYSTERIOUS_EGG
     SubGroups:
       - SubGroup: 6
@@ -123554,8 +121435,6 @@ Body:
           - Index: 1
             Item: K_Secret_Key
             Amount: 20
-          - Index: 2
-            Item: C_CLB_DT_Select_Box1
   - Group: DT_COLABO_BOX2
     SubGroups:
       - SubGroup: 0
@@ -123567,8 +121446,6 @@ Body:
           - Index: 1
             Item: K_Secret_Key
             Amount: 20
-          - Index: 2
-            Item: C_CLB_DT_Select_Box2
   - Group: CLOUD_COSTUME_PACK
     SubGroups:
       - SubGroup: 0
@@ -123583,8 +121460,6 @@ Body:
           - Index: 2
             Item: K_Secret_Key
             Amount: 30
-          - Index: 3
-            Item: C_Clouds_Select_Box
   - Group: COSTUMEMILEPACK_39_1
     SubGroups:
       - SubGroup: 0
@@ -123596,9 +121471,6 @@ Body:
           - Index: 1
             Item: Evt_Cos_Coin
             Amount: 12
-          - Index: 2
-            Item: aegis_104501
-            Amount: 3
   - Group: COSTUMEMILEPACK_39_2
     SubGroups:
       - SubGroup: 0
@@ -123610,9 +121482,6 @@ Body:
           - Index: 1
             Item: Evt_Cos_Coin
             Amount: 25
-          - Index: 2
-            Item: aegis_104501
-            Amount: 5
   - Group: COSTUMEMILEPACK_39_3
     SubGroups:
       - SubGroup: 0
@@ -123624,214 +121493,24 @@ Body:
           - Index: 1
             Item: Evt_Cos_Coin
             Amount: 50
-          - Index: 2
-            Item: aegis_104501
-            Amount: 10
   - Group: RT_CH01_ARMOR_A
     SubGroups:
       - SubGroup: 0
         Algorithm: All
         List:
-          - Index: 0
-            Item: Ch1_Root_Coin
-            Amount: 100
-          - Index: 1
-            Item: Ch1_Mana_Ring
-            Amount: 100
           - Index: 2
             Item: Imperfect_Rune
             Amount: 50
-  - Group: RT_CH01_ARMOR_C
-    SubGroups:
-      - SubGroup: 0
-        Algorithm: All
-        List:
-          - Index: 0
-            Item: Frontier_M_Stone
-            Amount: 150
-  - Group: RT_CH01_DIMEN_A
-    SubGroups:
-      - SubGroup: 0
-        Algorithm: All
-        List:
-          - Index: 0
-            Item: Frontier_Stone_BL
-            Amount: 15
-          - Index: 1
-            Item: Frontier_Stone_YL
-            Amount: 15
-          - Index: 2
-            Item: Frontier_Stone_GR
-            Amount: 15
-          - Index: 3
-            Item: Frontier_Stone_BK
-            Amount: 15
-  - Group: RT_CH01_DIMEN_C
-    SubGroups:
-      - SubGroup: 0
-        Algorithm: All
-        List:
-          - Index: 0
-            Item: Brown_Dia
-            Amount: 10
-          - Index: 1
-            Item: Chaotic_Rune
-            Amount: 100
-          - Index: 2
-            Item: Disparate_Rune
-            Amount: 100
-          - Index: 3
-            Item: Frontier_Stone_BL
-            Amount: 30
-          - Index: 4
-            Item: Frontier_Stone_YL
-            Amount: 30
-          - Index: 5
-            Item: Frontier_Stone_GR
-            Amount: 30
-          - Index: 6
-            Item: Frontier_Stone_BK
-            Amount: 30
-          - Index: 7
-            Item: Dimension_Essence_BL
-            Amount: 15
-          - Index: 8
-            Item: Dimension_Essence_YL
-            Amount: 15
-          - Index: 9
-            Item: Dimension_Essence_GR
-            Amount: 15
-          - Index: 10
-            Item: Dimension_Essence_BK
-            Amount: 15
-  - Group: RT_CH01_DIMEN_3
-    SubGroups:
-      - SubGroup: 0
-        Algorithm: All
-        List:
-          - Index: 0
-            Item: Brown_Dia
-            Amount: 5
-          - Index: 1
-            Item: Frontier_Stone_BL
-            Amount: 50
-          - Index: 2
-            Item: Frontier_Stone_YL
-            Amount: 50
-          - Index: 3
-            Item: Frontier_Stone_GR
-            Amount: 50
-          - Index: 4
-            Item: Frontier_Stone_BK
-            Amount: 50
-          - Index: 5
-            Item: Dimension_Essence_BL
-            Amount: 25
-          - Index: 6
-            Item: Dimension_Essence_YL
-            Amount: 25
-          - Index: 7
-            Item: Dimension_Essence_GR
-            Amount: 25
-          - Index: 8
-            Item: Dimension_Essence_BK
-            Amount: 25
   - Group: RT_CH01_EXTRA_A
     SubGroups:
       - SubGroup: 0
         Algorithm: All
         List:
-          - Index: 0
-            Item: Ch1_Root_Coin
-            Amount: 300
-          - Index: 1
-            Item: Ch1_Mana_Ring
-            Amount: 300
           - Index: 2
             Item: Imperfect_Rune
             Amount: 100
           - Index: 3
             Item: Perfect_Rune
-  - Group: RT_CH01_EXTRA_C
-    SubGroups:
-      - SubGroup: 0
-        Algorithm: All
-        List:
-          - Index: 0
-            Item: C_Immortal_H_Power
-          - Index: 1
-            Item: C_Immortal_H_Wing
-  - Group: RT_CH01_EXTRA_2
-    SubGroups:
-      - SubGroup: 0
-        Algorithm: All
-        List:
-          - Index: 0
-            Item: Brown_Dia
-            Amount: 5
-          - Index: 1
-            Item: Chaotic_Essence
-            Amount: 10
-          - Index: 2
-            Item: Disparate_Essence
-            Amount: 10
-          - Index: 3
-            Item: Frontier_Stone_BL
-            Amount: 30
-          - Index: 4
-            Item: Frontier_Stone_YL
-            Amount: 30
-          - Index: 5
-            Item: Frontier_Stone_GR
-            Amount: 30
-          - Index: 6
-            Item: Frontier_Stone_BK
-            Amount: 30
-  - Group: RT_CH01_EXTRA_4
-    SubGroups:
-      - SubGroup: 0
-        Algorithm: All
-        List:
-          - Index: 0
-            Item: C_Immortal_H_Spear
-  - Group: RT_CH01_EXTRA_5
-    SubGroups:
-      - SubGroup: 0
-        Algorithm: All
-        List:
-          - Index: 0
-            Item: Brown_Dia
-            Amount: 30
-          - Index: 1
-            Item: Chaotic_Essence
-            Amount: 100
-          - Index: 2
-            Item: Disparate_Essence
-            Amount: 100
-          - Index: 3
-            Item: Dimension_Essence_BL
-            Amount: 25
-          - Index: 4
-            Item: Dimension_Essence_YL
-            Amount: 25
-          - Index: 5
-            Item: Dimension_Essence_GR
-            Amount: 25
-          - Index: 6
-            Item: Dimension_Essence_BK
-            Amount: 25
-          - Index: 7
-            Item: Frontier_Stone_BL
-            Amount: 50
-          - Index: 8
-            Item: Frontier_Stone_YL
-            Amount: 50
-          - Index: 9
-            Item: Frontier_Stone_GR
-            Amount: 50
-          - Index: 10
-            Item: Frontier_Stone_BK
-            Amount: 50
   - Group: AEGIS_104901
     SubGroups:
       - SubGroup: 6
@@ -123861,9 +121540,6 @@ Body:
           - Index: 7
             Item: ResistDefStone_Robe
             Rate: 11
-          - Index: 8
-            Item: aegis_1001938
-            Rate: 11
           - Index: 9
             Item: StaminaWISStone_Robe_D
             Rate: 10
@@ -123878,18 +121554,6 @@ Body:
             Rate: 10
           - Index: 13
             Item: CrtStone_Robe_D
-            Rate: 10
-          - Index: 14
-            Item: Butter_Purple_foot_Robe
-            Rate: 10
-          - Index: 15
-            Item: aegis_1002276
-            Rate: 10
-          - Index: 16
-            Item: aegis_1002280
-            Rate: 10
-          - Index: 17
-            Item: aegis_1002284
             Rate: 10
           - Index: 18
             Item: ReloadStone_Robe_D
@@ -123917,33 +121581,6 @@ Body:
             Rate: 80
           - Index: 26
             Item: CastStone_Robe
-            Rate: 80
-          - Index: 27
-            Item: aegis_1002273
-            Rate: 80
-          - Index: 28
-            Item: aegis_1002274
-            Rate: 80
-          - Index: 29
-            Item: aegis_1002275
-            Rate: 80
-          - Index: 30
-            Item: aegis_1002277
-            Rate: 80
-          - Index: 31
-            Item: aegis_1002278
-            Rate: 80
-          - Index: 32
-            Item: aegis_1002279
-            Rate: 80
-          - Index: 33
-            Item: aegis_1002281
-            Rate: 80
-          - Index: 34
-            Item: aegis_1002282
-            Rate: 80
-          - Index: 35
-            Item: aegis_1002283
             Rate: 80
           - Index: 36
             Item: Stone_Robe_Box
@@ -126521,15 +124158,6 @@ Body:
             RefineMinimum: 10
             RefineMaximum: 10
             Rate: 50
-          - Index: 375
-            Item: C_Sparkly_Rainbow_Hair
-            Rate: 25
-          - Index: 376
-            Item: C_Cha_Ex_Twin
-            Rate: 25
-          - Index: 377
-            Item: C_Book_of_Sorcery
-            Rate: 25
           - Index: 378
             Item: C_L_Knitting_Low_Twin
             Rate: 25
@@ -126632,107 +124260,11 @@ Body:
           - Index: 411
             Item: C_Piamette_Roll_HairK
             Rate: 25
-  - Group: 23TH_COSTUME_A
-    SubGroups:
-      - SubGroup: 0
-        Algorithm: All
-        List:
-          - Index: 0
-            Item: aegis_400963
-          - Index: 1
-            Item: aegis_410456
-          - Index: 2
-            Item: aegis_420553
-          - Index: 3
-            Item: Nyar_Foot_BU_Robe
-  - Group: 23TH_COSTUME_B
-    SubGroups:
-      - SubGroup: 0
-        Algorithm: All
-        List:
-          - Index: 0
-            Item: aegis_400964
-          - Index: 1
-            Item: aegis_410457
-          - Index: 2
-            Item: C_Waggy_Nyar_Hair
-          - Index: 3
-            Item: Nyar_Foot_PP_Robe
-  - Group: 23TH_COSTUME_C
-    SubGroups:
-      - SubGroup: 0
-        Algorithm: All
-        List:
-          - Index: 0
-            Item: C_Divine_Veil
-          - Index: 1
-            Item: C_Divine_Twinkling
-          - Index: 2
-            Item: C_Divine_Sky_Invite
-          - Index: 3
-            Item: Divine_L_Foot_Robe
   - Group: AEGIS_105059
     SubGroups:
       - SubGroup: 6
         Algorithm: Random
         List:
-          - Index: 0
-            Item: ShinkiroStone_Robe
-            Rate: 20
-          - Index: 1
-            Item: ShiranuiStone_Robe
-            Rate: 20
-          - Index: 2
-            Item: SkyEmperorStone_Robe
-            Rate: 20
-          - Index: 3
-            Item: aegis_1001789
-            Rate: 20
-          - Index: 4
-            Item: NightwatchStone_Robe
-            Rate: 20
-          - Index: 5
-            Item: SpiritHandlerStone_Robe
-            Rate: 20
-          - Index: 6
-            Item: HNoviceStone_Robe
-            Rate: 20
-          - Index: 7
-            Item: DragonknightStone_Robe
-            Rate: 20
-          - Index: 8
-            Item: ImperialguardStone_Robe
-            Rate: 20
-          - Index: 9
-            Item: TRTRStone_Robe
-            Rate: 20
-          - Index: 10
-            Item: aegis_1001788
-            Rate: 20
-          - Index: 11
-            Item: CardinalStone_Robe
-            Rate: 20
-          - Index: 12
-            Item: InquisitorStone_Robe
-            Rate: 20
-          - Index: 13
-            Item: aegis_1001787
-            Rate: 20
-          - Index: 14
-            Item: ElementalStone_Robe
-            Rate: 20
-          - Index: 15
-            Item: AbysschaserStone_Robe
-            Rate: 20
-          - Index: 16
-            Item: ShaCrossStone_Robe
-            Rate: 20
-          - Index: 17
-            Item: BioloStone_Robe
-            Rate: 20
-          - Index: 18
-            Item: MeisterStone_Robe
-            Rate: 20
           - Index: 19
             Item: SmatkStone_Robe
             Rate: 20
@@ -126744,9 +124276,6 @@ Body:
             Rate: 20
           - Index: 22
             Item: ResistDefStone_Robe
-            Rate: 20
-          - Index: 23
-            Item: aegis_1001938
             Rate: 20
           - Index: 24
             Item: Range_Stone_Robe_D
@@ -126780,15 +124309,6 @@ Body:
             Rate: 20
           - Index: 34
             Item: Critical_Stone_Robe
-            Rate: 20
-          - Index: 35
-            Item: aegis_1001907
-            Rate: 20
-          - Index: 36
-            Item: Butter_Purple_foot_Robe
-            Rate: 20
-          - Index: 37
-            Item: aegis_1002108
             Rate: 20
           - Index: 38
             Item: CastStone_Robe_D
@@ -126918,44 +124438,6 @@ Body:
       - SubGroup: 6
         Algorithm: Random
         List:
-          - Index: 0
-            Item: Disparate_Rune
-            Rate: 10
-            Amount: 3
-          - Index: 1
-            Item: Disparate_Rune
-            Rate: 20
-            Amount: 2
-          - Index: 2
-            Item: Disparate_Rune
-            Rate: 40
-          - Index: 3
-            Item: Disparate_Essence
-            Rate: 15
-            Amount: 2
-          - Index: 4
-            Item: Disparate_Essence
-            Rate: 30
-          - Index: 5
-            Item: Disparate_Rune_Ore
-            Rate: 25
-            Amount: 12
-          - Index: 6
-            Item: Disparate_Rune_Ore
-            Rate: 40
-            Amount: 11
-          - Index: 7
-            Item: Disparate_Rune_Ore
-            Rate: 70
-            Amount: 10
-          - Index: 8
-            Item: Disparate_Rune_Ore
-            Rate: 115
-            Amount: 9
-          - Index: 9
-            Item: Disparate_Rune_Ore
-            Rate: 175
-            Amount: 8
           - Index: 10
             Item: Time_D_Ma_Rune
             Rate: 15
@@ -126967,64 +124449,6 @@ Body:
           - Index: 12
             Item: Time_D_Ma_Rune
             Rate: 60
-          - Index: 13
-            Item: Chaotic_Rune
-            Rate: 30
-            Amount: 5
-          - Index: 14
-            Item: Chaotic_Rune
-            Rate: 60
-            Amount: 4
-          - Index: 15
-            Item: Chaotic_Rune
-            Rate: 120
-            Amount: 3
-          - Index: 16
-            Item: Chaotic_Rune
-            Rate: 240
-            Amount: 2
-          - Index: 17
-            Item: Chaotic_Rune
-            Rate: 480
-          - Index: 18
-            Item: Chaotic_Essence
-            Rate: 25
-            Amount: 3
-          - Index: 19
-            Item: Chaotic_Essence
-            Rate: 50
-            Amount: 2
-          - Index: 20
-            Item: Chaotic_Essence
-            Rate: 75
-          - Index: 21
-            Item: Chaotic_Rune_Ore
-            Rate: 100
-            Amount: 13
-          - Index: 22
-            Item: Chaotic_Rune_Ore
-            Rate: 125
-            Amount: 12
-          - Index: 23
-            Item: Chaotic_Rune_Ore
-            Rate: 175
-            Amount: 11
-          - Index: 24
-            Item: Chaotic_Rune_Ore
-            Rate: 250
-            Amount: 10
-          - Index: 25
-            Item: Chaotic_Rune_Ore
-            Rate: 350
-            Amount: 9
-          - Index: 26
-            Item: Chaotic_Rune_Ore
-            Rate: 475
-            Amount: 8
-          - Index: 27
-            Item: Chaotic_Rune_Ore
-            Rate: 625
-            Amount: 7
           - Index: 28
             Item: Abyss_Rune
             Rate: 70
@@ -127036,159 +124460,11 @@ Body:
           - Index: 30
             Item: Abyss_Rune
             Rate: 240
-          - Index: 31
-            Item: Fron_Fix_DK_T_Sword
-            Rate: 130
-          - Index: 32
-            Item: Fron_Fix_IG_Spear
-            Rate: 130
-          - Index: 33
-            Item: Fron_Fix_MT_T_Axe
-            Rate: 130
-          - Index: 34
-            Item: Fron_Fix_BO_Hall
-            Rate: 130
-          - Index: 35
-            Item: Fron_Fix_SHC_Katar
-            Rate: 130
-          - Index: 36
-            Item: Fron_Fix_ABC_Dagger
-            Rate: 130
-          - Index: 37
-            Item: Fron_Fix_AG_Staff
-            Rate: 130
-          - Index: 38
-            Item: Fron_Fix_EM_Book
-            Rate: 130
-          - Index: 39
-            Item: Fron_Fix_CD_Rod
-            Rate: 130
-          - Index: 40
-            Item: Fron_Fix_IQ_Claw
-            Rate: 130
-          - Index: 41
-            Item: Fron_Fix_WH_Bow
-            Rate: 130
-          - Index: 42
-            Item: Fron_Fix_TR_Vilolin
-            Rate: 130
-          - Index: 43
-            Item: Fron_Fix_TR_Rope
-            Rate: 130
-          - Index: 44
-            Item: Fron_Fix_SS_Humma
-            Rate: 130
-          - Index: 45
-            Item: Fron_Fix_NW_Rifle
-            Rate: 130
-          - Index: 46
-            Item: Fron_Fix_SKE_Book
-            Rate: 130
-          - Index: 47
-            Item: Fron_Fix_SOA_Staff
-            Rate: 130
-          - Index: 48
-            Item: Fron_Fix_HN_Rod
-            Rate: 130
-          - Index: 49
-            Item: Fron_Fix_SH_Foxtail
-            Rate: 130
-          - Index: 50
-            Item: Physical_TuningScroll
-            Rate: 140
-          - Index: 51
-            Item: Magical_TuningScroll
-            Rate: 140
-          - Index: 52
-            Item: Pure_SpellScoll
-            Rate: 25
-          - Index: 53
-            Item: Dimansion_SpellScroll
-            Rate: 45
-          - Index: 54
-            Item: Tiem_SpellScroll
-            Rate: 65
-          - Index: 55
-            Item: Frontier_M_Stone
-            Rate: 120
-            Amount: 5
-          - Index: 56
-            Item: Frontier_M_Stone
-            Rate: 160
-            Amount: 4
-          - Index: 57
-            Item: Frontier_M_Stone
-            Rate: 240
-            Amount: 3
-          - Index: 58
-            Item: Frontier_M_Stone
-            Rate: 400
-            Amount: 2
-          - Index: 59
-            Item: Frontier_Magic_Dust
-            Rate: 200
-            Amount: 15
-          - Index: 60
-            Item: Frontier_Magic_Dust
-            Rate: 240
-            Amount: 14
-          - Index: 61
-            Item: Frontier_Magic_Dust
-            Rate: 320
-            Amount: 13
-          - Index: 62
-            Item: Frontier_Magic_Dust
-            Rate: 480
-            Amount: 12
-          - Index: 63
-            Item: Frontier_Magic_Dust
-            Rate: 700
-            Amount: 11
   - Group: AEGIS_105162
     SubGroups:
       - SubGroup: 6
         Algorithm: Random
         List:
-          - Index: 0
-            Item: Disparate_Rune
-            Rate: 10
-            Amount: 5
-          - Index: 1
-            Item: Disparate_Rune
-            Rate: 20
-            Amount: 4
-          - Index: 2
-            Item: Disparate_Rune
-            Rate: 40
-            Amount: 3
-          - Index: 3
-            Item: Disparate_Essence
-            Rate: 15
-            Amount: 3
-          - Index: 4
-            Item: Disparate_Essence
-            Rate: 30
-            Amount: 2
-          - Index: 5
-            Item: Disparate_Rune_Ore
-            Rate: 25
-            Amount: 15
-          - Index: 6
-            Item: Disparate_Rune_Ore
-            Rate: 40
-            Amount: 14
-          - Index: 7
-            Item: Disparate_Rune_Ore
-            Rate: 70
-            Amount: 13
-          - Index: 8
-            Item: Disparate_Rune_Ore
-            Rate: 115
-            Amount: 12
-          - Index: 9
-            Item: Disparate_Rune_Ore
-            Rate: 175
-            Amount: 11
           - Index: 10
             Item: Time_D_Ma_Rune
             Rate: 15
@@ -127201,66 +124477,6 @@ Body:
             Item: Time_D_Ma_Rune
             Rate: 60
             Amount: 3
-          - Index: 13
-            Item: Chaotic_Rune
-            Rate: 30
-            Amount: 7
-          - Index: 14
-            Item: Chaotic_Rune
-            Rate: 60
-            Amount: 6
-          - Index: 15
-            Item: Chaotic_Rune
-            Rate: 120
-            Amount: 5
-          - Index: 16
-            Item: Chaotic_Rune
-            Rate: 240
-            Amount: 4
-          - Index: 17
-            Item: Chaotic_Rune
-            Rate: 480
-            Amount: 3
-          - Index: 18
-            Item: Chaotic_Essence
-            Rate: 25
-            Amount: 5
-          - Index: 19
-            Item: Chaotic_Essence
-            Rate: 50
-            Amount: 4
-          - Index: 20
-            Item: Chaotic_Essence
-            Rate: 75
-            Amount: 3
-          - Index: 21
-            Item: Chaotic_Rune_Ore
-            Rate: 200
-            Amount: 18
-          - Index: 22
-            Item: Chaotic_Rune_Ore
-            Rate: 225
-            Amount: 17
-          - Index: 23
-            Item: Chaotic_Rune_Ore
-            Rate: 275
-            Amount: 16
-          - Index: 24
-            Item: Chaotic_Rune_Ore
-            Rate: 350
-            Amount: 15
-          - Index: 25
-            Item: Chaotic_Rune_Ore
-            Rate: 450
-            Amount: 14
-          - Index: 26
-            Item: Chaotic_Rune_Ore
-            Rate: 575
-            Amount: 13
-          - Index: 27
-            Item: Chaotic_Rune_Ore
-            Rate: 725
-            Amount: 12
           - Index: 28
             Item: Abyss_Rune
             Rate: 50
@@ -127273,136 +124489,6 @@ Body:
             Item: Abyss_Rune
             Rate: 200
             Amount: 3
-          - Index: 31
-            Item: Fron_Fix_DK_T_Sword
-            Rate: 130
-          - Index: 32
-            Item: Fron_Fix_IG_Spear
-            Rate: 130
-          - Index: 33
-            Item: Fron_Fix_MT_T_Axe
-            Rate: 130
-          - Index: 34
-            Item: Fron_Fix_BO_Hall
-            Rate: 130
-          - Index: 35
-            Item: Fron_Fix_SHC_Katar
-            Rate: 130
-          - Index: 36
-            Item: Fron_Fix_ABC_Dagger
-            Rate: 130
-          - Index: 37
-            Item: Fron_Fix_AG_Staff
-            Rate: 130
-          - Index: 38
-            Item: Fron_Fix_EM_Book
-            Rate: 130
-          - Index: 39
-            Item: Fron_Fix_CD_Rod
-            Rate: 130
-          - Index: 40
-            Item: Fron_Fix_IQ_Claw
-            Rate: 130
-          - Index: 41
-            Item: Fron_Fix_WH_Bow
-            Rate: 130
-          - Index: 42
-            Item: Fron_Fix_TR_Vilolin
-            Rate: 130
-          - Index: 43
-            Item: Fron_Fix_TR_Rope
-            Rate: 130
-          - Index: 44
-            Item: Fron_Fix_SS_Humma
-            Rate: 130
-          - Index: 45
-            Item: Fron_Fix_NW_Rifle
-            Rate: 130
-          - Index: 46
-            Item: Fron_Fix_SKE_Book
-            Rate: 130
-          - Index: 47
-            Item: Fron_Fix_SOA_Staff
-            Rate: 130
-          - Index: 48
-            Item: Fron_Fix_HN_Rod
-            Rate: 130
-          - Index: 49
-            Item: Fron_Fix_SH_Foxtail
-            Rate: 130
-          - Index: 50
-            Item: Physical_TuningScroll
-            Rate: 140
-          - Index: 51
-            Item: Magical_TuningScroll
-            Rate: 140
-          - Index: 52
-            Item: Frontier_M_Stone
-            Rate: 80
-            Amount: 8
-          - Index: 53
-            Item: Frontier_M_Stone
-            Rate: 100
-            Amount: 7
-          - Index: 54
-            Item: Frontier_M_Stone
-            Rate: 140
-            Amount: 6
-          - Index: 55
-            Item: Frontier_M_Stone
-            Rate: 200
-            Amount: 5
-          - Index: 56
-            Item: Frontier_Magic_Dust
-            Rate: 260
-            Amount: 20
-          - Index: 57
-            Item: Frontier_Magic_Dust
-            Rate: 340
-            Amount: 19
-          - Index: 58
-            Item: Frontier_Magic_Dust
-            Rate: 460
-            Amount: 18
-          - Index: 59
-            Item: Frontier_Stone_BK
-            Rate: 60
-          - Index: 60
-            Item: Frontier_Stone_GR
-            Rate: 80
-          - Index: 61
-            Item: Frontier_Stone_YL
-            Rate: 100
-          - Index: 62
-            Item: Frontier_Stone_BL
-            Rate: 120
-          - Index: 63
-            Item: Dimension_Essence_BK
-            Rate: 15
-          - Index: 64
-            Item: Dimension_Essence_GR
-            Rate: 20
-          - Index: 65
-            Item: Dimension_Essence_YL
-            Rate: 30
-          - Index: 66
-            Item: Dimension_Essence_BL
-            Rate: 45
-          - Index: 67
-            Item: Immortal_SpellScroll
-            Rate: 25
-          - Index: 68
-            Item: Polluted_SpellScroll
-            Rate: 45
-          - Index: 69
-            Item: Pure_SpellScoll
-            Rate: 65
-          - Index: 70
-            Item: Dimansion_SpellScroll
-            Rate: 85
-          - Index: 71
-            Item: Tiem_SpellScroll
-            Rate: 105
   - Group: AEGIS_105219
     SubGroups:
       - SubGroup: 0
@@ -127429,22 +124515,6 @@ Body:
             Item: Shield_Furious
             GradeMinimum: A
             GradeMaximum: A
-  - Group: SP_COSTUME_COLLECTION
-    SubGroups:
-      - SubGroup: 0
-        Algorithm: All
-        List:
-          - Index: 0
-            Item: C_Petal_Hood
-          - Index: 1
-            Item: C_Muka_Sombrero
-          - Index: 2
-            Item: C_Capybara
-          - Index: 3
-            Item: C_Rose_Wave_BD
-          - Index: 4
-            Item: aegis_105059
-            Amount: 15
   - Group: 2025ROS_FOR_OFFLINE
     SubGroups:
       - SubGroup: 0
@@ -127452,12 +124522,6 @@ Body:
         List:
           - Index: 0
             Item: C_Poporing_Mascot_Cos
-          - Index: 1
-            Item: All_In_One_Healing_E
-            Amount: 5
-          - Index: 2
-            Item: All_In_One_buff_E
-            Amount: 5
           - Index: 3
             Item: E_EXP_Drop_Up_7days
   - Group: AEGIS_105518
@@ -127489,9 +124553,6 @@ Body:
           - Index: 7
             Item: ResistDefStone_Robe
             Rate: 11
-          - Index: 8
-            Item: aegis_1001938
-            Rate: 11
           - Index: 9
             Item: StaminaWISStone_Robe_D
             Rate: 10
@@ -127507,33 +124568,12 @@ Body:
           - Index: 13
             Item: CrtStone_Robe_D
             Rate: 10
-          - Index: 14
-            Item: aegis_1002394
-            Rate: 10
-          - Index: 15
-            Item: aegis_1002405
-            Rate: 10
-          - Index: 16
-            Item: aegis_1002406
-            Rate: 10
-          - Index: 17
-            Item: aegis_1002407
-            Rate: 10
           - Index: 18
             Item: ReloadStone_Robe_D
-            Rate: 10
-          - Index: 19
-            Item: aegis_1002395
             Rate: 10
           - Index: 20
             Item: CriticalStone_Robe_D
             Rate: 10
-          - Index: 21
-            Item: aegis_1002404
-            Rate: 20
-          - Index: 22
-            Item: aegis_1002399
-            Rate: 20
           - Index: 23
             Item: Critical_Stone_Robe
             Rate: 20
@@ -127551,33 +124591,6 @@ Body:
             Rate: 80
           - Index: 28
             Item: CastStone_Robe
-            Rate: 80
-          - Index: 29
-            Item: aegis_1002408
-            Rate: 80
-          - Index: 30
-            Item: aegis_1002409
-            Rate: 80
-          - Index: 31
-            Item: aegis_1002410
-            Rate: 80
-          - Index: 32
-            Item: aegis_1002411
-            Rate: 80
-          - Index: 33
-            Item: aegis_1002412
-            Rate: 80
-          - Index: 34
-            Item: aegis_1002413
-            Rate: 80
-          - Index: 35
-            Item: aegis_1002414
-            Rate: 80
-          - Index: 36
-            Item: aegis_1002415
-            Rate: 80
-          - Index: 37
-            Item: aegis_1002416
             Rate: 80
           - Index: 38
             Item: Stone_Robe_Box
@@ -127639,15 +124652,6 @@ Body:
           - Index: 57
             Item: Critical_Stone_Bottom
             Rate: 200
-          - Index: 58
-            Item: aegis_1002396
-            Rate: 200
-          - Index: 59
-            Item: aegis_1002397
-            Rate: 200
-          - Index: 60
-            Item: aegis_1002398
-            Rate: 200
           - Index: 61
             Item: Stone_Top_Box
             Rate: 400
@@ -127699,9 +124703,6 @@ Body:
           - Index: 0
             Item: Nyangvine_Fruit
             Amount: 100
-          - Index: 1
-            Item: aegis_104901
-            Amount: 2
           - Index: 2
             Item: Comp_Bubble_Gum
             Amount: 3
@@ -127716,9 +124717,6 @@ Body:
           - Index: 1
             Item: Battle_Manual100
             Amount: 2
-          - Index: 2
-            Item: aegis_104901
-            Amount: 5
   - Group: LI_NYANGVINE_BOX3_40
     SubGroups:
       - SubGroup: 0
@@ -127733,9 +124731,6 @@ Body:
           - Index: 2
             Item: Battle_Manual100
             Amount: 5
-          - Index: 3
-            Item: aegis_104901
-            Amount: 10
   - Group: 23TH_COSTUME_PACK_A
     SubGroups:
       - SubGroup: 0
@@ -127756,8 +124751,6 @@ Body:
           - Index: 4
             Item: Shadow_Refine_Hammer
             Amount: 5
-          - Index: 5
-            Item: 23th_Costume_A
   - Group: 23TH_COSTUME_PACK_B
     SubGroups:
       - SubGroup: 0
@@ -127781,8 +124774,6 @@ Body:
           - Index: 5
             Item: Shadow_Refine_Hammer
             Amount: 5
-          - Index: 6
-            Item: 23th_Costume_B
   - Group: 23TH_COSTUME_PACK_C
     SubGroups:
       - SubGroup: 0
@@ -127797,8 +124788,6 @@ Body:
           - Index: 2
             Item: Evt_Cos_Coin
             Amount: 15
-          - Index: 3
-            Item: 23th_Costume_C
   - Group: 23TH_PACKAGE_1
     SubGroups:
       - SubGroup: 0
@@ -127945,9 +124934,6 @@ Body:
           - Index: 1
             Item: Evt_Cos_Coin
             Amount: 12
-          - Index: 2
-            Item: aegis_105059
-            Amount: 3
   - Group: COSTUMEMILEPACK_SP_2
     SubGroups:
       - SubGroup: 0
@@ -127959,9 +124945,6 @@ Body:
           - Index: 1
             Item: Evt_Cos_Coin
             Amount: 25
-          - Index: 2
-            Item: aegis_105059
-            Amount: 5
   - Group: COSTUMEMILEPACK_SP_3
     SubGroups:
       - SubGroup: 0
@@ -127973,9 +124956,6 @@ Body:
           - Index: 1
             Item: Evt_Cos_Coin
             Amount: 50
-          - Index: 2
-            Item: aegis_105059
-            Amount: 10
   - Group: COSTUMEMILEPACK_SP_4
     SubGroups:
       - SubGroup: 0
@@ -127987,9 +124967,6 @@ Body:
           - Index: 1
             Item: Evt_Cos_Coin
             Amount: 5
-          - Index: 2
-            Item: aegis_105059
-            Amount: 2
   - Group: COSTUMEMILEPACK_41_1
     SubGroups:
       - SubGroup: 0
@@ -128001,9 +124978,6 @@ Body:
           - Index: 1
             Item: Evt_Cos_Coin
             Amount: 12
-          - Index: 2
-            Item: aegis_105518
-            Amount: 3
   - Group: COSTUMEMILEPACK_41_2
     SubGroups:
       - SubGroup: 0
@@ -128015,9 +124989,6 @@ Body:
           - Index: 1
             Item: Evt_Cos_Coin
             Amount: 25
-          - Index: 2
-            Item: aegis_105518
-            Amount: 5
   - Group: COSTUMEMILEPACK_41_3
     SubGroups:
       - SubGroup: 0
@@ -128029,9 +125000,6 @@ Body:
           - Index: 1
             Item: Evt_Cos_Coin
             Amount: 50
-          - Index: 2
-            Item: aegis_105518
-            Amount: 10
   - Group: NIFLHEIM_COSTUME_1
     SubGroups:
       - SubGroup: 0
@@ -128040,8 +125008,6 @@ Body:
           - Index: 0
             Item: Nyangvine_Fruit
             Amount: 100
-          - Index: 1
-            Item: Niflheim_Select_1
           - Index: 2
             Item: Evt_Cos_Coin
             Amount: 10
@@ -128056,8 +125022,6 @@ Body:
           - Index: 1
             Item: Limit_Power_Booster
             Amount: 100
-          - Index: 2
-            Item: Niflheim_Select_2
           - Index: 3
             Item: Evt_Cos_Coin
             Amount: 20
@@ -128072,8 +125036,6 @@ Body:
           - Index: 1
             Item: Infinity_Drink
             Amount: 100
-          - Index: 2
-            Item: Niflheim_Select_3
           - Index: 3
             Item: Evt_Cos_Coin
             Amount: 20
@@ -128088,8 +125050,6 @@ Body:
           - Index: 1
             Item: Small_Mana_Potion
             Amount: 250
-          - Index: 2
-            Item: aegis_410280
           - Index: 3
             Item: Evt_Cos_Coin
             Amount: 35
@@ -128154,8 +125114,6 @@ Body:
       - SubGroup: 0
         Algorithm: All
         List:
-          - Index: 0
-            Item: C_Sparkly_Rainbow_Hair
           - Index: 1
             Item: Comp_AID_Buff_Box
             Amount: 2
@@ -128278,81 +125236,6 @@ Body:
           - Index: 35
             Item: Jormun_Guardian_Card
             Rate: 166
-          - Index: 36
-            Item: Scalleg_Card
-            Rate: 166
-          - Index: 37
-            Item: Velelling_Card
-            Rate: 166
-          - Index: 38
-            Item: Letterster_Card
-            Rate: 166
-          - Index: 39
-            Item: Sea_Wind_Card
-            Rate: 166
-          - Index: 40
-            Item: Rock_Striker_Card
-            Rate: 166
-          - Index: 41
-            Item: Skipskipper_Card
-            Rate: 166
-          - Index: 42
-            Item: Cliolima_Card
-            Rate: 166
-          - Index: 43
-            Item: Yorker_Worker_Card
-            Rate: 166
-          - Index: 44
-            Item: Yorker_R_Worker_Card
-            Rate: 166
-          - Index: 45
-            Item: Yoster_Cleaner_Card
-            Rate: 166
-          - Index: 46
-            Item: Yoster_Fixer_Card
-            Rate: 166
-          - Index: 47
-            Item: Yoster_Collect_Card
-            Rate: 166
-          - Index: 48
-            Item: Yoster_Nego_Card
-            Rate: 166
-          - Index: 49
-            Item: Yoster_Cooker_Card
-            Rate: 166
-          - Index: 50
-            Item: Yormi_Card
-            Rate: 166
-          - Index: 51
-            Item: Yormi_M_Card
-            Rate: 166
-          - Index: 52
-            Item: Yordos_Execute_Card
-            Rate: 166
-          - Index: 53
-            Item: Yordos_Judge_Card
-            Rate: 166
-          - Index: 54
-            Item: Yordos_Inve_Card
-            Rate: 166
-          - Index: 55
-            Item: Yoscopus_G_Cards
-            Rate: 166
-          - Index: 56
-            Item: Yoscopus_S_Card
-            Rate: 166
-          - Index: 57
-            Item: Yortus_Bishop_Card
-            Rate: 166
-          - Index: 58
-            Item: Yortus_Conjur_Card
-            Rate: 166
-          - Index: 59
-            Item: Ice_Seahorse_Card
-            Rate: 166
-          - Index: 60
-            Item: R_Ep1921_Boss
-            Rate: 5
   - Group: RT_EP21_GAEBOLG_A
     SubGroups:
       - SubGroup: 0
@@ -128363,14 +125246,6 @@ Body:
           - Index: 1
             Item: Imperfect_Rune
             Amount: 70
-  - Group: RT_EP21_GAEBOLG_C
-    SubGroups:
-      - SubGroup: 0
-        Algorithm: All
-        List:
-          - Index: 0
-            Item: Cubic_Dia
-            Amount: 3
   - Group: RT_EP21_ICY_A
     SubGroups:
       - SubGroup: 0
@@ -128386,9 +125261,6 @@ Body:
       - SubGroup: 0
         Algorithm: All
         List:
-          - Index: 0
-            Item: Cubic_Dia
-            Amount: 3
           - Index: 1
             Item: Imperfect_Rune
             Amount: 100
@@ -128397,9 +125269,6 @@ Body:
       - SubGroup: 0
         Algorithm: All
         List:
-          - Index: 0
-            Item: Cubic_Dia
-            Amount: 2
           - Index: 1
             Item: Imperfect_Rune
             Amount: 80
@@ -128418,9 +125287,6 @@ Body:
       - SubGroup: 0
         Algorithm: All
         List:
-          - Index: 0
-            Item: Cubic_Dia
-            Amount: 4
           - Index: 1
             Item: Imperfect_Rune
             Amount: 130
@@ -128439,9 +125305,6 @@ Body:
       - SubGroup: 0
         Algorithm: All
         List:
-          - Index: 0
-            Item: Cubic_Dia
-            Amount: 3
           - Index: 1
             Item: Imperfect_Rune
             Amount: 150
@@ -128460,8 +125323,6 @@ Body:
       - SubGroup: 0
         Algorithm: All
         List:
-          - Index: 0
-            Item: R_Ep1921_Album
           - Index: 1
             Item: Imperfect_Rune
             Amount: 70
@@ -128470,9 +125331,6 @@ Body:
       - SubGroup: 0
         Algorithm: All
         List:
-          - Index: 0
-            Item: Cubic_Dia
-            Amount: 2
           - Index: 1
             Item: Imperfect_Rune
             Amount: 80
@@ -128496,8 +125354,6 @@ Body:
           - Index: 1
             Item: Imperfect_Rune
             Amount: 120
-          - Index: 2
-            Item: Cubic_Dia
   - Group: RT_EP21_PURIFY_3
     SubGroups:
       - SubGroup: 0
@@ -128506,9 +125362,6 @@ Body:
           - Index: 0
             Item: Imperfect_Rune
             Amount: 80
-          - Index: 1
-            Item: Cubic_Dia
-            Amount: 2
   - Group: RT_EP21_PURIFY_5
     SubGroups:
       - SubGroup: 0
@@ -128517,9 +125370,6 @@ Body:
           - Index: 0
             Item: Imperfect_Rune
             Amount: 100
-          - Index: 1
-            Item: Cubic_Dia
-            Amount: 3
   - Group: RT_EP21_AID_A
     SubGroups:
       - SubGroup: 0
@@ -128540,16 +125390,11 @@ Body:
           - Index: 1
             Item: Imperfect_Rune
             Amount: 100
-          - Index: 2
-            Item: R_Ep1921_Album
   - Group: RT_EP21_AID_2
     SubGroups:
       - SubGroup: 0
         Algorithm: All
         List:
-          - Index: 0
-            Item: Cubic_Dia
-            Amount: 2
           - Index: 1
             Item: Imperfect_Rune
             Amount: 80
@@ -128558,9 +125403,6 @@ Body:
       - SubGroup: 0
         Algorithm: All
         List:
-          - Index: 0
-            Item: Cubic_Dia
-            Amount: 3
           - Index: 1
             Item: Imperfect_Rune
             Amount: 100
@@ -128585,11 +125427,6 @@ Body:
           - Index: 1
             Item: Imperfect_Rune
             Amount: 450
-          - Index: 2
-            Item: Brown_Dia
-            Amount: 5
-          - Index: 3
-            Item: R_Ep1921_Boss
   - Group: RT_EP21_COMPANY_3
     SubGroups:
       - SubGroup: 0
@@ -128598,11 +125435,6 @@ Body:
           - Index: 0
             Item: Imperfect_Rune
             Amount: 100
-          - Index: 1
-            Item: R_Ep1921_Album
-          - Index: 2
-            Item: Cubic_Dia
-            Amount: 2
   - Group: RT_EP21_COMPANY_5
     SubGroups:
       - SubGroup: 0
@@ -128634,11 +125466,6 @@ Body:
           - Index: 1
             Item: Imperfect_Rune
             Amount: 450
-          - Index: 2
-            Item: Brown_Dia
-            Amount: 5
-          - Index: 3
-            Item: R_Ep1921_Boss
   - Group: RT_EP21_HORN_3
     SubGroups:
       - SubGroup: 0
@@ -128647,11 +125474,6 @@ Body:
           - Index: 0
             Item: Imperfect_Rune
             Amount: 100
-          - Index: 1
-            Item: R_Ep1921_Album
-          - Index: 2
-            Item: Cubic_Dia
-            Amount: 2
   - Group: RT_EP21_HORN_5
     SubGroups:
       - SubGroup: 0
@@ -128660,14 +125482,8 @@ Body:
           - Index: 0
             Item: Imperfect_Rune
             Amount: 150
-          - Index: 1
-            Item: R_Ep1921_Album
-            Amount: 2
           - Index: 2
             Item: Blacksmith_Blessing
-          - Index: 3
-            Item: Cubic_Dia
-            Amount: 3
   - Group: RT_EP21_TAN_A
     SubGroups:
       - SubGroup: 0
@@ -128689,11 +125505,6 @@ Body:
           - Index: 1
             Item: Imperfect_Rune
             Amount: 500
-          - Index: 2
-            Item: Brown_Dia
-            Amount: 5
-          - Index: 3
-            Item: R_Ep1921_Boss
   - Group: AEGIS_105828
     SubGroups:
       - SubGroup: 0
@@ -128813,11 +125624,6 @@ Body:
             GradeMinimum: A
             GradeMaximum: A
             Rate: 2
-          - Index: 4
-            Item: aegis_105828
-            GradeMinimum: A
-            GradeMaximum: A
-            Rate: 2
           - Index: 5
             Item: Time_Gap_ABC_Dagger
             GradeMinimum: A
@@ -128855,11 +125661,6 @@ Body:
             Rate: 2
           - Index: 12
             Item: Time_Gap_TR_Ribbon
-            GradeMinimum: A
-            GradeMaximum: A
-            Rate: 2
-          - Index: 13
-            Item: aegis_105829
             GradeMinimum: A
             GradeMaximum: A
             Rate: 2
@@ -128974,13 +125775,6 @@ Body:
             Rate: 4
           - Index: 31
             Item: GoodnEvil_Circlet_SS
-            RefineMinimum: 12
-            RefineMaximum: 12
-            GradeMinimum: A
-            GradeMaximum: A
-            Rate: 4
-          - Index: 32
-            Item: aegis_105830
             RefineMinimum: 12
             RefineMaximum: 12
             GradeMinimum: A
@@ -129548,13 +126342,6 @@ Body:
             Rate: 10
           - Index: 113
             Item: GoodnEvil_Circlet_SS
-            RefineMinimum: 10
-            RefineMaximum: 10
-            GradeMinimum: C
-            GradeMaximum: C
-            Rate: 10
-          - Index: 114
-            Item: aegis_105831
             RefineMinimum: 10
             RefineMaximum: 10
             GradeMinimum: C
@@ -130183,13 +126970,6 @@ Body:
             GradeMinimum: A
             GradeMaximum: A
             Rate: 6
-          - Index: 204
-            Item: aegis_105832
-            RefineMinimum: 12
-            RefineMaximum: 12
-            GradeMinimum: A
-            GradeMaximum: A
-            Rate: 6
           - Index: 205
             Item: GiganticAxe_Furious
             RefineMinimum: 12
@@ -130220,13 +127000,6 @@ Body:
             Rate: 6
           - Index: 209
             Item: Impact_Furious
-            RefineMinimum: 12
-            RefineMaximum: 12
-            GradeMinimum: A
-            GradeMaximum: A
-            Rate: 6
-          - Index: 210
-            Item: aegis_105834
             RefineMinimum: 12
             RefineMaximum: 12
             GradeMinimum: A
@@ -130582,13 +127355,6 @@ Body:
             GradeMinimum: C
             GradeMaximum: C
             Rate: 18
-          - Index: 261
-            Item: aegis_105833
-            RefineMinimum: 10
-            RefineMaximum: 10
-            GradeMinimum: C
-            GradeMaximum: C
-            Rate: 18
           - Index: 262
             Item: GiganticAxe_Furious
             RefineMinimum: 10
@@ -130619,13 +127385,6 @@ Body:
             Rate: 18
           - Index: 266
             Item: Impact_Furious
-            RefineMinimum: 10
-            RefineMaximum: 10
-            GradeMinimum: C
-            GradeMaximum: C
-            Rate: 18
-          - Index: 267
-            Item: aegis_105835
             RefineMinimum: 10
             RefineMaximum: 10
             GradeMinimum: C
@@ -131269,26 +128028,6 @@ Body:
             RefineMinimum: 7
             RefineMaximum: 7
             Rate: 5
-          - Index: 384
-            Item: S_DK_DS_Earring
-            RefineMinimum: 10
-            RefineMaximum: 10
-            Rate: 3
-          - Index: 385
-            Item: S_DK_DS_Pendant
-            RefineMinimum: 10
-            RefineMaximum: 10
-            Rate: 3
-          - Index: 386
-            Item: S_DK_MB_Armor
-            RefineMinimum: 10
-            RefineMaximum: 10
-            Rate: 3
-          - Index: 387
-            Item: S_DK_MB_Shoes
-            RefineMinimum: 10
-            RefineMaximum: 10
-            Rate: 3
           - Index: 388
             Item: S_DK_SS_Earring
             RefineMinimum: 10
@@ -131306,26 +128045,6 @@ Body:
             Rate: 3
           - Index: 391
             Item: S_DK_HS_Shoes
-            RefineMinimum: 10
-            RefineMaximum: 10
-            Rate: 3
-          - Index: 392
-            Item: S_IG_RS_Earring
-            RefineMinimum: 10
-            RefineMaximum: 10
-            Rate: 3
-          - Index: 393
-            Item: S_IG_RS_Pendant
-            RefineMinimum: 10
-            RefineMaximum: 10
-            Rate: 3
-          - Index: 394
-            Item: S_IG_SS_Armor
-            RefineMinimum: 10
-            RefineMaximum: 10
-            Rate: 3
-          - Index: 395
-            Item: S_IG_SS_Shoes
             RefineMinimum: 10
             RefineMaximum: 10
             Rate: 3
@@ -131349,26 +128068,6 @@ Body:
             RefineMinimum: 10
             RefineMaximum: 10
             Rate: 3
-          - Index: 400
-            Item: S_MT_TL_Earring
-            RefineMinimum: 10
-            RefineMaximum: 10
-            Rate: 3
-          - Index: 401
-            Item: S_MT_TL_Pendant
-            RefineMinimum: 10
-            RefineMaximum: 10
-            Rate: 3
-          - Index: 402
-            Item: S_MT_SC_Armor
-            RefineMinimum: 10
-            RefineMaximum: 10
-            Rate: 3
-          - Index: 403
-            Item: S_MT_SC_Shoes
-            RefineMinimum: 10
-            RefineMaximum: 10
-            Rate: 3
           - Index: 404
             Item: S_MT_MS_Earring
             RefineMinimum: 10
@@ -131386,26 +128085,6 @@ Body:
             Rate: 3
           - Index: 407
             Item: S_MT_PR_Shoes
-            RefineMinimum: 10
-            RefineMaximum: 10
-            Rate: 3
-          - Index: 408
-            Item: S_BO_AC_Earring
-            RefineMinimum: 10
-            RefineMaximum: 10
-            Rate: 3
-          - Index: 409
-            Item: S_BO_AC_Pendant
-            RefineMinimum: 10
-            RefineMaximum: 10
-            Rate: 3
-          - Index: 410
-            Item: S_BO_TH_Armor
-            RefineMinimum: 10
-            RefineMaximum: 10
-            Rate: 3
-          - Index: 411
-            Item: S_BO_TH_Shoes
             RefineMinimum: 10
             RefineMaximum: 10
             Rate: 3
@@ -131429,26 +128108,6 @@ Body:
             RefineMinimum: 10
             RefineMaximum: 10
             Rate: 3
-          - Index: 416
-            Item: S_SHC_CR_Earring
-            RefineMinimum: 10
-            RefineMaximum: 10
-            Rate: 3
-          - Index: 417
-            Item: S_SHC_CR_Pendant
-            RefineMinimum: 10
-            RefineMaximum: 10
-            Rate: 3
-          - Index: 418
-            Item: S_SHC_ST_Armor
-            RefineMinimum: 10
-            RefineMaximum: 10
-            Rate: 3
-          - Index: 419
-            Item: S_SHC_ST_Shoes
-            RefineMinimum: 10
-            RefineMaximum: 10
-            Rate: 3
           - Index: 420
             Item: S_SHC_EC_Earring
             RefineMinimum: 10
@@ -131466,26 +128125,6 @@ Body:
             Rate: 3
           - Index: 423
             Item: S_SHC_SI_Shoes
-            RefineMinimum: 10
-            RefineMaximum: 10
-            Rate: 3
-          - Index: 424
-            Item: S_ABC_DB_Earring
-            RefineMinimum: 10
-            RefineMaximum: 10
-            Rate: 3
-          - Index: 425
-            Item: S_ABC_DB_Pendant
-            RefineMinimum: 10
-            RefineMaximum: 10
-            Rate: 3
-          - Index: 426
-            Item: S_ABC_FR_Armor
-            RefineMinimum: 10
-            RefineMaximum: 10
-            Rate: 3
-          - Index: 427
-            Item: S_ABC_FR_Shoes
             RefineMinimum: 10
             RefineMaximum: 10
             Rate: 3
@@ -131509,26 +128148,6 @@ Body:
             RefineMinimum: 10
             RefineMaximum: 10
             Rate: 3
-          - Index: 432
-            Item: S_AG_CI_Earring
-            RefineMinimum: 10
-            RefineMaximum: 10
-            Rate: 3
-          - Index: 433
-            Item: S_AG_CI_Pendant
-            RefineMinimum: 10
-            RefineMaximum: 10
-            Rate: 3
-          - Index: 434
-            Item: S_AG_VST_Armor
-            RefineMinimum: 10
-            RefineMaximum: 10
-            Rate: 3
-          - Index: 435
-            Item: S_AG_VST_Shoes
-            RefineMinimum: 10
-            RefineMaximum: 10
-            Rate: 3
           - Index: 436
             Item: S_AG_FB_Earring
             RefineMinimum: 10
@@ -131546,26 +128165,6 @@ Body:
             Rate: 3
           - Index: 439
             Item: S_AG_SH_Shoes
-            RefineMinimum: 10
-            RefineMaximum: 10
-            Rate: 3
-          - Index: 440
-            Item: S_EM_DS_Earring
-            RefineMinimum: 10
-            RefineMaximum: 10
-            Rate: 3
-          - Index: 441
-            Item: S_EM_DS_Pendant
-            RefineMinimum: 10
-            RefineMaximum: 10
-            Rate: 3
-          - Index: 442
-            Item: S_EM_TP_Armor
-            RefineMinimum: 10
-            RefineMaximum: 10
-            Rate: 3
-          - Index: 443
-            Item: S_EM_TP_Shoes
             RefineMinimum: 10
             RefineMaximum: 10
             Rate: 3
@@ -131589,26 +128188,6 @@ Body:
             RefineMinimum: 10
             RefineMaximum: 10
             Rate: 3
-          - Index: 448
-            Item: S_CD_FP_Earring
-            RefineMinimum: 10
-            RefineMaximum: 10
-            Rate: 3
-          - Index: 449
-            Item: S_CD_FP_Pendant
-            RefineMinimum: 10
-            RefineMaximum: 10
-            Rate: 3
-          - Index: 450
-            Item: S_CD_EP_Armor
-            RefineMinimum: 10
-            RefineMaximum: 10
-            Rate: 3
-          - Index: 451
-            Item: S_CD_EP_Shoes
-            RefineMinimum: 10
-            RefineMaximum: 10
-            Rate: 3
           - Index: 452
             Item: S_CD_AR_Earring
             RefineMinimum: 10
@@ -131626,26 +128205,6 @@ Body:
             Rate: 3
           - Index: 455
             Item: S_CD_DF_Shoes
-            RefineMinimum: 10
-            RefineMaximum: 10
-            Rate: 3
-          - Index: 456
-            Item: S_IQ_TP_Earring
-            RefineMinimum: 10
-            RefineMaximum: 10
-            Rate: 3
-          - Index: 457
-            Item: S_IQ_TP_Pendant
-            RefineMinimum: 10
-            RefineMaximum: 10
-            Rate: 3
-          - Index: 458
-            Item: S_IQ_FB_Armor
-            RefineMinimum: 10
-            RefineMaximum: 10
-            Rate: 3
-          - Index: 459
-            Item: S_IQ_FB_Shoes
             RefineMinimum: 10
             RefineMaximum: 10
             Rate: 3
@@ -131669,26 +128228,6 @@ Body:
             RefineMinimum: 10
             RefineMaximum: 10
             Rate: 3
-          - Index: 464
-            Item: S_WH_WH_Earring
-            RefineMinimum: 10
-            RefineMaximum: 10
-            Rate: 3
-          - Index: 465
-            Item: S_WH_WH_Pendant
-            RefineMinimum: 10
-            RefineMaximum: 10
-            Rate: 3
-          - Index: 466
-            Item: S_WH_AT_Armor
-            RefineMinimum: 10
-            RefineMaximum: 10
-            Rate: 3
-          - Index: 467
-            Item: S_WH_AT_Shoes
-            RefineMinimum: 10
-            RefineMaximum: 10
-            Rate: 3
           - Index: 468
             Item: S_WH_GS_Earring
             RefineMinimum: 10
@@ -131706,26 +128245,6 @@ Body:
             Rate: 3
           - Index: 471
             Item: S_WH_CB_Shoes
-            RefineMinimum: 10
-            RefineMaximum: 10
-            Rate: 3
-          - Index: 472
-            Item: S_SS_KK_Earring
-            RefineMinimum: 10
-            RefineMaximum: 10
-            Rate: 3
-          - Index: 473
-            Item: S_SS_KK_Pendant
-            RefineMinimum: 10
-            RefineMaximum: 10
-            Rate: 3
-          - Index: 474
-            Item: S_SS_KF_Armor
-            RefineMinimum: 10
-            RefineMaximum: 10
-            Rate: 3
-          - Index: 475
-            Item: S_SS_KF_Shoes
             RefineMinimum: 10
             RefineMaximum: 10
             Rate: 3
@@ -131749,26 +128268,6 @@ Body:
             RefineMinimum: 10
             RefineMaximum: 10
             Rate: 3
-          - Index: 480
-            Item: S_NW_MS_Earring
-            RefineMinimum: 10
-            RefineMaximum: 10
-            Rate: 3
-          - Index: 481
-            Item: S_NW_MS_Pendant
-            RefineMinimum: 10
-            RefineMaximum: 10
-            Rate: 3
-          - Index: 482
-            Item: S_NW_NF_Armor
-            RefineMinimum: 10
-            RefineMaximum: 10
-            Rate: 3
-          - Index: 483
-            Item: S_NW_NF_Shoes
-            RefineMinimum: 10
-            RefineMaximum: 10
-            Rate: 3
           - Index: 484
             Item: S_NW_SO_Earring
             RefineMinimum: 10
@@ -131786,26 +128285,6 @@ Body:
             Rate: 3
           - Index: 487
             Item: S_NW_WB_Shoes
-            RefineMinimum: 10
-            RefineMaximum: 10
-            Rate: 3
-          - Index: 488
-            Item: S_SKE_MS_Earring
-            RefineMinimum: 10
-            RefineMaximum: 10
-            Rate: 3
-          - Index: 489
-            Item: S_SKE_MS_Pendant
-            RefineMinimum: 10
-            RefineMaximum: 10
-            Rate: 3
-          - Index: 490
-            Item: S_SKE_DB_Armor
-            RefineMinimum: 10
-            RefineMaximum: 10
-            Rate: 3
-          - Index: 491
-            Item: S_SKE_DB_Shoes
             RefineMinimum: 10
             RefineMaximum: 10
             Rate: 3
@@ -131829,26 +128308,6 @@ Body:
             RefineMinimum: 10
             RefineMaximum: 10
             Rate: 3
-          - Index: 496
-            Item: S_SOA_TS_Earring
-            RefineMinimum: 10
-            RefineMaximum: 10
-            Rate: 3
-          - Index: 497
-            Item: S_SOA_TS_Pendant
-            RefineMinimum: 10
-            RefineMaximum: 10
-            Rate: 3
-          - Index: 498
-            Item: S_SOA_MS_Armor
-            RefineMinimum: 10
-            RefineMaximum: 10
-            Rate: 3
-          - Index: 499
-            Item: S_SOA_MS_Shoes
-            RefineMinimum: 10
-            RefineMaximum: 10
-            Rate: 3
           - Index: 500
             Item: S_SOA_TOWB_Earring
             RefineMinimum: 10
@@ -131866,26 +128325,6 @@ Body:
             Rate: 3
           - Index: 503
             Item: S_SOA_TOFG_Shoes
-            RefineMinimum: 10
-            RefineMaximum: 10
-            Rate: 3
-          - Index: 504
-            Item: S_HN_MC_Earring
-            RefineMinimum: 10
-            RefineMaximum: 10
-            Rate: 3
-          - Index: 505
-            Item: S_HN_MC_Pendant
-            RefineMinimum: 10
-            RefineMaximum: 10
-            Rate: 3
-          - Index: 506
-            Item: S_HN_DB_Armor
-            RefineMinimum: 10
-            RefineMaximum: 10
-            Rate: 3
-          - Index: 507
-            Item: S_HN_DB_Shoes
             RefineMinimum: 10
             RefineMaximum: 10
             Rate: 3
@@ -131909,26 +128348,6 @@ Body:
             RefineMinimum: 10
             RefineMaximum: 10
             Rate: 3
-          - Index: 512
-            Item: S_SU_HRC_Earring
-            RefineMinimum: 10
-            RefineMaximum: 10
-            Rate: 3
-          - Index: 513
-            Item: S_SU_HRC_Pendant
-            RefineMinimum: 10
-            RefineMaximum: 10
-            Rate: 3
-          - Index: 514
-            Item: S_SU_BSP_Armor
-            RefineMinimum: 10
-            RefineMaximum: 10
-            Rate: 3
-          - Index: 515
-            Item: S_SU_BSP_Shoes
-            RefineMinimum: 10
-            RefineMaximum: 10
-            Rate: 3
           - Index: 516
             Item: S_SU_CS_Earring
             RefineMinimum: 10
@@ -131949,26 +128368,6 @@ Body:
             RefineMinimum: 10
             RefineMaximum: 10
             Rate: 3
-          - Index: 520
-            Item: S_DK_DS_Earring
-            RefineMinimum: 7
-            RefineMaximum: 7
-            Rate: 10
-          - Index: 521
-            Item: S_DK_DS_Pendant
-            RefineMinimum: 7
-            RefineMaximum: 7
-            Rate: 10
-          - Index: 522
-            Item: S_DK_MB_Armor
-            RefineMinimum: 7
-            RefineMaximum: 7
-            Rate: 10
-          - Index: 523
-            Item: S_DK_MB_Shoes
-            RefineMinimum: 7
-            RefineMaximum: 7
-            Rate: 10
           - Index: 524
             Item: S_DK_SS_Earring
             RefineMinimum: 7
@@ -131986,26 +128385,6 @@ Body:
             Rate: 10
           - Index: 527
             Item: S_DK_HS_Shoes
-            RefineMinimum: 7
-            RefineMaximum: 7
-            Rate: 10
-          - Index: 528
-            Item: S_IG_RS_Earring
-            RefineMinimum: 7
-            RefineMaximum: 7
-            Rate: 10
-          - Index: 529
-            Item: S_IG_RS_Pendant
-            RefineMinimum: 7
-            RefineMaximum: 7
-            Rate: 10
-          - Index: 530
-            Item: S_IG_SS_Armor
-            RefineMinimum: 7
-            RefineMaximum: 7
-            Rate: 10
-          - Index: 531
-            Item: S_IG_SS_Shoes
             RefineMinimum: 7
             RefineMaximum: 7
             Rate: 10
@@ -132029,26 +128408,6 @@ Body:
             RefineMinimum: 7
             RefineMaximum: 7
             Rate: 10
-          - Index: 536
-            Item: S_MT_TL_Earring
-            RefineMinimum: 7
-            RefineMaximum: 7
-            Rate: 10
-          - Index: 537
-            Item: S_MT_TL_Pendant
-            RefineMinimum: 7
-            RefineMaximum: 7
-            Rate: 10
-          - Index: 538
-            Item: S_MT_SC_Armor
-            RefineMinimum: 7
-            RefineMaximum: 7
-            Rate: 10
-          - Index: 539
-            Item: S_MT_SC_Shoes
-            RefineMinimum: 7
-            RefineMaximum: 7
-            Rate: 10
           - Index: 540
             Item: S_MT_MS_Earring
             RefineMinimum: 7
@@ -132066,26 +128425,6 @@ Body:
             Rate: 10
           - Index: 543
             Item: S_MT_PR_Shoes
-            RefineMinimum: 7
-            RefineMaximum: 7
-            Rate: 10
-          - Index: 544
-            Item: S_BO_AC_Earring
-            RefineMinimum: 7
-            RefineMaximum: 7
-            Rate: 10
-          - Index: 545
-            Item: S_BO_AC_Pendant
-            RefineMinimum: 7
-            RefineMaximum: 7
-            Rate: 10
-          - Index: 546
-            Item: S_BO_TH_Armor
-            RefineMinimum: 7
-            RefineMaximum: 7
-            Rate: 10
-          - Index: 547
-            Item: S_BO_TH_Shoes
             RefineMinimum: 7
             RefineMaximum: 7
             Rate: 10
@@ -132109,26 +128448,6 @@ Body:
             RefineMinimum: 7
             RefineMaximum: 7
             Rate: 10
-          - Index: 552
-            Item: S_SHC_CR_Earring
-            RefineMinimum: 7
-            RefineMaximum: 7
-            Rate: 10
-          - Index: 553
-            Item: S_SHC_CR_Pendant
-            RefineMinimum: 7
-            RefineMaximum: 7
-            Rate: 10
-          - Index: 554
-            Item: S_SHC_ST_Armor
-            RefineMinimum: 7
-            RefineMaximum: 7
-            Rate: 10
-          - Index: 555
-            Item: S_SHC_ST_Shoes
-            RefineMinimum: 7
-            RefineMaximum: 7
-            Rate: 10
           - Index: 556
             Item: S_SHC_EC_Earring
             RefineMinimum: 7
@@ -132146,26 +128465,6 @@ Body:
             Rate: 10
           - Index: 559
             Item: S_SHC_SI_Shoes
-            RefineMinimum: 7
-            RefineMaximum: 7
-            Rate: 10
-          - Index: 560
-            Item: S_ABC_DB_Earring
-            RefineMinimum: 7
-            RefineMaximum: 7
-            Rate: 10
-          - Index: 561
-            Item: S_ABC_DB_Pendant
-            RefineMinimum: 7
-            RefineMaximum: 7
-            Rate: 10
-          - Index: 562
-            Item: S_ABC_FR_Armor
-            RefineMinimum: 7
-            RefineMaximum: 7
-            Rate: 10
-          - Index: 563
-            Item: S_ABC_FR_Shoes
             RefineMinimum: 7
             RefineMaximum: 7
             Rate: 10
@@ -132189,26 +128488,6 @@ Body:
             RefineMinimum: 7
             RefineMaximum: 7
             Rate: 10
-          - Index: 568
-            Item: S_AG_CI_Earring
-            RefineMinimum: 7
-            RefineMaximum: 7
-            Rate: 10
-          - Index: 569
-            Item: S_AG_CI_Pendant
-            RefineMinimum: 7
-            RefineMaximum: 7
-            Rate: 10
-          - Index: 570
-            Item: S_AG_VST_Armor
-            RefineMinimum: 7
-            RefineMaximum: 7
-            Rate: 10
-          - Index: 571
-            Item: S_AG_VST_Shoes
-            RefineMinimum: 7
-            RefineMaximum: 7
-            Rate: 10
           - Index: 572
             Item: S_AG_FB_Earring
             RefineMinimum: 7
@@ -132226,26 +128505,6 @@ Body:
             Rate: 10
           - Index: 575
             Item: S_AG_SH_Shoes
-            RefineMinimum: 7
-            RefineMaximum: 7
-            Rate: 10
-          - Index: 576
-            Item: S_EM_DS_Earring
-            RefineMinimum: 7
-            RefineMaximum: 7
-            Rate: 10
-          - Index: 577
-            Item: S_EM_DS_Pendant
-            RefineMinimum: 7
-            RefineMaximum: 7
-            Rate: 10
-          - Index: 578
-            Item: S_EM_TP_Armor
-            RefineMinimum: 7
-            RefineMaximum: 7
-            Rate: 10
-          - Index: 579
-            Item: S_EM_TP_Shoes
             RefineMinimum: 7
             RefineMaximum: 7
             Rate: 10
@@ -132269,26 +128528,6 @@ Body:
             RefineMinimum: 7
             RefineMaximum: 7
             Rate: 10
-          - Index: 584
-            Item: S_CD_FP_Earring
-            RefineMinimum: 7
-            RefineMaximum: 7
-            Rate: 10
-          - Index: 585
-            Item: S_CD_FP_Pendant
-            RefineMinimum: 7
-            RefineMaximum: 7
-            Rate: 10
-          - Index: 586
-            Item: S_CD_EP_Armor
-            RefineMinimum: 7
-            RefineMaximum: 7
-            Rate: 10
-          - Index: 587
-            Item: S_CD_EP_Shoes
-            RefineMinimum: 7
-            RefineMaximum: 7
-            Rate: 10
           - Index: 588
             Item: S_CD_AR_Earring
             RefineMinimum: 7
@@ -132306,26 +128545,6 @@ Body:
             Rate: 10
           - Index: 591
             Item: S_CD_DF_Shoes
-            RefineMinimum: 7
-            RefineMaximum: 7
-            Rate: 10
-          - Index: 592
-            Item: S_IQ_TP_Earring
-            RefineMinimum: 7
-            RefineMaximum: 7
-            Rate: 10
-          - Index: 593
-            Item: S_IQ_TP_Pendant
-            RefineMinimum: 7
-            RefineMaximum: 7
-            Rate: 10
-          - Index: 594
-            Item: S_IQ_FB_Armor
-            RefineMinimum: 7
-            RefineMaximum: 7
-            Rate: 10
-          - Index: 595
-            Item: S_IQ_FB_Shoes
             RefineMinimum: 7
             RefineMaximum: 7
             Rate: 10
@@ -132349,26 +128568,6 @@ Body:
             RefineMinimum: 7
             RefineMaximum: 7
             Rate: 10
-          - Index: 600
-            Item: S_WH_WH_Earring
-            RefineMinimum: 7
-            RefineMaximum: 7
-            Rate: 10
-          - Index: 601
-            Item: S_WH_WH_Pendant
-            RefineMinimum: 7
-            RefineMaximum: 7
-            Rate: 10
-          - Index: 602
-            Item: S_WH_AT_Armor
-            RefineMinimum: 7
-            RefineMaximum: 7
-            Rate: 10
-          - Index: 603
-            Item: S_WH_AT_Shoes
-            RefineMinimum: 7
-            RefineMaximum: 7
-            Rate: 10
           - Index: 604
             Item: S_WH_GS_Earring
             RefineMinimum: 7
@@ -132386,26 +128585,6 @@ Body:
             Rate: 10
           - Index: 607
             Item: S_WH_CB_Shoes
-            RefineMinimum: 7
-            RefineMaximum: 7
-            Rate: 10
-          - Index: 608
-            Item: S_SS_KK_Earring
-            RefineMinimum: 7
-            RefineMaximum: 7
-            Rate: 10
-          - Index: 609
-            Item: S_SS_KK_Pendant
-            RefineMinimum: 7
-            RefineMaximum: 7
-            Rate: 10
-          - Index: 610
-            Item: S_SS_KF_Armor
-            RefineMinimum: 7
-            RefineMaximum: 7
-            Rate: 10
-          - Index: 611
-            Item: S_SS_KF_Shoes
             RefineMinimum: 7
             RefineMaximum: 7
             Rate: 10
@@ -132429,26 +128608,6 @@ Body:
             RefineMinimum: 7
             RefineMaximum: 7
             Rate: 10
-          - Index: 616
-            Item: S_NW_MS_Earring
-            RefineMinimum: 7
-            RefineMaximum: 7
-            Rate: 10
-          - Index: 617
-            Item: S_NW_MS_Pendant
-            RefineMinimum: 7
-            RefineMaximum: 7
-            Rate: 10
-          - Index: 618
-            Item: S_NW_NF_Armor
-            RefineMinimum: 7
-            RefineMaximum: 7
-            Rate: 10
-          - Index: 619
-            Item: S_NW_NF_Shoes
-            RefineMinimum: 7
-            RefineMaximum: 7
-            Rate: 10
           - Index: 620
             Item: S_NW_SO_Earring
             RefineMinimum: 7
@@ -132466,26 +128625,6 @@ Body:
             Rate: 10
           - Index: 623
             Item: S_NW_WB_Shoes
-            RefineMinimum: 7
-            RefineMaximum: 7
-            Rate: 10
-          - Index: 624
-            Item: S_SKE_MS_Earring
-            RefineMinimum: 7
-            RefineMaximum: 7
-            Rate: 10
-          - Index: 625
-            Item: S_SKE_MS_Pendant
-            RefineMinimum: 7
-            RefineMaximum: 7
-            Rate: 10
-          - Index: 626
-            Item: S_SKE_DB_Armor
-            RefineMinimum: 7
-            RefineMaximum: 7
-            Rate: 10
-          - Index: 627
-            Item: S_SKE_DB_Shoes
             RefineMinimum: 7
             RefineMaximum: 7
             Rate: 10
@@ -132509,26 +128648,6 @@ Body:
             RefineMinimum: 7
             RefineMaximum: 7
             Rate: 10
-          - Index: 632
-            Item: S_SOA_TS_Earring
-            RefineMinimum: 7
-            RefineMaximum: 7
-            Rate: 10
-          - Index: 633
-            Item: S_SOA_TS_Pendant
-            RefineMinimum: 7
-            RefineMaximum: 7
-            Rate: 10
-          - Index: 634
-            Item: S_SOA_MS_Armor
-            RefineMinimum: 7
-            RefineMaximum: 7
-            Rate: 10
-          - Index: 635
-            Item: S_SOA_MS_Shoes
-            RefineMinimum: 7
-            RefineMaximum: 7
-            Rate: 10
           - Index: 636
             Item: S_SOA_TOWB_Earring
             RefineMinimum: 7
@@ -132549,26 +128668,6 @@ Body:
             RefineMinimum: 7
             RefineMaximum: 7
             Rate: 10
-          - Index: 640
-            Item: S_HN_MC_Earring
-            RefineMinimum: 7
-            RefineMaximum: 7
-            Rate: 10
-          - Index: 641
-            Item: S_HN_MC_Pendant
-            RefineMinimum: 7
-            RefineMaximum: 7
-            Rate: 10
-          - Index: 642
-            Item: S_HN_DB_Armor
-            RefineMinimum: 7
-            RefineMaximum: 7
-            Rate: 10
-          - Index: 643
-            Item: S_HN_DB_Shoes
-            RefineMinimum: 7
-            RefineMaximum: 7
-            Rate: 10
           - Index: 644
             Item: S_HN_VJ_Earring
             RefineMinimum: 7
@@ -132586,26 +128685,6 @@ Body:
             Rate: 10
           - Index: 647
             Item: S_HN_TB_Shoes
-            RefineMinimum: 7
-            RefineMaximum: 7
-            Rate: 10
-          - Index: 648
-            Item: S_SU_HRC_Earring
-            RefineMinimum: 7
-            RefineMaximum: 7
-            Rate: 10
-          - Index: 649
-            Item: S_SU_HRC_Pendant
-            RefineMinimum: 7
-            RefineMaximum: 7
-            Rate: 10
-          - Index: 650
-            Item: S_SU_BSP_Armor
-            RefineMinimum: 7
-            RefineMaximum: 7
-            Rate: 10
-          - Index: 651
-            Item: S_SU_BSP_Shoes
             RefineMinimum: 7
             RefineMaximum: 7
             Rate: 10
@@ -133048,13 +129127,6 @@ Body:
           - Index: 2
             Item: Mental_Potion
             Amount: 6
-          - Index: 3
-            Item: aegis_105836
-            Amount: 5
-          - Index: 4
-            Item: C_White_Fox_Tail
-          - Index: 5
-            Item: Select_Costume_DEC_1
   - Group: SELECT_DEC_PACK2
     SubGroups:
       - SubGroup: 0
@@ -133069,13 +129141,6 @@ Body:
           - Index: 2
             Item: Mental_Potion
             Amount: 6
-          - Index: 3
-            Item: aegis_105836
-            Amount: 5
-          - Index: 4
-            Item: aegis_480629
-          - Index: 5
-            Item: Select_Costume_DEC_2
   - Group: SELECT_DEC_PACK3
     SubGroups:
       - SubGroup: 0
@@ -133084,12 +129149,3 @@ Body:
           - Index: 0
             Item: Nyangvine_Fruit
             Amount: 300
-          - Index: 1
-            Item: C_Blink_Eyes_WH_Serpent
-          - Index: 2
-            Item: aegis_420516
-          - Index: 3
-            Item: Select_Costume_DEC_3
-          - Index: 4
-            Item: aegis_105836
-            Amount: 10

@@ -1378,14 +1378,6 @@ Body:
         bonus2 bAddDamageClass,2333,10;
         bonus bMdef,3;
       }
-  - Mob: MARIN
-    TameItem: Juicy_Fruit
-    EggItem: Marin_Egg
-    EquipItem: Tw_Backpack
-    FoodItem: Fruit_Sundae
-    Fullness: 3
-    IntimacyFed: 50
-    CaptureRate: 2000
   - Mob: LITTLE_PORING
     TameItem: Unripe_Apple2
     EggItem: Novice_Poring_Egg
@@ -3495,58 +3487,7 @@ Body:
 #         bonus3 bAutoSpell,"AL_HEAL",1,10;
 #      }
 #
-  - Mob: ORK_HERO
-    EggItem: Orc_Hero_Egg
-    FoodItem: Pet_Food   # unknown
-    Fullness: 2   # unknown
-    HungryDelay: 120   # unknown
-    IntimacyFed: 15   # unknown
-    CaptureRate: 0   # unknown
-    SpecialPerformance: false   # unknown
-    Script: >
-      .@i = getpetinfo(PETINFO_INTIMATE);
 
-      if (.@i >= PET_INTIMATE_LOYAL) {
-         bonus bBaseAtk,40;
-      }
-      else if (.@i >= PET_INTIMATE_CORDIAL) {
-         bonus bBaseAtk,30;
-      }
-      else if (.@i >= PET_INTIMATE_NEUTRAL) {
-         bonus bBaseAtk,20;
-      }
-      else {
-         bonus bBaseAtk,10;
-         bonus bDef,-3;
-      }
-
-  - Mob: ORC_LORD
-    EggItem: Orc_Lord_Egg
-    FoodItem: Pet_Food   # unknown
-    Fullness: 2   # unknown
-    HungryDelay: 120   # unknown
-    IntimacyFed: 15   # unknown
-    CaptureRate: 0   # unknown
-    SpecialPerformance: false   # unknown
-    Script: >
-      .@i = getpetinfo(PETINFO_INTIMATE);
-
-      if (.@i >= PET_INTIMATE_LOYAL) {
-         bonus bMatk,20;
-         bonus bBaseAtk,20;
-      }
-      else if (.@i >= PET_INTIMATE_CORDIAL) {
-         bonus bMatk,15;
-         bonus bBaseAtk,15;
-      }
-      else if (.@i >= PET_INTIMATE_NEUTRAL) {
-         bonus bMatk,10;
-         bonus bBaseAtk,10;
-      }
-      else {
-         bonus bBaseAtk,10;
-         bonus bDef,-3;
-      }
 
 #  - Mob: C_TOWER_MANAGER2
 #    TameItem: aegis_103219
@@ -3640,25 +3581,6 @@ Body:
 #      }
 #      bonus bMatkRate,3;
 #
-  - Mob: SKEGGIOLD
-    EggItem: Skeggiold_Egg
-    FoodItem: Morning_Dew
-    Fullness: 2   # unknown
-    HungryDelay: 120   # unknown
-    IntimacyFed: 15   # unknown
-    CaptureRate: 0   # unknown
-    SpecialPerformance: false   # unknown
-    Script: >
-      .@i = getpetinfo(PETINFO_INTIMATE);
-
-      if (.@i >= PET_INTIMATE_LOYAL) {
-         bonus2 bMagicAtkEle,Ele_Holy,2;
-         bonus bVariableCastrate,-2;
-      }
-      else if (.@i >= PET_INTIMATE_CORDIAL) {
-         bonus2 bMagicAtkEle,Ele_Holy,1;
-         bonus bVariableCastrate,-1;
-      }
 #    Evolution:
 #      - Target: ANGELGOLT3
 #        ItemRequirements:
@@ -3671,24 +3593,6 @@ Body:
 #          - Item: Skeggiold_Card
 #            Amount: 10
 
-  - Mob: CLOCK
-    EggItem: aegis_9190
-    FoodItem: Mystic_Stone
-    Fullness: 2   # unknown
-    HungryDelay: 120   # unknown
-    IntimacyFed: 15   # unknown
-    CaptureRate: 0   # unknown
-    SpecialPerformance: false   # unknown
-    Script: >
-      .@i = getpetinfo(PETINFO_INTIMATE);
-
-      if (.@i >= PET_INTIMATE_LOYAL) {
-         bonus bAspdRate,1;
-         bonus bFlee,3;
-      }
-      else if (.@i >= PET_INTIMATE_CORDIAL) {
-         bonus bAspdRate,1;
-      }
 #    Evolution:
 #      - Target: C_TOWER_MANAGER2
 #        ItemRequirements:

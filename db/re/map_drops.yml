@@ -2164,125 +2164,101 @@ Body:
       - Monster: SPIRIT_C_LAND_S
         Drops:
           - Index: 0
-            Item: MD_Hol_Fragment
-            Rate: 300
-          - Index: 1
             Item: Etel_Skyblue_Jewel
             Rate: 15
-          - Index: 2
+          - Index: 1
             Item: Etel_Stone
             Rate: 30
       - Monster: SPIRIT_C_LAND_M
         Drops:
           - Index: 0
-            Item: MD_Hol_Fragment
-            Rate: 350
-          - Index: 1
             Item: Etel_Skyblue_Jewel
             Rate: 25
-          - Index: 2
+          - Index: 1
             Item: Etel_Stone
             Rate: 40
-          - Index: 3
+          - Index: 2
             Item: Etel_Topaz
             Rate: 10
       - Monster: SPIRIT_C_LAND_L
         Drops:
           - Index: 0
-            Item: MD_Hol_Fragment
-            Rate: 400
-          - Index: 1
             Item: Etel_Violet_Jewel
             Rate: 10
-          - Index: 2
+          - Index: 1
             Item: Etel_Skyblue_Jewel
             Rate: 35
-          - Index: 3
+          - Index: 2
             Item: Etel_Stone
             Rate: 50
-          - Index: 4
+          - Index: 3
             Item: Etel_Topaz
             Rate: 20
       - Monster: SPIRIT_C_LAND_SL
         Drops:
           - Index: 0
-            Item: MD_Hol_Fragment
-            Rate: 450
-          - Index: 1
             Item: Etel_Amber
             Rate: 7
-          - Index: 2
+          - Index: 1
             Item: Etel_Violet_Jewel
             Rate: 15
-          - Index: 3
+          - Index: 2
             Item: Etel_Skyblue_Jewel
             Rate: 45
-          - Index: 4
+          - Index: 3
             Item: Etel_Stone
             Rate: 60
-          - Index: 5
+          - Index: 4
             Item: Etel_Topaz
             Rate: 30
       - Monster: SPIRIT_C_FLAME_S
         Drops:
           - Index: 0
-            Item: MD_Hol_Fragment
-            Rate: 300
-          - Index: 1
             Item: Etel_Skyblue_Jewel
             Rate: 15
-          - Index: 2
+          - Index: 1
             Item: Etel_Stone
             Rate: 30
       - Monster: SPIRIT_C_FLAME_M
         Drops:
           - Index: 0
-            Item: MD_Hol_Fragment
-            Rate: 350
-          - Index: 1
             Item: Etel_Skyblue_Jewel
             Rate: 25
-          - Index: 2
+          - Index: 1
             Item: Etel_Stone
             Rate: 40
-          - Index: 3
+          - Index: 2
             Item: Etel_Topaz
             Rate: 10
       - Monster: SPIRIT_C_FLAME_L
         Drops:
           - Index: 0
-            Item: MD_Hol_Fragment
-            Rate: 400
-          - Index: 1
             Item: Etel_Violet_Jewel
             Rate: 10
-          - Index: 2
+          - Index: 1
             Item: Etel_Skyblue_Jewel
             Rate: 35
-          - Index: 3
+          - Index: 2
             Item: Etel_Stone
             Rate: 50
-          - Index: 4
+          - Index: 3
             Item: Etel_Topaz
             Rate: 20
       - Monster: SPIRIT_C_FLAME_SL
         Drops:
           - Index: 0
-            Item: MD_Hol_Fragment
-            Rate: 450
-          - Index: 1
             Item: Etel_Amber
             Rate: 7
-          - Index: 2
+          - Index: 1
             Item: Etel_Violet_Jewel
             Rate: 15
-          - Index: 3
+          - Index: 2
             Item: Etel_Skyblue_Jewel
             Rate: 45
-          - Index: 4
+          - Index: 3
             Item: Etel_Stone
             Rate: 60
-          - Index: 5
+          - Index: 4
             Item: Etel_Topaz
             Rate: 30
   - Map: 1@xm_d
