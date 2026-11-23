@@ -1500,7 +1500,7 @@ Se conservará también el valor original para auditoría.
 | `Drops` + treasure | `item_rate_treasure` si `RaceGroups.Treasure` |
 | `Drops` resto | `item_rate_{heal\|use\|equip\|card\|common}{,_boss\|,_mvp}` según tipo + boss_kind |
 
-`rate_status`: `adjusted` | `pending_config_verify` (MVP-normal con `*_mvp` aún en 100/1× del conf base).
+`rate_status` (E4): `adjusted` (mob_db + rates) | `map_yaml_base` (bonus de mapa). El antiguo `pending_config_verify` se cerró: MVP suelo 1× (`item_rate_*_mvp=100`, card 100×) es política OzRo verificada en vivo.
 
 ### Map bonus (`map_specific`) — capa distinta
 
@@ -1518,17 +1518,16 @@ Fuente: `db/re/map_drops.yml` (`GlobalDrops` / `SpecificDrops`). **No reemplaza*
 
 UI/guías: listar aparte (“bonus si farméas en este mapa”); no sumar ciegas a drops “del mob en general”.
 
-### Etapa 4 (efectivos / conf) — heredado desde E3
+### Estado E4 en drops (cerrado; verificado live)
 
-| Tema | Nota |
+| Tema | Estado |
 |---|---|
-| Catálogo de rates (§24.4) | Persistir keys efectivas para Information/web; no quemar en site |
-| `item_rate_*_mvp` / `pending_config_verify` | Live `@rates`/`@mi`: MVP suelo 1× (card 100×) intencional; cerrar pending |
-| `enable_bonus_map_drops` runtime | Paridad exacta del camino `mob_getdroprate` (OzRo: `yes`) |
-| `mob_item_ratio.yml` | Import vacío hoy; si Body no vacío → entra al resolver / gate re-extract |
-| VIP / LUK / boosts de kill | Política OzRo; fuera de capa DB+conf estática |
+| Ajuste `item_rate_*` + caps (`mob_drop_adjust`) | Aplicado → `chance_effective` / `rate_status=adjusted` |
+| MVP suelo 1× (`*_mvp=100`, card 100×) | Política OzRo; `pending_config_verify` eliminado |
+| Catálogo de rates (§24.4) | Snapshot en `configuration_effective` / `dataset_rates` |
+| Map bonus `map_yaml_base` | Capa YAML sin `item_rate_*` (correcto a nivel DB+conf) |
 
-Drops solo-script / evento: backlog de catálogo (no rates).
+Pendientes de drops post-E4 (`mob_item_ratio`, deliveries script) → **Pre-E5**.
 
 ---
 
@@ -1566,7 +1565,7 @@ También deben identificarse las tiendas que utilicen monedas o recursos distint
 
 **Etapa 3 (hecho):** headers + `npc_shop_links` (`callshop` literal/prefijo → `shop_ids` + inventario ya extraído).
 
-**Etapa 3 (alcance shops headers/callshop):** cerrado. Precio `-1`, buysell runtime → **Etapa 4**.
+**Etapa 3 (alcance shops headers/callshop):** cerrado. Precio `-1` → buy efectivo: **E4**. Runtime / no-declarado → **flag** en Pre-E5 (no modelar estado live).
 
 ### Hallazgos — Barters (inventario)
 
@@ -1699,7 +1698,7 @@ También deben contemplarse recompensas entregadas mediante NPC, quests, instanc
 
 **Hecho:** catálogo de grupos; rewards con `rate`/`amount` raw; link desde scripts; flag `contains_nested_box` / `reward_opens_group`.
 
-**Etapa 4:** normalizar probabilidad según algoritmo (SharedPool ≠ % directo). Args `getrandgroupitem` / cajas solo-NPC: backlog de catálogo si hace falta cobertura.
+**E4:** probabilidad normalizada según algoritmo (SharedPool ≠ % directo). Entregas NPC no son boxes → Pre-E5 (`npc_delivery`).
 
 ---
 
@@ -1749,7 +1748,7 @@ El modelo debe permitir representar procesos destructivos, probabilísticos o co
 
 **Hecho:** catálogo produce + materiales; skill requerida (id/name/lv); familia por `ItemLV`; gate cliente en resultado/materiales.
 
-**Etapa 4:** zeny / éxito / fallo (runtime de skill). Enlaces NPC/`itemskill`→produce: backlog de catálogo si se inventarian crafters.
+**E4:** materiales/skill/familia hechos. Zeny / éxito / fallo desde src (directo o unknown) → **Pre-E5**.
 
 ---
 
@@ -2002,6 +2001,8 @@ Cada key debe guardar al menos: valor efectivo, unidad semántica (p. ej. `100 =
 
 Tabla propuesta: `ozro_dataset_rates` (o equivalente bajo `ozro_dataset_metadata` + filas de rates). Se materializa en Etapa 5; el resolver de Etapa 4 ya debe producir el snapshot (p. ej. `reports/configuration_effective.json`).
 
+**Aparte — `level_penalty`:** no es battle-conf rate. Filas planas `Type` / `Difference` / `Rate` (Pre-E5 → SQL). Quien aplique el modificador por nivel del jugador lo hace al consultar; el dataset no lo mezcla en `chance_effective`.
+
 ---
 
 # 25. SQL — Persistencia del Master World Dataset
@@ -2068,9 +2069,10 @@ ozro_item_relationships
 ozro_source_provenance
 ozro_dataset_metadata
 ozro_dataset_rates
+ozro_dataset_level_penalty
 ```
 
-`ozro_dataset_rates` almacena el catálogo de rates/flags de §24.4 (no prosa de features). El prefijo debe estar centralizado en la configuración del proyecto, no escrito manualmente en cada extractor.
+`ozro_dataset_rates` almacena rates/flags de §24.4 (no prosa de features). `ozro_dataset_level_penalty` almacena las filas planas de Pre-E5 (`Type`, `Difference`, `Rate`). El prefijo debe estar centralizado en la configuración del proyecto, no escrito manualmente en cada extractor.
 
 ## 25.2. Diseño relacional
 
@@ -2276,11 +2278,11 @@ Orden de trabajo (Skills **antes** de NPCs):
 - **NPC script analysis:** evidencia de cuerpo → `functions`; duplicates heredan; pending residual aceptado (~9k; ruido Transport/Healer).
 - **Item Scripts:** cobertura 1:1 con `has_script`; tags parciales (~69 raw OK).
 - **Item Restrictions:** `trade.*` + `noequip` + `flag.NoConsume`; NoSell≠NoTrade; Jobs en items (ver §11).
-- **Drops:** `mob_db` per_10000 + adjust; `map_specific` per_100000; capa original (efectivos → Etapa 4).
+- **Drops:** `mob_db` per_10000 + adjust efectivo (E4); `map_specific` per_100000 (`map_yaml_base`); `mob_item_ratio` + deliveries script → Pre-E5.
 - **Quests:** `quest_db` + targets/drops + `npc_quest_links`.
 - **Instances:** catálogo + maps + NPC bind por `instance_create` literal.
-- **Boxes:** `item_group_db` + links `getgroupitem`; nested flags; rates raw (normalización → Etapa 4).
-- **Recipes:** `produce_db` (+ import); materiales `consumed`/`guide`; familia por `ItemLV`.
+- **Boxes:** `item_group_db` + links `getgroupitem`; nested flags; chance normalizada (E4). Entregas NPC ≠ boxes → Pre-E5.
+- **Recipes:** `produce_db` (+ import); materiales `consumed`/`guide`; familia por `ItemLV`; zeny/éxito desde src → Pre-E5.
 - **Enchantments:** stones/orbs ≠ cards; UI moderna off en OzRo; pools `item_enchant.yml` como referencia; orbs jugables vía slot/`getitem2`.
 - **Item Relationships (combos):** `item_combos.yml` → groups/sets/members; gate cliente; combos muertos purgados.
 
@@ -2300,6 +2302,8 @@ No reabrir Etapa 3 para trabajo de resolución efectiva (buy/sell, `item_rate_*`
 
 ## Etapa 4 — Resolución de valores efectivos
 
+**Intención:** un solo resolver lee conf/overrides de OzRo y los extractores materializan valores **efectivos** (precalculados) que reflejan el comportamiento del server. No hay consumidores externos todavía: el criterio de cierre es **fidelidad al juego**, no “pipelines listos para la web”.
+
 Integrar:
 
 - Configuraciones.
@@ -2311,39 +2315,142 @@ Integrar:
 
 Los extractores deben consumir un único componente de resolución.
 
-### Alcance heredado desde Etapa 3 (depende del resolver)
+### Alcance resuelto en E4
 
-| Tema | Origen E3 | Qué resuelve Etapa 4 |
+| Tema | Origen | Estado |
 |---|---|---|
-| Catálogo de rates (§24.4) | Conf | Snapshot efectivo persistible (`configuration_effective` → SQL en E5) |
-| `item_rate_*_mvp` / `pending_config_verify` | Drops §15 | Verificado live (`@rates`/`@mi`): MVP suelo 1× (card 100×) es política OzRo; cerrar pending como `adjusted` |
-| `mob_item_ratio.yml` si deja de estar vacío | Drops | Entrar al resolver o gate de re-extract |
-| `enable_bonus_map_drops` paridad runtime | Drops | Efectivo exacto del camino map-server |
-| Precio shop `-1` → buy efectivo | Shops §16 | `item_db` buy efectivo |
-| Buysell / mutación runtime de shop | Shops | Solo si se modela estado efectivo, no header |
-| Probabilidad SharedPool / Random (boxes) | Boxes §19 | Normalizar `rate` raw → chance efectiva según algoritmo |
-| Recipe zeny / éxito / fallo | Recipes §20 | Runtime de skill / conf; no está en `produce_db` |
-| Buy/Sell item efectivos | Items / Acceptance | Capa effective del catálogo |
-| VIP/LUK/boosts de kill en drops | Drops | Fuera de DB+conf estática; política OzRo |
-| `callshop` dinámico (variable) | Shops | 1 caso; si aporta valor, análisis de asignación (no es rate, pero no bloqueó E3) |
+| Catálogo de rates (§24.4) | Conf | Hecho — snapshot (`configuration_effective` / `dataset_rates`; SQL en E5) |
+| Drops `item_rate_*` + caps | Drops §15 | Hecho — `chance_effective`; `rate_status=adjusted` |
+| MVP suelo 1× / card 100× | Drops §15 | Hecho — política OzRo |
+| HP / EXP efectivos | Mobs §7 | Hecho — capa conf (`monster_hp_rate`/`mvp_hp_rate` 200; base/job 500; mvp_exp 1000) |
+| Buy/Sell item efectivos | Items | Hecho — `buy_effective` / `sell_effective` |
+| Precio shop `-1` → buy efectivo | Shops §16 | Hecho — `shop_price_effective` |
+| Probabilidad SharedPool / Random / All / Drop | Boxes §19 | Hecho — `chance_effective` + `chance_status` |
 
-**Nota — rates como referencia para la web:** Information puede citar multiplicadores desde el Master Dataset; no recalcular drops/HP/EXP en `ozro-site`. Features/custom copy siguen editoriales a mano. Si `mob_item_ratio.yml` tiene Body, debe participar en el resolver.
+### Capa efectiva vs penalización Renewal (verificado live)
+
+Los valores `*_effective` / `chance_effective` son la capa **DB + battle conf** (rates del server), **sin** penalización por diferencia de nivel jugador↔mob.
+
+En Renewal (`RENEWAL_EXP` / `RENEWAL_DROP`), con `atcommand_mobinfo_type: 1`, `@mi` muestra EXP/drops **ya modificados** por `pc_level_penalty_mod` + `db/import/level_penalty.yml` (merge sobre `db/re/…`). Eso es runtime por personaje, no un rate fijo del mob.
+
+**Verificación 2026-11-23** (Poring 1002 + Osiris 1038, personaje overlevel; import OzRo):
+
+| Campo | Dataset | `@mi` live | Ratio | Interpretación |
+|---|---|---|---|---|
+| HP | coincide | coincide | 1.0 | Sin penalty de nivel |
+| Base/Job EXP | p.ej. Poring 750/200; Osiris 613800/502200 | mitad | **0.5** | `PENALTY_EXP` OzRo: Diff ≤ −31 → Rate 50 |
+| Drops normales | p.ej. Poring Card 10%; Osiris Card 1% | 8% / 0.80% | **0.8** | `PENALTY_DROP` OzRo: Diff ≤ −16 → Rate 80 |
+| MVP Bonus EXP | 613800 | 613800 | 1.0 | `@mi` imprime `mexp` sin aplicar `PENALTY_MVP_EXP` en el display |
+| MVP drops list | 3 filas con rates propios | 1ª al 100% | — | Display `@mi` + `item_drop_mvp_mode: 0` (cascada); el dataset conserva todas las filas |
+
+Conclusión: **el resolver E4 coincide con el server** en la capa conf. No “corregir” bajeando EXP/drops al valor de un `@mi` overlevel.
+
+Para re-verificar sin deshacer mentalmente el penalty: personaje con `|mob_lv − base_lv|` en zona Rate 100, o comparar HP / MVP Bonus EXP / `@rates` (multiplicadores de conf).
+
+`chance_effective` / EXP efectiva **no** incluyen penalización por nivel. Los rangos y rates de `level_penalty` se extraen como **dato plano consultable** en Pre-E5 (abajo): quien calcule “para mi nivel” lo hace fuera del dataset. **No** hornear un penalty de personaje en cada drop/mob.
+
+### Cierre Etapa 4
+
+**Estado: CERRADA** respecto a la resolución de valores efectivos de la capa DB + battle conf.
+
+| Criterio | Resultado |
+|---|---|
+| Resolver único + snapshot de rates (§24.4) | Cumplido |
+| Drops / HP / EXP / buy-sell / shop `-1` / boxes normalizados | Cumplido |
+| Fidelidad live vs server (muestra Poring + Osiris; penalty Renewal explicada) | Cumplido |
+| Completud de mundo aún pendiente (penalty data, recipes src, scripts, Dijkstra, …) | **Pre-E5** (siguiente) — **no** es Etapa 5 |
+
+No reabrir Etapa 4 para SQL ni para trabajo de completud. Si una regeneración desde las mismas fuentes no reproduce los efectivos E4, es bug de extractor/resolver.
+
+---
+
+## Pre-E5 — Completud del mundo efectivo (antes de SQL)
+
+**Principio:** el Master World Dataset debe quedar **completo y fiel** al comportamiento del server **antes** de persistir en SQL. Etapa 5 solo materializa lo ya resuelto. No hay consumidores intermedios (MarketSimulator / web / guías) hasta terminar el dataset.
+
+### Decisiones cerradas (2026-11-23)
+
+| # | Tema | Decisión |
+|---|---|---|
+| 1 | `level_penalty` | Extraer ya como filas planas (`Type`, `Difference`, `Rate`) desde `db/re` + override OzRo `db/import`. Dato consultable; el cálculo por nivel del jugador se hace donde se necesite. No es un “catálogo merge” ceremonial. |
+| 2 | Map bonus drops | La capa YAML actual (`map_yaml_base`, `per_100000`, sin `item_rate_*`) es suficiente. Cualquier transformación extra de `mob_getdroprate` sobre bonus de mapa queda **fuera**. |
+| 3 | `mob_item_ratio.yml` | **Opción A:** cablear lectura en el extractor de drops. Body vacío = no-op; si hay filas, se aplican al `rate_adjust` como el server. |
+| 4 | Recipes zeny / éxito / fallo | Sacar del **src** (y conf si aplica) lo que sea **directo**. Debe quedar al 100% respecto a lo extraíble; no habrá “versión 2”. Si no es directo del source → `unknown` / no extraíble, sin inventar. |
+| 5 | HP de skill-summons | Investigar desde src. Si la fórmula no es directa → marcar no extraíble / unknown. **Prohibido inventar.** Pedir verificación manual solo cuando haya un valor concreto que contrastar. |
+| 6 | Shops | Inventario = tiendas **declaradas**. Las mutaciones / flujos runtime llevan un **flag** explícito para poder avisar en UI/guías (“revisar in-game”); no se modela el estado live. |
+| 7 | Completud pre-SQL | Sí — por diseño por etapas. Alcance de lo identificable abajo. |
+
+### Política de extracción (anti-invención)
+
+- Preferir **“no sabemos” / no extraíble** a un valor falso.
+- Si no sale **directo** del source/YAML/conf → no construir fórmulas especulativas.
+- Cobertura de scripts: patrones habituales sí; casos raros se **ignoran** (costo de 100% literal demasiado alto). Listar qué verbs/patrones se cubrieron.
+- VIP / LUK / logarithmic / boosts de kill: fuera (OzRo off) — no reabrir.
+
+### Dominios de completud (qué sí / qué no)
+
+#### Entregas NPC → ítem (dato extra, no principal)
+
+- Barrer verbs identificables (`getitem`, `getitem2`, y análogos habituales).
+- Registrar: **este NPC entrega X** o **este NPC entrega X modificado** (slots/refine/etc. si el verb lo deja literal).
+- **No importa** si el branch es éxito, fallo, GM o condicional: con saber la relación NPC↔ítem basta.
+- **No** va a `produce_db` ni a `item_group` / boxes. Tipo de acquisition / evidencia **claramente diferenciable** (p.ej. `npc_delivery`).
+- Fuera de scope: el “cómo” conseguirlo (condiciones de quest, menús, costos).
+
+#### Spawns por NPC (ruta alterna)
+
+- NPC que invoca / spawnea mob (`monster`, etc.): mapear **npc_id + mob_id**.
+- `spawn_type` (o equivalente) **distinto** de spawns naturales de mapa / instance headers.
+- Condiciones específicas fuera de scope; es una ruta alterna documentada.
+
+#### Instances
+
+- Basta saber **qué NPC** crea la instancia (bind literal ya en E3; completar lo identificable).
+- El resto (requisitos finos, flujo interno) lo descubre el jugador — fuera de scope del dataset.
+
+#### Dijkstra (§5.6 + hallazgos E3)
+
+Ya definido — no reabrir el set de aristas:
+
+- Pesos: Warp 1.0 · Kafra 0.2 · Dungeon TP OzRo 0.5 · Airship 1.5 · Boat 1.2.
+- Ignorar atajos `scripted` especiales / quest-gated / instancias (el jugador los descubre).
+- E3: colapsar paralelas; VIP kafra off; airship ciudad↔ciudad sin nodos airport; boat zeny irrelevante al peso.
+- Precalcular all-pairs → listo para SQL (`ozro_map_distances` / `ozro_map_routes`). En Pre-E5: generar el resultado en reports; E5 solo persiste.
+
+### Orden de trabajo Pre-E5 (verificar en cada paso)
+
+1. Brief alineado (este bloque) — **hecho al registrar decisiones**.
+2. `level_penalty` → JSONL/summary plano.
+3. `mob_item_ratio` cableado en drops (+ re-extract si Body deja de estar vacío).
+4. Shops: flag runtime / no-declarado.
+5. Recipes: zeny + chance desde src (directo o unknown).
+6. Skill-summon HP: evidencia src o unknown (sin inventar).
+7. NPC→ítem deliveries (tipo diferenciado).
+8. Spawns script NPC→mob (tipo diferenciado).
+9. Instance create NPC (completar identificable).
+10. Dijkstra all-pairs según §5.6 + E3.
+11. Cierre Pre-E5 → solo entonces **Etapa 5 SQL**.
 
 ## Etapa 5 — Persistencia SQL
 
+**Solo** después del cierre Pre-E5.
+
 Implementar:
 
-- Esquema.
-- Prefijo.
-- Repositorios.
-- Transacciones.
-- Sincronización idempotente.
+- Esquema (prefijo `ozro_`).
+- Repositorios / migraciones.
+- Sincronización idempotente (§25.4).
 - Metadatos de versión.
-- Reportes.
+- Materializar rates E4, `level_penalty`, distancias/rutas Dijkstra, y todos los dominios ya extraídos.
+- Reportes de carga.
+
+Etapa 5 **no** es el cajón de diferidos ni de “decidir cobertura”.
 
 ## Etapa 6 — Validación integral
 
 Ejecutar la extracción completa y comprobar las relaciones entre todos los dominios.
+
+Re-chequear que los valores efectivos E4 y la completud Pre-E5 siguen coincidiendo con el server tras la persistencia SQL (misma fuente → mismo resultado).
 
 ---
 
