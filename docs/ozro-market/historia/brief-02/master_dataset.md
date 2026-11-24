@@ -2023,56 +2023,11 @@ Prefijo propuesto:
 
 Ejemplos:
 
-```text
-ozro_maps
-ozro_map_connections
+Lista canónica y delta vs este borrador E1: ver **`ozro-data/database/SCHEMA_DELTA.md`** + `database/schema/001_master.sql` (Etapa 5).
 
-ozro_npcs
-ozro_npc_quests
-ozro_npc_functions
+Resumen: se mantienen los dominios del plan; se **expandieron** columnas E3/E4/Pre-E5; se **añadieron** tablas que el extract real produjo (barters, random options, enchant_* normalizados, combo groups/sets/members, `npc_script_rewards`, `acquisition_outputs`, `item_dependencies`, …). Stubs E1 sin extract (`ozro_skills`, `ozro_item_properties`, blob único de enchant/combos) quedaron fuera.
 
-ozro_mobs
-ozro_spawns
-
-ozro_skills
-ozro_mob_skills
-ozro_skill_summons
-
-ozro_items
-ozro_item_properties
-ozro_item_scripts
-ozro_item_restrictions
-ozro_item_enchantments
-
-ozro_acquisition_sources
-ozro_source_outputs
-
-ozro_mob_drops
-ozro_npc_shops
-ozro_npc_shop_items
-
-ozro_quests
-ozro_instances
-
-ozro_boxes
-ozro_box_rewards
-
-ozro_recipes
-ozro_recipe_materials
-
-ozro_enchantments
-ozro_enchantment_materials
-
-ozro_item_combos
-ozro_item_relationships
-
-ozro_source_provenance
-ozro_dataset_metadata
-ozro_dataset_rates
-ozro_dataset_level_penalty
-```
-
-`ozro_dataset_rates` almacena rates/flags de §24.4 (no prosa de features). `ozro_dataset_level_penalty` almacena las filas planas de Pre-E5 (`Type`, `Difference`, `Rate`). El prefijo debe estar centralizado en la configuración del proyecto, no escrito manualmente en cada extractor.
+`ozro_dataset_rates` = rates/flags §24.4. `ozro_dataset_level_penalty` = filas planas Pre-E5. Prefijo centralizado en `config/database.yml`.
 
 ## 25.2. Diseño relacional
 
@@ -2433,18 +2388,18 @@ Ya definido — no reabrir el set de aristas:
 
 ## Etapa 5 — Persistencia SQL
 
-**Pre-E5 cerrado.** Implementar a continuación.
+**Cerrado** (2026-11-23).
 
-Implementar:
+| Pieza | Estado |
+|---|---|
+| Esquema `ozro_*` | `ozro-data/database/schema/001_master.sql` — contrato alineado a JSONL |
+| Delta vs plan E1 §25.1 | `ozro-data/database/SCHEMA_DELTA.md` (kept / expanded / added / fuera de SQL) |
+| Sync | full-replace idempotente (`pipeline.py schema [--reset]` + `pipeline.py sync`); DSN en `config/database.yml` |
+| Metadatos | `ozro_dataset_metadata` (versión + fingerprint de reports+schema) |
+| Carga verificada | counts JSONL = SQL (0 mismatches); spot: Poring drops, recipes `variable`, 8 ABR `hp_status`, `level_penalty` 30, `map_distances` 171614 |
+| Reference sheet (integración) | `ozro-data/DATA.md` — catálogo, unidades, flags, patrones de query |
 
-- Esquema (prefijo `ozro_`).
-- Repositorios / migraciones.
-- Sincronización idempotente (§25.4).
-- Metadatos de versión.
-- Materializar rates E4, `level_penalty`, distancias/rutas Dijkstra, y todos los dominios ya extraídos.
-- Reportes de carga.
-
-Etapa 5 **no** es el cajón de diferidos ni de “decidir cobertura”.
+Etapa 5 **no** reabre diferidos de cobertura: solo materializa lo ya resuelto en E3/E4/Pre-E5.
 
 ## Etapa 6 — Validación integral
 
