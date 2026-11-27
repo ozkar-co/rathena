@@ -818,7 +818,7 @@ OnMyMobDead:
 	end;
 }
 
-1@gl_k,149,96,1	script	#cut01	GATE_SKYBLUE,{
+1@gl_k,149,96,1	script	#cut01	WARPNPC,{
 	warp 'map_name$[0],151,232;
 	end;
 }
